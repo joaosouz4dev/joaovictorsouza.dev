@@ -29,8 +29,8 @@ function App() {
 
 							<div class="collapse navbar-collapse" id="navbarSupportedContent">
 								<ul class="navbar-nav mr-auto ml-auto">
-									<li class="nav-item">
-										<a class="nav-item active" href="#jv-home">
+									<li class="nav-item active">
+										<a class="nav-link" href="#jv-home">
 											Inicio
 										</a>
 									</li>
