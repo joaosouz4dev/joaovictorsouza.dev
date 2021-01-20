@@ -95,12 +95,12 @@ function App() {
 
 									<ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
 										<li>
-											<a href="https://www.facebook.com/joao.souz4" target="_blank" rel="noopener noreferrer" >
+											<a href="https://www.facebook.com/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-facebook" />
 											</a>
 										</li>
 										<li>
-											<a href="https://www.instagram.com/joao.souz4/" target="_blank" rel="noopener noreferrer" >
+											<a href="https://www.instagram.com/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-instagram" />
 											</a>
 										</li>
@@ -110,7 +110,7 @@ function App() {
 											</a>
 										</li>
 										<li>
-											<a href="https://www.linkedin.com/in/joaosouz4/" target="_blank" rel="noopener noreferrer" >
+											<a href="https://www.linkedin.com/in/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-linkedin" />
 											</a>
 										</li>
@@ -574,23 +574,23 @@ function App() {
 													data-wow-delay="0.7s"
 												>
 													<li>
-														<a href="https://www.facebook.com/joao.souz4" target="_blank" rel="noopener noreferrer" >
+														<a href="https://www.facebook.com/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-facebook" />
 														</a>
 													</li>
 													<li>
-														<a href="https://www.instagram.com/joao.souz4/" target="_blank" rel="noopener noreferrer" >
+														<a href="https://www.instagram.com/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-instagram" />
 														</a>
 													</li>
 													<li>
-														<a href="https://github.com/joaosouz4" target="_blank" rel="noopener noreferrer" >
+														<a href="https://github.com/joaosouz4dev" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-github" />
 														</a>
 													</li>
 													<li>
 														<a
-															href="https://www.linkedin.com/in/joaosouz4/"
+															href="https://www.linkedin.com/in/joaosouz4dev"
 															target="_blank" rel="noopener noreferrer" 
 														>
 															<i class="fa fa-linkedin" />
