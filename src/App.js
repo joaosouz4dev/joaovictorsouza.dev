@@ -84,7 +84,7 @@ function App() {
 										</li>
 										<li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
 											<i class="fa fa-phone" />
-											<a href="https://joaovictorsouza.dev/whats" target="_blank">
+											<a href="https://joaovictorsouza.dev/whats" target="_blank" rel="noopener noreferrer" >
 												+55 31 9 9858-7817
 											</a>
 										</li>
@@ -95,27 +95,27 @@ function App() {
 
 									<ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
 										<li>
-											<a href="https://www.facebook.com/joao.souz4" target="_blank">
+											<a href="https://www.facebook.com/joao.souz4" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-facebook" />
 											</a>
 										</li>
 										<li>
-											<a href="https://www.instagram.com/joao.souz4/" target="_blank">
+											<a href="https://www.instagram.com/joao.souz4/" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-instagram" />
 											</a>
 										</li>
 										<li>
-											<a href="https://github.com/joaosouz4" target="_blank">
+											<a href="https://github.com/joaosouz4" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-github" />
 											</a>
 										</li>
 										<li>
-											<a href="https://www.linkedin.com/in/joaosouz4/" target="_blank">
+											<a href="https://www.linkedin.com/in/joaosouz4/" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-linkedin" />
 											</a>
 										</li>
 										<li>
-											<a href="https://joaovictorsouza.dev/whats" target="_blank">
+											<a href="https://joaovictorsouza.dev/whats" target="_blank" rel="noopener noreferrer" >
 												<i class="fa fa-whatsapp" />
 											</a>
 										</li>
@@ -574,24 +574,24 @@ function App() {
 													data-wow-delay="0.7s"
 												>
 													<li>
-														<a href="https://www.facebook.com/joao.souz4" target="_blank">
+														<a href="https://www.facebook.com/joao.souz4" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-facebook" />
 														</a>
 													</li>
 													<li>
-														<a href="https://www.instagram.com/joao.souz4/" target="_blank">
+														<a href="https://www.instagram.com/joao.souz4/" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-instagram" />
 														</a>
 													</li>
 													<li>
-														<a href="https://github.com/joaosouz4" target="_blank">
+														<a href="https://github.com/joaosouz4" target="_blank" rel="noopener noreferrer" >
 															<i class="fa fa-github" />
 														</a>
 													</li>
 													<li>
 														<a
 															href="https://www.linkedin.com/in/joaosouz4/"
-															target="_blank"
+															target="_blank" rel="noopener noreferrer" 
 														>
 															<i class="fa fa-linkedin" />
 														</a>
