@@ -1,6 +1,8 @@
 import React from "react";
 
 export default () => {
+  const year = new Date().getFullYear();
+  const anos = year - 2015;
   return (
     <main>
       <div class="section-loader">
@@ -507,7 +509,7 @@ export default () => {
                           UEMG
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2015-2019</div>
+                      <div class="jv-eduyear">2015-2020</div>
                       <p>Bacharelado em Sistemas de Informação</p>
                     </div>
                   </div>
@@ -572,7 +574,7 @@ export default () => {
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
-                Desenvolvedor, design e proativo. Há 7 anos na programação, João
+                Desenvolvedor, design e proativo. Há {anos} anos na programação, João
                 Victor Souza tem a arte de programar como profissão e paixão.
               </p>
               <a
@@ -664,7 +666,7 @@ export default () => {
                       <div class="col-sm-6">
                         <div class="text-center">
                           <p>
-                            João Victor Souza © 2020 -{" "}
+                            João Victor Souza © {year} -{" "}
                             <a
                               target="_new"
                               href="https://github.com/joaosouz4dev"
