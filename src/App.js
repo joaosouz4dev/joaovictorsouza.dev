@@ -214,7 +214,11 @@ export default () => {
                   src={process.env.PUBLIC_URL + "/assets/images/4136918.png"}
                   alt=""
                   class="img-fluid"
-                  style={{maxHeight: "315px", margin: '0 auto', display: 'block'}}
+                  style={{
+                    maxHeight: "315px",
+                    margin: "0 auto",
+                    display: "block",
+                  }}
                 />
               </div>
             </div>
@@ -234,7 +238,7 @@ export default () => {
                 >
                   Olá, sou o João, desenvolvedor Web no Brasil. Tenho uma rica
                   experiência em design, construção de sites e programação.
-                  Também sou bom em
+                  Geralmente utilizo:
                 </p>
                 <div
                   class="jv-about-tag wow fadeInUp"
@@ -243,7 +247,7 @@ export default () => {
                 >
                   <ul>
                     <li>
-                      <span>php</span>
+                      <span>photoshop</span>
                     </li>
                     <li>
                       <span>html</span>
@@ -252,19 +256,34 @@ export default () => {
                       <span>css</span>
                     </li>
                     <li>
-                      <span>jquery</span>
+                      <span>Javascript</span>
                     </li>
                     <li>
-                      <span>wordpress</span>
+                      <span>jquery</span>
                     </li>
                     <li>
                       <span>React</span>
                     </li>
                     <li>
-                      <span>Javascript</span>
+                      <span>React Native</span>
+                    </li>
+                    <li>
+                      <span>php</span>
+                    </li>
+                    <li>
+                      <span>wordpress</span>
+                    </li>
+                    <li>
+                      <span>lumen</span>
                     </li>
                     <li>
                       <span>SQL</span>
+                    </li>
+                    <li>
+                      <span>MONGODB</span>
+                    </li>
+                    <li>
+                      <span>e outros</span>
                     </li>
                   </ul>
                 </div>
@@ -455,7 +474,7 @@ export default () => {
                         class="jv-progress jv-progress-circle"
                         data-progress="90"
                       />
-                      <div class="pr-skill-name">Proativo</div>
+                      <div class="pr-skill-name">Proatividade</div>
                     </li>
                   </ul>
                 </div>
@@ -506,12 +525,26 @@ export default () => {
                     >
                       <h4>
                         Universidade Do Estado De Minas Gerais{" "}
-                        <a target="_new" href="www.uemg.br">
+                        <a target="_new" href="https://www.uemg.br">
                           UEMG
                         </a>
                       </h4>
                       <div class="jv-eduyear">2015-2020</div>
                       <p>Bacharelado em Sistemas de Informação</p>
+                    </div>
+                    <div
+                      class="jv-education-item dark-bg wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.5s"
+                    >
+                      <h4>
+                        <a target="_new" href="https://descomplica.com.br/pos-graduacao">
+                          Descomplica
+                        </a>
+                        pós graduação
+                      </h4>
+                      <div class="jv-eduyear">2021-cursando</div>
+                      <p>Pós em Projetos de aplicativos móveis multiplataforma</p>
                     </div>
                   </div>
                 </div>
@@ -550,6 +583,19 @@ export default () => {
                       </h4>
                       <div class="jv-eduyear">2019-2019</div>
                       <span>Professor de informática</span>
+                    </div>
+                    <div
+                      class="jv-work-item dark-bg wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.4s"
+                    >
+                      <h4>
+                      <a target="_new" href="https://mappsistemas.com.br/">
+                        Mapp Sistemas
+                      </a> – Desenvolvimento de aplicativos e sistemas
+                      </h4>
+                      <div class="jv-eduyear">2020-atual</div>
+                      <span>Desenvolvedor web fullStack</span>
                     </div>
                   </div>
                 </div>
