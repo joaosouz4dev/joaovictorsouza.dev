@@ -211,9 +211,10 @@ export default () => {
                 data-wow-delay="0.4s"
               >
                 <img
-                  src={process.env.PUBLIC_URL + "/assets/images/ab-img.png"}
+                  src={process.env.PUBLIC_URL + "/assets/images/4136918.png"}
                   alt=""
                   class="img-fluid"
+                  style={{maxHeight: "315px", margin: '0 auto', display: 'block'}}
                 />
               </div>
             </div>
@@ -574,8 +575,9 @@ export default () => {
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
-                Desenvolvedor, design e proativo. Há {anos} anos na programação, João
-                Victor Souza tem a arte de programar como profissão e paixão.
+                Desenvolvedor, design e proativo. Há {anos} anos na programação,
+                João Victor Souza tem a arte de programar como profissão e
+                paixão.
               </p>
               <a
                 href="https://api.whatsapp.com/send?phone=553199587817"
@@ -731,4 +733,4 @@ export default () => {
       </footer>
     </main>
   );
-}
+};

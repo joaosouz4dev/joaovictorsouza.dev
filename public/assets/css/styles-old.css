@@ -1006,7 +1006,7 @@ button:focus {
 }
 
 .dark-vertion .img-color-overlay {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .dark-vertion .jv-home .jv-header-info .social-icon li .fa:hover {
