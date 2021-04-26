@@ -592,7 +592,7 @@ export default () => {
                       <h4>
                       <a target="_new" href="https://mappsistemas.com.br/">
                         Mapp Sistemas
-                      </a> – Desenvolvimento de aplicativos e sistemas
+                      </a> – Aplicativos e sistemas
                       </h4>
                       <div class="jv-eduyear">2020-atual</div>
                       <span>Desenvolvedor web fullStack</span>
