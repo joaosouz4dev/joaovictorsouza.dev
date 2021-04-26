@@ -595,7 +595,7 @@ export default () => {
                       </a> – Aplicativos e sistemas
                       </h4>
                       <div class="jv-eduyear">2020-atual</div>
-                      <span>Desenvolvedor web fullStack</span>
+                      <span>Desenvolvedor web fullstack</span>
                     </div>
                   </div>
                 </div>
