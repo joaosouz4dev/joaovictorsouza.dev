@@ -539,7 +539,7 @@ export default () => {
                     >
                       <h4>
                         <a target="_new" href="https://descomplica.com.br/pos-graduacao">
-                          Descomplica
+                          Descomplica{" "}
                         </a>
                         pós graduação
                       </h4>
