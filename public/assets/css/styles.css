@@ -1695,6 +1695,9 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     background: #0bceaf;
+    transition: 3s all;
+    animation-name: animationProgress;
+    animation-duration: 3s;
     -webkit-transition: 3s all;
     -webkit-animation-duration: 3s;
     -webkit-animation-name: animationProgress;
@@ -2436,14 +2439,6 @@
       Mobile Nav
   ==============
   */
-  
-  .old {
-    /*==============
-              Overlay            
-    ================== */
-    /*  Navigation Menu */
-  }
-  
   .old .navbar-collapse {
     position: fixed;
     top: 0;
