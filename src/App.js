@@ -529,7 +529,7 @@ export default () => {
                           UEMG
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2015-2020</div>
+                      <div class="jv-eduyear">2015-2019</div>
                       <p>Bacharelado em Sistemas de Informação</p>
                     </div>
                     <div
