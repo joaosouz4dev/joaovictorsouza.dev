@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default () => {
+  const [tecnologias, setTecnologias] = useState([
+    "Photoshop",
+    "Illustrator",
+    "Sketch",
+    "Html",
+    "Css",
+    "Javascript",
+    "JQuery",
+    "NodeJS",
+    "MongoDB",
+    "PHP",
+    "Wordpress",
+    "Lumen",
+    "SQL",
+    "Express",
+    "NextJS",
+    "ReactJS",
+    "React Native",
+  ]);
   const year = new Date().getFullYear();
   const anos = year - 2015;
   return (
@@ -248,45 +267,11 @@ export default () => {
                   data-wow-delay="0.3s"
                 >
                   <ul>
-                    <li>
-                      <span>photoshop</span>
-                    </li>
-                    <li>
-                      <span>html</span>
-                    </li>
-                    <li>
-                      <span>css</span>
-                    </li>
-                    <li>
-                      <span>Javascript</span>
-                    </li>
-                    <li>
-                      <span>jquery</span>
-                    </li>
-                    <li>
-                      <span>React</span>
-                    </li>
-                    <li>
-                      <span>React Native</span>
-                    </li>
-                    <li>
-                      <span>php</span>
-                    </li>
-                    <li>
-                      <span>wordpress</span>
-                    </li>
-                    <li>
-                      <span>lumen</span>
-                    </li>
-                    <li>
-                      <span>SQL</span>
-                    </li>
-                    <li>
-                      <span>MONGODB</span>
-                    </li>
-                    <li>
-                      <span>e outros</span>
-                    </li>
+                    {tecnologias.map((tecnologia, i) => (
+                      <li key={i}>
+                        <span>{tecnologia}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -393,18 +378,18 @@ export default () => {
                             <div class="percentagem-num">86%</div>
                           </div>
                           <div class="progressBar">
-                            <div class="percentagem" style={{ width: "86%" }} />
+                            <div class="percentagem" style={{ width: "96%" }} />
                           </div>
                         </div>
                       </div>
                       <div class="candidatos">
                         <div class="parcial">
                           <div class="info">
-                            <div class="nome">Java</div>
+                            <div class="nome">React</div>
                             <div class="percentagem-num">26%</div>
                           </div>
                           <div class="progressBar">
-                            <div class="percentagem" style={{ width: "26%" }} />
+                            <div class="percentagem" style={{ width: "86%" }} />
                           </div>
                         </div>
                       </div>
@@ -415,7 +400,7 @@ export default () => {
                             <div class="percentagem-num">68%</div>
                           </div>
                           <div class="progressBar">
-                            <div class="percentagem" style={{ width: "68%" }} />
+                            <div class="percentagem" style={{ width: "58%" }} />
                           </div>
                         </div>
                       </div>
@@ -438,7 +423,7 @@ export default () => {
                             <div class="percentagem-num">48%</div>
                           </div>
                           <div class="progressBar">
-                            <div class="percentagem" style={{ width: "45%" }} />
+                            <div class="percentagem" style={{ width: "89%" }} />
                           </div>
                         </div>
                       </div>
@@ -449,7 +434,7 @@ export default () => {
                             <div class="percentagem-num">12%</div>
                           </div>
                           <div class="progressBar">
-                            <div class="percentagem" style={{ width: "12%" }} />
+                            <div class="percentagem" style={{ width: "40%" }} />
                           </div>
                         </div>
                       </div>
