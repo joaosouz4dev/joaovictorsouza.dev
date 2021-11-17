@@ -92,7 +92,7 @@ export default () => {
                     data-wow-duration="0.8s"
                     data-wow-delay="0.3s"
                   >
-                    Desenvolvedor
+                    Software Developer
                   </h4>
 
                   <ul>
@@ -237,9 +237,10 @@ export default () => {
                   data-wow-duration="0.8s"
                   data-wow-delay="0.2s"
                 >
-                  Olá, sou o João, desenvolvedor Web no Brasil. Tenho uma rica
-                  experiência em design, construção de sites e programação.
-                  Geralmente utilizo:
+                  Sou um desenvolvedor web e estou sempre procurando resolver
+                  problemas, fazer melhorias no que já existe e criar algo novo
+                  que tenha um impacto social positivo. Busco novos
+                  conhecimentos a cada dia e adoro desafios! Geralmente utilizo:
                 </p>
                 <div
                   class="jv-about-tag wow fadeInUp"
