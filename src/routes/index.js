@@ -616,8 +616,22 @@ export default () => {
                         </a>{" "}
                         – Aplicativos e sistemas
                       </h4>
-                      <div class="jv-eduyear">2020-atual</div>
-                      <span>Desenvolvedor web fullstack</span>
+                      <div class="jv-eduyear">2020-2021</div>
+                      <span>Desenvolvedor front end</span>
+                    </div>
+                    <div
+                      class="jv-work-item dark-bg wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.4s"
+                    >
+                      <h4>
+                        <a target="_new" href="https://www.drpaysaude.com.br/">
+                          Dr.pay
+                        </a>{" "}
+                        – Soluções e Sáude
+                      </h4>
+                      <div class="jv-eduyear">2021-atual</div>
+                      <span>Desenvolvedor front end pleno</span>
                     </div>
                   </div>
                 </div>
