@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+require("@lottiefiles/lottie-player");
 
 export default () => {
-  const [tecnologias, setTecnologias] = useState([
+  const tecnologias = [
     "Photoshop",
     "Illustrator",
     "Sketch",
@@ -19,7 +20,7 @@ export default () => {
     "NextJS",
     "ReactJS",
     "React Native",
-  ]);
+  ];
   const year = new Date().getFullYear();
   const anos = year - 2015;
   return (
@@ -229,17 +230,26 @@ export default () => {
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
-                <img
-                  src={process.env.PUBLIC_URL + "/assets/images/4136918.png"}
-                  alt=""
-                  class="img-fluid"
+                <div
                   style={{
                     maxHeight: "315px",
                     margin: "0 auto",
                     display: "block",
                     filter: "grayscale(100%)",
                   }}
-                />
+                >
+                  <lottie-player
+                    autoplay
+                    loop
+                    mode="normal"
+                    src={process.env.PUBLIC_URL + "/assets/images/lottie/79681-usability-concept-illustration.json"}
+                    style={{
+                      width: "300px",
+                      height: "300px",
+                      margin: "0 auto",
+                    }}
+                  ></lottie-player>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
