@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./routes/index";
+import Matrix from "./routes/matrix/index";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/zap" element={<Wpp />} />
+        <Route exact path="/matrix" element={<Matrix />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

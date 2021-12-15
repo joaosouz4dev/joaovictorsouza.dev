@@ -25,23 +25,23 @@ export default () => {
   const anos = year - 2015;
   return (
     <main>
-      <div class="section-loader">
-        <div class="loader">
+      <div className="section-loader">
+        <div className="loader">
           <div />
           <div />
         </div>
       </div>
 
       <header
-        class="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
+        className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
         id="jv-header"
       >
-        <div class="overlay" />
-        <div class="container">
-          <div class="row">
-            <nav class="navbar navbar-expand-lg jv-nav nav-btn">
+        <div className="overlay" />
+        <div className="container">
+          <div className="row">
+            <nav className="navbar navbar-expand-lg jv-nav nav-btn">
               <button
-                class="navbar-toggler"
+                className="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -49,33 +49,36 @@ export default () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon icon" />
+                <span className="navbar-toggler-icon icon" />
               </button>
 
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto ml-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#jv-home">
+              <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+              >
+                <ul className="navbar-nav mr-auto ml-auto">
+                  <li className="nav-item active">
+                    <a className="nav-link" href="#jv-home">
                       Inicio
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#jv-about">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#jv-about">
                       Sobre
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#jv-skills">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#jv-skills">
                       Habilidades
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#jv-experience">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#jv-experience">
                       Experiências
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#jv-contact">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#jv-contact">
                       Contatos
                     </a>
                   </li>
@@ -86,14 +89,14 @@ export default () => {
         </div>
       </header>
 
-      <section class="jv-home image-bg home-2-img" id="jv-home">
-        <div class="img-foverlay img-color-overlay">
-          <div class="container">
-            <div class="row section-separator xs-column-reverse vertical-middle-content home-padding">
-              <div class="col-sm-6">
-                <div class="jv-header-info">
+      <section className="jv-home image-bg home-2-img" id="jv-home">
+        <div className="img-foverlay img-color-overlay">
+          <div className="container">
+            <div className="row section-separator xs-column-reverse vertical-middle-content home-padding">
+              <div className="col-sm-6">
+                <div className="jv-header-info">
                   <div
-                    class="jv-promo wow fadeInUp"
+                    className="jv-promo wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.1s"
                   >
@@ -101,14 +104,23 @@ export default () => {
                   </div>
 
                   <h2
-                    class="wow fadeInUp"
+                    className="wow fadeInUp wrapper"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.2s"
                   >
-                    João Victor Souza
+                    <div
+                      className="stack"
+                      style={{
+                        "--stacks": "3",
+                      }}
+                    >
+                      <span style={{ "--index": "0" }}>João Victor Souza</span>
+                      <span style={{ "--index": "1" }}>João Victor Souza</span>
+                      <span style={{ "--index": "2" }}>João Victor Souza</span>
+                    </div>
                   </h2>
                   <h4
-                    class="wow fadeInUp"
+                    className="wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.3s"
                   >
@@ -117,19 +129,19 @@ export default () => {
 
                   <ul>
                     <li
-                      class="wow fadeInUp"
+                      className="wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.4s"
                     >
-                      <i class="fa fa-envelope" />
+                      <i className="fa fa-envelope" />
                       web@joaovictorsouza.dev
                     </li>
                     <li
-                      class="wow fadeInUp"
+                      className="wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.5s"
                     >
-                      <i class="fa fa-phone" />
+                      <i className="fa fa-phone" />
                       <a
                         href="https://api.whatsapp.com/send?phone=553199587817"
                         target="_blank"
@@ -139,17 +151,17 @@ export default () => {
                       </a>
                     </li>
                     <li
-                      class="wow fadeInUp"
+                      className="wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.6s"
                     >
-                      <i class="fa fa-map-marker" />
+                      <i className="fa fa-map-marker" />
                       Betim - Minas Gerais, Brasil
                     </li>
                   </ul>
 
                   <ul
-                    class="social-icon wow fadeInUp"
+                    className="social-icon wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.7s"
                   >
@@ -159,7 +171,7 @@ export default () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i class="fa fa-facebook" />
+                        <i className="fa fa-facebook" />
                       </a>
                     </li>
                     <li>
@@ -168,7 +180,7 @@ export default () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i class="fa fa-instagram" />
+                        <i className="fa fa-instagram" />
                       </a>
                     </li>
                     <li>
@@ -177,7 +189,7 @@ export default () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i class="fa fa-github" />
+                        <i className="fa fa-github" />
                       </a>
                     </li>
                     <li>
@@ -186,7 +198,7 @@ export default () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i class="fa fa-linkedin" />
+                        <i className="fa fa-linkedin" />
                       </a>
                     </li>
                     <li>
@@ -195,23 +207,23 @@ export default () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i class="fa fa-whatsapp" />
+                        <i className="fa fa-whatsapp" />
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div className="col-sm-6">
                 <div
-                  class="hero-img wow fadeInUp"
+                  className="hero-img wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.6s"
                 >
-                  <div class="img-border">
+                  <div className="img-border">
                     <img
                       src={process.env.PUBLIC_URL + "/assets/images/hero-2.jpg"}
                       alt=""
-                      class="img-fluid"
+                      className="img-fluid"
                     />
                   </div>
                 </div>
@@ -221,12 +233,12 @@ export default () => {
         </div>
       </section>
 
-      <section class="jv-about" id="jv-about">
-        <div class="container">
-          <div class="row section-separator">
-            <div class="col-sm-12 col-md-6">
+      <section className="jv-about" id="jv-about">
+        <div className="container">
+          <div className="row section-separator">
+            <div className="col-sm-12 col-md-6">
               <div
-                class="jv-about-img shadow-2 wow fadeInUp"
+                className="jv-about-img shadow-2 wow fadeInUp"
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
@@ -242,7 +254,10 @@ export default () => {
                     autoplay
                     loop
                     mode="normal"
-                    src={process.env.PUBLIC_URL + "/assets/images/lottie/79681-usability-concept-illustration.json"}
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/assets/images/lottie/79681-usability-concept-illustration.json"
+                    }
                     style={{
                       width: "300px",
                       height: "300px",
@@ -252,17 +267,17 @@ export default () => {
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="jv-about-inner">
+            <div className="col-sm-12 col-md-6">
+              <div className="jv-about-inner">
                 <h2
-                  class="wow fadeInUp"
+                  className="wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.1s"
                 >
                   Sobre mim
                 </h2>
                 <p
-                  class="wow fadeInUp"
+                  className="wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.2s"
                 >
@@ -272,7 +287,7 @@ export default () => {
                   conhecimentos a cada dia e adoro desafios! Geralmente utilizo:
                 </p>
                 <div
-                  class="jv-about-tag wow fadeInUp"
+                  className="jv-about-tag wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.3s"
                 >
@@ -290,25 +305,25 @@ export default () => {
         </div>
       </section>
 
-      <section class="jv-service image-bg featured-img-two">
-        <div class="img-color-overlay">
-          <div class="container">
-            <div class="row section-separator">
+      <section className="jv-service image-bg featured-img-two">
+        <div className="img-color-overlay">
+          <div className="container">
+            <div className="row section-separator">
               <div
-                class="col-sm-12 text-center section-title wow fadeInUp"
+                className="col-sm-12 text-center section-title wow fadeInUp"
                 data-wow-duration="0.8s"
                 data-wow-delay="0.2s"
               >
                 <h2>O que eu sei ?</h2>
               </div>
-              <div class="col-sm-4">
+              <div className="col-sm-4">
                 <div
-                  class="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.3s"
                 >
                   <i
-                    class="fa fa-bullseye purple-color"
+                    className="fa fa-bullseye purple-color"
                     style={{
                       filter: "grayscale(100%)",
                     }}
@@ -322,14 +337,14 @@ export default () => {
                   </p>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div className="col-sm-4">
                 <div
-                  class="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.5s"
                 >
                   <i
-                    class="fa fa-code iron-color"
+                    className="fa fa-code iron-color"
                     style={{
                       filter: "grayscale(100%)",
                     }}
@@ -342,14 +357,14 @@ export default () => {
                   </p>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div className="col-sm-4">
                 <div
-                  class="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.7s"
                 >
                   <i
-                    class="fa fa-object-ungroup sky-color"
+                    className="fa fa-object-ungroup sky-color"
                     style={{
                       filter: "grayscale(100%)",
                     }}
@@ -368,83 +383,101 @@ export default () => {
         </div>
       </section>
 
-      <section class="jv-skills " id="jv-skills">
-        <div class="home-v-img">
-          <div class="container">
-            <div class="row section-separator">
-              <div class="col-sm-12 col-md-6">
-                <div class="jv-skills-inner">
+      <section className="jv-skills " id="jv-skills">
+        <div className="home-v-img">
+          <div className="container">
+            <div className="row section-separator">
+              <div className="col-sm-12 col-md-6">
+                <div className="jv-skills-inner">
                   <div
-                    class="jv-professional-skill wow fadeInUp"
+                    className="jv-professional-skill wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.3s"
                   >
                     <h3>Habilidades Técnicas</h3>
-                    <div class="each-skills">
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">Javascript</div>
-                            <div class="percentagem-num">86%</div>
+                    <div className="each-skills">
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">Javascript</div>
+                            <div className="percentagem-num">86%</div>
                           </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "96%" }} />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">React</div>
-                            <div class="percentagem-num">26%</div>
-                          </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "86%" }} />
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "96%" }}
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">Python</div>
-                            <div class="percentagem-num">68%</div>
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">React</div>
+                            <div className="percentagem-num">26%</div>
                           </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "58%" }} />
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "86%" }}
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">PHP</div>
-                            <div class="percentagem-num">85%</div>
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">Python</div>
+                            <div className="percentagem-num">68%</div>
                           </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "85%" }} />
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "58%" }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">PHP</div>
+                            <div className="percentagem-num">85%</div>
+                          </div>
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "85%" }}
+                            />
                           </div>
                         </div>
                       </div>
 
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">NodeJS</div>
-                            <div class="percentagem-num">48%</div>
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">NodeJS</div>
+                            <div className="percentagem-num">48%</div>
                           </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "89%" }} />
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "89%" }}
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="candidatos">
-                        <div class="parcial">
-                          <div class="info">
-                            <div class="nome">Ruby</div>
-                            <div class="percentagem-num">12%</div>
+                      <div className="candidatos">
+                        <div className="parcial">
+                          <div className="info">
+                            <div className="nome">Ruby</div>
+                            <div className="percentagem-num">12%</div>
                           </div>
-                          <div class="progressBar">
-                            <div class="percentagem" style={{ width: "40%" }} />
+                          <div className="progressBar">
+                            <div
+                              className="percentagem"
+                              style={{ width: "40%" }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -452,41 +485,43 @@ export default () => {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-6">
+              <div className="col-sm-12 col-md-6">
                 <div
-                  class="jv-professional-skills wow fadeInUp"
+                  className="jv-professional-skills wow fadeInUp"
                   data-wow-duration="0.8s"
                   data-wow-delay="0.5s"
                 >
                   <h3>Habilidades Profissionais</h3>
-                  <ul class="jv-professional-progress">
+                  <ul className="jv-professional-progress">
                     <li>
                       <div
-                        class="jv-progress jv-progress-circle"
+                        className="jv-progress jv-progress-circle"
                         data-progress="80"
                       />
-                      <div class="pr-skill-name">Comunicação</div>
+                      <div className="pr-skill-name">Comunicação</div>
                     </li>
                     <li>
                       <div
-                        class="jv-progress jv-progress-circle"
+                        className="jv-progress jv-progress-circle"
                         data-progress="55"
                       />
-                      <div class="pr-skill-name">Trabalho em Equipe</div>
+                      <div className="pr-skill-name">Trabalho em Equipe</div>
                     </li>
                     <li>
                       <div
-                        class="jv-progress jv-progress-circle"
+                        className="jv-progress jv-progress-circle"
                         data-progress="86"
                       />
-                      <div class="pr-skill-name">Gerenciamento de Projetos</div>
+                      <div className="pr-skill-name">
+                        Gerenciamento de Projetos
+                      </div>
                     </li>
                     <li>
                       <div
-                        class="jv-progress jv-progress-circle"
+                        className="jv-progress jv-progress-circle"
                         data-progress="90"
                       />
-                      <div class="pr-skill-name">Proatividade</div>
+                      <div className="pr-skill-name">Proatividade</div>
                     </li>
                   </ul>
                 </div>
@@ -497,24 +532,24 @@ export default () => {
       </section>
 
       <section
-        class="jv-experince image-bg featured-img-one"
+        className="jv-experince image-bg featured-img-one"
         id="jv-experience"
       >
-        <div class="img-color-overlay">
-          <div class="container">
-            <div class="row section-separator">
-              <div class="col-sm-12 col-md-6">
-                <div class="jv-education">
+        <div className="img-color-overlay">
+          <div className="container">
+            <div className="row section-separator">
+              <div className="col-sm-12 col-md-6">
+                <div className="jv-education">
                   <h3
-                    class="wow fadeInUp"
+                    className="wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.2s"
                   >
                     Educação
                   </h3>
-                  <div class="jv-education-deatils">
+                  <div className="jv-education-deatils">
                     <div
-                      class="jv-education-item dark-bg wow fadeInUp"
+                      className="jv-education-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.3s"
                     >
@@ -527,11 +562,11 @@ export default () => {
                           Rede Pitágoras
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2011-2014</div>
+                      <div className="jv-eduyear">2011-2014</div>
                       <p>Conclusão do Ensino Médio</p>
                     </div>
                     <div
-                      class="jv-education-item dark-bg wow fadeInUp"
+                      className="jv-education-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.5s"
                     >
@@ -541,11 +576,11 @@ export default () => {
                           UEMG
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2015-2020</div>
+                      <div className="jv-eduyear">2015-2020</div>
                       <p>Bacharelado em Sistemas de Informação</p>
                     </div>
                     <div
-                      class="jv-education-item dark-bg wow fadeInUp"
+                      className="jv-education-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.5s"
                     >
@@ -558,7 +593,7 @@ export default () => {
                         </a>
                         pós graduação
                       </h4>
-                      <div class="jv-eduyear">2021-cursando</div>
+                      <div className="jv-eduyear">2021-cursando</div>
                       <p>
                         Pós em Projetos de aplicativos móveis multiplataforma
                       </p>
@@ -566,12 +601,12 @@ export default () => {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-6">
-                <div class="jv-work">
+              <div className="col-sm-12 col-md-6">
+                <div className="jv-work">
                   <h3>Experiências de trabalho</h3>
-                  <div class="jv-experience-deatils">
+                  <div className="jv-experience-deatils">
                     <div
-                      class="jv-work-item dark-bg wow fadeInUp"
+                      className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.6s"
                     >
@@ -584,11 +619,11 @@ export default () => {
                           CISVERDE
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2017-2018</div>
+                      <div className="jv-eduyear">2017-2018</div>
                       <span>Técnico em informática</span>
                     </div>
                     <div
-                      class="jv-work-item dark-bg wow fadeInUp"
+                      className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.4s"
                     >
@@ -598,11 +633,11 @@ export default () => {
                           S.O.S
                         </a>
                       </h4>
-                      <div class="jv-eduyear">2019-2019</div>
+                      <div className="jv-eduyear">2019-2019</div>
                       <span>Professor de informática</span>
                     </div>
                     <div
-                      class="jv-work-item dark-bg wow fadeInUp"
+                      className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.4s"
                     >
@@ -612,11 +647,11 @@ export default () => {
                         </a>{" "}
                         – Aplicativos e sistemas
                       </h4>
-                      <div class="jv-eduyear">2020-2021</div>
+                      <div className="jv-eduyear">2020-2021</div>
                       <span>Desenvolvedor front end</span>
                     </div>
                     <div
-                      class="jv-work-item dark-bg wow fadeInUp"
+                      className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.4s"
                     >
@@ -626,7 +661,7 @@ export default () => {
                         </a>{" "}
                         – Soluções e Sáude
                       </h4>
-                      <div class="jv-eduyear">2021-atual</div>
+                      <div className="jv-eduyear">2021-atual</div>
                       <span>Desenvolvedor front end pleno</span>
                     </div>
                   </div>
@@ -637,19 +672,19 @@ export default () => {
         </div>
       </section>
 
-      <section class="jv-quates">
-        <div class="container">
-          <div class="row section-separator">
-            <div class="each-quates col-sm-12 col-md-6">
+      <section className="jv-quates">
+        <div className="container">
+          <div className="row section-separator">
+            <div className="each-quates col-sm-12 col-md-6">
               <h3
-                class="wow fadeInUp"
+                className="wow fadeInUp"
                 data-wow-duration="0.8s"
                 data-wow-delay="0.2s"
               >
                 Vamos trabalhar juntos?
               </h3>
               <p
-                class="wow fadeInUp"
+                className="wow fadeInUp"
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
@@ -659,60 +694,60 @@ export default () => {
               </p>
               <a
                 href="https://api.whatsapp.com/send?phone=553199587817"
-                class="btn btn-fill wow fadeInUp"
+                className="btn btn-fill wow fadeInUp"
                 data-wow-duration="0.8s"
                 data-wow-delay="0.5s"
               >
-                Whatsapp <i class="fa fa-whatsapp" />
+                Whatsapp <i className="fa fa-whatsapp" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <footer class="jv-footer jv-footer-3" id="jv-contact">
-        <div class="container-fluid">
-          <div class="row section-separator">
+      <footer className="jv-footer jv-footer-3" id="jv-contact">
+        <div className="container-fluid">
+          <div className="row section-separator">
             <div
-              class="col-sm-12 section-title wow fadeInUp"
+              className="col-sm-12 section-title wow fadeInUp"
               data-wow-duration="0.8s"
               data-wow-delay="0.2s"
             >
               <h3>Meus Contatos</h3>
             </div>
-            <div class="map-image image-bg col-sm-12">
-              <div class="container mt-30">
-                <div class="row">
+            <div className="map-image image-bg col-sm-12">
+              <div className="container mt-30">
+                <div className="row">
                   <div
-                    class="col-sm-12 col-md-6 jv-footer-address wow fadeInUp mx-auto"
+                    className="col-sm-12 col-md-6 jv-footer-address wow fadeInUp mx-auto"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.2s"
                   >
-                    <div class="col-sm-12 xs-no-padding">
+                    <div className="col-sm-12 xs-no-padding">
                       <div
-                        class="jv-address-footer-item dark-bg shadow-1 media wow fadeInUp"
+                        className="jv-address-footer-item dark-bg shadow-1 media wow fadeInUp"
                         data-wow-duration="0.8s"
                         data-wow-delay="0.2s"
                       >
-                        <div class="each-icon">
-                          <i class="fa fa-location-arrow" />
+                        <div className="each-icon">
+                          <i className="fa fa-location-arrow" />
                         </div>
-                        <div class="each-info media-body">
+                        <div className="each-info media-body">
                           <h4>Endereço</h4>
                           <address>Betim - MG</address>
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12 xs-no-padding">
+                    <div className="col-sm-12 xs-no-padding">
                       <div
-                        class="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
+                        className="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
                         data-wow-duration="0.8s"
                         data-wow-delay="0.4s"
                       >
-                        <div class="each-icon">
-                          <i class="fa fa-envelope-o" />
+                        <div className="each-icon">
+                          <i className="fa fa-envelope-o" />
                         </div>
-                        <div class="each-info media-body">
+                        <div className="each-info media-body">
                           <h4>Email</h4>
                           <a href="mailto:web@joaovictorsouza.dev">
                             web@joaovictorsouza.dev
@@ -720,16 +755,16 @@ export default () => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12 xs-no-padding">
+                    <div className="col-sm-12 xs-no-padding">
                       <div
-                        class="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
+                        className="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
                         data-wow-duration="0.8s"
                         data-wow-delay="0.6s"
                       >
-                        <div class="each-icon">
-                          <i class="fa fa-phone" />
+                        <div className="each-icon">
+                          <i className="fa fa-phone" />
                         </div>
-                        <div class="each-info media-body">
+                        <div className="each-info media-body">
                           <h4>Telefone</h4>
                           <a href="callto:+5531998587817">(31) 9 9858-7817</a>
                         </div>
@@ -738,19 +773,19 @@ export default () => {
                   </div>
 
                   <div
-                    class="col-sm-12 jv-copyright wow fadeInUp"
+                    className="col-sm-12 jv-copyright wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.2s"
                   >
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="text-center">
+                    <div className="row">
+                      <div className="col-sm-6">
+                        <div className="text-center">
                           <p>© {year} - João Victor Souza</p>
                         </div>
                       </div>
-                      <div class="col-sm-6 text-center">
+                      <div className="col-sm-6 text-center">
                         <ul
-                          class="social-icon wow fadeInUp"
+                          className="social-icon wow fadeInUp"
                           data-wow-duration="0.8s"
                           data-wow-delay="0.7s"
                         >
@@ -760,7 +795,7 @@ export default () => {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i class="fa fa-facebook" />
+                              <i className="fa fa-facebook" />
                             </a>
                           </li>
                           <li>
@@ -769,7 +804,7 @@ export default () => {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i class="fa fa-instagram" />
+                              <i className="fa fa-instagram" />
                             </a>
                           </li>
                           <li>
@@ -778,7 +813,7 @@ export default () => {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i class="fa fa-github" />
+                              <i className="fa fa-github" />
                             </a>
                           </li>
                           <li>
@@ -787,7 +822,7 @@ export default () => {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i class="fa fa-linkedin" />
+                              <i className="fa fa-linkedin" />
                             </a>
                           </li>
                         </ul>

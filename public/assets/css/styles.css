@@ -106,7 +106,17 @@ body {
   opacity: 0.9;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body.matrix {
+  margin: 0;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "roboto", sans-serif;
 }
 
@@ -266,11 +276,13 @@ a:focus {
   margin: 0 0 10px 0;
 }
 
-.section-header.text-left, .section-header.text-left * {
+.section-header.text-left,
+.section-header.text-left * {
   text-align: left;
 }
 
-.section-header.text-right, .section-header.text-right * {
+.section-header.text-right,
+.section-header.text-right * {
   text-align: right;
 }
 
@@ -286,7 +298,8 @@ a:focus {
   text-align: center !important;
 }
 
-.section-header-separator::before, .section-header-separator::after {
+.section-header-separator::before,
+.section-header-separator::after {
   content: '';
   position: absolute;
   width: 57px;
@@ -386,7 +399,8 @@ a:focus {
   top: 7px;
 }
 
-.btn.apple, .btn.androad {
+.btn.apple,
+.btn.androad {
   -webkit-border-radius: 3px !important;
   -moz-border-radius: 3px !important;
   border-radius: 3px !important;
@@ -394,18 +408,21 @@ a:focus {
   height: 82px;
 }
 
-.btn.apple img, .btn.androad img {
+.btn.apple img,
+.btn.androad img {
   width: 35px;
   height: 100%;
   float: left;
 }
 
-.btn.apple .icon, .btn.androad .icon {
+.btn.apple .icon,
+.btn.androad .icon {
   font-size: 60px;
   float: left;
 }
 
-.btn.apple span, .btn.androad span {
+.btn.apple span,
+.btn.androad span {
   display: block;
   -moz-transition: color 0.3s ease;
   -o-transition: color 0.3s ease;
@@ -413,26 +430,37 @@ a:focus {
   transition: color 0.3s ease;
 }
 
-.btn.apple .group, .btn.androad .group {
+.btn.apple .group,
+.btn.androad .group {
   float: right;
 }
 
-.btn.apple .big, .btn.apple .small, .btn.androad .big, .btn.androad .small {
+.btn.apple .big,
+.btn.apple .small,
+.btn.androad .big,
+.btn.androad .small {
   text-align: left;
   margin-left: 7px;
   line-height: 30px;
 }
 
-.btn.apple .big, .btn.androad .big {
+.btn.apple .big,
+.btn.androad .big {
   font-size: 24px;
   font-weight: 400;
 }
 
-.btn.apple .small, .btn.androad .small {
+.btn.apple .small,
+.btn.androad .small {
   font-size: 16px;
 }
 
-.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
   outline: thin dotted;
   outline: 0px auto -webkit-focus-ring-color !important;
   outline-offset: -2px;
@@ -482,7 +510,11 @@ a:focus {
  * -----------------------------------
  */
 
-.subscription-success, .subscription-failed, .email-success, .email-failed, .email-loading {
+.subscription-success,
+.subscription-failed,
+.email-success,
+.email-failed,
+.email-loading {
   font-size: 15px;
   display: none;
   text-align: center !important;
@@ -499,21 +531,27 @@ a:focus {
   top: -2px;
 }
 
-.subscription-failed, .email-failed {
+.subscription-failed,
+.email-failed {
   color: #FF5252 !important;
 }
 
-.subscription-failed .icon, .email-failed .icon {
+.subscription-failed .icon,
+.email-failed .icon {
   font-size: 20px;
   position: relative;
   top: 5px;
 }
 
-.subscription-success, .email-success {
+.subscription-success,
+.email-success {
   color: #56CC35;
 }
 
-.subscription-failed .icon, .email-failed .icon, .subscription-success .icon, .email-success .icon {
+.subscription-failed .icon,
+.email-failed .icon,
+.subscription-success .icon,
+.email-success .icon {
   font-size: 20px;
   position: relative;
   top: 5px;
@@ -778,7 +816,18 @@ button:focus {
  * -----------------
  */
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
@@ -884,7 +933,9 @@ button:focus {
   color: #f30100;
 }
 
-.white-vertion .navbar-toggler .icon, .white-vertion .navbar-toggler .icon::after, .white-vertion .navbar-toggler .icon::before {
+.white-vertion .navbar-toggler .icon,
+.white-vertion .navbar-toggler .icon::after,
+.white-vertion .navbar-toggler .icon::before {
   background-color: #000;
 }
 
@@ -897,7 +948,16 @@ button:focus {
   background-color: #000;
 }
 
-.white-vertion h1, .white-vertion h2, .white-vertion h3, .white-vertion h4, .white-vertion h5, .white-vertion h6, .white-vertion p, .white-vertion address, .white-vertion span, .white-vertion q {
+.white-vertion h1,
+.white-vertion h2,
+.white-vertion h3,
+.white-vertion h4,
+.white-vertion h5,
+.white-vertion h6,
+.white-vertion p,
+.white-vertion address,
+.white-vertion span,
+.white-vertion q {
   opacity: 0.8;
 }
 
@@ -1071,7 +1131,9 @@ button:focus {
   color: #f30100;
 }
 
-.dark-vertion .navbar-toggler .icon, .dark-vertion .navbar-toggler .icon::after, .dark-vertion .navbar-toggler .icon::before {
+.dark-vertion .navbar-toggler .icon,
+.dark-vertion .navbar-toggler .icon::after,
+.dark-vertion .navbar-toggler .icon::before {
   background-color: #fff;
 }
 
@@ -1267,6 +1329,7 @@ body {
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 57px;
     left: 57px;
@@ -1284,6 +1347,7 @@ body {
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 57px;
     left: 57px;
@@ -1493,6 +1557,7 @@ body {
 .jv-home .jv-header-info ul li:hover .fa {
   color: #f30100;
 }
+
 .jv-home .jv-header-info ul.social-icon li:hover .fa {
   color: #050507;
 }
@@ -1717,7 +1782,8 @@ body {
   opacity: 0.9;
 }
 
-.candidatos .parcial .info .eleito, .candidatos .parcial .info .segundo-turno {
+.candidatos .parcial .info .eleito,
+.candidatos .parcial .info .segundo-turno {
   padding: 0 5px 2px 5px;
   border-radius: 2px;
 }
@@ -2489,6 +2555,10 @@ body {
   background-color: transparent;
 }
 
+footer .social-icon a:hover {
+  color: #c70302;
+}
+
 /*
 ===============
     Mobile Nav
@@ -2532,7 +2602,8 @@ body {
   display: block;
 }
 
-.old .navbar-fixed-bottom .navbar-collapse, .old .navbar-fixed-top .navbar-collapse {
+.old .navbar-fixed-bottom .navbar-collapse,
+.old .navbar-fixed-top .navbar-collapse {
   max-height: inherit;
 }
 
@@ -2552,7 +2623,9 @@ body {
   -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0) rotate(0deg) scale(1);
 }
 
-.old .navbar-toggler .icon, .old .navbar-toggler .icon::after, .old .navbar-toggler .icon::before {
+.old .navbar-toggler .icon,
+.old .navbar-toggler .icon::after,
+.old .navbar-toggler .icon::before {
   width: 22px;
   height: 2px;
   position: absolute;
@@ -2562,7 +2635,8 @@ body {
   backface-visibility: hidden;
 }
 
-.old .navbar-toggler .icon::after, .old .navbar-toggler .icon::before {
+.old .navbar-toggler .icon::after,
+.old .navbar-toggler .icon::before {
   content: '';
   top: 0;
   right: 0;
@@ -2607,7 +2681,8 @@ body {
   -webkit-transform: translateX(0) translateY(0) translateZ(0) rotate(-135deg) scale(1);
 }
 
-.old .navbar-toggler.active .icon::after, .old .navbar-toggler.active .icon::before {
+.old .navbar-toggler.active .icon::after,
+.old .navbar-toggler.active .icon::before {
   background-color: #fff;
 }
 
@@ -2808,7 +2883,8 @@ body {
   display: block;
 }
 
-.new .navbar-fixed-bottom .navbar-collapse, .new .navbar-fixed-top .navbar-collapse {
+.new .navbar-fixed-bottom .navbar-collapse,
+.new .navbar-fixed-top .navbar-collapse {
   max-height: inherit;
 }
 
@@ -2828,7 +2904,9 @@ body {
   -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0) rotate(0deg) scale(1);
 }
 
-.new .navbar-toggler .icon, .new .navbar-toggler .icon::after, .new .navbar-toggler .icon::before {
+.new .navbar-toggler .icon,
+.new .navbar-toggler .icon::after,
+.new .navbar-toggler .icon::before {
   width: 22px;
   height: 2px;
   position: absolute;
@@ -2838,7 +2916,8 @@ body {
   backface-visibility: hidden;
 }
 
-.new .navbar-toggler .icon::after, .new .navbar-toggler .icon::before {
+.new .navbar-toggler .icon::after,
+.new .navbar-toggler .icon::before {
   content: '';
   top: 0;
   right: 0;
@@ -2883,7 +2962,8 @@ body {
   -webkit-transform: translateX(0) translateY(0) translateZ(0) rotate(-135deg) scale(1);
 }
 
-.new .navbar-toggler.active .icon::after, .new .navbar-toggler.active .icon::before {
+.new .navbar-toggler.active .icon::after,
+.new .navbar-toggler.active .icon::before {
   background-color: #fff;
 }
 
@@ -3674,4 +3754,70 @@ BLOG Pagination
   margin-bottom: 30px;
 }
 
-/*# sourceMappingURL=styles.css.map */
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.stack span {
+  font-weight: bold;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  font-size: 4rem;
+  --stack-height: calc(100% / var(--stacks) - 1px);
+  --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+  --clip-top: calc(var(--stack-height) * var(--index));
+  --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+  clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+  animation: stack 340ms cubic-bezier(.46, .29, 0, 1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+}
+
+.stack span:nth-child(odd) {
+  --glitch-translate: 8px;
+}
+
+.stack span:nth-child(even) {
+  --glitch-translate: -8px;
+}
+
+@keyframes stack {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+  }
+
+  ;
+
+  60% {
+    opacity: 0.5;
+    transform: translateX(50%);
+  }
+
+  80% {
+    transform: none;
+    opacity: 1;
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+    transform: translate(var(--glitch-translate));
+  }
+
+  2% {
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+
+  4%,
+  100% {
+    text-shadow: none;
+    transform: none;
+  }
+}
