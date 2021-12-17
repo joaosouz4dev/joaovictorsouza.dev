@@ -701,6 +701,11 @@ export default () => {
                 Whatsapp <i className="fa fa-whatsapp" />
               </a>
             </div>
+            <div className="each-quates col-sm-12 col-md-6">
+              <div className="wrap-image">
+                <img src={process.env.PUBLIC_URL + "/assets/images/foto.jpg"} alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

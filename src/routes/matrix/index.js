@@ -32,7 +32,7 @@ export default () => {
       };
       window.addEventListener("resize", resize);
       resize();
-      document.querySelector("body").classList.add('matrix')
+      document.querySelector("body").classList.add("matrix");
       const random = (items) => items[Math.floor(Math.random() * items.length)];
 
       const draw = () => {
@@ -57,6 +57,7 @@ export default () => {
       });
     }
     return () => {
+      document.querySelector("body").classList.remove("matrix");
       mounted = false;
       clearInterval(interval);
     };
