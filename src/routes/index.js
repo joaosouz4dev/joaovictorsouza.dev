@@ -694,16 +694,25 @@ export default () => {
               </p>
               <a
                 href="https://api.whatsapp.com/send?phone=553199587817"
-                className="btn btn-fill wow fadeInUp"
+                className="cta wow fadeInUp "
                 data-wow-duration="0.8s"
                 data-wow-delay="0.5s"
               >
-                Whatsapp <i className="fa fa-whatsapp" />
+                <span>
+                  <i className="fa fa-whatsapp" /> Whatsapp
+                </span>
+                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
               </a>
             </div>
             <div className="each-quates col-sm-12 col-md-6">
               <div className="wrap-image">
-                <img src={process.env.PUBLIC_URL + "/assets/images/foto.jpg"} alt="" />
+                <img
+                  src={process.env.PUBLIC_URL + "/assets/images/foto.jpg"}
+                  alt=""
+                />
               </div>
             </div>
           </div>
