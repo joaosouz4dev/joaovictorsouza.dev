@@ -1286,10 +1286,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-"@lottiefiles/lottie-player@^1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/lottie-player/-/lottie-player-1.5.3.tgz#4abdd0c21510e97a3990fe27826cf238ba9b3216"
-  integrity sha512-66UjORdCE6F64dUK03jYWlBiAzNzWHwc/TUHfTmv/U/73n+FA2+jWXi1vvt+zALkHug/SDcHzTErOfYp9LlOuw==
+"@lottiefiles/lottie-player@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/lottie-player/-/lottie-player-1.5.4.tgz#fa86f306b2449ca9f0a3febd8f88942700063314"
+  integrity sha512-jrwDDkOotgAQkiwmjTT5iLB2yWPmb49gtsnWebfAax6FIpUz0z0krm7ThoMhs7ipZuqic0xuScfMwUopWCr8bA==
   dependencies:
     "@types/pako" "^1.0.1"
     lit-element "^2.3.1"
