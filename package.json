@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@lottiefiles/lottie-player": "^1.5.3",
+    "@lottiefiles/lottie-player": "^1.5.4",
     "dat.gui": "0.7.7",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
     "react-scripts": "2.1.1",
     "styled-components": "^5.3.3"
