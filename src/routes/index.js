@@ -112,31 +112,6 @@ export default () => {
                     }}
                   >
                     <div
-                      style={{
-                        margin: "0 auto",
-                        display: "block",
-                        filter: "grayscale(100%)",
-                        position: "absolute",
-                        bottom: 0,
-                        left: '90%',
-                      }}
-                    >
-                      <lottie-player
-                        autoplay
-                        loop
-                        mode="normal"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/lottie/11705-lightning-vfx.json"
-                        }
-                        style={{
-                          width: "200px",
-                          height: "200px",
-                          margin: "0 auto",
-                        }}
-                      ></lottie-player>
-                    </div>
-                    <div
                       className="stack"
                       style={{
                         "--stacks": "3",
