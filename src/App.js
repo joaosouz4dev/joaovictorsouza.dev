@@ -19,7 +19,7 @@ const App = () => {
 };
 
 function Wpp() {
-  window.location.href = "https://api.whatsapp.com/send?phone=553199587817";
+  window.location.href = "https://api.whatsapp.com/send?phone=553198587817";
   return <h2>Redirecionando...</h2>;
 }
 
