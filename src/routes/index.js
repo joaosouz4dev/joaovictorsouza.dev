@@ -107,6 +107,9 @@ export default () => {
                     className="wow fadeInUp wrapper"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.2s"
+                    style={{
+                      position: "relative",
+                    }}
                   >
                     <div
                       className="stack"
