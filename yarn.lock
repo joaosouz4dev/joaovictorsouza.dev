@@ -1592,10 +1592,10 @@
   resolved "https://registry.yarnpkg.com/@lit/reactive-element/-/reactive-element-1.2.1.tgz#8620d7f0baf63e12821fa93c34d21e23477736f7"
   integrity sha512-03FYfMguIWo9E1y1qcTpXzoO8Ukpn0j5o4GjNFq/iHqJEPY6pYopsU44e7NSFIgCTorr8wdUU5PfVy8VeD6Rwg==
 
-"@lottiefiles/lottie-player@^1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/lottie-player/-/lottie-player-1.5.5.tgz#c9d82ed2d5a261d49d2a37153648f606826573ff"
-  integrity sha512-9KKxk0TAt41uftx+RIhMAmkd5cOQYF4ypn9coMW8xZNofQs6oZTac+pBo5PS/g8829uY8D9eHcKUaI8kbTl8eA==
+"@lottiefiles/lottie-player@^1.5.6":
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/lottie-player/-/lottie-player-1.5.6.tgz#420b8fe9140109182bbc085bd9d7d4af5434694c"
+  integrity sha512-vhM3U+qGmagfkilGVDL8K3uxUfyFUs5MEyJfJiTi4/QN762jRVnVEZKr5aLMDiNfLrCOe4jkE+GbLifHcGkO8Q==
   dependencies:
     "@types/pako" "^1.0.1"
     lit "^2.1.2"
