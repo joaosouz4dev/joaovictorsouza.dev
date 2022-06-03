@@ -137,7 +137,9 @@ export default () => {
                       data-wow-delay="0.4s"
                     >
                       <i className="fa fa-envelope" />
-                      web@joaovictorsouza.dev
+                      <a href="mailto:web@joaovictorsouza.dev">
+                        web@joaovictorsouza.dev
+                      </a>
                     </li>
                     <li
                       className="wow fadeInUp"
@@ -159,7 +161,7 @@ export default () => {
                       data-wow-delay="0.6s"
                     >
                       <i className="fa fa-map-marker" />
-                      Betim - Minas Gerais, Brasil
+                      Betim - MG, Brasil
                     </li>
                   </ul>
 
@@ -751,7 +753,7 @@ export default () => {
                         </div>
                         <div className="each-info media-body">
                           <h4>Endereço</h4>
-                          <address>Betim - MG</address>
+                          <address>Betim - MG, Brasil</address>
                         </div>
                       </div>
                     </div>

@@ -1542,7 +1542,10 @@ body {
 
 .jv-home .jv-header-info ul li .fa {
   margin-right: 15px;
-  display: inline-block;
+  display: inline-flex;
+  min-width: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .jv-home .jv-header-info ul li address {
