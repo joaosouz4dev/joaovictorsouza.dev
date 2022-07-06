@@ -20,9 +20,8 @@ const GlitchyText = ({ children, ...props }) => {
           "--count": Math.random() * 5 + 1,
         };
         for (let i = 0; i < 10; i++) {
-          charStyle[`--char-${i}`] = `"${
-            GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
-          }"`;
+          charStyle[`--char-${i}`] = `"${GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+            }"`;
         }
         return (
           <GlitchyChar
@@ -186,7 +185,7 @@ const Message = styled.a`
   }
 `;
 
-export default () => {
+export default function NotFound() {
   useEffect(() => {
     const root = document.documentElement;
     const update = (e) => {

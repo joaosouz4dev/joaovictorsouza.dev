@@ -1,12 +1,12 @@
-(function($) {
+(function ($) {
 	'use strict';
 
-	$.fn.andSelf = function() {
+	$.fn.andSelf = function () {
 		return this.addBack.apply(this, arguments);
 	};
 
 	/* Loader Code Start */
-	$(window).on('load', function() {
+	$(window).on('load', function () {
 		$('.section-loader').fadeOut('slow');
 
 		var $container = $('.portfolioContainer');
@@ -17,7 +17,7 @@
 			}
 		});
 
-		$('.portfolio-nav li').click(function() {
+		$('.portfolio-nav li').click(function () {
 			$('.portfolio-nav .current').removeClass('current');
 			$(this).addClass('current');
 
@@ -34,17 +34,17 @@
 	/* Loader Code End */
 
 	/*
-    |====================
-    | Mobile NAv trigger
-    |=====================
-    */
+		|====================
+		| Mobile NAv trigger
+		|=====================
+		*/
 
 	var trigger = $('.navbar-toggler'),
 		overlay = $('.overlay'),
 		navc = $('.navbar-collapse'),
 		active = false;
 
-	$('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function() {
+	$('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
 		$('.navbar-toggler').toggleClass('active');
 		//   $('#js-navbar-menu').toggleClass('active');
 		//   $('.navbar-collapse').toggleClass('show');
@@ -53,10 +53,10 @@
 	});
 
 	/*
-    |=================
-    | Onepage Nav
-    |================
-    */
+		|=================
+		| Onepage Nav
+		|================
+		*/
 	$('#jv-header').onePageNav({
 		currentClass: 'active',
 		changeHash: false,
@@ -65,37 +65,30 @@
 	});
 
 	/*
-    |=================
-    | fancybox
-    |================
-    */
-	$('[data-fancybox]').fancybox({});
-
-	/*
-    |===============
-    | WOW ANIMATION
-    |==================
-    */
+		|===============
+		| WOW ANIMATION
+		|==================
+		*/
 	var wow = new WOW({
 		mobile: false // trigger animations on mobile devices (default is true)
 	});
 	wow.init();
 
 	/*
-    |=================
-    | AOS
-    |================
-    */
+		|=================
+		| AOS
+		|================
+		*/
 
 	//AOS.init();
 
 	/*
-    | ==========================
-    | NAV FIXED ON SCROLL
-    | ==========================
-    */
+		| ==========================
+		| NAV FIXED ON SCROLL
+		| ==========================
+		*/
 	var validator = false;
-	$(window).on('scroll', function() {
+	$(window).on('scroll', function () {
 		if (!validator) {
 			validator = true;
 			$('#jv-header').onePageNav({
@@ -114,29 +107,29 @@
 	});
 
 	/*
-    |=================
-    | Progress bar
-    |================
-    */
+		|=================
+		| Progress bar
+		|================
+		*/
 
-	$('.determinate').each(function() {
+	$('.determinate').each(function () {
 		var width = $(this).text();
 		$(this).css('width', width).empty().append('<i class="fa fa-circle"></i>');
 	});
 
 	/*
-    |=================
-    | Portfolio mixin
-    |================
-    */
+		|=================
+		| Portfolio mixin
+		|================
+		*/
 
 	$('#portfolio-item').mixItUp();
 
 	/*
-    |=================
-    | Client review
-    |================
-    */
+		|=================
+		| Client review
+		|================
+		*/
 
 	$('#jv-client-review').owlCarousel({
 		loop: false,
@@ -162,10 +155,10 @@
 	});
 
 	/*
-    |=================
-    | Project review slide
-    |================
-    */
+		|=================
+		| Project review slide
+		|================
+		*/
 
 	$('.jv-project-testimonial').owlCarousel({
 		loop: true,
@@ -193,10 +186,10 @@
 	});
 
 	/*
-    |=================
-    | Single Project review
-    |================
-    */
+		|=================
+		| Single Project review
+		|================
+		*/
 
 	$('#single-project').owlCarousel({
 		loop: false,
@@ -224,16 +217,16 @@
 	});
 
 	/*
-    |=================
-    | Project review slide
-    |================
-    */
+		|=================
+		| Project review slide
+		|================
+		*/
 
 	$('.jv-single-project-slide-by-side').owlCarousel({
 		loop: false,
 		responsiveClass: true,
 		nav: true,
-		navText: [ "<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>" ],
+		navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
 		dots: false,
 		autoplay: false,
 		smartSpeed: 450,
@@ -256,10 +249,10 @@
 	});
 
 	/*
-    |=================
-    | Single client review
-    |================
-    */
+		|=================
+		| Single client review
+		|================
+		*/
 
 	$('#jv-single-client-review').owlCarousel({
 		loop: false,
@@ -285,10 +278,10 @@
 	});
 
 	/*
-    |=================
-    | Clint review slide
-    |================
-    */
+		|=================
+		| Clint review slide
+		|================
+		*/
 
 	$('#jv-2-client-review').owlCarousel({
 		loop: false,
@@ -330,12 +323,12 @@
 	// });
 
 	/*
-    |=================
-    | CONTACT FORM
-    |=================
-    */
+		|=================
+		| CONTACT FORM
+		|=================
+		*/
 
-	$('#contactForm').validator().on('submit', function(event) {
+	$('#contactForm').validator().on('submit', function (event) {
 		if (event.isDefaultPrevented()) {
 			// handle the invalid form...
 			formError();
@@ -355,7 +348,7 @@
 			type: 'POST',
 			url: 'process.php',
 			data: 'name=' + name + '&email=' + email + '&message=' + message,
-			success: function(text) {
+			success: function (text) {
 				if (text == 'success') {
 					formSuccess();
 				} else {
@@ -373,7 +366,7 @@
 		$('#contactForm')
 			.removeClass()
 			.addClass('shake animated')
-			.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
 				$(this).removeClass();
 			});
 	}

@@ -1,5 +1,6 @@
 import React from "react";
-require("@lottiefiles/lottie-player");
+import "@lottiefiles/lottie-player";
+import Portifolio from "../components/portifolio";
 
 export default () => {
   const tecnologias = [
@@ -75,6 +76,11 @@ export default () => {
                   <li className="nav-item">
                     <a className="nav-link" href="#jv-experience">
                       Experiências
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#jv-portfolio">
+                      Portfólio
                     </a>
                   </li>
                   <li className="nav-item">
@@ -677,7 +683,9 @@ export default () => {
         </div>
       </section>
 
-      <section className="jv-quates">
+      <Portifolio />
+
+      <section className="jv-quates image-bg home-1-img">
         <div className="container">
           <div className="row section-separator">
             <div className="each-quates col-sm-12 col-md-6">
