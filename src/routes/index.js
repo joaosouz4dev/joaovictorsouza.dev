@@ -354,7 +354,7 @@ export default () => {
                       filter: "grayscale(100%)",
                     }}
                   />
-                  <h3>Software Development</h3>
+                  <h3>Web Development</h3>
                   <p>
                     Posso desenvolver sites, de modo rápido e seguro, aplicando
                     sempre as melhores práticas e deixando-as com visual
