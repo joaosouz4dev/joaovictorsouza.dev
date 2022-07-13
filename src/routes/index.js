@@ -333,7 +333,7 @@ export default () => {
                       filter: "grayscale(100%)",
                     }}
                   />
-                  <h3>UI Design</h3>
+                  <h3>UI/UX Design</h3>
                   <p>
                     Estudei artes por anos e então foquei em Design de
                     Interfaces, Crio Sites, Identidade Visual, Design Gráfico e
