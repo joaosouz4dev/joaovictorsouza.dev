@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./routes/index";
 import Matrix from "./routes/matrix/index";
 import NotFound from "./routes/404/index";
+import Wpp from "./routes/wpp/index";
 
 const App = () => {
   return (
@@ -17,10 +18,5 @@ const App = () => {
     </Router>
   );
 };
-
-function Wpp() {
-  window.location.href = "https://api.whatsapp.com/send?phone=553198587817";
-  return <h2>Redirecionando...</h2>;
-}
 
 export default App;
