@@ -23,6 +23,34 @@ export default () => {
   ];
   const year = new Date().getFullYear();
   const anos = year - 2015;
+  const redes_sociais = [
+    {
+      nome: "Facebook",
+      url: "https://www.facebook.com/joaosouz4dev",
+      icone: "fa fa-facebook"
+    },
+    {
+      nome: "Instagram",
+      url: "https://www.instagram.com/joaosouz4dev",
+      icone: "fa fa-instagram"
+    },
+    {
+      nome: "Github",
+      url: "https://github.com/joaosouz4dev",
+      icone: "fa fa-github"
+    },
+    {
+      nome: "Linkedin",
+      url: "https://www.linkedin.com/in/joaosouz4dev",
+      icone: "fa fa-linkedin"
+    },
+    {
+      nome: "Whatsapp",
+      url: "https://joaovictorsouza.dev/zap",
+      icone: "fa fa-whatsapp"
+    }
+  ];
+
   return (
     <main>
       <div className="section-loader">
@@ -164,57 +192,22 @@ export default () => {
                       Betim - MG, Brasil
                     </li>
                   </ul>
-
                   <ul
                     className="social-icon wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.7s"
                   >
-                    <li>
-                      <a
-                        href="https://www.facebook.com/joaosouz4dev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="fa fa-facebook" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.instagram.com/joaosouz4dev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="fa fa-instagram" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://github.com/joaosouz4dev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="fa fa-github" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.linkedin.com/in/joaosouz4dev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="fa fa-linkedin" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://joaovictorsouza.dev/zap"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="fa fa-whatsapp" />
-                      </a>
-                    </li>
+                    {redes_sociais.map(rede => (
+                      <li key={rede.nome}>
+                        <a
+                          href={rede.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className={rede.icone} />
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -808,42 +801,17 @@ export default () => {
                           data-wow-duration="0.8s"
                           data-wow-delay="0.7s"
                         >
-                          <li>
-                            <a
-                              href="https://www.facebook.com/joaosouz4dev"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <i className="fa fa-facebook" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.instagram.com/joaosouz4dev"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <i className="fa fa-instagram" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://github.com/joaosouz4dev"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <i className="fa fa-github" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://www.linkedin.com/in/joaosouz4dev"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <i className="fa fa-linkedin" />
-                            </a>
-                          </li>
+                          {redes_sociais.map(rede => (
+                            <li key={rede.nome}>
+                              <a
+                                href={rede.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <i className={rede.icone} />
+                              </a>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
