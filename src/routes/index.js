@@ -148,7 +148,7 @@ export default () => {
                     >
                       <i className="fa fa-phone" />
                       <a
-                        href="https://api.whatsapp.com/send?phone=553199587817"
+                        href="https://joaovictorsouza.dev/zap"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -208,7 +208,7 @@ export default () => {
                     </li>
                     <li>
                       <a
-                        href="https://api.whatsapp.com/send?phone=553199587817"
+                        href="https://joaovictorsouza.dev/zap"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -698,7 +698,7 @@ export default () => {
                 paixão.
               </p>
               <a
-                href="https://api.whatsapp.com/send?phone=553199587817"
+                href="https://joaovictorsouza.dev/zap"
                 className="cta wow fadeInUp "
                 data-wow-duration="0.8s"
                 data-wow-delay="0.5s"
