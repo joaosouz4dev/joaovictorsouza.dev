@@ -3,23 +3,24 @@ import "@lottiefiles/lottie-player";
 
 export default () => {
   const tecnologias = [
+    "Typescript",
+    "Javascript",
+    "ReactJS",
+    "React Native",
+    "NextJS",
+    "PHP",
+    "NodeJS",
     "Photoshop",
     "Illustrator",
     "Sketch",
     "Html",
     "Css",
-    "Javascript",
     "JQuery",
-    "NodeJS",
     "MongoDB",
-    "PHP",
     "Wordpress",
     "Lumen",
     "SQL",
-    "Express",
-    "NextJS",
-    "ReactJS",
-    "React Native",
+    "Express"
   ];
   const year = new Date().getFullYear();
   const anos = year - 2015;
