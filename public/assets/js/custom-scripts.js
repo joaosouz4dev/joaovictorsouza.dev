@@ -6,9 +6,7 @@
 	};
 
 	/* Loader Code Start */
-	$(window).on('load', function () {
-		$('.section-loader').fadeOut('slow');
-
+	$(window).on('load', function() {
 		var $container = $('.portfolioContainer');
 		$container.isotope({
 			filter: '*',
