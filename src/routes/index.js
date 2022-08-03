@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Portifolio from "../components/portifolio";
 import "@lottiefiles/lottie-player";
 
@@ -64,6 +64,7 @@ export default () => {
   }
 
   useEffect(() => {
+    const $ = window.$;
     if (localStorage.getItem("darkmode") !== null) {
       setDarkMode(localStorage.getItem("darkmode") === "true");
     }
