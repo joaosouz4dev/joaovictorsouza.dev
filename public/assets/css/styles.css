@@ -124,6 +124,12 @@ p {
   opacity: 0.9;
 }
 
+.shadowdiv {
+  -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
 .nav li a {
   text-decoration: none !important;
   display: inline-block;
@@ -1882,6 +1888,8 @@ body {
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  min-height: 150px;
+  border-radius: 5px;
 }
 
 .jv-experince .jv-education-deatils .jv-education-item:last-child {
@@ -1935,10 +1943,11 @@ body {
 .jv-work .jv-experience-deatils .jv-work-item {
   margin-bottom: 30px;
   padding: 20px 30px;
-  border-radius: 4px;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  min-height: 150px;
+  border-radius: 5px;
 }
 
 .jv-work .jv-experience-deatils .jv-work-item:last-child {
@@ -2010,12 +2019,11 @@ body {
 
 .jv-portfolio-modal {
   display: none;
-  background: #282828!important;
 }
 
 .jv-portfolio-modal-inner {
   max-height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-right: 20px;
 }
 
@@ -2036,10 +2044,6 @@ body {
 
 .jv-portfolio-modal-inner h2 {
   margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.jv-portfolio-modal-img img {
   margin-bottom: 20px;
 }
 
@@ -2472,7 +2476,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9;
+  z-index: 99;
 }
 
 /*

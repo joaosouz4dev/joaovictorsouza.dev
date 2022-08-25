@@ -597,31 +597,17 @@ export default () => {
                   >
                     Educação
                   </h3>
-                  <div className="jv-education-deatils">
+                  <div className="jv-education-deatils" style={{
+                    maxHeight: '330px',
+                    overflow: 'auto',
+                  }}>
                     <div
                       className="jv-education-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
                       data-wow-delay="0.3s"
                     >
                       <h4>
-                        Colégio Educare{" "}
-                        <a
-                          target="_new"
-                          href="https://www.colegioeducarebetim.com.br/"
-                        >
-                          Rede Pitágoras
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2011-2014</div>
-                      <p>Conclusão do Ensino Médio</p>
-                    </div>
-                    <div
-                      className="jv-education-item dark-bg wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.5s"
-                    >
-                      <h4>
-                        Universidade Do Estado De Minas Gerais{" "}
+                        Universidade Do Estado De Minas Gerais{" – "}
                         <a target="_new" href="https://www.uemg.br">
                           UEMG
                         </a>
@@ -635,18 +621,16 @@ export default () => {
                       data-wow-delay="0.5s"
                     >
                       <h4>
+                        Colégio Educare{" – "}
                         <a
                           target="_new"
-                          href="https://descomplica.com.br/pos-graduacao"
+                          href="https://www.colegioeducarebetim.com.br/"
                         >
-                          Descomplica{" "}
+                          Rede Pitágoras
                         </a>
-                        pós graduação
                       </h4>
-                      <div className="jv-eduyear">2021-cursando</div>
-                      <p>
-                        Pós em Projetos de aplicativos móveis multiplataforma
-                      </p>
+                      <div className="jv-eduyear">2011-2014</div>
+                      <p>Conclusão do Ensino Médio</p>
                     </div>
                   </div>
                 </div>
@@ -654,48 +638,34 @@ export default () => {
               <div className="col-sm-12 col-md-6">
                 <div className="jv-work">
                   <h3>Experiências de trabalho</h3>
-                  <div className="jv-experience-deatils">
+                  <div className="jv-experience-deatils" style={{
+                    maxHeight: '330px',
+                    overflow: 'auto',
+                  }}>
                     <div
                       className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
-                      data-wow-delay="0.6s"
+                      data-wow-delay="0.2s"
                     >
                       <h4>
-                        Consórcio Intermunicipal De Saúde - Verde{" "}
-                        <a
-                          target="_new"
-                          href="https://www.guiamais.com.br/carangola-mg/profissionais-diversos/consultores-em-saude-e-qualidade-de-vida/2341979320-3753295/cis-verde"
-                        >
-                          CISVERDE
-                        </a>
+                        <a target="_new" href="https://www.drpaysaude.com.br/">
+                          Dr.pay
+                        </a>{" – "}
+                        Soluções e Sáude
                       </h4>
-                      <div className="jv-eduyear">2017-2018</div>
-                      <span>Técnico em informática</span>
+                      <div className="jv-eduyear">2021-atual</div>
+                      <span>Desenvolvedor front end pleno</span>
                     </div>
                     <div
                       className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
-                      data-wow-delay="0.4s"
-                    >
-                      <h4>
-                        SOS tecnologia e educação{" "}
-                        <a target="_new" href="https://www.sos.com.br/">
-                          S.O.S
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2019-2019</div>
-                      <span>Professor de informática</span>
-                    </div>
-                    <div
-                      className="jv-work-item dark-bg wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.4s"
+                      data-wow-delay="0.3s"
                     >
                       <h4>
                         <a target="_new" href="https://mappsistemas.com.br/">
                           Mapp Sistemas
-                        </a>{" "}
-                        – Aplicativos e sistemas
+                        </a>{" – "}
+                        Aplicativos e sistemas
                       </h4>
                       <div className="jv-eduyear">2020-2021</div>
                       <span>Desenvolvedor front end</span>
@@ -706,13 +676,44 @@ export default () => {
                       data-wow-delay="0.4s"
                     >
                       <h4>
-                        <a target="_new" href="https://www.drpaysaude.com.br/">
-                          Dr.pay
-                        </a>{" "}
-                        – Soluções e Sáude
+                        Programador web{" – "}
+                        <a target="_new" href="https://www.sos.com.br/">
+                          Autônomo
+                        </a>
                       </h4>
-                      <div className="jv-eduyear">2021-atual</div>
-                      <span>Desenvolvedor front end pleno</span>
+                      <div className="jv-eduyear">2016-2020</div>
+                      <span>Desenvolvimento de aplicações web e sites institucionais 29.718.072/0001-50</span>
+                    </div>
+                    <div
+                      className="jv-work-item dark-bg wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.6s"
+                    >
+                      <h4>
+                        SOS tecnologia e educação{" – "}
+                        <a target="_new" href="https://www.sos.com.br/">
+                          S.O.S
+                        </a>
+                      </h4>
+                      <div className="jv-eduyear">2019-2019</div>
+                      <span>Instrutor de informática</span>
+                    </div>
+                    <div
+                      className="jv-work-item dark-bg wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.7s"
+                    >
+                      <h4>
+                        Consórcio Intermunicipal De Saúde - Verde{" – "}
+                        <a
+                          target="_new"
+                          href="https://www.guiamais.com.br/carangola-mg/profissionais-diversos/consultores-em-saude-e-qualidade-de-vida/2341979320-3753295/cis-verde"
+                        >
+                          CISVERDE
+                        </a>
+                      </h4>
+                      <div className="jv-eduyear">2016-2019</div>
+                      <span>Estagiário de TI</span>
                     </div>
                   </div>
                 </div>
