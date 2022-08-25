@@ -233,7 +233,7 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
                 ))}
               </ul>
             </div>
-            <a href={data.link} target="_blank" className="btn btn-fill">Ver Mais</a>
+            <a href={data.link} target="_blank" className="btn btn-fill" rel="noopener noreferrer">Ver Mais</a>
           </div>
           <div className="col-sm-7">
             <div className="jv-portfolio-modal-img" style={{
