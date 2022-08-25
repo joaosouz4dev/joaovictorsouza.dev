@@ -747,6 +747,7 @@ export default () => {
               </p>
               <a
                 href="https://joaovictorsouza.dev/zap"
+                target="_blank"
                 className="cta wow fadeInUp "
                 data-wow-duration="0.8s"
                 data-wow-delay="0.5s"
