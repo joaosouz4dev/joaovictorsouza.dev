@@ -271,7 +271,7 @@ export default () => {
                 >
                   <div className="img-border">
                     <img
-                      src={process.env.PUBLIC_URL + "/assets/images/hero-2.jpg"}
+                      src={process.env.PUBLIC_URL + "/assets/images/new/hero-2.webp"}
                       alt=""
                       className="img-fluid"
                     />
@@ -764,7 +764,7 @@ export default () => {
             <div className="each-quates col-sm-12 col-md-6">
               <div className="wrap-image">
                 <img
-                  src={process.env.PUBLIC_URL + "/assets/images/foto.jpg"}
+                  src={process.env.PUBLIC_URL + "/assets/images/new/foto.webp"}
                   alt=""
                 />
               </div>

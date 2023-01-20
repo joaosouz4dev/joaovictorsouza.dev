@@ -4,7 +4,7 @@ import Fancybox from "./fancybox.js";
 const PORTFOLIO = [
   {
     categoria: 'site',
-    img: 'assets/images/portfolio/g1.png',
+    img: 'assets/images/portfolio/g1.webp',
     title: 'Ramon Vieira',
     subTitle: 'Site',
     link: 'https://www.ramonvieira.com/',
@@ -18,7 +18,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'sistema',
-    img: 'assets/images/portfolio/g2.png',
+    img: 'assets/images/portfolio/g2.webp',
     title: 'Solardash',
     subTitle: 'Sistema',
     link: 'https://solardash.com.br/',
@@ -35,7 +35,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'site',
-    img: 'assets/images/portfolio/g3.png',
+    img: 'assets/images/portfolio/g3.webp',
     title: 'Lumus Solar',
     subTitle: 'Site',
     link: 'https://www.lumus.eng.br/',
@@ -50,7 +50,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'site app',
-    img: 'assets/images/portfolio/g4.png',
+    img: 'assets/images/portfolio/g4.webp',
     title: 'Mapp Sistemas',
     subTitle: 'Site e App',
     link: 'https://mappsistemas.com.br/',
@@ -66,7 +66,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'sistema',
-    img: 'assets/images/portfolio/g7.png',
+    img: 'assets/images/portfolio/g7.webp',
     title: 'Folhetos.app',
     subTitle: 'Sistema',
     link: 'https://folhetos.app/',
@@ -80,7 +80,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'ecommerce app',
-    img: 'assets/images/portfolio/g5.png',
+    img: 'assets/images/portfolio/g5.webp',
     title: 'Dujuca',
     subTitle: 'E-Commerce e App',
     link: 'https://dujuca.com/',
@@ -98,7 +98,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'sistema',
-    img: 'assets/images/portfolio/g8.png',
+    img: 'assets/images/portfolio/g8.webp',
     title: 'Wppconnect',
     subTitle: 'Sistema',
     link: 'https://wppconnect.io/',
@@ -111,7 +111,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'sistema site app',
-    img: 'assets/images/portfolio/g6.png',
+    img: 'assets/images/portfolio/g6.webp',
     title: 'Dr.pay Saude',
     subTitle: 'Sistema, Site e App',
     link: 'https://drpaysaude.com.br/',
@@ -130,7 +130,7 @@ const PORTFOLIO = [
   },
   {
     categoria: 'ecommerce',
-    img: 'assets/images/portfolio/g9.png',
+    img: 'assets/images/portfolio/g9.webp',
     title: 'Felavie',
     subTitle: 'E-Commerce',
     link: 'https://felavie.com.br/',

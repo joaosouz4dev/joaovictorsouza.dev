@@ -675,7 +675,7 @@ ul li {
 }
 
 .img-overlay {
-  background-image: url(../images/footer-bg.png);
+  background-image: url(../images/new/footer-bg.webp);
   background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
@@ -696,7 +696,7 @@ ul li {
 }
 
 .home-1-img::before {
-  background-image: url(../images/home-bg-img-1.jpg);
+  background-image: url(../images/new/home-bg-img-1.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -714,7 +714,7 @@ ul li {
 }
 
 .home-2-img::before {
-  background-image: url(../images/home-bg-img.jpg);
+  background-image: url(../images/new/home-bg-img.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -731,7 +731,7 @@ ul li {
 }
 
 .featured-img-one::before {
-  background-image: url(../images/home-bg-img.jpg);
+  background-image: url(../images/new/home-bg-img.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -748,7 +748,7 @@ ul li {
 }
 
 .featured-img-two::before {
-  background-image: url(../images/extra-feature-bg.jpg);
+  background-image: url(../images/new/extra-feature-bg.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -765,7 +765,7 @@ ul li {
 }
 
 .map-image::before {
-  background-image: url(../images/map-color-overlay.png);
+  background-image: url(../images/new/map-color-overlay.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -3380,7 +3380,7 @@ footer .social-icon a:hover {
 }
 
 .home-ov-img {
-  background-image: url(../images/header-bg-2.png);
+  background-image: url(../images/new/header-bg-2.webp);
   background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
