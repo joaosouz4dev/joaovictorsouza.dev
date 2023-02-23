@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fancyapps/ui": "^4.0.31",
+    "@fancyapps/ui": "^5.0.1",
     "@lottiefiles/lottie-player": "^1.6.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
