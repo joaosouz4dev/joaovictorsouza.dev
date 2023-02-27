@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Portifolio from "../components/portifolio";
 import "@lottiefiles/lottie-player";
+import SvgAnimated from "../components/portifolio/svgAnimated";
 
 export default () => {
   const tecnologias = [
@@ -21,7 +22,7 @@ export default () => {
     "Wordpress",
     "Lumen",
     "SQL",
-    "Express"
+    "Express",
   ];
   const year = new Date().getFullYear();
   const anos = year - 2015;
@@ -29,28 +30,28 @@ export default () => {
     {
       nome: "Facebook",
       url: "https://www.facebook.com/joaosouz4dev",
-      icone: "fa fa-facebook"
+      icone: "fa fa-facebook",
     },
     {
       nome: "Instagram",
       url: "https://www.instagram.com/joaosouz4dev",
-      icone: "fa fa-instagram"
+      icone: "fa fa-instagram",
     },
     {
       nome: "Github",
       url: "https://github.com/joaosouz4dev",
-      icone: "fa fa-github"
+      icone: "fa fa-github",
     },
     {
       nome: "Linkedin",
       url: "https://www.linkedin.com/in/joaosouz4dev",
-      icone: "fa fa-linkedin"
+      icone: "fa fa-linkedin",
     },
     {
       nome: "Whatsapp",
       url: "https://joaovictorsouza.dev/zap",
-      icone: "fa fa-whatsapp"
-    }
+      icone: "fa fa-whatsapp",
+    },
   ];
   const [darkMode, setDarkMode] = useState(true);
 
@@ -61,7 +62,7 @@ export default () => {
     // const body = document.querySelector("body");
     // body.classList.toggle("dark-vertion");
     // body.classList.toggle("white-vertion");
-  }
+  };
 
   useEffect(() => {
     const $ = window.$;
@@ -69,10 +70,9 @@ export default () => {
       setDarkMode(localStorage.getItem("darkmode") === "true");
     }
     setTimeout(() => {
-      $('.section-loader').fadeOut('slow');
+      $(".section-loader").fadeOut("slow");
     }, 700);
   }, []);
-
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -150,15 +150,30 @@ export default () => {
                     </a>
                   </li>
                 </ul>
-                <span onClick={toggleDarkMode} style={{
-                  cursor: "pointer",
-                }}>
+                <span
+                  onClick={toggleDarkMode}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
                   {darkMode ? (
-                    <svg width="16" height="16" fill="currentColor" className="bi bi-lightbulb" viewBox="0 0 16 16">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-lightbulb"
+                      viewBox="0 0 16 16"
+                    >
                       <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
                     </svg>
                   ) : (
-                    <svg width="16" height="16" fill="currentColor" className="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-lightbulb-fill"
+                      viewBox="0 0 16 16"
+                    >
                       <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
                     </svg>
                   )}
@@ -249,7 +264,7 @@ export default () => {
                     data-wow-duration="0.8s"
                     data-wow-delay="0.7s"
                   >
-                    {redes_sociais.map(rede => (
+                    {redes_sociais.map((rede) => (
                       <li key={rede.nome}>
                         <a
                           href={rede.url}
@@ -271,7 +286,10 @@ export default () => {
                 >
                   <div className="img-border">
                     <img
-                      src={process.env.PUBLIC_URL + "/assets/images/new/hero-2.webp"}
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/assets/images/new/hero-2.webp"
+                      }
                       alt=""
                       className="img-fluid"
                     />
@@ -292,29 +310,7 @@ export default () => {
                 data-wow-duration="0.8s"
                 data-wow-delay="0.4s"
               >
-                <div
-                  style={{
-                    maxHeight: "315px",
-                    margin: "0 auto",
-                    display: "block",
-                    filter: "grayscale(100%)",
-                  }}
-                >
-                  <lottie-player
-                    autoplay
-                    loop
-                    mode="normal"
-                    src={
-                      process.env.PUBLIC_URL +
-                      "/assets/images/lottie/79681-usability-concept-illustration.json"
-                    }
-                    style={{
-                      width: "300px",
-                      height: "300px",
-                      margin: "0 auto",
-                    }}
-                  ></lottie-player>
-                </div>
+                <SvgAnimated />
               </div>
             </div>
             <div className="col-sm-12 col-md-6">
@@ -597,10 +593,13 @@ export default () => {
                   >
                     Educação
                   </h3>
-                  <div className="jv-education-deatils" style={{
-                    maxHeight: '330px',
-                    overflow: 'auto',
-                  }}>
+                  <div
+                    className="jv-education-deatils"
+                    style={{
+                      maxHeight: "330px",
+                      overflow: "auto",
+                    }}
+                  >
                     <div
                       className="jv-education-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
@@ -638,10 +637,13 @@ export default () => {
               <div className="col-sm-12 col-md-6">
                 <div className="jv-work">
                   <h3>Experiências de trabalho</h3>
-                  <div className="jv-experience-deatils" style={{
-                    maxHeight: '330px',
-                    overflow: 'auto',
-                  }}>
+                  <div
+                    className="jv-experience-deatils"
+                    style={{
+                      maxHeight: "330px",
+                      overflow: "auto",
+                    }}
+                  >
                     <div
                       className="jv-work-item dark-bg wow fadeInUp"
                       data-wow-duration="0.8s"
@@ -650,7 +652,8 @@ export default () => {
                       <h4>
                         <a target="_new" href="https://www.drpaysaude.com.br/">
                           Dr.pay
-                        </a>{" – "}
+                        </a>
+                        {" – "}
                         Soluções e Sáude
                       </h4>
                       <div className="jv-eduyear">2021-atual</div>
@@ -664,7 +667,8 @@ export default () => {
                       <h4>
                         <a target="_new" href="https://mappsistemas.com.br/">
                           Mapp Sistemas
-                        </a>{" – "}
+                        </a>
+                        {" – "}
                         Aplicativos e sistemas
                       </h4>
                       <div className="jv-eduyear">2020-2021</div>
@@ -682,7 +686,10 @@ export default () => {
                         </a>
                       </h4>
                       <div className="jv-eduyear">2016-2020</div>
-                      <span>Desenvolvimento de aplicações web e sites institucionais 29.718.072/0001-50</span>
+                      <span>
+                        Desenvolvimento de aplicações web e sites institucionais
+                        29.718.072/0001-50
+                      </span>
                     </div>
                     <div
                       className="jv-work-item dark-bg wow fadeInUp"
@@ -857,7 +864,7 @@ export default () => {
                           data-wow-duration="0.8s"
                           data-wow-delay="0.7s"
                         >
-                          {redes_sociais.map(rede => (
+                          {redes_sociais.map((rede) => (
                             <li key={rede.nome}>
                               <a
                                 href={rede.url}

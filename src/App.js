@@ -6,6 +6,8 @@ import Matrix from "./routes/matrix/index";
 import NotFound from "./routes/404/index";
 import Wpp from "./routes/wpp/index";
 
+import "./assets/css/style.css";
+
 const App = () => {
   return (
     <Router>
