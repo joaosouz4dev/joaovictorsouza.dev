@@ -1211,10 +1211,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fancyapps/ui@4.0.31":
-  version "4.0.31"
-  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-4.0.31.tgz#cf187b0ffe41ec1f44fd2ba2c2237f5cf7914619"
-  integrity sha512-D7+PMIloxSOFJyY+lXcNlVDhmssOmDT6PT5fqQUIiws2hT7PH29r0EKZxERmACSQpm6qrFkP7rSguzXWvRJduQ==
+"@fancyapps/ui@5.0.15":
+  version "5.0.15"
+  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-5.0.15.tgz#df333bf6dc233511853281d1c72c7c8caf8b3fbe"
+  integrity sha512-1Ba5o+po2Pnauo1IdQwmdNyBKbnERdW05AEMPp9Z8P0GJVidcdoV2vnxKMi9NBq111AuL+ULEhBxBhZJRzTWtg==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
