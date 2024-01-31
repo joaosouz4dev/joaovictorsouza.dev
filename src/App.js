@@ -8,6 +8,7 @@ import Matrix from "./routes/matrix/index";
 import NotFound from "./routes/404/index";
 import Wpp from "./routes/wpp/index";
 import Converta from "./routes/converta";
+import Privacidade from "./routes/privacidade";
 
 const App = () => {
   return (
@@ -17,6 +18,11 @@ const App = () => {
         <Route exact path="/zap" element={<Wpp />} />
         <Route exact path="/matrix" element={<Matrix />} />
         <Route exact path="/converta/ibivagas" element={<Converta />} />
+        <Route
+          exact
+          path="/politica-de-privacidade/:title"
+          element={<Privacidade />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
