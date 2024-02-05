@@ -26,3 +26,7 @@ yarn-error.log*
 # Environment Variables
 .env
 .env.build
+
+# locks files
+package-lock.json
+yarn.lock

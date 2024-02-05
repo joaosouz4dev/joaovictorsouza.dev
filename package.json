@@ -5,16 +5,16 @@
   "dependencies": {
     "@fancyapps/ui": "4.0.31",
     "@lottiefiles/lottie-player": "^1.7.1",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@vercel/analytics": "^1.1.3",
     "dat.gui": "0.7.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.11.2",
-    "styled-components": "^5.3.11",
-    "web-vitals": "^3.3.2"
+    "react-router-dom": "^6.22.0",
+    "styled-components": "^6.1.8",
+    "web-vitals": "^3.5.2"
   },
   "devDependencies": {
     "react-scripts": "^5.0.1"
