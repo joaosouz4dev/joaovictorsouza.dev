@@ -158,7 +158,7 @@ function useOutsideAlerter(ref, closeModal = () => { }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, closeModal]);
 }
 
 const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
@@ -269,7 +269,7 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
   );
 }
 
-export default () => {
+const Portfolio = () => {
   const [selected, setSelected] = useState({
     titulo: '',
     descricao: '',
@@ -339,3 +339,5 @@ export default () => {
     </>
   );
 };
+
+export default Portfolio;

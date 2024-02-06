@@ -1,7 +1,7 @@
 import React from "react";
 import * as datGui from "dat.gui";
 
-export default () => {
+const Matrix = () => {
   React.useEffect(() => {
     let mounted = true;
     let interval;
@@ -65,3 +65,5 @@ export default () => {
 
   return <canvas id="canvas"></canvas>;
 };
+
+export default Matrix;
