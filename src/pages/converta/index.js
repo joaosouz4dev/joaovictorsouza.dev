@@ -2,7 +2,7 @@ import React from "react";
 
 function Converta() {
   React.useEffect(() => {
-    window.location.href = "https://ibivagas.com.br/temporario";
+    window.location.href = "https://ibivagas.com.br/cad-app";
   }, []);
 
   return (
