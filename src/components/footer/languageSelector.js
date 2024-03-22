@@ -11,7 +11,11 @@ const LanguageSelector = () => {
 
   return (
     <div>
-      <select id="language-select" value={selectedLanguage} onChange={(e) => changeLanguage(e.target.value)}>
+      <select
+        id="language-select"
+        value={selectedLanguage === 'pt-BR' ? 'pt' : selectedLanguage}
+        onChange={(e) => changeLanguage(e.target.value)}
+      >
         <option value="en">English</option>
         <option value="pt">Português</option>
       </select>
