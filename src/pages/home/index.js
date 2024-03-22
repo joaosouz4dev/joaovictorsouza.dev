@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Portifolio from '../../components/portifolio';
 import '@lottiefiles/lottie-player';
 import SvgAnimated from '../../components/portifolio/svgAnimated';
+import i18next from 'i18next';
+
+import iconCv from '../../assets/images/icon-cv.png';
 
 const ANO_INICIAL = 2015;
 
@@ -54,42 +57,43 @@ const redes_sociais = [
   },
 ];
 
-const menus = [
-  {
-    href: '#jv-home',
-    label: 'Inicio',
-  },
-  {
-    href: '#jv-about',
-    label: 'Sobre',
-  },
-  {
-    href: '#jv-skills',
-    label: 'Habilidades',
-  },
-  {
-    href: '#jv-experience',
-    label: 'Experiências',
-  },
-  {
-    href: '#jv-portfolio',
-    label: 'Portfólio',
-  },
-  {
-    href: '#jv-contact',
-    label: 'Contatos',
-  },
-];
-
 const Home = () => {
+  const t = i18next.t.bind(i18next);
   const year = new Date().getFullYear();
   const anos = year - ANO_INICIAL;
   const [darkMode, setDarkMode] = useState(true);
   const [menuActive, setMenuActive] = useState('#jv-home');
 
+  const menus = [
+    {
+      href: '#jv-home',
+      label: t('menu.home'),
+    },
+    {
+      href: '#jv-about',
+      label: t('menu.about'),
+    },
+    {
+      href: '#jv-skills',
+      label: t('menu.skills'),
+    },
+    {
+      href: '#jv-experience',
+      label: t('menu.experiences'),
+    },
+    {
+      href: '#jv-portfolio',
+      label: t('menu.portfolio'),
+    },
+    {
+      href: '#jv-contact',
+      label: t('menu.contact'),
+    },
+  ];
+
   useEffect(() => {
     const $ = window.$;
-    
+
     // Verificar se a preferência do usuário já foi armazenada localmente
     if (localStorage.getItem('darkmode') !== null) {
       setDarkMode(localStorage.getItem('darkmode') === 'true');
@@ -105,13 +109,13 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     if (darkMode) {
-      body.classList.add("dark-vertion");
-      body.classList.remove("white-vertion");
+      body.classList.add('dark-vertion');
+      body.classList.remove('white-vertion');
     } else {
-      body.classList.remove("dark-vertion");
-      body.classList.add("white-vertion");
+      body.classList.remove('dark-vertion');
+      body.classList.add('white-vertion');
     }
   }, [darkMode]);
 
@@ -200,7 +204,7 @@ const Home = () => {
               <div className="col-sm-6">
                 <div className="jv-header-info">
                   <div className="jv-promo wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                    <span>Olá, Tudo bem ?</span>
+                    <span>{t('banner.title')}</span>
                   </div>
 
                   <h2
@@ -223,7 +227,7 @@ const Home = () => {
                     </div>
                   </h2>
                   <h4 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                    Software Developer
+                    {t('banner.profession')}
                   </h4>
 
                   <ul>
@@ -234,12 +238,12 @@ const Home = () => {
                     <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                       <i className="fa fa-phone" />
                       <a href="https://joaovictorsouza.dev/zap" target="_blank" rel="noopener noreferrer">
-                        +55 31 9 9858-7817
+                        +351 969 823 079
                       </a>
                     </li>
                     <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                       <i className="fa fa-map-marker" />
-                      Betim - MG, Brasil
+                      {t('banner.location')}
                     </li>
                   </ul>
                   <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
@@ -276,12 +280,10 @@ const Home = () => {
             <div className="col-sm-12 col-md-6">
               <div className="jv-about-inner">
                 <h2 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                  Sobre mim
+                  {t('about.title')}
                 </h2>
                 <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                  Sou um desenvolvedor web e estou sempre procurando resolver problemas, fazer melhorias no que já
-                  existe e criar algo novo que tenha um impacto social positivo. Busco novos conhecimentos a cada dia e
-                  adoro desafios! Geralmente utilizo:
+                  {t('about.description')}
                 </p>
                 <div className="jv-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                   <ul>
@@ -307,7 +309,7 @@ const Home = () => {
                 data-wow-duration="0.8s"
                 data-wow-delay="0.2s"
               >
-                <h2>O que eu sei ?</h2>
+                <h2>{t('skills.title')}</h2>
               </div>
               <div className="col-sm-4">
                 <div
@@ -321,11 +323,8 @@ const Home = () => {
                       filter: 'grayscale(100%)',
                     }}
                   />
-                  <h3>UI/UX Design</h3>
-                  <p>
-                    Estudei artes por anos e então foquei em Design de Interfaces, Crio Sites, Identidade Visual, Design
-                    Gráfico e Comunicação Visual seguindo conceitos do design, gestalt e teorias das cores.
-                  </p>
+                  <h3>{t('skills.card1.title')}</h3>
+                  <p>{t('skills.card1.description')}</p>
                 </div>
               </div>
               <div className="col-sm-4">
@@ -340,11 +339,8 @@ const Home = () => {
                       filter: 'grayscale(100%)',
                     }}
                   />
-                  <h3>Web Development</h3>
-                  <p>
-                    Posso desenvolver sites, de modo rápido e seguro, aplicando sempre as melhores práticas e
-                    deixando-as com visual moderno. Site, Sistema dentre outros serão Únicos!
-                  </p>
+                  <h3>{t('skills.card2.title')}</h3>
+                  <p>{t('skills.card2.description')}</p>
                 </div>
               </div>
               <div className="col-sm-4">
@@ -359,11 +355,8 @@ const Home = () => {
                       filter: 'grayscale(100%)',
                     }}
                   />
-                  <h3>App Development</h3>
-                  <p>
-                    Crio aplicativos utilizando o desenvolimento cross-platamorma, Utilizando framework React-Native
-                    mantido pelo Facebook, onde exportamos para as principais plataformas do mercado.
-                  </p>
+                  <h3>{t('skills.card3.title')}</h3>
+                  <p>{t('skills.card3.description')}</p>
                 </div>
               </div>
             </div>
@@ -378,7 +371,7 @@ const Home = () => {
               <div className="col-sm-12 col-md-6">
                 <div className="jv-skills-inner">
                   <div className="jv-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                    <h3>Habilidades Técnicas</h3>
+                    <h3>{t('skills.title2')}</h3>
                     <div className="each-skills">
                       <div className="candidatos">
                         <div className="parcial">
@@ -453,23 +446,23 @@ const Home = () => {
               </div>
               <div className="col-sm-12 col-md-6">
                 <div className="jv-professional-skills wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                  <h3>Habilidades Profissionais</h3>
+                  <h3>{t('skills.title3')}</h3>
                   <ul className="jv-professional-progress">
                     <li>
                       <div className="jv-progress jv-progress-circle" data-progress="80" />
-                      <div className="pr-skill-name">Comunicação</div>
+                      <div className="pr-skill-name">{t('skills.words.communication')}</div>
                     </li>
                     <li>
                       <div className="jv-progress jv-progress-circle" data-progress="55" />
-                      <div className="pr-skill-name">Trabalho em Equipe</div>
+                      <div className="pr-skill-name">{t('skills.words.teamwork')}</div>
                     </li>
                     <li>
                       <div className="jv-progress jv-progress-circle" data-progress="86" />
-                      <div className="pr-skill-name">Gerenciamento de Projetos</div>
+                      <div className="pr-skill-name">{t('skills.words.management')}</div>
                     </li>
                     <li>
                       <div className="jv-progress jv-progress-circle" data-progress="90" />
-                      <div className="pr-skill-name">Proatividade</div>
+                      <div className="pr-skill-name">{t('skills.words.proactivity')}</div>
                     </li>
                   </ul>
                 </div>
@@ -483,116 +476,48 @@ const Home = () => {
         <div className="img-color-overlay">
           <div className="container">
             <div className="row section-separator">
-              <div className="col-sm-12 col-md-6">
-                <div className="jv-education">
-                  <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                    Educação
-                  </h3>
-                  <div
-                    className="jv-education-deatils"
+              <div className="each-quates col-sm-12 col-md-6">
+                <div
+                  style={{
+                    padding: '40px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <img
+                    src={iconCv}
+                    alt=""
                     style={{
-                      maxHeight: '330px',
-                      overflow: 'auto',
+                      maxHeight: '160px',
+                      opacity: '0.7',
                     }}
-                  >
-                    <div
-                      className="jv-education-item dark-bg wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.3s"
-                    >
-                      <h4>
-                        Universidade Do Estado De Minas Gerais{' – '}
-                        <a target="_new" href="https://www.uemg.br">
-                          UEMG
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2015-2020</div>
-                      <p>Bacharelado em Sistemas de Informação</p>
-                    </div>
-                    <div
-                      className="jv-education-item dark-bg wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.5s"
-                    >
-                      <h4>
-                        Colégio Educare{' – '}
-                        <a target="_new" href="https://www.colegioeducarebetim.com.br/">
-                          Rede Pitágoras
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2011-2014</div>
-                      <p>Conclusão do Ensino Médio</p>
-                    </div>
-                  </div>
+                  />
                 </div>
               </div>
-              <div className="col-sm-12 col-md-6">
-                <div className="jv-work">
-                  <h3>Experiências de trabalho</h3>
-                  <div
-                    className="jv-experience-deatils"
-                    style={{
-                      maxHeight: '330px',
-                      overflow: 'auto',
-                    }}
-                  >
-                    <div className="jv-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                      <h4>
-                        <a target="_new" href="https://www.drpaysaude.com.br/">
-                          Dr.pay
-                        </a>
-                        {' – '}
-                        Soluções e Sáude
-                      </h4>
-                      <div className="jv-eduyear">2021-atual</div>
-                      <span>Desenvolvedor front end pleno</span>
-                    </div>
-                    <div className="jv-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                      <h4>
-                        <a target="_new" href="https://mappsistemas.com.br/">
-                          Mapp Sistemas
-                        </a>
-                        {' – '}
-                        Aplicativos e sistemas
-                      </h4>
-                      <div className="jv-eduyear">2020-2021</div>
-                      <span>Desenvolvedor front end</span>
-                    </div>
-                    <div className="jv-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                      <h4>
-                        Programador web{' – '}
-                        <a target="_new" href="https://www.sos.com.br/">
-                          Autônomo
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2016-2020</div>
-                      <span>Desenvolvimento de aplicações web e sites institucionais 29.718.072/0001-50</span>
-                    </div>
-                    <div className="jv-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
-                      <h4>
-                        SOS tecnologia e educação{' – '}
-                        <a target="_new" href="https://www.sos.com.br/">
-                          S.O.S
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2019-2019</div>
-                      <span>Instrutor de informática</span>
-                    </div>
-                    <div className="jv-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                      <h4>
-                        Consórcio Intermunicipal De Saúde - Verde{' – '}
-                        <a
-                          target="_new"
-                          href="https://www.guiamais.com.br/carangola-mg/profissionais-diversos/consultores-em-saude-e-qualidade-de-vida/2341979320-3753295/cis-verde"
-                        >
-                          CISVERDE
-                        </a>
-                      </h4>
-                      <div className="jv-eduyear">2016-2019</div>
-                      <span>Estagiário de TI</span>
-                    </div>
-                  </div>
-                </div>
+              <div className="each-quates col-sm-12 col-md-6">
+                <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                  {t('experiences.since')} {ANO_INICIAL} {t('experiences.title')}
+                </h3>
+                <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                  {t('experiences.description')}
+                </p>
+                <a
+                  href="https://joaovictorsouza.dev/zap"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cta wow fadeInUp "
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.5s"
+                >
+                  <span>
+                    <i className="fa fa-linkedin" /> Linkedin
+                  </span>
+                  <svg width="13px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -606,11 +531,10 @@ const Home = () => {
           <div className="row section-separator">
             <div className="each-quates col-sm-12 col-md-6">
               <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                Vamos trabalhar juntos?
+                {t('quates.title')}
               </h3>
               <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                Desenvolvedor, design e proativo. Há {anos} anos na programação, João Victor Souza tem a arte de
-                programar como profissão e paixão.
+                {t('quates.description').replace('{anos}', anos)}
               </p>
               <a
                 href="https://joaovictorsouza.dev/zap"
@@ -642,7 +566,7 @@ const Home = () => {
         <div className="container-fluid">
           <div className="row section-separator">
             <div className="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-              <h3>Meus Contatos</h3>
+              <h3>{t('menu.contact')}</h3>
             </div>
             <div className="map-image image-bg col-sm-12">
               <div className="container mt-30">
@@ -662,8 +586,8 @@ const Home = () => {
                           <i className="fa fa-location-arrow" />
                         </div>
                         <div className="each-info media-body">
-                          <h4>Endereço</h4>
-                          <address>Betim - MG, Brasil</address>
+                          <h4>{t('contact.address.title')}</h4>
+                          <address>{t('contact.address.description')}</address>
                         </div>
                       </div>
                     </div>
@@ -677,7 +601,7 @@ const Home = () => {
                           <i className="fa fa-envelope-o" />
                         </div>
                         <div className="each-info media-body">
-                          <h4>Email</h4>
+                          <h4>{t('contact.email.title')}</h4>
                           <a href="mailto:web@joaovictorsouza.dev">web@joaovictorsouza.dev</a>
                         </div>
                       </div>
@@ -692,7 +616,7 @@ const Home = () => {
                           <i className="fa fa-phone" />
                         </div>
                         <div className="each-info media-body">
-                          <h4>Telefone</h4>
+                          <h4>{t('contact.phone.title')}</h4>
                           <a href="callto:+5531998587817">(31) 9 9858-7817</a>
                         </div>
                       </div>
@@ -703,7 +627,9 @@ const Home = () => {
                     <div className="row">
                       <div className="col-sm-6">
                         <div className="text-center">
-                          <p>© {ANO_INICIAL} - {year} - João Victor Souza</p>
+                          <p>
+                            © {ANO_INICIAL} - {year} - João Victor Souza
+                          </p>
                         </div>
                       </div>
                       <div className="col-sm-6 text-center">
