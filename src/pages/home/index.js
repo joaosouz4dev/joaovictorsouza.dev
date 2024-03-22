@@ -30,6 +30,10 @@ const tecnologias = [
   'Express',
 ];
 
+const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
+
+const celular = '+351 969 823 079';
+
 const redes_sociais = [
   {
     nome: 'Facebook',
@@ -48,7 +52,7 @@ const redes_sociais = [
   },
   {
     nome: 'Linkedin',
-    url: 'https://www.linkedin.com/in/joaosouz4dev',
+    url: linkedin,
     icone: 'fa fa-linkedin',
   },
   {
@@ -239,7 +243,7 @@ const Home = () => {
                     <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                       <i className="fa fa-phone" />
                       <a href="https://joaovictorsouza.dev/zap" target="_blank" rel="noopener noreferrer">
-                        +351 969 823 079
+                        {celular}
                       </a>
                     </li>
                     <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
@@ -504,7 +508,7 @@ const Home = () => {
                   {t('experiences.description')}
                 </p>
                 <a
-                  href="https://joaovictorsouza.dev/zap"
+                  href={linkedin}
                   target="_blank"
                   rel="noreferrer"
                   className="cta wow fadeInUp "
@@ -618,7 +622,7 @@ const Home = () => {
                         </div>
                         <div className="each-info media-body">
                           <h4>{t('contact.phone.title')}</h4>
-                          <a href="callto:+5531998587817">(31) 9 9858-7817</a>
+                          <a href={'callto:' + celular.replace(/[^0-9]/g, '')}>{celular}</a>
                         </div>
                       </div>
                     </div>
