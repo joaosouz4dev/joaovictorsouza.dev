@@ -1,4 +1,4 @@
-export default {
+const pt = {
   menu: {
     home: 'Início',
     about: 'Sobre',
@@ -77,3 +77,5 @@ export default {
     },
   },
 };
+
+export default pt;

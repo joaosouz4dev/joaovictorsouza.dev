@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Portifolio from '../../components/portifolio';
 import '@lottiefiles/lottie-player';
 import SvgAnimated from '../../components/portifolio/svgAnimated';
-import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import iconCv from '../../assets/images/icon-cv.png';
+import LanguageSelector from '../../components/footer/languageSelector';
 
 const ANO_INICIAL = 2015;
 
@@ -58,7 +59,7 @@ const redes_sociais = [
 ];
 
 const Home = () => {
-  const t = i18next.t.bind(i18next);
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
   const anos = year - ANO_INICIAL;
   const [darkMode, setDarkMode] = useState(true);
@@ -632,7 +633,7 @@ const Home = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="col-sm-6 text-center">
+                      <div className="col-sm-6 text-center d-flex">
                         <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
                           {redes_sociais.map((rede) => (
                             <li key={rede.nome}>
@@ -642,6 +643,7 @@ const Home = () => {
                             </li>
                           ))}
                         </ul>
+                        <LanguageSelector />
                       </div>
                     </div>
                   </div>
