@@ -60,7 +60,7 @@ const en = {
   quates: {
     title: `Let's work together?`,
     description:
-      'Developer, design and proactive. Having been programming for {years} years, João Victor Souza has the art of programming as a profession and passion.',
+      'Developer, design and proactive. Having been programming for {anos} years, João Victor Souza has the art of programming as a profession and passion.',
   },
   contact: {
     title: 'My Contacts',
