@@ -57,6 +57,18 @@ const pt = {
       system: 'Sistema',
       ecommerce: 'E-Commerce',
     },
+    btn: 'Ver mais',
+    descriptions: {
+      desc1: `Site unica para fotografo exibir fotos de eventos e receber contatos de possiveis clientes`,
+      desc2: `A plataforma de gestão completa para empresa de energia solar facilita o primeiro contato com o cliente até o pós venda. A plataforma permite que a empresa possua um controle maior sobre as etapas do projeto, desde a captação de clientes, instalação dos painéis solares até o controle de pós venda`,
+      desc3: `Site unico para empresa que faz instalação de sistemas de energia fotovoltaica`,
+      desc4: `Site completo com blog desenvolvido para a empresa vender seu sistema web e aplicativos usuarios dessa empresa`,
+      desc5: `Sistema web para empresas exibirem ofertas online`,
+      desc5: `E-Commerce e app criado para a empresa vender produtos online`,
+      desc6: `Projeto open source criado para facilitar as manipulações do whatsapp web, possibilitando criar chatbots, chat de comunicação dentre outras coisas.`,
+      desc7: `Sistema e app focado para medicos e unidades de saude, ofertando diversos produtos`,
+      desc8: `E-Commerce criado para a empresa vender produtos online`,
+    },
   },
   quates: {
     title: 'Vamos trabalhar juntos?',

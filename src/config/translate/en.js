@@ -56,6 +56,18 @@ const en = {
       system: 'System',
       ecommerce: 'E-Commerce',
     },
+    btn: 'See more',
+    descriptions: {
+      desc1: `Unique website for photographers to display photos of events and receive contacts from potential clients`,
+      desc2: `The complete management platform for solar energy companies facilitates the first contact with the customer until after-sales. The platform allows the company to have greater control over the project stages, from attracting customers, installing solar panels to after-sales control`,
+      desc3: `Unique website for a company that installs photovoltaic energy systems`,
+      desc4: `Complete website with blog developed for the company to sell its web system and applications to users of that company`,
+      desc5: `Web system for companies to display offers online`,
+      desc5: `E-Commerce and app created for the company to sell products online`,
+      desc6: `Open source project created to facilitate WhatsApp web manipulations, enabling the creation of chatbots, communication chats, among other things.`,
+      desc7: `System and app focused on doctors and healthcare units, offering various products`,
+      desc8: `E-Commerce created for the company to sell products online`,
+    },
   },
   quates: {
     title: `Let's work together?`,

@@ -1,90 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Fancybox from './fancybox.js';
 import i18next from 'i18next';
-
-const PORTFOLIO = [
-  {
-    categoria: 'site',
-    img: 'assets/images/portfolio/g1.webp',
-    title: 'Ramon Vieira',
-    subTitle: 'Site',
-    link: 'https://www.ramonvieira.com/',
-    descricao: `Site unica para fotografo exibir fotos de eventos e receber contatos de possiveis clientes`,
-    tecnologias: ['php', 'html', 'css', 'javascript'],
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g2.webp',
-    title: 'Solardash',
-    subTitle: 'Sistema',
-    link: 'https://solardash.com.br/',
-    descricao: `A plataforma de gestão completa para empresa de energia solar facilita o primeiro contato com o cliente até o pós venda. A plataforma permite que a empresa possua um controle maior sobre as etapas do projeto, desde a captação de clientes, instalação dos painéis solares até o controle de pós venda`,
-    tecnologias: ['php', 'html', 'css', 'php', 'React', 'Javascript', 'Node.JS'],
-  },
-  {
-    categoria: 'site',
-    img: 'assets/images/portfolio/g3.webp',
-    title: 'Lumus Solar',
-    subTitle: 'Site',
-    link: 'https://www.lumus.eng.br/',
-    descricao: `Site unico para empresa que faz instalação de sistemas de energia fotovoltaica`,
-    tecnologias: ['html', 'css', 'Javascript', 'php', 'wordpress'],
-  },
-  {
-    categoria: 'site app',
-    img: 'assets/images/portfolio/g4.webp',
-    title: 'Mapp Sistemas',
-    subTitle: 'Site e App',
-    link: 'https://mappsistemas.com.br/',
-    descricao: `Site completo com blog desenvolvido para a empresa vender seu sistema web e aplicativos usuarios dessa empresa`,
-    tecnologias: ['php', 'wordpress', 'html', 'css', 'Javascript', 'React Native'],
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g7.webp',
-    title: 'Folhetos.app',
-    subTitle: 'Sistema',
-    link: 'https://folhetos.app/',
-    descricao: `Sistema web para empresas exibirem ofertas online`,
-    tecnologias: ['php', 'html', 'css', 'Javascript'],
-  },
-  {
-    categoria: 'ecommerce app',
-    img: 'assets/images/portfolio/g5.webp',
-    title: 'Dujuca',
-    subTitle: 'E-Commerce e App',
-    link: 'https://dujuca.com/',
-    descricao: `E-Commerce e app criado para a empresa vender produtos online`,
-    tecnologias: ['php', 'html', 'css', 'React', 'React Native', 'Javascript', 'php', 'wordpress'],
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g8.webp',
-    title: 'Wppconnect',
-    subTitle: 'Sistema',
-    link: 'https://wppconnect.io/',
-    descricao: `Projeto open source criado para facilitar as manipulações do whatsapp web, possibilitando criar chatbots, chat de comunicação dentre outras coisas.`,
-    tecnologias: ['React', 'Javascript', 'Node.JS'],
-  },
-  {
-    categoria: 'sistema site app',
-    img: 'assets/images/portfolio/g6.webp',
-    title: 'Dr.pay Saude',
-    subTitle: 'Sistema, Site e App',
-    link: 'https://drpaysaude.com.br/',
-    descricao: `Sistema e app focado para medicos e unidades de saude, ofertando diversos produtos`,
-    tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'React Native', 'Javascript', 'Node.JS'],
-  },
-  {
-    categoria: 'ecommerce',
-    img: 'assets/images/portfolio/g9.webp',
-    title: 'Felavie',
-    subTitle: 'E-Commerce',
-    link: 'https://felavie.com.br/',
-    descricao: `E-Commerce criado para a empresa vender produtos online`,
-    tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'Javascript'],
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 function useOutsideAlerter(ref, closeModal = () => {}) {
   useEffect(() => {
@@ -101,6 +18,7 @@ function useOutsideAlerter(ref, closeModal = () => {}) {
 }
 
 const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
+  const { t } = useTranslation();
   const [data, setData] = useState({
     titulo: '',
     descricao: '',
@@ -178,7 +96,7 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
               </ul>
             </div>
             <a href={data.link} target="_blank" className="btn btn-fill" rel="noopener noreferrer">
-              Ver Mais
+              {t('portfolio.btn')}
             </a>
           </div>
           <div className="col-sm-7">
@@ -219,7 +137,90 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
 };
 
 const Portfolio = () => {
-  const t = i18next.t.bind(i18next);
+  const { t } = useTranslation();
+  const PORTFOLIO = [
+    {
+      categoria: 'site',
+      img: 'assets/images/portfolio/g1.webp',
+      title: 'Ramon Vieira',
+      subTitle: t('portfolio.words.site'),
+      link: 'https://www.ramonvieira.com/',
+      descricao: t('portfolio.descriptions.desc1'),
+      tecnologias: ['php', 'html', 'css', 'javascript'],
+    },
+    {
+      categoria: 'sistema',
+      img: 'assets/images/portfolio/g2.webp',
+      title: 'Solardash',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://solardash.com.br/',
+      descricao: t('portfolio.descriptions.desc2'),
+      tecnologias: ['php', 'html', 'css', 'php', 'React', 'Javascript', 'Node.JS'],
+    },
+    {
+      categoria: 'site',
+      img: 'assets/images/portfolio/g3.webp',
+      title: 'Lumus Solar',
+      subTitle: t('portfolio.words.site'),
+      link: 'https://www.lumus.eng.br/',
+      descricao: t('portfolio.descriptions.desc3'),
+      tecnologias: ['html', 'css', 'Javascript', 'php', 'wordpress'],
+    },
+    {
+      categoria: 'site app',
+      img: 'assets/images/portfolio/g4.webp',
+      title: 'Mapp Sistemas',
+      subTitle: t('portfolio.words.site') + ', ' + t('portfolio.words.app'),
+      link: 'https://mappsistemas.com.br/',
+      descricao: t('portfolio.descriptions.desc4'),
+      tecnologias: ['php', 'wordpress', 'html', 'css', 'Javascript', 'React Native'],
+    },
+    {
+      categoria: 'sistema',
+      img: 'assets/images/portfolio/g7.webp',
+      title: 'Folhetos.app',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://folhetos.app/',
+      descricao: t('portfolio.descriptions.desc5'),
+      tecnologias: ['php', 'html', 'css', 'Javascript'],
+    },
+    {
+      categoria: 'ecommerce app',
+      img: 'assets/images/portfolio/g5.webp',
+      title: 'Dujuca',
+      subTitle: t('portfolio.words.ecommerce') + ', ' + t('portfolio.words.app'),
+      link: 'https://dujuca.com/',
+      descricao: t('portfolio.descriptions.desc6'),
+      tecnologias: ['php', 'html', 'css', 'React', 'React Native', 'Javascript', 'php', 'wordpress'],
+    },
+    {
+      categoria: 'sistema',
+      img: 'assets/images/portfolio/g8.webp',
+      title: 'Wppconnect',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://wppconnect.io/',
+      descricao: t('portfolio.descriptions.desc7'),
+      tecnologias: ['React', 'Javascript', 'Node.JS'],
+    },
+    {
+      categoria: 'sistema site app',
+      img: 'assets/images/portfolio/g6.webp',
+      title: 'Dr.pay Saude',
+      subTitle: t('portfolio.words.system') + ', ' + t('portfolio.words.site') + ', ' + t('portfolio.words.app'),
+      link: 'https://drpaysaude.com.br/',
+      descricao: t('portfolio.descriptions.desc8'),
+      tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'React Native', 'Javascript', 'Node.JS'],
+    },
+    {
+      categoria: 'ecommerce',
+      img: 'assets/images/portfolio/g9.webp',
+      title: 'Felavie',
+      subTitle: t('portfolio.words.ecommerce'),
+      link: 'https://felavie.com.br/',
+      descricao: t('portfolio.descriptions.desc9'),
+      tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'Javascript'],
+    },
+  ];
   const [selected, setSelected] = useState({
     titulo: '',
     descricao: '',
