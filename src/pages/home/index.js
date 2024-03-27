@@ -7,6 +7,10 @@ import { useTranslation } from 'react-i18next';
 import iconCv from '../../assets/images/icon-cv.png';
 import LanguageSelector from '../../components/footer/languageSelector';
 
+import profile from '../../assets/images/profile/profile-2.png';
+
+// const oldprofile = process.env.PUBLIC_URL + '/assets/images/new/hero-2.webp'
+
 const ANO_INICIAL = 2015;
 
 const tecnologias = [
@@ -265,7 +269,7 @@ const Home = () => {
               <div className="col-sm-6">
                 <div className="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                   <div className="img-border">
-                    <img src={process.env.PUBLIC_URL + '/assets/images/new/hero-2.webp'} alt="" className="img-fluid" />
+                    <img src={profile} alt="" className="img-fluid" />
                   </div>
                 </div>
               </div>
