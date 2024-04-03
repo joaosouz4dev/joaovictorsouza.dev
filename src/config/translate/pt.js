@@ -65,9 +65,9 @@ const pt = {
       desc4: `Site completo com blog desenvolvido para a empresa vender seu sistema web e aplicativos usuarios dessa empresa`,
       desc5: `Sistema web para empresas exibirem ofertas online`,
       desc5: `E-Commerce e app criado para a empresa vender produtos online`,
-      desc6: `Projeto open source criado para facilitar as manipulações do whatsapp web, possibilitando criar chatbots, chat de comunicação dentre outras coisas.`,
-      desc7: `Sistema e app focado para medicos e unidades de saude, ofertando diversos produtos`,
-      desc8: `E-Commerce criado para a empresa vender produtos online`,
+      desc7: `Projeto open source criado para facilitar as manipulações do whatsapp web, possibilitando criar chatbots, chat de comunicação dentre outras coisas.`,
+      desc8: `Sistema e app focado para medicos e unidades de saude, ofertando diversos produtos`,
+      desc9: `E-Commerce criado para a empresa vender produtos online`,
     },
   },
   quates: {
