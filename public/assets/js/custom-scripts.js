@@ -55,12 +55,12 @@
 		| Onepage Nav
 		|================
 		*/
-	$('#jv-header').onePageNav({
-		currentClass: 'active',
-		changeHash: false,
-		scrollSpeed: 750,
-		scrollThreshold: 0.5
-	});
+	// $('#jv-header').onePageNav({
+	// 	currentClass: 'active',
+	// 	changeHash: false,
+	// 	scrollSpeed: 750,
+	// 	scrollThreshold: 0.5
+	// });
 
 	/*
 		|===============
@@ -85,17 +85,7 @@
 		| NAV FIXED ON SCROLL
 		| ==========================
 		*/
-	var validator = false;
 	$(window).on('scroll', function () {
-		if (!validator) {
-			validator = true;
-			$('#jv-header').onePageNav({
-				currentClass: 'active',
-				changeHash: false,
-				scrollSpeed: 750,
-				scrollThreshold: 0.5
-			});
-		}
 		var scroll = $(window).scrollTop();
 		if (scroll >= 50) {
 			$('.nav-scroll').addClass('nav-strict');

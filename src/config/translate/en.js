@@ -39,7 +39,7 @@ const en = {
       communication: 'Communication',
       teamwork: 'Teamwork',
       management: 'Project Management',
-      creativity: 'Proactivity',
+      proactivity: 'Proactivity',
     },
   },
   experiences: {

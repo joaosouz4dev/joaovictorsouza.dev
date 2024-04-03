@@ -40,7 +40,7 @@ const pt = {
       communication: 'Comunicação',
       teamwork: 'Trabalho em Equipe',
       management: 'Gerenciamento de Projetos',
-      creativity: 'Proatividade',
+      proactivity: 'Proatividade',
     },
   },
   experiences: {

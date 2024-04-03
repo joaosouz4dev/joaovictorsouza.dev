@@ -13,7 +13,7 @@ i18next
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    debug: true,
+    debug: window.location.hostname.includes('localhost'),
     resources: {
       en: {
         translation: {

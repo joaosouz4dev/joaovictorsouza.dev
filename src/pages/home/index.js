@@ -72,6 +72,7 @@ const Home = () => {
   const anos = year - ANO_INICIAL;
   const [darkMode, setDarkMode] = useState(true);
   const [menuActive, setMenuActive] = useState('#jv-home');
+  const [scrolling, setScrolling] = useState(false);
 
   const menus = [
     {
@@ -102,8 +103,6 @@ const Home = () => {
 
   useEffect(() => {
     const $ = window.$;
-
-    // Verificar se a preferência do usuário já foi armazenada localmente
     if (localStorage.getItem('darkmode') !== null) {
       setDarkMode(localStorage.getItem('darkmode') === 'true');
     } else {
@@ -116,6 +115,50 @@ const Home = () => {
       $('.section-loader').fadeOut('slow');
     }, 300);
   }, []);
+
+  useEffect(() => {
+    const section = window.location.href.includes('#') ? window.location.href.split('#').pop() : false;
+    if (section) {
+      setMenuActive('#' + section);
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
+      }, 500);
+    }
+  }, [document, window.location.href]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrolling) return;
+      const scrollPosition = window.scrollY;
+      const sections = [];
+      const sectionsFinded = document.querySelectorAll('section');
+      if (sectionsFinded) {
+        sectionsFinded.forEach((section) => {
+          sections.push(section);
+        });
+      }
+      const footerFinded = document.querySelector('#jv-contact');
+      if (footerFinded) {
+        sections.push(footerFinded);
+      }
+      sections.forEach((section) => {
+        if (scrollPosition >= section.offsetTop - 250 && scrollPosition < section.offsetTop + section.offsetHeight) {
+          setMenuActive('#' + section.id);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolling]);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -135,7 +178,18 @@ const Home = () => {
   };
 
   const toggleMenuActive = (menu) => {
+    if (scrolling) return;
+    setScrolling(true);
     setMenuActive(menu);
+    const element = document.querySelector(menu);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+        setScrolling(false);
+      }, 600);
+    }
   };
 
   return (
@@ -167,12 +221,15 @@ const Home = () => {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto ml-auto">
                   {menus.map((menu, i) => (
-                    <li
-                      className={'nav-item' + (menuActive === menu.href ? ' active' : '')}
-                      key={i}
-                      onClick={() => toggleMenuActive(menu.href)}
-                    >
-                      <a className="nav-link" href={menu.href}>
+                    <li className={'nav-item' + (menuActive === menu.href ? ' active' : '')} key={i}>
+                      <a
+                        className="nav-link"
+                        href={menu.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleMenuActive(menu.href);
+                        }}
+                      >
                         {menu.label}
                       </a>
                     </li>
@@ -307,65 +364,64 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="jv-service image-bg featured-img-two">
-        <div className="img-color-overlay">
-          <div className="container">
-            <div className="row section-separator">
-              <div
-                className="col-sm-12 text-center section-title wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.2s"
-              >
-                <h2>{t('skills.title')}</h2>
-              </div>
-              <div className="col-sm-4">
+        <div className="jv-service image-bg featured-img-two">
+          <div className="img-color-overlay">
+            <div className="container">
+              <div className="row section-separator">
                 <div
-                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                  className="col-sm-12 text-center section-title wow fadeInUp"
                   data-wow-duration="0.8s"
-                  data-wow-delay="0.3s"
+                  data-wow-delay="0.2s"
                 >
-                  <i
-                    className="fa fa-bullseye purple-color"
-                    style={{
-                      filter: 'grayscale(100%)',
-                    }}
-                  />
-                  <h3>{t('skills.card1.title')}</h3>
-                  <p>{t('skills.card1.description')}</p>
+                  <h2>{t('skills.title')}</h2>
                 </div>
-              </div>
-              <div className="col-sm-4">
-                <div
-                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.5s"
-                >
-                  <i
-                    className="fa fa-code iron-color"
-                    style={{
-                      filter: 'grayscale(100%)',
-                    }}
-                  />
-                  <h3>{t('skills.card2.title')}</h3>
-                  <p>{t('skills.card2.description')}</p>
+                <div className="col-sm-4">
+                  <div
+                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.3s"
+                  >
+                    <i
+                      className="fa fa-bullseye purple-color"
+                      style={{
+                        filter: 'grayscale(100%)',
+                      }}
+                    />
+                    <h3>{t('skills.card1.title')}</h3>
+                    <p>{t('skills.card1.description')}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="col-sm-4">
-                <div
-                  className="jv-service-item shadow-1 dark-bg wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.7s"
-                >
-                  <i
-                    className="fa fa-object-ungroup sky-color"
-                    style={{
-                      filter: 'grayscale(100%)',
-                    }}
-                  />
-                  <h3>{t('skills.card3.title')}</h3>
-                  <p>{t('skills.card3.description')}</p>
+                <div className="col-sm-4">
+                  <div
+                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.5s"
+                  >
+                    <i
+                      className="fa fa-code iron-color"
+                      style={{
+                        filter: 'grayscale(100%)',
+                      }}
+                    />
+                    <h3>{t('skills.card2.title')}</h3>
+                    <p>{t('skills.card2.description')}</p>
+                  </div>
+                </div>
+                <div className="col-sm-4">
+                  <div
+                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.7s"
+                  >
+                    <i
+                      className="fa fa-object-ungroup sky-color"
+                      style={{
+                        filter: 'grayscale(100%)',
+                      }}
+                    />
+                    <h3>{t('skills.card3.title')}</h3>
+                    <p>{t('skills.card3.description')}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -535,43 +591,42 @@ const Home = () => {
 
       <Portifolio />
 
-      <section className="jv-quates image-bg home-1-img">
-        <div className="container">
-          <div className="row section-separator">
-            <div className="each-quates col-sm-12 col-md-6">
-              <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                {t('quates.title')}
-              </h3>
-              <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                {t('quates.description').replace('{anos}', anos)}
-              </p>
-              <a
-                href="https://joaovictorsouza.dev/zap"
-                target="_blank"
-                rel="noreferrer"
-                className="cta wow fadeInUp "
-                data-wow-duration="0.8s"
-                data-wow-delay="0.5s"
-              >
-                <span>
-                  <i className="fa fa-whatsapp" /> Whatsapp
-                </span>
-                <svg width="13px" height="10px" viewBox="0 0 13 10">
-                  <path d="M1,5 L11,5"></path>
-                  <polyline points="8 1 12 5 8 9"></polyline>
-                </svg>
-              </a>
-            </div>
-            <div className="each-quates col-sm-12 col-md-6">
-              <div className="wrap-image">
-                <img src={process.env.PUBLIC_URL + '/assets/images/new/foto.webp'} alt="" />
+      <footer className="jv-footer jv-footer-3" id="jv-contact">
+        <div className="jv-quates image-bg home-1-img">
+          <div className="container">
+            <div className="row section-separator">
+              <div className="each-quates col-sm-12 col-md-6">
+                <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                  {t('quates.title')}
+                </h3>
+                <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                  {t('quates.description').replace('{anos}', anos)}
+                </p>
+                <a
+                  href="https://joaovictorsouza.dev/zap"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cta wow fadeInUp "
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.5s"
+                >
+                  <span>
+                    <i className="fa fa-whatsapp" /> Whatsapp
+                  </span>
+                  <svg width="13px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                  </svg>
+                </a>
+              </div>
+              <div className="each-quates col-sm-12 col-md-6">
+                <div className="wrap-image">
+                  <img src={process.env.PUBLIC_URL + '/assets/images/new/foto.webp'} alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <footer className="jv-footer jv-footer-3" id="jv-contact">
         <div className="container-fluid">
           <div className="row section-separator">
             <div className="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
