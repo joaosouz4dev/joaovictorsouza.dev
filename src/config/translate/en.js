@@ -10,7 +10,7 @@ const en = {
   banner: {
     title: 'Hello, How are you?',
     profession: 'Software Developer',
-    location: 'Lisbon, Portugal',
+    location: 'Minas Gerais, Brazil',
   },
   about: {
     title: 'About Me',
@@ -78,7 +78,7 @@ const en = {
     title: 'My Contacts',
     address: {
       title: 'Address',
-      description: 'Lisbon, Portugal',
+      description: 'Minas Gerais, Brazil',
     },
     email: {
       title: 'Email',

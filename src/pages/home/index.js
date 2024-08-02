@@ -36,7 +36,7 @@ const tecnologias = [
 
 const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
 
-const celular = '+351 969 823 079';
+const celular = '+55 31 9 99858-7817';
 
 const redes_sociais = [
   {
@@ -129,7 +129,7 @@ const Home = () => {
         }
       }, 500);
     }
-  }, [document, window.location.href]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -3,7 +3,7 @@ import React from "react";
 function Wpp() {
 
   React.useEffect(() => {
-    window.location.href = "https://api.whatsapp.com/send?phone=351969823079";
+    window.location.href = "https://api.whatsapp.com/send?phone=55319998587817";
   }, []);
 
   return (
