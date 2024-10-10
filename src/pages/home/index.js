@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import iconCv from '../../assets/images/icon-cv.png';
 import LanguageSelector from '../../components/footer/languageSelector';
 
-import profile from '../../assets/images/profile/profile-2.png';
+import profile from '../../assets/images/profile/profile.png';
 
 // const oldprofile = process.env.PUBLIC_URL + '/assets/images/new/hero-2.webp'
 
@@ -263,7 +263,7 @@ const Home = () => {
         </div>
       </header>
 
-      <section className="jv-home image-bg home-2-img" id="jv-home">
+      <section className="jv-home image-bg home-1-img" id="jv-home">
         <div className="img-foverlay img-color-overlay">
           <div className="container">
             <div className="row section-separator xs-column-reverse vertical-middle-content home-padding">

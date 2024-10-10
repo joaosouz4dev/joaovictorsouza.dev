@@ -696,7 +696,7 @@ ul li {
 }
 
 .home-1-img::before {
-  background-image: url(../images/new/home-bg-img-1.webp);
+  background-image: url(../images/new/home-bg-img-3.webp);
   content: '';
   position: absolute;
   top: 0;
