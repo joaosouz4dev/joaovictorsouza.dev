@@ -39,6 +39,8 @@ const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
 
 const celular = '+55 31 9 9858-7817';
 
+const whatsappUrl = "https://joaovictorsouza.dev/whatsapp";
+
 const redes_sociais = [
   {
     nome: 'Facebook',
@@ -62,7 +64,7 @@ const redes_sociais = [
   },
   {
     nome: 'Whatsapp',
-    url: 'https://joaovictorsouza.dev/whatsapp',
+    url: whatsappUrl,
     icone: 'fa fa-whatsapp',
   },
 ];
@@ -256,7 +258,7 @@ const Home = () => {
                     </li>
                     <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                       <i className="fa fa-phone" />
-                      <a href="https://joaovictorsouza.dev/zap" target="_blank" rel="noopener noreferrer">
+                      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                         {celular}
                       </a>
                     </li>
@@ -556,7 +558,7 @@ const Home = () => {
                   {t('quates.description').replace('{anos}', anos)}
                 </p>
                 <a
-                  href="https://joaovictorsouza.dev/zap"
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="cta wow fadeInUp "
