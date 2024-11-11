@@ -37,18 +37,18 @@
 		|=====================
 		*/
 
-	var trigger = $('.navbar-toggler'),
-		overlay = $('.overlay'),
-		navc = $('.navbar-collapse'),
-		active = false;
+	// var trigger = $('.navbar-toggler'),
+	// 	overlay = $('.overlay'),
+	// 	navc = $('.navbar-collapse'),
+	// 	active = false;
 
-	$('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
-		$('.navbar-toggler').toggleClass('active');
-		//   $('#js-navbar-menu').toggleClass('active');
-		//   $('.navbar-collapse').toggleClass('show');
-		overlay.toggleClass('active');
-		navc.toggleClass('active');
-	});
+	// $('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
+	// 	$('.navbar-toggler').toggleClass('active');
+	// 	//   $('#js-navbar-menu').toggleClass('active');
+	// 	//   $('.navbar-collapse').toggleClass('show');
+	// 	overlay.toggleClass('active');
+	// 	navc.toggleClass('active');
+	// });
 
 	/*
 		|=================
@@ -67,6 +67,7 @@
 		| WOW ANIMATION
 		|==================
 		*/
+	// eslint-disable-next-line no-undef
 	var wow = new WOW({
 		mobile: false // trigger animations on mobile devices (default is true)
 	});
@@ -366,4 +367,5 @@
 		}
 		$('#msgSubmit').removeClass().addClass(msgClasses).text(msg);
 	}
+// eslint-disable-next-line no-undef
 })(jQuery);

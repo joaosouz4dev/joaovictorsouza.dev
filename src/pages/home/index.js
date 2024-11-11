@@ -8,6 +8,7 @@ import iconCv from '../../assets/images/icon-cv.png';
 import LanguageSelector from '../../components/footer/languageSelector';
 
 import profile from '../../assets/images/profile/profile.png';
+import Navbar from '../../components/navbar';
 
 // const oldprofile = process.env.PUBLIC_URL + '/assets/images/new/hero-2.webp'
 
@@ -61,7 +62,7 @@ const redes_sociais = [
   },
   {
     nome: 'Whatsapp',
-    url: 'https://joaovictorsouza.dev/zap',
+    url: 'https://joaovictorsouza.dev/whatsapp',
     icone: 'fa fa-whatsapp',
   },
 ];
@@ -202,63 +203,15 @@ const Home = () => {
       </div>
 
       <header className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav" id="jv-header">
-        <div className="overlay" />
         <div className="container">
           <div className="row">
-            <nav className="navbar navbar-expand-lg jv-nav nav-btn">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon icon" />
-              </button>
-
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto ml-auto">
-                  {menus.map((menu, i) => (
-                    <li className={'nav-item' + (menuActive === menu.href ? ' active' : '')} key={i}>
-                      <a
-                        className="nav-link"
-                        href={menu.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleMenuActive(menu.href);
-                        }}
-                      >
-                        {menu.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <span
-                  onClick={toggleDarkMode}
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  {darkMode ? (
-                    <svg width="16" height="16" fill="currentColor" className="bi bi-lightbulb" viewBox="0 0 16 16">
-                      <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
-                    </svg>
-                  ) : (
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-lightbulb-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
-                    </svg>
-                  )}
-                </span>
-              </div>
-            </nav>
+            <Navbar
+              menus={menus}
+              menuActive={menuActive}
+              toggleMenuActive={toggleMenuActive}
+              toggleDarkMode={toggleDarkMode}
+              darkMode={darkMode}
+            />
           </div>
         </div>
       </header>
