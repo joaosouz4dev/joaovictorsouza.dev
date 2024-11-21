@@ -7,6 +7,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import translatePt from './config/translate/pt';
 import translateEn from './config/translate/en';
+import translateEs from './config/translate/es';
 
 i18next
   .use(LanguageDetector)
@@ -18,6 +19,11 @@ i18next
       en: {
         translation: {
           ...translateEn,
+        },
+      },
+      es: {
+        translation: {
+          ...translateEs,
         },
       },
       pt: {
