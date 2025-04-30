@@ -1,0 +1,152 @@
+.jv-custom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  width: 100%;
+  position: relative;
+}
+
+.jv-nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.jv-nav-item {
+  position: relative;
+}
+
+.jv-nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.jv-nav-link:hover {
+  color: var(--primary-color);
+}
+
+.jv-nav-item.active .jv-nav-link {
+  color: var(--primary-color);
+}
+
+.jv-nav-item.active .jv-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.jv-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.jv-theme-toggle:hover {
+  background-color: var(--bg-hover);
+}
+
+.jv-menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1000;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.jv-menu-button span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.jv-menu-button.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.jv-menu-button.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.jv-menu-button.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.jv-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.jv-menu-overlay.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .jv-menu-button {
+    display: flex;
+  }
+
+  .jv-nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    flex-direction: column;
+    padding: 80px 2rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 999;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .jv-nav-menu.active {
+    right: 0;
+  }
+
+  .jv-nav-item.active .jv-nav-link::after {
+    display: none;
+  }
+
+  .jv-nav-item.active .jv-nav-link {
+    font-weight: 600;
+  }
+
+  .jv-nav-item {
+    margin: 1rem 0;
+  }
+}

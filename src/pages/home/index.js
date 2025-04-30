@@ -39,7 +39,7 @@ const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
 
 const celular = '+55 31 9 9858-7817';
 
-const whatsappUrl = "https://joaovictorsouza.dev/whatsapp";
+const whatsappUrl = 'https://joaovictorsouza.dev/whatsapp';
 
 const redes_sociais = [
   {
@@ -109,7 +109,9 @@ const Home = () => {
     if (localStorage.getItem('darkmode') !== null) {
       setDarkMode(localStorage.getItem('darkmode') === 'true');
     } else {
-      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDarkMode = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
       setDarkMode(prefersDarkMode);
       localStorage.setItem('darkmode', prefersDarkMode);
     }
@@ -120,7 +122,9 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const section = window.location.href.includes('#') ? window.location.href.split('#').pop() : false;
+    const section = window.location.href.includes('#')
+      ? window.location.href.split('#').pop()
+      : false;
     if (section) {
       setMenuActive('#' + section);
       setTimeout(() => {
@@ -150,7 +154,10 @@ const Home = () => {
         sections.push(footerFinded);
       }
       sections.forEach((section) => {
-        if (scrollPosition >= section.offsetTop - 250 && scrollPosition < section.offsetTop + section.offsetHeight) {
+        if (
+          scrollPosition >= section.offsetTop - 250 &&
+          scrollPosition < section.offsetTop + section.offsetHeight
+        ) {
           setMenuActive('#' + section.id);
         }
       });
@@ -206,18 +213,17 @@ const Home = () => {
         </div>
       )}
 
-      <header className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav" id="jv-header">
-        <div className="container">
-          <div className="row">
-            <Navbar
-              menus={menus}
-              menuActive={menuActive}
-              toggleMenuActive={toggleMenuActive}
-              toggleDarkMode={toggleDarkMode}
-              darkMode={darkMode}
-            />
-          </div>
-        </div>
+      <header
+        className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
+        id="jv-header"
+      >
+        <Navbar
+          menus={menus}
+          menuActive={menuActive}
+          toggleMenuActive={toggleMenuActive}
+          toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
+        />
       </header>
 
       <section className="jv-home image-bg home-1-img" id="jv-home">
@@ -226,7 +232,11 @@ const Home = () => {
             <div className="row section-separator xs-column-reverse vertical-middle-content home-padding">
               <div className="col-sm-6">
                 <div className="jv-header-info">
-                  <div className="jv-promo wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+                  <div
+                    className="jv-promo wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.1s"
+                  >
                     <span>{t('banner.title')}</span>
                   </div>
 
@@ -249,30 +259,60 @@ const Home = () => {
                       <span style={{ '--index': '2' }}>João Victor Souza</span>
                     </div>
                   </h2>
-                  <h4 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                  <h4
+                    className="wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.3s"
+                  >
                     {t('banner.profession')}
                   </h4>
 
                   <ul>
-                    <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                    <li
+                      className="wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.4s"
+                    >
                       <i className="fa fa-envelope" />
-                      <a href="mailto:web@joaovictorsouza.dev">web@joaovictorsouza.dev</a>
+                      <a href="mailto:web@joaovictorsouza.dev">
+                        web@joaovictorsouza.dev
+                      </a>
                     </li>
-                    <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                    <li
+                      className="wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.5s"
+                    >
                       <i className="fa fa-phone" />
-                      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {celular}
                       </a>
                     </li>
-                    <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
+                    <li
+                      className="wow fadeInUp"
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.6s"
+                    >
                       <i className="fa fa-map-marker" />
                       {t('banner.location')}
                     </li>
                   </ul>
-                  <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
+                  <ul
+                    className="social-icon wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.7s"
+                  >
                     {redes_sociais.map((rede) => (
                       <li key={rede.nome}>
-                        <a href={rede.url} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={rede.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <i className={rede.icone} />
                         </a>
                       </li>
@@ -281,7 +321,11 @@ const Home = () => {
                 </div>
               </div>
               <div className="col-sm-6">
-                <div className="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
+                <div
+                  className="hero-img wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.6s"
+                >
                   <div className="img-border">
                     <img src={profile} alt="" className="img-fluid" />
                   </div>
@@ -296,19 +340,35 @@ const Home = () => {
         <div className="container">
           <div className="row section-separator">
             <div className="col-sm-12 col-md-6">
-              <div className="jv-about-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+              <div
+                className="jv-about-img shadow-2 wow fadeInUp"
+                data-wow-duration="0.8s"
+                data-wow-delay="0.4s"
+              >
                 <SvgAnimated />
               </div>
             </div>
             <div className="col-sm-12 col-md-6">
               <div className="jv-about-inner">
-                <h2 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+                <h2
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.1s"
+                >
                   {t('about.title')}
                 </h2>
-                <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                <p
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.2s"
+                >
                   {t('about.description')}
                 </p>
-                <div className="jv-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                <div
+                  className="jv-about-tag wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.3s"
+                >
                   <ul>
                     {tecnologias.map((tecnologia, i) => (
                       <li key={i}>
@@ -392,7 +452,11 @@ const Home = () => {
             <div className="row section-separator">
               <div className="col-sm-12 col-md-6">
                 <div className="jv-skills-inner">
-                  <div className="jv-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                  <div
+                    className="jv-professional-skill wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.3s"
+                  >
                     <h3>{t('skills.title2')}</h3>
                     <div className="each-skills">
                       <div className="candidatos">
@@ -402,7 +466,10 @@ const Home = () => {
                             <div className="percentagem-num">86%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '96%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '96%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -413,7 +480,10 @@ const Home = () => {
                             <div className="percentagem-num">26%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '86%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '86%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -424,7 +494,10 @@ const Home = () => {
                             <div className="percentagem-num">68%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '58%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '58%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -435,7 +508,10 @@ const Home = () => {
                             <div className="percentagem-num">85%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '85%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '85%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -447,7 +523,10 @@ const Home = () => {
                             <div className="percentagem-num">48%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '89%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '89%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -458,7 +537,10 @@ const Home = () => {
                             <div className="percentagem-num">12%</div>
                           </div>
                           <div className="progressBar">
-                            <div className="percentagem" style={{ width: '40%' }} />
+                            <div
+                              className="percentagem"
+                              style={{ width: '40%' }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -467,24 +549,48 @@ const Home = () => {
                 </div>
               </div>
               <div className="col-sm-12 col-md-6">
-                <div className="jv-professional-skills wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                <div
+                  className="jv-professional-skills wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.5s"
+                >
                   <h3>{t('skills.title3')}</h3>
                   <ul className="jv-professional-progress">
                     <li>
-                      <div className="jv-progress jv-progress-circle" data-progress="80" />
-                      <div className="pr-skill-name">{t('skills.words.communication')}</div>
+                      <div
+                        className="jv-progress jv-progress-circle"
+                        data-progress="80"
+                      />
+                      <div className="pr-skill-name">
+                        {t('skills.words.communication')}
+                      </div>
                     </li>
                     <li>
-                      <div className="jv-progress jv-progress-circle" data-progress="55" />
-                      <div className="pr-skill-name">{t('skills.words.teamwork')}</div>
+                      <div
+                        className="jv-progress jv-progress-circle"
+                        data-progress="55"
+                      />
+                      <div className="pr-skill-name">
+                        {t('skills.words.teamwork')}
+                      </div>
                     </li>
                     <li>
-                      <div className="jv-progress jv-progress-circle" data-progress="86" />
-                      <div className="pr-skill-name">{t('skills.words.management')}</div>
+                      <div
+                        className="jv-progress jv-progress-circle"
+                        data-progress="86"
+                      />
+                      <div className="pr-skill-name">
+                        {t('skills.words.management')}
+                      </div>
                     </li>
                     <li>
-                      <div className="jv-progress jv-progress-circle" data-progress="90" />
-                      <div className="pr-skill-name">{t('skills.words.proactivity')}</div>
+                      <div
+                        className="jv-progress jv-progress-circle"
+                        data-progress="90"
+                      />
+                      <div className="pr-skill-name">
+                        {t('skills.words.proactivity')}
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -494,7 +600,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="jv-experince image-bg featured-img-one" id="jv-experience">
+      <section
+        className="jv-experince image-bg featured-img-one"
+        id="jv-experience"
+      >
         <div className="img-color-overlay">
           <div className="container">
             <div className="row section-separator">
@@ -518,10 +627,19 @@ const Home = () => {
                 </div>
               </div>
               <div className="each-quates col-sm-12 col-md-6">
-                <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                  {t('experiences.since')} {ANO_INICIAL} {t('experiences.title')}
+                <h3
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.2s"
+                >
+                  {t('experiences.since')} {ANO_INICIAL}{' '}
+                  {t('experiences.title')}
                 </h3>
-                <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                <p
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.4s"
+                >
                   {t('experiences.description')}
                 </p>
                 <a
@@ -553,10 +671,18 @@ const Home = () => {
           <div className="container">
             <div className="row section-separator">
               <div className="each-quates col-sm-12 col-md-6">
-                <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                <h3
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.2s"
+                >
                   {t('quates.title')}
                 </h3>
-                <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                <p
+                  className="wow fadeInUp"
+                  data-wow-duration="0.8s"
+                  data-wow-delay="0.4s"
+                >
                   {t('quates.description').replace('{anos}', anos)}
                 </p>
                 <a
@@ -578,7 +704,12 @@ const Home = () => {
               </div>
               <div className="each-quates col-sm-12 col-md-6">
                 <div className="wrap-image">
-                  <img src={process.env.PUBLIC_URL + '/assets/images/new/foto.webp'} alt="" />
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + '/assets/images/new/foto.webp'
+                    }
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -586,7 +717,11 @@ const Home = () => {
         </div>
         <div className="container-fluid">
           <div className="row section-separator">
-            <div className="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+            <div
+              className="col-sm-12 section-title wow fadeInUp"
+              data-wow-duration="0.8s"
+              data-wow-delay="0.2s"
+            >
               <h3>{t('menu.contact')}</h3>
             </div>
             <div className="map-image image-bg col-sm-12">
@@ -623,7 +758,9 @@ const Home = () => {
                         </div>
                         <div className="each-info media-body">
                           <h4>{t('contact.email.title')}</h4>
-                          <a href="mailto:web@joaovictorsouza.dev">web@joaovictorsouza.dev</a>
+                          <a href="mailto:web@joaovictorsouza.dev">
+                            web@joaovictorsouza.dev
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -638,13 +775,19 @@ const Home = () => {
                         </div>
                         <div className="each-info media-body">
                           <h4>{t('contact.phone.title')}</h4>
-                          <a href={'callto:' + celular.replace(/[^0-9]/g, '')}>{celular}</a>
+                          <a href={'callto:' + celular.replace(/[^0-9]/g, '')}>
+                            {celular}
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="col-sm-12 jv-copyright wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                  <div
+                    className="col-sm-12 jv-copyright wow fadeInUp"
+                    data-wow-duration="0.8s"
+                    data-wow-delay="0.2s"
+                  >
                     <div className="row">
                       <div className="col-sm-6">
                         <div className="text-center">
@@ -654,10 +797,18 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="col-sm-6 text-center d-flex">
-                        <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
+                        <ul
+                          className="social-icon wow fadeInUp"
+                          data-wow-duration="0.8s"
+                          data-wow-delay="0.7s"
+                        >
                           {redes_sociais.map((rede) => (
                             <li key={rede.nome}>
-                              <a href={rede.url} target="_blank" rel="noopener noreferrer">
+                              <a
+                                href={rede.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
                                 <i className={rede.icone} />
                               </a>
                             </li>
