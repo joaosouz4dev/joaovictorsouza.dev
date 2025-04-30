@@ -76,6 +76,7 @@ const Home = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [menuActive, setMenuActive] = useState('#jv-home');
   const [scrolling, setScrolling] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const menus = [
     {
@@ -105,7 +106,6 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    const $ = window.$;
     if (localStorage.getItem('darkmode') !== null) {
       setDarkMode(localStorage.getItem('darkmode') === 'true');
     } else {
@@ -115,7 +115,7 @@ const Home = () => {
     }
 
     setTimeout(() => {
-      $('.section-loader').fadeOut('slow');
+      setIsLoading(false);
     }, 300);
   }, []);
 
@@ -197,12 +197,14 @@ const Home = () => {
 
   return (
     <main>
-      <div className="section-loader">
-        <div className="loader">
-          <div />
-          <div />
+      {isLoading && (
+        <div className="section-loader">
+          <div className="loader">
+            <div />
+            <div />
+          </div>
         </div>
-      </div>
+      )}
 
       <header className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav" id="jv-header">
         <div className="container">
