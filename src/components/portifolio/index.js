@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Fancybox from './fancybox.js';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 function useOutsideAlerter(ref, closeModal = () => {}) {

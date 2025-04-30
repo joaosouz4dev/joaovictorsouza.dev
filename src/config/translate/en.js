@@ -87,6 +87,12 @@ const en = {
       title: 'Phone',
     },
   },
+  whatsapp: {
+    title: 'Send WhatsApp Message',
+    phonePlaceholder: 'Phone number (with country code)',
+    messagePlaceholder: 'Type your message here...',
+    sendButton: 'Send Message',
+  },
 };
 
 export default en;

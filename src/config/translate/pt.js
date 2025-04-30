@@ -88,6 +88,12 @@ const pt = {
       title: 'Telefone',
     },
   },
+  whatsapp: {
+    title: 'Enviar Mensagem WhatsApp',
+    phonePlaceholder: 'Número de telefone (com código do país)',
+    messagePlaceholder: 'Digite sua mensagem aqui...',
+    sendButton: 'Enviar Mensagem',
+  },
 };
 
 export default pt;

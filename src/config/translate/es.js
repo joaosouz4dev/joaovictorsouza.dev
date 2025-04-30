@@ -82,11 +82,17 @@ const es = {
       description: 'Minas Gerais, Brasil',
     },
     email: {
-      title: 'Correo Electrónico',
+      title: 'Email',
     },
     phone: {
       title: 'Teléfono',
     },
+  },
+  whatsapp: {
+    title: 'Enviar Mensaje WhatsApp',
+    phonePlaceholder: 'Número de teléfono (con código de país)',
+    messagePlaceholder: 'Escribe tu mensaje aquí...',
+    sendButton: 'Enviar Mensaje',
   },
 };
 
