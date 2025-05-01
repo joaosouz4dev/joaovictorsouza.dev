@@ -88,7 +88,7 @@ const en = {
     },
   },
   whatsapp: {
-    title: 'Send WhatsApp Message',
+    title: 'Send WhatsApp Message Without Save Contact',
     phonePlaceholder: 'Phone number (with country code)',
     messagePlaceholder: 'Type your message here...',
     sendButton: 'Send Message',

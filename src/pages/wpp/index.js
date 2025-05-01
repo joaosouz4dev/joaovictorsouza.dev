@@ -1,12 +1,23 @@
-import React from "react";
-import WhatsAppForm from "../../components/WhatsAppForm";
+import React from 'react';
 
-function Wpp() {
+const Wpp = () => {
+  React.useEffect(() => {
+    window.location.href = 'https://wa.me/5531998587817';
+  }, []);
+
   return (
-    <div className="whatsapp-page-container dark-bg">
-      <WhatsAppForm />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+      }}
+    >
+      <h2>Redirecionando...</h2>
     </div>
   );
-}
+};
 
 export default Wpp;

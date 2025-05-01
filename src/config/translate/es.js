@@ -89,7 +89,7 @@ const es = {
     },
   },
   whatsapp: {
-    title: 'Enviar Mensaje WhatsApp',
+    title: 'Enviar Mensaje WhatsApp Sin Salvar Contacto',
     phonePlaceholder: 'Número de teléfono (con código de país)',
     messagePlaceholder: 'Escribe tu mensaje aquí...',
     sendButton: 'Enviar Mensaje',
