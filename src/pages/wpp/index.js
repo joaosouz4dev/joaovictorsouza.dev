@@ -10,9 +10,11 @@ const Wpp = () => {
     const phone = urlParams.get('phone');
     const message = urlParams.get('message');
 
-    window.location.href = `https://wa.me/${phone || '5531998587817'}${
-      message ? `?text=${message}` : ''
-    }`;
+    setTimeout(() => {
+      window.location.href = `https://wa.me/${phone || '5531998587817'}${
+        message ? `?text=${message}` : ''
+      }`;
+    }, 300);
   }, []);
 
   return (

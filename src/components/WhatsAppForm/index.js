@@ -21,13 +21,7 @@ const WhatsAppForm = () => {
     const whatsappUrl = `${window.location.origin}/whatsapp?phone=${cleanPhone}&message=${encodedMessage}`;
 
     // Open WhatsApp in new tab
-    const link = document.createElement('a');
-    link.href = whatsappUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.location.href = whatsappUrl;
   };
 
   const handlePhoneChange = (e) => {
