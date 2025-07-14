@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
 
 const WhatsAppForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [message, setMessage] = useState('');
 
@@ -18,10 +20,11 @@ const WhatsAppForm = () => {
     // Create WhatsApp URL
     
     // const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
-    const whatsappUrl = `${window.location.origin}/whatsapp?phone=${cleanPhone}&message=${encodedMessage}`;
+    const whatsappUrl = `/whatsapp?phone=${cleanPhone}&message=${encodedMessage}`;
 
     // Open WhatsApp in new tab
-    window.location.href = whatsappUrl;
+    // window.location.href = whatsappUrl;
+    navigate(whatsappUrl);
   };
 
   const handlePhoneChange = (e) => {
