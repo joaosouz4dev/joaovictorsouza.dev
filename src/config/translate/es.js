@@ -93,6 +93,7 @@ const es = {
     phonePlaceholder: 'Número de teléfono (con código de país)',
     messagePlaceholder: 'Escribe tu mensaje aquí...',
     sendButton: 'Enviar Mensaje',
+    redirecting: 'Redirigiendo...',
   },
 };
 

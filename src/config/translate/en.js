@@ -92,6 +92,7 @@ const en = {
     phonePlaceholder: 'Phone number (with country code)',
     messagePlaceholder: 'Type your message here...',
     sendButton: 'Send Message',
+    redirecting: 'Redirecting...',
   },
 };
 
