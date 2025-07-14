@@ -789,14 +789,12 @@ const Home = () => {
                     data-wow-delay="0.2s"
                   >
                     <div className="row">
-                      <div className="col-sm-6">
-                        <div className="text-center">
-                          <p>
-                            © {ANO_INICIAL} - {year} - João Victor Souza
-                          </p>
-                        </div>
+                      <div className="col-sm-6 d-flex justify-content-center align-items-center">
+                        <p className="mt-2 mb-2">
+                          © {ANO_INICIAL} - {year} - João Victor Souza
+                        </p>
                       </div>
-                      <div className="col-sm-6 text-center d-flex">
+                      <div className="col-sm-6 d-flex justify-content-center align-items-center">
                         <ul
                           className="social-icon wow fadeInUp"
                           data-wow-duration="0.8s"
