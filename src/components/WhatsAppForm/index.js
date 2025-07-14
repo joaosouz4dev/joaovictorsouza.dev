@@ -44,8 +44,6 @@ const WhatsAppForm = () => {
         />
         <a
           href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="whatsapp-form-button"
           disabled={!phoneNumber}
         >
