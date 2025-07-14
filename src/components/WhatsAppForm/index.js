@@ -8,7 +8,7 @@ const WhatsAppForm = () => {
 
   const cleanPhone = phoneNumber.replace(/\D/g, '');
   const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`;
+  const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
 
   const handlePhoneChange = (e) => {
     // Allow only numbers and basic formatting
