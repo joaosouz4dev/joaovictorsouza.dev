@@ -16,7 +16,7 @@ const WhatsAppForm = () => {
     const encodedMessage = encodeURIComponent(message);
     
     // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`;
     
     // Open WhatsApp in new tab
     window.open(whatsappUrl, '_blank');
