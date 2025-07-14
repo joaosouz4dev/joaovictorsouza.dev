@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Wpp = () => {
+const Wpp = ({ phone, message }) => {
   React.useEffect(() => {
-    window.location.href = 'https://wa.me/5531998587817';
+    window.location.href = `https://wa.me/${phone || '5531998587817'}?text=${message || ''}`;
   }, []);
 
   return (

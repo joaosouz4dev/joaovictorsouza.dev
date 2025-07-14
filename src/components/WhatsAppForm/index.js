@@ -8,18 +8,26 @@ const WhatsAppForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Remove any non-numeric characters from phone number
     const cleanPhone = phoneNumber.replace(/\D/g, '');
-    
+
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
-    
+
     // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
     
+    // const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
+    const whatsappUrl = `${window.location.origin}/whatsapp/${cleanPhone}/${encodedMessage}`;
+
     // Open WhatsApp in new tab
-    window.location.href = whatsappUrl;
+    const link = document.createElement('a');
+    link.href = whatsappUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handlePhoneChange = (e) => {
@@ -30,24 +38,32 @@ const WhatsAppForm = () => {
 
   return (
     <div className="whatsapp-form-container">
-      <h2 className="whatsapp-form-title">{t('whatsapp.title', 'Send WhatsApp Message')}</h2>
+      <h2 className="whatsapp-form-title">
+        {t('whatsapp.title', 'Send WhatsApp Message')}
+      </h2>
       <form className="whatsapp-form" onSubmit={handleSubmit}>
         <input
           type="tel"
           className="whatsapp-form-input"
           value={phoneNumber}
           onChange={handlePhoneChange}
-          placeholder={t('whatsapp.phonePlaceholder', 'Phone number (with country code)')}
+          placeholder={t(
+            'whatsapp.phonePlaceholder',
+            'Phone number (with country code)',
+          )}
           required
         />
         <textarea
           className="whatsapp-form-textarea"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder={t('whatsapp.messagePlaceholder', 'Type your message here...')}
+          placeholder={t(
+            'whatsapp.messagePlaceholder',
+            'Type your message here...',
+          )}
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="whatsapp-form-button"
           disabled={!phoneNumber}
         >
@@ -58,4 +74,4 @@ const WhatsAppForm = () => {
   );
 };
 
-export default WhatsAppForm; 
+export default WhatsAppForm;

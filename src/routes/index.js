@@ -18,8 +18,8 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/zap" element={<Wpp />} />
-          <Route exact path="/whatsapp" element={<Wpp />} />
+          <Route exact path="/zap/:phone/:message" element={<Wpp />} />
+          <Route exact path="/whatsapp/:phone/:message" element={<Wpp />} />
           <Route exact path="/wpp" element={<WhatsAppPage />} />
           <Route exact path="/matrix" element={<Matrix />} />
           <Route exact path="/politica-de-privacidade/:title" element={<Privacidade />} />
