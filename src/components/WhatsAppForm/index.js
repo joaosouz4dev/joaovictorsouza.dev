@@ -18,7 +18,7 @@ const WhatsAppForm = () => {
     // Create WhatsApp URL
     
     // const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
-    const whatsappUrl = `${window.location.origin}/whatsapp/${cleanPhone}/${encodedMessage}`;
+    const whatsappUrl = `${window.location.origin}/whatsapp?phone=${cleanPhone}&message=${encodedMessage}`;
 
     // Open WhatsApp in new tab
     const link = document.createElement('a');
