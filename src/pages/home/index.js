@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Portifolio from '../../components/portifolio';
-import '@lottiefiles/lottie-player';
 import SvgAnimated from '../../components/portifolio/svgAnimated';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -185,15 +184,6 @@ const Home = () => {
       });
     };
 
-    try {
-      if (window.WOW) {
-        const wowInstance = new window.WOW({ mobile: false, live: false });
-        wowInstance.init();
-      }
-    } catch (error) {
-      // Ignore plugin errors and keep content visible.
-    }
-
     revealWowElements();
   }, []);
 
@@ -341,7 +331,15 @@ const Home = () => {
                   data-wow-delay="0.6s"
                 >
                   <div className="img-border">
-                    <img src={profile} alt="" className="img-fluid" />
+                    <img
+                      src={profile}
+                      alt="Foto de Joao Victor Souza"
+                      className="img-fluid"
+                      width="500"
+                      height="500"
+                      fetchPriority="high"
+                      decoding="async"
+                    />
                   </div>
                 </div>
               </div>
@@ -735,7 +733,14 @@ const Home = () => {
               </div>
               <div className="each-quates col-sm-12 col-md-6">
                 <div className="wrap-image">
-                  <img src="/assets/images/new/foto.webp" alt="" />
+                  <img
+                    src="/assets/images/new/foto.webp"
+                    alt="Joao Victor Souza em retrato"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>

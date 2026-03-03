@@ -159,7 +159,14 @@ const Portfolio = () => {
                 {filteredPortfolio.map((project) => (
                   <article className="jv-portfolio-react-card" key={project.title}>
                     <div className="jv-portfolio-react-thumb">
-                      <img src={project.img} alt={project.title} />
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        width="1600"
+                        height="1100"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
 
                     <div className="jv-portfolio-react-content">
@@ -203,7 +210,14 @@ const Portfolio = () => {
 
             <div className="jv-portfolio-react-modal-grid">
               <div className="jv-portfolio-react-modal-image">
-                <img src={selectedProject.img} alt={selectedProject.title} />
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  width="1600"
+                  height="1100"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div className="jv-portfolio-react-modal-content">
