@@ -434,26 +434,15 @@
 .seo-footer-brand-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
   margin-bottom: 12px;
 }
 
-.seo-footer-logo {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  background: linear-gradient(140deg, #d70201, #a80000);
-  box-shadow: 0 6px 16px rgba(215, 2, 1, 0.4);
-}
-
-.seo-footer-brand.stack span {
-  font-size: 1.05rem;
+.seo-footer-logo-image {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  display: block;
 }
 
 .seo-footer-links li {

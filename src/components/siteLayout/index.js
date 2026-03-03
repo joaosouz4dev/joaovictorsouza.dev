@@ -137,24 +137,20 @@ const SiteLayout = ({ children }) => {
                 <div className="seo-footer-grid">
                   <div className="seo-footer-block">
                     <div className="seo-footer-brand-wrap">
-                      <span className="seo-footer-logo">JS</span>
-                      <div
-                        className="stack seo-footer-brand"
-                        style={{
-                          '--stacks': '3',
-                        }}
-                      >
-                        <span style={{ '--index': '0' }}>Joao Victor Souza</span>
-                        <span style={{ '--index': '1' }}>Joao Victor Souza</span>
-                        <span style={{ '--index': '2' }}>Joao Victor Souza</span>
-                      </div>
+                      <img
+                        className="seo-footer-logo-image"
+                        src="/assets/images/Logo.svg"
+                        alt="Logo de Joao Victor Souza"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <p>
-                      Especialista em WhatsApp Cloud API, Meta CAPI e Chatbots
-                      com IA para operacoes de vendas e atendimento.
+                      Especialista em WhatsApp Cloud API, Meta CAPI e chatbots
+                      com IA para escalar vendas, atendimento e integrações.
                     </p>
                     <Link className="seo-cta" to="/contato">
-                      Falar sobre projeto
+                      Falar sobre o projeto
                     </Link>
                   </div>
 
@@ -212,6 +208,7 @@ const SiteLayout = ({ children }) => {
                           href="https://github.com/joaosouz4dev"
                           target="_blank"
                           rel="noreferrer noopener"
+                          aria-label="Abrir GitHub de Joao Victor Souza"
                         >
                           <i className="fa fa-github" />
                         </a>
@@ -221,6 +218,7 @@ const SiteLayout = ({ children }) => {
                           href="https://www.linkedin.com/in/joaosouz4dev/"
                           target="_blank"
                           rel="noreferrer noopener"
+                          aria-label="Abrir LinkedIn de Joao Victor Souza"
                         >
                           <i className="fa fa-linkedin" />
                         </a>
@@ -230,6 +228,7 @@ const SiteLayout = ({ children }) => {
                           href="https://www.instagram.com/joaosouz4dev"
                           target="_blank"
                           rel="noreferrer noopener"
+                          aria-label="Abrir Instagram de Joao Victor Souza"
                         >
                           <i className="fa fa-instagram" />
                         </a>

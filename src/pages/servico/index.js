@@ -13,14 +13,14 @@ const Servico = () => {
       <SiteLayout>
         <Seo
           title="Servico nao encontrado | Joao Victor Souza"
-          description="A pagina de servico solicitada nao foi encontrada."
+          description="A página de serviço solicitada não foi encontrada."
           canonical="/servicos"
           robots="noindex,follow"
         />
-        <h1>Servico nao encontrado</h1>
+        <h1>Serviço não encontrado</h1>
         <p>
-          Este servico nao existe. Volte para a pagina de{' '}
-          <Link to="/servicos">servicos</Link>.
+          Este serviço não existe. Volte para a página de{' '}
+          <Link to="/servicos">serviços</Link>.
         </p>
       </SiteLayout>
     );
@@ -130,11 +130,11 @@ const Servico = () => {
       <section className="seo-card" style={{ marginTop: '20px' }}>
         <h2>Pronto para implementar?</h2>
         <p>
-          Se voce quer evoluir sua operacao com arquitetura robusta, entre em
-          contato para um diagnostico tecnico.
+          Se você quer evoluir sua operação com arquitetura robusta, entre em
+          contato para um diagnóstico técnico.
         </p>
         <a className="seo-cta" href="/contato">
-          Solicitar diagnostico
+          Solicitar diagnóstico
         </a>
       </section>
     </SiteLayout>

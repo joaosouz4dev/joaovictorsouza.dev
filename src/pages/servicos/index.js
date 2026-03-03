@@ -28,7 +28,7 @@ const Servicos = () => {
     <SiteLayout>
       <Seo
         title="Servicos de Integracao WhatsApp, Meta e IA | Joao Victor Souza"
-        description="Servicos de integracao WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automacao de processos com foco em resultado."
+        description="Serviços de integração WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automação de processos com foco em resultado."
         canonical="/servicos"
         keywords="servicos whatsapp cloud api, meta capi, chatbot ia, automacao integracoes"
         schema={schema}
@@ -36,11 +36,11 @@ const Servicos = () => {
 
       <section className="seo-hero">
         <span className="seo-kicker">Servicos</span>
-        <h1>Solucoes tecnicas para crescimento e operacao digital</h1>
+        <h1>Soluções técnicas para crescimento e operação digital</h1>
         <p>
-          Atuo na implementacao de integracoes e automacoes com foco em
+          Atuo na implementação de integrações e automações com foco em
           desempenho operacional, confiabilidade de dados e aumento de
-          conversao.
+          conversão.
         </p>
       </section>
 

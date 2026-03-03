@@ -97,6 +97,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/cases/matrix-leak-fix</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/cases/lazy-routes-vite</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/cases/seo-head-otimizado</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/cases/sitemap-robots-gestao</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/cases/design-system-internal-pages</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>weekly</changefreq>

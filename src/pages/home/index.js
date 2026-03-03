@@ -263,13 +263,13 @@ const Home = () => {
                       <span style={{ '--index': '2' }}>João Victor Souza</span>
                     </div>
                   </h2>
-                  <h4
+                  <h3
                     className="wow fadeInUp"
                     data-wow-duration="0.8s"
                     data-wow-delay="0.3s"
                   >
                     {t('banner.profession')}
-                  </h4>
+                  </h3>
 
                   <ul>
                     <li
@@ -316,6 +316,7 @@ const Home = () => {
                           href={rede.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Abrir ${rede.nome} de Joao Victor Souza`}
                         >
                           <i className={rede.icone} />
                         </a>
@@ -833,13 +834,14 @@ const Home = () => {
                         >
                           {redes_sociais.map((rede) => (
                             <li key={rede.nome}>
-                              <a
-                                href={rede.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <i className={rede.icone} />
-                              </a>
+                                <a
+                                  href={rede.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`Abrir ${rede.nome} de Joao Victor Souza`}
+                                >
+                                  <i className={rede.icone} />
+                                </a>
                             </li>
                           ))}
                         </ul>

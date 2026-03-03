@@ -8,27 +8,27 @@ const Blog = () => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Blog tecnico de Integracoes e IA',
+    name: 'Blog técnico de Integracoes e IA',
     url: 'https://joaovictorsouza.dev/blog',
     description:
-      'Conteudos sobre WhatsApp Cloud API, Meta CAPI, chatbots com IA e arquitetura de integracoes.',
+      'Conteúdos sobre WhatsApp Cloud API, Meta CAPI, chatbots com IA e arquitetura de integrações.',
   };
 
   return (
     <SiteLayout>
       <Seo
         title="Blog: WhatsApp API, Meta CAPI e Chatbots IA | Joao Victor Souza"
-        description="Artigos tecnicos sobre integracoes WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA, arquitetura e performance."
+        description="Artigos técnicos sobre integrações WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA, arquitetura e performance."
         canonical="/blog"
         schema={schema}
       />
 
       <section className="seo-hero">
         <span className="seo-kicker">Blog</span>
-        <h1>Conteudo tecnico para escalar atendimento, dados e conversao</h1>
+        <h1>Conteúdo técnico para escalar atendimento, dados e conversão</h1>
         <p>
-          Publicacoes orientadas a implementacao real em backend, integracoes e
-          automacao com IA.
+          Publicações orientadas a implementação real em backend, integrações e
+          automação com IA.
         </p>
       </section>
 
@@ -48,7 +48,7 @@ const Blog = () => {
       </section>
 
       <section className="seo-card" style={{ marginTop: '18px' }}>
-        <h2>Proximos artigos do calendario editorial</h2>
+        <h2>Próximos artigos do calendário editorial</h2>
         <ul className="seo-list">
           {upcomingPosts.map((post, index) => (
             <li key={`upcoming-${index}`}>{post}</li>

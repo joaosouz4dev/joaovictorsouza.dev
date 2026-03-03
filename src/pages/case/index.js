@@ -12,12 +12,12 @@ const Case = () => {
     return (
       <SiteLayout>
         <Seo
-          title="Case nao encontrado | Joao Victor Souza"
-          description="A pagina de case solicitada nao foi encontrada."
+          title="Case não encontrado | Joao Victor Souza"
+          description="A página de case solicitada não foi encontrada."
           canonical="/cases"
           robots="noindex,follow"
         />
-        <h1>Case nao encontrado</h1>
+        <h1>Case não encontrado</h1>
         <p>
           Volte para <Link to="/cases">/cases</Link> para ver outros projetos.
         </p>
@@ -80,13 +80,32 @@ const Case = () => {
         <p>{caseItem.summary}</p>
       </section>
 
+      {caseItem.coverImage && (
+        <section className="seo-card" style={{ marginBottom: '14px' }}>
+          <img
+            src={caseItem.coverImage}
+            alt={`Imagem de destaque: ${caseItem.title}`}
+            width="1200"
+            height="630"
+            loading="lazy"
+            decoding="async"
+            style={{
+              width: '100%',
+              maxHeight: '340px',
+              objectFit: 'cover',
+              borderRadius: '12px',
+            }}
+          />
+        </section>
+      )}
+
       <section className="seo-card">
-        <h2>Cenario</h2>
+        <h2>Cenário</h2>
         <p>{caseItem.challenge}</p>
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Solucao implementada</h2>
+        <h2>Solução implementada</h2>
         <ul className="seo-list">
           {caseItem.solution.map((item, index) => (
             <li key={`${caseItem.slug}-solution-${index}`}>{item}</li>
@@ -104,7 +123,7 @@ const Case = () => {
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Stack tecnica</h2>
+        <h2>Stack técnica</h2>
         <p>{caseItem.stack.join(' | ')}</p>
         {caseItem.demoUrl && (
           <p>
@@ -116,7 +135,7 @@ const Case = () => {
         )}
         {caseItem.repoUrl && (
           <p>
-            <strong>Repositorio:</strong>{' '}
+            <strong>Repositório:</strong>{' '}
             <a href={caseItem.repoUrl} target="_blank" rel="noreferrer noopener">
               {caseItem.repoUrl}
             </a>

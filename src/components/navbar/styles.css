@@ -7,6 +7,26 @@
   position: relative;
 }
 
+.jv-nav-brand {
+  display: flex;
+  align-items: center;
+  margin-left: 14px;
+  margin-right: 18px;
+  flex-shrink: 0;
+}
+
+.jv-nav-brand:hover {
+  text-decoration: none;
+}
+
+.jv-nav-brand-image {
+  width: 40px;
+  height: 40px;
+  display: block;
+  object-fit: contain;
+  margin-top: -10px
+}
+
 .jv-nav-menu {
   display: flex;
   list-style: none;
@@ -23,9 +43,9 @@
   color: var(--text-color);
   text-decoration: none;
   font-size: 1.05rem;
-  font-weight: 600;
   transition: color 0.3s ease;
   padding: 0.5rem 0;
+  position: relative;
 }
 
 .jv-nav-link:hover {
@@ -34,6 +54,7 @@
 
 .jv-nav-item.active .jv-nav-link {
   color: var(--primary-color);
+  font-weight: 600;
 }
 
 .jv-nav-item.active .jv-nav-link::after {
@@ -52,6 +73,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  border: none;
   border-radius: 50%;
   background-color: var(--bg-secondary);
   cursor: pointer;
@@ -115,6 +137,17 @@
 }
 
 @media (max-width: 768px) {
+  .jv-nav-brand {
+    margin-left: 10px;
+    margin-right: 8px;
+  }
+
+  .jv-nav-brand-image {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 0px;
+  }
+
   .jv-menu-button {
     display: flex;
   }

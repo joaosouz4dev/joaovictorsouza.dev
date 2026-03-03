@@ -29,17 +29,17 @@ const Sobre = () => {
     <SiteLayout>
       <Seo
         title="Sobre | Joao Victor Souza"
-        description="Desenvolvedor especializado em integracoes WhatsApp, Meta CAPI, chatbots com IA e arquitetura backend."
+        description="Desenvolvedor especializado em integrações WhatsApp, Meta CAPI, chatbots com IA e arquitetura backend."
         canonical="/sobre"
         schema={schema}
       />
 
       <section className="seo-hero">
         <span className="seo-kicker">Sobre</span>
-        <h1>Engenharia de integracoes para operacao e crescimento</h1>
+        <h1>Engenharia de integrações para operação e crescimento</h1>
         <p>
-          Sou desenvolvedor focado em backend e integracoes, com experiencia em
-          WhatsApp Cloud API, Meta CAPI, automacao de processos e chatbots com
+          Sou desenvolvedor focado em backend e integrações, com experiência em
+          WhatsApp Cloud API, Meta CAPI, automação de processos e chatbots com
           IA aplicada.
         </p>
       </section>
@@ -51,17 +51,17 @@ const Sobre = () => {
             <li>WhatsApp Business Platform / Cloud API</li>
             <li>Meta Pixel + Conversions API (CAPI)</li>
             <li>Chatbots com IA (RAG, roteamento, handoff)</li>
-            <li>Integracao CRM/ERP e automacao de processos</li>
+            <li>Integração CRM/ERP e automação de processos</li>
           </ul>
         </article>
 
         <article className="seo-card">
-          <h2>Stack tecnica</h2>
+          <h2>Stack técnica</h2>
           <ul className="seo-list">
             <li>Java, Spring Boot, Node.js, TypeScript</li>
             <li>React, APIs REST, Webhooks</li>
-            <li>AWS, observabilidade e boas praticas de deploy</li>
-            <li>MySQL e modelagem orientada a negocio</li>
+            <li>AWS, observabilidade e boas práticas de deploy</li>
+            <li>MySQL e modelagem orientada a negócio</li>
           </ul>
         </article>
       </section>
