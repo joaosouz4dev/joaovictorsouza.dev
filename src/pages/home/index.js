@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import iconCv from '../../assets/images/icon-cv.png';
 import LanguageSelector from '../../components/footer/languageSelector';
 
-import profile from '../../assets/images/profile/profile.png';
+import profile from '../../assets/images/profile/profile.jpg';
 import Navbar from '../../components/navbar';
 import Seo from '../../components/seo';
 
