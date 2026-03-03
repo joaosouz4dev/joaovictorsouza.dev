@@ -529,6 +529,38 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
+.jv-professional-progress .jv-progress-circle.is-static {
+  --progress: 50%;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  background:
+    radial-gradient(closest-side, rgba(20, 20, 20, 0.95) 74%, transparent 75% 100%),
+    conic-gradient(#f30100 var(--progress), rgba(255, 255, 255, 0.22) 0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.jv-professional-progress .jv-progress-circle.is-static span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.white-vertion .jv-professional-progress .jv-progress-circle.is-static {
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.95) 74%, transparent 75% 100%),
+    conic-gradient(#f30100 var(--progress), rgba(30, 30, 30, 0.2) 0);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.white-vertion .jv-professional-progress .jv-progress-circle.is-static span {
+  color: #202020;
+}
+
 .white-vertion .seo-layout {
   background:
     radial-gradient(circle at 15% 5%, rgba(215, 2, 1, 0.09), transparent 38%),

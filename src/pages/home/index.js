@@ -112,6 +112,13 @@ const Home = () => {
     },
   ];
 
+  const professionalSkills = [
+    { progress: 80, label: t('skills.words.communication') },
+    { progress: 55, label: t('skills.words.teamwork') },
+    { progress: 86, label: t('skills.words.management') },
+    { progress: 90, label: t('skills.words.proactivity') },
+  ];
+
   const homeSchema = [
     {
       '@context': 'https://schema.org',
@@ -166,6 +173,29 @@ const Home = () => {
       body.classList.add('white-vertion');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    // SPA fallback: when navigating back to Home, WOW/legacy scripts might not re-run.
+    // This keeps "Portfolio recente" and "Habilidades Profissionais" visible and stable.
+    const revealWowElements = () => {
+      document.querySelectorAll('.wow').forEach((element) => {
+        if (element instanceof HTMLElement) {
+          element.style.visibility = 'visible';
+        }
+      });
+    };
+
+    try {
+      if (window.WOW) {
+        const wowInstance = new window.WOW({ mobile: false, live: false });
+        wowInstance.init();
+      }
+    } catch (error) {
+      // Ignore plugin errors and keep content visible.
+    }
+
+    revealWowElements();
+  }, []);
 
   const toggleDarkMode = () => {
     let _darkMode = !darkMode;
@@ -540,42 +570,19 @@ const Home = () => {
                 >
                   <h3>{t('skills.title3')}</h3>
                   <ul className="jv-professional-progress">
-                    <li>
-                      <div
-                        className="jv-progress jv-progress-circle"
-                        data-progress="80"
-                      />
-                      <div className="pr-skill-name">
-                        {t('skills.words.communication')}
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="jv-progress jv-progress-circle"
-                        data-progress="55"
-                      />
-                      <div className="pr-skill-name">
-                        {t('skills.words.teamwork')}
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="jv-progress jv-progress-circle"
-                        data-progress="86"
-                      />
-                      <div className="pr-skill-name">
-                        {t('skills.words.management')}
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="jv-progress jv-progress-circle"
-                        data-progress="90"
-                      />
-                      <div className="pr-skill-name">
-                        {t('skills.words.proactivity')}
-                      </div>
-                    </li>
+                    {professionalSkills.map((skill) => (
+                      <li key={skill.label}>
+                        <div
+                          className="jv-progress jv-progress-circle is-static"
+                          style={{
+                            '--progress': `${skill.progress}%`,
+                          }}
+                        >
+                          <span>{skill.progress}%</span>
+                        </div>
+                        <div className="pr-skill-name">{skill.label}</div>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

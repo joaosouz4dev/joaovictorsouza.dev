@@ -23,7 +23,7 @@ export default defineConfig({
   build: {
     outDir: 'build',
     sourcemap: false,
-    minify: 'terser',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {

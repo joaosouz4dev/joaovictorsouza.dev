@@ -205,6 +205,7 @@ export default function NotFound() {
     return () => {
       document.querySelector("body").classList.remove("the404");
       document.body.removeEventListener("mousemove", update);
+      window.ondevicemotion = null;
     };
   }, []);
   return (

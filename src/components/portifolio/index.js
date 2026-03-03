@@ -47,6 +47,10 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
     } else {
       document.body.style.overflow = null;
     }
+
+    return () => {
+      document.body.style.overflow = null;
+    };
   }, [modalIsOpen]);
 
   function closeModal() {
@@ -137,6 +141,7 @@ const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
 
 const Portfolio = () => {
   const { t } = useTranslation();
+  const [activeFilter, setActiveFilter] = useState('all');
   const PORTFOLIO = [
     {
       categoria: 'site',
@@ -228,6 +233,14 @@ const Portfolio = () => {
     imagem: '',
   });
   const [modalIsOpen, setIsOpen] = useState(false);
+
+  const filteredPortfolio =
+    activeFilter === 'all'
+      ? PORTFOLIO
+      : PORTFOLIO.filter((item) =>
+          item.categoria.split(' ').includes(activeFilter),
+        );
+
   return (
     <>
       <section className="jv-portfolio" id="jv-portfolio">
@@ -240,23 +253,93 @@ const Portfolio = () => {
               <div className="part col-sm-12">
                 <div className="portfolio-nav col-sm-12" id="filter-button">
                   <ul>
-                    <li data-filter="*" className="current wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+                    <li
+                      className={`wow fadeInUp ${
+                        activeFilter === 'all' ? 'current' : ''
+                      }`}
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.1s"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveFilter('all')}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveFilter('all');
+                        }
+                      }}
+                    >
                       <span>{t('portfolio.words.all')}</span>
                     </li>
-                    <li data-filter=".site" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <li
+                      className={`wow fadeInUp ${
+                        activeFilter === 'site' ? 'current' : ''
+                      }`}
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.2s"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveFilter('site')}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveFilter('site');
+                        }
+                      }}
+                    >
                       <span>{t('portfolio.words.site')}</span>
                     </li>
-                    <li data-filter=".app" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                    <li
+                      className={`wow fadeInUp ${
+                        activeFilter === 'app' ? 'current' : ''
+                      }`}
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.3s"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveFilter('app')}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveFilter('app');
+                        }
+                      }}
+                    >
                       <span>{t('portfolio.words.app')}</span>
                     </li>
-                    <li data-filter=".sistema" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                    <li
+                      className={`wow fadeInUp ${
+                        activeFilter === 'sistema' ? 'current' : ''
+                      }`}
+                      data-wow-duration="0.8s"
+                      data-wow-delay="0.4s"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveFilter('sistema')}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveFilter('sistema');
+                        }
+                      }}
+                    >
                       <span>{t('portfolio.words.system')}</span>
                     </li>
                     <li
-                      data-filter=".ecommerce"
-                      className="wow fadeInUp"
+                      className={`wow fadeInUp ${
+                        activeFilter === 'ecommerce' ? 'current' : ''
+                      }`}
                       data-wow-duration="0.8s"
                       data-wow-delay="0.5s"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setActiveFilter('ecommerce')}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveFilter('ecommerce');
+                        }
+                      }}
                     >
                       <span>{t('portfolio.words.ecommerce')}</span>
                     </li>
@@ -268,9 +351,12 @@ const Portfolio = () => {
                   data-wow-duration="0.8s"
                   data-wow-delay="0.5s"
                 >
-                  <div className="portfolioContainer row">
-                    {PORTFOLIO.map((e, i) => (
-                      <div key={i} className={'grid-item col-md-4 col-sm-6 col-xs-12 ' + e.categoria}>
+                  <div className="portfolioContainerReact row">
+                    {filteredPortfolio.map((e) => (
+                      <div
+                        key={e.title}
+                        className={'grid-item col-md-4 col-sm-6 col-xs-12 ' + e.categoria}
+                      >
                         <figure>
                           <img src={e.img} alt="" />
                           <figcaption
