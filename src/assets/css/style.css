@@ -608,3 +608,177 @@
   background: rgba(215, 2, 1, 0.08);
   border-color: rgba(215, 2, 1, 0.25);
 }
+
+.jv-portfolio-react-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.jv-portfolio-react-filter {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.jv-portfolio-react-filter:hover,
+.jv-portfolio-react-filter.active {
+  background: #f30100;
+  border-color: #f30100;
+  transform: translateY(-1px);
+}
+
+.jv-portfolio-react-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  gap: 16px;
+}
+
+.jv-portfolio-react-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.jv-portfolio-react-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 25px rgba(0, 0, 0, 0.25);
+  border-color: rgba(243, 1, 0, 0.45);
+}
+
+.jv-portfolio-react-thumb {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  background: #151515;
+}
+
+.jv-portfolio-react-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.jv-portfolio-react-content {
+  padding: 14px;
+}
+
+.jv-portfolio-react-content h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.jv-portfolio-react-content p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #e3e3e3;
+}
+
+.jv-portfolio-react-action {
+  border: 1px solid rgba(243, 1, 0, 0.5);
+  color: #fff;
+  background: rgba(243, 1, 0, 0.2);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+.jv-portfolio-react-action:hover {
+  background: #f30100;
+}
+
+.jv-portfolio-react-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.84);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.jv-portfolio-react-modal-inner {
+  width: min(980px, 100%);
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  position: relative;
+  padding: 18px;
+}
+
+.jv-portfolio-react-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #f30100;
+  color: #fff;
+  font-size: 15px;
+}
+
+.jv-portfolio-react-modal-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+}
+
+.jv-portfolio-react-modal-image {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.jv-portfolio-react-modal-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.jv-portfolio-react-modal-content h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .jv-portfolio-react-modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.white-vertion .jv-portfolio-react-filter {
+  background: rgba(0, 0, 0, 0.03);
+  color: #111;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.white-vertion .jv-portfolio-react-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.white-vertion .jv-portfolio-react-content p {
+  color: #444;
+}
+
+.white-vertion .jv-portfolio-react-action {
+  color: #111;
+}
+
+.white-vertion .jv-portfolio-react-modal-inner {
+  background: #f6f6f6;
+  border-color: rgba(0, 0, 0, 0.12);
+}
