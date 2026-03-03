@@ -27,6 +27,10 @@
   margin-top: -10px
 }
 
+.white-vertion .jv-nav-brand-image {
+  filter: invert(1);
+}
+
 .jv-nav-menu {
   display: flex;
   list-style: none;
