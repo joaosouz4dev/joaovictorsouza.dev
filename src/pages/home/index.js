@@ -3,14 +3,16 @@ import Portifolio from '../../components/portifolio';
 import '@lottiefiles/lottie-player';
 import SvgAnimated from '../../components/portifolio/svgAnimated';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import iconCv from '../../assets/images/icon-cv.png';
 import LanguageSelector from '../../components/footer/languageSelector';
 
 import profile from '../../assets/images/profile/profile.png';
 import Navbar from '../../components/navbar';
+import Seo from '../../components/seo';
 
-// const oldprofile = process.env.PUBLIC_URL + '/assets/images/new/hero-2.webp'
+// const oldprofile = '/assets/images/new/hero-2.webp'
 
 const ANO_INICIAL = 2015;
 
@@ -71,37 +73,66 @@ const redes_sociais = [
 
 const Home = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const year = new Date().getFullYear();
   const anos = year - ANO_INICIAL;
   const [darkMode, setDarkMode] = useState(true);
-  const [menuActive, setMenuActive] = useState('#jv-home');
-  const [scrolling, setScrolling] = useState(false);
+  const [menuActive, setMenuActive] = useState('/');
   const [isLoading, setIsLoading] = useState(true);
 
   const menus = [
     {
-      href: '#jv-home',
-      label: t('menu.home'),
+      href: '/',
+      label: 'Inicio',
     },
     {
-      href: '#jv-about',
-      label: t('menu.about'),
+      href: '/sobre',
+      label: 'Sobre',
     },
     {
-      href: '#jv-skills',
-      label: t('menu.skills'),
+      href: '/servicos',
+      label: 'Servicos',
     },
     {
-      href: '#jv-experience',
-      label: t('menu.experiences'),
+      href: '/cases',
+      label: 'Cases',
     },
     {
-      href: '#jv-portfolio',
-      label: t('menu.portfolio'),
+      href: '/blog',
+      label: 'Blog',
     },
     {
-      href: '#jv-contact',
-      label: t('menu.contact'),
+      href: '/projetos',
+      label: 'Projetos',
+    },
+    {
+      href: '/contato',
+      label: 'Contato',
+    },
+  ];
+
+  const homeSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Joao Victor Souza',
+      url: 'https://joaovictorsouza.dev/',
+      sameAs: [linkedin, 'https://github.com/joaosouz4dev'],
+      jobTitle:
+        'Especialista em WhatsApp Cloud API, Meta CAPI e Chatbots com IA',
+      knowsAbout: [
+        'WhatsApp Cloud API',
+        'Meta Pixel',
+        'Conversions API',
+        'Chatbots com IA',
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Joao Victor Souza',
+      url: 'https://joaovictorsouza.dev/',
     },
   ];
 
@@ -122,53 +153,8 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const section = window.location.href.includes('#')
-      ? window.location.href.split('#').pop()
-      : false;
-    if (section) {
-      setMenuActive('#' + section);
-      setTimeout(() => {
-        const element = document.getElementById(section);
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-          });
-        }
-      }, 500);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrolling) return;
-      const scrollPosition = window.scrollY;
-      const sections = [];
-      const sectionsFinded = document.querySelectorAll('section');
-      if (sectionsFinded) {
-        sectionsFinded.forEach((section) => {
-          sections.push(section);
-        });
-      }
-      const footerFinded = document.querySelector('#jv-contact');
-      if (footerFinded) {
-        sections.push(footerFinded);
-      }
-      sections.forEach((section) => {
-        if (
-          scrollPosition >= section.offsetTop - 250 &&
-          scrollPosition < section.offsetTop + section.offsetHeight
-        ) {
-          setMenuActive('#' + section.id);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrolling]);
+    setMenuActive(location.pathname);
+  }, [location.pathname]);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -188,22 +174,20 @@ const Home = () => {
   };
 
   const toggleMenuActive = (menu) => {
-    if (scrolling) return;
-    setScrolling(true);
     setMenuActive(menu);
-    const element = document.querySelector(menu);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-      });
-      setTimeout(() => {
-        setScrolling(false);
-      }, 600);
-    }
+    navigate(menu);
   };
 
   return (
-    <main>
+    <>
+      <Seo
+        title="Especialista em WhatsApp Cloud API, Meta CAPI e IA | Joao Victor Souza"
+        description="Desenvolvedor especialista em integracao WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automacoes para atendimento e vendas."
+        canonical="/"
+        keywords="whatsapp cloud api, meta capi, chatbot ia, integracoes api, automacao atendimento"
+        schema={homeSchema}
+      />
+      <main>
       {isLoading && (
         <div className="section-loader">
           <div className="loader">
@@ -666,6 +650,46 @@ const Home = () => {
 
       <Portifolio />
 
+      <section className="home-seo-links">
+        <div className="container">
+          <div className="row section-separator">
+            <div className="col-sm-12 section-title wow fadeInUp">
+              <h3>Especialidades e Conteudo Tecnico</h3>
+              <p>
+                Páginas focadas em servicos, cases e artigos para integracao
+                Meta, WhatsApp e IA.
+              </p>
+            </div>
+            <div className="col-sm-12">
+              <div className="seo-grid">
+                <article className="seo-card">
+                  <h4>Servico WhatsApp Cloud API</h4>
+                  <p>Webhooks, templates, filas e handoff humano.</p>
+                  <Link to="/servicos/whatsapp-cloud-api">Acessar pagina</Link>
+                </article>
+                <article className="seo-card">
+                  <h4>Servico Meta Pixel + CAPI</h4>
+                  <p>Mensuracao server-side com deduplicacao de eventos.</p>
+                  <Link to="/servicos/meta-ads-e-integracoes">
+                    Acessar pagina
+                  </Link>
+                </article>
+                <article className="seo-card">
+                  <h4>Blog tecnico</h4>
+                  <p>Guias práticos de arquitetura, integracoes e IA.</p>
+                  <Link to="/blog">Ler artigos</Link>
+                </article>
+                <article className="seo-card">
+                  <h4>Cases</h4>
+                  <p>Estudos de caso com solucoes e aprendizados.</p>
+                  <Link to="/cases">Ver cases</Link>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="jv-footer jv-footer-3" id="jv-contact">
         <div className="jv-quates image-bg home-1-img">
           <div className="container">
@@ -704,12 +728,7 @@ const Home = () => {
               </div>
               <div className="each-quates col-sm-12 col-md-6">
                 <div className="wrap-image">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/assets/images/new/foto.webp'
-                    }
-                    alt=""
-                  />
+                  <img src="/assets/images/new/foto.webp" alt="" />
                 </div>
               </div>
             </div>
@@ -822,7 +841,8 @@ const Home = () => {
           </div>
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 };
 

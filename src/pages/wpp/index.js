@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import Seo from '../../components/seo';
 
 const Wpp = () => {
   const { t } = useTranslation();
@@ -18,17 +19,25 @@ const Wpp = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-      }}
-    >
-      <h2>{t('whatsapp.redirecting', 'Redirecting...')}</h2>
-    </div>
+    <>
+      <Seo
+        title="Redirecionando para WhatsApp | Joao Victor Souza"
+        description="Pagina utilitaria de redirecionamento para WhatsApp."
+        canonical="/whatsapp"
+        robots="noindex,follow"
+      />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100vh',
+        }}
+      >
+        <h2>{t('whatsapp.redirecting', 'Redirecting...')}</h2>
+      </div>
+    </>
   );
 };
 

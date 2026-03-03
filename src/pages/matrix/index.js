@@ -1,5 +1,6 @@
 import React from "react";
 import * as datGui from "dat.gui";
+import Seo from "../../components/seo";
 
 const Matrix = () => {
   React.useEffect(() => {
@@ -63,7 +64,17 @@ const Matrix = () => {
     };
   }, []);
 
-  return <canvas id="canvas"></canvas>;
+  return (
+    <>
+      <Seo
+        title="Matrix Demo | Joao Victor Souza"
+        description="Pagina utilitaria visual."
+        canonical="/matrix"
+        robots="noindex,follow"
+      />
+      <canvas id="canvas"></canvas>
+    </>
+  );
 };
 
 export default Matrix;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Seo from "../../components/seo";
 
 const Privacidade = () => {
   const [title, setTitle] = useState("");
@@ -8,14 +9,21 @@ const Privacidade = () => {
     setTitle(params.title);
   }, [params.title]);
   return (
-    <div
-      style={{
-        textAlign: "justify",
-        font: "90% Verdana,Arial,helvica, sans-serif",
-        margin: "7%",
-      }}
-    >
-      <h2>Política Privacidade {title ? " - " + title : ""}</h2>
+    <>
+      <Seo
+        title={`Politica de Privacidade${title ? " - " + title : ""}`}
+        description="Politica de privacidade."
+        canonical={`/politica-de-privacidade/${params.title || ""}`}
+        robots="noindex,follow"
+      />
+      <div
+        style={{
+          textAlign: "justify",
+          font: "90% Verdana,Arial,helvica, sans-serif",
+          margin: "7%",
+        }}
+      >
+        <h2>Política Privacidade {title ? " - " + title : ""}</h2>
 
       <p>
         A sua privacidade é importante para nós. É política do {title} respeitar
@@ -59,7 +67,8 @@ const Privacidade = () => {
         Esta política é efetiva a partir de <strong>Maio</strong>/
         <strong>2021</strong>.
       </p>
-    </div>
+      </div>
+    </>
   );
 };
 
