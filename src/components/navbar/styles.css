@@ -108,6 +108,10 @@
   background-color: var(--bg-hover);
 }
 
+.dark-vertion .jv-theme-toggle svg {
+  fill: #fff;
+}
+
 .jv-menu-button {
   background: none;
   border: none;
