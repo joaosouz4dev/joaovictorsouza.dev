@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
-import { services } from './data';
+import { getServices } from './data';
 
 const Servicos = () => {
+  const { t, i18n } = useTranslation();
+  const services = getServices(i18n.resolvedLanguage);
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -12,13 +16,13 @@ const Servicos = () => {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Inicio',
+        name: t('menu.home'),
         item: 'https://joaovictorsouza.dev/',
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Servicos',
+        name: t('menu.services'),
         item: 'https://joaovictorsouza.dev/servicos',
       },
     ],
@@ -27,21 +31,17 @@ const Servicos = () => {
   return (
     <SiteLayout>
       <Seo
-        title="Servicos de Integracao WhatsApp, Meta e IA | Joao Victor Souza"
-        description="Serviços de integração WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automação de processos com foco em resultado."
+        title={t('servicesPage.seoTitle')}
+        description={t('servicesPage.seoDescription')}
         canonical="/servicos"
-        keywords="servicos whatsapp cloud api, meta capi, chatbot ia, automacao integracoes"
+        keywords={t('servicesPage.seoKeywords')}
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Servicos</span>
-        <h1>Soluções técnicas para crescimento e operação digital</h1>
-        <p>
-          Atuo na implementação de integrações e automações com foco em
-          desempenho operacional, confiabilidade de dados e aumento de
-          conversão.
-        </p>
+        <span className="seo-kicker">{t('menu.services')}</span>
+        <h1>{t('servicesPage.heroTitle')}</h1>
+        <p>{t('servicesPage.heroDescription')}</p>
       </section>
 
       <section className="seo-grid">
@@ -50,7 +50,7 @@ const Servicos = () => {
             <h2>{service.title}</h2>
             <p>{service.summary}</p>
             <Link className="seo-cta" to={`/servicos/${service.slug}`}>
-              Ver detalhes
+              {t('servicesPage.viewDetails')}
             </Link>
           </article>
         ))}

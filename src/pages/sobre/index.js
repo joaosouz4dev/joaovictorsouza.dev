@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 
 const Sobre = () => {
+  const { t } = useTranslation();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -28,40 +31,36 @@ const Sobre = () => {
   return (
     <SiteLayout>
       <Seo
-        title="Sobre | Joao Victor Souza"
-        description="Desenvolvedor especializado em integrações WhatsApp, Meta CAPI, chatbots com IA e arquitetura backend."
+        title={t('aboutPage.seoTitle')}
+        description={t('aboutPage.seoDescription')}
         canonical="/sobre"
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Sobre</span>
-        <h1>Engenharia de integrações para operação e crescimento</h1>
-        <p>
-          Sou desenvolvedor focado em backend e integrações, com experiência em
-          WhatsApp Cloud API, Meta CAPI, automação de processos e chatbots com
-          IA aplicada.
-        </p>
+        <span className="seo-kicker">{t('menu.about')}</span>
+        <h1>{t('aboutPage.heroTitle')}</h1>
+        <p>{t('aboutPage.heroDescription')}</p>
       </section>
 
       <section className="seo-grid">
         <article className="seo-card">
-          <h2>Especialidades</h2>
+          <h2>{t('aboutPage.specialtiesTitle')}</h2>
           <ul className="seo-list">
-            <li>WhatsApp Business Platform / Cloud API</li>
-            <li>Meta Pixel + Conversions API (CAPI)</li>
-            <li>Chatbots com IA (RAG, roteamento, handoff)</li>
-            <li>Integração CRM/ERP e automação de processos</li>
+            <li>{t('aboutPage.specialties.0')}</li>
+            <li>{t('aboutPage.specialties.1')}</li>
+            <li>{t('aboutPage.specialties.2')}</li>
+            <li>{t('aboutPage.specialties.3')}</li>
           </ul>
         </article>
 
         <article className="seo-card">
-          <h2>Stack técnica</h2>
+          <h2>{t('aboutPage.stackTitle')}</h2>
           <ul className="seo-list">
-            <li>Java, Spring Boot, Node.js, TypeScript</li>
-            <li>React, APIs REST, Webhooks</li>
-            <li>AWS, observabilidade e boas práticas de deploy</li>
-            <li>MySQL e modelagem orientada a negócio</li>
+            <li>{t('aboutPage.stack.0')}</li>
+            <li>{t('aboutPage.stack.1')}</li>
+            <li>{t('aboutPage.stack.2')}</li>
+            <li>{t('aboutPage.stack.3')}</li>
           </ul>
         </article>
       </section>

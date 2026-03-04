@@ -1,33 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import { projects } from './data';
 
 const Projetos = () => {
+  const { t } = useTranslation();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Projetos tecnicos',
+    name: t('projectsPage.schemaName'),
     url: 'https://joaovictorsouza.dev/projetos',
   };
 
   return (
     <SiteLayout>
       <Seo
-        title="Projetos de Integracao, WhatsApp e IA | Joao Victor Souza"
-        description="Projetos tecnicos com foco em integracao de APIs, WhatsApp Cloud API, Meta CAPI e chatbots com IA."
+        title={t('projectsPage.seoTitle')}
+        description={t('projectsPage.seoDescription')}
         canonical="/projetos"
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Projetos</span>
-        <h1>Implementacoes e experimentos tecnicos</h1>
-        <p>
-          Colecao de projetos voltados para integracao, automacao e arquitetura
-          escalavel.
-        </p>
+        <span className="seo-kicker">{t('menu.projects')}</span>
+        <h1>{t('projectsPage.heroTitle')}</h1>
+        <p>{t('projectsPage.heroDescription')}</p>
       </section>
 
       <section className="seo-grid">
@@ -36,7 +36,7 @@ const Projetos = () => {
             <h2>{project.title}</h2>
             <p>{project.summary}</p>
             <Link className="seo-cta" to={`/projetos/${project.slug}`}>
-              Ver projeto
+              {t('projectsPage.viewProject')}
             </Link>
           </article>
         ))}

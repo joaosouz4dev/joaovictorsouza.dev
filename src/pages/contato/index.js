@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 
 const Contato = () => {
+  const { t } = useTranslation();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
@@ -13,19 +16,16 @@ const Contato = () => {
   return (
     <SiteLayout>
       <Seo
-        title="Contato | Integracoes WhatsApp, Meta e IA"
-        description="Fale com Joao Victor Souza para projetos de WhatsApp Cloud API, Meta CAPI, chatbots com IA e automação de integrações."
+        title={t('contactPage.seoTitle')}
+        description={t('contactPage.seoDescription')}
         canonical="/contato"
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Contato</span>
-        <h1>Vamos desenhar sua arquitetura de integração</h1>
-        <p>
-          Compartilhe seu contexto técnico e objetivo de negócio para receber um
-          diagnóstico inicial.
-        </p>
+        <span className="seo-kicker">{t('menu.contact')}</span>
+        <h1>{t('contactPage.heroTitle')}</h1>
+        <p>{t('contactPage.heroDescription')}</p>
       </section>
 
       <section className="seo-grid">
@@ -36,13 +36,13 @@ const Contato = () => {
           </p>
         </article>
         <article className="seo-card">
-          <h2>LinkedIn</h2>
+          <h2>{t('contactPage.linkedinTitle')}</h2>
           <p>
             <a
               href="https://www.linkedin.com/in/joaosouz4dev/"
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Abrir perfil no LinkedIn"
+              aria-label={t('contactPage.linkedinAria')}
             >
               linkedin.com/in/joaosouz4dev
             </a>
@@ -55,9 +55,9 @@ const Contato = () => {
               href="/whatsapp"
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Abrir contato rápido no WhatsApp"
+              aria-label={t('contactPage.whatsappAria')}
             >
-              Abrir contato rápido
+              {t('contactPage.whatsappCta')}
             </a>
           </p>
         </article>

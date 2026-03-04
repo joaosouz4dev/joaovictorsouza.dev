@@ -1,18 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import i18next from 'i18next';
 import './languageSelector.css';
-
-const normalizeLanguage = (language) => {
-  const normalized = (language || '').toLowerCase();
-  if (normalized.startsWith('pt')) return 'pt';
-  if (normalized.startsWith('en')) return 'en';
-  if (normalized.startsWith('es')) return 'es';
-  return 'en';
-};
+import { toBaseLanguage } from '../../utils/i18n';
 
 const LanguageSelector = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(
-    normalizeLanguage(i18next.resolvedLanguage || i18next.language),
+    toBaseLanguage(i18next.resolvedLanguage || i18next.language),
   );
   const [isOpen, setIsOpen] = useState(false);
   const [isInFooter, setIsInFooter] = useState(false);
@@ -26,18 +19,18 @@ const LanguageSelector = () => {
   ];
 
   const currentLanguage = languages.find(lang =>
-    lang.code === normalizeLanguage(selectedLanguage)
+    lang.code === toBaseLanguage(selectedLanguage)
   );
 
   const changeLanguage = (lng) => {
     i18next.changeLanguage(lng);
-    setSelectedLanguage(normalizeLanguage(lng));
+    setSelectedLanguage(toBaseLanguage(lng));
     setIsOpen(false);
   };
 
   useEffect(() => {
     const handleLanguageChange = (lng) => {
-      setSelectedLanguage(normalizeLanguage(lng));
+      setSelectedLanguage(toBaseLanguage(lng));
     };
 
     i18next.on('languageChanged', handleLanguageChange);

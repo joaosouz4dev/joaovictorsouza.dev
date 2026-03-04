@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import { getCaseBySlug } from '../cases/data';
 
 const Case = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const caseItem = getCaseBySlug(slug);
 
@@ -12,14 +14,15 @@ const Case = () => {
     return (
       <SiteLayout>
         <Seo
-          title="Case não encontrado | Joao Victor Souza"
-          description="A página de case solicitada não foi encontrada."
+          title={t('casePage.notFoundSeoTitle')}
+          description={t('casePage.notFoundSeoDescription')}
           canonical="/cases"
           robots="noindex,follow"
         />
-        <h1>Case não encontrado</h1>
+        <h1>{t('casePage.notFoundTitle')}</h1>
         <p>
-          Volte para <Link to="/cases">/cases</Link> para ver outros projetos.
+          {t('casePage.notFoundDescription')} <Link to="/cases">/cases</Link>{' '}
+          {t('casePage.notFoundDescriptionEnd')}
         </p>
       </SiteLayout>
     );
@@ -46,13 +49,13 @@ const Case = () => {
         {
           '@type': 'ListItem',
           position: 1,
-          name: 'Inicio',
+          name: t('menu.home'),
           item: 'https://joaovictorsouza.dev/',
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Cases',
+          name: t('menu.cases'),
           item: 'https://joaovictorsouza.dev/cases',
         },
         {
@@ -75,7 +78,7 @@ const Case = () => {
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Case</span>
+        <span className="seo-kicker">{t('casePage.kicker')}</span>
         <h1>{caseItem.title}</h1>
         <p>{caseItem.summary}</p>
       </section>
@@ -100,12 +103,12 @@ const Case = () => {
       )}
 
       <section className="seo-card">
-        <h2>Cenário</h2>
+        <h2>{t('casePage.scenarioTitle')}</h2>
         <p>{caseItem.challenge}</p>
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Solução implementada</h2>
+        <h2>{t('casePage.solutionTitle')}</h2>
         <ul className="seo-list">
           {caseItem.solution.map((item, index) => (
             <li key={`${caseItem.slug}-solution-${index}`}>{item}</li>
@@ -114,7 +117,7 @@ const Case = () => {
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Resultados observados</h2>
+        <h2>{t('casePage.resultsTitle')}</h2>
         <ul className="seo-list">
           {caseItem.results.map((item, index) => (
             <li key={`${caseItem.slug}-result-${index}`}>{item}</li>
@@ -123,11 +126,11 @@ const Case = () => {
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Stack técnica</h2>
+        <h2>{t('casePage.stackTitle')}</h2>
         <p>{caseItem.stack.join(' | ')}</p>
         {caseItem.demoUrl && (
           <p>
-            <strong>Demo:</strong>{' '}
+            <strong>{t('casePage.demoLabel')}:</strong>{' '}
             <a href={caseItem.demoUrl} target="_blank" rel="noreferrer noopener">
               {caseItem.demoUrl}
             </a>
@@ -135,14 +138,14 @@ const Case = () => {
         )}
         {caseItem.repoUrl && (
           <p>
-            <strong>Repositório:</strong>{' '}
+            <strong>{t('casePage.repositoryLabel')}:</strong>{' '}
             <a href={caseItem.repoUrl} target="_blank" rel="noreferrer noopener">
               {caseItem.repoUrl}
             </a>
           </p>
         )}
         <a className="seo-cta" href="/contato">
-          Quero um projeto parecido
+          {t('casePage.cta')}
         </a>
       </section>
     </SiteLayout>

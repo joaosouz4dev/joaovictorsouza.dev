@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import { getPostBySlug } from '../blog/data';
@@ -46,22 +47,23 @@ app.post("/webhook", async (req, res) => {
 });`;
 
 const BlogPost = () => {
+  const { t, i18n } = useTranslation();
   const { slug } = useParams();
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, i18n.resolvedLanguage);
 
   if (!post) {
     return (
       <SiteLayout>
         <Seo
-          title="Artigo nao encontrado | Joao Victor Souza"
-          description="O artigo solicitado nao foi encontrado."
+          title={t('blogPostPage.notFoundSeoTitle')}
+          description={t('blogPostPage.notFoundSeoDescription')}
           canonical="/blog"
           robots="noindex,follow"
         />
-        <h1>Artigo nao encontrado</h1>
+        <h1>{t('blogPostPage.notFoundTitle')}</h1>
         <p>
-          Volte para <Link to="/blog">/blog</Link> e veja os conteudos
-          publicados.
+          {t('blogPostPage.notFoundDescription')} <Link to="/blog">/blog</Link>{' '}
+          {t('blogPostPage.notFoundDescriptionEnd')}
         </p>
       </SiteLayout>
     );
@@ -88,13 +90,13 @@ const BlogPost = () => {
         {
           '@type': 'ListItem',
           position: 1,
-          name: 'Inicio',
+          name: t('menu.home'),
           item: 'https://joaovictorsouza.dev/',
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Blog',
+          name: t('menu.blog'),
           item: 'https://joaovictorsouza.dev/blog',
         },
         {
@@ -119,39 +121,36 @@ const BlogPost = () => {
 
       <article>
         <header className="seo-hero">
-          <span className="seo-kicker">Artigo</span>
+          <span className="seo-kicker">{t('blogPostPage.kicker')}</span>
           <h1>{post.title}</h1>
           <p className="seo-article-meta">
-            Publicado em {post.date} | Categoria: {post.category} | Tempo de
-            leitura: {post.readTime}
+            {t('blogPostPage.metaPrefix')} {post.date} |{' '}
+            {t('blogPostPage.metaCategory')}: {post.category} |{' '}
+            {t('blogPostPage.metaReadTime')}: {post.readTime}
           </p>
-          <p>
-            Se voce quer usar WhatsApp como canal serio de vendas e atendimento,
-            precisa de arquitetura confiavel: webhook seguro, filas, templates
-            governados e integracao com CRM.
-          </p>
+          <p>{t('blogPostPage.intro')}</p>
         </header>
 
         <section className="seo-card">
-          <h2>1. Quando usar WhatsApp Cloud API</h2>
-          <p>Use Cloud API quando precisa de:</p>
+          <h2>{t('blogPostPage.section1.title')}</h2>
+          <p>{t('blogPostPage.section1.description')}</p>
           <ul className="seo-list">
-            <li>alto volume de atendimento com estabilidade;</li>
-            <li>integracao com CRM, ERP e APIs internas;</li>
-            <li>chatbot com IA + handoff para humano;</li>
-            <li>rastreabilidade de mensagens e eventos.</li>
+            <li>{t('blogPostPage.section1.items.0')}</li>
+            <li>{t('blogPostPage.section1.items.1')}</li>
+            <li>{t('blogPostPage.section1.items.2')}</li>
+            <li>{t('blogPostPage.section1.items.3')}</li>
           </ul>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>2. Arquitetura recomendada para producao</h2>
-          <p>Estrutura base:</p>
+          <h2>{t('blogPostPage.section2.title')}</h2>
+          <p>{t('blogPostPage.section2.description')}</p>
           <ol className="seo-list">
-            <li>Webhook Receiver</li>
-            <li>Fila para desacoplamento</li>
-            <li>Worker de processamento</li>
-            <li>Camada de regras de negocio / IA</li>
-            <li>Integracao com CRM + logs + alertas</li>
+            <li>{t('blogPostPage.section2.items.0')}</li>
+            <li>{t('blogPostPage.section2.items.1')}</li>
+            <li>{t('blogPostPage.section2.items.2')}</li>
+            <li>{t('blogPostPage.section2.items.3')}</li>
+            <li>{t('blogPostPage.section2.items.4')}</li>
           </ol>
           <div className="seo-code">
             {`WhatsApp Cloud API -> Webhook -> Fila -> Worker -> Envio de resposta
@@ -160,110 +159,94 @@ const BlogPost = () => {
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>3. Webhook seguro: assinatura e idempotencia</h2>
-          <p>
-            Em producao, valide assinatura e nao processe mensagem duplicada.
-            Isso evita erro operacional e comportamento inconsistente.
-          </p>
+          <h2>{t('blogPostPage.section3.title')}</h2>
+          <p>{t('blogPostPage.section3.description')}</p>
           <pre className="seo-code">
             <code>{WebhookCode}</code>
           </pre>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>4. Templates, opt-in e qualidade de conversa</h2>
+          <h2>{t('blogPostPage.section4.title')}</h2>
           <table className="seo-table">
             <thead>
               <tr>
-                <th>Tema</th>
-                <th>Boa pratica</th>
+                <th>{t('blogPostPage.section4.columns.theme')}</th>
+                <th>{t('blogPostPage.section4.columns.bestPractice')}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Opt-in</td>
-                <td>Registrar consentimento por canal e finalidade</td>
+                <td>{t('blogPostPage.section4.rows.0.theme')}</td>
+                <td>{t('blogPostPage.section4.rows.0.value')}</td>
               </tr>
               <tr>
-                <td>Templates</td>
-                <td>Versionar e medir taxa de resposta por template</td>
+                <td>{t('blogPostPage.section4.rows.1.theme')}</td>
+                <td>{t('blogPostPage.section4.rows.1.value')}</td>
               </tr>
               <tr>
-                <td>Fallback</td>
-                <td>Transferir para humano em casos sensiveis</td>
+                <td>{t('blogPostPage.section4.rows.2.theme')}</td>
+                <td>{t('blogPostPage.section4.rows.2.value')}</td>
               </tr>
               <tr>
-                <td>Operacao</td>
-                <td>Monitorar bloqueios, erro e tempo de resposta</td>
+                <td>{t('blogPostPage.section4.rows.3.theme')}</td>
+                <td>{t('blogPostPage.section4.rows.3.value')}</td>
               </tr>
             </tbody>
           </table>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>5. Deploy e checklist de producao</h2>
+          <h2>{t('blogPostPage.section5.title')}</h2>
           <ol className="seo-list">
-            <li>Segredos em cofre e rotacao periodica.</li>
-            <li>Retry exponencial + DLQ para erros persistentes.</li>
-            <li>Rate limit e logs por conversation_id.</li>
-            <li>Alertas de timeout, fila acumulada e falhas 5xx.</li>
-            <li>Dashboard com metricas operacionais e conversao.</li>
+            <li>{t('blogPostPage.section5.items.0')}</li>
+            <li>{t('blogPostPage.section5.items.1')}</li>
+            <li>{t('blogPostPage.section5.items.2')}</li>
+            <li>{t('blogPostPage.section5.items.3')}</li>
+            <li>{t('blogPostPage.section5.items.4')}</li>
           </ol>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>FAQ</h2>
+          <h2>{t('blogPostPage.faq.title')}</h2>
           <article className="seo-faq-item">
-            <h3>Cloud API e melhor que solucoes nao oficiais?</h3>
-            <p>
-              Para operacao profissional, sim. Voce ganha governanca, previsao
-              e menor risco de indisponibilidade.
-            </p>
+            <h3>{t('blogPostPage.faq.items.0.question')}</h3>
+            <p>{t('blogPostPage.faq.items.0.answer')}</p>
           </article>
           <article className="seo-faq-item">
-            <h3>Como evitar mensagens duplicadas?</h3>
-            <p>
-              Use idempotencia por ID da mensagem e processamento assincrono com
-              fila.
-            </p>
+            <h3>{t('blogPostPage.faq.items.1.question')}</h3>
+            <p>{t('blogPostPage.faq.items.1.answer')}</p>
           </article>
           <article className="seo-faq-item">
-            <h3>Da para integrar com IA sem perder controle?</h3>
-            <p>
-              Sim. Adote guardrails, fallback e handoff humano por regra de
-              negocio.
-            </p>
+            <h3>{t('blogPostPage.faq.items.2.question')}</h3>
+            <p>{t('blogPostPage.faq.items.2.answer')}</p>
           </article>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>Conclusao</h2>
-          <p>
-            WhatsApp Cloud API entrega resultado quando a arquitetura e pensada
-            para producao. Com webhook robusto, fila, templates bem geridos e
-            observabilidade, voce escala atendimento com previsibilidade.
-          </p>
+          <h2>{t('blogPostPage.conclusion.title')}</h2>
+          <p>{t('blogPostPage.conclusion.description')}</p>
           <a className="seo-cta" href="/contato">
-            Solicitar diagnostico tecnico
+            {t('blogPostPage.conclusion.cta')}
           </a>
         </section>
 
         <section className="seo-card" style={{ marginTop: '14px' }}>
-          <h2>Links internos recomendados</h2>
+          <h2>{t('blogPostPage.relatedLinksTitle')}</h2>
           <ul className="seo-list">
             <li>
               <Link to="/servicos/whatsapp-cloud-api">
-                Servico de WhatsApp Cloud API
+                {t('blogPostPage.relatedLinks.0')}
               </Link>
             </li>
             <li>
               <Link to="/servicos/meta-ads-e-integracoes">
-                Integracao Meta Pixel + CAPI
+                {t('blogPostPage.relatedLinks.1')}
               </Link>
             </li>
             <li>
               <Link to="/cases/whatsapp-ia-atendimento">
-                Case WhatsApp + IA com handoff
+                {t('blogPostPage.relatedLinks.2')}
               </Link>
             </li>
           </ul>

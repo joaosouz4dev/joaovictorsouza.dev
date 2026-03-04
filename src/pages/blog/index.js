@@ -1,35 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
-import { publishedPosts, upcomingPosts } from './data';
+import { getPublishedPosts, getUpcomingPosts } from './data';
 
 const Blog = () => {
+  const { t, i18n } = useTranslation();
+  const publishedPosts = getPublishedPosts(i18n.resolvedLanguage);
+  const upcomingPosts = getUpcomingPosts(i18n.resolvedLanguage);
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Blog técnico de Integracoes e IA',
+    name: t('blogPage.schemaName'),
     url: 'https://joaovictorsouza.dev/blog',
-    description:
-      'Conteúdos sobre WhatsApp Cloud API, Meta CAPI, chatbots com IA e arquitetura de integrações.',
+    description: t('blogPage.schemaDescription'),
   };
 
   return (
     <SiteLayout>
       <Seo
-        title="Blog: WhatsApp API, Meta CAPI e Chatbots IA | Joao Victor Souza"
-        description="Artigos técnicos sobre integrações WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA, arquitetura e performance."
+        title={t('blogPage.seoTitle')}
+        description={t('blogPage.seoDescription')}
         canonical="/blog"
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Blog</span>
-        <h1>Conteúdo técnico para escalar atendimento, dados e conversão</h1>
-        <p>
-          Publicações orientadas a implementação real em backend, integrações e
-          automação com IA.
-        </p>
+        <span className="seo-kicker">{t('menu.blog')}</span>
+        <h1>{t('blogPage.heroTitle')}</h1>
+        <p>{t('blogPage.heroDescription')}</p>
       </section>
 
       <section className="seo-grid">
@@ -41,14 +42,14 @@ const Blog = () => {
             </p>
             <p>{post.excerpt}</p>
             <Link className="seo-cta" to={`/blog/${post.slug}`}>
-              Ler artigo
+              {t('blogPage.readArticle')}
             </Link>
           </article>
         ))}
       </section>
 
       <section className="seo-card" style={{ marginTop: '18px' }}>
-        <h2>Próximos artigos do calendário editorial</h2>
+        <h2>{t('blogPage.upcomingTitle')}</h2>
         <ul className="seo-list">
           {upcomingPosts.map((post, index) => (
             <li key={`upcoming-${index}`}>{post}</li>

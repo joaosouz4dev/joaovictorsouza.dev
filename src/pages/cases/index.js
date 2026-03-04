@@ -1,23 +1,30 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import { cases } from './data';
 
 const Cases = () => {
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const { t } = useTranslation();
+  const allLabel = t('casesPage.allFilter');
+  const [activeCategory, setActiveCategory] = useState(allLabel);
 
   const categories = useMemo(
-    () => ['Todos', ...new Set(cases.map((item) => item.category))],
-    [],
+    () => [allLabel, ...new Set(cases.map((item) => item.category))],
+    [allLabel],
   );
+
+  useEffect(() => {
+    setActiveCategory(allLabel);
+  }, [allLabel]);
 
   const visibleCases = useMemo(
     () =>
-      activeCategory === 'Todos'
+      activeCategory === allLabel
         ? cases
         : cases.filter((item) => item.category === activeCategory),
-    [activeCategory],
+    [activeCategory, allLabel],
   );
 
   const schema = {
@@ -30,23 +37,20 @@ const Cases = () => {
   return (
     <SiteLayout>
       <Seo
-        title="Cases de WhatsApp, Meta CAPI e IA | Joao Victor Souza"
-        description="Estudos de caso com arquitetura, stack e aprendizados em projetos de integracoes, mensuracao e chatbots com IA."
+        title={t('casesPage.seoTitle')}
+        description={t('casesPage.seoDescription')}
         canonical="/cases"
         schema={schema}
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Cases</span>
-        <h1>Cases técnicos com foco em resultado operacional</h1>
-        <p>
-          Cada case descreve contexto, solução técnica e aprendizados prontos
-          para reutilizar em novos projetos.
-        </p>
+        <span className="seo-kicker">{t('menu.cases')}</span>
+        <h1>{t('casesPage.heroTitle')}</h1>
+        <p>{t('casesPage.heroDescription')}</p>
       </section>
 
       <section className="seo-card" style={{ marginBottom: '16px' }}>
-        <h2>Filtrar por categoria</h2>
+        <h2>{t('casesPage.filterTitle')}</h2>
         <div className="jv-portfolio-react-nav" style={{ justifyContent: 'flex-start' }}>
           {categories.map((category) => (
             <button
@@ -85,16 +89,16 @@ const Cases = () => {
             )}
             <h2>{caseItem.title}</h2>
             <p>
-              <strong>Categoria:</strong> {caseItem.category}
+              <strong>{t('casesPage.categoryLabel')}:</strong> {caseItem.category}
             </p>
             <p>{caseItem.summary}</p>
             {caseItem.demoUrl && (
               <p>
-                <strong>Demo:</strong> {caseItem.demoUrl}
+                <strong>{t('casesPage.demoLabel')}:</strong> {caseItem.demoUrl}
               </p>
             )}
             <Link className="seo-cta" to={`/cases/${caseItem.slug}`}>
-              Ver case completo
+              {t('casesPage.viewFullCase')}
             </Link>
           </article>
         ))}

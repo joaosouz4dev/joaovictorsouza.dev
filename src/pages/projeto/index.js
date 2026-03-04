@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import { getProjectBySlug } from '../projetos/data';
 
 const Projeto = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
@@ -12,14 +14,14 @@ const Projeto = () => {
     return (
       <SiteLayout>
         <Seo
-          title="Projeto nao encontrado | Joao Victor Souza"
-          description="Projeto nao encontrado."
+          title={t('projectPage.notFoundSeoTitle')}
+          description={t('projectPage.notFoundSeoDescription')}
           canonical="/projetos"
           robots="noindex,follow"
         />
-        <h1>Projeto nao encontrado</h1>
+        <h1>{t('projectPage.notFoundTitle')}</h1>
         <p>
-          Volte para <Link to="/projetos">/projetos</Link>.
+          {t('projectPage.notFoundDescription')} <Link to="/projetos">/projetos</Link>.
         </p>
       </SiteLayout>
     );
@@ -41,13 +43,13 @@ const Projeto = () => {
         {
           '@type': 'ListItem',
           position: 1,
-          name: 'Inicio',
+          name: t('menu.home'),
           item: 'https://joaovictorsouza.dev/',
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Projetos',
+          name: t('menu.projects'),
           item: 'https://joaovictorsouza.dev/projetos',
         },
         {
@@ -70,25 +72,25 @@ const Projeto = () => {
       />
 
       <section className="seo-hero">
-        <span className="seo-kicker">Projeto</span>
+        <span className="seo-kicker">{t('projectPage.kicker')}</span>
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
       </section>
 
       <section className="seo-card">
-        <h2>Stack</h2>
+        <h2>{t('projectPage.stackTitle')}</h2>
         <p>{project.stack.join(' | ')}</p>
       </section>
 
       <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>Repositorio</h2>
+        <h2>{t('projectPage.repositoryTitle')}</h2>
         <p>
           <a href={project.repository} target="_blank" rel="noreferrer noopener">
             {project.repository}
           </a>
         </p>
         <a className="seo-cta" href="/contato">
-          Conversar sobre implementacao semelhante
+          {t('projectPage.cta')}
         </a>
       </section>
     </SiteLayout>
