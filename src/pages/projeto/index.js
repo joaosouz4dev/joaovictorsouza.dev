@@ -6,9 +6,9 @@ import SiteLayout from '../../components/siteLayout';
 import { getProjectBySlug } from '../projetos/data';
 
 const Projeto = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slug } = useParams();
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug, i18n.resolvedLanguage);
 
   if (!project) {
     return (

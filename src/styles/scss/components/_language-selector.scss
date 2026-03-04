@@ -111,38 +111,32 @@
   font-weight: bold;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .language-selector__trigger {
-    color: #ffffff;
-    border-color: #404040;
-  }
-  
-  .language-selector__trigger:hover {
-    border-color: #666666;
-  }
-  
-  .language-selector__trigger.active {
-    border-color: #808080;
-  }
+.dark-vertion .language-selector__trigger {
+  color: #ffffff;
+  border-color: #404040;
+}
 
-  .language-selector__dropdown {
-    border-color: #404040;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  .language-selector__option {
-    color: #ffffff;
-    border-bottom-color: #404040;
-  }
-  
-  .language-selector__option:hover {
-    color: #ffffff;
-  }
-  
-  .language-selector__option.selected {
-    color: #ffffff;
-  }
+.dark-vertion .language-selector__trigger:hover {
+  border-color: #666666;
+}
+
+.dark-vertion .language-selector__trigger.active {
+  border-color: #808080;
+}
+
+.dark-vertion .language-selector__dropdown {
+  border-color: #404040;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-vertion .language-selector__option {
+  color: #ffffff;
+  border-bottom-color: #404040;
+}
+
+.dark-vertion .language-selector__option:hover,
+.dark-vertion .language-selector__option.selected {
+  color: #ffffff;
 }
 
 /* Responsividade */

@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
-import { cases } from './data';
+import { getCases } from './data';
 
 const Cases = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const cases = getCases(i18n.resolvedLanguage);
   const allLabel = t('casesPage.allFilter');
   const [activeCategory, setActiveCategory] = useState(allLabel);
 

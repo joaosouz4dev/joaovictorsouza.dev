@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import i18next from 'i18next';
-import './languageSelector.css';
 import { toBaseLanguage } from '../../utils/i18n';
 
 const LanguageSelector = () => {

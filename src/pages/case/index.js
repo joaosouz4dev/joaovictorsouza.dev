@@ -6,9 +6,9 @@ import SiteLayout from '../../components/siteLayout';
 import { getCaseBySlug } from '../cases/data';
 
 const Case = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slug } = useParams();
-  const caseItem = getCaseBySlug(slug);
+  const caseItem = getCaseBySlug(slug, i18n.resolvedLanguage);
 
   if (!caseItem) {
     return (

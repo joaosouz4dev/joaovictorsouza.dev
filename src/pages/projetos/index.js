@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
-import { projects } from './data';
+import { getProjects } from './data';
 
 const Projetos = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const projects = getProjects(i18n.resolvedLanguage);
 
   const schema = {
     '@context': 'https://schema.org',
