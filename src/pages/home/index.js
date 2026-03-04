@@ -78,7 +78,6 @@ const Home = () => {
   const anos = year - ANO_INICIAL;
   const [darkMode, setDarkMode] = useState(true);
   const [menuActive, setMenuActive] = useState('/');
-  const [isLoading, setIsLoading] = useState(true);
 
   const menus = [
     {
@@ -152,10 +151,6 @@ const Home = () => {
       setDarkMode(prefersDarkMode);
       localStorage.setItem('darkmode', prefersDarkMode);
     }
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
   }, []);
 
   useEffect(() => {
@@ -208,15 +203,6 @@ const Home = () => {
         schema={homeSchema}
       />
       <main>
-      {isLoading && (
-        <div className="section-loader">
-          <div className="loader">
-            <div />
-            <div />
-          </div>
-        </div>
-      )}
-
       <header
         className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
         id="jv-header"
