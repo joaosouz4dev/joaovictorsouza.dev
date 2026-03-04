@@ -1,24 +1,26 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Navbar from '../navbar';
+import LanguageSelector from '../footer/languageSelector';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Inicio' },
-  { href: '/sobre', label: 'Sobre' },
-  { href: '/servicos', label: 'Servicos' },
-  { href: '/cases', label: 'Cases' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/projetos', label: 'Projetos' },
-  { href: '/contato', label: 'Contato' },
+  { href: '/', key: 'menu.home' },
+  { href: '/sobre', key: 'menu.about' },
+  { href: '/servicos', key: 'menu.services' },
+  { href: '/cases', key: 'menu.cases' },
+  { href: '/blog', key: 'menu.blog' },
+  { href: '/projetos', key: 'menu.projects' },
+  { href: '/contato', key: 'menu.contact' },
 ];
 
-const BREADCRUMB_LABELS = {
-  sobre: 'Sobre',
-  servicos: 'Servicos',
-  cases: 'Cases',
-  blog: 'Blog',
-  projetos: 'Projetos',
-  contato: 'Contato',
+const BREADCRUMB_LABEL_KEYS = {
+  sobre: 'menu.about',
+  servicos: 'menu.services',
+  cases: 'menu.cases',
+  blog: 'menu.blog',
+  projetos: 'menu.projects',
+  contato: 'menu.contact',
 };
 
 const getActiveMenu = (pathname) => {
@@ -32,6 +34,7 @@ const getActiveMenu = (pathname) => {
 };
 
 const SiteLayout = ({ children }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(true);
@@ -67,7 +70,14 @@ const SiteLayout = ({ children }) => {
     }
   }, [darkMode]);
 
-  const menus = useMemo(() => NAV_ITEMS, []);
+  const menus = useMemo(
+    () =>
+      NAV_ITEMS.map((item) => ({
+        href: item.href,
+        label: t(item.key),
+      })),
+    [t],
+  );
 
   const toggleDarkMode = () => {
     const next = !darkMode;
@@ -88,7 +98,8 @@ const SiteLayout = ({ children }) => {
       return {
         href,
         label:
-          BREADCRUMB_LABELS[segment] ||
+          (BREADCRUMB_LABEL_KEYS[segment] &&
+            t(BREADCRUMB_LABEL_KEYS[segment])) ||
           segment
             .replace(/-/g, ' ')
             .replace(/^\w/, (char) => char.toUpperCase()),
@@ -116,7 +127,7 @@ const SiteLayout = ({ children }) => {
         <div className="container">
           {pathname !== '/' && (
             <nav className="seo-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/">Inicio</Link>
+              <Link to="/">{t('menu.home')}</Link>
               {breadcrumbItems.map((item, index) => (
                 <React.Fragment key={`${item.href}-${index}`}>
                   <span>/</span>
@@ -146,16 +157,15 @@ const SiteLayout = ({ children }) => {
                       />
                     </div>
                     <p>
-                      Especialista em WhatsApp Cloud API, Meta CAPI e chatbots
-                      com IA para escalar vendas, atendimento e integrações.
+                      {t('layout.footer.description')}
                     </p>
                     <Link className="seo-cta" to="/contato">
-                      Falar sobre o projeto
+                      {t('layout.footer.cta')}
                     </Link>
                   </div>
 
                   <div className="seo-footer-block">
-                    <h4>Navegacao rapida</h4>
+                    <h4>{t('layout.footer.quickNav')}</h4>
                     <ul className="seo-footer-links">
                       <li>
                         <Link to="/servicos/whatsapp-cloud-api">
@@ -169,17 +179,17 @@ const SiteLayout = ({ children }) => {
                       </li>
                       <li>
                         <Link to="/blog/guia-whatsapp-cloud-api">
-                          Guia tecnico principal
+                          {t('layout.footer.mainGuide')}
                         </Link>
                       </li>
                       <li>
-                        <Link to="/cases">Ver todos os cases</Link>
+                        <Link to="/cases">{t('layout.footer.viewAllCases')}</Link>
                       </li>
                     </ul>
                   </div>
 
                   <div className="seo-footer-block">
-                    <h4>Especialidades</h4>
+                    <h4>{t('layout.footer.specialties')}</h4>
                     <div className="seo-footer-tags">
                       <span>WhatsApp Cloud API</span>
                       <span>Meta Conversions API</span>
@@ -191,7 +201,7 @@ const SiteLayout = ({ children }) => {
                   </div>
 
                   <div className="seo-footer-block">
-                    <h4>Contato</h4>
+                    <h4>{t('menu.contact')}</h4>
                     <p>
                       <a href="mailto:web@joaovictorsouza.dev">
                         web@joaovictorsouza.dev
@@ -199,7 +209,7 @@ const SiteLayout = ({ children }) => {
                     </p>
                     <p>
                       <a href="/whatsapp" target="_blank" rel="noreferrer noopener">
-                        WhatsApp direto
+                        {t('layout.footer.whatsappDirect')}
                       </a>
                     </p>
                     <ul className="social-icon seo-footer-social">
@@ -208,7 +218,7 @@ const SiteLayout = ({ children }) => {
                           href="https://github.com/joaosouz4dev"
                           target="_blank"
                           rel="noreferrer noopener"
-                          aria-label="Abrir GitHub de Joao Victor Souza"
+                          aria-label={t('layout.social.github')}
                         >
                           <i className="fa fa-github" />
                         </a>
@@ -218,7 +228,7 @@ const SiteLayout = ({ children }) => {
                           href="https://www.linkedin.com/in/joaosouz4dev/"
                           target="_blank"
                           rel="noreferrer noopener"
-                          aria-label="Abrir LinkedIn de Joao Victor Souza"
+                          aria-label={t('layout.social.linkedin')}
                         >
                           <i className="fa fa-linkedin" />
                         </a>
@@ -228,21 +238,23 @@ const SiteLayout = ({ children }) => {
                           href="https://www.instagram.com/joaosouz4dev"
                           target="_blank"
                           rel="noreferrer noopener"
-                          aria-label="Abrir Instagram de Joao Victor Souza"
+                          aria-label={t('layout.social.instagram')}
                         >
                           <i className="fa fa-instagram" />
                         </a>
                       </li>
                     </ul>
+                    <LanguageSelector />
                   </div>
                 </div>
 
                 <div className="seo-footer-bottom">
                   <p>© 2015 - {new Date().getFullYear()} Joao Victor Souza</p>
                   <p>
-                    <Link to="/">Home</Link> | <Link to="/servicos">Servicos</Link>{' '}
-                    | <Link to="/blog">Blog</Link> |{' '}
-                    <Link to="/projetos">Projetos</Link>
+                    <Link to="/">{t('menu.home')}</Link> |{' '}
+                    <Link to="/servicos">{t('menu.services')}</Link> |{' '}
+                    <Link to="/blog">{t('menu.blog')}</Link> |{' '}
+                    <Link to="/projetos">{t('menu.projects')}</Link>
                   </p>
                 </div>
               </div>

@@ -83,31 +83,31 @@ const Home = () => {
   const menus = [
     {
       href: '/',
-      label: 'Inicio',
+      label: t('menu.home'),
     },
     {
       href: '/sobre',
-      label: 'Sobre',
+      label: t('menu.about'),
     },
     {
       href: '/servicos',
-      label: 'Servicos',
+      label: t('menu.services'),
     },
     {
       href: '/cases',
-      label: 'Cases',
+      label: t('menu.cases'),
     },
     {
       href: '/blog',
-      label: 'Blog',
+      label: t('menu.blog'),
     },
     {
       href: '/projetos',
-      label: 'Projetos',
+      label: t('menu.projects'),
     },
     {
       href: '/contato',
-      label: 'Contato',
+      label: t('menu.contact'),
     },
   ];
 

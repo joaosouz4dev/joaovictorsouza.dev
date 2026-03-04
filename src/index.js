@@ -13,8 +13,19 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    supportedLngs: ['pt', 'en', 'es'],
+    nonExplicitSupportedLngs: true,
+    load: 'languageOnly',
     fallbackLng: 'en',
     debug: window.location.hostname.includes('localhost'),
+    interpolation: {
+      escapeValue: false,
+    },
+    detection: {
+      order: ['querystring', 'localStorage', 'navigator'],
+      caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
+    },
     resources: {
       en: {
         translation: {
