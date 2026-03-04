@@ -30,7 +30,7 @@ const Contato = () => {
 
       <section className="seo-grid">
         <article className="seo-card">
-          <h2>Email</h2>
+          <h2>{t('contactPage.emailTitle')}</h2>
           <p>
             <a href="mailto:web@joaovictorsouza.dev">web@joaovictorsouza.dev</a>
           </p>
@@ -49,7 +49,7 @@ const Contato = () => {
           </p>
         </article>
         <article className="seo-card">
-          <h2>WhatsApp</h2>
+          <h2>{t('contactPage.whatsappTitle')}</h2>
           <p>
             <a
               href="/whatsapp"
@@ -61,6 +61,35 @@ const Contato = () => {
             </a>
           </p>
         </article>
+      </section>
+
+      <section className="seo-grid" style={{ marginTop: '14px' }}>
+        <article className="seo-card">
+          <h2>{t('contactPage.scopeTitle')}</h2>
+          <ul className="seo-list">
+            <li>{t('contactPage.scopeItems.0')}</li>
+            <li>{t('contactPage.scopeItems.1')}</li>
+            <li>{t('contactPage.scopeItems.2')}</li>
+            <li>{t('contactPage.scopeItems.3')}</li>
+          </ul>
+        </article>
+
+        <article className="seo-card">
+          <h2>{t('contactPage.responseTitle')}</h2>
+          <ul className="seo-list">
+            <li>{t('contactPage.responseItems.0')}</li>
+            <li>{t('contactPage.responseItems.1')}</li>
+            <li>{t('contactPage.responseItems.2')}</li>
+          </ul>
+        </article>
+      </section>
+
+      <section className="seo-card" style={{ marginTop: '18px' }}>
+        <h2>{t('contactPage.finalCtaTitle')}</h2>
+        <p>{t('contactPage.finalCtaDescription')}</p>
+        <a className="seo-cta" href="/whatsapp">
+          {t('contactPage.finalCtaButton')}
+        </a>
       </section>
     </SiteLayout>
   );

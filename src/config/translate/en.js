@@ -143,6 +143,24 @@ const en = {
       'AWS, observability and deployment best practices',
       'MySQL and business-oriented data modeling',
     ],
+    processTitle: 'How I run projects',
+    process: [
+      'Technical diagnosis of current scenario and business goals.',
+      'Phased implementation plan with clear priorities.',
+      'Incremental delivery with tests and monitoring.',
+      'Post go-live follow-up for stabilization.',
+    ],
+    principlesTitle: 'Working principles',
+    principles: [
+      'Simple, robust and documented architecture.',
+      'Reliable data for operational decisions.',
+      'Automation with fallback and risk control.',
+      'Direct communication focused on outcomes.',
+    ],
+    ctaTitle: 'Do you want to evolve operations with a strong technical base?',
+    ctaDescription:
+      'If you already have a clear challenge or need to map opportunities, I can help with an objective diagnosis.',
+    ctaButton: 'Discuss your project',
   },
   servicesPage: {
     seoTitle: 'WhatsApp, Meta and AI Integration Services | Joao Victor Souza',
@@ -343,10 +361,29 @@ const en = {
     heroTitle: "Let's design your integration architecture",
     heroDescription:
       'Share your technical context and business goal to receive an initial diagnosis.',
+    emailTitle: 'Email',
     linkedinTitle: 'LinkedIn',
+    whatsappTitle: 'WhatsApp',
     linkedinAria: 'Open LinkedIn profile',
     whatsappAria: 'Open quick WhatsApp contact',
     whatsappCta: 'Open quick contact',
+    scopeTitle: 'Project types I handle',
+    scopeItems: [
+      'WhatsApp Cloud API and support automation.',
+      'Meta Pixel + CAPI with reliable measurement.',
+      'CRM/ERP integrations and operational flows.',
+      'AI chatbots with human handoff.',
+    ],
+    responseTitle: 'How the first contact works',
+    responseItems: [
+      'I review your technical context and business objective.',
+      'Initial response with architecture direction and next steps.',
+      'Definition of initial scope to start quickly.',
+    ],
+    finalCtaTitle: 'Ready to move your project forward?',
+    finalCtaDescription:
+      'Message me on WhatsApp to align technical priorities, timeline and execution strategy.',
+    finalCtaButton: 'Start conversation on WhatsApp',
   },
   contact: {
     title: 'My Contacts',

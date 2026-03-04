@@ -64,6 +64,36 @@ const Sobre = () => {
           </ul>
         </article>
       </section>
+
+      <section className="seo-grid" style={{ marginTop: '14px' }}>
+        <article className="seo-card">
+          <h2>{t('aboutPage.processTitle')}</h2>
+          <ol className="seo-list">
+            <li>{t('aboutPage.process.0')}</li>
+            <li>{t('aboutPage.process.1')}</li>
+            <li>{t('aboutPage.process.2')}</li>
+            <li>{t('aboutPage.process.3')}</li>
+          </ol>
+        </article>
+
+        <article className="seo-card">
+          <h2>{t('aboutPage.principlesTitle')}</h2>
+          <ul className="seo-list">
+            <li>{t('aboutPage.principles.0')}</li>
+            <li>{t('aboutPage.principles.1')}</li>
+            <li>{t('aboutPage.principles.2')}</li>
+            <li>{t('aboutPage.principles.3')}</li>
+          </ul>
+        </article>
+      </section>
+
+      <section className="seo-card" style={{ marginTop: '18px' }}>
+        <h2>{t('aboutPage.ctaTitle')}</h2>
+        <p>{t('aboutPage.ctaDescription')}</p>
+        <a className="seo-cta" href="/contato">
+          {t('aboutPage.ctaButton')}
+        </a>
+      </section>
     </SiteLayout>
   );
 };

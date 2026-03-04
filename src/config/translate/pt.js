@@ -144,6 +144,24 @@ const pt = {
       'AWS, observabilidade e boas praticas de deploy',
       'MySQL e modelagem orientada a negocio',
     ],
+    processTitle: 'Como eu conduzo projetos',
+    process: [
+      'Diagnostico tecnico do cenario atual e metas de negocio.',
+      'Plano de implementacao por fases com prioridades claras.',
+      'Entrega incremental com testes e monitoramento.',
+      'Acompanhamento pos-go-live para estabilizacao.',
+    ],
+    principlesTitle: 'Principios de trabalho',
+    principles: [
+      'Arquitetura simples, robusta e documentada.',
+      'Dados confiaveis para decisao operacional.',
+      'Automacao com fallback e controle de risco.',
+      'Comunicacao direta com foco em resultado.',
+    ],
+    ctaTitle: 'Quer evoluir sua operacao com base tecnica forte?',
+    ctaDescription:
+      'Se voce ja tem desafio claro ou quer mapear oportunidades, posso ajudar com um diagnostico objetivo.',
+    ctaButton: 'Falar sobre o projeto',
   },
   servicesPage: {
     seoTitle: 'Servicos de Integracao WhatsApp, Meta e IA | Joao Victor Souza',
@@ -344,10 +362,29 @@ const pt = {
     heroTitle: 'Vamos desenhar sua arquitetura de integracao',
     heroDescription:
       'Compartilhe seu contexto tecnico e objetivo de negocio para receber um diagnostico inicial.',
+    emailTitle: 'Email',
     linkedinTitle: 'LinkedIn',
+    whatsappTitle: 'WhatsApp',
     linkedinAria: 'Abrir perfil no LinkedIn',
     whatsappAria: 'Abrir contato rapido no WhatsApp',
     whatsappCta: 'Abrir contato rapido',
+    scopeTitle: 'Tipos de projeto que atendo',
+    scopeItems: [
+      'WhatsApp Cloud API e automacao de atendimento.',
+      'Meta Pixel + CAPI com qualidade de mensuracao.',
+      'Integracoes CRM/ERP e fluxos operacionais.',
+      'Chatbots com IA e handoff humano.',
+    ],
+    responseTitle: 'Como funciona o primeiro contato',
+    responseItems: [
+      'Leitura do contexto tecnico e objetivo de negocio.',
+      'Resposta inicial com direcao de arquitetura e proximos passos.',
+      'Definicao de escopo inicial para comecar rapido.',
+    ],
+    finalCtaTitle: 'Pronto para tirar seu projeto do papel?',
+    finalCtaDescription:
+      'Me chame no WhatsApp para alinharmos prioridade tecnica, prazo e melhor estrategia de execucao.',
+    finalCtaButton: 'Iniciar conversa no WhatsApp',
   },
   contact: {
     title: 'Meus Contatos',

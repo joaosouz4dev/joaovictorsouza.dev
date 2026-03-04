@@ -1,501 +1,600 @@
 import { toBaseLanguage } from '../../utils/i18n';
 
+const serviceDefinitions = [
+  {
+    slug: 'meta-ads-e-integracoes',
+    content: {
+      pt: {
+        title: 'Meta Ads e Integracoes (Pixel + CAPI)',
+        summary: 'Mensuracao server-side com foco em atribuicao e dados confiaveis.',
+        heroTitle: 'Implementacao Meta Pixel + Conversions API',
+        heroDescription:
+          'Arquitetura de tracking com deduplicacao, governanca de eventos e monitoramento.',
+        steps: [
+          'Diagnostico do tracking atual.',
+          'Desenho de arquitetura Pixel + CAPI.',
+          'Implementacao, validacao e ajustes.',
+        ],
+        deliverables: [
+          'Mapa de eventos do funil.',
+          'Implementacao Pixel + CAPI.',
+          'Checklist de qualidade e dashboard.',
+        ],
+        faq: [
+          {
+            question: 'Quando usar Pixel e CAPI juntos?',
+            answer: 'Quando precisa de resiliencia e menor perda de eventos.',
+          },
+          {
+            question: 'Isso melhora performance sozinho?',
+            answer: 'Melhora a qualidade do dado para decisao. Midia e criativo continuam essenciais.',
+          },
+        ],
+        keywords: 'meta pixel, capi, conversions api, mensuracao',
+      },
+      en: {
+        title: 'Meta Ads and Integrations (Pixel + CAPI)',
+        summary: 'Server-side measurement focused on attribution and reliable data.',
+        heroTitle: 'Meta Pixel + Conversions API implementation',
+        heroDescription:
+          'Tracking architecture with deduplication, event governance and monitoring.',
+        steps: [
+          'Current tracking diagnosis.',
+          'Pixel + CAPI architecture design.',
+          'Implementation, validation and tuning.',
+        ],
+        deliverables: [
+          'Funnel event map.',
+          'Pixel + CAPI implementation.',
+          'Quality checklist and dashboard.',
+        ],
+        faq: [
+          {
+            question: 'When should Pixel and CAPI be combined?',
+            answer: 'When you need stronger resilience and lower event loss.',
+          },
+          {
+            question: 'Does this alone improve campaign performance?',
+            answer: 'It improves data quality for decisions. Media and creative remain key.',
+          },
+        ],
+        keywords: 'meta pixel, capi, conversions api, measurement',
+      },
+      es: {
+        title: 'Meta Ads e Integraciones (Pixel + CAPI)',
+        summary: 'Medicion server-side enfocada en atribucion y datos confiables.',
+        heroTitle: 'Implementacion Meta Pixel + Conversions API',
+        heroDescription:
+          'Arquitectura de tracking con deduplicacion, gobernanza de eventos y monitoreo.',
+        steps: [
+          'Diagnostico del tracking actual.',
+          'Diseno de arquitectura Pixel + CAPI.',
+          'Implementacion, validacion y ajustes.',
+        ],
+        deliverables: [
+          'Mapa de eventos del embudo.',
+          'Implementacion Pixel + CAPI.',
+          'Checklist de calidad y dashboard.',
+        ],
+        faq: [
+          {
+            question: 'Cuando usar Pixel y CAPI juntos?',
+            answer: 'Cuando necesitas mayor resiliencia y menor perdida de eventos.',
+          },
+          {
+            question: 'Esto mejora performance por si solo?',
+            answer: 'Mejora la calidad del dato. Medios y creativos siguen siendo clave.',
+          },
+        ],
+        keywords: 'meta pixel, capi, conversions api, medicion',
+      },
+    },
+  },
+  {
+    slug: 'whatsapp-cloud-api',
+    content: {
+      pt: {
+        title: 'WhatsApp Cloud API',
+        summary: 'Integracao oficial com webhook seguro, templates, filas e handoff humano.',
+        heroTitle: 'WhatsApp Cloud API para atendimento e vendas',
+        heroDescription:
+          'Fluxos robustos com idempotencia, observabilidade e integracao a CRM/ERP.',
+        steps: [
+          'Mapeamento de jornada e casos de uso.',
+          'Webhook seguro com idempotencia.',
+          'Orquestracao com templates e handoff.',
+        ],
+        deliverables: [
+          'Webhook em producao.',
+          'Fluxos de atendimento com fallback.',
+          'Integracao com CRM e monitoramento.',
+        ],
+        faq: [
+          {
+            question: 'Voce trabalha com API oficial?',
+            answer: 'Sim, somente API oficial para operacao profissional.',
+          },
+          {
+            question: 'Consegue integrar com meu CRM?',
+            answer: 'Sim, via API ou webhooks do CRM existente.',
+          },
+        ],
+        keywords: 'whatsapp cloud api, webhook whatsapp, templates',
+      },
+      en: {
+        title: 'WhatsApp Cloud API',
+        summary: 'Official integration with secure webhook, templates, queues and human handoff.',
+        heroTitle: 'WhatsApp Cloud API for support and sales',
+        heroDescription: 'Robust flows with idempotency, observability and CRM/ERP integration.',
+        steps: [
+          'Journey and use-case mapping.',
+          'Secure webhook with idempotency.',
+          'Template orchestration and human handoff.',
+        ],
+        deliverables: [
+          'Production-ready webhook.',
+          'Support flows with fallback.',
+          'CRM integration and monitoring.',
+        ],
+        faq: [
+          {
+            question: 'Do you work with the official API?',
+            answer: 'Yes, official API only for professional operations.',
+          },
+          {
+            question: 'Can you integrate with my CRM?',
+            answer: 'Yes, through API or CRM webhooks.',
+          },
+        ],
+        keywords: 'whatsapp cloud api, whatsapp webhook, templates',
+      },
+      es: {
+        title: 'WhatsApp Cloud API',
+        summary: 'Integracion oficial con webhook seguro, plantillas, colas y handoff humano.',
+        heroTitle: 'WhatsApp Cloud API para atencion y ventas',
+        heroDescription: 'Flujos robustos con idempotencia, observabilidad e integracion a CRM/ERP.',
+        steps: [
+          'Mapeo de jornada y casos de uso.',
+          'Webhook seguro con idempotencia.',
+          'Orquestacion con plantillas y handoff.',
+        ],
+        deliverables: [
+          'Webhook productivo.',
+          'Flujos de atencion con fallback.',
+          'Integracion con CRM y monitoreo.',
+        ],
+        faq: [
+          {
+            question: 'Trabajas con API oficial?',
+            answer: 'Si, solo API oficial para operacion profesional.',
+          },
+          {
+            question: 'Puedes integrar con mi CRM?',
+            answer: 'Si, via API o webhooks del CRM.',
+          },
+        ],
+        keywords: 'whatsapp cloud api, webhook whatsapp, plantillas',
+      },
+    },
+  },
+  {
+    slug: 'chatbots-e-ia',
+    content: {
+      pt: {
+        title: 'Chatbots e IA',
+        summary: 'Chatbots com IA para suporte e vendas com RAG e handoff humano.',
+        heroTitle: 'Automacao com IA sem perder controle de qualidade',
+        heroDescription: 'Arquitetura com guardrails, avaliacao e melhoria continua.',
+        steps: [
+          'Definicao de objetivos do bot.',
+          'Base de conhecimento e politicas.',
+          'Handoff humano e monitoramento.',
+        ],
+        deliverables: [
+          'Fluxos IA + regras de negocio.',
+          'Integracao com CRM/FAQ.',
+          'Playbook de operacao.',
+        ],
+        faq: [
+          {
+            question: 'Bot substitui time humano?',
+            answer: 'Nao. O modelo ideal combina IA e equipe humana.',
+          },
+          {
+            question: 'Voce implementa RAG?',
+            answer: 'Sim, para reduzir alucinacoes e melhorar precisao.',
+          },
+        ],
+        keywords: 'chatbot ia, rag, atendimento automatizado',
+      },
+      en: {
+        title: 'Chatbots and AI',
+        summary: 'AI chatbots for support and sales with RAG and human handoff.',
+        heroTitle: 'AI automation with quality control',
+        heroDescription: 'Architecture with guardrails, evaluation and continuous improvement.',
+        steps: [
+          'Define bot goals.',
+          'Knowledge base and policies.',
+          'Human handoff and monitoring.',
+        ],
+        deliverables: [
+          'AI + business rules flows.',
+          'CRM/FAQ integration.',
+          'Operations playbook.',
+        ],
+        faq: [
+          {
+            question: 'Can bots replace human teams?',
+            answer: 'No. The best model combines AI and humans.',
+          },
+          {
+            question: 'Do you implement RAG?',
+            answer: 'Yes, to reduce hallucinations and improve accuracy.',
+          },
+        ],
+        keywords: 'ai chatbot, rag, support automation',
+      },
+      es: {
+        title: 'Chatbots e IA',
+        summary: 'Chatbots con IA para soporte y ventas con RAG y handoff humano.',
+        heroTitle: 'Automatizacion con IA y control de calidad',
+        heroDescription: 'Arquitectura con guardrails, evaluacion y mejora continua.',
+        steps: [
+          'Definicion de objetivos del bot.',
+          'Base de conocimiento y politicas.',
+          'Handoff humano y monitoreo.',
+        ],
+        deliverables: [
+          'Flujos IA + reglas de negocio.',
+          'Integracion con CRM/FAQ.',
+          'Playbook operativo.',
+        ],
+        faq: [
+          {
+            question: 'El bot reemplaza al equipo humano?',
+            answer: 'No. El mejor modelo combina IA y humanos.',
+          },
+          {
+            question: 'Implementas RAG?',
+            answer: 'Si, para reducir alucinaciones y mejorar precision.',
+          },
+        ],
+        keywords: 'chatbot ia, rag, automatizacion atencion',
+      },
+    },
+  },
+  {
+    slug: 'automacao-e-integracoes',
+    content: {
+      pt: {
+        title: 'Automacao e Integracoes',
+        summary: 'Conexao entre APIs, CRM, ERP e marketing para reduzir retrabalho.',
+        heroTitle: 'Automacao de processos entre sistemas',
+        heroDescription: 'Pipelines com controle de erro, rastreabilidade e estabilidade.',
+        steps: ['Mapeamento de fluxos atuais.', 'Desenho do fluxo alvo.', 'Implementacao com validacoes.'],
+        deliverables: ['Arquitetura documentada.', 'Automacoes monitoradas.', 'Plano de contingencia.'],
+        faq: [
+          {
+            question: 'Quais sistemas voce integra?',
+            answer: 'CRMs, ERPs, gateways, plataformas de marketing e APIs customizadas.',
+          },
+          {
+            question: 'Como lida com falhas?',
+            answer: 'Retries, filas de erro, alertas e rastreabilidade por evento.',
+          },
+        ],
+        keywords: 'automacao, integracao api, crm erp',
+      },
+      en: {
+        title: 'Automation and Integrations',
+        summary: 'Connections across APIs, CRM, ERP and marketing to reduce rework.',
+        heroTitle: 'Process automation across systems',
+        heroDescription: 'Pipelines with error control, traceability and stability.',
+        steps: ['Map current flows.', 'Design target flow.', 'Implement with validations.'],
+        deliverables: ['Documented architecture.', 'Monitored automations.', 'Contingency plan.'],
+        faq: [
+          {
+            question: 'Which systems do you integrate?',
+            answer: 'CRMs, ERPs, gateways, marketing tools and custom APIs.',
+          },
+          {
+            question: 'How do you handle failures?',
+            answer: 'Retries, error queues, alerts and per-event traceability.',
+          },
+        ],
+        keywords: 'automation, api integration, crm erp',
+      },
+      es: {
+        title: 'Automatizacion e Integraciones',
+        summary: 'Conexion entre APIs, CRM, ERP y marketing para reducir retrabajo.',
+        heroTitle: 'Automatizacion de procesos entre sistemas',
+        heroDescription: 'Pipelines con control de errores, trazabilidad y estabilidad.',
+        steps: ['Mapeo de flujos actuales.', 'Diseno del flujo objetivo.', 'Implementacion con validaciones.'],
+        deliverables: ['Arquitectura documentada.', 'Automatizaciones monitoreadas.', 'Plan de contingencia.'],
+        faq: [
+          {
+            question: 'Que sistemas integras?',
+            answer: 'CRMs, ERPs, gateways, herramientas de marketing y APIs custom.',
+          },
+          {
+            question: 'Como manejas fallas?',
+            answer: 'Retries, colas de error, alertas y trazabilidad por evento.',
+          },
+        ],
+        keywords: 'automatizacion, integracion api, crm erp',
+      },
+    },
+  },
+  {
+    slug: 'crm-e-revenue-operations',
+    content: {
+      pt: {
+        title: 'CRM e Revenue Operations',
+        summary: 'Estrutura de funil, lead scoring e automacoes para escalar conversao.',
+        heroTitle: 'Operacao comercial orientada por dados',
+        heroDescription: 'Conexao entre marketing, vendas e atendimento com SLA e governanca.',
+        steps: ['Mapeamento do funil.', 'Regras de lead routing e SLA.', 'Automacoes e dashboard.'],
+        deliverables: ['Blueprint de funil.', 'Playbook de operacao comercial.', 'Matriz de metricas.'],
+        faq: [
+          {
+            question: 'Serve para time pequeno?',
+            answer: 'Sim. Comecamos pelo fluxo mais critico e expandimos.',
+          },
+          {
+            question: 'Integra com WhatsApp?',
+            answer: 'Sim, conectando entrada, qualificacao e distribuicao de leads.',
+          },
+        ],
+        keywords: 'crm, revenue operations, lead scoring, funil vendas',
+      },
+      en: {
+        title: 'CRM and Revenue Operations',
+        summary: 'Funnel, lead scoring and automation structure to scale conversion.',
+        heroTitle: 'Data-driven revenue operations',
+        heroDescription: 'Connection between marketing, sales and support with SLA and governance.',
+        steps: ['Map current funnel.', 'Set lead routing and SLA rules.', 'Automations and dashboard.'],
+        deliverables: ['Funnel blueprint.', 'Commercial operations playbook.', 'Metrics matrix.'],
+        faq: [
+          {
+            question: 'Does this fit small teams?',
+            answer: 'Yes. We start with the most critical flow and expand.',
+          },
+          {
+            question: 'Can this integrate with WhatsApp?',
+            answer: 'Yes, connecting inbound, qualification and lead distribution.',
+          },
+        ],
+        keywords: 'crm, revenue operations, lead scoring, sales funnel',
+      },
+      es: {
+        title: 'CRM y Revenue Operations',
+        summary: 'Estructura de embudo, lead scoring y automatizaciones para escalar conversion.',
+        heroTitle: 'Operacion comercial orientada por datos',
+        heroDescription: 'Conexion entre marketing, ventas y atencion con SLA y gobernanza.',
+        steps: ['Mapeo del embudo.', 'Reglas de lead routing y SLA.', 'Automatizaciones y dashboard.'],
+        deliverables: ['Blueprint del embudo.', 'Playbook comercial.', 'Matriz de metricas.'],
+        faq: [
+          {
+            question: 'Sirve para equipos pequenos?',
+            answer: 'Si. Iniciamos por el flujo mas critico y luego expandimos.',
+          },
+          {
+            question: 'Integra con WhatsApp?',
+            answer: 'Si, conectando entrada, calificacion y distribucion de leads.',
+          },
+        ],
+        keywords: 'crm, revenue operations, lead scoring, embudo ventas',
+      },
+    },
+  },
+  {
+    slug: 'integracao-erp-e-backoffice',
+    content: {
+      pt: {
+        title: 'Integracao ERP e Backoffice',
+        summary: 'Sincronizacao entre ERP, financeiro, estoque e atendimento.',
+        heroTitle: 'Backoffice integrado com menos retrabalho',
+        heroDescription: 'Conectores com conciliacao de dados, logs e operacao assistida.',
+        steps: ['Mapear entidades e regras.', 'Modelar contratos de integracao.', 'Implantar conciliacao e alertas.'],
+        deliverables: ['Mapa de integracao ERP.', 'Conectores homologados.', 'Fluxo de conciliacao.'],
+        faq: [
+          {
+            question: 'Integra ERP legado?',
+            answer: 'Sim, com camada de adaptacao para reduzir risco.',
+          },
+          {
+            question: 'Como evita divergencia de dados?',
+            answer: 'Idempotencia, reconciliacao periodica e alarmes em casos criticos.',
+          },
+        ],
+        keywords: 'integracao erp, backoffice, conciliacao dados',
+      },
+      en: {
+        title: 'ERP and Backoffice Integration',
+        summary: 'Synchronization across ERP, finance, inventory and support.',
+        heroTitle: 'Integrated backoffice with less rework',
+        heroDescription: 'Connectors with data reconciliation, logs and assisted operations.',
+        steps: ['Map entities and rules.', 'Model integration contracts.', 'Deploy reconciliation and alerts.'],
+        deliverables: ['ERP integration map.', 'Validated connectors.', 'Reconciliation flow.'],
+        faq: [
+          {
+            question: 'Do you integrate legacy ERP?',
+            answer: 'Yes, with an adaptation layer to reduce risk.',
+          },
+          {
+            question: 'How do you avoid data mismatch?',
+            answer: 'Idempotency, periodic reconciliation and critical alarms.',
+          },
+        ],
+        keywords: 'erp integration, backoffice, data reconciliation',
+      },
+      es: {
+        title: 'Integracion ERP y Backoffice',
+        summary: 'Sincronizacion entre ERP, financiero, inventario y atencion.',
+        heroTitle: 'Backoffice integrado con menos retrabajo',
+        heroDescription: 'Conectores con conciliacion de datos, logs y operacion asistida.',
+        steps: ['Mapear entidades y reglas.', 'Modelar contratos de integracion.', 'Implantar conciliacion y alertas.'],
+        deliverables: ['Mapa de integracion ERP.', 'Conectores homologados.', 'Flujo de conciliacion.'],
+        faq: [
+          {
+            question: 'Integras ERP legado?',
+            answer: 'Si, con capa de adaptacion para reducir riesgo.',
+          },
+          {
+            question: 'Como evitas divergencia de datos?',
+            answer: 'Idempotencia, conciliacion periodica y alarmas criticas.',
+          },
+        ],
+        keywords: 'integracion erp, backoffice, conciliacion datos',
+      },
+    },
+  },
+  {
+    slug: 'observabilidade-e-confiabilidade',
+    content: {
+      pt: {
+        title: 'Observabilidade e Confiabilidade',
+        summary: 'SLO, logs, metricas e alertas para integracoes criticas.',
+        heroTitle: 'Operacao previsivel com observabilidade pratica',
+        heroDescription: 'Monitoramento de webhook, filas, workers e APIs com alertas acionaveis.',
+        steps: ['Definir SLO e eventos criticos.', 'Padronizar logs e metricas.', 'Implementar alertas e runbooks.'],
+        deliverables: ['Dashboard operacional.', 'Alertas com thresholds.', 'Runbooks de resposta.'],
+        faq: [
+          {
+            question: 'Isso vale para produtos menores?',
+            answer: 'Sim, o nivel de observabilidade e proporcional ao tamanho da operacao.',
+          },
+          {
+            question: 'Pode usar stack atual?',
+            answer: 'Sim, aproveitando ferramentas existentes e evoluindo por fases.',
+          },
+        ],
+        keywords: 'observabilidade, monitoramento, confiabilidade, alertas',
+      },
+      en: {
+        title: 'Observability and Reliability',
+        summary: 'SLO, logs, metrics and alerts for critical integrations.',
+        heroTitle: 'Predictable operations with practical observability',
+        heroDescription: 'Monitoring for webhook, queues, workers and APIs with actionable alerts.',
+        steps: ['Define SLO and critical events.', 'Standardize logs and metrics.', 'Implement alerts and runbooks.'],
+        deliverables: ['Operations dashboard.', 'Threshold-based alerts.', 'Incident runbooks.'],
+        faq: [
+          {
+            question: 'Is this useful for smaller products?',
+            answer: 'Yes, observability depth should match operation size.',
+          },
+          {
+            question: 'Can we keep current stack?',
+            answer: 'Yes, reusing tools and evolving in phases.',
+          },
+        ],
+        keywords: 'observability, monitoring, reliability, alerts',
+      },
+      es: {
+        title: 'Observabilidad y Confiabilidad',
+        summary: 'SLO, logs, metricas y alertas para integraciones criticas.',
+        heroTitle: 'Operacion previsible con observabilidad practica',
+        heroDescription: 'Monitoreo de webhook, colas, workers y APIs con alertas accionables.',
+        steps: ['Definir SLO y eventos criticos.', 'Estandarizar logs y metricas.', 'Implementar alertas y runbooks.'],
+        deliverables: ['Dashboard operativo.', 'Alertas con thresholds.', 'Runbooks de incidente.'],
+        faq: [
+          {
+            question: 'Esto sirve para productos pequenos?',
+            answer: 'Si, la profundidad se ajusta al tamano de la operacion.',
+          },
+          {
+            question: 'Se puede mantener stack actual?',
+            answer: 'Si, reutilizando herramientas y evolucionando por fases.',
+          },
+        ],
+        keywords: 'observabilidad, monitoreo, confiabilidad, alertas',
+      },
+    },
+  },
+  {
+    slug: 'arquitetura-e-modernizacao-backend',
+    content: {
+      pt: {
+        title: 'Arquitetura e Modernizacao Backend',
+        summary: 'Evolucao de legado para arquitetura modular e escalavel.',
+        heroTitle: 'Modernizacao por fases sem parar a operacao',
+        heroDescription: 'Plano tecnico com refatoracao incremental, testes e observabilidade.',
+        steps: ['Assessment tecnico.', 'Arquitetura alvo e roadmap.', 'Migracao incremental com controle.'],
+        deliverables: ['Diagnostico de riscos.', 'Roadmap de modernizacao.', 'Guia de evolucao continua.'],
+        faq: [
+          {
+            question: 'Precisa reescrever tudo?',
+            answer: 'Nao. O foco e migrar por fases com baixo risco.',
+          },
+          {
+            question: 'Como evitar regressao?',
+            answer: 'Com testes de contrato, rollout controlado e monitoramento ativo.',
+          },
+        ],
+        keywords: 'arquitetura backend, modernizacao legado, refatoracao',
+      },
+      en: {
+        title: 'Backend Architecture and Modernization',
+        summary: 'Legacy evolution to modular and scalable architecture.',
+        heroTitle: 'Phased modernization without stopping operations',
+        heroDescription: 'Technical plan with incremental refactor, tests and observability.',
+        steps: ['Technical assessment.', 'Target architecture and roadmap.', 'Incremental migration with control.'],
+        deliverables: ['Risk diagnosis.', 'Modernization roadmap.', 'Continuous evolution guide.'],
+        faq: [
+          {
+            question: 'Do we need a full rewrite?',
+            answer: 'No. The focus is phased migration with low risk.',
+          },
+          {
+            question: 'How do you avoid regressions?',
+            answer: 'Contract tests, controlled rollout and active monitoring.',
+          },
+        ],
+        keywords: 'backend architecture, legacy modernization, refactor',
+      },
+      es: {
+        title: 'Arquitectura y Modernizacion Backend',
+        summary: 'Evolucion de legado hacia arquitectura modular y escalable.',
+        heroTitle: 'Modernizacion por fases sin detener operacion',
+        heroDescription: 'Plan tecnico con refactor incremental, pruebas y observabilidad.',
+        steps: ['Assessment tecnico.', 'Arquitectura objetivo y roadmap.', 'Migracion incremental controlada.'],
+        deliverables: ['Diagnostico de riesgos.', 'Roadmap de modernizacion.', 'Guia de evolucion continua.'],
+        faq: [
+          {
+            question: 'Hace falta reescribir todo?',
+            answer: 'No. El foco es migrar por fases con bajo riesgo.',
+          },
+          {
+            question: 'Como evitar regresiones?',
+            answer: 'Con pruebas de contrato, rollout controlado y monitoreo activo.',
+          },
+        ],
+        keywords: 'arquitectura backend, modernizacion legado, refactor',
+      },
+    },
+  },
+];
+
+const buildServicesForLanguage = (language) =>
+  serviceDefinitions.map((service) => {
+    const localized = service.content[language] || service.content.pt;
+    return {
+      slug: service.slug,
+      title: localized.title,
+      summary: localized.summary,
+      heroTitle: localized.heroTitle,
+      heroDescription: localized.heroDescription,
+      steps: localized.steps,
+      deliverables: localized.deliverables,
+      faq: localized.faq,
+      keywords: localized.keywords,
+    };
+  });
+
 const servicesByLanguage = {
-  pt: [
-    {
-      slug: 'meta-ads-e-integracoes',
-      title: 'Meta Ads e Integracoes (Pixel + CAPI)',
-      summary:
-        'Implementacao de mensuracao server-side para melhorar atribuicao, confiabilidade de eventos e tomada de decisao em campanhas.',
-      heroTitle: 'Especialista em integracoes Meta Pixel e Conversions API',
-      heroDescription:
-        'Estruturo tracking confiavel para times de marketing e operacao com Pixel + CAPI, deduplicacao de eventos e monitoramento continuo.',
-      steps: [
-        'Diagnostico de tracking atual (Pixel, GTM, CAPI, qualidade de eventos).',
-        'Desenho da arquitetura de coleta client-side e server-side.',
-        'Implementacao de eventos com deduplicacao por event_id.',
-        'Validacao em Events Manager e ajustes de consistencia.',
-        'Entrega de documentacao tecnica e plano de manutencao.',
-      ],
-      deliverables: [
-        'Mapeamento do funil com eventos prioritarios.',
-        'Implementacao de Pixel + CAPI com padrao de dados.',
-        'Checklist de qualidade de eventos e testes.',
-        'Dashboard de acompanhamento operacional.',
-      ],
-      faq: [
-        {
-          question: 'Quando usar Pixel e CAPI juntos?',
-          answer:
-            'Quando voce quer robustez de mensuracao e resiliencia contra bloqueios do navegador. O padrao recomendado e uso combinado com deduplicacao.',
-        },
-        {
-          question: 'A implementacao melhora performance de campanha sozinha?',
-          answer:
-            'Ela melhora a qualidade dos dados para decisao. Resultado em CPA/ROAS depende tambem de estrategia de midia e criativos.',
-        },
-        {
-          question: 'Integra com e-commerce e CRM?',
-          answer:
-            'Sim. A arquitetura pode enviar eventos de navegacao, checkout, compra, lead e eventos de CRM.',
-        },
-      ],
-      keywords:
-        'meta pixel, conversions api, capi, events manager, integracao meta ads',
-    },
-    {
-      slug: 'whatsapp-cloud-api',
-      title: 'WhatsApp Cloud API',
-      summary:
-        'Integracao completa de WhatsApp Business Platform com webhooks, templates, filas e handoff humano.',
-      heroTitle: 'Integracao WhatsApp Cloud API para vendas e atendimento',
-      heroDescription:
-        'Projeto fluxos de conversa estaveis e escalaveis, com observabilidade e integracao a CRM, ERP e sistemas internos.',
-      steps: [
-        'Mapeamento de jornadas de atendimento e conversao.',
-        'Configuracao de webhook, validacao de assinatura e seguranca.',
-        'Implementacao de templates e governanca de conteudo.',
-        'Criacao de orquestracao com regras de negocio e fallback.',
-        'Integracao com CRM e acompanhamento de metricas operacionais.',
-      ],
-      deliverables: [
-        'Webhook robusto com idempotencia.',
-        'Fluxos de bot com handoff humano.',
-        'Fila, retry, DLQ e monitoramento.',
-        'Plano de deploy e operacao.',
-      ],
-      faq: [
-        {
-          question: 'Voce trabalha com API oficial?',
-          answer:
-            'Sim, a implementacao e focada em WhatsApp Cloud API para operacao profissional com menor risco.',
-        },
-        {
-          question: 'Da para integrar com CRM existente?',
-          answer:
-            'Sim. Posso integrar com CRM proprietario ou de mercado usando webhooks e APIs.',
-        },
-        {
-          question: 'Existe suporte para alta demanda?',
-          answer:
-            'Sim, com fila, controle de taxa, retries, observabilidade e processo de operacao.',
-        },
-      ],
-      keywords:
-        'whatsapp cloud api, integracao whatsapp, webhook whatsapp, templates whatsapp',
-    },
-    {
-      slug: 'chatbots-e-ia',
-      title: 'Chatbots e IA',
-      summary:
-        'Construcao de chatbots com IA aplicada a suporte e vendas, com RAG, guardrails e handoff para equipe humana.',
-      heroTitle: 'Chatbots com IA para atendimento e qualificacao de leads',
-      heroDescription:
-        'Implemento bots orientados a resultado, com contexto de negocio, seguranca e controle de qualidade das respostas.',
-      steps: [
-        'Definicao de objetivos operacionais e comerciais do bot.',
-        'Estrutura de base de conhecimento e politicas de resposta.',
-        'Implementacao de orquestracao IA + regras de negocio.',
-        'Configuracao de fallback, handoff e trilha de auditoria.',
-        'Ajustes por metricas reais de uso e conversao.',
-      ],
-      deliverables: [
-        'Fluxo de atendimento automatizado com fallback.',
-        'Integracao com FAQ, CRM e sistemas internos.',
-        'Playbook de operacao e monitoramento.',
-        'Checklist de seguranca e privacidade.',
-      ],
-      faq: [
-        {
-          question: 'Bot com IA substitui totalmente o atendimento humano?',
-          answer:
-            'Nao. O melhor modelo e colaborativo: IA resolve o repetitivo e humano trata casos sensiveis ou complexos.',
-        },
-        {
-          question: 'Voce implementa RAG?',
-          answer:
-            'Sim. RAG e usado para reduzir respostas inventadas e aumentar precisao em consultas de base interna.',
-        },
-        {
-          question: 'Como medir resultado do bot?',
-          answer:
-            'Uso metricas como containment rate, tempo medio, CSAT e conversao por etapa.',
-        },
-      ],
-      keywords: 'chatbot com ia, rag, bot whatsapp, automacao atendimento',
-    },
-    {
-      slug: 'automacao-e-integracoes',
-      title: 'Automacao e Integracoes',
-      summary:
-        'Integro APIs, CRM, ERP e plataformas de marketing para eliminar retrabalho e acelerar operacoes.',
-      heroTitle: 'Automacao de processos e integracao entre sistemas',
-      heroDescription:
-        'Desenvolvo pipelines de integracao com confiabilidade, controle de erros e visibilidade operacional.',
-      steps: [
-        'Levantamento dos fluxos atuais e gargalos de operacao.',
-        'Desenho do fluxo alvo entre sistemas e eventos.',
-        'Implementacao de conectores, validacoes e observabilidade.',
-        'Homologacao com equipe e plano de rollout.',
-        'Treinamento tecnico e acompanhamento inicial.',
-      ],
-      deliverables: [
-        'Arquitetura de integracao documentada.',
-        'Processos automatizados com monitoramento.',
-        'Plano de contingencia e suporte operacional.',
-        'Melhoria de tempo e qualidade de dados.',
-      ],
-      faq: [
-        {
-          question: 'Quais sistemas voce integra?',
-          answer:
-            'CRMs, ERPs, gateways, plataformas de marketing e APIs proprietarias, conforme o cenario do cliente.',
-        },
-        {
-          question: 'Como voce trata falhas de integracao?',
-          answer:
-            'Com retries, fila de erro, alertas e rastreabilidade por evento.',
-        },
-        {
-          question: 'Pode comecar pequeno e evoluir?',
-          answer:
-            'Sim. Costumo iniciar por um fluxo critico e expandir em ondas.',
-        },
-      ],
-      keywords:
-        'automacao de processos, integracao crm erp, integracao api, desenvolvimento integracoes',
-    },
-  ],
-  en: [
-    {
-      slug: 'meta-ads-e-integracoes',
-      title: 'Meta Ads and Integrations (Pixel + CAPI)',
-      summary:
-        'Server-side measurement implementation to improve attribution, event reliability and decision-making in campaigns.',
-      heroTitle: 'Specialist in Meta Pixel and Conversions API integrations',
-      heroDescription:
-        'I build reliable tracking for marketing and operations teams using Pixel + CAPI, event deduplication and continuous monitoring.',
-      steps: [
-        'Current tracking diagnosis (Pixel, GTM, CAPI, event quality).',
-        'Client-side and server-side collection architecture design.',
-        'Event implementation with event_id deduplication.',
-        'Validation in Events Manager and consistency adjustments.',
-        'Technical documentation delivery and maintenance plan.',
-      ],
-      deliverables: [
-        'Funnel mapping with priority events.',
-        'Pixel + CAPI implementation with a data standard.',
-        'Event quality checklist and tests.',
-        'Operational monitoring dashboard.',
-      ],
-      faq: [
-        {
-          question: 'When should I use Pixel and CAPI together?',
-          answer:
-            'When you need stronger measurement and resilience against browser restrictions. The recommended standard is combined usage with deduplication.',
-        },
-        {
-          question: 'Does implementation alone improve campaign performance?',
-          answer:
-            'It improves data quality for decision-making. CPA/ROAS outcomes also depend on media strategy and creative quality.',
-        },
-        {
-          question: 'Can it integrate with e-commerce and CRM?',
-          answer:
-            'Yes. The architecture can send browsing, checkout, purchase, lead and CRM events.',
-        },
-      ],
-      keywords:
-        'meta pixel, conversions api, capi, events manager, meta ads integration',
-    },
-    {
-      slug: 'whatsapp-cloud-api',
-      title: 'WhatsApp Cloud API',
-      summary:
-        'Complete WhatsApp Business Platform integration with webhooks, templates, queues and human handoff.',
-      heroTitle: 'WhatsApp Cloud API integration for sales and support',
-      heroDescription:
-        'I design stable and scalable conversation flows with observability and integration to CRM, ERP and internal systems.',
-      steps: [
-        'Mapping customer support and conversion journeys.',
-        'Webhook setup, signature validation and security controls.',
-        'Template implementation and content governance.',
-        'Orchestration with business rules and fallback.',
-        'CRM integration and operational metric tracking.',
-      ],
-      deliverables: [
-        'Robust webhook with idempotency.',
-        'Bot flows with human handoff.',
-        'Queue, retry, DLQ and monitoring.',
-        'Deployment and operations plan.',
-      ],
-      faq: [
-        {
-          question: 'Do you work with the official API?',
-          answer:
-            'Yes. Implementation is focused on WhatsApp Cloud API for professional operations with lower risk.',
-        },
-        {
-          question: 'Can you integrate with an existing CRM?',
-          answer:
-            'Yes. I can integrate with custom or market CRMs using webhooks and APIs.',
-        },
-        {
-          question: 'Is there support for high demand?',
-          answer:
-            'Yes, with queues, rate control, retries, observability and operational processes.',
-        },
-      ],
-      keywords:
-        'whatsapp cloud api, whatsapp integration, whatsapp webhook, whatsapp templates',
-    },
-    {
-      slug: 'chatbots-e-ia',
-      title: 'Chatbots and AI',
-      summary:
-        'AI chatbot development for support and sales, with RAG, guardrails and handoff to the human team.',
-      heroTitle: 'AI chatbots for support and lead qualification',
-      heroDescription:
-        'I implement result-oriented bots with business context, security and response quality control.',
-      steps: [
-        'Definition of operational and commercial bot goals.',
-        'Knowledge base structure and response policies.',
-        'AI orchestration + business rule implementation.',
-        'Fallback, handoff and audit trail setup.',
-        'Adjustments based on real usage and conversion metrics.',
-      ],
-      deliverables: [
-        'Automated support flow with fallback.',
-        'Integration with FAQ, CRM and internal systems.',
-        'Operations and monitoring playbook.',
-        'Security and privacy checklist.',
-      ],
-      faq: [
-        {
-          question: 'Can AI bots fully replace human support?',
-          answer:
-            'No. The best model is collaborative: AI handles repetitive tasks while humans handle sensitive or complex cases.',
-        },
-        {
-          question: 'Do you implement RAG?',
-          answer:
-            'Yes. RAG is used to reduce hallucinations and improve precision for internal knowledge queries.',
-        },
-        {
-          question: 'How do you measure bot results?',
-          answer:
-            'I track metrics such as containment rate, average handling time, CSAT and conversion by stage.',
-        },
-      ],
-      keywords: 'ai chatbot, rag, whatsapp bot, support automation',
-    },
-    {
-      slug: 'automacao-e-integracoes',
-      title: 'Automation and Integrations',
-      summary:
-        'I integrate APIs, CRM, ERP and marketing platforms to eliminate rework and accelerate operations.',
-      heroTitle: 'Process automation and system integration',
-      heroDescription:
-        'I build reliable integration pipelines with error control and operational visibility.',
-      steps: [
-        'Assessment of current flows and operational bottlenecks.',
-        'Design of target flow between systems and events.',
-        'Connector, validation and observability implementation.',
-        'Team validation and rollout plan.',
-        'Technical training and initial follow-up.',
-      ],
-      deliverables: [
-        'Documented integration architecture.',
-        'Automated processes with monitoring.',
-        'Contingency plan and operational support.',
-        'Improved speed and data quality.',
-      ],
-      faq: [
-        {
-          question: 'Which systems do you integrate?',
-          answer:
-            'CRMs, ERPs, gateways, marketing platforms and custom APIs, according to the client scenario.',
-        },
-        {
-          question: 'How do you handle integration failures?',
-          answer:
-            'With retries, error queues, alerts and per-event traceability.',
-        },
-        {
-          question: 'Can we start small and evolve?',
-          answer:
-            'Yes. I usually start with a critical flow and expand in waves.',
-        },
-      ],
-      keywords:
-        'process automation, crm erp integration, api integration, integration development',
-    },
-  ],
-  es: [
-    {
-      slug: 'meta-ads-e-integracoes',
-      title: 'Meta Ads e Integraciones (Pixel + CAPI)',
-      summary:
-        'Implementación de medición server-side para mejorar atribución, confiabilidad de eventos y toma de decisiones en campañas.',
-      heroTitle: 'Especialista en integraciones de Meta Pixel y Conversions API',
-      heroDescription:
-        'Estructuro tracking confiable para equipos de marketing y operación con Pixel + CAPI, deduplicación de eventos y monitoreo continuo.',
-      steps: [
-        'Diagnóstico del tracking actual (Pixel, GTM, CAPI, calidad de eventos).',
-        'Diseño de arquitectura de recolección client-side y server-side.',
-        'Implementación de eventos con deduplicación por event_id.',
-        'Validación en Events Manager y ajustes de consistencia.',
-        'Entrega de documentación técnica y plan de mantenimiento.',
-      ],
-      deliverables: [
-        'Mapeo del embudo con eventos prioritarios.',
-        'Implementación de Pixel + CAPI con estándar de datos.',
-        'Checklist de calidad de eventos y pruebas.',
-        'Dashboard de seguimiento operativo.',
-      ],
-      faq: [
-        {
-          question: '¿Cuándo usar Pixel y CAPI juntos?',
-          answer:
-            'Cuando quieres más robustez de medición y resiliencia frente a bloqueos del navegador. El estándar recomendado es uso combinado con deduplicación.',
-        },
-        {
-          question: '¿La implementación mejora por sí sola la performance?',
-          answer:
-            'Mejora la calidad de datos para decidir. El resultado en CPA/ROAS también depende de estrategia de medios y creatividades.',
-        },
-        {
-          question: '¿Integra con e-commerce y CRM?',
-          answer:
-            'Sí. La arquitectura puede enviar eventos de navegación, checkout, compra, lead y eventos de CRM.',
-        },
-      ],
-      keywords:
-        'meta pixel, conversions api, capi, events manager, integracion meta ads',
-    },
-    {
-      slug: 'whatsapp-cloud-api',
-      title: 'WhatsApp Cloud API',
-      summary:
-        'Integración completa de WhatsApp Business Platform con webhooks, plantillas, colas y handoff humano.',
-      heroTitle: 'Integración de WhatsApp Cloud API para ventas y atención',
-      heroDescription:
-        'Diseño flujos de conversación estables y escalables, con observabilidad e integración a CRM, ERP y sistemas internos.',
-      steps: [
-        'Mapeo de jornadas de atención y conversión.',
-        'Configuración de webhook, validación de firma y seguridad.',
-        'Implementación de plantillas y gobernanza de contenido.',
-        'Orquestación con reglas de negocio y fallback.',
-        'Integración con CRM y seguimiento de métricas operativas.',
-      ],
-      deliverables: [
-        'Webhook robusto con idempotencia.',
-        'Flujos de bot con handoff humano.',
-        'Cola, retry, DLQ y monitoreo.',
-        'Plan de despliegue y operación.',
-      ],
-      faq: [
-        {
-          question: '¿Trabajas con API oficial?',
-          answer:
-            'Sí. La implementación está enfocada en WhatsApp Cloud API para operación profesional con menor riesgo.',
-        },
-        {
-          question: '¿Se puede integrar con CRM existente?',
-          answer:
-            'Sí. Puedo integrar con CRM propio o de mercado usando webhooks y APIs.',
-        },
-        {
-          question: '¿Hay soporte para alta demanda?',
-          answer:
-            'Sí, con colas, control de tasa, retries, observabilidad y proceso operativo.',
-        },
-      ],
-      keywords:
-        'whatsapp cloud api, integracion whatsapp, webhook whatsapp, templates whatsapp',
-    },
-    {
-      slug: 'chatbots-e-ia',
-      title: 'Chatbots e IA',
-      summary:
-        'Construcción de chatbots con IA aplicada a soporte y ventas, con RAG, guardrails y handoff al equipo humano.',
-      heroTitle: 'Chatbots con IA para atención y calificación de leads',
-      heroDescription:
-        'Implemento bots orientados a resultado, con contexto de negocio, seguridad y control de calidad de respuestas.',
-      steps: [
-        'Definición de objetivos operativos y comerciales del bot.',
-        'Estructura de base de conocimiento y políticas de respuesta.',
-        'Implementación de orquestación IA + reglas de negocio.',
-        'Configuración de fallback, handoff y trazabilidad de auditoría.',
-        'Ajustes según métricas reales de uso y conversión.',
-      ],
-      deliverables: [
-        'Flujo de atención automatizado con fallback.',
-        'Integración con FAQ, CRM y sistemas internos.',
-        'Playbook de operación y monitoreo.',
-        'Checklist de seguridad y privacidad.',
-      ],
-      faq: [
-        {
-          question: '¿La IA reemplaza totalmente la atención humana?',
-          answer:
-            'No. El mejor modelo es colaborativo: la IA resuelve lo repetitivo y el humano atiende casos sensibles o complejos.',
-        },
-        {
-          question: '¿Implementas RAG?',
-          answer:
-            'Sí. RAG se usa para reducir respuestas inventadas y aumentar precisión en consultas de base interna.',
-        },
-        {
-          question: '¿Cómo mides resultados del bot?',
-          answer:
-            'Uso métricas como containment rate, tiempo promedio, CSAT y conversión por etapa.',
-        },
-      ],
-      keywords: 'chatbot con ia, rag, bot whatsapp, automatizacion atencion',
-    },
-    {
-      slug: 'automacao-e-integracoes',
-      title: 'Automatización e Integraciones',
-      summary:
-        'Integro APIs, CRM, ERP y plataformas de marketing para eliminar retrabajo y acelerar operaciones.',
-      heroTitle: 'Automatización de procesos e integración entre sistemas',
-      heroDescription:
-        'Desarrollo pipelines de integración con confiabilidad, control de errores y visibilidad operativa.',
-      steps: [
-        'Levantamiento de flujos actuales y cuellos de botella de operación.',
-        'Diseño del flujo objetivo entre sistemas y eventos.',
-        'Implementación de conectores, validaciones y observabilidad.',
-        'Homologación con el equipo y plan de rollout.',
-        'Capacitación técnica y acompañamiento inicial.',
-      ],
-      deliverables: [
-        'Arquitectura de integración documentada.',
-        'Procesos automatizados con monitoreo.',
-        'Plan de contingencia y soporte operativo.',
-        'Mejora de tiempo y calidad de datos.',
-      ],
-      faq: [
-        {
-          question: '¿Qué sistemas integras?',
-          answer:
-            'CRMs, ERPs, gateways, plataformas de marketing y APIs propietarias, según el escenario del cliente.',
-        },
-        {
-          question: '¿Cómo tratas fallas de integración?',
-          answer:
-            'Con retries, cola de error, alertas y trazabilidad por evento.',
-        },
-        {
-          question: '¿Se puede empezar pequeño y evolucionar?',
-          answer:
-            'Sí. Suelo iniciar por un flujo crítico y expandir por etapas.',
-        },
-      ],
-      keywords:
-        'automatizacion de procesos, integracion crm erp, integracion api, desarrollo integraciones',
-    },
-  ],
+  pt: buildServicesForLanguage('pt'),
+  en: buildServicesForLanguage('en'),
+  es: buildServicesForLanguage('es'),
 };
 
 const getLanguageServices = (language = 'pt') => {
@@ -507,4 +606,3 @@ export const getServices = (language = 'pt') => getLanguageServices(language);
 
 export const getServiceBySlug = (slug, language = 'pt') =>
   getLanguageServices(language).find((service) => service.slug === slug);
-

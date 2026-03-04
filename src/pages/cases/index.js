@@ -70,23 +70,6 @@ const Cases = () => {
       <section className="seo-grid">
         {visibleCases.map((caseItem) => (
           <article key={caseItem.slug} className="seo-card">
-            {caseItem.coverImage && (
-              <img
-                src={caseItem.coverImage}
-                alt={`Capa do ${caseItem.title}`}
-                width="1200"
-                height="630"
-                loading="lazy"
-                decoding="async"
-                style={{
-                  width: '100%',
-                  height: '190px',
-                  objectFit: 'cover',
-                  borderRadius: '10px',
-                  marginBottom: '10px',
-                }}
-              />
-            )}
             <h2>{caseItem.title}</h2>
             <p>
               <strong>{t('casesPage.categoryLabel')}:</strong> {caseItem.category}

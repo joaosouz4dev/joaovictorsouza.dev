@@ -144,6 +144,24 @@ const es = {
       'AWS, observabilidad y buenas prácticas de despliegue',
       'MySQL y modelado orientado al negocio',
     ],
+    processTitle: 'Como conduzco proyectos',
+    process: [
+      'Diagnostico tecnico del escenario actual y objetivos de negocio.',
+      'Plan de implementacion por fases con prioridades claras.',
+      'Entrega incremental con pruebas y monitoreo.',
+      'Acompanamiento post go-live para estabilizacion.',
+    ],
+    principlesTitle: 'Principios de trabajo',
+    principles: [
+      'Arquitectura simple, robusta y documentada.',
+      'Datos confiables para decisiones operativas.',
+      'Automatizacion con fallback y control de riesgo.',
+      'Comunicacion directa enfocada en resultados.',
+    ],
+    ctaTitle: 'Quieres evolucionar tu operacion con base tecnica fuerte?',
+    ctaDescription:
+      'Si ya tienes un desafio claro o quieres mapear oportunidades, puedo ayudar con un diagnostico objetivo.',
+    ctaButton: 'Hablar sobre el proyecto',
   },
   servicesPage: {
     seoTitle: 'Servicios de Integración WhatsApp, Meta e IA | Joao Victor Souza',
@@ -344,10 +362,29 @@ const es = {
     heroTitle: 'Vamos a diseñar tu arquitectura de integración',
     heroDescription:
       'Comparte tu contexto técnico y objetivo de negocio para recibir un diagnóstico inicial.',
+    emailTitle: 'Email',
     linkedinTitle: 'LinkedIn',
+    whatsappTitle: 'WhatsApp',
     linkedinAria: 'Abrir perfil en LinkedIn',
     whatsappAria: 'Abrir contacto rápido en WhatsApp',
     whatsappCta: 'Abrir contacto rápido',
+    scopeTitle: 'Tipos de proyecto que atiendo',
+    scopeItems: [
+      'WhatsApp Cloud API y automatizacion de atencion.',
+      'Meta Pixel + CAPI con calidad de medicion.',
+      'Integraciones CRM/ERP y flujos operativos.',
+      'Chatbots con IA y handoff humano.',
+    ],
+    responseTitle: 'Como funciona el primer contacto',
+    responseItems: [
+      'Revision del contexto tecnico y objetivo de negocio.',
+      'Respuesta inicial con direccion de arquitectura y proximos pasos.',
+      'Definicion del alcance inicial para empezar rapido.',
+    ],
+    finalCtaTitle: 'Listo para sacar tu proyecto del papel?',
+    finalCtaDescription:
+      'Escribeme por WhatsApp para alinear prioridad tecnica, plazo y estrategia de ejecucion.',
+    finalCtaButton: 'Iniciar conversacion en WhatsApp',
   },
   contact: {
     title: 'Mis Contactos',
