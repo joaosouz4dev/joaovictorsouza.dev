@@ -2,10 +2,31 @@ const es = {
   menu: {
     home: 'Inicio',
     about: 'Sobre mí',
+    services: 'Servicios',
+    cases: 'Casos',
+    blog: 'Blog',
+    projects: 'Proyectos',
     skills: 'Habilidades',
     experiences: 'Experiencias',
     portfolio: 'Portafolio',
     contact: 'Contactos',
+  },
+  layout: {
+    footer: {
+      description:
+        'Especialista en WhatsApp Cloud API, Meta CAPI y chatbots con IA para escalar ventas, atención e integraciones.',
+      cta: 'Hablar sobre el proyecto',
+      quickNav: 'Navegación rápida',
+      mainGuide: 'Guía técnica principal',
+      viewAllCases: 'Ver todos los casos',
+      specialties: 'Especialidades',
+      whatsappDirect: 'WhatsApp directo',
+    },
+    social: {
+      github: 'Abrir GitHub de Joao Victor Souza',
+      linkedin: 'Abrir LinkedIn de Joao Victor Souza',
+      instagram: 'Abrir Instagram de Joao Victor Souza',
+    },
   },
   banner: {
     title: 'Hola, ¿Todo bien?',
@@ -73,7 +94,34 @@ const es = {
   quates: {
     title: '¿Trabajamos juntos?',
     description:
-      'Desarrollador, diseñador y proactivo. Con {años} años en programación, João Victor Souza tiene el arte de programar como profesión y pasión.',
+      'Desarrollador, diseñador y proactivo. Con {anos} años en programación, João Victor Souza tiene el arte de programar como profesión y pasión.',
+  },
+  homeSeo: {
+    title: 'Especialidades y Contenido Técnico',
+    description:
+      'Páginas enfocadas en servicios, casos y artículos para integración de Meta, WhatsApp e IA.',
+    cards: {
+      whatsapp: {
+        title: 'Servicio WhatsApp Cloud API',
+        description: 'Webhooks, plantillas, colas y handoff humano.',
+        cta: 'Abrir página',
+      },
+      meta: {
+        title: 'Servicio Meta Pixel + CAPI',
+        description: 'Medición server-side con deduplicación de eventos.',
+        cta: 'Abrir página',
+      },
+      blog: {
+        title: 'Blog técnico',
+        description: 'Guías prácticas de arquitectura, integraciones e IA.',
+        cta: 'Leer artículos',
+      },
+      cases: {
+        title: 'Casos',
+        description: 'Estudios de caso con soluciones y aprendizajes.',
+        cta: 'Ver casos',
+      },
+    },
   },
   contact: {
     title: 'Mis Contactos',

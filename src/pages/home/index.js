@@ -660,35 +660,34 @@ const Home = () => {
         <div className="container">
           <div className="row section-separator">
             <div className="col-sm-12 section-title wow fadeInUp">
-              <h3>Especialidades e Conteudo Tecnico</h3>
-              <p>
-                Páginas focadas em servicos, cases e artigos para integracao
-                Meta, WhatsApp e IA.
-              </p>
+              <h3>{t('homeSeo.title')}</h3>
+              <p>{t('homeSeo.description')}</p>
             </div>
             <div className="col-sm-12">
               <div className="seo-grid">
                 <article className="seo-card">
-                  <h4>Servico WhatsApp Cloud API</h4>
-                  <p>Webhooks, templates, filas e handoff humano.</p>
-                  <Link to="/servicos/whatsapp-cloud-api">Acessar pagina</Link>
-                </article>
-                <article className="seo-card">
-                  <h4>Servico Meta Pixel + CAPI</h4>
-                  <p>Mensuracao server-side com deduplicacao de eventos.</p>
-                  <Link to="/servicos/meta-ads-e-integracoes">
-                    Acessar pagina
+                  <h4>{t('homeSeo.cards.whatsapp.title')}</h4>
+                  <p>{t('homeSeo.cards.whatsapp.description')}</p>
+                  <Link to="/servicos/whatsapp-cloud-api">
+                    {t('homeSeo.cards.whatsapp.cta')}
                   </Link>
                 </article>
                 <article className="seo-card">
-                  <h4>Blog tecnico</h4>
-                  <p>Guias práticos de arquitetura, integracoes e IA.</p>
-                  <Link to="/blog">Ler artigos</Link>
+                  <h4>{t('homeSeo.cards.meta.title')}</h4>
+                  <p>{t('homeSeo.cards.meta.description')}</p>
+                  <Link to="/servicos/meta-ads-e-integracoes">
+                    {t('homeSeo.cards.meta.cta')}
+                  </Link>
                 </article>
                 <article className="seo-card">
-                  <h4>Cases</h4>
-                  <p>Estudos de caso com solucoes e aprendizados.</p>
-                  <Link to="/cases">Ver cases</Link>
+                  <h4>{t('homeSeo.cards.blog.title')}</h4>
+                  <p>{t('homeSeo.cards.blog.description')}</p>
+                  <Link to="/blog">{t('homeSeo.cards.blog.cta')}</Link>
+                </article>
+                <article className="seo-card">
+                  <h4>{t('homeSeo.cards.cases.title')}</h4>
+                  <p>{t('homeSeo.cards.cases.description')}</p>
+                  <Link to="/cases">{t('homeSeo.cards.cases.cta')}</Link>
                 </article>
               </div>
             </div>
@@ -713,7 +712,7 @@ const Home = () => {
                   data-wow-duration="0.8s"
                   data-wow-delay="0.4s"
                 >
-                  {t('quates.description').replace('{anos}', anos)}
+                  {t('quates.description', { anos })}
                 </p>
                 <a
                   href={whatsappUrl}

@@ -2,10 +2,31 @@ const pt = {
   menu: {
     home: 'Início',
     about: 'Sobre',
+    services: 'Serviços',
+    cases: 'Cases',
+    blog: 'Blog',
+    projects: 'Projetos',
     skills: 'Habilidades',
     experiences: 'Experiências',
     portfolio: 'Portfólio',
     contact: 'Contatos',
+  },
+  layout: {
+    footer: {
+      description:
+        'Especialista em WhatsApp Cloud API, Meta CAPI e chatbots com IA para escalar vendas, atendimento e integrações.',
+      cta: 'Falar sobre o projeto',
+      quickNav: 'Navegação rápida',
+      mainGuide: 'Guia técnico principal',
+      viewAllCases: 'Ver todos os cases',
+      specialties: 'Especialidades',
+      whatsappDirect: 'WhatsApp direto',
+    },
+    social: {
+      github: 'Abrir GitHub de Joao Victor Souza',
+      linkedin: 'Abrir LinkedIn de Joao Victor Souza',
+      instagram: 'Abrir Instagram de Joao Victor Souza',
+    },
   },
   banner: {
     title: 'Olá, Tudo bem ?',
@@ -74,6 +95,33 @@ const pt = {
     title: 'Vamos trabalhar juntos?',
     description:
       'Desenvolvedor, design e proativo. Há {anos} anos na programação, João Victor Souza tem a arte de programar como profissão e paixão.',
+  },
+  homeSeo: {
+    title: 'Especialidades e Conteúdo Técnico',
+    description:
+      'Páginas focadas em serviços, cases e artigos para integração Meta, WhatsApp e IA.',
+    cards: {
+      whatsapp: {
+        title: 'Serviço WhatsApp Cloud API',
+        description: 'Webhooks, templates, filas e handoff humano.',
+        cta: 'Acessar página',
+      },
+      meta: {
+        title: 'Serviço Meta Pixel + CAPI',
+        description: 'Mensuração server-side com deduplicação de eventos.',
+        cta: 'Acessar página',
+      },
+      blog: {
+        title: 'Blog técnico',
+        description: 'Guias práticos de arquitetura, integrações e IA.',
+        cta: 'Ler artigos',
+      },
+      cases: {
+        title: 'Cases',
+        description: 'Estudos de caso com soluções e aprendizados.',
+        cta: 'Ver cases',
+      },
+    },
   },
   contact: {
     title: 'Meus Contatos',

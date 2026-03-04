@@ -2,10 +2,31 @@ const en = {
   menu: {
     home: 'Home',
     about: 'About',
+    services: 'Services',
+    cases: 'Cases',
+    blog: 'Blog',
+    projects: 'Projects',
     skills: 'Skills',
     experiences: 'Experiences',
     portfolio: 'Portfolio',
     contact: 'Contacts',
+  },
+  layout: {
+    footer: {
+      description:
+        'Specialist in WhatsApp Cloud API, Meta CAPI and AI chatbots to scale sales, support and integrations.',
+      cta: 'Discuss your project',
+      quickNav: 'Quick navigation',
+      mainGuide: 'Main technical guide',
+      viewAllCases: 'View all cases',
+      specialties: 'Specialties',
+      whatsappDirect: 'Direct WhatsApp',
+    },
+    social: {
+      github: 'Open Joao Victor Souza GitHub',
+      linkedin: 'Open Joao Victor Souza LinkedIn',
+      instagram: 'Open Joao Victor Souza Instagram',
+    },
   },
   banner: {
     title: 'Hello, How are you?',
@@ -73,6 +94,33 @@ const en = {
     title: `Let's work together?`,
     description:
       'Developer, design and proactive. Having been programming for {anos} years, João Victor Souza has the art of programming as a profession and passion.',
+  },
+  homeSeo: {
+    title: 'Specialties and Technical Content',
+    description:
+      'Pages focused on services, cases and articles for Meta, WhatsApp and AI integrations.',
+    cards: {
+      whatsapp: {
+        title: 'WhatsApp Cloud API Service',
+        description: 'Webhooks, templates, queues and human handoff.',
+        cta: 'Open page',
+      },
+      meta: {
+        title: 'Meta Pixel + CAPI Service',
+        description: 'Server-side measurement with event deduplication.',
+        cta: 'Open page',
+      },
+      blog: {
+        title: 'Technical blog',
+        description: 'Practical guides on architecture, integrations and AI.',
+        cta: 'Read articles',
+      },
+      cases: {
+        title: 'Cases',
+        description: 'Case studies with solutions and lessons learned.',
+        cta: 'View cases',
+      },
+    },
   },
   contact: {
     title: 'My Contacts',

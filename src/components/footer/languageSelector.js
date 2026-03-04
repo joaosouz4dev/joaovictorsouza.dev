@@ -2,8 +2,18 @@ import { useState, useRef, useEffect } from 'react';
 import i18next from 'i18next';
 import './languageSelector.css';
 
+const normalizeLanguage = (language) => {
+  const normalized = (language || '').toLowerCase();
+  if (normalized.startsWith('pt')) return 'pt';
+  if (normalized.startsWith('en')) return 'en';
+  if (normalized.startsWith('es')) return 'es';
+  return 'en';
+};
+
 const LanguageSelector = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    normalizeLanguage(i18next.resolvedLanguage || i18next.language),
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [isInFooter, setIsInFooter] = useState(false);
   const dropdownRef = useRef(null);
@@ -15,15 +25,27 @@ const LanguageSelector = () => {
     { code: 'pt', name: 'Português', flag: '🇧🇷' }
   ];
 
-  const currentLanguage = languages.find(lang => 
-    lang.code === (selectedLanguage === 'pt-BR' ? 'pt' : selectedLanguage)
+  const currentLanguage = languages.find(lang =>
+    lang.code === normalizeLanguage(selectedLanguage)
   );
 
   const changeLanguage = (lng) => {
     i18next.changeLanguage(lng);
-    setSelectedLanguage(lng);
+    setSelectedLanguage(normalizeLanguage(lng));
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      setSelectedLanguage(normalizeLanguage(lng));
+    };
+
+    i18next.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
   // Detectar se está no footer
   useEffect(() => {
