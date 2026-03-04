@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 30px 0;
   width: 100%;
   position: relative;
   transition: background-color 0.25s ease, box-shadow 0.25s ease,
@@ -25,15 +25,16 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
-.seo-layout .jv-header {
+.jv-header {
   padding: 0;
 }
 
 .jv-nav-brand {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-left: 14px;
-  margin-right: 18px;
+  margin-right: 22px;
   flex-shrink: 0;
 }
 
@@ -46,7 +47,7 @@
   height: 40px;
   display: block;
   object-fit: contain;
-  margin-top: -10px
+  /* margin-top: -10px */
 }
 
 .white-vertion .jv-nav-brand-image {
@@ -61,8 +62,11 @@
   gap: 2rem;
 }
 
-.jv-nav-item {
+.jv-nav-menu .jv-nav-item {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .jv-nav-link {
@@ -70,8 +74,8 @@
   text-decoration: none;
   font-size: 1.05rem;
   transition: color 0.3s ease;
-  padding: 0.5rem 0;
   position: relative;
+  padding-bottom: 2px;
 }
 
 .jv-nav-link:hover {
