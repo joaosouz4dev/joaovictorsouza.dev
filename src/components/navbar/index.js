@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 
 const Navbar = ({
@@ -6,23 +6,10 @@ const Navbar = ({
   menuActive,
   toggleMenuActive,
   toggleDarkMode,
-  darkMode
+  darkMode,
+  isScrolled = false,
 }) => {
   const [isNavActive, setIsNavActive] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const handleToggle = () => {
     setIsNavActive(!isNavActive);

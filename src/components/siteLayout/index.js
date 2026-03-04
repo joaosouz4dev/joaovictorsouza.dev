@@ -39,6 +39,7 @@ const SiteLayout = ({ children }) => {
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(true);
   const [menuActive, setMenuActive] = useState('/');
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
   const pathname = location.pathname || '/';
 
   useEffect(() => {
@@ -69,6 +70,19 @@ const SiteLayout = ({ children }) => {
       body.classList.add('white-vertion');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHeaderScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const menus = useMemo(
     () =>
@@ -111,7 +125,9 @@ const SiteLayout = ({ children }) => {
       <div className="seo-ambient-shape seo-ambient-shape-1" />
       <div className="seo-ambient-shape seo-ambient-shape-2" />
       <header
-        className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
+        className={`black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav ${
+          isHeaderScrolled ? 'is-scrolled' : ''
+        }`}
         id="jv-header"
       >
         <Navbar
@@ -120,6 +136,7 @@ const SiteLayout = ({ children }) => {
           toggleMenuActive={toggleMenuActive}
           toggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
+          isScrolled={isHeaderScrolled}
         />
       </header>
 

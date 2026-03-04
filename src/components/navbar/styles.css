@@ -5,21 +5,38 @@
   padding: 1rem 0;
   width: 100%;
   position: relative;
+  background: transparent;
+  border-bottom: 1px solid transparent;
   transition: background-color 0.25s ease, box-shadow 0.25s ease,
     backdrop-filter 0.25s ease, border-color 0.25s ease;
 }
 
 .jv-custom-nav.is-scrolled {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
   backdrop-filter: blur(8px);
 }
 
-.dark-vertion .jv-custom-nav.is-scrolled {
+.seo-layout .jv-header {
+  padding: 0;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    backdrop-filter 0.25s ease, border-color 0.25s ease;
+}
+
+.seo-layout .jv-header.is-scrolled {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dark-vertion .seo-layout .jv-header.is-scrolled {
   background-color: rgba(16, 16, 16, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
 
-.white-vertion .jv-custom-nav.is-scrolled {
+.white-vertion .seo-layout .jv-header.is-scrolled {
   background-color: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
