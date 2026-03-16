@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import '../styles/scss/main.scss';
 
@@ -62,7 +62,7 @@ const AppRoutes = () => {
           <Route exact path="/projetos" element={<Projetos />} />
           <Route exact path="/projetos/:slug" element={<Projeto />} />
           <Route exact path="/contato" element={<Contato />} />
-          <Route exact path="/zap" element={<Wpp />} />
+          <Route exact path="/zap" element={<Navigate to="/whatsapp" replace />} />
           <Route exact path="/whatsapp" element={<Wpp />} />
           <Route exact path="/wpp" element={<WhatsAppPage />} />
           <Route exact path="/matrix" element={<Matrix />} />
@@ -86,3 +86,4 @@ const App = () => {
 };
 
 export default App;
+

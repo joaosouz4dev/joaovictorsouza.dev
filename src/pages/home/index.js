@@ -40,7 +40,7 @@ const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
 
 const celular = '+55 31 9 9858-7817';
 
-const whatsappUrl = 'https://joaovictorsouza.dev/whatsapp';
+const whatsappUrl = 'https://wa.me/5531998587817';
 
 const redes_sociais = [
   {
@@ -846,3 +846,4 @@ const Home = () => {
 };
 
 export default Home;
+

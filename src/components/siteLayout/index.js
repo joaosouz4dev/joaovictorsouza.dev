@@ -208,7 +208,7 @@ const SiteLayout = ({ children }) => {
                       </a>
                     </p>
                     <p>
-                      <a href="/whatsapp" target="_blank" rel="noreferrer noopener">
+                      <a href="https://wa.me/5531998587817" target="_blank" rel="noreferrer noopener">
                         {t('layout.footer.whatsappDirect')}
                       </a>
                     </p>
@@ -267,3 +267,4 @@ const SiteLayout = ({ children }) => {
 };
 
 export default SiteLayout;
+

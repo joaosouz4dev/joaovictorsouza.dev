@@ -3,6 +3,31 @@ import { useEffect } from 'react';
 const SITE_URL = 'https://joaovictorsouza.dev';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/new/hero-2-300x300.webp`;
 
+const normalizePathname = (path) => {
+  if (!path || path === '/') return '/';
+  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`;
+  return withLeadingSlash.replace(/\/+$/, '');
+};
+
+const ensureCanonicalUrl = (value) => {
+  if (!value) return `${SITE_URL}/`;
+
+  const raw = String(value).trim();
+  const withoutHash = raw.split('#')[0];
+  const withoutQuery = withoutHash.split('?')[0];
+
+  if (withoutQuery.startsWith('http://') || withoutQuery.startsWith('https://')) {
+    try {
+      const parsed = new URL(withoutQuery);
+      return `${parsed.origin}${normalizePathname(parsed.pathname)}`;
+    } catch {
+      return `${SITE_URL}/`;
+    }
+  }
+
+  return `${SITE_URL}${normalizePathname(withoutQuery)}`;
+};
+
 const ensureAbsoluteUrl = (value) => {
   if (!value) return SITE_URL;
   if (value.startsWith('http://') || value.startsWith('https://')) return value;
@@ -47,7 +72,7 @@ const upsertSchema = (schema) => {
 const Seo = ({
   title,
   description,
-  canonical = '/',
+  canonical,
   image = DEFAULT_IMAGE,
   type = 'website',
   robots = 'index,follow',
@@ -55,7 +80,10 @@ const Seo = ({
   schema = null,
 }) => {
   useEffect(() => {
-    const absoluteUrl = ensureAbsoluteUrl(canonical);
+    const canonicalPath =
+      canonical ||
+      (typeof window !== 'undefined' ? window.location.pathname : '/');
+    const absoluteUrl = ensureCanonicalUrl(canonicalPath);
     const absoluteImage = ensureAbsoluteUrl(image);
 
     if (title) document.title = title;

@@ -52,7 +52,7 @@ const Contato = () => {
           <h2>{t('contactPage.whatsappTitle')}</h2>
           <p>
             <a
-              href="/whatsapp"
+              href="https://wa.me/5531998587817"
               target="_blank"
               rel="noreferrer noopener"
               aria-label={t('contactPage.whatsappAria')}
@@ -87,7 +87,7 @@ const Contato = () => {
       <section className="seo-card" style={{ marginTop: '18px' }}>
         <h2>{t('contactPage.finalCtaTitle')}</h2>
         <p>{t('contactPage.finalCtaDescription')}</p>
-        <a className="seo-cta" href="/whatsapp">
+        <a className="seo-cta" href="https://wa.me/5531998587817">
           {t('contactPage.finalCtaButton')}
         </a>
       </section>
@@ -96,3 +96,4 @@ const Contato = () => {
 };
 
 export default Contato;
+
