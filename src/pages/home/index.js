@@ -199,7 +199,6 @@ const Home = () => {
         title="Especialista em WhatsApp Cloud API, Meta CAPI e IA | Joao Victor Souza"
         description="Desenvolvedor especialista em integracao WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automacoes para atendimento e vendas."
         canonical="/"
-        keywords="whatsapp cloud api, meta capi, chatbot ia, integracoes api, automacao atendimento"
         schema={homeSchema}
       />
       <main>

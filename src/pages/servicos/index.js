@@ -34,7 +34,6 @@ const Servicos = () => {
         title={t('servicesPage.seoTitle')}
         description={t('servicesPage.seoDescription')}
         canonical="/servicos"
-        keywords={t('servicesPage.seoKeywords')}
         schema={schema}
       />
 

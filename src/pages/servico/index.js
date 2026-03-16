@@ -89,7 +89,6 @@ const Servico = () => {
         title={`${service.title} | Joao Victor Souza`}
         description={service.summary}
         canonical={`/servicos/${service.slug}`}
-        keywords={service.keywords}
         schema={schema}
       />
 

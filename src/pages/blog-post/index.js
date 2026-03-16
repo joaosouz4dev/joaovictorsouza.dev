@@ -115,7 +115,6 @@ const BlogPost = () => {
         title={`${post.title} | Joao Victor Souza`}
         description={post.excerpt}
         canonical={`/blog/${post.slug}`}
-        keywords={post.keywords}
         schema={schema}
       />
 

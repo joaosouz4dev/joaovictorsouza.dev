@@ -2,6 +2,12 @@ import { useEffect } from 'react';
 
 const SITE_URL = 'https://joaovictorsouza.dev';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/new/hero-2-300x300.webp`;
+const LANGUAGE_CONFIG = {
+  pt: { html: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR' },
+  en: { html: 'en-US', og: 'en_US', hreflang: 'en' },
+  es: { html: 'es-ES', og: 'es_ES', hreflang: 'es' },
+};
+const SUPPORTED_LANGUAGES = Object.keys(LANGUAGE_CONFIG);
 
 const normalizePathname = (path) => {
   if (!path || path === '/') return '/';
@@ -32,6 +38,24 @@ const ensureAbsoluteUrl = (value) => {
   if (!value) return SITE_URL;
   if (value.startsWith('http://') || value.startsWith('https://')) return value;
   return `${SITE_URL}${value.startsWith('/') ? '' : '/'}${value}`;
+};
+
+const toBaseLanguage = (language) => {
+  const normalized = String(language || '').toLowerCase();
+  if (normalized.startsWith('pt')) return 'pt';
+  if (normalized.startsWith('en')) return 'en';
+  if (normalized.startsWith('es')) return 'es';
+  return 'pt';
+};
+
+const getCurrentLanguage = () => {
+  if (typeof window === 'undefined') return 'pt';
+
+  const queryLanguage = new URLSearchParams(window.location.search).get('lng');
+  const storedLanguage = window.localStorage.getItem('i18nextLng');
+  const browserLanguage = window.navigator.language;
+
+  return toBaseLanguage(queryLanguage || storedLanguage || browserLanguage);
 };
 
 const upsertMeta = (selector, attributes) => {
@@ -69,25 +93,79 @@ const upsertSchema = (schema) => {
   document.head.appendChild(script);
 };
 
+const upsertAlternateLanguageLinks = (absoluteUrl) => {
+  document.head
+    .querySelectorAll('link[data-seo-hreflang="true"]')
+    .forEach((element) => element.remove());
+
+  const url = new URL(absoluteUrl);
+  const path = url.pathname || '/';
+
+  SUPPORTED_LANGUAGES.forEach((language) => {
+    const href = `${SITE_URL}${path}?lng=${language}`;
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'alternate');
+    link.setAttribute('hreflang', LANGUAGE_CONFIG[language].hreflang);
+    link.setAttribute('href', href);
+    link.setAttribute('data-seo-hreflang', 'true');
+    document.head.appendChild(link);
+  });
+
+  const xDefault = document.createElement('link');
+  xDefault.setAttribute('rel', 'alternate');
+  xDefault.setAttribute('hreflang', 'x-default');
+  xDefault.setAttribute('href', absoluteUrl);
+  xDefault.setAttribute('data-seo-hreflang', 'true');
+  document.head.appendChild(xDefault);
+};
+
+const upsertOpenGraphLocaleAlternates = (currentLanguage) => {
+  document.head
+    .querySelectorAll('meta[data-seo-og-locale-alt="true"]')
+    .forEach((element) => element.remove());
+
+  SUPPORTED_LANGUAGES.filter((language) => language !== currentLanguage).forEach(
+    (language) => {
+      const meta = document.createElement('meta');
+      meta.setAttribute('property', 'og:locale:alternate');
+      meta.setAttribute('content', LANGUAGE_CONFIG[language].og);
+      meta.setAttribute('data-seo-og-locale-alt', 'true');
+      document.head.appendChild(meta);
+    },
+  );
+};
+
 const Seo = ({
   title,
   description,
   canonical,
   image = DEFAULT_IMAGE,
   type = 'website',
-  robots = 'index,follow',
-  keywords = '',
+  robots = 'index,follow,max-image-preview:large',
   schema = null,
 }) => {
   useEffect(() => {
+    const language = getCurrentLanguage();
+    const locale = LANGUAGE_CONFIG[language] || LANGUAGE_CONFIG.pt;
     const canonicalPath =
       canonical ||
       (typeof window !== 'undefined' ? window.location.pathname : '/');
     const absoluteUrl = ensureCanonicalUrl(canonicalPath);
     const absoluteImage = ensureAbsoluteUrl(image);
+    const robotsContent = robots.includes('max-image-preview')
+      ? robots
+      : `${robots},max-image-preview:large`;
+    const schemaPayload = schema || {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: title || 'Joao Victor Souza',
+      description: description || 'Desenvolvedor de Software',
+      url: absoluteUrl,
+      inLanguage: locale.html,
+    };
 
     if (title) document.title = title;
-    document.documentElement.lang = 'pt-BR';
+    document.documentElement.lang = locale.html;
 
     if (description) {
       upsertMeta('meta[name="description"]', {
@@ -96,16 +174,9 @@ const Seo = ({
       });
     }
 
-    if (keywords) {
-      upsertMeta('meta[name="keywords"]', {
-        name: 'keywords',
-        content: keywords,
-      });
-    }
-
     upsertMeta('meta[name="robots"]', {
       name: 'robots',
-      content: robots,
+      content: robotsContent,
     });
 
     upsertMeta('meta[property="og:type"]', {
@@ -134,7 +205,7 @@ const Seo = ({
     });
     upsertMeta('meta[property="og:locale"]', {
       property: 'og:locale',
-      content: 'pt_BR',
+      content: locale.og,
     });
 
     upsertMeta('meta[name="twitter:card"]', {
@@ -159,8 +230,10 @@ const Seo = ({
       href: absoluteUrl,
     });
 
-    upsertSchema(schema);
-  }, [canonical, description, image, keywords, robots, schema, title, type]);
+    upsertAlternateLanguageLinks(absoluteUrl);
+    upsertOpenGraphLocaleAlternates(language);
+    upsertSchema(schemaPayload);
+  }, [canonical, description, image, robots, schema, title, type]);
 
   return null;
 };
