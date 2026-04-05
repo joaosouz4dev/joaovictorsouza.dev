@@ -1,76 +1,3 @@
-/*------------- 
-[Table of contents]
-
-[ DEFULT INDEX NUMBER ]
-
-1.  GENERAL CSS
-2.  NAVBAR
-4.  HOME
-5.  SERVICE
-6.  ABOUT
-7.  TESTIMONIAL
-8.  FAQ
-9.  QUATE
-10. SUBSCRIBE
-11. PRICING
-12. BLOG
-13. FOOTER
-14. COPYRIGHT
-
-
--------------------------------------------------------------------*/
-
-/*------------------------------------------------------------------
-[ Color codes ]
-    
-    [ Text and Background Color ]
-        Main color 1:       #1c93e5     
-        Main color 2:       #009688      
-        Main color 3:       #9c27b0
-        Main color 4:       #ff4081      
-        Background 1:       #FFFFFF            
-        Background 2:       #F6F6F6           
-        Shadow color:       #000000;            
-
--------------------------------------------------------------------*/
-
-/*------------------------------------------------------------------
-[Typography]
-
-    [ There are using two different font typography ]
-        Typography 1: Roboto font;
-        Typography 2: Montserrat font;
-
-    [ Other Typography style are same ]
-    Body :
-        font-style:     normal;
-        font-size:      15px;
-
-    h2:
-        font-size: 48px;
-        line-height: 55px;
-
-    h3:
-        font-size: 30px;
-        line-height: 40px;
-
-    h4:
-        font-size: 20px;
-        font-weight: 600;
-
-    p:  
-        font-size: 18px;
-        line-height: 30px;
-
-
--------------------------------------------------------------------*/
-
-/*
-================
- VARIABLES
-================
-*/
-
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -81,12 +8,6 @@
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-
-/**
- * -------------------
- *  Defult CSS 
- * -------------------
- */
 
 html {
   text-rendering: optimizeLegibility;
@@ -179,12 +100,6 @@ a:focus {
   text-align: center;
 }
 
-/**
- * ---------------------
- *  Defult Halping Class
- * ---------------------
- */
-
 .overflow {
   overflow: hidden;
 }
@@ -209,12 +124,6 @@ a:focus {
   float: none;
   vertical-align: middle;
 }
-
-/**
- * --------------------------------------
- *  Video Section Background Defult Style
- * --------------------------------------
- */
 
 .section-video {
   position: fixed;
@@ -261,12 +170,6 @@ a:focus {
 .dark-vertion .section-title h3 {
   color: #fff;
 }
-
-/**
- * ------------------------------------
- *  Every Section Headline Defult Class
- * ------------------------------------
- */
 
 .section-heading {
   display: block;
@@ -341,12 +244,6 @@ a:focus {
 .mini-separator {
   padding: 20px 0;
 }
-
-/**
- * ---------------------
- *   Defult Button Style
- * ---------------------
- */
 
 .btn {
   -moz-transition: color 0.3s ease;
@@ -485,12 +382,6 @@ a:focus {
   margin-left: 10px;
 }
 
-/** 
- * -----------------
- * Social Icon Style
- * -----------------
- */
-
 .social-icon {
   display: inline-block;
 }
@@ -513,12 +404,6 @@ a:focus {
 .social-icon li:last-child a {
   margin-right: 0px;
 }
-
-/**
- * -----------------------------------
- * Subscription and contact  "MESSAGE"
- * -----------------------------------
- */
 
 .subscription-success,
 .subscription-failed,
@@ -567,12 +452,6 @@ a:focus {
   top: 5px;
 }
 
-/**
- * ------------------
- * list
- * ------------------
- */
-
 ul {
   margin: 0;
   padding: 0;
@@ -581,12 +460,6 @@ ul {
 ul li {
   list-style-type: none;
 }
-
-/**
- * =================
- * CONTAINER HALF CONTENT
- * =================
- */
 
 .content-half {
   position: relative;
@@ -614,12 +487,6 @@ ul li {
   flex-direction: row;
   -webkit-flex-direction: row;
 }
-
-/**
- * ---------------------------------
- *  Section Background Size Property
- * ---------------------------------
- */
 
 .bg-cover {
   -webkit-background-size: cover;
@@ -675,8 +542,7 @@ ul li {
 }
 
 .img-overlay {
-  background-image: url(../images/new/footer-bg.webp);
-  background-size: cover;
+  background-image: url(/assets/images/new/footer-bg.webp);
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -684,7 +550,6 @@ ul li {
 }
 
 .image-bg {
-  background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -696,7 +561,7 @@ ul li {
 }
 
 .home-1-img::before {
-  background-image: url(../images/new/home-bg-img-3.webp);
+  background-image: url(/assets/images/new/home-bg-img-3.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -714,7 +579,7 @@ ul li {
 }
 
 .home-2-img::before {
-  background-image: url(../images/new/home-bg-img.webp);
+  background-image: url(/assets/images/new/home-bg-img.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -731,7 +596,7 @@ ul li {
 }
 
 .featured-img-one::before {
-  background-image: url(../images/new/home-bg-img.webp);
+  background-image: url(/assets/images/new/home-bg-img.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -748,7 +613,7 @@ ul li {
 }
 
 .featured-img-two::before {
-  background-image: url(../images/new/extra-feature-bg.webp);
+  background-image: url(/assets/images/new/extra-feature-bg.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -765,7 +630,7 @@ ul li {
 }
 
 .map-image::before {
-  background-image: url(../images/new/map-color-overlay.webp);
+  background-image: url(/assets/images/new/map-color-overlay.webp);
   content: '';
   position: absolute;
   top: 0;
@@ -841,12 +706,6 @@ button:focus {
   box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.8), 0 0px 1px 1px rgba(255, 255, 255, 0.8);
   border-color: transparent;
 }
-
-/** 
- * -----------------
- * General CSS
- * -----------------
- */
 
 .h1,
 .h2,
@@ -1291,17 +1150,6 @@ body {
   transition: 0.3s;
 }
 
-/*
-    ==============
-    Navigation
-    ==============
-*/
-
-/*---------------------------------------------------------------------*/
-
-/* Loader 
-/*---------------------------------------------------------------------*/
-
 .section-loader {
   position: fixed;
   display: flex;
@@ -1380,12 +1228,6 @@ body {
   }
 }
 
-/*
-    ==============
-       Navigation
-    ==============
-*/
-
 .jv-nav {
   width: 100%;
 }
@@ -1443,12 +1285,6 @@ body {
 .home-padding {
   padding: 180px 0;
 }
-
-/*
-    ==============
-       Navigation
-    ==============
-*/
 
 .jv-home-2 .jv-header-info {
   text-align: center;
@@ -1514,12 +1350,6 @@ body {
 .jv-home-2 .jv-header-info .jv-about-tag ul li {
   margin: 6px;
 }
-
-/*
-    ==============
-       HOME
-    ==============
-*/
 
 .jv-rtl .jv-home .jv-header-info ul li .fa {
   margin: 0 10px;
@@ -1650,12 +1480,6 @@ body {
   margin: 0 auto;
 }
 
-/*
-    ==============
-       ABOUT
-    ==============
-*/
-
 .jv-about .jv-about-inner {
   padding-left: 50px;
 }
@@ -1708,12 +1532,6 @@ body {
   max-width: 100%;
   overflow: hidden;
 }
-
-/*
-    ==============
-       SKILLS
-    ==============
-*/
 
 .jv-skills .jv-professional-skill {
   padding-right: 60px;
@@ -1874,12 +1692,6 @@ body {
   }
 }
 
-/*
-    ==============
-      EXPERIENCES
-    ==============
-*/
-
 .jv-experince h3 {
   font-size: 30px;
   line-height: 40px;
@@ -1923,12 +1735,6 @@ body {
   line-height: 23px;
   margin-bottom: 0;
 }
-
-/*
-    ==============
-      EDUCATION
-    ==============
-*/
 
 .jv-education {
   padding-right: 30px;
@@ -1991,12 +1797,6 @@ body {
   margin-right: 10px;
 }
 
-/*
-    ==============
-      Portfolio
-    ==============
-*/
-
 .portfolio-nav {
   margin: 0 auto;
   margin-bottom: 40px;
@@ -2055,12 +1855,6 @@ body {
 .mix {
   display: none;
 }
-
-/*
-    ==============
-       Pricing
-    ==============
-*/
 
 .jv-pricing .jv-pricing {
   padding: 30px 0;
@@ -2129,12 +1923,6 @@ body {
   transition: 0.3s;
 }
 
-/*
-    ==============
-       BLOG
-    ==============
-*/
-
 .jv-blog .jv-blog-item {
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -2187,12 +1975,6 @@ body {
   color: #0ac4a7;
 }
 
-/*
-    ==============
-       jv VIDEO
-    ==============
-*/
-
 .jv-video .each-video {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -2214,12 +1996,6 @@ body {
   text-align: center;
 }
 
-/*
-    ==============
-       QUATES
-    ==============
-*/
-
 .jv-quates .each-quates {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -2228,23 +2004,6 @@ body {
 .jv-quates .each-quates p {
   margin-top: 20px;
 }
-
-/* .jv-quates .each-quates .fa {
-  background-color: #fff;
-  border-radius: 50%;
-  color: black;
-  height: 40px;
-  width: 40px;
-  margin-top: 20px;
-  line-height: 40px;
-  text-align: center;
-} */
-
-/*
-    ==============
-       VIDEO
-    ==============
-*/
 
 .jv-video .each-video {
   padding: 30px 0;
@@ -2264,12 +2023,6 @@ body {
   line-height: 40px;
   text-align: center;
 }
-
-/*
-    =================
-       TESTIMONIAL
-    =================
-*/
 
 .jv-testimonial.jv-single-testimonial .jv-client-item p {
   padding: 0 160px;
@@ -2296,7 +2049,6 @@ body {
   float: none;
   margin: 0 auto;
   border: 5px solid #f30100;
-  margin: 0 auto;
   margin-bottom: 20px;
   border-radius: 50%;
 }
@@ -2356,12 +2108,6 @@ body {
   background-color: #f30100;
 }
 
-/*
-    ==============
-      FOOTER ONE
-    ==============
-*/
-
 .jv-footer ::placeholder {
   opacity: 0.9;
 }
@@ -2400,12 +2146,6 @@ body {
   border-color: transparent;
 }
 
-/*
-    ==============
-       MAP
-    ==============
-*/
-
 .jv-map {
   padding: 0px;
   margin-top: 10px;
@@ -2415,12 +2155,6 @@ body {
   height: 400px;
   width: 100%;
 }
-
-/*
-    ============
-    Footer Address
-    ==============
-*/
 
 .jv-footer-address {
   margin-bottom: 60px;
@@ -2451,12 +2185,6 @@ body {
   border-color: #f30100;
 }
 
-/*
-====================
-    Subpage
-====================
-*/
-
 .jv-page-title {
   padding-top: 100px;
 }
@@ -2483,12 +2211,6 @@ body {
   right: 0;
   z-index: 99;
 }
-
-/*
-====================
-    FOOTER 3
-====================
-*/
 
 .jv-footer-2 .form-control {
   -webkit-box-shadow: 0 0px 2px 0 rgba(255, 255, 255, 0.8), 0 0px 1px 1px rgba(255, 255, 255, 0.8);
@@ -2524,12 +2246,6 @@ body {
 .jv-copyright {
   margin-top: 60px;
 }
-
-/*
-==================
-    FOOTER 3
-=================
-*/
 
 .jv-footer-3 .jv-footer-address .jv-address-footer-item {
   padding: 20px 30px;
@@ -2584,12 +2300,6 @@ body {
 footer .social-icon a:hover {
   color: #f30100;
 }
-
-/*
-===============
-    Mobile Nav
-==============
-*/
 
 .old .navbar-collapse {
   position: fixed;
@@ -2862,10 +2572,6 @@ footer .social-icon a:hover {
 
 .new {
   z-index: 99;
-  /*-------------------------------*/
-  /*            Overlay            */
-  /*-------------------------------*/
-  /*  Navigation Menu */
 }
 
 .new .nav-btn .navbar-toggler.active {
@@ -3141,12 +2847,6 @@ footer .social-icon a:hover {
   background-image: inherit;
 }
 
-/*
-====================
-   PORTFOLIO
-===================
-*/
-
 .grid-item {
   margin-bottom: 20px;
 }
@@ -3259,7 +2959,6 @@ footer .social-icon a:hover {
   line-height: 30px;
   text-transform: capitalize;
   top: 50%;
-  margin-top: 30px;
   margin-top: -2px;
   transform: translateX(80px) translateY(0) translateZ(0) rotate(0deg) scale(1);
   -o-transform: translateX(80px) translateY(0) translateZ(0) rotate(0deg) scale(1);
@@ -3385,8 +3084,7 @@ footer .social-icon a:hover {
 }
 
 .home-ov-img {
-  background-image: url(../images/new/header-bg-2.webp);
-  background-size: cover;
+  background-image: url(/assets/images/new/header-bg-2.webp);
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -3509,12 +3207,6 @@ footer .social-icon a:hover {
   margin-bottom: 60px;
 }
 
-/*
-    ==============
-       SERVICES
-    ==============
-*/
-
 .jv-service .jv-service-item {
   padding: 20px;
 }
@@ -3552,12 +3244,6 @@ footer .social-icon a:hover {
   line-height: 27px;
   margin-left: 6px;
 }
-
-/*
-=================
-BLOG Pagination
-=============
-*/
 
 .jv-pagination {
   margin: 40px 0;
@@ -3993,14 +3679,11 @@ body.the404 {
   transform-origin: 201px 894px;
 }
 
-/* Handle mousemove translation of characters */
-/* Logo */
 .bear-logo--tears {
   --scaleX: -50;
   --scaleY: -50;
 }
 
-/* 404 */
 .four-oh-four__code span:nth-of-type(2) {
   --scaleX: 30;
   --scaleY: -20;
@@ -4016,7 +3699,6 @@ body.the404 {
   --scaleY: 40;
 }
 
-/* Not found */
 .four-oh-four__code-message span:nth-of-type(2) {
   --scaleX: 20;
   --scaleY: 10;
@@ -4075,95 +3757,31 @@ body.the404 {
 }
 
 @-webkit-keyframes glitch-switch {
-  0% {
-    content: var(--char-0);
-  }
-
-  10% {
-    content: var(--char-1);
-  }
-
-  20% {
-    content: var(--char-2);
-  }
-
-  30% {
-    content: var(--char-3);
-  }
-
-  40% {
-    content: var(--char-4);
-  }
-
-  50% {
-    content: var(--char-5);
-  }
-
-  60% {
-    content: var(--char-6);
-  }
-
-  70% {
-    content: var(--char-7);
-  }
-
-  80% {
-    content: var(--char-8);
-  }
-
-  90% {
-    content: var(--char-9);
-  }
-
-  100% {
-    content: var(--char-0);
-  }
+  0% { content: var(--char-0); }
+  10% { content: var(--char-1); }
+  20% { content: var(--char-2); }
+  30% { content: var(--char-3); }
+  40% { content: var(--char-4); }
+  50% { content: var(--char-5); }
+  60% { content: var(--char-6); }
+  70% { content: var(--char-7); }
+  80% { content: var(--char-8); }
+  90% { content: var(--char-9); }
+  100% { content: var(--char-0); }
 }
 
 @keyframes glitch-switch {
-  0% {
-    content: var(--char-0);
-  }
-
-  10% {
-    content: var(--char-1);
-  }
-
-  20% {
-    content: var(--char-2);
-  }
-
-  30% {
-    content: var(--char-3);
-  }
-
-  40% {
-    content: var(--char-4);
-  }
-
-  50% {
-    content: var(--char-5);
-  }
-
-  60% {
-    content: var(--char-6);
-  }
-
-  70% {
-    content: var(--char-7);
-  }
-
-  80% {
-    content: var(--char-8);
-  }
-
-  90% {
-    content: var(--char-9);
-  }
-
-  100% {
-    content: var(--char-0);
-  }
+  0% { content: var(--char-0); }
+  10% { content: var(--char-1); }
+  20% { content: var(--char-2); }
+  30% { content: var(--char-3); }
+  40% { content: var(--char-4); }
+  50% { content: var(--char-5); }
+  60% { content: var(--char-6); }
+  70% { content: var(--char-7); }
+  80% { content: var(--char-8); }
+  90% { content: var(--char-9); }
+  100% { content: var(--char-0); }
 }
 
 .wrap-image {
@@ -4209,7 +3827,6 @@ body.the404 {
   right: 15px;
 }
 
-/* button wpp */
 .cta {
   position: relative;
   margin: auto;

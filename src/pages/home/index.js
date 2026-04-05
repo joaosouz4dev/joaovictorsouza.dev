@@ -323,7 +323,6 @@ const Home = () => {
                       className="img-fluid"
                       width="500"
                       height="500"
-                      fetchPriority="high"
                       decoding="async"
                     />
                   </div>
