@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /matrix
+Disallow: /zap
+Disallow: /whatsapp
+Disallow: /wpp
+Disallow: /404
+
+Sitemap: https://joaovictorsouza.dev/sitemap.xml

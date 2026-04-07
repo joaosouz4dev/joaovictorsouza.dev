@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Seo from "../../components/seo";
 
 const GLITCH_CHARS = "`¡™£¢∞§¶•ªº–≠åß∂ƒ©˙∆˚¬…æ≈ç√∫˜µ≤≥÷/?░▒▓<>/".split("");
 
@@ -204,10 +205,17 @@ export default function NotFound() {
     return () => {
       document.querySelector("body").classList.remove("the404");
       document.body.removeEventListener("mousemove", update);
+      window.ondevicemotion = null;
     };
   }, []);
   return (
     <div id="app">
+      <Seo
+        title="404 | Pagina nao encontrada"
+        description="Pagina nao encontrada."
+        canonical="/404"
+        robots="noindex,follow"
+      />
       <AppShell>
         <Container>
           <Message className="return-link" href="/#" rel="noreferrer noopener">
