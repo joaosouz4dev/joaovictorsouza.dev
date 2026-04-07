@@ -1,341 +1,252 @@
-import React, { useEffect, useState, useRef } from "react";
-import Fancybox from "./fancybox.js";
-
-const PORTFOLIO = [
-  {
-    categoria: 'site',
-    img: 'assets/images/portfolio/g1.webp',
-    title: 'Ramon Vieira',
-    subTitle: 'Site',
-    link: 'https://www.ramonvieira.com/',
-    descricao: `Site unica para fotografo exibir fotos de eventos e receber contatos de possiveis clientes`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'javascript',
-    ]
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g2.webp',
-    title: 'Solardash',
-    subTitle: 'Sistema',
-    link: 'https://solardash.com.br/',
-    descricao: `A plataforma de gestão completa para empresa de energia solar facilita o primeiro contato com o cliente até o pós venda. A plataforma permite que a empresa possua um controle maior sobre as etapas do projeto, desde a captação de clientes, instalação dos painéis solares até o controle de pós venda`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'php',
-      'React',
-      'Javascript',
-      'Node.JS'
-    ]
-  },
-  {
-    categoria: 'site',
-    img: 'assets/images/portfolio/g3.webp',
-    title: 'Lumus Solar',
-    subTitle: 'Site',
-    link: 'https://www.lumus.eng.br/',
-    descricao: `Site unico para empresa que faz instalação de sistemas de energia fotovoltaica`,
-    tecnologias: [
-      'html',
-      'css',
-      'Javascript',
-      'php',
-      'wordpress',
-    ]
-  },
-  {
-    categoria: 'site app',
-    img: 'assets/images/portfolio/g4.webp',
-    title: 'Mapp Sistemas',
-    subTitle: 'Site e App',
-    link: 'https://mappsistemas.com.br/',
-    descricao: `Site completo com blog desenvolvido para a empresa vender seu sistema web e aplicativos usuarios dessa empresa`,
-    tecnologias: [
-      'php',
-      'wordpress',
-      'html',
-      'css',
-      'Javascript',
-      'React Native',
-    ]
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g7.webp',
-    title: 'Folhetos.app',
-    subTitle: 'Sistema',
-    link: 'https://folhetos.app/',
-    descricao: `Sistema web para empresas exibirem ofertas online`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'Javascript',
-    ]
-  },
-  {
-    categoria: 'ecommerce app',
-    img: 'assets/images/portfolio/g5.webp',
-    title: 'Dujuca',
-    subTitle: 'E-Commerce e App',
-    link: 'https://dujuca.com/',
-    descricao: `E-Commerce e app criado para a empresa vender produtos online`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'React',
-      'React Native',
-      'Javascript',
-      'php',
-      'wordpress',
-    ]
-  },
-  {
-    categoria: 'sistema',
-    img: 'assets/images/portfolio/g8.webp',
-    title: 'Wppconnect',
-    subTitle: 'Sistema',
-    link: 'https://wppconnect.io/',
-    descricao: `Projeto open source criado para facilitar as manipulações do whatsapp web, possibilitando criar chatbots, chat de comunicação dentre outras coisas.`,
-    tecnologias: [
-      'React',
-      'Javascript',
-      'Node.JS'
-    ]
-  },
-  {
-    categoria: 'sistema site app',
-    img: 'assets/images/portfolio/g6.webp',
-    title: 'Dr.pay Saude',
-    subTitle: 'Sistema, Site e App',
-    link: 'https://drpaysaude.com.br/',
-    descricao: `Sistema e app focado para medicos e unidades de saude, ofertando diversos produtos`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'php',
-      'wordpress',
-      'React',
-      'React Native',
-      'Javascript',
-      'Node.JS'
-    ]
-  },
-  {
-    categoria: 'ecommerce',
-    img: 'assets/images/portfolio/g9.webp',
-    title: 'Felavie',
-    subTitle: 'E-Commerce',
-    link: 'https://felavie.com.br/',
-    descricao: `E-Commerce criado para a empresa vender produtos online`,
-    tecnologias: [
-      'php',
-      'html',
-      'css',
-      'php',
-      'wordpress',
-      'React',
-      'Javascript',
-    ]
-  },
-];
-
-function useOutsideAlerter(ref, closeModal = () => { }) {
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        closeModal();
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref, closeModal]);
-}
-
-const ModalPortifolio = ({ selected = {}, modalIsOpen, setIsOpen }) => {
-  const [data, setData] = useState({
-    titulo: '',
-    descricao: '',
-    tecnologias: [],
-    link: '',
-    imagem: ''
-  });
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, closeModal);
-
-  useEffect(() => {
-    setData({
-      titulo: '',
-      descricao: '',
-      tecnologias: [],
-      link: '',
-      imagem: ''
-    });
-    if (selected && selected.titulo) {
-      setData(selected);
-    }
-  }, [selected]);
-
-  useEffect(() => {
-    if (modalIsOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = null;
-    }
-  }, [modalIsOpen])
-
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  return (
-    <div className="jv-portfolio-modal" style={{
-      display: modalIsOpen ? 'flex' : 'none',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'fixed',
-      zIndex: 9999,
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: '#282828b3'
-    }}>
-      <div className="container">
-        <div
-          ref={wrapperRef}
-          className="row jv-portfolio-modal-inner dark-bg shadowdiv"
-          style={{
-            display: modalIsOpen ? 'flex' : 'none',
-            width: '90%',
-            padding: '15px',
-            borderRadius: '10px',
-            margin: '0 auto',
-            position: "relative"
-          }}>
-          <div className="col-sm-5">
-            <h2>{data.titulo}</h2>
-            <p>{data.descricao}</p>
-            <div className="jv-about-tag">
-              <ul>
-                {data.tecnologias.map((e, i) => (
-                  <li key={i}><span>{e}</span></li>
-                ))}
-              </ul>
-            </div>
-            <a href={data.link} target="_blank" className="btn btn-fill" rel="noopener noreferrer">Ver Mais</a>
-          </div>
-          <div className="col-sm-7">
-            <div className="jv-portfolio-modal-img" style={{
-              margin: '10px auto',
-              display: 'block',
-              textAlign: 'center',
-            }}>
-              <img src={data.imagem} alt="" className="img-fluid" />
-            </div>
-          </div>
-          <div
-            style={{
-              position: 'absolute',
-              right: '5px',
-              top: '5px',
-              backgroundColor: '#c81016',
-              height: '30px',
-              width: '30px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#ffffff'
-            }}
-            onClick={closeModal}
-          >
-            <i className="fa fa-close"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import React, { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Portfolio = () => {
-  const [selected, setSelected] = useState({
-    titulo: '',
-    descricao: '',
-    tecnologias: [],
-    link: '',
-    imagem: ''
-  });
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const portfolioItems = [
+    {
+      categories: ['site'],
+      img: '/assets/images/portfolio/g1.webp',
+      title: 'Ramon Vieira',
+      subTitle: t('portfolio.words.site'),
+      link: 'https://www.ramonvieira.com/',
+      descricao: t('portfolio.descriptions.desc1'),
+      tecnologias: ['php', 'html', 'css', 'javascript'],
+    },
+    {
+      categories: ['sistema'],
+      img: '/assets/images/portfolio/g2.webp',
+      title: 'Solardash',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://solardash.com.br/',
+      descricao: t('portfolio.descriptions.desc2'),
+      tecnologias: ['php', 'html', 'css', 'php', 'React', 'Javascript', 'Node.JS'],
+    },
+    {
+      categories: ['site'],
+      img: '/assets/images/portfolio/g3.webp',
+      title: 'Lumus Solar',
+      subTitle: t('portfolio.words.site'),
+      link: 'https://www.lumus.eng.br/',
+      descricao: t('portfolio.descriptions.desc3'),
+      tecnologias: ['html', 'css', 'Javascript', 'php', 'wordpress'],
+    },
+    {
+      categories: ['site', 'app'],
+      img: '/assets/images/portfolio/g4.webp',
+      title: 'Mapp Sistemas',
+      subTitle: t('portfolio.words.site') + ', ' + t('portfolio.words.app'),
+      link: 'https://mappsistemas.com.br/',
+      descricao: t('portfolio.descriptions.desc4'),
+      tecnologias: ['php', 'wordpress', 'html', 'css', 'Javascript', 'React Native'],
+    },
+    {
+      categories: ['sistema'],
+      img: '/assets/images/portfolio/g7.webp',
+      title: 'Folhetos.app',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://folhetos.app/',
+      descricao: t('portfolio.descriptions.desc5'),
+      tecnologias: ['php', 'html', 'css', 'Javascript'],
+    },
+    {
+      categories: ['ecommerce', 'app'],
+      img: '/assets/images/portfolio/g5.webp',
+      title: 'Dujuca',
+      subTitle: t('portfolio.words.ecommerce') + ', ' + t('portfolio.words.app'),
+      link: 'https://dujuca.com/',
+      descricao: t('portfolio.descriptions.desc6'),
+      tecnologias: ['php', 'html', 'css', 'React', 'React Native', 'Javascript', 'php', 'wordpress'],
+    },
+    {
+      categories: ['sistema'],
+      img: '/assets/images/portfolio/g8.webp',
+      title: 'Wppconnect',
+      subTitle: t('portfolio.words.system'),
+      link: 'https://wppconnect.io/',
+      descricao: t('portfolio.descriptions.desc7'),
+      tecnologias: ['React', 'Javascript', 'Node.JS'],
+    },
+    {
+      categories: ['sistema', 'site', 'app'],
+      img: '/assets/images/portfolio/g6.webp',
+      title: 'Dr.pay Saude',
+      subTitle: t('portfolio.words.system') + ', ' + t('portfolio.words.site') + ', ' + t('portfolio.words.app'),
+      link: 'https://drpaysaude.com.br/',
+      descricao: t('portfolio.descriptions.desc8'),
+      tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'React Native', 'Javascript', 'Node.JS'],
+    },
+    {
+      categories: ['ecommerce'],
+      img: '/assets/images/portfolio/g9.webp',
+      title: 'Felavie',
+      subTitle: t('portfolio.words.ecommerce'),
+      link: 'https://felavie.com.br/',
+      descricao: t('portfolio.descriptions.desc9'),
+      tecnologias: ['php', 'html', 'css', 'php', 'wordpress', 'React', 'Javascript'],
+    },
+  ];
+  const filterOptions = [
+    { key: 'all', label: t('portfolio.words.all') },
+    { key: 'site', label: t('portfolio.words.site') },
+    { key: 'app', label: t('portfolio.words.app') },
+    { key: 'sistema', label: t('portfolio.words.system') },
+    { key: 'ecommerce', label: t('portfolio.words.ecommerce') },
+  ];
+
+  const filteredPortfolio = useMemo(
+    () =>
+      activeFilter === 'all'
+        ? portfolioItems
+        : portfolioItems.filter((item) => item.categories.includes(activeFilter)),
+    [activeFilter, portfolioItems],
+  );
+
+  useEffect(() => {
+    const onEscape = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+    document.addEventListener('keydown', onEscape);
+    return () => {
+      document.removeEventListener('keydown', onEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
+
   return (
     <>
-      <section className="jv-portfolio" id="jv-portfolio">
-        <Fancybox>
-          <div className="container">
-            <div className="row section-separator">
-              <div className="section-title col-sm-12 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                <h3>Portfólio recente</h3>
+      <section className="jv-portfolio jv-portfolio-react" id="jv-portfolio">
+        <div className="container">
+          <div className="row section-separator">
+            <div className="section-title col-sm-12 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+              <h3>{t('portfolio.title')}</h3>
+            </div>
+
+            <div className="col-sm-12">
+              <div className="jv-portfolio-react-nav">
+                {filterOptions.map((filter) => (
+                  <button
+                    key={filter.key}
+                    className={`jv-portfolio-react-filter ${
+                      activeFilter === filter.key ? 'active' : ''
+                    }`}
+                    type="button"
+                    onClick={() => setActiveFilter(filter.key)}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
               </div>
-              <div className="part col-sm-12">
-                <div className="portfolio-nav col-sm-12" id="filter-button">
-                  <ul>
-                    <li data-filter="*" className="current wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s"> <span>Todos</span></li>
-                    <li data-filter=".site" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s"><span>Site</span></li>
-                    <li data-filter=".app" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s"><span>App</span></li>
-                    <li data-filter=".sistema" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><span>Sistema</span></li>
-                    <li data-filter=".ecommerce" className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s"><span>E-Commerce</span></li>
-                  </ul>
-                </div>
-                <div className="jv-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                  <div className="portfolioContainer row">
-                    {PORTFOLIO.map((e, i) => (
-                      <div key={i} className={"grid-item col-md-4 col-sm-6 col-xs-12 " + e.categoria}>
-                        <figure>
-                          <img src={e.img} alt="" />
-                          <figcaption className="fig-caption"
-                            style={{
-                              cursor: "pointer"
-                            }}
-                            onClick={() => {
-                              setIsOpen(true);
-                              setSelected({
-                                titulo: e.title,
-                                descricao: e.descricao,
-                                tecnologias: e.tecnologias,
-                                link: e.link,
-                                imagem: e.img
-                              })
-                            }}>
-                            <i className="fa fa-search"></i>
-                            <h5 className="title">{e.title}</h5>
-                            <span className="sub-title">{e.subTitle}</span>
-                          </figcaption>
-                        </figure>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            </div>
+
+            <div className="col-sm-12">
+              <div className="jv-portfolio-react-grid">
+                {filteredPortfolio.map((project) => (
+                  <article className="jv-portfolio-react-card" key={project.title}>
+                    <div className="jv-portfolio-react-thumb">
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        width="1600"
+                        height="1100"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+
+                    <div className="jv-portfolio-react-content">
+                      <h4>{project.title}</h4>
+                      <p>{project.subTitle}</p>
+                      <button
+                        type="button"
+                        className="jv-portfolio-react-action"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        {t('portfolio.btn')}
+                      </button>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
-        </Fancybox>
+        </div>
       </section>
-      <ModalPortifolio
-        selected={selected}
-        modalIsOpen={modalIsOpen}
-        setIsOpen={setIsOpen}
-      />
+
+      {selectedProject && (
+        <div
+          className="jv-portfolio-react-modal"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="jv-portfolio-react-modal-inner"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="jv-portfolio-react-close"
+              onClick={() => setSelectedProject(null)}
+              aria-label="Fechar modal"
+            >
+              <i className="fa fa-close" />
+            </button>
+
+            <div className="jv-portfolio-react-modal-grid">
+              <div className="jv-portfolio-react-modal-image">
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  width="1600"
+                  height="1100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div className="jv-portfolio-react-modal-content">
+                <h2>{selectedProject.title}</h2>
+                <p>{selectedProject.descricao}</p>
+
+                <div className="jv-about-tag">
+                  <ul>
+                    {selectedProject.tecnologias.map((tech) => (
+                      <li key={`${selectedProject.title}-${tech}`}>
+                        <span>{tech}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-fill"
+                >
+                  {t('portfolio.btn')}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
