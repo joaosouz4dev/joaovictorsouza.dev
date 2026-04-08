@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@fancyapps/ui": "5.0.36",
+    "@fancyapps/ui": "6.1.13",
     "@lottiefiles/lottie-player": "^2.0.4",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.6",
