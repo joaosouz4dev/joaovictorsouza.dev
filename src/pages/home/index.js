@@ -179,13 +179,14 @@ function Hero() {
                 />
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
-                    src="/assets/images/new/foto.webp"
+                    src="/assets/images/new/hero-portrait.webp"
                     alt="João Victor Souza"
                     loading="eager"
                     decoding="async"
+                    fetchpriority="high"
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/20" />
                   <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10" />
                 </div>
                 <div className="absolute inset-x-5 bottom-5 flex items-center justify-between">
