@@ -93,7 +93,7 @@ const en = {
   quates: {
     title: `Let's work together?`,
     description:
-      'Developer, designer and proactive. With {anos} years coding, João Victor Souza makes programming both profession and passion.',
+      'Developer, designer and proactive. With {{anos}} years coding, João Victor Souza makes programming both profession and passion.',
   },
   homeSeo: {
     title: 'Specialties and Technical Content',

@@ -94,7 +94,7 @@ const pt = {
   quates: {
     title: 'Vamos trabalhar juntos?',
     description:
-      'Desenvolvedor, designer e proativo. Há {anos} anos programando, João Victor Souza faz da programação profissão e paixão.',
+      'Desenvolvedor, designer e proativo. Há {{anos}} anos programando, João Victor Souza faz da programação profissão e paixão.',
   },
   homeSeo: {
     title: 'Especialidades e Conteúdo Técnico',
