@@ -119,9 +119,9 @@ function Hero() {
               />
               <h1 className="mt-6 tracking-tight">
                 <GlitchText
-                  text="JOÃOVICTORSOUZA"
+                  text="JOÃO VICTOR SOUZA"
                   pixel
-                  className="block leading-none text-[clamp(1.05rem,2.6vw,2.25rem)] text-foreground whitespace-nowrap"
+                  className="block leading-none text-[clamp(1.5rem,3.6vw,3rem)] text-foreground whitespace-nowrap"
                 />
               </h1>
               <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
