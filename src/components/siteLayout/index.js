@@ -61,11 +61,17 @@ const SiteLayout = ({ children }) => {
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
             <Link
               to="/"
+              aria-label="João Victor Souza"
               className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-3 py-2 text-sm font-display font-medium tracking-tight backdrop-blur-2xl"
             >
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-accent text-white text-xs font-medium">
-                JV
-              </span>
+              <img
+                src="/assets/images/Logo.svg"
+                alt=""
+                aria-hidden="true"
+                width="28"
+                height="28"
+                className="h-7 w-7 object-contain"
+              />
               <span className="hidden md:inline">joaovictorsouza.dev</span>
             </Link>
 

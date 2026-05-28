@@ -43,7 +43,13 @@ export function MobileMenu({ items, ctaLabel, ctaHref, className }) {
           >
             <div className="container-px mx-auto max-w-6xl py-6">
               <div className="flex items-center justify-between">
-                <span className="font-display text-lg font-medium tracking-tight">JV</span>
+                <img
+                  src="/assets/images/Logo.svg"
+                  alt="João Victor Souza"
+                  width="32"
+                  height="32"
+                  className="h-8 w-8 object-contain"
+                />
                 <button
                   type="button"
                   onClick={() => setOpen(false)}

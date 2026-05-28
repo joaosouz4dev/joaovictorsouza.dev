@@ -31,10 +31,15 @@ const Footer = () => {
       <Container size="lg" className="relative py-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <Link to="/" className="inline-flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-accent text-white font-display text-lg font-medium">
-                JV
-              </span>
+            <Link to="/" className="inline-flex items-center gap-3" aria-label="João Victor Souza">
+              <img
+                src="/assets/images/Logo.svg"
+                alt=""
+                aria-hidden="true"
+                width="40"
+                height="40"
+                className="h-10 w-10 object-contain"
+              />
               <span className="font-display text-lg font-medium tracking-tight">
                 joaovictorsouza.dev
               </span>
