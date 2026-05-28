@@ -117,7 +117,7 @@ function Hero() {
                 split="words"
                 className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
               />
-              <h1 className="mt-6 flex flex-col gap-y-4 md:gap-y-5 tracking-tight">
+              <h1 className="mt-6 flex flex-col gap-y-1 md:gap-y-1.5 tracking-tight">
                 <GlitchText
                   text="JOÃO"
                   pixel
@@ -177,16 +177,18 @@ function Hero() {
                       'repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 4px)',
                   }}
                 />
-                <div className="relative aspect-[4/5] overflow-hidden">
+                <div className="relative aspect-[9/16] overflow-hidden">
                   <img
                     src="/assets/images/new/hero-portrait.webp"
                     alt="João Victor Souza"
                     loading="eager"
                     decoding="async"
                     fetchpriority="high"
-                    className="h-full w-full object-cover"
+                    width="1200"
+                    height="2150"
+                    className="h-full w-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                   <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10" />
                 </div>
                 <div className="absolute inset-x-5 bottom-5 flex items-center justify-between">
