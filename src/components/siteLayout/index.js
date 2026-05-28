@@ -1,18 +1,15 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Navbar from '../navbar';
-import LanguageSelector from '../footer/languageSelector';
-
-const NAV_ITEMS = [
-  { href: '/', key: 'menu.home' },
-  { href: '/sobre', key: 'menu.about' },
-  { href: '/servicos', key: 'menu.services' },
-  { href: '/cases', key: 'menu.cases' },
-  { href: '/blog', key: 'menu.blog' },
-  { href: '/projetos', key: 'menu.projects' },
-  { href: '/contato', key: 'menu.contact' },
-];
+import { Home, User, Briefcase, FolderKanban, BookOpen, Mail, Sparkles, ChevronRight } from 'lucide-react';
+import Container from '../ui/Container';
+import LenisProvider from '../ui/LenisProvider';
+import ScrollProgress from '../ui/ScrollProgress';
+import Dock from '../ui/Dock';
+import MobileMenu from '../ui/MobileMenu';
+import ThemeToggle from '../ui/ThemeToggle';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
+import Footer from '../footer/Footer';
 
 const BREADCRUMB_LABEL_KEYS = {
   sobre: 'menu.about',
@@ -23,72 +20,21 @@ const BREADCRUMB_LABEL_KEYS = {
   contato: 'menu.contact',
 };
 
-const getActiveMenu = (pathname) => {
-  if (pathname.startsWith('/servicos')) return '/servicos';
-  if (pathname.startsWith('/cases')) return '/cases';
-  if (pathname.startsWith('/blog')) return '/blog';
-  if (pathname.startsWith('/projetos')) return '/projetos';
-  if (pathname.startsWith('/contato')) return '/contato';
-  if (pathname.startsWith('/sobre')) return '/sobre';
-  return '/';
-};
+const NAV_ITEMS = (t) => [
+  { to: '/', label: t('menu.home'), icon: <Home size={16} /> },
+  { to: '/sobre', label: t('menu.about'), icon: <User size={16} /> },
+  { to: '/servicos', label: t('menu.services'), icon: <Briefcase size={16} /> },
+  { to: '/cases', label: t('menu.cases'), icon: <Sparkles size={16} /> },
+  { to: '/blog', label: t('menu.blog'), icon: <BookOpen size={16} /> },
+  { to: '/projetos', label: t('menu.projects'), icon: <FolderKanban size={16} /> },
+  { to: '/contato', label: t('menu.contact'), icon: <Mail size={16} /> },
+];
 
 const SiteLayout = ({ children }) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const location = useLocation();
-  const [darkMode, setDarkMode] = useState(true);
-  const [menuActive, setMenuActive] = useState('/');
   const pathname = location.pathname || '/';
-
-  useEffect(() => {
-    if (localStorage.getItem('darkmode') !== null) {
-      setDarkMode(localStorage.getItem('darkmode') === 'true');
-    } else {
-      const prefersDarkMode = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-      setDarkMode(prefersDarkMode);
-      localStorage.setItem('darkmode', prefersDarkMode);
-    }
-  }, []);
-
-  useEffect(() => {
-    setMenuActive(getActiveMenu(location.pathname));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (!body) return;
-    if (darkMode) {
-      body.classList.add('dark-vertion');
-      body.classList.remove('white-vertion');
-    } else {
-      body.classList.remove('dark-vertion');
-      body.classList.add('white-vertion');
-    }
-  }, [darkMode]);
-
-  const menus = useMemo(
-    () =>
-      NAV_ITEMS.map((item) => ({
-        href: item.href,
-        label: t(item.key),
-      })),
-    [t],
-  );
-
-  const toggleDarkMode = () => {
-    const next = !darkMode;
-    setDarkMode(next);
-    localStorage.setItem('darkmode', next);
-  };
-
-  const toggleMenuActive = (href) => {
-    setMenuActive(href);
-    navigate(href);
-  };
+  const navItems = useMemo(() => NAV_ITEMS(t), [t]);
 
   const breadcrumbItems = pathname
     .split('/')
@@ -98,173 +44,68 @@ const SiteLayout = ({ children }) => {
       return {
         href,
         label:
-          (BREADCRUMB_LABEL_KEYS[segment] &&
-            t(BREADCRUMB_LABEL_KEYS[segment])) ||
-          segment
+          (BREADCRUMB_LABEL_KEYS[segment] && t(BREADCRUMB_LABEL_KEYS[segment])) ||
+          decodeURIComponent(segment)
             .replace(/-/g, ' ')
-            .replace(/^\w/, (char) => char.toUpperCase()),
+            .replace(/^\w/, (c) => c.toUpperCase()),
       };
     });
 
   return (
-    <div className="seo-layout">
-      <div className="seo-ambient-shape seo-ambient-shape-1" />
-      <div className="seo-ambient-shape seo-ambient-shape-2" />
-      <header
-        className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
-        id="jv-header"
-      >
-        <Navbar
-          menus={menus}
-          menuActive={menuActive}
-          toggleMenuActive={toggleMenuActive}
-          toggleDarkMode={toggleDarkMode}
-          darkMode={darkMode}
-        />
-      </header>
+    <LenisProvider>
+      <ScrollProgress />
+      <div className="relative isolate min-h-screen flex flex-col">
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-50 grid-bg opacity-30" />
 
-      <main className="seo-main jv-site-content">
-        <div className="container">
-          {pathname !== '/' && (
-            <nav className="seo-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/">{t('menu.home')}</Link>
-              {breadcrumbItems.map((item, index) => (
-                <React.Fragment key={`${item.href}-${index}`}>
-                  <span>/</span>
-                  <Link to={item.href}>{item.label}</Link>
-                </React.Fragment>
-              ))}
-            </nav>
-          )}
-          <div className="seo-page-shell">{children}</div>
-        </div>
-      </main>
+        <header className="fixed inset-x-0 top-4 md:top-6 z-50 px-4">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface/70 px-3 py-2 text-sm font-display font-medium tracking-tight backdrop-blur-2xl"
+            >
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-accent text-white text-xs font-medium">
+                JV
+              </span>
+              <span className="hidden md:inline">joaovictorsouza.dev</span>
+            </Link>
 
-      <footer className="jv-footer jv-footer-3">
-        <div className="container">
-          <div className="row section-separator">
-            <div className="col-sm-12">
-              <div className="seo-inner-footer">
-                <div className="seo-footer-grid">
-                  <div className="seo-footer-block">
-                    <div className="seo-footer-brand-wrap">
-                      <img
-                        className="seo-footer-logo-image"
-                        src="/assets/images/Logo.svg"
-                        alt="Logo de Joao Victor Souza"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <p>
-                      {t('layout.footer.description')}
-                    </p>
-                    <Link className="seo-cta" to="/contato">
-                      {t('layout.footer.cta')}
-                    </Link>
-                  </div>
+            <div className="hidden md:block">
+              <Dock items={navItems} />
+            </div>
 
-                  <div className="seo-footer-block">
-                    <h4>{t('layout.footer.quickNav')}</h4>
-                    <ul className="seo-footer-links">
-                      <li>
-                        <Link to="/servicos/whatsapp-cloud-api">
-                          WhatsApp Cloud API
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/servicos/meta-ads-e-integracoes">
-                          Meta Pixel + CAPI
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/blog/guia-whatsapp-cloud-api">
-                          {t('layout.footer.mainGuide')}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/cases">{t('layout.footer.viewAllCases')}</Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="seo-footer-block">
-                    <h4>{t('layout.footer.specialties')}</h4>
-                    <div className="seo-footer-tags">
-                      <span>WhatsApp Cloud API</span>
-                      <span>Meta Conversions API</span>
-                      <span>Chatbots com IA</span>
-                      <span>RAG + Handoff Humano</span>
-                      <span>Integracao CRM/ERP</span>
-                      <span>Observabilidade</span>
-                    </div>
-                  </div>
-
-                  <div className="seo-footer-block">
-                    <h4>{t('menu.contact')}</h4>
-                    <p>
-                      <a href="mailto:web@joaovictorsouza.dev">
-                        web@joaovictorsouza.dev
-                      </a>
-                    </p>
-                    <p>
-                      <a href="https://wa.me/5531998587817" target="_blank" rel="noreferrer noopener">
-                        {t('layout.footer.whatsappDirect')}
-                      </a>
-                    </p>
-                    <ul className="social-icon seo-footer-social">
-                      <li>
-                        <a
-                          href="https://github.com/joaosouz4dev"
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          aria-label={t('layout.social.github')}
-                        >
-                          <i className="fa fa-github" />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.linkedin.com/in/joaosouz4dev/"
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          aria-label={t('layout.social.linkedin')}
-                        >
-                          <i className="fa fa-linkedin" />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.instagram.com/joaosouz4dev"
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          aria-label={t('layout.social.instagram')}
-                        >
-                          <i className="fa fa-instagram" />
-                        </a>
-                      </li>
-                    </ul>
-                    <LanguageSelector />
-                  </div>
-                </div>
-
-                <div className="seo-footer-bottom">
-                  <p>© 2015 - {new Date().getFullYear()} Joao Victor Souza</p>
-                  <p>
-                    <Link to="/">{t('menu.home')}</Link> |{' '}
-                    <Link to="/servicos">{t('menu.services')}</Link> |{' '}
-                    <Link to="/blog">{t('menu.blog')}</Link> |{' '}
-                    <Link to="/projetos">{t('menu.projects')}</Link>
-                  </p>
-                </div>
-              </div>
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher className="hidden md:block" />
+              <ThemeToggle />
+              <MobileMenu items={navItems} className="md:hidden" ctaLabel={t('layout.footer.cta')} ctaHref="/contato" />
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </header>
+
+        <main className="relative flex-1">
+          {pathname !== '/' && breadcrumbItems.length > 0 && (
+            <Container size="lg" className="pt-28 md:pt-32">
+              <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground">
+                <Link to="/" className="hover:text-foreground transition-colors">
+                  {t('menu.home')}
+                </Link>
+                {breadcrumbItems.map((item, i) => (
+                  <React.Fragment key={`${item.href}-${i}`}>
+                    <ChevronRight size={12} className="text-foreground/30" />
+                    <Link to={item.href} className="hover:text-foreground transition-colors">
+                      {item.label}
+                    </Link>
+                  </React.Fragment>
+                ))}
+              </nav>
+            </Container>
+          )}
+          {children}
+        </main>
+
+        <Footer />
+      </div>
+    </LenisProvider>
   );
 };
 
 export default SiteLayout;
-

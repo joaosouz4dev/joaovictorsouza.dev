@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import '../styles/scss/main.scss';
+import '../styles/globals.css';
 
 import Home from '../pages/home';
 import { Analytics } from '@vercel/analytics/react';

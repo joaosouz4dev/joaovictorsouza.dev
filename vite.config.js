@@ -3,16 +3,21 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      include: /\.(js|jsx|ts|tsx)$/,
+    }),
+  ],
   esbuild: {
     loader: 'jsx',
-    include: /src\/.*\.js$/,
+    include: /src\/.*\.(js|jsx)$/,
     exclude: [],
   },
   optimizeDeps: {
     esbuildOptions: {
       loader: {
         '.js': 'jsx',
+        '.jsx': 'jsx',
       },
     },
   },
@@ -30,6 +35,9 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+          motion: ['framer-motion'],
+          lenis: ['lenis'],
+          icons: ['lucide-react'],
         },
       },
     },

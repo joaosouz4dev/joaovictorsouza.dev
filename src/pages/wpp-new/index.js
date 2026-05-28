@@ -1,21 +1,31 @@
 import React from 'react';
 import WhatsAppForm from '../../components/WhatsAppForm';
 import Seo from '../../components/seo';
+import SiteLayout from '../../components/siteLayout';
+import PageHero from '../../components/ui/PageHero';
+import Section from '../../components/ui/Section';
 
 const WhatsAppPage = () => {
   return (
-    <>
+    <SiteLayout>
       <Seo
-        title="Gerador de link WhatsApp | Joao Victor Souza"
-        description="Ferramenta utilitaria para iniciar conversa no WhatsApp."
+        title="Gerador de link WhatsApp | João Victor Souza"
+        description="Ferramenta utilitária para iniciar conversa no WhatsApp."
         canonical="/wpp"
         robots="noindex,follow"
       />
-      <div className="whatsapp-page-container">
+
+      <PageHero
+        eyebrow="Ferramenta"
+        title="Gerador de link wa.me"
+        description="Cole o número com DDI/DDD e escreva uma mensagem inicial — geramos um link de WhatsApp pronto para abrir."
+      />
+
+      <Section bordered>
         <WhatsAppForm />
-      </div>
-    </>
+      </Section>
+    </SiteLayout>
   );
 };
 
-export default WhatsAppPage; 
+export default WhatsAppPage;

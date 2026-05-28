@@ -1,847 +1,534 @@
-import React, { useState, useEffect } from 'react';
-import Portifolio from '../../components/portifolio';
-import SvgAnimated from '../../components/portifolio/svgAnimated';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-
-import iconCv from '../../assets/images/icon-cv.png';
-import LanguageSelector from '../../components/footer/languageSelector';
-
-import profile from '../../assets/images/profile/profile.jpg';
-import Navbar from '../../components/navbar';
+import { Link } from 'react-router-dom';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from 'framer-motion';
+import {
+  MessageSquare,
+  BrainCircuit,
+  Network,
+  Sparkles,
+  ArrowUpRight,
+  Mail,
+  Linkedin,
+  MessagesSquare,
+  ChevronDown,
+} from 'lucide-react';
+import SiteLayout from '../../components/siteLayout';
 import Seo from '../../components/seo';
-
-// const oldprofile = '/assets/images/new/hero-2.webp'
+import Container from '../../components/ui/Container';
+import Section from '../../components/ui/Section';
+import Button from '../../components/ui/Button';
+import Card from '../../components/ui/Card';
+import Badge from '../../components/ui/Badge';
+import GradientText from '../../components/ui/GradientText';
+import Spotlight from '../../components/ui/Spotlight';
+import GlowEffect from '../../components/ui/GlowEffect';
+import NoiseTexture from '../../components/ui/NoiseTexture';
+import AnimatedText from '../../components/ui/AnimatedText';
+import { RevealOnScroll, RevealGroup, RevealItem } from '../../components/ui/RevealOnScroll';
+import TiltCard from '../../components/ui/TiltCard';
+import MarqueeRow from '../../components/ui/MarqueeRow';
+import MagneticCursor from '../../components/ui/MagneticCursor';
+import PortfolioGrid from '../../components/sections/PortfolioGrid';
 
 const ANO_INICIAL = 2015;
 
-const tecnologias = [
-  'Typescript',
-  'Javascript',
-  'ReactJS',
-  'React Native',
-  'NextJS',
-  'PHP',
-  'NodeJS',
-  'Photoshop',
-  'Illustrator',
-  'Sketch',
-  'Html',
-  'Css',
-  'JQuery',
-  'MongoDB',
-  'Wordpress',
-  'Lumen',
-  'SQL',
-  'Express',
-];
-
-const linkedin = 'https://www.linkedin.com/in/joaosouz4dev';
-
-const celular = '+55 31 9 9858-7817';
-
-const whatsappUrl = 'https://wa.me/5531998587817';
-
-const redes_sociais = [
+const homeSchema = [
   {
-    nome: 'Facebook',
-    url: 'https://www.facebook.com/joaosouz4dev',
-    icone: 'fa fa-facebook',
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'João Victor Souza',
+    url: 'https://joaovictorsouza.dev/',
+    sameAs: ['https://www.linkedin.com/in/joaosouz4dev', 'https://github.com/joaosouz4dev'],
+    jobTitle: 'Especialista em WhatsApp Cloud API, Meta CAPI e Chatbots com IA',
+    knowsAbout: ['WhatsApp Cloud API', 'Meta Pixel', 'Conversions API', 'Chatbots com IA'],
   },
   {
-    nome: 'Instagram',
-    url: 'https://www.instagram.com/joaosouz4dev',
-    icone: 'fa fa-instagram',
-  },
-  {
-    nome: 'Github',
-    url: 'https://github.com/joaosouz4dev',
-    icone: 'fa fa-github',
-  },
-  {
-    nome: 'Linkedin',
-    url: linkedin,
-    icone: 'fa fa-linkedin',
-  },
-  {
-    nome: 'Whatsapp',
-    url: whatsappUrl,
-    icone: 'fa fa-whatsapp',
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'João Victor Souza',
+    url: 'https://joaovictorsouza.dev/',
   },
 ];
 
-const Home = () => {
+// ----------------- Hero -----------------
+function Hero() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const year = new Date().getFullYear();
-  const anos = year - ANO_INICIAL;
-  const [darkMode, setDarkMode] = useState(true);
-  const [menuActive, setMenuActive] = useState('/');
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const sx = useSpring(mouseX, { stiffness: 60, damping: 18 });
+  const sy = useSpring(mouseY, { stiffness: 60, damping: 18 });
 
-  const menus = [
-    {
-      href: '/',
-      label: t('menu.home'),
-    },
-    {
-      href: '/sobre',
-      label: t('menu.about'),
-    },
-    {
-      href: '/servicos',
-      label: t('menu.services'),
-    },
-    {
-      href: '/cases',
-      label: t('menu.cases'),
-    },
-    {
-      href: '/blog',
-      label: t('menu.blog'),
-    },
-    {
-      href: '/projetos',
-      label: t('menu.projects'),
-    },
-    {
-      href: '/contato',
-      label: t('menu.contact'),
-    },
-  ];
-
-  const professionalSkills = [
-    { progress: 80, label: t('skills.words.communication') },
-    { progress: 55, label: t('skills.words.teamwork') },
-    { progress: 86, label: t('skills.words.management') },
-    { progress: 90, label: t('skills.words.proactivity') },
-  ];
-
-  const homeSchema = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Joao Victor Souza',
-      url: 'https://joaovictorsouza.dev/',
-      sameAs: [linkedin, 'https://github.com/joaosouz4dev'],
-      jobTitle:
-        'Especialista em WhatsApp Cloud API, Meta CAPI e Chatbots com IA',
-      knowsAbout: [
-        'WhatsApp Cloud API',
-        'Meta Pixel',
-        'Conversions API',
-        'Chatbots com IA',
-      ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Joao Victor Souza',
-      url: 'https://joaovictorsouza.dev/',
-    },
-  ];
-
-  useEffect(() => {
-    if (localStorage.getItem('darkmode') !== null) {
-      setDarkMode(localStorage.getItem('darkmode') === 'true');
-    } else {
-      const prefersDarkMode = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-      setDarkMode(prefersDarkMode);
-      localStorage.setItem('darkmode', prefersDarkMode);
-    }
-  }, []);
-
-  useEffect(() => {
-    setMenuActive(location.pathname);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (darkMode) {
-      body.classList.add('dark-vertion');
-      body.classList.remove('white-vertion');
-    } else {
-      body.classList.remove('dark-vertion');
-      body.classList.add('white-vertion');
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    // SPA fallback: when navigating back to Home, WOW/legacy scripts might not re-run.
-    // This keeps "Portfolio recente" and "Habilidades Profissionais" visible and stable.
-    const revealWowElements = () => {
-      document.querySelectorAll('.wow').forEach((element) => {
-        if (element instanceof HTMLElement) {
-          element.style.visibility = 'visible';
-        }
-      });
-    };
-
-    revealWowElements();
-  }, []);
-
-  const toggleDarkMode = () => {
-    let _darkMode = !darkMode;
-    setDarkMode(_darkMode);
-    localStorage.setItem('darkmode', _darkMode);
-  };
-
-  const toggleMenuActive = (menu) => {
-    setMenuActive(menu);
-    navigate(menu);
+  const handleMove = (e) => {
+    if (reduce || !ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    mouseX.set((e.clientX - r.left) / r.width - 0.5);
+    mouseY.set((e.clientY - r.top) / r.height - 0.5);
   };
 
   return (
-    <>
+    <section
+      ref={ref}
+      onMouseMove={handleMove}
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-32 pb-16"
+    >
+      <Spotlight />
+      <NoiseTexture />
+      {!reduce && (
+        <>
+          <motion.div
+            style={{ x: useTransform(sx, [-0.5, 0.5], [-30, 30]), y: useTransform(sy, [-0.5, 0.5], [-30, 30]) }}
+            className="pointer-events-none absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-primary-500/30 blur-[120px]"
+          />
+          <motion.div
+            style={{ x: useTransform(sx, [-0.5, 0.5], [40, -40]), y: useTransform(sy, [-0.5, 0.5], [20, -20]) }}
+            className="pointer-events-none absolute right-[5%] top-[10%] h-96 w-96 rounded-full bg-fuchsia-500/25 blur-[140px]"
+          />
+          <motion.div
+            style={{ x: useTransform(sx, [-0.5, 0.5], [-20, 20]), y: useTransform(sy, [-0.5, 0.5], [40, -40]) }}
+            className="pointer-events-none absolute bottom-[10%] left-[40%] h-80 w-80 rounded-full bg-cyan-400/20 blur-[120px]"
+          />
+        </>
+      )}
+
+      <Container size="lg" className="relative">
+        <RevealOnScroll preset="fade">
+          <Badge variant="gradient" withDot>
+            Builder · WhatsApp API · IA
+          </Badge>
+        </RevealOnScroll>
+
+        <div className="mt-8 max-w-5xl">
+          <AnimatedText
+            as="span"
+            text={t('banner.title')}
+            split="words"
+            className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
+          />
+          <h1 className="mt-4 font-display text-display font-medium leading-[0.95] tracking-tight">
+            <AnimatedText
+              as="span"
+              text="João Victor"
+              split="chars"
+              stagger={0.03}
+              className="block"
+            />
+            <GradientText animate as="span" className="block">
+              <AnimatedText as="span" text="Souza" split="chars" stagger={0.03} delay={0.3} />
+            </GradientText>
+          </h1>
+          <RevealOnScroll delay={0.6} className="mt-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-muted-foreground text-balance">
+              {t('banner.profession')} — engenharia de integrações WhatsApp Cloud API, Meta CAPI e
+              chatbots com IA. <span className="text-foreground">{t('banner.location')}.</span>
+            </p>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.75} className="mt-10 flex flex-wrap items-center gap-3">
+            <MagneticCursor>
+              <Button
+                to="/contato"
+                size="lg"
+                rightIcon={<ArrowUpRight size={18} />}
+              >
+                {t('quates.title')}
+              </Button>
+            </MagneticCursor>
+            <Button to="/projetos" variant="outline" size="lg">
+              {t('menu.projects')}
+            </Button>
+          </RevealOnScroll>
+        </div>
+
+        {!reduce && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6, duration: 0.6 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="flex flex-col items-center gap-2 text-muted-foreground"
+            >
+              <span className="font-mono text-eyebrow uppercase">Scroll</span>
+              <ChevronDown size={16} />
+            </motion.div>
+          </motion.div>
+        )}
+      </Container>
+    </section>
+  );
+}
+
+// ----------------- About resumido -----------------
+function AboutSection() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+  const anos = year - ANO_INICIAL;
+  const stats = [
+    { value: `${anos}+`, label: 'anos programando' },
+    { value: '9', label: 'projetos entregues' },
+    { value: '3', label: 'idiomas' },
+  ];
+  return (
+    <Section id="about" bordered>
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-5">
+          <RevealOnScroll>
+            <TiltCard className="relative overflow-hidden rounded-3xl">
+              <GlowEffect intensity="lg" color="primary" className="-top-10 -left-10 opacity-60" />
+              <div className="relative aspect-square overflow-hidden rounded-3xl border border-border/60 bg-surface/40">
+                <img
+                  src="/assets/images/new/foto.webp"
+                  alt="João Victor Souza"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              </div>
+            </TiltCard>
+          </RevealOnScroll>
+        </div>
+        <div className="md:col-span-7 flex flex-col justify-center">
+          <RevealOnScroll>
+            <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-4">
+              {t('about.title')}
+            </p>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <h2 className="font-display text-h1 font-medium tracking-tight text-balance">
+              Engenharia de integrações para{' '}
+              <GradientText>operação e crescimento.</GradientText>
+            </h2>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.2}>
+            <p className="mt-6 text-lg text-muted-foreground text-balance">{t('about.description')}</p>
+          </RevealOnScroll>
+          <RevealGroup className="mt-10 grid grid-cols-3 gap-4" stagger={0.08}>
+            {stats.map((s) => (
+              <RevealItem key={s.label} className="rounded-2xl border border-border/60 bg-surface/40 p-5 backdrop-blur">
+                <div className="font-display text-3xl font-medium tracking-tight">
+                  <GradientText>{s.value}</GradientText>
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ----------------- Skills (3 cards) -----------------
+function SkillsSection() {
+  const { t } = useTranslation();
+  const cards = [
+    { Icon: MessageSquare, key: 'card1', accent: 'from-violet-500 to-fuchsia-500' },
+    { Icon: BrainCircuit, key: 'card2', accent: 'from-fuchsia-500 to-cyan-400' },
+    { Icon: Network, key: 'card3', accent: 'from-cyan-400 to-violet-500' },
+  ];
+  return (
+    <Section
+      eyebrow={t('skills.title')}
+      title={
+        <>
+          O que eu construo<GradientText>.</GradientText>
+        </>
+      }
+      bordered
+    >
+      <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-3" stagger={0.1}>
+        {cards.map(({ Icon, key, accent }) => (
+          <RevealItem key={key}>
+            <TiltCard>
+              <Card spotlight className="h-full p-8">
+                <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${accent} text-white shadow-glow`}>
+                  <Icon size={20} />
+                </div>
+                <h3 className="font-display text-xl font-medium tracking-tight">
+                  {t(`skills.${key}.title`)}
+                </h3>
+                <p className="mt-3 text-muted-foreground">{t(`skills.${key}.description`)}</p>
+              </Card>
+            </TiltCard>
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    </Section>
+  );
+}
+
+// ----------------- Marquee de stacks -----------------
+function StacksMarquee() {
+  const stacks = [
+    { label: 'TypeScript' },
+    { label: 'React' },
+    { label: 'Next.js' },
+    { label: 'React Native' },
+    { label: 'Node.js' },
+    { label: 'PHP' },
+    { label: 'MongoDB' },
+    { label: 'WhatsApp Cloud API' },
+    { label: 'Meta CAPI' },
+    { label: 'OpenAI' },
+    { label: 'AWS' },
+    { label: 'Webhooks' },
+  ];
+  return (
+    <section className="py-12 md:py-16 border-t border-border/40">
+      <MarqueeRow items={stacks} speed={40} />
+    </section>
+  );
+}
+
+// ----------------- Experience timeline (scroll storytelling) -----------------
+function ExperienceSection() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+  const anos = year - ANO_INICIAL;
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
+  const timeline = [
+    {
+      year: '2015',
+      title: 'Início na programação',
+      description: 'Primeiros projetos com PHP, WordPress e front-end.',
+    },
+    {
+      year: '2018',
+      title: 'Stack JavaScript moderna',
+      description: 'React, Node.js, integração de APIs e arquitetura backend.',
+    },
+    {
+      year: '2021',
+      title: 'WppConnect e WhatsApp',
+      description: 'Contribuição open source que impulsionou expertise em WhatsApp.',
+    },
+    {
+      year: '2024',
+      title: 'Cloud API + Meta CAPI + IA',
+      description: 'Foco em integrações premium, chatbots com IA e Meta Conversions API.',
+    },
+  ];
+
+  return (
+    <Section bordered id="experience" innerClassName="relative">
+      <div ref={ref} className="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <div className="md:sticky md:top-32">
+            <RevealOnScroll>
+              <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-4">
+                {t('experiences.since')} {ANO_INICIAL}
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.1}>
+              <h2 className="font-display text-h1 font-medium tracking-tight text-balance">
+                <GradientText>{anos}+ anos</GradientText> {t('experiences.title')}
+              </h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.2}>
+              <p className="mt-6 text-muted-foreground text-balance">
+                {t('experiences.description')}
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.3}>
+              <Button
+                href="https://www.linkedin.com/in/joaosouz4dev"
+                variant="outline"
+                size="md"
+                leftIcon={<Linkedin size={16} />}
+                className="mt-8"
+              >
+                LinkedIn
+              </Button>
+            </RevealOnScroll>
+          </div>
+        </div>
+        <div className="md:col-span-7 space-y-4">
+          {timeline.map((it, i) => (
+            <RevealOnScroll key={it.year} delay={i * 0.05} preset="up">
+              <Card spotlight className="p-6 md:p-8">
+                <div className="flex items-start gap-6">
+                  <div className="font-mono text-eyebrow uppercase text-muted-foreground">{it.year}</div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-xl font-medium tracking-tight">{it.title}</h3>
+                    <p className="mt-2 text-muted-foreground">{it.description}</p>
+                  </div>
+                </div>
+              </Card>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ----------------- CTA / Quote -----------------
+function CtaSection() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+  const anos = year - ANO_INICIAL;
+  return (
+    <section className="relative isolate overflow-hidden py-24 md:py-32 border-t border-border/40">
+      <Spotlight fill="rgba(217,70,239,0.25)" />
+      <NoiseTexture />
+      <Container size="default" className="relative text-center">
+        <RevealOnScroll>
+          <Badge variant="gradient" withDot>
+            Disponível para projetos
+          </Badge>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.1}>
+          <h2 className="mt-6 font-display text-hero font-medium tracking-tight text-balance">
+            {t('quates.title').split('?')[0]}
+            <GradientText animate>?</GradientText>
+          </h2>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.2}>
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground text-balance">
+            {t('quates.description', { anos })}
+          </p>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.3}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <MagneticCursor>
+              <Button
+                href="https://wa.me/5531998587817"
+                size="lg"
+                leftIcon={<MessagesSquare size={18} />}
+                rightIcon={<ArrowUpRight size={18} />}
+              >
+                WhatsApp direto
+              </Button>
+            </MagneticCursor>
+            <Button to="/contato" variant="outline" size="lg">
+              Ver todos os canais
+            </Button>
+          </div>
+        </RevealOnScroll>
+      </Container>
+    </section>
+  );
+}
+
+// ----------------- Home Seo cards -----------------
+function HomeSeoCards() {
+  const { t } = useTranslation();
+  const cards = [
+    { key: 'whatsapp', to: '/servicos/whatsapp-cloud-api', icon: <MessageSquare size={20} /> },
+    { key: 'meta', to: '/servicos/meta-ads-e-integracoes', icon: <Sparkles size={20} /> },
+    { key: 'blog', to: '/blog', icon: <BrainCircuit size={20} /> },
+    { key: 'cases', to: '/cases', icon: <Network size={20} /> },
+  ];
+  return (
+    <Section
+      eyebrow={t('homeSeo.title')}
+      title={t('homeSeo.description')}
+      bordered
+    >
+      <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
+        {cards.map(({ key, to, icon }) => (
+          <RevealItem key={key}>
+            <Link to={to} className="block h-full">
+              <Card spotlight className="h-full p-6 transition-transform hover:-translate-y-1">
+                <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/80 bg-surface/60 text-foreground">
+                  {icon}
+                </div>
+                <h3 className="font-display text-lg font-medium tracking-tight">
+                  {t(`homeSeo.cards.${key}.title`)}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {t(`homeSeo.cards.${key}.description`)}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-foreground/80">
+                  {t(`homeSeo.cards.${key}.cta`)}
+                  <ArrowUpRight size={12} />
+                </span>
+              </Card>
+            </Link>
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    </Section>
+  );
+}
+
+// ----------------- Contato compacto -----------------
+function ContactSection() {
+  const { t } = useTranslation();
+  const items = [
+    { icon: Mail, label: 'web@joaovictorsouza.dev', href: 'mailto:web@joaovictorsouza.dev' },
+    { icon: Linkedin, label: '@joaosouz4dev', href: 'https://www.linkedin.com/in/joaosouz4dev' },
+    { icon: MessagesSquare, label: '+55 31 9 9858-7817', href: 'https://wa.me/5531998587817' },
+  ];
+  return (
+    <Section
+      eyebrow={t('menu.contact')}
+      title="Vamos conversar."
+      align="center"
+      bordered
+    >
+      <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-3" stagger={0.08}>
+        {items.map(({ icon: Icon, label, href }) => (
+          <RevealItem key={href}>
+            <a
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="block h-full"
+            >
+              <Card spotlight className="h-full p-8 text-center transition-transform hover:-translate-y-1">
+                <Icon size={24} className="mx-auto text-foreground" />
+                <p className="mt-5 font-display text-base font-medium tracking-tight">{label}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground">
+                  Abrir <ArrowUpRight size={12} />
+                </span>
+              </Card>
+            </a>
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    </Section>
+  );
+}
+
+const Home = () => {
+  return (
+    <SiteLayout>
       <Seo
-        title="Especialista em WhatsApp Cloud API, Meta CAPI e IA | Joao Victor Souza"
-        description="Desenvolvedor especialista em integracao WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automacoes para atendimento e vendas."
+        title="Especialista em WhatsApp Cloud API, Meta CAPI e IA | João Victor Souza"
+        description="Desenvolvedor especialista em integração WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automações para atendimento e vendas."
         canonical="/"
         schema={homeSchema}
       />
-      <main>
-      <header
-        className="black-bg jv-header jv-fixed-nav nav-scroll jv-xs-mobile-nav"
-        id="jv-header"
-      >
-        <Navbar
-          menus={menus}
-          menuActive={menuActive}
-          toggleMenuActive={toggleMenuActive}
-          toggleDarkMode={toggleDarkMode}
-          darkMode={darkMode}
-        />
-      </header>
-
-      <section className="jv-home image-bg home-1-img" id="jv-home">
-        <div className="img-foverlay img-color-overlay">
-          <div className="container">
-            <div className="row section-separator xs-column-reverse vertical-middle-content home-padding">
-              <div className="col-sm-6">
-                <div className="jv-header-info">
-                  <div
-                    className="jv-promo wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.1s"
-                  >
-                    <span>{t('banner.title')}</span>
-                  </div>
-
-                  <h2
-                    className="wow fadeInUp wrapper"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.2s"
-                    style={{
-                      position: 'relative',
-                    }}
-                  >
-                    <div
-                      className="stack"
-                      style={{
-                        '--stacks': '3',
-                      }}
-                    >
-                      <span style={{ '--index': '0' }}>João Victor Souza</span>
-                      <span style={{ '--index': '1' }}>João Victor Souza</span>
-                      <span style={{ '--index': '2' }}>João Victor Souza</span>
-                    </div>
-                  </h2>
-                  <h3
-                    className="wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.3s"
-                  >
-                    {t('banner.profession')}
-                  </h3>
-
-                  <ul>
-                    <li
-                      className="wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.4s"
-                    >
-                      <i className="fa fa-envelope" />
-                      <a href="mailto:web@joaovictorsouza.dev">
-                        web@joaovictorsouza.dev
-                      </a>
-                    </li>
-                    <li
-                      className="wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.5s"
-                    >
-                      <i className="fa fa-phone" />
-                      <a
-                        href={whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {celular}
-                      </a>
-                    </li>
-                    <li
-                      className="wow fadeInUp"
-                      data-wow-duration="0.8s"
-                      data-wow-delay="0.6s"
-                    >
-                      <i className="fa fa-map-marker" />
-                      {t('banner.location')}
-                    </li>
-                  </ul>
-                  <ul
-                    className="social-icon wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.7s"
-                  >
-                    {redes_sociais.map((rede) => (
-                      <li key={rede.nome}>
-                        <a
-                          href={rede.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Abrir ${rede.nome} de Joao Victor Souza`}
-                        >
-                          <i className={rede.icone} />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="col-sm-6">
-                <div
-                  className="hero-img wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.6s"
-                >
-                  <div className="img-border">
-                    <img
-                      src={profile}
-                      alt="Foto de Joao Victor Souza"
-                      className="img-fluid"
-                      width="500"
-                      height="500"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="jv-about" id="jv-about">
-        <div className="container">
-          <div className="row section-separator">
-            <div className="col-sm-12 col-md-6">
-              <div
-                className="jv-about-img shadow-2 wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.4s"
-              >
-                <SvgAnimated />
-              </div>
-            </div>
-            <div className="col-sm-12 col-md-6">
-              <div className="jv-about-inner">
-                <h2
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.1s"
-                >
-                  {t('about.title')}
-                </h2>
-                <p
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  {t('about.description')}
-                </p>
-                <div
-                  className="jv-about-tag wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.3s"
-                >
-                  <ul>
-                    {tecnologias.map((tecnologia, i) => (
-                      <li key={i}>
-                        <span>{tecnologia}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="jv-service image-bg featured-img-two">
-          <div className="img-color-overlay">
-            <div className="container">
-              <div className="row section-separator">
-                <div
-                  className="col-sm-12 text-center section-title wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  <h2>{t('skills.title')}</h2>
-                </div>
-                <div className="col-sm-4">
-                  <div
-                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.3s"
-                  >
-                    <i
-                      className="fa fa-bullseye purple-color"
-                      style={{
-                        filter: 'grayscale(100%)',
-                      }}
-                    />
-                    <h3>{t('skills.card1.title')}</h3>
-                    <p>{t('skills.card1.description')}</p>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div
-                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.5s"
-                  >
-                    <i
-                      className="fa fa-code iron-color"
-                      style={{
-                        filter: 'grayscale(100%)',
-                      }}
-                    />
-                    <h3>{t('skills.card2.title')}</h3>
-                    <p>{t('skills.card2.description')}</p>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div
-                    className="jv-service-item shadow-1 dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.7s"
-                  >
-                    <i
-                      className="fa fa-object-ungroup sky-color"
-                      style={{
-                        filter: 'grayscale(100%)',
-                      }}
-                    />
-                    <h3>{t('skills.card3.title')}</h3>
-                    <p>{t('skills.card3.description')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="jv-skills " id="jv-skills">
-        <div className="home-v-img">
-          <div className="container">
-            <div className="row section-separator">
-              <div className="col-sm-12 col-md-6">
-                <div className="jv-skills-inner">
-                  <div
-                    className="jv-professional-skill wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.3s"
-                  >
-                    <h3>{t('skills.title2')}</h3>
-                    <div className="each-skills">
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">Javascript</div>
-                            <div className="percentagem-num">86%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '96%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">React</div>
-                            <div className="percentagem-num">26%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '86%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">Python</div>
-                            <div className="percentagem-num">68%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '58%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">PHP</div>
-                            <div className="percentagem-num">85%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '85%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">NodeJS</div>
-                            <div className="percentagem-num">48%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '89%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="candidatos">
-                        <div className="parcial">
-                          <div className="info">
-                            <div className="nome">Ruby</div>
-                            <div className="percentagem-num">12%</div>
-                          </div>
-                          <div className="progressBar">
-                            <div
-                              className="percentagem"
-                              style={{ width: '40%' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-12 col-md-6">
-                <div
-                  className="jv-professional-skills wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.5s"
-                >
-                  <h3>{t('skills.title3')}</h3>
-                  <ul className="jv-professional-progress">
-                    {professionalSkills.map((skill) => (
-                      <li key={skill.label}>
-                        <div
-                          className="jv-progress jv-progress-circle is-static"
-                          style={{
-                            '--progress': `${skill.progress}%`,
-                          }}
-                        >
-                          <span>{skill.progress}%</span>
-                        </div>
-                        <div className="pr-skill-name">{skill.label}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="jv-experince image-bg featured-img-one"
-        id="jv-experience"
-      >
-        <div className="img-color-overlay">
-          <div className="container">
-            <div className="row section-separator">
-              <div className="each-quates col-sm-12 col-md-6">
-                <div
-                  style={{
-                    padding: '40px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <img
-                    src={iconCv}
-                    alt=""
-                    style={{
-                      maxHeight: '160px',
-                      opacity: '0.7',
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="each-quates col-sm-12 col-md-6">
-                <h3
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  {t('experiences.since')} {ANO_INICIAL}{' '}
-                  {t('experiences.title')}
-                </h3>
-                <p
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.4s"
-                >
-                  {t('experiences.description')}
-                </p>
-                <a
-                  href={linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cta wow fadeInUp "
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.5s"
-                >
-                  <span>
-                    <i className="fa fa-linkedin" /> Linkedin
-                  </span>
-                  <svg width="13px" height="10px" viewBox="0 0 13 10">
-                    <path d="M1,5 L11,5"></path>
-                    <polyline points="8 1 12 5 8 9"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Portifolio />
-
-      <section className="home-seo-links">
-        <div className="container">
-          <div className="row section-separator">
-            <div className="col-sm-12 section-title wow fadeInUp">
-              <h3>{t('homeSeo.title')}</h3>
-              <p>{t('homeSeo.description')}</p>
-            </div>
-            <div className="col-sm-12">
-              <div className="seo-grid">
-                <article className="seo-card">
-                  <h4>{t('homeSeo.cards.whatsapp.title')}</h4>
-                  <p>{t('homeSeo.cards.whatsapp.description')}</p>
-                  <Link to="/servicos/whatsapp-cloud-api">
-                    {t('homeSeo.cards.whatsapp.cta')}
-                  </Link>
-                </article>
-                <article className="seo-card">
-                  <h4>{t('homeSeo.cards.meta.title')}</h4>
-                  <p>{t('homeSeo.cards.meta.description')}</p>
-                  <Link to="/servicos/meta-ads-e-integracoes">
-                    {t('homeSeo.cards.meta.cta')}
-                  </Link>
-                </article>
-                <article className="seo-card">
-                  <h4>{t('homeSeo.cards.blog.title')}</h4>
-                  <p>{t('homeSeo.cards.blog.description')}</p>
-                  <Link to="/blog">{t('homeSeo.cards.blog.cta')}</Link>
-                </article>
-                <article className="seo-card">
-                  <h4>{t('homeSeo.cards.cases.title')}</h4>
-                  <p>{t('homeSeo.cards.cases.description')}</p>
-                  <Link to="/cases">{t('homeSeo.cards.cases.cta')}</Link>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="jv-footer jv-footer-3" id="jv-contact">
-        <div className="jv-quates image-bg home-1-img">
-          <div className="container">
-            <div className="row section-separator">
-              <div className="each-quates col-sm-12 col-md-6">
-                <h3
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  {t('quates.title')}
-                </h3>
-                <p
-                  className="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.4s"
-                >
-                  {t('quates.description', { anos })}
-                </p>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cta wow fadeInUp "
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.5s"
-                >
-                  <span>
-                    <i className="fa fa-whatsapp" /> Whatsapp
-                  </span>
-                  <svg width="13px" height="10px" viewBox="0 0 13 10">
-                    <path d="M1,5 L11,5"></path>
-                    <polyline points="8 1 12 5 8 9"></polyline>
-                  </svg>
-                </a>
-              </div>
-              <div className="each-quates col-sm-12 col-md-6">
-                <div className="wrap-image">
-                  <img
-                    src="/assets/images/new/foto.webp"
-                    alt="Joao Victor Souza em retrato"
-                    width="600"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="container-fluid">
-          <div className="row section-separator">
-            <div
-              className="col-sm-12 section-title wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.2s"
-            >
-              <h3>{t('menu.contact')}</h3>
-            </div>
-            <div className="map-image image-bg col-sm-12">
-              <div className="container mt-30">
-                <div className="row">
-                  <div
-                    className="col-sm-12 col-md-6 jv-footer-address wow fadeInUp mx-auto"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.2s"
-                  >
-                    <div className="col-sm-12 xs-no-padding">
-                      <div
-                        className="jv-address-footer-item dark-bg shadow-1 media wow fadeInUp"
-                        data-wow-duration="0.8s"
-                        data-wow-delay="0.2s"
-                      >
-                        <div className="each-icon">
-                          <i className="fa fa-location-arrow" />
-                        </div>
-                        <div className="each-info media-body">
-                          <h4>{t('contact.address.title')}</h4>
-                          <address>{t('contact.address.description')}</address>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-12 xs-no-padding">
-                      <div
-                        className="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
-                        data-wow-duration="0.8s"
-                        data-wow-delay="0.4s"
-                      >
-                        <div className="each-icon">
-                          <i className="fa fa-envelope-o" />
-                        </div>
-                        <div className="each-info media-body">
-                          <h4>{t('contact.email.title')}</h4>
-                          <a href="mailto:web@joaovictorsouza.dev">
-                            web@joaovictorsouza.dev
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-12 xs-no-padding">
-                      <div
-                        className="jv-address-footer-item media dark-bg shadow-1 wow fadeInUp"
-                        data-wow-duration="0.8s"
-                        data-wow-delay="0.6s"
-                      >
-                        <div className="each-icon">
-                          <i className="fa fa-phone" />
-                        </div>
-                        <div className="each-info media-body">
-                          <h4>{t('contact.phone.title')}</h4>
-                          <a href={'callto:' + celular.replace(/[^0-9]/g, '')}>
-                            {celular}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    className="col-sm-12 jv-copyright wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.2s"
-                  >
-                    <div className="row">
-                      <div className="col-sm-6 d-flex justify-content-center align-items-center">
-                        <p className="mt-2 mb-2">
-                          © {ANO_INICIAL} - {year} - João Victor Souza
-                        </p>
-                      </div>
-                      <div className="col-sm-6 d-flex justify-content-center align-items-center">
-                        <ul
-                          className="social-icon wow fadeInUp"
-                          data-wow-duration="0.8s"
-                          data-wow-delay="0.7s"
-                        >
-                          {redes_sociais.map((rede) => (
-                            <li key={rede.nome}>
-                                <a
-                                  href={rede.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label={`Abrir ${rede.nome} de Joao Victor Souza`}
-                                >
-                                  <i className={rede.icone} />
-                                </a>
-                            </li>
-                          ))}
-                        </ul>
-                        <LanguageSelector />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      </main>
-    </>
+      <Hero />
+      <AboutSection />
+      <SkillsSection />
+      <StacksMarquee />
+      <ExperienceSection />
+      <PortfolioGrid />
+      <CtaSection />
+      <HomeSeoCards />
+      <ContactSection />
+    </SiteLayout>
   );
 };
 
 export default Home;
-
