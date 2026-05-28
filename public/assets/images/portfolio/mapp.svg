@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f1a"/>
+      <stop offset="50%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#0d1a1f"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="30%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="rgba(56,189,248,0.40)"/>
+      <stop offset="100%" stop-color="rgba(56,189,248,0)"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="80%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="rgba(124,77,255,0.30)"/>
+      <stop offset="100%" stop-color="rgba(124,77,255,0)"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(56,189,248,0.06)" stroke-width="1"/>
+    </pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+  <rect width="1200" height="900" fill="url(#g1)"/>
+  <rect width="1200" height="900" fill="url(#g2)"/>
+
+  <!-- Routes -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main route -->
+    <path d="M120 720 Q280 600 380 540 T620 420 Q740 360 880 280 T1080 180"
+          stroke="rgba(56,189,248,0.85)" stroke-width="3" filter="url(#glow)"/>
+    <path d="M120 720 Q280 600 380 540 T620 420 Q740 360 880 280 T1080 180"
+          stroke="rgba(56,189,248,0.35)" stroke-width="1" stroke-dasharray="6 8"/>
+
+    <!-- Secondary routes -->
+    <path d="M180 240 Q320 320 460 300 T720 380 Q820 420 950 480"
+          stroke="rgba(124,77,255,0.7)" stroke-width="2" filter="url(#glow)"/>
+    <path d="M180 240 Q320 320 460 300 T720 380 Q820 420 950 480"
+          stroke="rgba(124,77,255,0.3)" stroke-width="1" stroke-dasharray="4 6"/>
+
+    <path d="M280 760 Q400 700 560 720 T820 700 Q920 690 1050 680"
+          stroke="rgba(34,211,238,0.5)" stroke-width="1.8" stroke-dasharray="3 4"/>
+  </g>
+
+  <!-- Origin & destination pins -->
+  <g>
+    <!-- Origin -->
+    <g transform="translate(120,720)">
+      <circle r="22" fill="rgba(56,189,248,0.20)" stroke="rgba(56,189,248,0.7)" stroke-width="1.5"/>
+      <circle r="10" fill="rgba(56,189,248,0.95)"/>
+      <circle r="5" fill="#fff"/>
+    </g>
+    <!-- Destination -->
+    <g transform="translate(1080,180)">
+      <circle r="26" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.8)" stroke-width="1.5"/>
+      <path d="M0 -14 L4 -2 L16 -2 L6 5 L10 17 L0 10 L-10 17 L-6 5 L-16 -2 L-4 -2 Z"
+            fill="rgba(34,211,238,0.95)" filter="url(#glow)"/>
+    </g>
+    <!-- Mid stops -->
+    <g transform="translate(380,540)">
+      <circle r="14" fill="rgba(124,77,255,0.15)" stroke="rgba(124,77,255,0.7)" stroke-width="1.2"/>
+      <circle r="5" fill="rgba(124,77,255,0.95)"/>
+    </g>
+    <g transform="translate(620,420)">
+      <circle r="14" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <circle r="5" fill="rgba(255,255,255,0.85)"/>
+    </g>
+    <g transform="translate(880,280)">
+      <circle r="14" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.7)" stroke-width="1.2"/>
+      <circle r="5" fill="rgba(56,189,248,0.95)"/>
+    </g>
+  </g>
+
+  <!-- Vehicle indicators floating -->
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="rgba(255,255,255,0.55)" letter-spacing="0.12em">
+    <g transform="translate(420,500)">
+      <rect width="84" height="22" rx="11" fill="rgba(15,22,40,0.85)" stroke="rgba(56,189,248,0.5)" stroke-width="1"/>
+      <circle cx="14" cy="11" r="4" fill="rgba(34,197,94,0.95)"/>
+      <text x="26" y="15">A LIVE</text>
+    </g>
+    <g transform="translate(660,380)">
+      <rect width="84" height="22" rx="11" fill="rgba(15,22,40,0.85)" stroke="rgba(124,77,255,0.5)" stroke-width="1"/>
+      <circle cx="14" cy="11" r="4" fill="rgba(34,197,94,0.95)"/>
+      <text x="26" y="15">B LIVE</text>
+    </g>
+    <g transform="translate(920,240)">
+      <rect width="84" height="22" rx="11" fill="rgba(15,22,40,0.85)" stroke="rgba(34,211,238,0.5)" stroke-width="1"/>
+      <circle cx="14" cy="11" r="4" fill="rgba(254,188,46,0.95)"/>
+      <text x="26" y="15">C ETA 7m</text>
+    </g>
+  </g>
+
+  <!-- Particles -->
+  <g fill="rgba(255,255,255,0.4)">
+    <circle cx="80" cy="140" r="2"/>
+    <circle cx="200" cy="100" r="1.5"/>
+    <circle cx="1100" cy="450" r="2"/>
+    <circle cx="500" cy="820" r="1.5"/>
+    <circle cx="1050" cy="800" r="2"/>
+  </g>
+</svg>
