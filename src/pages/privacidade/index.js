@@ -9,7 +9,7 @@ import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 
 const Privacidade = () => {
   const { title } = useParams();
-  const displayTitle = title ? ` — ${title}` : '';
+  const displayTitle = title ? ` · ${title}` : '';
 
   return (
     <SiteLayout>

@@ -136,7 +136,7 @@ function Hero() {
               </h1>
               <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
                 <p className="text-lg text-muted-foreground text-balance">
-                  {t('banner.profession')} — engenharia de integrações WhatsApp Cloud API, Meta CAPI e
+                  {t('banner.profession')}. Engenharia de integrações WhatsApp Cloud API, Meta CAPI e
                   chatbots com IA.{' '}
                   <span className="text-foreground">{t('banner.location')}.</span>
                 </p>

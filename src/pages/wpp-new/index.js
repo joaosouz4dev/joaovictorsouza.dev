@@ -18,7 +18,7 @@ const WhatsAppPage = () => {
       <PageHero
         eyebrow="Ferramenta"
         title="Gerador de link wa.me"
-        description="Cole o número com DDI/DDD e escreva uma mensagem inicial — geramos um link de WhatsApp pronto para abrir."
+        description="Cole o número com DDI/DDD e escreva uma mensagem inicial. Geramos um link de WhatsApp pronto para abrir."
       />
 
       <Section bordered>

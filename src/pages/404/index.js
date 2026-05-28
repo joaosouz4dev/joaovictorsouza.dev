@@ -73,7 +73,7 @@ export default function NotFound() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground text-balance max-w-xl mx-auto"
           >
-            Esta página não existe — talvez tenha sido movida, ou o link esteja desatualizado.
+            Esta página não existe. Talvez tenha sido movida, ou o link esteja desatualizado.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}

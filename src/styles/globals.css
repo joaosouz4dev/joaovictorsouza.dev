@@ -76,7 +76,7 @@
   /* Hide legacy classes that may still appear during transition */
   .dark-vertion,
   .white-vertion {
-    /* no-op — handled by .dark class */
+    /* no-op: handled by .dark class */
   }
 }
 
