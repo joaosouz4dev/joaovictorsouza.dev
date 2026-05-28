@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d0a1f"/>
+      <stop offset="50%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#0a1a1f"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="18%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="rgba(124,77,255,0.55)"/>
+      <stop offset="100%" stop-color="rgba(124,77,255,0)"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="80%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="rgba(34,211,238,0.40)"/>
+      <stop offset="100%" stop-color="rgba(34,211,238,0)"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+  <rect width="1200" height="900" fill="url(#g1)"/>
+  <rect width="1200" height="900" fill="url(#g2)"/>
+
+  <!-- Big PIX card centered -->
+  <g transform="translate(360,200)">
+    <rect width="480" height="320" rx="30" fill="rgba(15,12,28,0.85)" stroke="rgba(124,77,255,0.45)" stroke-width="1.5"/>
+    <rect width="480" height="60" rx="30" fill="rgba(124,77,255,0.10)"/>
+    <rect y="50" width="480" height="10" fill="rgba(124,77,255,0.10)"/>
+    <text x="32" y="40" fill="rgba(255,255,255,0.6)" font-family="ui-monospace, monospace" font-size="14" letter-spacing="0.18em">PIX  ·  4x sem juros</text>
+    <text x="32" y="130" fill="rgba(255,255,255,0.85)" font-family="ui-sans-serif, system-ui" font-size="18">Valor total</text>
+    <text x="32" y="195" fill="#fff" font-family="ui-sans-serif, system-ui" font-size="56" font-weight="600">R$ 1.480,00</text>
+    <g transform="translate(32,235)">
+      <rect width="100" height="32" rx="16" fill="rgba(34,211,238,0.20)" stroke="rgba(34,211,238,0.6)" stroke-width="1"/>
+      <text x="50" y="22" fill="rgba(34,211,238,0.95)" font-family="ui-sans-serif" font-size="14" text-anchor="middle" font-weight="500">4x PIX</text>
+    </g>
+    <g transform="translate(150,235)">
+      <rect width="140" height="32" rx="16" fill="rgba(34,197,94,0.18)" stroke="rgba(34,197,94,0.55)" stroke-width="1"/>
+      <text x="70" y="22" fill="rgba(167,243,208,1)" font-family="ui-sans-serif" font-size="13" text-anchor="middle">aprovado na hora</text>
+    </g>
+  </g>
+
+  <!-- Floating mini parcels -->
+  <g>
+    <g transform="translate(140,420)" opacity="0.92">
+      <rect width="170" height="56" rx="14" fill="rgba(15,12,28,0.9)" stroke="rgba(34,211,238,0.45)" stroke-width="1"/>
+      <circle cx="22" cy="28" r="9" fill="rgba(34,197,94,0.85)"/>
+      <text x="40" y="24" fill="rgba(255,255,255,0.85)" font-family="ui-sans-serif" font-size="13">Parcela 1</text>
+      <text x="40" y="42" fill="rgba(255,255,255,0.5)" font-family="ui-sans-serif" font-size="12">R$ 370,00</text>
+    </g>
+    <g transform="translate(880,440)" opacity="0.92">
+      <rect width="170" height="56" rx="14" fill="rgba(15,12,28,0.9)" stroke="rgba(124,77,255,0.45)" stroke-width="1"/>
+      <circle cx="22" cy="28" r="9" fill="rgba(124,77,255,0.85)"/>
+      <text x="40" y="24" fill="rgba(255,255,255,0.85)" font-family="ui-sans-serif" font-size="13">Parcela 2</text>
+      <text x="40" y="42" fill="rgba(255,255,255,0.5)" font-family="ui-sans-serif" font-size="12">R$ 370,00</text>
+    </g>
+    <g transform="translate(200,650)" opacity="0.88">
+      <rect width="170" height="56" rx="14" fill="rgba(15,12,28,0.88)" stroke="rgba(34,211,238,0.35)" stroke-width="1"/>
+      <circle cx="22" cy="28" r="9" fill="rgba(34,211,238,0.6)"/>
+      <text x="40" y="24" fill="rgba(255,255,255,0.7)" font-family="ui-sans-serif" font-size="13">Parcela 3</text>
+      <text x="40" y="42" fill="rgba(255,255,255,0.4)" font-family="ui-sans-serif" font-size="12">R$ 370,00</text>
+    </g>
+    <g transform="translate(840,660)" opacity="0.88">
+      <rect width="170" height="56" rx="14" fill="rgba(15,12,28,0.88)" stroke="rgba(124,77,255,0.35)" stroke-width="1"/>
+      <circle cx="22" cy="28" r="9" fill="rgba(124,77,255,0.55)"/>
+      <text x="40" y="24" fill="rgba(255,255,255,0.7)" font-family="ui-sans-serif" font-size="13">Parcela 4</text>
+      <text x="40" y="42" fill="rgba(255,255,255,0.4)" font-family="ui-sans-serif" font-size="12">R$ 370,00</text>
+    </g>
+  </g>
+
+  <!-- Particles -->
+  <g fill="rgba(255,255,255,0.4)">
+    <circle cx="100" cy="180" r="2"/>
+    <circle cx="1080" cy="200" r="2"/>
+    <circle cx="60" cy="780" r="1.5"/>
+    <circle cx="1110" cy="800" r="1.5"/>
+    <circle cx="600" cy="100" r="2"/>
+    <circle cx="600" cy="820" r="2"/>
+  </g>
+</svg>

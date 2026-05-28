@@ -1,21 +1,80 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { ExternalLink, X } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, X } from 'lucide-react';
 import Container from '../ui/Container';
 import { RevealOnScroll } from '../ui/RevealOnScroll';
 import { cn } from '../../lib/cn';
 
 const PROJECTS = (t) => [
-  { categories: ['site'], img: '/assets/images/portfolio/g1.webp', title: 'Ramon Vieira', subTitle: t('portfolio.words.site'), link: 'https://www.ramonvieira.com/', descricao: t('portfolio.descriptions.desc1'), tecnologias: ['PHP', 'HTML', 'CSS', 'JavaScript'] },
-  { categories: ['sistema'], img: '/assets/images/portfolio/g2.webp', title: 'Solardash', subTitle: t('portfolio.words.system'), link: 'https://solardash.com.br/', descricao: t('portfolio.descriptions.desc2'), tecnologias: ['React', 'Node.js', 'PHP', 'JavaScript'] },
-  { categories: ['site'], img: '/assets/images/portfolio/g3.webp', title: 'Lumus Solar', subTitle: t('portfolio.words.site'), link: 'https://www.lumus.eng.br/', descricao: t('portfolio.descriptions.desc3'), tecnologias: ['WordPress', 'PHP', 'HTML', 'CSS'] },
-  { categories: ['site', 'app'], img: '/assets/images/portfolio/g4.webp', title: 'Mapp Sistemas', subTitle: `${t('portfolio.words.site')}, ${t('portfolio.words.app')}`, link: 'https://mappsistemas.com.br/', descricao: t('portfolio.descriptions.desc4'), tecnologias: ['React Native', 'WordPress', 'PHP', 'JavaScript'] },
-  { categories: ['sistema'], img: '/assets/images/portfolio/g7.webp', title: 'Folhetos.app', subTitle: t('portfolio.words.system'), link: 'https://folhetos.app/', descricao: t('portfolio.descriptions.desc5'), tecnologias: ['PHP', 'JavaScript', 'HTML', 'CSS'] },
-  { categories: ['ecommerce', 'app'], img: '/assets/images/portfolio/g5.webp', title: 'Dujuca', subTitle: `${t('portfolio.words.ecommerce')}, ${t('portfolio.words.app')}`, link: 'https://dujuca.com/', descricao: t('portfolio.descriptions.desc6'), tecnologias: ['React', 'React Native', 'WordPress'] },
-  { categories: ['sistema'], img: '/assets/images/portfolio/g8.webp', title: 'WppConnect', subTitle: t('portfolio.words.system'), link: 'https://wppconnect.io/', descricao: t('portfolio.descriptions.desc7'), tecnologias: ['React', 'Node.js', 'JavaScript'] },
-  { categories: ['sistema', 'site', 'app'], img: '/assets/images/portfolio/g6.webp', title: 'Dr.pay Saúde', subTitle: `${t('portfolio.words.system')}, ${t('portfolio.words.site')}, ${t('portfolio.words.app')}`, link: 'https://drpaysaude.com.br/', descricao: t('portfolio.descriptions.desc8'), tecnologias: ['React Native', 'Node.js', 'WordPress'] },
-  { categories: ['ecommerce'], img: '/assets/images/portfolio/g9.webp', title: 'Felavie', subTitle: t('portfolio.words.ecommerce'), link: 'https://felavie.com.br/', descricao: t('portfolio.descriptions.desc9'), tecnologias: ['React', 'WordPress', 'JavaScript'] },
+  {
+    categories: ['sistema', 'app'],
+    img: '/assets/images/portfolio/sendeasy.svg',
+    title: 'Sendeasy',
+    subTitle: `${t('portfolio.words.system')}, ${t('portfolio.words.app')}`,
+    headline: 'Atendimento 24/7 que vende sozinho',
+    pitch: 'Plataforma com WhatsApp Cloud API, chatbot com IA e handoff humano.',
+    link: 'https://sendeasy.app/',
+    descricao:
+      'Plataforma de envio automatizado de mensagens via WhatsApp com integração Cloud API, fluxos, templates e chatbot com IA.',
+    tecnologias: ['React', 'Node.js', 'WhatsApp Cloud API', 'TypeScript'],
+  },
+  {
+    categories: ['app', 'sistema'],
+    img: '/assets/images/portfolio/credito-semanal.svg',
+    title: 'Crédito Semanal',
+    subTitle: `${t('portfolio.words.app')}, ${t('portfolio.words.system')}`,
+    headline: 'Crédito instantâneo direto no PIX',
+    pitch: 'Aprovação na hora, parcelado em até 4x e sem cartão.',
+    link: 'https://app.creditosemanal.com.br/',
+    descricao:
+      'Aplicativo para solicitação e gestão de crédito semanal com onboarding digital e integração financeira.',
+    tecnologias: ['React Native', 'Node.js', 'TypeScript'],
+  },
+  {
+    categories: ['sistema'],
+    img: '/assets/images/portfolio/wppconnect.svg',
+    title: 'WppConnect',
+    subTitle: t('portfolio.words.system'),
+    headline: 'Open source adotado pela comunidade dev',
+    pitch: 'Biblioteca Node.js para automação WhatsApp com 10k+ stars no GitHub.',
+    link: 'https://wppconnect.io/',
+    descricao: t('portfolio.descriptions.desc7'),
+    tecnologias: ['React', 'Node.js', 'JavaScript'],
+  },
+  {
+    categories: ['site', 'app'],
+    img: '/assets/images/portfolio/mapp.svg',
+    title: 'Mapp Sistemas',
+    subTitle: `${t('portfolio.words.site')}, ${t('portfolio.words.app')}`,
+    headline: 'Operação de entregas em tempo real',
+    pitch: 'Plataforma usada por +300 empresas para roteirização e gestão de frota.',
+    link: 'https://mappsistemas.com.br/',
+    descricao: t('portfolio.descriptions.desc4'),
+    tecnologias: ['React Native', 'WordPress', 'PHP', 'JavaScript'],
+  },
+  {
+    categories: ['ecommerce', 'app'],
+    img: '/assets/images/portfolio/dujuca.svg',
+    title: 'Dujuca',
+    subTitle: `${t('portfolio.words.ecommerce')}, ${t('portfolio.words.app')}`,
+    headline: 'E-commerce que escala campanha',
+    pitch: 'Loja online e app com checkout em 12x e promoções automáticas integradas.',
+    link: 'https://dujuca.com/',
+    descricao: t('portfolio.descriptions.desc6'),
+    tecnologias: ['React', 'React Native', 'WordPress'],
+  },
+  {
+    categories: ['sistema'],
+    img: '/assets/images/portfolio/folhetos.svg',
+    title: 'Folhetos.app',
+    subTitle: t('portfolio.words.system'),
+    headline: 'Cardápio digital com pedidos no WhatsApp',
+    pitch: 'Sistema de pedidos integrado ao WhatsApp para restaurantes e mercados.',
+    link: 'https://folhetos.app/',
+    descricao: t('portfolio.descriptions.desc5'),
+    tecnologias: ['PHP', 'JavaScript', 'HTML', 'CSS'],
+  },
 ];
 
 export function PortfolioGrid() {
@@ -92,32 +151,37 @@ export function PortfolioGrid() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.45, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative overflow-hidden rounded-3xl border border-border/60 bg-surface/40 text-left backdrop-blur-xl transition-colors hover:border-foreground/30"
+                  className="group relative isolate overflow-hidden rounded-3xl border border-border/60 bg-surface/40 text-left backdrop-blur-xl transition-all hover:border-foreground/30 hover:-translate-y-1"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <img
                       src={item.img}
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80" />
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 p-5">
-                    <div className="flex items-end justify-between gap-3">
-                      <div>
-                        <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-2">
-                          {item.subTitle}
-                        </p>
-                        <h3 className="font-display text-lg font-medium tracking-tight">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border/80 bg-surface/80 text-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
-                        <ExternalLink size={14} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/0" />
+                    <div className="absolute inset-x-0 top-0 p-5 flex items-start justify-between">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/80 backdrop-blur">
+                        {item.subTitle}
+                      </span>
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground/80 backdrop-blur transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground">
+                        <ArrowUpRight size={14} />
                       </span>
                     </div>
+                  </div>
+
+                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                      {item.title}
+                    </p>
+                    <h3 className="font-display text-xl md:text-2xl font-medium tracking-tight text-balance leading-[1.15]">
+                      {item.headline}
+                    </h3>
+                    <p className="mt-3 text-sm text-muted-foreground text-balance line-clamp-2">
+                      {item.pitch}
+                    </p>
                   </div>
                 </motion.button>
               ))}
@@ -156,12 +220,18 @@ export function PortfolioGrid() {
               </button>
               <div className="relative aspect-[16/9] overflow-hidden">
                 <img src={selected.img} alt={selected.title} className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-elevated via-elevated/30 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-2">
+                    {selected.title} · {selected.subTitle}
+                  </p>
+                  <h3 className="font-display text-h2 font-medium tracking-tight text-balance">
+                    {selected.headline}
+                  </h3>
+                </div>
               </div>
               <div className="p-8">
-                <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-3">
-                  {selected.subTitle}
-                </p>
-                <h3 className="font-display text-h2 font-medium tracking-tight">{selected.title}</h3>
+                <p className="text-base text-foreground/90">{selected.pitch}</p>
                 <p className="mt-4 text-muted-foreground">{selected.descricao}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {selected.tecnologias.map((tech) => (
