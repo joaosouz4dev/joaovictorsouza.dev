@@ -36,6 +36,7 @@ import { RevealOnScroll, RevealGroup, RevealItem } from '../../components/ui/Rev
 import TiltCard from '../../components/ui/TiltCard';
 import MarqueeRow from '../../components/ui/MarqueeRow';
 import MagneticCursor from '../../components/ui/MagneticCursor';
+import GlitchText from '../../components/ui/GlitchText';
 import PortfolioGrid from '../../components/sections/PortfolioGrid';
 
 const ANO_INICIAL = 2015;
@@ -101,52 +102,102 @@ function Hero() {
       )}
 
       <Container size="lg" className="relative">
-        <RevealOnScroll preset="fade">
-          <Badge variant="gradient" withDot>
-            Builder · WhatsApp API · IA
-          </Badge>
-        </RevealOnScroll>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+          <div className="lg:col-span-7">
+            <RevealOnScroll preset="fade">
+              <Badge variant="gradient" withDot>
+                Builder · WhatsApp API · IA
+              </Badge>
+            </RevealOnScroll>
 
-        <div className="mt-8 max-w-5xl">
-          <AnimatedText
-            as="span"
-            text={t('banner.title')}
-            split="words"
-            className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
-          />
-          <h1 className="mt-4 font-display text-display font-medium leading-[0.95] tracking-tight">
-            <AnimatedText
-              as="span"
-              text="João Victor"
-              split="chars"
-              stagger={0.03}
-              className="block"
-            />
-            <GradientText animate as="span" className="block">
-              <AnimatedText as="span" text="Souza" split="chars" stagger={0.03} delay={0.3} />
-            </GradientText>
-          </h1>
-          <RevealOnScroll delay={0.6} className="mt-8 max-w-2xl">
-            <p className="text-lg md:text-xl text-muted-foreground text-balance">
-              {t('banner.profession')} — engenharia de integrações WhatsApp Cloud API, Meta CAPI e
-              chatbots com IA. <span className="text-foreground">{t('banner.location')}.</span>
-            </p>
-          </RevealOnScroll>
+            <div className="mt-8">
+              <AnimatedText
+                as="span"
+                text={t('banner.title')}
+                split="words"
+                className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
+              />
+              <h1 className="mt-6 leading-[0.95] tracking-tight">
+                <GlitchText
+                  text="JOÃO VICTOR"
+                  pixel
+                  className="block text-[clamp(2rem,5.5vw,4.5rem)] text-foreground"
+                />
+                <GlitchText
+                  text="SOUZA"
+                  pixel
+                  className="block mt-3 text-[clamp(2rem,5.5vw,4.5rem)] text-foreground"
+                />
+              </h1>
+              <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
+                <p className="text-lg text-muted-foreground text-balance">
+                  {t('banner.profession')} — engenharia de integrações WhatsApp Cloud API, Meta CAPI e
+                  chatbots com IA.{' '}
+                  <span className="text-foreground">{t('banner.location')}.</span>
+                </p>
+              </RevealOnScroll>
 
-          <RevealOnScroll delay={0.75} className="mt-10 flex flex-wrap items-center gap-3">
-            <MagneticCursor>
-              <Button
-                to="/contato"
-                size="lg"
-                rightIcon={<ArrowUpRight size={18} />}
-              >
-                {t('quates.title')}
-              </Button>
-            </MagneticCursor>
-            <Button to="/projetos" variant="outline" size="lg">
-              {t('menu.projects')}
-            </Button>
-          </RevealOnScroll>
+              <RevealOnScroll delay={0.75} className="mt-10 flex flex-wrap items-center gap-3">
+                <MagneticCursor>
+                  <Button to="/contato" size="lg" rightIcon={<ArrowUpRight size={18} />}>
+                    {t('quates.title')}
+                  </Button>
+                </MagneticCursor>
+                <Button to="/projetos" variant="outline" size="lg">
+                  {t('menu.projects')}
+                </Button>
+              </RevealOnScroll>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5"
+          >
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+              <motion.div
+                aria-hidden
+                animate={reduce ? undefined : { opacity: [0.4, 0.7, 0.4] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -inset-6 rounded-[2.5rem] bg-gradient-accent opacity-50 blur-3xl"
+              />
+              <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-surface/60 backdrop-blur-xl">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 z-10 mix-blend-overlay opacity-30"
+                  style={{
+                    backgroundImage:
+                      'repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 4px)',
+                  }}
+                />
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src="/assets/images/new/foto.webp"
+                    alt="João Victor Souza"
+                    loading="eager"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10" />
+                </div>
+                <div className="absolute inset-x-5 bottom-5 flex items-center justify-between">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/60">
+                    JV · {new Date().getFullYear()}
+                  </div>
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/60">
+                    <span className="relative inline-flex h-1.5 w-1.5">
+                      <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-60" />
+                      <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    </span>
+                    Disponível
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {!reduce && (

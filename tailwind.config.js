@@ -47,6 +47,8 @@ export default {
         sans: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: ['Space Grotesk Variable', 'Geist Variable', 'ui-sans-serif', 'sans-serif'],
         mono: ['Geist Mono Variable', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        pixel: ['"Press Start 2P"', 'monospace'],
+        terminal: ['VT323', 'monospace'],
       },
       fontSize: {
         display: ['clamp(3rem, 8vw, 6.5rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
@@ -108,6 +110,24 @@ export default {
           '0%, 49%': { opacity: '1' },
           '50%, 100%': { opacity: '0' },
         },
+        'glitch-1': {
+          '0%, 100%': { clipPath: 'inset(0 0 0 0)', transform: 'translate(0)' },
+          '20%': { clipPath: 'inset(20% 0 60% 0)', transform: 'translate(-2px, 1px)' },
+          '40%': { clipPath: 'inset(45% 0 30% 0)', transform: 'translate(2px, -1px)' },
+          '60%': { clipPath: 'inset(70% 0 5% 0)', transform: 'translate(-1px, 1px)' },
+          '80%': { clipPath: 'inset(10% 0 80% 0)', transform: 'translate(1px, -2px)' },
+        },
+        'glitch-2': {
+          '0%, 100%': { clipPath: 'inset(0 0 0 0)', transform: 'translate(0)' },
+          '15%': { clipPath: 'inset(60% 0 25% 0)', transform: 'translate(2px, -1px)' },
+          '35%': { clipPath: 'inset(15% 0 65% 0)', transform: 'translate(-2px, 1px)' },
+          '55%': { clipPath: 'inset(80% 0 5% 0)', transform: 'translate(1px, 2px)' },
+          '75%': { clipPath: 'inset(30% 0 50% 0)', transform: 'translate(-1px, -2px)' },
+        },
+        'scanlines': {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '0 8px' },
+        },
       },
       animation: {
         'aurora': 'aurora 16s ease-in-out infinite',
@@ -117,6 +137,9 @@ export default {
         'marquee': 'marquee 30s linear infinite',
         'fade-up': 'fade-up 0.6s ease-out forwards',
         'blink': 'blink 1s steps(2) infinite',
+        'glitch-1': 'glitch-1 3.2s infinite linear alternate-reverse',
+        'glitch-2': 'glitch-2 2.6s infinite linear alternate-reverse',
+        'scanlines': 'scanlines 0.4s steps(2) infinite',
       },
       typography: ({ theme }) => ({
         invert: {
