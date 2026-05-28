@@ -117,16 +117,21 @@ function Hero() {
                 split="words"
                 className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
               />
-              <h1 className="mt-6 leading-[0.95] tracking-tight">
+              <h1 className="mt-6 flex flex-col gap-y-4 md:gap-y-5 tracking-tight">
                 <GlitchText
-                  text="JOÃO VICTOR"
+                  text="JOÃO"
                   pixel
-                  className="block text-[clamp(2rem,5.5vw,4.5rem)] text-foreground"
+                  className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
+                />
+                <GlitchText
+                  text="VICTOR"
+                  pixel
+                  className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
                 />
                 <GlitchText
                   text="SOUZA"
                   pixel
-                  className="block mt-3 text-[clamp(2rem,5.5vw,4.5rem)] text-foreground"
+                  className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
                 />
               </h1>
               <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
