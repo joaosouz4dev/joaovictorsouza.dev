@@ -121,7 +121,7 @@ function Hero() {
                 <GlitchText
                   text="JOÃO VICTOR SOUZA"
                   pixel
-                  className="block leading-none text-[clamp(1.5rem,3.6vw,3rem)] text-foreground whitespace-nowrap"
+                  className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
                 />
               </h1>
               <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
