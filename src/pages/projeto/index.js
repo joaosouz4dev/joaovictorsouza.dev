@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Github, ArrowUpRight } from 'lucide-react';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
+import PageHero from '../../components/ui/PageHero';
+import Section from '../../components/ui/Section';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import { getProjectBySlug } from '../projetos/data';
 
 const Projeto = () => {
@@ -19,10 +25,13 @@ const Projeto = () => {
           canonical="/projetos"
           robots="noindex,follow"
         />
-        <h1>{t('projectPage.notFoundTitle')}</h1>
-        <p>
-          {t('projectPage.notFoundDescription')} <Link to="/projetos">/projetos</Link>.
-        </p>
+        <PageHero
+          eyebrow="404"
+          title={t('projectPage.notFoundTitle')}
+          description={t('projectPage.notFoundDescription')}
+        >
+          <Button to="/projetos" variant="outline">{t('menu.projects')}</Button>
+        </PageHero>
       </SiteLayout>
     );
   }
@@ -36,63 +45,60 @@ const Projeto = () => {
       description: project.summary,
       programmingLanguage: project.stack,
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: t('menu.home'),
-          item: 'https://joaovictorsouza.dev/',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: t('menu.projects'),
-          item: 'https://joaovictorsouza.dev/projetos',
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: project.title,
-          item: `https://joaovictorsouza.dev/projetos/${project.slug}`,
-        },
-      ],
-    },
   ];
 
   return (
     <SiteLayout>
       <Seo
-        title={`${project.title} | Projeto tecnico`}
+        title={`${project.title} | Projeto técnico`}
         description={project.summary}
         canonical={`/projetos/${project.slug}`}
         schema={schema}
       />
 
-      <section className="seo-hero">
-        <span className="seo-kicker">{t('projectPage.kicker')}</span>
-        <h1>{project.title}</h1>
-        <p>{project.summary}</p>
-      </section>
+      <PageHero
+        eyebrow={t('projectPage.kicker')}
+        title={project.title}
+        description={project.summary}
+      />
 
-      <section className="seo-card">
-        <h2>{t('projectPage.stackTitle')}</h2>
-        <p>{project.stack.join(' | ')}</p>
-      </section>
-
-      <section className="seo-card" style={{ marginTop: '14px' }}>
-        <h2>{t('projectPage.repositoryTitle')}</h2>
-        <p>
-          <a href={project.repository} target="_blank" rel="noreferrer noopener">
-            {project.repository}
-          </a>
-        </p>
-        <a className="seo-cta" href="/contato">
-          {t('projectPage.cta')}
-        </a>
-      </section>
+      <Section bordered>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <RevealOnScroll>
+            <Card className="h-full p-8">
+              <h2 className="font-mono text-eyebrow uppercase text-muted-foreground mb-5">
+                {t('projectPage.stackTitle')}
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((s) => (
+                  <span key={s} className="rounded-full border border-border/60 bg-surface/40 px-3 py-1 text-xs text-foreground/80">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <Card spotlight className="h-full p-8">
+              <h2 className="font-mono text-eyebrow uppercase text-muted-foreground mb-5">
+                {t('projectPage.repositoryTitle')}
+              </h2>
+              <a
+                href={project.repository}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-foreground hover:text-primary-400 transition-colors break-all"
+              >
+                <Github size={16} />
+                {project.repository}
+              </a>
+              <Button to="/contato" className="mt-6 w-full" rightIcon={<ArrowUpRight size={16} />}>
+                {t('projectPage.cta')}
+              </Button>
+            </Card>
+          </RevealOnScroll>
+        </div>
+      </Section>
     </SiteLayout>
   );
 };

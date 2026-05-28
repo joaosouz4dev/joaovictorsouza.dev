@@ -1,0 +1,132 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/press-start-2p/400.css';
+@import '@fontsource/vt323/400.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 5% 4%;
+    --surface: 0 0% 98%;
+    --elevated: 0 0% 100%;
+    --border: 240 6% 90%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+    --surface: 240 6% 7%;
+    --elevated: 240 5% 10%;
+    --border: 240 5% 14%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-primary-500/30 text-foreground;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-400 ring-offset-2 ring-offset-background rounded-sm;
+  }
+
+  /* Hide legacy classes that may still appear during transition */
+  .dark-vertion,
+  .white-vertion {
+    /* no-op: handled by .dark class */
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-6 lg:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-accent bg-clip-text text-transparent;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-border/60 bg-surface/60 backdrop-blur-xl;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+}
+
+@layer utilities {
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

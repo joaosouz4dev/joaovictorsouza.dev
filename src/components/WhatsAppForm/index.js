@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MessageCircle, ArrowUpRight } from 'lucide-react';
+import Card from '../ui/Card';
+import Button from '../ui/Button';
 
 const WhatsAppForm = () => {
   const { t } = useTranslation();
@@ -8,64 +11,61 @@ const WhatsAppForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Remove any non-numeric characters from phone number
     const cleanPhone = phoneNumber.replace(/\D/g, '');
-    
-    // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
-    
-    // Check if screen width is less than 768px (mobile)
     const isMobile = window.innerWidth < 768;
-    
-    // Create WhatsApp URL based on device type
-    let whatsappUrl;
-    if (isMobile) {
-      // Use whatsapp:// protocol for mobile devices
-      whatsappUrl = `whatsapp://send/?phone=${cleanPhone}&text=${encodedMessage}`;
-    } else {
-      // Use https://wa.me/ for desktop devices
-      whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
-    }
-    
-    // Open WhatsApp
+    const whatsappUrl = isMobile
+      ? `whatsapp://send/?phone=${cleanPhone}&text=${encodedMessage}`
+      : `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
   };
 
-  const handlePhoneChange = (e) => {
-    // Allow only numbers and basic formatting
-    const value = e.target.value.replace(/\D/g, '');
-    setPhoneNumber(value);
-  };
-
   return (
-    <div className="whatsapp-form-container">
-      <h2 className="whatsapp-form-title">{t('whatsapp.title', 'Send WhatsApp Message')}</h2>
-      <form className="whatsapp-form" onSubmit={handleSubmit}>
-        <input
-          type="tel"
-          className="whatsapp-form-input"
-          value={phoneNumber}
-          onChange={handlePhoneChange}
-          placeholder={t('whatsapp.phonePlaceholder', 'Phone number (with country code)')}
-          required
-        />
-        <textarea
-          className="whatsapp-form-textarea"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder={t('whatsapp.messagePlaceholder', 'Type your message here...')}
-        />
-        <button 
-          type="submit" 
-          className="whatsapp-form-button"
-          disabled={!phoneNumber}
-        >
-          {t('whatsapp.sendButton', 'Send Message')}
-        </button>
+    <Card spotlight className="mx-auto max-w-xl p-8">
+      <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent text-white shadow-glow">
+        <MessageCircle size={20} />
+      </div>
+      <h2 className="font-display text-h2 font-medium tracking-tight">
+        {t('whatsapp.title', 'Enviar mensagem WhatsApp')}
+      </h2>
+      <p className="mt-2 text-muted-foreground">
+        Gere um link <code className="font-mono text-xs">wa.me</code> para iniciar uma conversa sem
+        salvar o contato.
+      </p>
+      <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+        <div>
+          <label className="font-mono text-eyebrow uppercase text-muted-foreground" htmlFor="phone">
+            Telefone
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
+            placeholder={t('whatsapp.phonePlaceholder', '5531998587817')}
+            required
+            className="mt-2 w-full rounded-2xl border border-border/60 bg-surface/40 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-0"
+          />
+        </div>
+        <div>
+          <label className="font-mono text-eyebrow uppercase text-muted-foreground" htmlFor="msg">
+            Mensagem
+          </label>
+          <textarea
+            id="msg"
+            rows={4}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder={t('whatsapp.messagePlaceholder', 'Olá! Gostaria de conversar sobre...')}
+            className="mt-2 w-full rounded-2xl border border-border/60 bg-surface/40 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-0"
+          />
+        </div>
+        <Button as="button" type="submit" disabled={!phoneNumber} size="lg" rightIcon={<ArrowUpRight size={18} />} className="w-full">
+          {t('whatsapp.sendButton', 'Abrir WhatsApp')}
+        </Button>
       </form>
-    </div>
+    </Card>
   );
 };
 
-export default WhatsAppForm; 
+export default WhatsAppForm;
