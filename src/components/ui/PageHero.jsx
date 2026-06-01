@@ -30,13 +30,13 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
             as="h1"
             text={title}
             split="words"
-            className="font-display font-medium tracking-tight text-balance text-[clamp(1.875rem,5.8vw,4.5rem)] leading-[1.05]"
+            className="font-display font-medium tracking-tight md:text-balance text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-[1.15] md:leading-[1.05] [overflow-wrap:break-word]"
           />
           {gradient && (
             <RevealOnScroll delay={0.2}>
               <GradientText
                 as="span"
-                className="block font-display font-medium tracking-tight text-[clamp(1.875rem,5.8vw,4.5rem)] leading-[1.05]"
+                className="block font-display font-medium tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-[1.15] md:leading-[1.05] [overflow-wrap:break-word]"
               >
                 {gradient}
               </GradientText>
@@ -44,7 +44,7 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
           )}
           {description && (
             <RevealOnScroll delay={0.3}>
-              <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-xl text-muted-foreground text-balance">
+              <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-xl text-muted-foreground md:text-balance">
                 {description}
               </p>
             </RevealOnScroll>

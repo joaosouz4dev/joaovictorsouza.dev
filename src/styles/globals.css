@@ -40,6 +40,11 @@
   html {
     scroll-behavior: auto;
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
   }
 
   html.lenis,

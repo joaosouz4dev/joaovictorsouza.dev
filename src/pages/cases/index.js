@@ -83,16 +83,16 @@ const Cases = () => {
           {visible.map((c) => (
             <RevealItem key={c.slug}>
               <Link to={`/cases/${c.slug}`} className="block h-full">
-                <Card spotlight className="h-full p-8 transition-transform hover:-translate-y-1">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="rounded-full border border-border/80 bg-surface/60 px-3 py-1 text-xs font-mono uppercase tracking-[0.16em] text-foreground/80">
+                <Card spotlight className="h-full p-6 md:p-8 transition-transform hover:-translate-y-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="rounded-full border border-border/80 bg-surface/60 px-3 py-1 text-[10px] md:text-xs font-mono uppercase tracking-[0.16em] text-foreground/80 break-words">
                       {c.category}
                     </span>
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/80 bg-surface/40 text-foreground/80">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/80 bg-surface/40 text-foreground/80">
                       <ArrowUpRight size={14} />
                     </span>
                   </div>
-                  <h2 className="mt-6 font-display text-xl md:text-2xl font-medium tracking-tight">
+                  <h2 className="mt-6 font-display text-lg md:text-2xl font-medium tracking-tight break-words">
                     {c.title}
                   </h2>
                   <p className="mt-3 text-muted-foreground">{c.summary}</p>

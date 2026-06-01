@@ -51,12 +51,14 @@ export function AnimatedText({
       {...props}
     >
       {items.map((item, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom max-w-full">
-          <motion.span variants={child} className="inline-block whitespace-pre max-w-full">
-            {item}
-            {split === 'words' && i < items.length - 1 ? ' ' : ''}
-          </motion.span>
-        </span>
+        <React.Fragment key={i}>
+          <span className="inline-block overflow-hidden align-bottom max-w-full">
+            <motion.span variants={child} className="inline-block max-w-full">
+              {item}
+            </motion.span>
+          </span>
+          {split === 'words' && i < items.length - 1 ? ' ' : ''}
+        </React.Fragment>
       ))}
     </MotionTag>
   );
