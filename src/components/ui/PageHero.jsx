@@ -11,7 +11,7 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
   return (
     <header
       className={cn(
-        'relative isolate overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24',
+        'relative isolate overflow-hidden pt-28 pb-12 md:pt-40 md:pb-24',
         className,
       )}
     >
@@ -21,7 +21,7 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
         <div className="max-w-3xl">
           {eyebrow && (
             <RevealOnScroll>
-              <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-6">
+              <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-4 md:mb-6">
                 {eyebrow}
               </p>
             </RevealOnScroll>
@@ -30,13 +30,13 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
             as="h1"
             text={title}
             split="words"
-            className="font-display text-hero font-medium tracking-tight text-balance"
+            className="font-display font-medium tracking-tight text-balance text-[clamp(1.875rem,5.8vw,4.5rem)] leading-[1.05]"
           />
           {gradient && (
             <RevealOnScroll delay={0.2}>
               <GradientText
                 as="span"
-                className="block font-display text-hero font-medium tracking-tight"
+                className="block font-display font-medium tracking-tight text-[clamp(1.875rem,5.8vw,4.5rem)] leading-[1.05]"
               >
                 {gradient}
               </GradientText>
@@ -44,14 +44,14 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
           )}
           {description && (
             <RevealOnScroll delay={0.3}>
-              <p className="mt-8 max-w-2xl text-lg md:text-xl text-muted-foreground text-balance">
+              <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-xl text-muted-foreground text-balance">
                 {description}
               </p>
             </RevealOnScroll>
           )}
           {children && (
             <RevealOnScroll delay={0.4}>
-              <div className="mt-10 flex flex-wrap items-center gap-3">{children}</div>
+              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-3">{children}</div>
             </RevealOnScroll>
           )}
         </div>
