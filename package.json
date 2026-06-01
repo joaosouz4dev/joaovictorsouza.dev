@@ -39,6 +39,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/prerender-internal-pages.mjs",
     "preview": "vite preview"
   },
   "browserslist": {

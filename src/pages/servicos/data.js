@@ -1,4 +1,4 @@
-import { toBaseLanguage } from '../../utils/i18n';
+import { toBaseLanguage } from '../../utils/i18n.js';
 
 const serviceDefinitions = [
   {

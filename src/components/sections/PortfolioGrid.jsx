@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, X } from 'lucide-react';
 import Container from '../ui/Container';
 import { RevealOnScroll } from '../ui/RevealOnScroll';
@@ -111,83 +111,72 @@ export function PortfolioGrid() {
                 {t('portfolio.title')}
               </h2>
             </div>
-            <LayoutGroup id="portfolio-filters">
-              <div className="flex flex-wrap gap-2">
-                {filters.map((f) => (
+            <div className="flex flex-wrap gap-2">
+              {filters.map((f) => {
+                const isActive = filter === f.key;
+
+                return (
                   <button
                     key={f.key}
+                    type="button"
+                    aria-pressed={isActive}
                     onClick={() => setFilter(f.key)}
                     className={cn(
-                      'relative rounded-full border border-border/60 px-4 py-2 text-xs font-mono uppercase tracking-[0.16em] transition-colors',
-                      filter === f.key
-                        ? 'text-foreground'
-                        : 'text-muted-foreground hover:text-foreground',
+                      'rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-[0.16em] transition-colors',
+                      isActive
+                        ? 'border-foreground/20 bg-foreground/[0.07] text-foreground'
+                        : 'border-border/60 text-muted-foreground hover:border-foreground/20 hover:text-foreground',
                     )}
                   >
-                    {filter === f.key && (
-                      <motion.span
-                        layoutId="portfolio-filter-active"
-                        className="absolute inset-0 -z-10 rounded-full bg-foreground/[0.07] border border-foreground/20"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
                     {f.label}
                   </button>
-                ))}
-              </div>
-            </LayoutGroup>
+                );
+              })}
+            </div>
           </div>
         </RevealOnScroll>
 
-        <LayoutGroup>
-          <motion.div layout className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {filtered.map((item, idx) => (
-                <motion.button
-                  layout
-                  key={item.title}
-                  onClick={() => setSelected(item)}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.45, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative isolate overflow-hidden rounded-3xl border border-border/60 bg-surface/40 text-left backdrop-blur-xl transition-all hover:border-foreground/30 hover:-translate-y-1"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/0" />
-                    <div className="absolute inset-x-0 top-0 p-5 flex items-start justify-between">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/80 backdrop-blur">
-                        {item.subTitle}
-                      </span>
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground/80 backdrop-blur transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground">
-                        <ArrowUpRight size={14} />
-                      </span>
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((item) => (
+            <button
+              key={item.title}
+              type="button"
+              onClick={() => setSelected(item)}
+              className="group relative isolate overflow-hidden rounded-3xl border border-border/60 bg-surface/40 text-left backdrop-blur-xl transition-colors hover:border-foreground/30"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/0" />
+                <div className="absolute inset-x-0 top-0 p-5 flex items-start justify-between">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/80 backdrop-blur">
+                    {item.subTitle}
+                  </span>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-foreground/80 backdrop-blur transition-colors group-hover:text-foreground">
+                    <ArrowUpRight size={14} />
+                  </span>
+                </div>
+              </div>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">
-                      {item.title}
-                    </p>
-                    <h3 className="font-display text-xl md:text-2xl font-medium tracking-tight text-balance leading-[1.15]">
-                      {item.headline}
-                    </h3>
-                    <p className="mt-3 text-sm text-muted-foreground text-balance line-clamp-2">
-                      {item.pitch}
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </LayoutGroup>
+              <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  {item.title}
+                </p>
+                <h3 className="font-display text-xl md:text-2xl font-medium tracking-tight text-balance leading-[1.15]">
+                  {item.headline}
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground text-balance line-clamp-2">
+                  {item.pitch}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
       </Container>
 
       <AnimatePresence>

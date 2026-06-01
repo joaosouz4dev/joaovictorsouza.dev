@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { LayoutGroup, motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
@@ -54,29 +53,28 @@ const Cases = () => {
           <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-4">
             {t('casesPage.filterTitle')}
           </p>
-          <LayoutGroup id="cases-filters">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => {
+              const isActive = active === cat;
+
+              return (
                 <button
                   key={cat}
+                  type="button"
+                  aria-pressed={isActive}
                   onClick={() => setActive(cat)}
                   className={cn(
-                    'relative rounded-full border border-border/60 px-4 py-2 text-xs font-mono uppercase tracking-[0.16em] transition-colors',
-                    active === cat ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
+                    'rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-[0.16em] transition-colors',
+                    isActive
+                      ? 'border-foreground/20 bg-foreground/[0.07] text-foreground'
+                      : 'border-border/60 text-muted-foreground hover:border-foreground/20 hover:text-foreground',
                   )}
                 >
-                  {active === cat && (
-                    <motion.span
-                      layoutId="cases-filter-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-foreground/[0.07] border border-foreground/20"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                   {cat}
                 </button>
-              ))}
-            </div>
-          </LayoutGroup>
+              );
+            })}
+          </div>
         </div>
 
         <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-2" stagger={0.06}>
