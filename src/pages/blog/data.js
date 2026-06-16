@@ -4,7 +4,7 @@ import { getPostContentBySlug } from './posts/index.js';
 const publishedPostDefinitions = [
   {
     slug: 'cag-vs-rag-cache-contexto',
-    date: '2026-03-16',
+    date: '2026-06-16',
     readTime: '11 min',
     keywords: {
       pt: 'cag, rag, cache de contexto, prompt cache, retrieval, kv cache',
@@ -34,7 +34,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'chamadas-voz-whatsapp-baileys-caller',
-    date: '2026-03-13',
+    date: '2026-06-16',
     readTime: '10 min',
     keywords: {
       pt: 'baileys, baileys-caller, chamada de voz whatsapp, whatsapp web, nao oficial',
@@ -64,7 +64,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'fila-picos-campanha-whatsapp',
-    date: '2026-03-10',
+    date: '2026-06-16',
     readTime: '12 min',
     keywords: {
       pt: 'fila whatsapp, picos de campanha, rate limit, backpressure, redis',
@@ -94,7 +94,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'slas-atendimento-bot-humano',
-    date: '2026-03-08',
+    date: '2026-06-16',
     readTime: '10 min',
     keywords: {
       pt: 'sla atendimento, bot humano, fila de atendimento, first response time',
@@ -124,7 +124,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'governanca-templates-times-grandes',
-    date: '2026-03-06',
+    date: '2026-06-16',
     readTime: '11 min',
     keywords: {
       pt: 'governanca templates whatsapp, versionamento, aprovacao meta, namespace',
@@ -154,7 +154,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'integracao-erp-crm-sem-retrabalho',
-    date: '2026-03-04',
+    date: '2026-06-16',
     readTime: '12 min',
     keywords: {
       pt: 'integracao erp crm, sincronizacao, idempotencia, fonte da verdade',
@@ -184,7 +184,7 @@ const publishedPostDefinitions = [
   },
   {
     slug: 'roi-real-automacao-ia',
-    date: '2026-03-02',
+    date: '2026-06-16',
     readTime: '9 min',
     keywords: {
       pt: 'roi automacao ia, calculo de retorno, custo operacional, payback',
