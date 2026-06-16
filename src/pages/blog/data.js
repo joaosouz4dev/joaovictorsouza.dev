@@ -1,6 +1,218 @@
 import { toBaseLanguage } from '../../utils/i18n.js';
+import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
+  {
+    slug: 'cag-vs-rag-cache-contexto',
+    date: '2026-03-16',
+    readTime: '11 min',
+    keywords: {
+      pt: 'cag, rag, cache de contexto, prompt cache, retrieval, kv cache',
+      en: 'cag, rag, context cache, prompt cache, retrieval, kv cache',
+      es: 'cag, rag, cache de contexto, prompt cache, retrieval, kv cache',
+    },
+    content: {
+      pt: {
+        title: 'CAG x RAG: quando cache de contexto vence retrieval',
+        excerpt:
+          'Comparacao pratica entre Cache-Augmented Generation e RAG: latencia, custo, frescor do dado e quando usar cada um.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'CAG vs RAG: when context cache beats retrieval',
+        excerpt:
+          'Practical comparison between Cache-Augmented Generation and RAG: latency, cost, data freshness and when to use each.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'CAG vs RAG: cuando el cache de contexto le gana al retrieval',
+        excerpt:
+          'Comparacion practica entre Cache-Augmented Generation y RAG: latencia, costo, frescura del dato y cuando usar cada uno.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
+    slug: 'chamadas-voz-whatsapp-baileys-caller',
+    date: '2026-03-13',
+    readTime: '10 min',
+    keywords: {
+      pt: 'baileys, baileys-caller, chamada de voz whatsapp, whatsapp web, nao oficial',
+      en: 'baileys, baileys-caller, whatsapp voice call, whatsapp web, unofficial',
+      es: 'baileys, baileys-caller, llamada de voz whatsapp, whatsapp web, no oficial',
+    },
+    content: {
+      pt: {
+        title: 'Chamadas de voz no WhatsApp com baileys-caller',
+        excerpt:
+          'Como originar chamadas de voz no WhatsApp via Baileys, os trade-offs frente a Cloud API oficial e como mitigar o risco.',
+        category: 'WhatsApp Avancado',
+      },
+      en: {
+        title: 'WhatsApp voice calls with baileys-caller',
+        excerpt:
+          'How to originate WhatsApp voice calls via Baileys, the trade-offs versus the official Cloud API and how to mitigate risk.',
+        category: 'Advanced WhatsApp',
+      },
+      es: {
+        title: 'Llamadas de voz en WhatsApp con baileys-caller',
+        excerpt:
+          'Como originar llamadas de voz en WhatsApp via Baileys, los trade-offs frente a la Cloud API oficial y como mitigar el riesgo.',
+        category: 'WhatsApp Avanzado',
+      },
+    },
+  },
+  {
+    slug: 'fila-picos-campanha-whatsapp',
+    date: '2026-03-10',
+    readTime: '12 min',
+    keywords: {
+      pt: 'fila whatsapp, picos de campanha, rate limit, backpressure, redis',
+      en: 'whatsapp queue, campaign peaks, rate limit, backpressure, redis',
+      es: 'cola whatsapp, picos de campana, rate limit, backpressure, redis',
+    },
+    content: {
+      pt: {
+        title: 'Arquitetura de fila para picos de campanha no WhatsApp',
+        excerpt:
+          'Como dimensionar fila, rate limit e backpressure para suportar disparos em massa sem bloqueio nem perda de mensagem.',
+        category: 'Arquitetura Backend',
+      },
+      en: {
+        title: 'Queue architecture for WhatsApp campaign peaks',
+        excerpt:
+          'How to size queue, rate limit and backpressure to handle mass sends without blocks or lost messages.',
+        category: 'Backend Architecture',
+      },
+      es: {
+        title: 'Arquitectura de colas para picos de campana en WhatsApp',
+        excerpt:
+          'Como dimensionar cola, rate limit y backpressure para soportar envios masivos sin bloqueos ni perdida de mensajes.',
+        category: 'Arquitectura Backend',
+      },
+    },
+  },
+  {
+    slug: 'slas-atendimento-bot-humano',
+    date: '2026-03-08',
+    readTime: '10 min',
+    keywords: {
+      pt: 'sla atendimento, bot humano, fila de atendimento, first response time',
+      en: 'support sla, bot human, support queue, first response time',
+      es: 'sla atencion, bot humano, cola de atencion, first response time',
+    },
+    content: {
+      pt: {
+        title: 'Como desenhar SLAs de atendimento com bot + humano',
+        excerpt:
+          'Modelo de SLA por estagio, priorizacao de fila e metricas para medir bot e humano sem cobrar o time pelo que nao controla.',
+        category: 'Operacao',
+      },
+      en: {
+        title: 'How to design support SLAs with bot + human team',
+        excerpt:
+          'SLA model by stage, queue prioritization and metrics to measure bot and human without blaming the team for what they do not control.',
+        category: 'Operations',
+      },
+      es: {
+        title: 'Como disenar SLAs de atencion con bot + equipo humano',
+        excerpt:
+          'Modelo de SLA por etapa, priorizacion de cola y metricas para medir bot y humano sin culpar al equipo por lo que no controla.',
+        category: 'Operacion',
+      },
+    },
+  },
+  {
+    slug: 'governanca-templates-times-grandes',
+    date: '2026-03-06',
+    readTime: '11 min',
+    keywords: {
+      pt: 'governanca templates whatsapp, versionamento, aprovacao meta, namespace',
+      en: 'whatsapp template governance, versioning, meta approval, namespace',
+      es: 'gobernanza plantillas whatsapp, versionado, aprobacion meta, namespace',
+    },
+    content: {
+      pt: {
+        title: 'Governanca de templates em times grandes',
+        excerpt:
+          'Como versionar, aprovar e medir templates de WhatsApp quando varios times disputam o mesmo namespace.',
+        category: 'Operacao',
+      },
+      en: {
+        title: 'Template governance in large teams',
+        excerpt:
+          'How to version, approve and measure WhatsApp templates when several teams compete for the same namespace.',
+        category: 'Operations',
+      },
+      es: {
+        title: 'Gobernanza de plantillas en equipos grandes',
+        excerpt:
+          'Como versionar, aprobar y medir plantillas de WhatsApp cuando varios equipos compiten por el mismo namespace.',
+        category: 'Operacion',
+      },
+    },
+  },
+  {
+    slug: 'integracao-erp-crm-sem-retrabalho',
+    date: '2026-03-04',
+    readTime: '12 min',
+    keywords: {
+      pt: 'integracao erp crm, sincronizacao, idempotencia, fonte da verdade',
+      en: 'erp crm integration, synchronization, idempotency, source of truth',
+      es: 'integracion erp crm, sincronizacion, idempotencia, fuente de verdad',
+    },
+    content: {
+      pt: {
+        title: 'Integracao ERP + CRM sem retrabalho operacional',
+        excerpt:
+          'Padroes de sincronizacao, fonte da verdade e idempotencia para ligar ERP e CRM sem duplicar dado nem cadastro manual.',
+        category: 'Integracoes',
+      },
+      en: {
+        title: 'ERP + CRM integration without operational rework',
+        excerpt:
+          'Synchronization patterns, source of truth and idempotency to connect ERP and CRM without duplicate data or manual entry.',
+        category: 'Integrations',
+      },
+      es: {
+        title: 'Integracion ERP + CRM sin retrabajo operativo',
+        excerpt:
+          'Patrones de sincronizacion, fuente de verdad e idempotencia para conectar ERP y CRM sin duplicar datos ni carga manual.',
+        category: 'Integraciones',
+      },
+    },
+  },
+  {
+    slug: 'roi-real-automacao-ia',
+    date: '2026-03-02',
+    readTime: '9 min',
+    keywords: {
+      pt: 'roi automacao ia, calculo de retorno, custo operacional, payback',
+      en: 'ai automation roi, return calculation, operational cost, payback',
+      es: 'roi automatizacion ia, calculo de retorno, costo operativo, payback',
+    },
+    content: {
+      pt: {
+        title: 'Como calcular ROI real de automacao com IA',
+        excerpt:
+          'Modelo pratico para medir retorno de automacao com IA: custo total, ganho por jornada, payback e armadilhas comuns.',
+        category: 'Estrategia Tecnica',
+      },
+      en: {
+        title: 'How to calculate real ROI from AI automation',
+        excerpt:
+          'Practical model to measure AI automation return: total cost, gain per journey, payback and common pitfalls.',
+        category: 'Technical Strategy',
+      },
+      es: {
+        title: 'Como calcular el ROI real de automatizacion con IA',
+        excerpt:
+          'Modelo practico para medir retorno de automatizacion con IA: costo total, ganancia por jornada, payback y trampas comunes.',
+        category: 'Estrategia Tecnica',
+      },
+    },
+  },
+
   {
     slug: 'guia-whatsapp-cloud-api',
     date: '2026-03-03',
@@ -365,25 +577,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Arquitetura de fila para picos de campanha no WhatsApp',
-    'Como desenhar SLAs de atendimento com bot + humano',
-    'Governanca de templates em times grandes',
-    'Integracao ERP + CRM sem retrabalho operacional',
-    'Como calcular ROI real de automacao com IA',
+    'Avaliacao continua de bots: do eval manual ao automatico',
+    'Feature store para personalizacao de atendimento',
+    'Orquestracao de agentes de IA em producao',
+    'Function calling vs RAG para dados em tempo real',
+    'Observabilidade de LLM: tracing, custo e qualidade',
   ],
   en: [
-    'Queue architecture for WhatsApp campaign peaks',
-    'How to design support SLAs with bot + human team',
-    'Template governance in large teams',
-    'ERP + CRM integration without operational rework',
-    'How to calculate real ROI from AI automation',
+    'Continuous bot evaluation: from manual to automated eval',
+    'Feature store for support personalization',
+    'Orchestrating AI agents in production',
+    'Function calling vs RAG for real-time data',
+    'LLM observability: tracing, cost and quality',
   ],
   es: [
-    'Arquitectura de colas para picos de campana en WhatsApp',
-    'Como disenar SLAs de atencion con bot + equipo humano',
-    'Gobernanza de plantillas en equipos grandes',
-    'Integracion ERP + CRM sin retrabajo operativo',
-    'Como calcular el ROI real de automatizacion con IA',
+    'Evaluacion continua de bots: del eval manual al automatico',
+    'Feature store para personalizacion de atencion',
+    'Orquestacion de agentes de IA en produccion',
+    'Function calling vs RAG para datos en tiempo real',
+    'Observabilidad de LLM: tracing, costo y calidad',
   ],
 };
 
@@ -426,3 +638,6 @@ export const getUpcomingPosts = (language = 'pt') =>
 
 export const getPostBySlug = (slug, language = 'pt') =>
   getPublishedPosts(language).find((post) => post.slug === slug);
+
+export const getPostContent = (slug, language = 'pt') =>
+  getPostContentBySlug(slug, toBaseLanguage(language));
