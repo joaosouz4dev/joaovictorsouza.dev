@@ -31,6 +31,8 @@ import integracaoErpCrm from './integracao-erp-crm-sem-retrabalho.js';
 import roiAutomacao from './roi-real-automacao-ia.js';
 import cagVsRag from './cag-vs-rag-cache-contexto.js';
 import baileysCaller from './chamadas-voz-whatsapp-baileys-caller.js';
+import cameraVirtualBlur from './camera-virtual-blur-auto-framing-mediapipe.js';
+import avaliacaoContinuaBots from './avaliacao-continua-bots-eval-automatico.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -52,6 +54,8 @@ const postContentBySlug = {
   'roi-real-automacao-ia': roiAutomacao,
   'cag-vs-rag-cache-contexto': cagVsRag,
   'chamadas-voz-whatsapp-baileys-caller': baileysCaller,
+  'camera-virtual-blur-auto-framing-mediapipe': cameraVirtualBlur,
+  'avaliacao-continua-bots-eval-automatico': avaliacaoContinuaBots,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
