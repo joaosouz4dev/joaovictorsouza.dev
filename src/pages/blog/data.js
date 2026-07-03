@@ -3,6 +3,66 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'avaliacao-continua-bots-eval-automatico',
+    date: '2026-07-03',
+    readTime: '13 min',
+    keywords: {
+      pt: 'avaliacao continua de bots, eval de llm, llm como juiz, gate de regressao, dataset de eval, ci, testes de bot ia',
+      en: 'continuous bot evaluation, llm eval, llm as judge, regression gate, eval dataset, ci, ai bot testing',
+      es: 'evaluacion continua de bots, eval de llm, llm como juez, gate de regresion, dataset de eval, ci, pruebas de bot ia',
+    },
+    content: {
+      pt: {
+        title: 'Avaliacao continua de bots: do eval manual ao automatico',
+        excerpt:
+          'Como sair do eval manual e subjetivo para um harness automatico: dataset versionado, metricas por tipo de caso, LLM como juiz calibrado e gate de regressao no CI.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Continuous bot evaluation: from manual to automated eval',
+        excerpt:
+          'How to move from manual, subjective eval to an automated harness: versioned dataset, metrics per case type, calibrated LLM judge and a regression gate in CI.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Evaluacion continua de bots: del eval manual al automatico',
+        excerpt:
+          'Como pasar del eval manual y subjetivo a un harness automatico: dataset versionado, metricas por tipo de caso, LLM como juez calibrado y gate de regresion en el CI.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
+    slug: 'camera-virtual-blur-auto-framing-mediapipe',
+    date: '2026-06-22',
+    readTime: '12 min',
+    keywords: {
+      pt: 'camera virtual, blur de fundo, auto-framing, mediapipe, nvidia broadcast alternativa, pyvirtualcam, opencv, python',
+      en: 'virtual camera, background blur, auto-framing, mediapipe, nvidia broadcast alternative, pyvirtualcam, opencv, python',
+      es: 'camara virtual, blur de fondo, auto-framing, mediapipe, alternativa nvidia broadcast, pyvirtualcam, opencv, python',
+    },
+    content: {
+      pt: {
+        title: 'Minha camera virtual com blur e auto-framing: um NVIDIA Broadcast so para a camera',
+        excerpt:
+          'Como construi em Python um app de webcam com blur de fundo e auto-framing via MediaPipe, exposto como camera virtual, sem mexer no audio e iniciando minimizado.',
+        category: 'Visao Computacional',
+      },
+      en: {
+        title: 'My virtual camera with blur and auto-framing: an NVIDIA Broadcast just for the camera',
+        excerpt:
+          'How I built a Python webcam app with background blur and auto-framing via MediaPipe, exposed as a virtual camera, without touching audio and starting minimized.',
+        category: 'Computer Vision',
+      },
+      es: {
+        title: 'Mi camara virtual con blur y auto-framing: un NVIDIA Broadcast solo para la camara',
+        excerpt:
+          'Como construi en Python una app de webcam con blur de fondo y auto-framing via MediaPipe, expuesta como camara virtual, sin tocar el audio e iniciando minimizada.',
+        category: 'Vision Computacional',
+      },
+    },
+  },
+  {
     slug: 'cag-vs-rag-cache-contexto',
     date: '2026-06-16',
     readTime: '11 min',
@@ -577,21 +637,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Avaliacao continua de bots: do eval manual ao automatico',
     'Feature store para personalizacao de atendimento',
     'Orquestracao de agentes de IA em producao',
     'Function calling vs RAG para dados em tempo real',
     'Observabilidade de LLM: tracing, custo e qualidade',
   ],
   en: [
-    'Continuous bot evaluation: from manual to automated eval',
     'Feature store for support personalization',
     'Orchestrating AI agents in production',
     'Function calling vs RAG for real-time data',
     'LLM observability: tracing, cost and quality',
   ],
   es: [
-    'Evaluacion continua de bots: del eval manual al automatico',
     'Feature store para personalizacion de atencion',
     'Orquestacion de agentes de IA en produccion',
     'Function calling vs RAG para datos en tiempo real',
