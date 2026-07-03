@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Github, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { GitHub } from '../../components/ui/SocialIcons';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -89,7 +90,7 @@ const Projeto = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-foreground hover:text-primary-400 transition-colors break-all"
               >
-                <Github size={16} />
+                <GitHub size={16} />
                 {project.repository}
               </a>
               <Button to="/contato" className="mt-6 w-full" rightIcon={<ArrowUpRight size={16} />}>

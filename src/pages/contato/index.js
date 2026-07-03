@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, Linkedin, MessagesSquare, ArrowUpRight, Clock, CheckCircle2 } from 'lucide-react';
+import { Mail, MessagesSquare, ArrowUpRight, Clock, CheckCircle2 } from 'lucide-react';
+import { LinkedIn } from '../../components/ui/SocialIcons';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -23,7 +24,7 @@ const Contato = () => {
       href: 'mailto:web@joaovictorsouza.dev',
     },
     {
-      icon: Linkedin,
+      icon: LinkedIn,
       title: t('contactPage.linkedinTitle'),
       value: 'linkedin.com/in/joaosouz4dev',
       href: 'https://www.linkedin.com/in/joaosouz4dev/',

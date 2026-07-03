@@ -16,10 +16,10 @@ import {
   Sparkles,
   ArrowUpRight,
   Mail,
-  Linkedin,
   MessagesSquare,
   ChevronDown,
 } from 'lucide-react';
+import { LinkedIn } from '../../components/ui/SocialIcons';
 import SiteLayout from '../../components/siteLayout';
 import Seo from '../../components/seo';
 import Container from '../../components/ui/Container';
@@ -401,7 +401,7 @@ function ExperienceSection() {
                 href="https://www.linkedin.com/in/joaosouz4dev"
                 variant="outline"
                 size="md"
-                leftIcon={<Linkedin size={16} />}
+                leftIcon={<LinkedIn size={16} />}
                 className="mt-8"
               >
                 LinkedIn
@@ -524,7 +524,7 @@ function ContactSection() {
   const { t } = useTranslation();
   const items = [
     { icon: Mail, label: 'web@joaovictorsouza.dev', href: 'mailto:web@joaovictorsouza.dev' },
-    { icon: Linkedin, label: '@joaosouz4dev', href: 'https://www.linkedin.com/in/joaosouz4dev' },
+    { icon: LinkedIn, label: '@joaosouz4dev', href: 'https://www.linkedin.com/in/joaosouz4dev' },
     { icon: MessagesSquare, label: '+55 31 9 9858-7817', href: 'https://wa.me/5531998587817' },
   ];
   return (
