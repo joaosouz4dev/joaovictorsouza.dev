@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Tag, Clock, ArrowUpRight, Github } from 'lucide-react';
+import { Calendar, Tag, Clock, ArrowUpRight } from 'lucide-react';
+import { GitHub } from '../../components/ui/SocialIcons';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -128,7 +129,7 @@ const RepoCallout = ({ repo, label }) => (
           <h3 className="font-display text-base font-medium tracking-tight">{repo.name}</h3>
           <p className="mt-2 text-muted-foreground">{repo.description}</p>
         </div>
-        <Button href={repo.url} variant="outline" leftIcon={<Github size={16} />}>
+        <Button href={repo.url} variant="outline" leftIcon={<GitHub size={16} />}>
           GitHub
         </Button>
       </div>
