@@ -8,6 +8,17 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translatePt from './config/translate/pt';
 import translateEn from './config/translate/en';
 import translateEs from './config/translate/es';
+import pressStart2pWoff2 from '@fontsource/press-start-2p/files/press-start-2p-latin-400-normal.woff2';
+
+// Preload da fonte pixelada usada no titulo do banner (LCP) para evitar o flash
+// com a fonte de fallback enquanto o Press Start 2P carrega.
+const fontPreload = document.createElement('link');
+fontPreload.rel = 'preload';
+fontPreload.as = 'font';
+fontPreload.type = 'font/woff2';
+fontPreload.crossOrigin = 'anonymous';
+fontPreload.href = pressStart2pWoff2;
+document.head.appendChild(fontPreload);
 
 i18next
   .use(LanguageDetector)
