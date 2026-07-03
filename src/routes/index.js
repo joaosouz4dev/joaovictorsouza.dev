@@ -1,6 +1,15 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
+// Fontes importadas via JS (nao via @import no CSS) para que o Vite resolva os
+// url() relativos e hasheie os woff2. Com o pipeline do Tailwind v4, o @import
+// no globals.css deixava esses caminhos sem resolver, gerando 404 em producao.
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource/press-start-2p/latin-400.css';
+import '@fontsource/vt323/latin-400.css';
+
 import '../styles/globals.css';
 
 import Home from '../pages/home';
