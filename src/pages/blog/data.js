@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'feature-store-personalizacao-atendimento',
+    date: '2026-07-04',
+    readTime: '12 min',
+    keywords: {
+      pt: 'feature store, personalizacao de atendimento, training-serving skew, point-in-time correctness, feature online, mlops, redis',
+      en: 'feature store, support personalization, training-serving skew, point-in-time correctness, online feature, mlops, redis',
+      es: 'feature store, personalizacion de atencion, training-serving skew, point-in-time correctness, feature online, mlops, redis',
+    },
+    content: {
+      pt: {
+        title: 'Feature store para personalização de atendimento',
+        excerpt:
+          'Como eliminar o training-serving skew na personalização de atendimento: registro único de features, serving online de baixa latência, point-in-time correctness no treino e a mesma transformação em treino e inferência.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Feature store for support personalization',
+        excerpt:
+          'How to eliminate training-serving skew in support personalization: a single feature registry, low-latency online serving, point-in-time correctness in training and the same transformation in training and inference.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Feature store para personalizacion de atencion',
+        excerpt:
+          'Como eliminar el training-serving skew en la personalizacion de atencion: registro unico de features, serving online de baja latencia, point-in-time correctness en el entrenamiento y la misma transformacion en entrenamiento e inferencia.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'avaliacao-continua-bots-eval-automatico',
     date: '2026-07-03',
     readTime: '13 min',
@@ -13,9 +43,9 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Avaliacao continua de bots: do eval manual ao automatico',
+        title: 'Avaliação contínua de bots: do eval manual ao automático',
         excerpt:
-          'Como sair do eval manual e subjetivo para um harness automatico: dataset versionado, metricas por tipo de caso, LLM como juiz calibrado e gate de regressao no CI.',
+          'Como sair do eval manual e subjetivo para um harness automático: dataset versionado, métricas por tipo de caso, LLM como juiz calibrado e gate de regressão no CI.',
         category: 'IA Aplicada',
       },
       en: {
@@ -43,10 +73,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Minha camera virtual com blur e auto-framing: um NVIDIA Broadcast so para a camera',
+        title: 'Minha câmera virtual com blur e auto-framing: um NVIDIA Broadcast só para a câmera',
         excerpt:
-          'Como construi em Python um app de webcam com blur de fundo e auto-framing via MediaPipe, exposto como camera virtual, sem mexer no audio e iniciando minimizado.',
-        category: 'Visao Computacional',
+          'Como construí em Python um app de webcam com blur de fundo e auto-framing via MediaPipe, exposto como câmera virtual, sem mexer no áudio e iniciando minimizado.',
+        category: 'Visão Computacional',
       },
       en: {
         title: 'My virtual camera with blur and auto-framing: an NVIDIA Broadcast just for the camera',
@@ -75,7 +105,7 @@ const publishedPostDefinitions = [
       pt: {
         title: 'CAG x RAG: quando cache de contexto vence retrieval',
         excerpt:
-          'Comparacao pratica entre Cache-Augmented Generation e RAG: latencia, custo, frescor do dado e quando usar cada um.',
+          'Comparação prática entre Cache-Augmented Generation e RAG: latência, custo, frescor do dado e quando usar cada um.',
         category: 'IA Aplicada',
       },
       en: {
@@ -105,8 +135,8 @@ const publishedPostDefinitions = [
       pt: {
         title: 'Chamadas de voz no WhatsApp com baileys-caller',
         excerpt:
-          'Como originar chamadas de voz no WhatsApp via Baileys, os trade-offs frente a Cloud API oficial e como mitigar o risco.',
-        category: 'WhatsApp Avancado',
+          'Como originar chamadas de voz no WhatsApp via Baileys, os trade-offs frente à Cloud API oficial e como mitigar o risco.',
+        category: 'WhatsApp Avançado',
       },
       en: {
         title: 'WhatsApp voice calls with baileys-caller',
@@ -165,8 +195,8 @@ const publishedPostDefinitions = [
       pt: {
         title: 'Como desenhar SLAs de atendimento com bot + humano',
         excerpt:
-          'Modelo de SLA por estagio, priorizacao de fila e metricas para medir bot e humano sem cobrar o time pelo que nao controla.',
-        category: 'Operacao',
+          'Modelo de SLA por estágio, priorização de fila e métricas para medir bot e humano sem cobrar o time pelo que não controla.',
+        category: 'Operação',
       },
       en: {
         title: 'How to design support SLAs with bot + human team',
@@ -193,10 +223,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Governanca de templates em times grandes',
+        title: 'Governança de templates em times grandes',
         excerpt:
-          'Como versionar, aprovar e medir templates de WhatsApp quando varios times disputam o mesmo namespace.',
-        category: 'Operacao',
+          'Como versionar, aprovar e medir templates de WhatsApp quando vários times disputam o mesmo namespace.',
+        category: 'Operação',
       },
       en: {
         title: 'Template governance in large teams',
@@ -223,10 +253,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Integracao ERP + CRM sem retrabalho operacional',
+        title: 'Integração ERP + CRM sem retrabalho operacional',
         excerpt:
-          'Padroes de sincronizacao, fonte da verdade e idempotencia para ligar ERP e CRM sem duplicar dado nem cadastro manual.',
-        category: 'Integracoes',
+          'Padrões de sincronização, fonte da verdade e idempotência para ligar ERP e CRM sem duplicar dado nem cadastro manual.',
+        category: 'Integrações',
       },
       en: {
         title: 'ERP + CRM integration without operational rework',
@@ -253,10 +283,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Como calcular ROI real de automacao com IA',
+        title: 'Como calcular ROI real de automação com IA',
         excerpt:
-          'Modelo pratico para medir retorno de automacao com IA: custo total, ganho por jornada, payback e armadilhas comuns.',
-        category: 'Estrategia Tecnica',
+          'Modelo prático para medir retorno de automação com IA: custo total, ganho por jornada, payback e armadilhas comuns.',
+        category: 'Estratégia Técnica',
       },
       en: {
         title: 'How to calculate real ROI from AI automation',
@@ -286,7 +316,7 @@ const publishedPostDefinitions = [
       pt: {
         title: 'Guia WhatsApp Cloud API: arquitetura, webhooks, templates e deploy',
         excerpt:
-          'Arquitetura de producao para integrar WhatsApp Cloud API com webhook seguro, templates, filas e observabilidade.',
+          'Arquitetura de produção para integrar WhatsApp Cloud API com webhook seguro, templates, filas e observabilidade.',
         category: 'WhatsApp Cloud API',
       },
       en: {
@@ -314,9 +344,9 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Meta Pixel vs CAPI: arquitetura ideal para dados confiaveis',
+        title: 'Meta Pixel vs CAPI: arquitetura ideal para dados confiáveis',
         excerpt:
-          'Como combinar Pixel e Conversions API com deduplicacao para reduzir perda de eventos e melhorar atribuicao.',
+          'Como combinar Pixel e Conversions API com deduplicação para reduzir perda de eventos e melhorar atribuição.',
         category: 'Meta Ads',
       },
       en: {
@@ -344,9 +374,9 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Webhook WhatsApp em producao: idempotencia, filas e retry',
+        title: 'Webhook WhatsApp em produção: idempotência, filas e retry',
         excerpt:
-          'Padroes tecnicos para evitar mensagens duplicadas e manter estabilidade em alto volume de atendimento.',
+          'Padrões técnicos para evitar mensagens duplicadas e manter estabilidade em alto volume de atendimento.',
         category: 'Arquitetura Backend',
       },
       en: {
@@ -404,9 +434,9 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'RAG para atendimento no WhatsApp: desenho de producao sem alucinacao',
+        title: 'RAG para atendimento no WhatsApp: desenho de produção sem alucinação',
         excerpt:
-          'Como estruturar base de conhecimento, guardrails e avaliacao continua para bots mais precisos.',
+          'Como estruturar base de conhecimento, guardrails e avaliação contínua para bots mais precisos.',
         category: 'IA Aplicada',
       },
       en: {
@@ -434,7 +464,7 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Monitoramento e alertas em integracoes: o minimo para nao apagar incendio',
+        title: 'Monitoramento e alertas em integrações: o mínimo para não apagar incêndio',
         excerpt:
           'Painel e alertas essenciais para webhook, fila, worker e APIs externas com foco em tempo de resposta.',
         category: 'Observabilidade',
@@ -466,8 +496,8 @@ const publishedPostDefinitions = [
       pt: {
         title: 'Playbook CRM + WhatsApp para acelerar vendas sem perder qualidade',
         excerpt:
-          'Eventos, etapas e automacoes recomendadas para ligar atendimento, qualificacao e fechamento comercial.',
-        category: 'Automacao Comercial',
+          'Eventos, etapas e automações recomendadas para ligar atendimento, qualificação e fechamento comercial.',
+        category: 'Automação Comercial',
       },
       en: {
         title: 'CRM + WhatsApp playbook to accelerate sales without losing quality',
@@ -494,10 +524,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Checklist de seguranca para integracoes Meta e WhatsApp',
+        title: 'Checklist de segurança para integrações Meta e WhatsApp',
         excerpt:
-          'Boas praticas de assinatura, segregacao de credenciais, rate limit e trilha de auditoria.',
-        category: 'Seguranca',
+          'Boas práticas de assinatura, segregação de credenciais, rate limit e trilha de auditoria.',
+        category: 'Segurança',
       },
       en: {
         title: 'Security checklist for Meta and WhatsApp integrations',
@@ -524,10 +554,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Custos na WhatsApp Cloud API: como otimizar sem degradar experiencia',
+        title: 'Custos na WhatsApp Cloud API: como otimizar sem degradar experiência',
         excerpt:
-          'Regras praticas para reduzir desperdicio de conversas e melhorar taxa de resolucao por jornada.',
-        category: 'Operacao',
+          'Regras práticas para reduzir desperdício de conversas e melhorar taxa de resolução por jornada.',
+        category: 'Operação',
       },
       en: {
         title: 'WhatsApp Cloud API costs: how to optimize without degrading experience',
@@ -554,9 +584,9 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Testes de contrato para webhooks e APIs: reduzindo regressao em integracoes',
+        title: 'Testes de contrato para webhooks e APIs: reduzindo regressão em integrações',
         excerpt:
-          'Estrategia de testes para evitar quebra silenciosa quando parceiros mudam payload ou versao.',
+          'Estratégia de testes para evitar quebra silenciosa quando parceiros mudam payload ou versão.',
         category: 'Qualidade',
       },
       en: {
@@ -586,7 +616,7 @@ const publishedPostDefinitions = [
       pt: {
         title: 'Arquitetura multi-tenant para SaaS com WhatsApp',
         excerpt:
-          'Padroes para isolamento de clientes, limites por tenant e governanca de configuracoes.',
+          'Padrões para isolamento de clientes, limites por tenant e governança de configurações.',
         category: 'SaaS Architecture',
       },
       en: {
@@ -614,10 +644,10 @@ const publishedPostDefinitions = [
     },
     content: {
       pt: {
-        title: 'Roadmap de 90 dias para automacao de atendimento com IA',
+        title: 'Roadmap de 90 dias para automação de atendimento com IA',
         excerpt:
-          'Plano em fases para sair do piloto e chegar em operacao com metrica, governanca e escala.',
-        category: 'Estrategia Tecnica',
+          'Plano em fases para sair do piloto e chegar em operação com métrica, governança e escala.',
+        category: 'Estratégia Técnica',
       },
       en: {
         title: '90-day roadmap for AI support automation',
@@ -637,19 +667,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Feature store para personalizacao de atendimento',
-    'Orquestracao de agentes de IA em producao',
+    'Orquestração de agentes de IA em produção',
     'Function calling vs RAG para dados em tempo real',
     'Observabilidade de LLM: tracing, custo e qualidade',
   ],
   en: [
-    'Feature store for support personalization',
     'Orchestrating AI agents in production',
     'Function calling vs RAG for real-time data',
     'LLM observability: tracing, cost and quality',
   ],
   es: [
-    'Feature store para personalizacion de atencion',
     'Orquestacion de agentes de IA en produccion',
     'Function calling vs RAG para datos en tiempo real',
     'Observabilidad de LLM: tracing, costo y calidad',

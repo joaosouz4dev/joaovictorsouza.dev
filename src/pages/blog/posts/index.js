@@ -33,6 +33,7 @@ import cagVsRag from './cag-vs-rag-cache-contexto.js';
 import baileysCaller from './chamadas-voz-whatsapp-baileys-caller.js';
 import cameraVirtualBlur from './camera-virtual-blur-auto-framing-mediapipe.js';
 import avaliacaoContinuaBots from './avaliacao-continua-bots-eval-automatico.js';
+import featureStorePersonalizacao from './feature-store-personalizacao-atendimento.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -56,6 +57,7 @@ const postContentBySlug = {
   'chamadas-voz-whatsapp-baileys-caller': baileysCaller,
   'camera-virtual-blur-auto-framing-mediapipe': cameraVirtualBlur,
   'avaliacao-continua-bots-eval-automatico': avaliacaoContinuaBots,
+  'feature-store-personalizacao-atendimento': featureStorePersonalizacao,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
