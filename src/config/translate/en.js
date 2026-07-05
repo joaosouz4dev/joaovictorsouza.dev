@@ -20,6 +20,7 @@ const en = {
       mainGuide: 'Main technical guide',
       viewAllCases: 'View all cases',
       specialties: 'Specialties',
+      latestPosts: 'Latest posts',
       whatsappDirect: 'Direct WhatsApp',
     },
     social: {

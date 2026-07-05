@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { GitHub, LinkedIn, Instagram } from '../ui/SocialIcons';
 import Container from '../ui/Container';
 import GradientText from '../ui/GradientText';
 import GlowEffect from '../ui/GlowEffect';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
-import { cn } from '../../lib/cn';
+import { getPublishedPosts } from '../../pages/blog/data.js';
 
 const SOCIAL = [
   { href: 'https://github.com/joaosouz4dev', icon: GitHub, key: 'layout.social.github' },
@@ -15,17 +15,11 @@ const SOCIAL = [
   { href: 'https://www.instagram.com/joaosouz4dev', icon: Instagram, key: 'layout.social.instagram' },
 ];
 
-const SPECIALTIES = [
-  'WhatsApp Cloud API',
-  'Meta Conversions API',
-  'Chatbots com IA',
-  'RAG + Handoff',
-  'CRM/ERP',
-  'Observabilidade',
-];
-
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const latestPosts = [...getPublishedPosts(i18n.language)]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 4);
   return (
     <footer className="relative isolate overflow-hidden border-t border-border/40 mt-20 md:mt-32">
       <GlowEffect intensity="xl" color="primary" className="-bottom-40 left-1/2 -translate-x-1/2 opacity-40" />
@@ -87,18 +81,20 @@ const Footer = () => {
 
           <div className="md:col-span-4">
             <h4 className="font-mono text-eyebrow uppercase text-muted-foreground mb-5">
-              {t('layout.footer.specialties')}
+              {t('layout.footer.latestPosts')}
             </h4>
-            <div className="flex flex-wrap gap-2">
-              {SPECIALTIES.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-border/60 bg-surface/40 px-3 py-1.5 text-xs text-foreground/70 backdrop-blur"
-                >
-                  {s}
-                </span>
+            <ul className="space-y-3 text-sm">
+              {latestPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="text-foreground/80 hover:text-foreground transition-colors line-clamp-2"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <h4 className="font-mono text-eyebrow uppercase text-muted-foreground mt-10 mb-5">
               {t('menu.contact')}
@@ -108,7 +104,6 @@ const Footer = () => {
                 href="mailto:web@joaovictorsouza.dev"
                 className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors"
               >
-                <Mail size={14} />
                 web@joaovictorsouza.dev
               </a>
               <a
@@ -117,7 +112,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="block text-foreground/80 hover:text-foreground transition-colors"
               >
-                {t('layout.footer.whatsappDirect')} →
+                {t('layout.footer.whatsappDirect')}
               </a>
             </div>
 
