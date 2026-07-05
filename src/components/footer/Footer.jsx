@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Github, Linkedin, Instagram, Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, ArrowUpRight } from 'lucide-react';
+import { GitHub, LinkedIn, Instagram } from '../ui/SocialIcons';
 import Container from '../ui/Container';
 import GradientText from '../ui/GradientText';
 import GlowEffect from '../ui/GlowEffect';
@@ -9,8 +10,8 @@ import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { cn } from '../../lib/cn';
 
 const SOCIAL = [
-  { href: 'https://github.com/joaosouz4dev', icon: Github, key: 'layout.social.github' },
-  { href: 'https://www.linkedin.com/in/joaosouz4dev/', icon: Linkedin, key: 'layout.social.linkedin' },
+  { href: 'https://github.com/joaosouz4dev', icon: GitHub, key: 'layout.social.github' },
+  { href: 'https://www.linkedin.com/in/joaosouz4dev/', icon: LinkedIn, key: 'layout.social.linkedin' },
   { href: 'https://www.instagram.com/joaosouz4dev', icon: Instagram, key: 'layout.social.instagram' },
 ];
 

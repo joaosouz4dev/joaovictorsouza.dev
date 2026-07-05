@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Github, ArrowUpRight, Code2 } from 'lucide-react';
+import { ArrowUpRight, Code2 } from 'lucide-react';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';

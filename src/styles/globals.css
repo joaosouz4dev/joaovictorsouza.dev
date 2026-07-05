@@ -1,12 +1,6 @@
-@import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
-@import '@fontsource-variable/space-grotesk';
-@import '@fontsource/press-start-2p/400.css';
-@import '@fontsource/vt323/400.css';
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config '../../tailwind.config.js';
 
 @layer base {
   :root {

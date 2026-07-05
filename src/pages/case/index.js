@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { GitHub } from '../../components/ui/SocialIcons';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -168,7 +169,7 @@ const Case = () => {
                       className="flex items-center justify-between rounded-2xl border border-border/60 bg-surface/40 px-4 py-3 text-sm text-foreground/80 transition-colors hover:text-foreground hover:border-foreground/30"
                     >
                       <span>{t('casePage.repositoryLabel')}</span>
-                      <Github size={14} />
+                      <GitHub size={14} />
                     </a>
                   )}
                 </div>
