@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'feature-store-personalizacao-atendimento',
+    date: '2026-07-04',
+    readTime: '12 min',
+    keywords: {
+      pt: 'feature store, personalizacao de atendimento, training-serving skew, point-in-time correctness, feature online, mlops, redis',
+      en: 'feature store, support personalization, training-serving skew, point-in-time correctness, online feature, mlops, redis',
+      es: 'feature store, personalizacion de atencion, training-serving skew, point-in-time correctness, feature online, mlops, redis',
+    },
+    content: {
+      pt: {
+        title: 'Feature store para personalização de atendimento',
+        excerpt:
+          'Como eliminar o training-serving skew na personalização de atendimento: registro único de features, serving online de baixa latência, point-in-time correctness no treino e a mesma transformação em treino e inferência.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Feature store for support personalization',
+        excerpt:
+          'How to eliminate training-serving skew in support personalization: a single feature registry, low-latency online serving, point-in-time correctness in training and the same transformation in training and inference.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Feature store para personalizacion de atencion',
+        excerpt:
+          'Como eliminar el training-serving skew en la personalizacion de atencion: registro unico de features, serving online de baja latencia, point-in-time correctness en el entrenamiento y la misma transformacion en entrenamiento e inferencia.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'avaliacao-continua-bots-eval-automatico',
     date: '2026-07-03',
     readTime: '13 min',
@@ -637,19 +667,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Feature store para personalização de atendimento',
     'Orquestração de agentes de IA em produção',
     'Function calling vs RAG para dados em tempo real',
     'Observabilidade de LLM: tracing, custo e qualidade',
   ],
   en: [
-    'Feature store for support personalization',
     'Orchestrating AI agents in production',
     'Function calling vs RAG for real-time data',
     'LLM observability: tracing, cost and quality',
   ],
   es: [
-    'Feature store para personalizacion de atencion',
     'Orquestacion de agentes de IA en produccion',
     'Function calling vs RAG para datos en tiempo real',
     'Observabilidad de LLM: tracing, costo y calidad',
