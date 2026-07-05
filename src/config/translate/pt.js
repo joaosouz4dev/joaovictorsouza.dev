@@ -20,6 +20,7 @@ const pt = {
       mainGuide: 'Guia técnico principal',
       viewAllCases: 'Ver todos os cases',
       specialties: 'Especialidades',
+      latestPosts: 'Últimos posts',
       whatsappDirect: 'WhatsApp direto',
     },
     social: {
