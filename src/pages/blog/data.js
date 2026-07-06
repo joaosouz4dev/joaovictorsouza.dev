@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'orquestracao-agentes-ia-producao',
+    date: '2026-07-06',
+    readTime: '13 min',
+    keywords: {
+      pt: 'orquestracao de agentes de ia, multi-agente, supervisor, estado duravel, tool runner, retry, guardrails, tracing de llm, producao',
+      en: 'ai agent orchestration, multi-agent, supervisor, durable state, tool runner, retry, guardrails, llm tracing, production',
+      es: 'orquestacion de agentes de ia, multi-agente, supervisor, estado durable, tool runner, retry, guardrails, tracing de llm, produccion',
+    },
+    content: {
+      pt: {
+        title: 'Orquestração de agentes de IA em produção',
+        excerpt:
+          'Como sair do agente único para uma orquestração confiável: padrões de coordenação, estado durável para retomar, tools blindadas com retry, guardrails de custo e tracing por passo.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Orchestrating AI agents in production',
+        excerpt:
+          'How to move from a single agent to a reliable orchestration: coordination patterns, durable state to resume, armored tools with retry, cost guardrails and per-step tracing.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Orquestacion de agentes de IA en produccion',
+        excerpt:
+          'Como pasar del agente unico a una orquestacion confiable: patrones de coordinacion, estado durable para retomar, tools blindadas con retry, guardrails de costo y tracing por paso.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'feature-store-personalizacao-atendimento',
     date: '2026-07-04',
     readTime: '12 min',
@@ -667,19 +697,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Orquestração de agentes de IA em produção',
     'Function calling vs RAG para dados em tempo real',
     'Observabilidade de LLM: tracing, custo e qualidade',
+    'Guardrails de saída em LLM: validação e recusa segura',
+    'Cache semântico para reduzir custo de LLM',
+    'Memória de longo prazo para agentes de atendimento',
   ],
   en: [
-    'Orchestrating AI agents in production',
     'Function calling vs RAG for real-time data',
     'LLM observability: tracing, cost and quality',
+    'LLM output guardrails: validation and safe refusal',
+    'Semantic cache to cut LLM cost',
+    'Long-term memory for support agents',
   ],
   es: [
-    'Orquestacion de agentes de IA en produccion',
     'Function calling vs RAG para datos en tiempo real',
     'Observabilidad de LLM: tracing, costo y calidad',
+    'Guardrails de salida en LLM: validacion y rechazo seguro',
+    'Cache semantico para reducir el costo de LLM',
+    'Memoria de largo plazo para agentes de atencion',
   ],
 };
 
