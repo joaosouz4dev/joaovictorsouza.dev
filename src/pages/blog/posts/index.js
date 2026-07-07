@@ -35,6 +35,7 @@ import cameraVirtualBlur from './camera-virtual-blur-auto-framing-mediapipe.js';
 import avaliacaoContinuaBots from './avaliacao-continua-bots-eval-automatico.js';
 import featureStorePersonalizacao from './feature-store-personalizacao-atendimento.js';
 import orquestracaoAgentes from './orquestracao-agentes-ia-producao.js';
+import functionCallingVsRag from './function-calling-vs-rag-dados-tempo-real.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -60,6 +61,7 @@ const postContentBySlug = {
   'avaliacao-continua-bots-eval-automatico': avaliacaoContinuaBots,
   'feature-store-personalizacao-atendimento': featureStorePersonalizacao,
   'orquestracao-agentes-ia-producao': orquestracaoAgentes,
+  'function-calling-vs-rag-dados-tempo-real': functionCallingVsRag,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
