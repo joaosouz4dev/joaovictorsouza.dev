@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'function-calling-vs-rag-dados-tempo-real',
+    date: '2026-07-07',
+    readTime: '12 min',
+    keywords: {
+      pt: 'function calling, tool use, rag, dados em tempo real, dado vivo, consulta ao vivo, roteamento por intencao, chatbot ia, anthropic',
+      en: 'function calling, tool use, rag, real-time data, live data, live query, intent routing, ai chatbot, anthropic',
+      es: 'function calling, tool use, rag, datos en tiempo real, dato vivo, consulta en vivo, ruteo por intencion, chatbot ia, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Function calling vs RAG para dados em tempo real',
+        excerpt:
+          'Por que RAG alucina status de pedido e saldo: retrieval e para dado estatico, function calling e para dado vivo. Comparacao por natureza do dado, exemplo real de tool use e roteamento por intencao.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Function calling vs RAG for real-time data',
+        excerpt:
+          'Why RAG hallucinates order status and balance: retrieval is for static data, function calling is for live data. Comparison by nature of the data, a real tool use example and intent routing.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Function calling vs RAG para datos en tiempo real',
+        excerpt:
+          'Por que RAG alucina estado de pedido y saldo: retrieval es para dato estatico, function calling es para dato vivo. Comparacion por naturaleza del dato, ejemplo real de tool use y ruteo por intencion.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'orquestracao-agentes-ia-producao',
     date: '2026-07-06',
     readTime: '13 min',
@@ -697,21 +727,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Function calling vs RAG para dados em tempo real',
     'Observabilidade de LLM: tracing, custo e qualidade',
     'Guardrails de saída em LLM: validação e recusa segura',
     'Cache semântico para reduzir custo de LLM',
     'Memória de longo prazo para agentes de atendimento',
   ],
   en: [
-    'Function calling vs RAG for real-time data',
     'LLM observability: tracing, cost and quality',
     'LLM output guardrails: validation and safe refusal',
     'Semantic cache to cut LLM cost',
     'Long-term memory for support agents',
   ],
   es: [
-    'Function calling vs RAG para datos en tiempo real',
     'Observabilidad de LLM: tracing, costo y calidad',
     'Guardrails de salida en LLM: validacion y rechazo seguro',
     'Cache semantico para reducir el costo de LLM',
