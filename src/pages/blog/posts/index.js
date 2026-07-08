@@ -36,6 +36,7 @@ import avaliacaoContinuaBots from './avaliacao-continua-bots-eval-automatico.js'
 import featureStorePersonalizacao from './feature-store-personalizacao-atendimento.js';
 import orquestracaoAgentes from './orquestracao-agentes-ia-producao.js';
 import functionCallingVsRag from './function-calling-vs-rag-dados-tempo-real.js';
+import observabilidadeLlm from './observabilidade-llm-tracing-custo-qualidade.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -62,6 +63,7 @@ const postContentBySlug = {
   'feature-store-personalizacao-atendimento': featureStorePersonalizacao,
   'orquestracao-agentes-ia-producao': orquestracaoAgentes,
   'function-calling-vs-rag-dados-tempo-real': functionCallingVsRag,
+  'observabilidade-llm-tracing-custo-qualidade': observabilidadeLlm,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {

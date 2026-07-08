@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'observabilidade-llm-tracing-custo-qualidade',
+    date: '2026-07-08',
+    readTime: '13 min',
+    keywords: {
+      pt: 'observabilidade de llm, tracing de llm, custo de tokens, qualidade de llm, llm como juiz, span, latencia, redacao de dados, alertas, anthropic',
+      en: 'llm observability, llm tracing, token cost, llm quality, llm as judge, span, latency, data redaction, alerts, anthropic',
+      es: 'observabilidad de llm, tracing de llm, costo de tokens, calidad de llm, llm como juez, span, latencia, redaccion de datos, alertas, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Observabilidade de LLM: tracing, custo e qualidade',
+        excerpt:
+          'Por que os tres pilares tradicionais nao bastam para LLM: latencia, custo e qualidade precisam ser observados juntos. Tracing por fase, custo por chamada, sinais de qualidade sem gabarito, log com redacao e alertas com contexto.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'LLM observability: tracing, cost and quality',
+        excerpt:
+          'Why the three classic pillars are not enough for LLMs: latency, cost and quality must be observed together. Per-phase tracing, per-call cost, quality signals without ground truth, redacted logging and alerts with context.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Observabilidad de LLM: tracing, costo y calidad',
+        excerpt:
+          'Por que los tres pilares clasicos no bastan para LLM: latencia, costo y calidad hay que observarlos juntos. Tracing por fase, costo por llamada, senales de calidad sin gabarito, log con redaccion y alertas con contexto.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'function-calling-vs-rag-dados-tempo-real',
     date: '2026-07-07',
     readTime: '12 min',
@@ -727,19 +757,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Observabilidade de LLM: tracing, custo e qualidade',
     'Guardrails de saída em LLM: validação e recusa segura',
     'Cache semântico para reduzir custo de LLM',
     'Memória de longo prazo para agentes de atendimento',
   ],
   en: [
-    'LLM observability: tracing, cost and quality',
     'LLM output guardrails: validation and safe refusal',
     'Semantic cache to cut LLM cost',
     'Long-term memory for support agents',
   ],
   es: [
-    'Observabilidad de LLM: tracing, costo y calidad',
     'Guardrails de salida en LLM: validacion y rechazo seguro',
     'Cache semantico para reducir el costo de LLM',
     'Memoria de largo plazo para agentes de atencion',
