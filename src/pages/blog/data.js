@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'guardrails-saida-llm-validacao-recusa-segura',
+    date: '2026-07-09',
+    readTime: '13 min',
+    keywords: {
+      pt: 'guardrails de saida, validacao de llm, recusa segura, schema json, retry estruturado, fallback seguro, vazamento de dado, tool use, anthropic',
+      en: 'output guardrails, llm validation, safe refusal, json schema, structured retry, safe fallback, data leakage, tool use, anthropic',
+      es: 'guardrails de salida, validacion de llm, rechazo seguro, schema json, retry estructurado, fallback seguro, filtracion de dato, tool use, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Guardrails de saída em LLM: validação e recusa segura',
+        excerpt:
+          'A parte perigosa de um sistema com LLM não é o que entra, é o que sai. Validação de schema com retry, detecção de recusa e vazamento, bloqueio de ação perigosa e a regra de ouro: sempre um fallback seguro.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'LLM output guardrails: validation and safe refusal',
+        excerpt:
+          'The dangerous part of an LLM system is not the input, it is the output. Schema validation with retry, refusal and leakage detection, blocking a dangerous action and the golden rule: always a safe fallback.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Guardrails de salida en LLM: validacion y rechazo seguro',
+        excerpt:
+          'La parte peligrosa de un sistema con LLM no es lo que entra, es lo que sale. Validacion de schema con retry, deteccion de rechazo y filtracion, bloqueo de accion peligrosa y la regla de oro: siempre un fallback seguro.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'observabilidade-llm-tracing-custo-qualidade',
     date: '2026-07-08',
     readTime: '13 min',
@@ -757,17 +787,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Guardrails de saída em LLM: validação e recusa segura',
     'Cache semântico para reduzir custo de LLM',
     'Memória de longo prazo para agentes de atendimento',
   ],
   en: [
-    'LLM output guardrails: validation and safe refusal',
     'Semantic cache to cut LLM cost',
     'Long-term memory for support agents',
   ],
   es: [
-    'Guardrails de salida en LLM: validacion y rechazo seguro',
     'Cache semantico para reducir el costo de LLM',
     'Memoria de largo plazo para agentes de atencion',
   ],

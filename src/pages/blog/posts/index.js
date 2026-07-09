@@ -37,6 +37,7 @@ import featureStorePersonalizacao from './feature-store-personalizacao-atendimen
 import orquestracaoAgentes from './orquestracao-agentes-ia-producao.js';
 import functionCallingVsRag from './function-calling-vs-rag-dados-tempo-real.js';
 import observabilidadeLlm from './observabilidade-llm-tracing-custo-qualidade.js';
+import guardrailsSaidaLlm from './guardrails-saida-llm-validacao-recusa-segura.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -64,6 +65,7 @@ const postContentBySlug = {
   'orquestracao-agentes-ia-producao': orquestracaoAgentes,
   'function-calling-vs-rag-dados-tempo-real': functionCallingVsRag,
   'observabilidade-llm-tracing-custo-qualidade': observabilidadeLlm,
+  'guardrails-saida-llm-validacao-recusa-segura': guardrailsSaidaLlm,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
