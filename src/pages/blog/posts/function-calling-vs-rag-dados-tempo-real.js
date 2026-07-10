@@ -4,72 +4,72 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'Exemplo lado a lado de function calling e RAG para a mesma pergunta: uma tool que consulta o estado atual do pedido via API versus retrieval de documentos estaticos, com deteccao de intencao e roteamento entre os dois.',
+  pt: 'Exemplo lado a lado de function calling e RAG para a mesma pergunta: uma tool que consulta o estado atual do pedido via API versus retrieval de documentos estáticos, com detecção de intenção e roteamento entre os dois.',
   en: 'Side-by-side example of function calling and RAG for the same question: a tool that queries the current order status via API versus retrieval of static documents, with intent detection and routing between the two.',
-  es: 'Ejemplo lado a lado de function calling y RAG para la misma pregunta: una tool que consulta el estado actual del pedido via API frente a retrieval de documentos estaticos, con deteccion de intencion y ruteo entre ambos.',
+  es: 'Ejemplo lado a lado de function calling y RAG para la misma pregunta: una tool que consulta el estado actual del pedido vía API frente a retrieval de documentos estáticos, con detección de intención y ruteo entre ambos.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/function-calling-vs-rag-example';
 
 const pt = {
   intro:
-    'Quando um usuario pergunta "cade meu pedido?", nenhuma base de conhecimento no mundo tem a resposta: o status muda a cada minuto e vive no banco transacional, nao num documento. Ainda assim, muita gente tenta resolver tudo com RAG, indexa FAQ, politicas e manuais, e depois se frustra quando o bot inventa um prazo de entrega que nao existe. O problema nao e o RAG: e usar retrieval para um dado que nao e recuperavel, e sim consultavel. Function calling resolve exatamente essa classe: em vez de buscar um trecho parecido, o modelo chama uma funcao que executa a consulta ao vivo e recebe o dado fresco de volta. Este artigo separa as duas ferramentas por natureza do dado, mostra os fluxos lado a lado, quando cada uma vence, um exemplo real de tool use e como rotear entre elas numa arquitetura unica.',
+    'Quando um usuário pergunta "cadê meu pedido?", nenhuma base de conhecimento no mundo tem a resposta: o status muda a cada minuto e vive no banco transacional, não num documento. Ainda assim, muita gente tenta resolver tudo com RAG, indexa FAQ, políticas e manuais, e depois se frustra quando o bot inventa um prazo de entrega que não existe. O problema não é o RAG: é usar retrieval para um dado que não é recuperável, e sim consultável. Function calling resolve exatamente essa classe: em vez de buscar um trecho parecido, o modelo chama uma função que executa a consulta ao vivo e recebe o dado fresco de volta. Este artigo separa as duas ferramentas por natureza do dado, mostra os fluxos lado a lado, quando cada uma vence, um exemplo real de tool use e como rotear entre elas numa arquitetura única.',
   sections: [
     {
-      title: 'O eixo que separa as duas: dado estatico x dado vivo',
+      title: 'O eixo que separa as duas: dado estático x dado vivo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG e function calling nao competem pelo mesmo trabalho; eles resolvem perguntas de naturezas diferentes. RAG e para conhecimento: texto que ja existe escrito em algum lugar (uma politica de troca, um trecho de manual, um artigo) e que voce quer recuperar por similaridade semantica. Function calling e para acao e consulta: um dado que so existe no momento em que voce pergunta (o saldo de hoje, o status atual do pedido, o clima agora) ou uma operacao que muda o mundo (criar um chamado, agendar uma visita, emitir um boleto).',
+            'RAG e function calling não competem pelo mesmo trabalho; eles resolvem perguntas de naturezas diferentes. RAG é para conhecimento: texto que já existe escrito em algum lugar (uma política de troca, um trecho de manual, um artigo) e que você quer recuperar por similaridade semântica. Function calling é para ação e consulta: um dado que só existe no momento em que você pergunta (o saldo de hoje, o status atual do pedido, o clima agora) ou uma operação que muda o mundo (criar um chamado, agendar uma visita, emitir um boleto).',
         },
         {
           type: 'paragraph',
           value:
-            'A pergunta que separa as duas e simples: a resposta esta escrita em algum documento ou precisa ser calculada/consultada agora? Se esta escrita, RAG recupera. Se precisa ser consultada, function calling chama uma API. Confundir os dois e a raiz de metade dos bots que alucinam: eles tentam recuperar por similaridade um dado que muda a cada segundo, e o trecho mais parecido que o retrieval encontra e sempre uma versao velha ou generica.',
+            'A pergunta que separa as duas é simples: a resposta está escrita em algum documento ou precisa ser calculada/consultada agora? Se está escrita, RAG recupera. Se precisa ser consultada, function calling chama uma API. Confundir os dois é a raiz de metade dos bots que alucinam: eles tentam recuperar por similaridade um dado que muda a cada segundo, e o trecho mais parecido que o retrieval encontra é sempre uma versão velha ou genérica.',
         },
       ],
     },
     {
-      title: 'Comparacao direta',
+      title: 'Comparação direta',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A decisao entre function calling e RAG cai em poucas dimensoes que puxam claramente para um lado. A tabela abaixo coloca as que mais pesam na hora de desenhar o sistema.',
+            'A decisão entre function calling e RAG cai em poucas dimensões que puxam claramente para um lado. A tabela abaixo coloca as que mais pesam na hora de desenhar o sistema.',
         },
         {
           type: 'table',
-          columns: ['Dimensao', 'RAG', 'Function calling'],
+          columns: ['Dimensão', 'RAG', 'Function calling'],
           rows: [
             [
               'Natureza do dado',
-              'Estatico: texto ja escrito (FAQ, politicas, manuais, artigos)',
+              'Estático: texto já escrito (FAQ, políticas, manuais, artigos)',
               'Vivo: consultado ou calculado no momento da pergunta (status, saldo, estoque)',
             ],
             [
               'Frescor',
-              'Depende da ultima reindexacao; entre reindexacoes o dado envelhece',
+              'Depende da última reindexação; entre reindexações o dado envelhece',
               'Sempre atual: a tool consulta a fonte da verdade a cada chamada',
             ],
             [
               'Efeito colateral',
-              'Nenhum: retrieval so le documentos',
+              'Nenhum: retrieval só lê documentos',
               'Pode agir: criar chamado, agendar, emitir, alterar estado no sistema',
             ],
             [
               'Fonte da verdade',
               'Um corpus de documentos indexado em vector store',
-              'A API/banco transacional que ja e a autoridade sobre aquele dado',
+              'A API/banco transacional que já é a autoridade sobre aquele dado',
             ],
             [
-              'Risco tipico',
+              'Risco típico',
               'Recuperar o trecho errado ou desatualizado e responder em cima dele',
-              'Chamar a funcao errada ou com argumento invalido; exige validacao dos args',
+              'Chamar a função errada ou com argumento inválido; exige validação dos args',
             ],
             [
               'Rastreabilidade',
-              'Cita o documento e a secao de origem',
+              'Cita o documento e a seção de origem',
               'Registra a chamada, os argumentos e a resposta bruta da API',
             ],
           ],
@@ -82,11 +82,11 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Ver os dois caminhos deixa clara a diferenca de mecanismo: RAG recupera texto parecido e injeta no prompt; function calling faz o modelo decidir chamar uma funcao, executa a chamada no seu backend e devolve o resultado para o modelo redigir a resposta final.',
+            'Ver os dois caminhos deixa clara a diferença de mecanismo: RAG recupera texto parecido e injeta no prompt; function calling faz o modelo decidir chamar uma função, executa a chamada no seu backend e devolve o resultado para o modelo redigir a resposta final.',
         },
         {
           type: 'diagram',
-          value: `RAG (dado estatico)
+          value: `RAG (dado estático)
   Pergunta  ->  Embed  ->  Retrieve top-k  ->  Injeta chunks  ->  Gerar  ->  Resposta
                             (vector store)
 
@@ -99,7 +99,7 @@ Function calling (dado vivo)
         {
           type: 'paragraph',
           value:
-            'A diferenca central esta no meio do caminho: em RAG o que entra no contexto e um trecho de texto que ja existia; em function calling o que entra e o retorno de uma execucao que aconteceu agora. Por isso function calling nunca esbarra em dado velho: ele nao busca uma versao, ele provoca uma consulta.',
+            'A diferença central está no meio do caminho: em RAG o que entra no contexto é um trecho de texto que já existia; em function calling o que entra é o retorno de uma execução que aconteceu agora. Por isso function calling nunca esbarra em dado velho: ele não busca uma versão, ele provoca uma consulta.',
         },
       ],
     },
@@ -109,16 +109,16 @@ Function calling (dado vivo)
         {
           type: 'paragraph',
           value:
-            'Function calling e a escolha certa sempre que a resposta nao esta escrita em lugar nenhum e precisa ser consultada ao vivo, ou quando o usuario quer que algo aconteca, nao apenas ser informado.',
+            'Function calling é a escolha certa sempre que a resposta não está escrita em lugar nenhum e precisa ser consultada ao vivo, ou quando o usuário quer que algo aconteça, não apenas ser informado.',
         },
         {
           type: 'list',
           items: [
-            'Estado transacional em tempo real: status de pedido, saldo, posicao de entrega, disponibilidade de agenda. Muda a cada minuto e vive no sistema, nao num documento.',
-            'Dados de terceiros ao vivo: cotacao, clima, rastreamento de transportadora, consulta de CEP. A fonte da verdade e uma API externa, nao um corpus indexado.',
-            'Acoes com efeito colateral: abrir chamado, agendar visita, emitir segunda via, cancelar pedido. RAG so le; aqui e preciso executar.',
-            'Calculos deterministicos: frete, juros, parcelas, conversao de unidade. Voce quer o numero exato de uma funcao, nao uma aproximacao gerada pelo modelo.',
-            'Personalizacao por identidade: "meus dados", "minha fatura", "meu contrato". A resposta depende de quem pergunta e so a consulta parametrizada resolve.',
+            'Estado transacional em tempo real: status de pedido, saldo, posição de entrega, disponibilidade de agenda. Muda a cada minuto e vive no sistema, não num documento.',
+            'Dados de terceiros ao vivo: cotação, clima, rastreamento de transportadora, consulta de CEP. A fonte da verdade é uma API externa, não um corpus indexado.',
+            'Ações com efeito colateral: abrir chamado, agendar visita, emitir segunda via, cancelar pedido. RAG só lê; aqui é preciso executar.',
+            'Cálculos determinísticos: frete, juros, parcelas, conversão de unidade. Você quer o número exato de uma função, não uma aproximação gerada pelo modelo.',
+            'Personalização por identidade: "meus dados", "minha fatura", "meu contrato". A resposta depende de quem pergunta e só a consulta parametrizada resolve.',
           ],
         },
       ],
@@ -129,26 +129,26 @@ Function calling (dado vivo)
         {
           type: 'paragraph',
           value:
-            'RAG continua sendo a ferramenta certa quando a resposta ja existe escrita em algum lugar e o trabalho e encontrar o trecho certo dentro de um volume grande de texto.',
+            'RAG continua sendo a ferramenta certa quando a resposta já existe escrita em algum lugar e o trabalho é encontrar o trecho certo dentro de um volume grande de texto.',
         },
         {
           type: 'list',
           items: [
-            'Conhecimento textual estavel: politicas de troca, termos de uso, manuais, documentacao. O dado nao muda a cada minuto e ja esta redigido.',
-            'Base grande demais para o contexto: milhares de documentos, anos de artigos. Voce precisa recuperar por similaridade, nao consultar por chave.',
-            'Perguntas abertas e explicativas: "como funciona a garantia estendida?", "qual a diferenca entre os planos?". A resposta e explicacao, nao um valor vivo.',
-            'Necessidade de citar a fonte: quando cada afirmacao deve apontar para o documento e a secao de origem, o retrieval entrega esse rastro naturalmente.',
+            'Conhecimento textual estável: políticas de troca, termos de uso, manuais, documentação. O dado não muda a cada minuto e já está redigido.',
+            'Base grande demais para o contexto: milhares de documentos, anos de artigos. Você precisa recuperar por similaridade, não consultar por chave.',
+            'Perguntas abertas e explicativas: "como funciona a garantia estendida?", "qual a diferença entre os planos?". A resposta é explicação, não um valor vivo.',
+            'Necessidade de citar a fonte: quando cada afirmação deve apontar para o documento e a seção de origem, o retrieval entrega esse rastro naturalmente.',
           ],
         },
       ],
     },
     {
-      title: 'Exemplo pratico com tool use',
+      title: 'Exemplo prático com tool use',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O coracao do function calling e a definicao da tool: voce descreve para o modelo qual funcao existe, o que ela faz e quais argumentos ela aceita. O modelo decide quando chama-la e com quais argumentos; o seu backend executa a chamada de verdade e devolve o resultado. No exemplo abaixo, usando a Anthropic Messages API, uma tool consulta o status atual do pedido no seu banco. O modelo nunca inventa o status: ele delega a consulta e so redige a resposta com o dado que voltou.',
+            'O coração do function calling é a definição da tool: você descreve para o modelo qual função existe, o que ela faz e quais argumentos ela aceita. O modelo decide quando chamá-la e com quais argumentos; o seu backend executa a chamada de verdade e devolve o resultado. No exemplo abaixo, usando a Anthropic Messages API, uma tool consulta o status atual do pedido no seu banco. O modelo nunca inventa o status: ele delega a consulta e só redige a resposta com o dado que voltou.',
         },
         {
           type: 'code',
@@ -234,32 +234,32 @@ await ask('Cade meu pedido PED-10293?');`,
         {
           type: 'paragraph',
           value:
-            'Repare no ponto que muda tudo: o dado do status nunca passou por embedding nem por vector store. O modelo apenas decidiu chamar a funcao, o seu backend consultou o banco (a fonte da verdade) e o resultado voltou fresco para o modelo redigir. E impossivel o bot responder um status desatualizado, porque ele nao busca uma versao antiga: ele provoca uma consulta nova a cada pergunta.',
+            'Repare no ponto que muda tudo: o dado do status nunca passou por embedding nem por vector store. O modelo apenas decidiu chamar a função, o seu backend consultou o banco (a fonte da verdade) e o resultado voltou fresco para o modelo redigir. É impossível o bot responder um status desatualizado, porque ele não busca uma versão antiga: ele provoca uma consulta nova a cada pergunta.',
         },
       ],
     },
     {
-      title: 'Arquitetura combinada: roteie por intencao',
+      title: 'Arquitetura combinada: roteie por intenção',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Num bot de atendimento real, as duas ferramentas convivem: o mesmo usuario pergunta "qual o prazo de troca?" (RAG, conhecimento estavel) e "cade meu pedido?" (function calling, dado vivo) na mesma conversa. A arquitetura robusta nao escolhe uma; ela roteia por intencao. Na pratica moderna, voce nem precisa de um classificador separado: expor tanto a base de conhecimento quanto as tools ao mesmo modelo deixa ele proprio decidir se recupera um documento ou chama uma funcao.',
+            'Num bot de atendimento real, as duas ferramentas convivem: o mesmo usuário pergunta "qual o prazo de troca?" (RAG, conhecimento estável) e "cadê meu pedido?" (function calling, dado vivo) na mesma conversa. A arquitetura robusta não escolhe uma; ela roteia por intenção. Na prática moderna, você nem precisa de um classificador separado: expor tanto a base de conhecimento quanto as tools ao mesmo modelo deixa ele próprio decidir se recupera um documento ou chama uma função.',
         },
         {
           type: 'ordered',
           items: [
-            'Modele o conhecimento estavel como RAG: politicas, FAQ, manuais viram um corpus indexado ou uma tool de busca semantica que retorna trechos com fonte.',
-            'Modele o dado vivo e as acoes como tools: status, saldo, agendamento, emissao. Cada tool tem schema explicito de argumentos e valida a entrada.',
-            'Exponha ambos ao mesmo modelo: de a ele tanto a busca semantica quanto as tools transacionais. Ele decide, por pergunta, qual caminho seguir.',
-            'Valide os argumentos antes de executar: nunca confie cegamente nos args gerados. Cheque tipo, formato e permissao (o usuario pode ver aquele pedido?) antes de tocar o backend.',
-            'Registre a decisao: logue se a resposta veio de retrieval ou de tool, com os argumentos e o retorno. Isso e o que torna o sistema auditavel e depuravel.',
+            'Modele o conhecimento estável como RAG: políticas, FAQ, manuais viram um corpus indexado ou uma tool de busca semântica que retorna trechos com fonte.',
+            'Modele o dado vivo e as ações como tools: status, saldo, agendamento, emissão. Cada tool tem schema explícito de argumentos e valida a entrada.',
+            'Exponha ambos ao mesmo modelo: dê a ele tanto a busca semântica quanto as tools transacionais. Ele decide, por pergunta, qual caminho seguir.',
+            'Valide os argumentos antes de executar: nunca confie cegamente nos args gerados. Cheque tipo, formato e permissão (o usuário pode ver aquele pedido?) antes de tocar o backend.',
+            'Registre a decisão: logue se a resposta veio de retrieval ou de tool, com os argumentos e o retorno. Isso é o que torna o sistema auditável e depurável.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O ganho dessa arquitetura e que cada pergunta cai na ferramenta certa pela sua natureza: conhecimento estavel pelo RAG, dado vivo e acao pela tool. O bot para de alucinar prazo de entrega porque nunca mais tenta recuperar por similaridade um dado que so o banco transacional conhece.',
+            'O ganho dessa arquitetura é que cada pergunta cai na ferramenta certa pela sua natureza: conhecimento estável pelo RAG, dado vivo e ação pela tool. O bot para de alucinar prazo de entrega porque nunca mais tenta recuperar por similaridade um dado que só o banco transacional conhece.',
         },
       ],
     },
@@ -268,28 +268,28 @@ await ask('Cade meu pedido PED-10293?');`,
     {
       question: 'Function calling substitui RAG?',
       answer:
-        'Nao. Eles resolvem naturezas diferentes de pergunta. Function calling e para dado vivo (consultado ou calculado agora) e para acoes com efeito colateral; RAG e para conhecimento textual ja escrito que voce recupera por similaridade. Um bot de atendimento serio usa os dois: RAG para politicas e manuais, function calling para status, saldo e agendamento. A arquitetura ideal roteia por intencao entre as duas.',
+        'Não. Eles resolvem naturezas diferentes de pergunta. Function calling é para dado vivo (consultado ou calculado agora) e para ações com efeito colateral; RAG é para conhecimento textual já escrito que você recupera por similaridade. Um bot de atendimento sério usa os dois: RAG para políticas e manuais, function calling para status, saldo e agendamento. A arquitetura ideal roteia por intenção entre as duas.',
     },
     {
       question: 'Como o modelo sabe qual tool chamar?',
       answer:
-        'Pela descricao. Cada tool tem um nome, uma descricao em linguagem natural do que faz e um schema dos argumentos que aceita. O modelo le essas descricoes junto com a pergunta e decide se alguma tool se aplica e com quais argumentos chama-la. Por isso a qualidade da descricao importa tanto quanto o codigo: uma descricao vaga leva o modelo a chamar a tool errada ou a nao chama-la quando deveria.',
+        'Pela descrição. Cada tool tem um nome, uma descrição em linguagem natural do que faz e um schema dos argumentos que aceita. O modelo lê essas descrições junto com a pergunta e decide se alguma tool se aplica e com quais argumentos chamá-la. Por isso a qualidade da descrição importa tanto quanto o código: uma descrição vaga leva o modelo a chamar a tool errada ou a não chamá-la quando deveria.',
     },
     {
-      question: 'Function calling e seguro para acoes que mudam dados?',
+      question: 'Function calling é seguro para ações que mudam dados?',
       answer:
-        'E seguro desde que voce nao confie cegamente nos argumentos gerados pelo modelo. O modelo decide chamar e sugere os argumentos, mas quem executa e o seu backend. Antes de tocar o banco, valide tipo e formato dos args, cheque a permissao do usuario sobre aquele recurso e, para acoes de alto impacto, exija confirmacao explicita. O modelo propoe; o seu codigo autoriza e executa.',
+        'É seguro desde que você não confie cegamente nos argumentos gerados pelo modelo. O modelo decide chamar e sugere os argumentos, mas quem executa é o seu backend. Antes de tocar o banco, valide tipo e formato dos args, cheque a permissão do usuário sobre aquele recurso e, para ações de alto impacto, exija confirmação explícita. O modelo propõe; o seu código autoriza e executa.',
     },
   ],
   conclusion: {
-    title: 'Escolha pela natureza do dado, nao pela ferramenta da moda',
+    title: 'Escolha pela natureza do dado, não pela ferramenta da moda',
     description:
-      'RAG e function calling resolvem perguntas diferentes: retrieval para conhecimento estavel ja escrito, tool use para dado vivo e acoes que mudam o mundo. Posso avaliar o seu fluxo de atendimento e desenhar a arquitetura certa, roteando cada pergunta para a ferramenta que de fato tem a resposta.',
+      'RAG e function calling resolvem perguntas diferentes: retrieval para conhecimento estável já escrito, tool use para dado vivo e ações que mudam o mundo. Posso avaliar o seu fluxo de atendimento e desenhar a arquitetura certa, roteando cada pergunta para a ferramenta que de fato tem a resposta.',
     cta: 'Falar sobre minha arquitetura de IA',
   },
   related: [
     { label: 'CAG x RAG: quando cache de contexto vence retrieval', to: '/blog/cag-vs-rag-cache-contexto' },
-    { label: 'RAG para atendimento no WhatsApp em producao', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'RAG para atendimento no WhatsApp em produção', to: '/blog/rag-atendimento-whatsapp-producao' },
     { label: 'Chatbots e IA para atendimento', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'function-calling-vs-rag-example', description: repo.pt, url: repoUrl },
@@ -581,43 +581,43 @@ await ask('Where is my order ORD-10293?');`,
 
 const es = {
   intro:
-    'Cuando un usuario pregunta "donde esta mi pedido?", ninguna base de conocimiento en el mundo tiene la respuesta: el estado cambia a cada minuto y vive en la base transaccional, no en un documento. Aun asi, mucha gente intenta resolver todo con RAG, indexa FAQ, politicas y manuales, y luego se frustra cuando el bot inventa un plazo de entrega que no existe. El problema no es RAG: es usar retrieval para un dato que no es recuperable sino consultable. Function calling resuelve exactamente esa clase: en vez de buscar un fragmento parecido, el modelo llama a una funcion que ejecuta la consulta en vivo y recibe el dato fresco de vuelta. Este articulo separa las dos herramientas por la naturaleza del dato, muestra los flujos lado a lado, cuando gana cada una, un ejemplo real de tool use y como rutear entre ellas en una arquitectura unica.',
+    'Cuando un usuario pregunta "¿dónde está mi pedido?", ninguna base de conocimiento en el mundo tiene la respuesta: el estado cambia a cada minuto y vive en la base transaccional, no en un documento. Aun así, mucha gente intenta resolver todo con RAG, indexa FAQ, políticas y manuales, y luego se frustra cuando el bot inventa un plazo de entrega que no existe. El problema no es RAG: es usar retrieval para un dato que no es recuperable sino consultable. Function calling resuelve exactamente esa clase: en vez de buscar un fragmento parecido, el modelo llama a una función que ejecuta la consulta en vivo y recibe el dato fresco de vuelta. Este artículo separa las dos herramientas por la naturaleza del dato, muestra los flujos lado a lado, cuándo gana cada una, un ejemplo real de tool use y cómo rutear entre ellas en una arquitectura única.',
   sections: [
     {
-      title: 'El eje que separa a las dos: dato estatico vs dato vivo',
+      title: 'El eje que separa a las dos: dato estático vs dato vivo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG y function calling no compiten por el mismo trabajo; responden preguntas de naturalezas distintas. RAG es para conocimiento: texto que ya existe escrito en algun lugar (una politica de cambio, un fragmento de manual, un articulo) y que quieres recuperar por similitud semantica. Function calling es para accion y consulta: un dato que solo existe en el momento en que preguntas (el saldo de hoy, el estado actual del pedido, el clima ahora) o una operacion que cambia el mundo (crear un ticket, agendar una visita, emitir una factura).',
+            'RAG y function calling no compiten por el mismo trabajo; responden preguntas de naturalezas distintas. RAG es para conocimiento: texto que ya existe escrito en algún lugar (una política de cambio, un fragmento de manual, un artículo) y que quieres recuperar por similitud semántica. Function calling es para acción y consulta: un dato que solo existe en el momento en que preguntas (el saldo de hoy, el estado actual del pedido, el clima ahora) o una operación que cambia el mundo (crear un ticket, agendar una visita, emitir una factura).',
         },
         {
           type: 'paragraph',
           value:
-            'La pregunta que separa a las dos es simple: la respuesta esta escrita en algun documento o necesita ser calculada/consultada ahora? Si esta escrita, RAG la recupera. Si necesita ser consultada, function calling llama a una API. Confundir ambas es la raiz de la mitad de los bots que alucinan: intentan recuperar por similitud un valor que cambia a cada segundo, y el fragmento mas parecido que el retrieval encuentra es siempre una version vieja o generica.',
+            'La pregunta que separa a las dos es simple: ¿la respuesta está escrita en algún documento o necesita ser calculada/consultada ahora? Si está escrita, RAG la recupera. Si necesita ser consultada, function calling llama a una API. Confundir ambas es la raíz de la mitad de los bots que alucinan: intentan recuperar por similitud un valor que cambia a cada segundo, y el fragmento más parecido que el retrieval encuentra es siempre una versión vieja o genérica.',
         },
       ],
     },
     {
-      title: 'Comparacion directa',
+      title: 'Comparación directa',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La decision entre function calling y RAG cae en pocas dimensiones que tiran claramente para un lado. La tabla siguiente expone las que mas pesan al momento de disenar el sistema.',
+            'La decisión entre function calling y RAG cae en pocas dimensiones que tiran claramente para un lado. La tabla siguiente expone las que más pesan al momento de diseñar el sistema.',
         },
         {
           type: 'table',
-          columns: ['Dimension', 'RAG', 'Function calling'],
+          columns: ['Dimensión', 'RAG', 'Function calling'],
           rows: [
             [
               'Naturaleza del dato',
-              'Estatico: texto ya escrito (FAQ, politicas, manuales, articulos)',
+              'Estático: texto ya escrito (FAQ, políticas, manuales, artículos)',
               'Vivo: consultado o calculado al momento de la pregunta (estado, saldo, inventario)',
             ],
             [
               'Frescura',
-              'Depende del ultimo reindexado; entre reindexados el dato envejece',
+              'Depende del último reindexado; entre reindexados el dato envejece',
               'Siempre actual: la tool consulta la fuente de verdad en cada llamada',
             ],
             [
@@ -631,13 +631,13 @@ const es = {
               'La API/base transaccional que ya es la autoridad sobre ese dato',
             ],
             [
-              'Riesgo tipico',
-              'Recuperar el fragmento equivocado o desactualizado y responder sobre el',
-              'Llamar a la funcion equivocada o con un argumento invalido; exige validar los args',
+              'Riesgo típico',
+              'Recuperar el fragmento equivocado o desactualizado y responder sobre él',
+              'Llamar a la función equivocada o con un argumento inválido; exige validar los args',
             ],
             [
               'Trazabilidad',
-              'Cita el documento y la seccion de origen',
+              'Cita el documento y la sección de origen',
               'Registra la llamada, los argumentos y la respuesta cruda de la API',
             ],
           ],
@@ -650,11 +650,11 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Ver ambos caminos deja clara la diferencia de mecanismo: RAG recupera texto parecido y lo inyecta en el prompt; function calling hace que el modelo decida llamar a una funcion, ejecuta la llamada en tu backend y devuelve el resultado para que el modelo redacte la respuesta final.',
+            'Ver ambos caminos deja clara la diferencia de mecanismo: RAG recupera texto parecido y lo inyecta en el prompt; function calling hace que el modelo decida llamar a una función, ejecuta la llamada en tu backend y devuelve el resultado para que el modelo redacte la respuesta final.',
         },
         {
           type: 'diagram',
-          value: `RAG (dato estatico)
+          value: `RAG (dato estático)
   Pregunta  ->  Embed  ->  Retrieve top-k  ->  Inyecta chunks  ->  Generar  ->  Respuesta
                             (vector store)
 
@@ -667,56 +667,56 @@ Function calling (dato vivo)
         {
           type: 'paragraph',
           value:
-            'La diferencia central esta en la mitad del camino: en RAG lo que entra al contexto es un fragmento de texto que ya existia; en function calling lo que entra es el retorno de una ejecucion que ocurrio ahora. Por eso function calling nunca choca con dato viejo: no busca una version, provoca una consulta.',
+            'La diferencia central está en la mitad del camino: en RAG lo que entra al contexto es un fragmento de texto que ya existía; en function calling lo que entra es el retorno de una ejecución que ocurrió ahora. Por eso function calling nunca choca con dato viejo: no busca una versión, provoca una consulta.',
         },
       ],
     },
     {
-      title: 'Cuando gana function calling',
+      title: 'Cuándo gana function calling',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Function calling es la eleccion correcta siempre que la respuesta no este escrita en ningun lugar y deba ser consultada en vivo, o cuando el usuario quiere que algo ocurra, no solo ser informado.',
+            'Function calling es la elección correcta siempre que la respuesta no esté escrita en ningún lugar y deba ser consultada en vivo, o cuando el usuario quiere que algo ocurra, no solo ser informado.',
         },
         {
           type: 'list',
           items: [
-            'Estado transaccional en tiempo real: estado de pedido, saldo, posicion de entrega, disponibilidad de agenda. Cambia a cada minuto y vive en el sistema, no en un documento.',
-            'Datos de terceros en vivo: cotizacion, clima, rastreo de transportadora, consulta de codigo postal. La fuente de verdad es una API externa, no un corpus indexado.',
-            'Acciones con efecto colateral: abrir ticket, agendar visita, emitir duplicado, cancelar pedido. RAG solo lee; aqui hay que ejecutar.',
-            'Calculos deterministas: flete, intereses, cuotas, conversion de unidad. Quieres el numero exacto de una funcion, no una aproximacion generada por el modelo.',
-            'Personalizacion por identidad: "mis datos", "mi factura", "mi contrato". La respuesta depende de quien pregunta y solo la consulta parametrizada la resuelve.',
+            'Estado transaccional en tiempo real: estado de pedido, saldo, posición de entrega, disponibilidad de agenda. Cambia a cada minuto y vive en el sistema, no en un documento.',
+            'Datos de terceros en vivo: cotización, clima, rastreo de transportadora, consulta de código postal. La fuente de verdad es una API externa, no un corpus indexado.',
+            'Acciones con efecto colateral: abrir ticket, agendar visita, emitir duplicado, cancelar pedido. RAG solo lee; aquí hay que ejecutar.',
+            'Cálculos deterministas: flete, intereses, cuotas, conversión de unidad. Quieres el número exacto de una función, no una aproximación generada por el modelo.',
+            'Personalización por identidad: "mis datos", "mi factura", "mi contrato". La respuesta depende de quién pregunta y solo la consulta parametrizada la resuelve.',
           ],
         },
       ],
     },
     {
-      title: 'Cuando gana RAG',
+      title: 'Cuándo gana RAG',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG sigue siendo la herramienta correcta cuando la respuesta ya existe escrita en algun lugar y el trabajo es encontrar el fragmento correcto dentro de un volumen grande de texto.',
+            'RAG sigue siendo la herramienta correcta cuando la respuesta ya existe escrita en algún lugar y el trabajo es encontrar el fragmento correcto dentro de un volumen grande de texto.',
         },
         {
           type: 'list',
           items: [
-            'Conocimiento textual estable: politicas de cambio, terminos de uso, manuales, documentacion. El dato no cambia a cada minuto y ya esta redactado.',
-            'Base demasiado grande para el contexto: miles de documentos, anos de articulos. Necesitas recuperar por similitud, no consultar por clave.',
-            'Preguntas abiertas y explicativas: "como funciona la garantia extendida?", "cual es la diferencia entre los planes?". La respuesta es explicacion, no un valor vivo.',
-            'Necesidad de citar la fuente: cuando cada afirmacion debe apuntar al documento y la seccion de origen, el retrieval entrega ese rastro de forma natural.',
+            'Conocimiento textual estable: políticas de cambio, términos de uso, manuales, documentación. El dato no cambia a cada minuto y ya está redactado.',
+            'Base demasiado grande para el contexto: miles de documentos, años de artículos. Necesitas recuperar por similitud, no consultar por clave.',
+            'Preguntas abiertas y explicativas: "¿cómo funciona la garantía extendida?", "¿cuál es la diferencia entre los planes?". La respuesta es explicación, no un valor vivo.',
+            'Necesidad de citar la fuente: cuando cada afirmación debe apuntar al documento y la sección de origen, el retrieval entrega ese rastro de forma natural.',
           ],
         },
       ],
     },
     {
-      title: 'Ejemplo practico con tool use',
+      title: 'Ejemplo práctico con tool use',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El corazon del function calling es la definicion de la tool: describes al modelo que funcion existe, que hace y que argumentos acepta. El modelo decide cuando llamarla y con que argumentos; tu backend ejecuta la llamada real y devuelve el resultado. En el ejemplo siguiente, usando la Anthropic Messages API, una tool consulta el estado actual del pedido en tu base. El modelo nunca inventa el estado: delega la consulta y solo redacta la respuesta con el dato que volvio.',
+            'El corazón del function calling es la definición de la tool: describes al modelo qué función existe, qué hace y qué argumentos acepta. El modelo decide cuándo llamarla y con qué argumentos; tu backend ejecuta la llamada real y devuelve el resultado. En el ejemplo siguiente, usando la Anthropic Messages API, una tool consulta el estado actual del pedido en tu base. El modelo nunca inventa el estado: delega la consulta y solo redacta la respuesta con el dato que volvió.',
         },
         {
           type: 'code',
@@ -802,63 +802,63 @@ await ask('Donde esta mi pedido PED-10293?');`,
         {
           type: 'paragraph',
           value:
-            'Fijate en el punto que lo cambia todo: el dato del estado nunca paso por embedding ni por vector store. El modelo solo decidio llamar a la funcion, tu backend consulto la base (la fuente de verdad) y el resultado volvio fresco para que el modelo redactara. Es imposible que el bot responda un estado desactualizado, porque no busca una version vieja: provoca una consulta nueva en cada pregunta.',
+            'Fíjate en el punto que lo cambia todo: el dato del estado nunca pasó por embedding ni por vector store. El modelo solo decidió llamar a la función, tu backend consultó la base (la fuente de verdad) y el resultado volvió fresco para que el modelo redactara. Es imposible que el bot responda un estado desactualizado, porque no busca una versión vieja: provoca una consulta nueva en cada pregunta.',
         },
       ],
     },
     {
-      title: 'Arquitectura combinada: rutea por intencion',
+      title: 'Arquitectura combinada: rutea por intención',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'En un bot de atencion real, las dos herramientas conviven: el mismo usuario pregunta "cual es el plazo de cambio?" (RAG, conocimiento estable) y "donde esta mi pedido?" (function calling, dato vivo) en la misma conversacion. La arquitectura robusta no elige una; rutea por intencion. En la practica moderna ni siquiera necesitas un clasificador separado: exponer tanto la base de conocimiento como las tools al mismo modelo lo deja decidir si recupera un documento o llama a una funcion.',
+            'En un bot de atención real, las dos herramientas conviven: el mismo usuario pregunta "¿cuál es el plazo de cambio?" (RAG, conocimiento estable) y "¿dónde está mi pedido?" (function calling, dato vivo) en la misma conversación. La arquitectura robusta no elige una; rutea por intención. En la práctica moderna ni siquiera necesitas un clasificador separado: exponer tanto la base de conocimiento como las tools al mismo modelo lo deja decidir si recupera un documento o llama a una función.',
         },
         {
           type: 'ordered',
           items: [
-            'Modela el conocimiento estable como RAG: politicas, FAQ, manuales se vuelven un corpus indexado o una tool de busqueda semantica que retorna fragmentos con su fuente.',
-            'Modela el dato vivo y las acciones como tools: estado, saldo, agendamiento, emision. Cada tool tiene un schema explicito de argumentos y valida la entrada.',
-            'Expone ambos al mismo modelo: dale tanto la busqueda semantica como las tools transaccionales. El decide, por pregunta, que camino seguir.',
-            'Valida los argumentos antes de ejecutar: nunca confies ciegamente en los args generados. Verifica tipo, formato y permiso (el usuario puede ver ese pedido?) antes de tocar el backend.',
-            'Registra la decision: loguea si la respuesta vino de retrieval o de una tool, con los argumentos y el retorno. Eso es lo que hace el sistema auditable y depurable.',
+            'Modela el conocimiento estable como RAG: políticas, FAQ, manuales se vuelven un corpus indexado o una tool de búsqueda semántica que retorna fragmentos con su fuente.',
+            'Modela el dato vivo y las acciones como tools: estado, saldo, agendamiento, emisión. Cada tool tiene un schema explícito de argumentos y valida la entrada.',
+            'Expone ambos al mismo modelo: dale tanto la búsqueda semántica como las tools transaccionales. Él decide, por pregunta, qué camino seguir.',
+            'Valida los argumentos antes de ejecutar: nunca confíes ciegamente en los args generados. Verifica tipo, formato y permiso (¿el usuario puede ver ese pedido?) antes de tocar el backend.',
+            'Registra la decisión: loguea si la respuesta vino de retrieval o de una tool, con los argumentos y el retorno. Eso es lo que hace el sistema auditable y depurable.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La ganancia de esta arquitectura es que cada pregunta cae en la herramienta correcta por su naturaleza: conocimiento estable por RAG, dato vivo y accion por la tool. El bot deja de alucinar plazos de entrega porque nunca mas intenta recuperar por similitud un valor que solo la base transaccional conoce.',
+            'La ganancia de esta arquitectura es que cada pregunta cae en la herramienta correcta por su naturaleza: conocimiento estable por RAG, dato vivo y acción por la tool. El bot deja de alucinar plazos de entrega porque nunca más intenta recuperar por similitud un valor que solo la base transaccional conoce.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Function calling sustituye a RAG?',
+      question: '¿Function calling sustituye a RAG?',
       answer:
-        'No. Responden naturalezas distintas de pregunta. Function calling es para dato vivo (consultado o calculado ahora) y para acciones con efecto colateral; RAG es para conocimiento textual ya escrito que recuperas por similitud. Un bot de atencion serio usa ambos: RAG para politicas y manuales, function calling para estado, saldo y agendamiento. La arquitectura ideal rutea por intencion entre las dos.',
+        'No. Responden naturalezas distintas de pregunta. Function calling es para dato vivo (consultado o calculado ahora) y para acciones con efecto colateral; RAG es para conocimiento textual ya escrito que recuperas por similitud. Un bot de atención serio usa ambos: RAG para políticas y manuales, function calling para estado, saldo y agendamiento. La arquitectura ideal rutea por intención entre las dos.',
     },
     {
-      question: 'Como sabe el modelo que tool llamar?',
+      question: '¿Cómo sabe el modelo qué tool llamar?',
       answer:
-        'Por la descripcion. Cada tool tiene un nombre, una descripcion en lenguaje natural de lo que hace y un schema de los argumentos que acepta. El modelo lee esas descripciones junto con la pregunta y decide si alguna tool aplica y con que argumentos llamarla. Por eso la calidad de la descripcion importa tanto como el codigo: una descripcion vaga lleva al modelo a llamar a la tool equivocada o a no llamarla cuando deberia.',
+        'Por la descripción. Cada tool tiene un nombre, una descripción en lenguaje natural de lo que hace y un schema de los argumentos que acepta. El modelo lee esas descripciones junto con la pregunta y decide si alguna tool aplica y con qué argumentos llamarla. Por eso la calidad de la descripción importa tanto como el código: una descripción vaga lleva al modelo a llamar a la tool equivocada o a no llamarla cuando debería.',
     },
     {
-      question: 'Function calling es seguro para acciones que cambian datos?',
+      question: '¿Function calling es seguro para acciones que cambian datos?',
       answer:
-        'Es seguro siempre que no confies ciegamente en los argumentos generados por el modelo. El modelo decide llamar y sugiere los argumentos, pero quien ejecuta es tu backend. Antes de tocar la base, valida tipo y formato de los args, verifica el permiso del usuario sobre ese recurso y, para acciones de alto impacto, exige confirmacion explicita. El modelo propone; tu codigo autoriza y ejecuta.',
+        'Es seguro siempre que no confíes ciegamente en los argumentos generados por el modelo. El modelo decide llamar y sugiere los argumentos, pero quien ejecuta es tu backend. Antes de tocar la base, valida tipo y formato de los args, verifica el permiso del usuario sobre ese recurso y, para acciones de alto impacto, exige confirmación explícita. El modelo propone; tu código autoriza y ejecuta.',
     },
   ],
   conclusion: {
     title: 'Elige por la naturaleza del dato, no por la herramienta de moda',
     description:
-      'RAG y function calling resuelven preguntas distintas: retrieval para conocimiento estable ya escrito, tool use para dato vivo y acciones que cambian el mundo. Puedo evaluar tu flujo de atencion y disenar la arquitectura correcta, ruteando cada pregunta hacia la herramienta que de verdad tiene la respuesta.',
+      'RAG y function calling resuelven preguntas distintas: retrieval para conocimiento estable ya escrito, tool use para dato vivo y acciones que cambian el mundo. Puedo evaluar tu flujo de atención y diseñar la arquitectura correcta, ruteando cada pregunta hacia la herramienta que de verdad tiene la respuesta.',
     cta: 'Hablar sobre mi arquitectura de IA',
   },
   related: [
-    { label: 'CAG vs RAG: cuando el cache de contexto le gana al retrieval', to: '/blog/cag-vs-rag-cache-contexto' },
-    { label: 'RAG para atencion en WhatsApp en produccion', to: '/blog/rag-atendimento-whatsapp-producao' },
-    { label: 'Chatbots e IA para atencion', to: '/servicos/chatbots-e-ia' },
+    { label: 'CAG vs RAG: cuándo el cache de contexto le gana al retrieval', to: '/blog/cag-vs-rag-cache-contexto' },
+    { label: 'RAG para atención en WhatsApp en producción', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Chatbots e IA para atención', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'function-calling-vs-rag-example', description: repo.es, url: repoUrl },
 };

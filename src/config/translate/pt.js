@@ -174,6 +174,7 @@ const pt = {
     heroDescription:
       'Atuo na implementação de integrações e automações com foco em desempenho operacional, confiabilidade de dados e aumento de conversão.',
     viewDetails: 'Ver detalhes',
+    talkOnWhatsapp: 'Falar no WhatsApp',
   },
   servicePage: {
     notFoundSeoTitle: 'Serviço não encontrado | João Victor Souza',

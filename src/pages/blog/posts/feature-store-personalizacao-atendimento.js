@@ -13,20 +13,20 @@ const repoUrl = 'https://github.com/joaosouz4dev/feature-store-personalizacao';
 
 const pt = {
   intro:
-    'Todo time que tenta personalizar atendimento esbarra no mesmo muro: a feature que o bot precisa na hora da conversa (ticket medio dos ultimos 90 dias, numero de compras, canal preferido, estagio no funil) e calculada de um jeito no notebook do cientista de dados e de outro jeito no codigo que roda em producao. Resultado: o modelo aprende com um numero e recebe outro na inferencia, a personalizacao erra e ninguem entende por que. Esse descompasso tem nome, training-serving skew, e a ferramenta que existe justamente para elimina-lo e o feature store. Este artigo mostra o que e um feature store, os quatro problemas que ele resolve, a diferenca entre features batch e online, como garantir consistencia treino/inferencia com um exemplo real e como levar isso para producao sem montar uma plataforma gigante.',
+    'Todo time que tenta personalizar atendimento esbarra no mesmo muro: a feature que o bot precisa na hora da conversa (ticket médio dos últimos 90 dias, número de compras, canal preferido, estágio no funil) é calculada de um jeito no notebook do cientista de dados e de outro jeito no código que roda em produção. Resultado: o modelo aprende com um número e recebe outro na inferência, a personalização erra e ninguém entende por quê. Esse descompasso tem nome, training-serving skew, e a ferramenta que existe justamente para eliminá-lo é o feature store. Este artigo mostra o que é um feature store, os quatro problemas que ele resolve, a diferença entre features batch e online, como garantir consistência treino/inferência com um exemplo real e como levar isso para produção sem montar uma plataforma gigante.',
   sections: [
     {
-      title: 'O que e um feature store e por que atendimento precisa dele',
+      title: 'O que é um feature store e por que atendimento precisa dele',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Um feature store e uma camada central que calcula, versiona, armazena e serve as features (os sinais de entrada de um modelo) de forma consistente entre o treino e a inferencia. Em vez de cada servico recalcular "quantas compras esse cliente fez" com sua propria query, todos consomem o mesmo valor, da mesma fonte, com a mesma definicao. Em personalizacao de atendimento isso e critico: a decisao de qual mensagem enviar, se oferece desconto, se prioriza na fila ou se ja transfere para humano depende de features do cliente que precisam estar certas e disponiveis em milissegundos.',
+            'Um feature store é uma camada central que calcula, versiona, armazena e serve as features (os sinais de entrada de um modelo) de forma consistente entre o treino e a inferência. Em vez de cada serviço recalcular "quantas compras esse cliente fez" com sua própria query, todos consomem o mesmo valor, da mesma fonte, com a mesma definição. Em personalização de atendimento isso é crítico: a decisão de qual mensagem enviar, se oferece desconto, se prioriza na fila ou se já transfere para humano depende de features do cliente que precisam estar certas e disponíveis em milissegundos.',
         },
         {
           type: 'paragraph',
           value:
-            'A dor aparece quando o mesmo conceito vive em tres lugares: na query SQL do relatorio, no notebook de treino e no endpoint de producao. As tres divergem com o tempo, e a personalizacao vira um jogo de adivinhacao. O feature store existe para que "ticket medio 90 dias" tenha UMA definicao, calculada uma vez, servida para todos os consumidores.',
+            'A dor aparece quando o mesmo conceito vive em três lugares: na query SQL do relatório, no notebook de treino e no endpoint de produção. As três divergem com o tempo, e a personalização vira um jogo de adivinhação. O feature store existe para que "ticket médio 90 dias" tenha UMA definição, calculada uma vez, servida para todos os consumidores.',
         },
       ],
     },
@@ -36,38 +36,38 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Feature store nao e hype de MLOps: cada capacidade responde a um problema concreto que aparece em qualquer time que personaliza atendimento com dados.',
+            'Feature store não é hype de MLOps: cada capacidade responde a um problema concreto que aparece em qualquer time que personaliza atendimento com dados.',
         },
         {
           type: 'table',
           columns: ['Problema', 'Sem feature store', 'Com feature store'],
           rows: [
             [
-              'Consistencia treino/inferencia',
-              'A feature e calculada num script no treino e reescrita no codigo do endpoint; as duas divergem',
-              'A mesma transformacao gera o dado de treino e o de inferencia; skew eliminado por construcao',
+              'Consistência treino/inferência',
+              'A feature é calculada num script no treino e reescrita no código do endpoint; as duas divergem',
+              'A mesma transformação gera o dado de treino e o de inferência; skew eliminado por construção',
             ],
             [
-              'Latencia na conversa',
+              'Latência na conversa',
               'O bot faz JOINs pesados em tempo real e estoura o SLA da resposta',
-              'A feature ja esta pre-calculada e servida do online store em poucos milissegundos',
+              'A feature já está pré-calculada e servida do online store em poucos milissegundos',
             ],
             [
               'Reuso entre modelos',
-              'Cada projeto reimplementa "ticket medio" do zero, com pequenas diferencas',
-              'A feature e definida uma vez no registro e reusada por qualquer modelo ou regra',
+              'Cada projeto reimplementa "ticket médio" do zero, com pequenas diferenças',
+              'A feature é definida uma vez no registro e reusada por qualquer modelo ou regra',
             ],
             [
               'Point-in-time correctness',
-              'O treino usa o valor de hoje para prever o passado e vaza informacao do futuro',
-              'A materializacao respeita o timestamp do evento e usa so o que era conhecido naquele instante',
+              'O treino usa o valor de hoje para prever o passado e vaza informação do futuro',
+              'A materialização respeita o timestamp do evento e usa só o que era conhecido naquele instante',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O quarto ponto e o mais silencioso e o mais perigoso: point-in-time correctness. Se voce treina um modelo de proxima melhor acao usando o ticket medio ATUAL do cliente para rotular conversas de tres meses atras, o modelo aprende com informacao que nao existia naquele momento. Ele parece otimo no backtest e falha em producao. Um feature store serio guarda o historico com timestamp e faz o join respeitando o tempo.',
+            'O quarto ponto é o mais silencioso e o mais perigoso: point-in-time correctness. Se você treina um modelo de próxima melhor ação usando o ticket médio ATUAL do cliente para rotular conversas de três meses atrás, o modelo aprende com informação que não existia naquele momento. Ele parece ótimo no backtest e falha em produção. Um feature store sério guarda o histórico com timestamp e faz o join respeitando o tempo.',
         },
       ],
     },
@@ -77,7 +77,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A arquitetura de um feature store tem dois caminhos para o mesmo dado. O plano offline (batch) le as fontes brutas, calcula as features em janelas e materializa o resultado, usado para treinar modelos e para popular o plano online. O plano online serve o ultimo valor de cada feature por chave (o cliente) com latencia baixissima, para a inferencia em tempo real na conversa.',
+            'A arquitetura de um feature store tem dois caminhos para o mesmo dado. O plano offline (batch) lê as fontes brutas, calcula as features em janelas e materializa o resultado, usado para treinar modelos e para popular o plano online. O plano online serve o último valor de cada feature por chave (o cliente) com latência baixíssima, para a inferência em tempo real na conversa.',
         },
         {
           type: 'diagram',
@@ -99,17 +99,17 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A regra de ouro: a caixa "Transformacao" e a MESMA para os dois caminhos. Se o codigo que gera a coluna de treino for diferente do que popula o Redis, o skew volta pela porta dos fundos. O offline store guarda o historico completo com timestamp (para treino e point-in-time joins); o online store guarda so o valor mais recente por chave (para servir rapido).',
+            'A regra de ouro: a caixa "Transformação" é a MESMA para os dois caminhos. Se o código que gera a coluna de treino for diferente do que popula o Redis, o skew volta pela porta dos fundos. O offline store guarda o histórico completo com timestamp (para treino e point-in-time joins); o online store guarda só o valor mais recente por chave (para servir rápido).',
         },
       ],
     },
     {
-      title: 'Definindo features com uma transformacao unica',
+      title: 'Definindo features com uma transformação única',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O antidoto para o training-serving skew e nunca escrever a logica da feature duas vezes. Voce define a transformacao uma vez, como funcao pura sobre eventos, e chama a mesma funcao para materializar o offline e para atualizar o online. Abaixo, um exemplo enxuto: features de atendimento derivadas do historico de pedidos e conversas de um cliente.',
+            'O antídoto para o training-serving skew é nunca escrever a lógica da feature duas vezes. Você define a transformação uma vez, como função pura sobre eventos, e chama a mesma função para materializar o offline e para atualizar o online. Abaixo, um exemplo enxuto: features de atendimento derivadas do histórico de pedidos e conversas de um cliente.',
         },
         {
           type: 'code',
@@ -159,17 +159,17 @@ export function computeFeatures(events, asOf = Date.now()) {
         {
           type: 'paragraph',
           value:
-            'O parametro asOf e o que garante point-in-time correctness. Para servir online, voce chama computeFeatures(events) e o asOf padrao e agora. Para gerar dado de treino, voce chama computeFeatures(events, timestampDoRotulo), e a funcao filtra apenas os eventos que existiam naquele instante. Mesmo codigo, dois usos, zero skew.',
+            'O parâmetro asOf é o que garante point-in-time correctness. Para servir online, você chama computeFeatures(events) e o asOf padrão é agora. Para gerar dado de treino, você chama computeFeatures(events, timestampDoRotulo), e a função filtra apenas os eventos que existiam naquele instante. Mesmo código, dois usos, zero skew.',
         },
       ],
     },
     {
-      title: 'Servindo online: o online store de baixa latencia',
+      title: 'Servindo online: o online store de baixa latência',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Na conversa, o bot nao pode fazer scan de eventos: ele le o valor ja pronto. Um job de materializacao roda periodicamente (ou reage a eventos), chama computeFeatures com asOf igual a agora e escreve o resultado no online store, indexado pela chave do cliente. Na inferencia, uma unica leitura por chave devolve o vetor de features em poucos milissegundos.',
+            'Na conversa, o bot não pode fazer scan de eventos: ele lê o valor já pronto. Um job de materialização roda periodicamente (ou reage a eventos), chama computeFeatures com asOf igual a agora e escreve o resultado no online store, indexado pela chave do cliente. Na inferência, uma única leitura por chave devolve o vetor de features em poucos milissegundos.',
         },
         {
           type: 'code',
@@ -204,7 +204,7 @@ if (feats && feats.ticket_medio_90d > 500 && feats.num_compras_90d >= 3) {
         {
           type: 'paragraph',
           value:
-            'Repare que o codigo de decisao le exatamente as mesmas features que o modelo de treino viu, com os mesmos nomes e a mesma semantica. Se amanha voce trocar a regra por um modelo, ele consome getOnlineFeatures sem reimplementar nada. E se o cliente nao tiver valor materializado (cold start), o codigo trata o null com um fallback explicito, em vez de estourar.',
+            'Repare que o código de decisão lê exatamente as mesmas features que o modelo de treino viu, com os mesmos nomes e a mesma semântica. Se amanhã você trocar a regra por um modelo, ele consome getOnlineFeatures sem reimplementar nada. E se o cliente não tiver valor materializado (cold start), o código trata o null com um fallback explícito, em vez de estourar.',
         },
       ],
     },
@@ -214,47 +214,47 @@ if (feats && feats.ticket_medio_90d > 500 && feats.num_compras_90d >= 3) {
         {
           type: 'paragraph',
           value:
-            'Montar o dataset de treino e onde a maioria dos times vaza informacao do futuro. Voce tem uma lista de rotulos (exemplo: "essa conversa acabou em venda?") com seus timestamps, e precisa anexar as features como elas eram naquele instante, nao como sao hoje. Fazer isso errado, pegando o valor atual, infla a metrica no backtest e derruba o modelo em producao.',
+            'Montar o dataset de treino é onde a maioria dos times vaza informação do futuro. Você tem uma lista de rótulos (exemplo: "essa conversa acabou em venda?") com seus timestamps, e precisa anexar as features como elas eram naquele instante, não como são hoje. Fazer isso errado, pegando o valor atual, infla a métrica no backtest e derruba o modelo em produção.',
         },
         {
           type: 'ordered',
           items: [
-            'Parta dos rotulos: cada linha tem customer_id e o timestamp do evento que voce quer prever (o instante da conversa, nao o de hoje).',
-            'Para cada rotulo, chame computeFeatures(events, timestampDoRotulo): a janela e o filtro asOf garantem que so eventos anteriores ao rotulo entram.',
-            'Junte features e rotulo numa unica linha do dataset: agora cada exemplo carrega o estado do cliente como era antes da decisao.',
-            'Materialize o offline store em Parquet particionado por data, para reprodutibilidade e para reprocessar quando a definicao de uma feature mudar.',
-            'Treine com esse dataset: o modelo aprende com a mesma computeFeatures que servira online, so que com asOf no passado. Consistencia de ponta a ponta.',
+            'Parta dos rótulos: cada linha tem customer_id e o timestamp do evento que você quer prever (o instante da conversa, não o de hoje).',
+            'Para cada rótulo, chame computeFeatures(events, timestampDoRotulo): a janela e o filtro asOf garantem que só eventos anteriores ao rótulo entram.',
+            'Junte features e rótulo numa única linha do dataset: agora cada exemplo carrega o estado do cliente como era antes da decisão.',
+            'Materialize o offline store em Parquet particionado por data, para reprodutibilidade e para reprocessar quando a definição de uma feature mudar.',
+            'Treine com esse dataset: o modelo aprende com a mesma computeFeatures que servirá online, só que com asOf no passado. Consistência de ponta a ponta.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Esse cuidado e o que separa um numero bonito de backtest de um modelo que funciona. Se o offline e o online usam a mesma transformacao e o treino respeita o point-in-time, o valor que o modelo viu no treino e o valor que ele recebe na conversa sao, por construcao, a mesma coisa.',
+            'Esse cuidado é o que separa um número bonito de backtest de um modelo que funciona. Se o offline e o online usam a mesma transformação e o treino respeita o point-in-time, o valor que o modelo viu no treino e o valor que ele recebe na conversa são, por construção, a mesma coisa.',
         },
       ],
     },
     {
-      title: 'Levando para producao sem overengineering',
+      title: 'Levando para produção sem overengineering',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Nao e preciso adotar uma plataforma pesada no dia um. Um feature store pragmatico para personalizacao de atendimento cabe em poucas pecas, e voce so cresce quando a dor justificar.',
+            'Não é preciso adotar uma plataforma pesada no dia um. Um feature store pragmático para personalização de atendimento cabe em poucas peças, e você só cresce quando a dor justificar.',
         },
         {
           type: 'list',
           items: [
-            'Registro de features versionado: um arquivo (como o features.js do exemplo) que e a fonte unica de verdade das definicoes, revisado em pull request.',
-            'Online store: Redis ou outro KV rapido, com o ultimo valor por chave e TTL para dado que expira. Latencia de leitura em milissegundos.',
+            'Registro de features versionado: um arquivo (como o features.js do exemplo) que é a fonte única de verdade das definições, revisado em pull request.',
+            'Online store: Redis ou outro KV rápido, com o último valor por chave e TTL para dado que expira. Latência de leitura em milissegundos.',
             'Offline store: Parquet no object storage ou tabelas no data warehouse, com timestamp para point-in-time joins e reprocessamento.',
-            'Job de materializacao: batch agendado para features de janela longa e atualizacao reativa (via evento) para as que precisam ser frescas na conversa.',
-            'Monitoramento de skew e frescor: alerta quando a distribuicao online diverge do treino e quando a feature de um cliente ficou velha demais para ser confiavel.',
+            'Job de materialização: batch agendado para features de janela longa e atualização reativa (via evento) para as que precisam ser frescas na conversa.',
+            'Monitoramento de skew e frescor: alerta quando a distribuição online diverge do treino e quando a feature de um cliente ficou velha demais para ser confiável.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Comece pelo registro unico e pela transformacao compartilhada, que ja matam o skew, que e a causa raiz da maioria das falhas de personalizacao. Redis e Parquet resolvem serving e treino. Framework dedicado (Feast e afins) so quando o numero de features, times e modelos crescer a ponto de o controle manual doer mais do que a plataforma.',
+            'Comece pelo registro único e pela transformação compartilhada, que já matam o skew, que é a causa raiz da maioria das falhas de personalização. Redis e Parquet resolvem serving e treino. Framework dedicado (Feast e afins) só quando o número de features, times e modelos crescer a ponto de o controle manual doer mais do que a plataforma.',
         },
       ],
     },
@@ -263,28 +263,28 @@ if (feats && feats.ticket_medio_90d > 500 && feats.num_compras_90d >= 3) {
     {
       question: 'Preciso de um framework como o Feast para ter um feature store?',
       answer:
-        'Nao no comeco. O que define um feature store nao e a ferramenta, e a disciplina: uma definicao unica de cada feature, a mesma transformacao no treino e na inferencia, e point-in-time correctness no dataset. Da para atender esses tres pontos com um arquivo de definicoes versionado, Redis para o online e Parquet para o offline. Um framework dedicado como o Feast passa a compensar quando voce tem muitas features, varios times e precisa de catalogo, controle de acesso e materializacao gerenciada. Antes disso, ele adiciona mais complexidade do que valor.',
+        'Não no começo. O que define um feature store não é a ferramenta, é a disciplina: uma definição única de cada feature, a mesma transformação no treino e na inferência, e point-in-time correctness no dataset. Dá para atender esses três pontos com um arquivo de definições versionado, Redis para o online e Parquet para o offline. Um framework dedicado como o Feast passa a compensar quando você tem muitas features, vários times e precisa de catálogo, controle de acesso e materialização gerenciada. Antes disso, ele adiciona mais complexidade do que valor.',
     },
     {
-      question: 'O que exatamente e training-serving skew e como o feature store elimina?',
+      question: 'O que exatamente é training-serving skew e como o feature store elimina?',
       answer:
-        'Training-serving skew e a divergencia entre o valor de uma feature no treino e o valor da mesma feature na inferencia, geralmente porque foram calculados por codigos diferentes. O modelo aprende com um numero e recebe outro em producao, entao a qualidade cai sem erro aparente. O feature store elimina isso ao forcar que a MESMA funcao de transformacao gere os dois valores: no exemplo do artigo, computeFeatures roda igual no batch de treino e no update online, mudando apenas o parametro asOf. Se a logica vive em um so lugar, os dois lados nao tem como divergir.',
+        'Training-serving skew é a divergência entre o valor de uma feature no treino e o valor da mesma feature na inferência, geralmente porque foram calculados por códigos diferentes. O modelo aprende com um número e recebe outro em produção, então a qualidade cai sem erro aparente. O feature store elimina isso ao forçar que a MESMA função de transformação gere os dois valores: no exemplo do artigo, computeFeatures roda igual no batch de treino e no update online, mudando apenas o parâmetro asOf. Se a lógica vive em um só lugar, os dois lados não têm como divergir.',
     },
     {
-      question: 'Como garanto que o treino nao vaza informacao do futuro?',
+      question: 'Como garanto que o treino não vaza informação do futuro?',
       answer:
-        'Com point-in-time correctness. Ao montar o dataset, para cada rotulo voce anexa as features como elas eram no timestamp daquele evento, nao como sao hoje. Na pratica, isso e chamar a transformacao com asOf igual ao instante do rotulo, para que a janela filtre apenas eventos anteriores. Se voce usa o valor atual para rotular o passado, o backtest fica otimista demais e o modelo decepciona em producao. O offline store com historico e timestamp e o que torna esse join temporal possivel de forma reprodutivel.',
+        'Com point-in-time correctness. Ao montar o dataset, para cada rótulo você anexa as features como elas eram no timestamp daquele evento, não como são hoje. Na prática, isso é chamar a transformação com asOf igual ao instante do rótulo, para que a janela filtre apenas eventos anteriores. Se você usa o valor atual para rotular o passado, o backtest fica otimista demais e o modelo decepciona em produção. O offline store com histórico e timestamp é o que torna esse join temporal possível de forma reprodutível.',
     },
   ],
   conclusion: {
-    title: 'Uma definicao, dois planos, zero skew',
+    title: 'Uma definição, dois planos, zero skew',
     description:
-      'Personalizar atendimento sem feature store e apostar que tres copias da mesma feature vao concordar para sempre, e elas nunca concordam. Posso desenhar e implementar um feature store pragmatico para o seu atendimento: registro unico de features, serving online de baixa latencia, treino com point-in-time correctness e monitoramento de skew, sem montar uma plataforma que voce ainda nao precisa.',
-    cta: 'Falar sobre personalizacao de atendimento',
+      'Personalizar atendimento sem feature store é apostar que três cópias da mesma feature vão concordar para sempre, e elas nunca concordam. Posso desenhar e implementar um feature store pragmático para o seu atendimento: registro único de features, serving online de baixa latência, treino com point-in-time correctness e monitoramento de skew, sem montar uma plataforma que você ainda não precisa.',
+    cta: 'Falar sobre personalização de atendimento',
   },
   related: [
-    { label: 'RAG para atendimento no WhatsApp em producao', to: '/blog/rag-atendimento-whatsapp-producao' },
-    { label: 'Avaliacao continua de bots: do eval manual ao automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'RAG para atendimento no WhatsApp em produção', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Avaliação contínua de bots: do eval manual ao automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
     { label: 'Chatbots e IA para atendimento', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'feature-store-personalizacao', description: repo.pt, url: repoUrl },
@@ -571,20 +571,20 @@ if (feats && feats.avg_ticket_90d > 500 && feats.num_orders_90d >= 3) {
 
 const es = {
   intro:
-    'Todo equipo que intenta personalizar la atencion choca con el mismo muro: la feature que el bot necesita en el momento de la conversacion (ticket promedio de los ultimos 90 dias, numero de compras, canal preferido, etapa del embudo) se calcula de una forma en el notebook del cientifico de datos y de otra forma en el codigo que corre en produccion. El resultado: el modelo aprende con un numero y recibe otro en la inferencia, la personalizacion falla y nadie entiende por que. Ese descalce tiene nombre, training-serving skew, y la herramienta que existe justamente para eliminarlo es el feature store. Este articulo muestra que es un feature store, los cuatro problemas que resuelve, la diferencia entre features batch y online, como garantizar consistencia entrenamiento/inferencia con un ejemplo real y como llevar esto a produccion sin montar una plataforma gigante.',
+    'Todo equipo que intenta personalizar la atención choca con el mismo muro: la feature que el bot necesita en el momento de la conversación (ticket promedio de los últimos 90 días, número de compras, canal preferido, etapa del embudo) se calcula de una forma en el notebook del científico de datos y de otra forma en el código que corre en producción. El resultado: el modelo aprende con un número y recibe otro en la inferencia, la personalización falla y nadie entiende por qué. Ese descalce tiene nombre, training-serving skew, y la herramienta que existe justamente para eliminarlo es el feature store. Este artículo muestra qué es un feature store, los cuatro problemas que resuelve, la diferencia entre features batch y online, cómo garantizar consistencia entrenamiento/inferencia con un ejemplo real y cómo llevar esto a producción sin montar una plataforma gigante.',
   sections: [
     {
-      title: 'Que es un feature store y por que la atencion lo necesita',
+      title: '¿Qué es un feature store y por qué la atención lo necesita?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un feature store es una capa central que calcula, versiona, almacena y sirve las features (las senales de entrada de un modelo) de forma consistente entre el entrenamiento y la inferencia. En vez de que cada servicio recalcule "cuantas compras hizo este cliente" con su propia query, todos consumen el mismo valor, de la misma fuente, con la misma definicion. En personalizacion de atencion esto es critico: decidir que mensaje enviar, si ofrecer descuento, si priorizar en la cola o si transferir a un humano depende de features del cliente que deben estar correctas y disponibles en milisegundos.',
+            'Un feature store es una capa central que calcula, versiona, almacena y sirve las features (las señales de entrada de un modelo) de forma consistente entre el entrenamiento y la inferencia. En vez de que cada servicio recalcule "cuántas compras hizo este cliente" con su propia query, todos consumen el mismo valor, de la misma fuente, con la misma definición. En personalización de atención esto es crítico: decidir qué mensaje enviar, si ofrecer descuento, si priorizar en la cola o si transferir a un humano depende de features del cliente que deben estar correctas y disponibles en milisegundos.',
         },
         {
           type: 'paragraph',
           value:
-            'El dolor aparece cuando el mismo concepto vive en tres lugares: en la query SQL del reporte, en el notebook de entrenamiento y en el endpoint de produccion. Los tres divergen con el tiempo, y la personalizacion se vuelve un juego de adivinanzas. El feature store existe para que "ticket promedio 90 dias" tenga UNA definicion, calculada una vez, servida a todos los consumidores.',
+            'El dolor aparece cuando el mismo concepto vive en tres lugares: en la query SQL del reporte, en el notebook de entrenamiento y en el endpoint de producción. Los tres divergen con el tiempo, y la personalización se vuelve un juego de adivinanzas. El feature store existe para que "ticket promedio 90 días" tenga UNA definición, calculada una vez, servida a todos los consumidores.',
         },
       ],
     },
@@ -594,7 +594,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Feature store no es hype de MLOps: cada capacidad responde a un problema concreto que aparece en cualquier equipo que personaliza atencion con datos.',
+            'Feature store no es hype de MLOps: cada capacidad responde a un problema concreto que aparece en cualquier equipo que personaliza atención con datos.',
         },
         {
           type: 'table',
@@ -602,30 +602,30 @@ const es = {
           rows: [
             [
               'Consistencia entrenamiento/inferencia',
-              'La feature se calcula en un script de entrenamiento y se reescribe en el codigo del endpoint; ambos divergen',
-              'La misma transformacion genera el dato de entrenamiento y el de inferencia; skew eliminado por construccion',
+              'La feature se calcula en un script de entrenamiento y se reescribe en el código del endpoint; ambos divergen',
+              'La misma transformación genera el dato de entrenamiento y el de inferencia; skew eliminado por construcción',
             ],
             [
-              'Latencia en la conversacion',
+              'Latencia en la conversación',
               'El bot hace JOINs pesados en tiempo real y revienta el SLA de la respuesta',
-              'La feature ya esta precalculada y servida desde el online store en pocos milisegundos',
+              'La feature ya está precalculada y servida desde el online store en pocos milisegundos',
             ],
             [
               'Reuso entre modelos',
-              'Cada proyecto reimplementa "ticket promedio" desde cero, con pequenas diferencias',
+              'Cada proyecto reimplementa "ticket promedio" desde cero, con pequeñas diferencias',
               'La feature se define una vez en el registro y se reusa por cualquier modelo o regla',
             ],
             [
               'Point-in-time correctness',
-              'El entrenamiento usa el valor de hoy para predecir el pasado y filtra informacion del futuro',
-              'La materializacion respeta el timestamp del evento y usa solo lo que se conocia en ese instante',
+              'El entrenamiento usa el valor de hoy para predecir el pasado y filtra información del futuro',
+              'La materialización respeta el timestamp del evento y usa solo lo que se conocía en ese instante',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El cuarto punto es el mas silencioso y el mas peligroso: point-in-time correctness. Si entrenas un modelo de proxima mejor accion usando el ticket promedio ACTUAL del cliente para etiquetar conversaciones de hace tres meses, el modelo aprende con informacion que no existia en ese momento. Se ve excelente en el backtest y falla en produccion. Un feature store serio guarda el historial con timestamp y hace el join respetando el tiempo.',
+            'El cuarto punto es el más silencioso y el más peligroso: point-in-time correctness. Si entrenas un modelo de próxima mejor acción usando el ticket promedio ACTUAL del cliente para etiquetar conversaciones de hace tres meses, el modelo aprende con información que no existía en ese momento. Se ve excelente en el backtest y falla en producción. Un feature store serio guarda el historial con timestamp y hace el join respetando el tiempo.',
         },
       ],
     },
@@ -635,7 +635,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La arquitectura de un feature store tiene dos caminos para el mismo dato. El plano offline (batch) lee las fuentes crudas, calcula las features en ventanas y materializa el resultado, usado para entrenar modelos y para poblar el plano online. El plano online sirve el ultimo valor de cada feature por clave (el cliente) con latencia bajisima, para la inferencia en tiempo real en la conversacion.',
+            'La arquitectura de un feature store tiene dos caminos para el mismo dato. El plano offline (batch) lee las fuentes crudas, calcula las features en ventanas y materializa el resultado, usado para entrenar modelos y para poblar el plano online. El plano online sirve el último valor de cada feature por clave (el cliente) con latencia bajísima, para la inferencia en tiempo real en la conversación.',
         },
         {
           type: 'diagram',
@@ -657,17 +657,17 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La regla de oro: la caja "Transformacion" es la MISMA para ambos caminos. Si el codigo que genera la columna de entrenamiento es distinto del que puebla Redis, el skew vuelve por la puerta de atras. El offline store guarda el historial completo con timestamp (para entrenamiento y point-in-time joins); el online store guarda solo el valor mas reciente por clave (para servir rapido).',
+            'La regla de oro: la caja "Transformación" es la MISMA para ambos caminos. Si el código que genera la columna de entrenamiento es distinto del que puebla Redis, el skew vuelve por la puerta de atrás. El offline store guarda el historial completo con timestamp (para entrenamiento y point-in-time joins); el online store guarda solo el valor más reciente por clave (para servir rápido).',
         },
       ],
     },
     {
-      title: 'Definiendo features con una transformacion unica',
+      title: 'Definiendo features con una transformación única',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El antidoto para el training-serving skew es nunca escribir la logica de la feature dos veces. Defines la transformacion una vez, como funcion pura sobre eventos, y llamas a la misma funcion para materializar el offline y para actualizar el online. Abajo, un ejemplo escueto: features de atencion derivadas del historial de pedidos y conversaciones de un cliente.',
+            'El antídoto para el training-serving skew es nunca escribir la lógica de la feature dos veces. Defines la transformación una vez, como función pura sobre eventos, y llamas a la misma función para materializar el offline y para actualizar el online. Abajo, un ejemplo escueto: features de atención derivadas del historial de pedidos y conversaciones de un cliente.',
         },
         {
           type: 'code',
@@ -717,7 +717,7 @@ export function computeFeatures(events, asOf = Date.now()) {
         {
           type: 'paragraph',
           value:
-            'El parametro asOf es lo que garantiza point-in-time correctness. Para servir online, llamas computeFeatures(events) y el asOf por defecto es ahora. Para generar dato de entrenamiento, llamas computeFeatures(events, timestampDeLaEtiqueta), y la funcion filtra solo los eventos que existian en ese instante. Mismo codigo, dos usos, cero skew.',
+            'El parámetro asOf es lo que garantiza point-in-time correctness. Para servir online, llamas computeFeatures(events) y el asOf por defecto es ahora. Para generar dato de entrenamiento, llamas computeFeatures(events, timestampDeLaEtiqueta), y la función filtra solo los eventos que existían en ese instante. Mismo código, dos usos, cero skew.',
         },
       ],
     },
@@ -727,7 +727,7 @@ export function computeFeatures(events, asOf = Date.now()) {
         {
           type: 'paragraph',
           value:
-            'En la conversacion, el bot no puede escanear eventos: lee el valor ya listo. Un job de materializacion corre periodicamente (o reacciona a eventos), llama computeFeatures con asOf igual a ahora y escribe el resultado en el online store, indexado por la clave del cliente. En la inferencia, una unica lectura por clave devuelve el vector de features en pocos milisegundos.',
+            'En la conversación, el bot no puede escanear eventos: lee el valor ya listo. Un job de materialización corre periódicamente (o reacciona a eventos), llama computeFeatures con asOf igual a ahora y escribe el resultado en el online store, indexado por la clave del cliente. En la inferencia, una única lectura por clave devuelve el vector de features en pocos milisegundos.',
         },
         {
           type: 'code',
@@ -762,7 +762,7 @@ if (feats && feats.ticket_promedio_90d > 500 && feats.num_compras_90d >= 3) {
         {
           type: 'paragraph',
           value:
-            'Fijate que el codigo de decision lee exactamente las mismas features que vio el modelo de entrenamiento, con los mismos nombres y la misma semantica. Si manana cambias la regla por un modelo, el consume getOnlineFeatures sin reimplementar nada. Y si el cliente no tiene valor materializado (cold start), el codigo maneja el null con un fallback explicito, en vez de reventar.',
+            'Fíjate que el código de decisión lee exactamente las mismas features que vio el modelo de entrenamiento, con los mismos nombres y la misma semántica. Si mañana cambias la regla por un modelo, él consume getOnlineFeatures sin reimplementar nada. Y si el cliente no tiene valor materializado (cold start), el código maneja el null con un fallback explícito, en vez de reventar.',
         },
       ],
     },
@@ -772,78 +772,78 @@ if (feats && feats.ticket_promedio_90d > 500 && feats.num_compras_90d >= 3) {
         {
           type: 'paragraph',
           value:
-            'Armar el dataset de entrenamiento es donde la mayoria de los equipos filtra informacion del futuro. Tienes una lista de etiquetas (ejemplo: "esta conversacion termino en venta?") con sus timestamps, y necesitas anexar las features como eran en ese instante, no como son hoy. Hacerlo mal, tomando el valor actual, infla la metrica del backtest y derrumba el modelo en produccion.',
+            'Armar el dataset de entrenamiento es donde la mayoría de los equipos filtra información del futuro. Tienes una lista de etiquetas (ejemplo: "¿esta conversación terminó en venta?") con sus timestamps, y necesitas anexar las features como eran en ese instante, no como son hoy. Hacerlo mal, tomando el valor actual, infla la métrica del backtest y derrumba el modelo en producción.',
         },
         {
           type: 'ordered',
           items: [
-            'Parte de las etiquetas: cada fila tiene customer_id y el timestamp del evento que quieres predecir (el instante de la conversacion, no el de hoy).',
+            'Parte de las etiquetas: cada fila tiene customer_id y el timestamp del evento que quieres predecir (el instante de la conversación, no el de hoy).',
             'Para cada etiqueta, llama computeFeatures(events, timestampDeLaEtiqueta): la ventana y el filtro asOf garantizan que solo eventos anteriores a la etiqueta entren.',
-            'Une features y etiqueta en una sola fila del dataset: ahora cada ejemplo carga el estado del cliente como era antes de la decision.',
-            'Materializa el offline store en Parquet particionado por fecha, para reproducibilidad y para reprocesar cuando la definicion de una feature cambie.',
-            'Entrena con ese dataset: el modelo aprende con la misma computeFeatures que servira online, solo que con asOf en el pasado. Consistencia de punta a punta.',
+            'Une features y etiqueta en una sola fila del dataset: ahora cada ejemplo carga el estado del cliente como era antes de la decisión.',
+            'Materializa el offline store en Parquet particionado por fecha, para reproducibilidad y para reprocesar cuando la definición de una feature cambie.',
+            'Entrena con ese dataset: el modelo aprende con la misma computeFeatures que servirá online, solo que con asOf en el pasado. Consistencia de punta a punta.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Ese cuidado es lo que separa un numero bonito de backtest de un modelo que funciona. Si el offline y el online usan la misma transformacion y el entrenamiento respeta el point-in-time, el valor que el modelo vio en el entrenamiento y el valor que recibe en la conversacion son, por construccion, la misma cosa.',
+            'Ese cuidado es lo que separa un número bonito de backtest de un modelo que funciona. Si el offline y el online usan la misma transformación y el entrenamiento respeta el point-in-time, el valor que el modelo vio en el entrenamiento y el valor que recibe en la conversación son, por construcción, la misma cosa.',
         },
       ],
     },
     {
-      title: 'Llevandolo a produccion sin overengineering',
+      title: 'Llevándolo a producción sin overengineering',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'No hace falta adoptar una plataforma pesada el dia uno. Un feature store pragmatico para personalizacion de atencion cabe en pocas piezas, y solo creces cuando el dolor lo justifique.',
+            'No hace falta adoptar una plataforma pesada el día uno. Un feature store pragmático para personalización de atención cabe en pocas piezas, y solo creces cuando el dolor lo justifique.',
         },
         {
           type: 'list',
           items: [
-            'Registro de features versionado: un archivo (como el features.js del ejemplo) que es la fuente unica de verdad de las definiciones, revisado en pull request.',
-            'Online store: Redis u otro KV rapido, con el ultimo valor por clave y TTL para dato que expira. Latencia de lectura en milisegundos.',
+            'Registro de features versionado: un archivo (como el features.js del ejemplo) que es la fuente única de verdad de las definiciones, revisado en pull request.',
+            'Online store: Redis u otro KV rápido, con el último valor por clave y TTL para dato que expira. Latencia de lectura en milisegundos.',
             'Offline store: Parquet en object storage o tablas en el data warehouse, con timestamp para point-in-time joins y reprocesamiento.',
-            'Job de materializacion: batch agendado para features de ventana larga y actualizacion reactiva (via evento) para las que deben estar frescas en la conversacion.',
-            'Monitoreo de skew y frescura: alerta cuando la distribucion online diverge del entrenamiento y cuando la feature de un cliente quedo demasiado vieja para confiar.',
+            'Job de materialización: batch agendado para features de ventana larga y actualización reactiva (vía evento) para las que deben estar frescas en la conversación.',
+            'Monitoreo de skew y frescura: alerta cuando la distribución online diverge del entrenamiento y cuando la feature de un cliente quedó demasiado vieja para confiar.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Empieza por el registro unico y la transformacion compartida, que ya matan el skew, la causa raiz de la mayoria de las fallas de personalizacion. Redis y Parquet resuelven serving y entrenamiento. Un framework dedicado (Feast y afines) solo cuando el numero de features, equipos y modelos crezca al punto en que el control manual duela mas que la plataforma.',
+            'Empieza por el registro único y la transformación compartida, que ya matan el skew, la causa raíz de la mayoría de las fallas de personalización. Redis y Parquet resuelven serving y entrenamiento. Un framework dedicado (Feast y afines) solo cuando el número de features, equipos y modelos crezca al punto en que el control manual duela más que la plataforma.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Necesito un framework como Feast para tener un feature store?',
+      question: '¿Necesito un framework como Feast para tener un feature store?',
       answer:
-        'No al comienzo. Lo que define un feature store no es la herramienta, es la disciplina: una definicion unica de cada feature, la misma transformacion en el entrenamiento y en la inferencia, y point-in-time correctness en el dataset. Puedes cumplir esos tres puntos con un archivo de definiciones versionado, Redis para el online y Parquet para el offline. Un framework dedicado como Feast empieza a compensar cuando tienes muchas features, varios equipos y necesitas catalogo, control de acceso y materializacion gestionada. Antes de eso, agrega mas complejidad que valor.',
+        'No al comienzo. Lo que define un feature store no es la herramienta, es la disciplina: una definición única de cada feature, la misma transformación en el entrenamiento y en la inferencia, y point-in-time correctness en el dataset. Puedes cumplir esos tres puntos con un archivo de definiciones versionado, Redis para el online y Parquet para el offline. Un framework dedicado como Feast empieza a compensar cuando tienes muchas features, varios equipos y necesitas catálogo, control de acceso y materialización gestionada. Antes de eso, agrega más complejidad que valor.',
     },
     {
-      question: 'Que es exactamente el training-serving skew y como lo elimina el feature store?',
+      question: '¿Qué es exactamente el training-serving skew y cómo lo elimina el feature store?',
       answer:
-        'Training-serving skew es la divergencia entre el valor de una feature en el entrenamiento y el valor de la misma feature en la inferencia, generalmente porque fueron calculados por codigos distintos. El modelo aprende con un numero y recibe otro en produccion, entonces la calidad cae sin error aparente. El feature store lo elimina al forzar que la MISMA funcion de transformacion genere ambos valores: en el ejemplo del articulo, computeFeatures corre igual en el batch de entrenamiento y en el update online, cambiando solo el parametro asOf. Si la logica vive en un solo lugar, los dos lados no pueden divergir.',
+        'Training-serving skew es la divergencia entre el valor de una feature en el entrenamiento y el valor de la misma feature en la inferencia, generalmente porque fueron calculados por códigos distintos. El modelo aprende con un número y recibe otro en producción, entonces la calidad cae sin error aparente. El feature store lo elimina al forzar que la MISMA función de transformación genere ambos valores: en el ejemplo del artículo, computeFeatures corre igual en el batch de entrenamiento y en el update online, cambiando solo el parámetro asOf. Si la lógica vive en un solo lugar, los dos lados no pueden divergir.',
     },
     {
-      question: 'Como garantizo que el entrenamiento no filtre informacion del futuro?',
+      question: '¿Cómo garantizo que el entrenamiento no filtre información del futuro?',
       answer:
-        'Con point-in-time correctness. Al armar el dataset, para cada etiqueta anexas las features como eran en el timestamp de ese evento, no como son hoy. En la practica, eso es llamar la transformacion con asOf igual al instante de la etiqueta, para que la ventana filtre solo eventos anteriores. Si usas el valor actual para etiquetar el pasado, el backtest queda demasiado optimista y el modelo decepciona en produccion. El offline store con historial y timestamp es lo que hace este join temporal reproducible.',
+        'Con point-in-time correctness. Al armar el dataset, para cada etiqueta anexas las features como eran en el timestamp de ese evento, no como son hoy. En la práctica, eso es llamar la transformación con asOf igual al instante de la etiqueta, para que la ventana filtre solo eventos anteriores. Si usas el valor actual para etiquetar el pasado, el backtest queda demasiado optimista y el modelo decepciona en producción. El offline store con historial y timestamp es lo que hace este join temporal reproducible.',
     },
   ],
   conclusion: {
-    title: 'Una definicion, dos planos, cero skew',
+    title: 'Una definición, dos planos, cero skew',
     description:
-      'Personalizar la atencion sin feature store es apostar a que tres copias de la misma feature van a concordar para siempre, y nunca concuerdan. Puedo disenar e implementar un feature store pragmatico para tu atencion: registro unico de features, serving online de baja latencia, entrenamiento con point-in-time correctness y monitoreo de skew, sin montar una plataforma que aun no necesitas.',
-    cta: 'Hablar sobre personalizacion de atencion',
+      'Personalizar la atención sin feature store es apostar a que tres copias de la misma feature van a concordar para siempre, y nunca concuerdan. Puedo diseñar e implementar un feature store pragmático para tu atención: registro único de features, serving online de baja latencia, entrenamiento con point-in-time correctness y monitoreo de skew, sin montar una plataforma que aún no necesitas.',
+    cta: 'Hablar sobre personalización de atención',
   },
   related: [
-    { label: 'RAG para atencion en WhatsApp en produccion', to: '/blog/rag-atendimento-whatsapp-producao' },
-    { label: 'Evaluacion continua de bots: del eval manual al automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
-    { label: 'Chatbots e IA para atencion', to: '/servicos/chatbots-e-ia' },
+    { label: 'RAG para atención en WhatsApp en producción', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Evaluación continua de bots: del eval manual al automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'Chatbots e IA para atención', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'feature-store-personalizacao', description: repo.es, url: repoUrl },
 };

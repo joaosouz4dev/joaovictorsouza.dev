@@ -4,7 +4,7 @@
 
 const pt = {
   intro:
-    'Construir um SaaS sobre a WhatsApp Cloud API significa servir muitos clientes a partir da mesma base de codigo e da mesma infraestrutura. O desafio nao e enviar mensagens: e garantir que o tenant A nunca veja, toque ou afete os dados do tenant B, que um cliente barulhento nao degrade a experiencia dos demais e que cada configuracao (templates, credenciais, feature flags) seja isolada e governavel. Este guia trata dos padroes de arquitetura multi-tenant que sustentam isso: modelos de isolamento, roteamento de webhook por phone_number_id, limites e quotas por tenant e governanca de configuracao.',
+    'Construir um SaaS sobre a WhatsApp Cloud API significa servir muitos clientes a partir da mesma base de código e da mesma infraestrutura. O desafio não é enviar mensagens: é garantir que o tenant A nunca veja, toque ou afete os dados do tenant B, que um cliente barulhento não degrade a experiência dos demais e que cada configuração (templates, credenciais, feature flags) seja isolada e governável. Este guia trata dos padrões de arquitetura multi-tenant que sustentam isso: modelos de isolamento, roteamento de webhook por phone_number_id, limites e quotas por tenant e governança de configuração.',
   sections: [
     {
       title: 'Modelos de isolamento: silo, pool e bridge',
@@ -12,12 +12,12 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A primeira decisao de um SaaS multi-tenant e o grau de isolamento entre clientes. Tres modelos dominam o debate. No modelo silo, cada tenant recebe sua propria stack (banco, filas, as vezes ate compute) dedicada. No modelo pool, todos os tenants compartilham a mesma infraestrutura e o isolamento e logico, garantido por uma coluna tenant_id em cada tabela. O modelo bridge e o meio termo: compartilha compute e aplicacao, mas isola o dado sensivel (um banco ou schema por tenant) onde o custo de vazamento e mais alto.',
+            'A primeira decisão de um SaaS multi-tenant é o grau de isolamento entre clientes. Três modelos dominam o debate. No modelo silo, cada tenant recebe sua própria stack (banco, filas, às vezes até compute) dedicada. No modelo pool, todos os tenants compartilham a mesma infraestrutura e o isolamento é lógico, garantido por uma coluna tenant_id em cada tabela. O modelo bridge é o meio termo: compartilha compute e aplicação, mas isola o dado sensível (um banco ou schema por tenant) onde o custo de vazamento é mais alto.',
         },
         {
           type: 'paragraph',
           value:
-            'No nivel do banco, isso se materializa em tres estrategias: banco por tenant (isolamento fisico maximo, custo operacional alto), schema por tenant (isolamento logico forte dentro do mesmo cluster) e row-level com tenant_id (uma unica tabela com a coluna discriminadora). A escolha define seu custo, seu blast radius e a complexidade de onboarding de cada novo cliente.',
+            'No nível do banco, isso se materializa em três estratégias: banco por tenant (isolamento físico máximo, custo operacional alto), schema por tenant (isolamento lógico forte dentro do mesmo cluster) e row-level com tenant_id (uma única tabela com a coluna discriminadora). A escolha define seu custo, seu blast radius e a complexidade de onboarding de cada novo cliente.',
         },
         {
           type: 'table',
@@ -25,25 +25,25 @@ const pt = {
           rows: [
             [
               'Banco por tenant (silo)',
-              'Fisico, maximo',
+              'Físico, máximo',
               'Alto',
               'Lento (provisiona stack)',
-              'Minimo: falha fica contida',
-              'Enterprise, compliance rigido, dado regulado',
+              'Mínimo: falha fica contida',
+              'Enterprise, compliance rígido, dado regulado',
             ],
             [
               'Schema por tenant (bridge)',
-              'Logico forte',
-              'Medio',
-              'Medio (cria schema + migra)',
-              'Medio: cluster compartilhado',
-              'Mix de clientes medios e grandes',
+              'Lógico forte',
+              'Médio',
+              'Médio (cria schema + migra)',
+              'Médio: cluster compartilhado',
+              'Mix de clientes médios e grandes',
             ],
             [
               'Row-level tenant_id (pool)',
-              'Logico via aplicacao',
+              'Lógico via aplicação',
               'Baixo',
-              'Rapido (insere linha)',
+              'Rápido (insere linha)',
               'Alto: erro de filtro vaza tudo',
               'SMB em escala, alto volume de tenants',
             ],
@@ -52,7 +52,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Na pratica, SaaS maduros raramente escolhem um unico modelo. Adotam um pool para a maioria (SMB) e oferecem silo como plano premium para clientes enterprise que exigem isolamento fisico. Esse hibrido e o bridge na sua forma mais comercial: a mesma aplicacao roteia para o storage certo conforme o plano do tenant.',
+            'Na prática, SaaS maduros raramente escolhem um único modelo. Adotam um pool para a maioria (SMB) e oferecem silo como plano premium para clientes enterprise que exigem isolamento físico. Esse híbrido é o bridge na sua forma mais comercial: a mesma aplicação roteia para o storage certo conforme o plano do tenant.',
         },
       ],
     },
@@ -62,12 +62,12 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'No WhatsApp SaaS, cada tenant tem um ou mais numeros, e cada numero tem um phone_number_id estavel atribuido pela Meta. Quando uma mensagem chega, o webhook e o mesmo para todos os clientes: o que muda e o phone_number_id dentro do payload. Esse identificador e a chave de roteamento. Antes de qualquer processamento, voce resolve o tenant a partir dele e injeta o contexto do tenant em todo o fluxo subsequente.',
+            'No WhatsApp SaaS, cada tenant tem um ou mais números, e cada número tem um phone_number_id estável atribuído pela Meta. Quando uma mensagem chega, o webhook é o mesmo para todos os clientes: o que muda é o phone_number_id dentro do payload. Esse identificador é a chave de roteamento. Antes de qualquer processamento, você resolve o tenant a partir dele e injeta o contexto do tenant em todo o fluxo subsequente.',
         },
         {
           type: 'paragraph',
           value:
-            'O payload entrega o phone_number_id em entry[].changes[].value.metadata.phone_number_id. A partir dele, uma busca (idealmente cacheada) devolve o tenant correspondente. Se nao houver tenant mapeado, o evento e rejeitado: nunca processe um webhook sem tenant resolvido, pois isso e justamente o vetor de vazamento entre clientes.',
+            'O payload entrega o phone_number_id em entry[].changes[].value.metadata.phone_number_id. A partir dele, uma busca (idealmente cacheada) devolve o tenant correspondente. Se não houver tenant mapeado, o evento é rejeitado: nunca processe um webhook sem tenant resolvido, pois isso é justamente o vetor de vazamento entre clientes.',
         },
         {
           type: 'code',
@@ -138,7 +138,7 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'O contexto do tenant resolvido aqui deve viajar com o evento por todo o pipeline. Workers, queries e chamadas de envio sempre recebem o tenant_id explicitamente. Resolver o tenant cedo e propaga-lo e o que impede que logica posterior precise adivinhar a quem o evento pertence.',
+            'O contexto do tenant resolvido aqui deve viajar com o evento por todo o pipeline. Workers, queries e chamadas de envio sempre recebem o tenant_id explicitamente. Resolver o tenant cedo e propagá-lo é o que impede que lógica posterior precise adivinhar a quem o evento pertence.',
         },
       ],
     },
@@ -148,75 +148,75 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'Em infraestrutura compartilhada, o maior risco operacional e o noisy neighbor: um tenant que dispara uma campanha massiva ou entra em loop e consome toda a capacidade, degradando os demais. A defesa e impor limites por tenant em varias camadas, de modo que nenhum cliente possa monopolizar recursos compartilhados.',
+            'Em infraestrutura compartilhada, o maior risco operacional é o noisy neighbor: um tenant que dispara uma campanha massiva ou entra em loop e consome toda a capacidade, degradando os demais. A defesa é impor limites por tenant em várias camadas, de modo que nenhum cliente possa monopolizar recursos compartilhados.',
         },
         {
           type: 'list',
           items: [
-            'Rate limit por tenant: limite de requisicoes por segundo isolado por tenant_id, com token bucket no Redis, para que o pico de um nao consuma a cota global da Meta.',
-            'Cota de mensagens: teto diario ou mensal por plano, contabilizado por tenant, com bloqueio ou degradacao graciosa ao atingir o limite.',
-            'Fila isolada por tenant: filas separadas (ou prioridade ponderada) para que o backlog de um tenant nao atrase o processamento dos outros.',
-            'Limite de concorrencia de workers: numero maximo de jobs simultaneos por tenant, evitando que um cliente domine o pool de workers.',
-            'Quota de armazenamento e midia: teto de uploads e retencao por tenant para conter custo e abuso.',
-            'Circuit breaker por tenant: ao detectar erros repetidos (ex.: template invalido em massa), pausar o tenant especifico sem afetar os demais.',
+            'Rate limit por tenant: limite de requisições por segundo isolado por tenant_id, com token bucket no Redis, para que o pico de um não consuma a cota global da Meta.',
+            'Cota de mensagens: teto diário ou mensal por plano, contabilizado por tenant, com bloqueio ou degradação graciosa ao atingir o limite.',
+            'Fila isolada por tenant: filas separadas (ou prioridade ponderada) para que o backlog de um tenant não atrase o processamento dos outros.',
+            'Limite de concorrência de workers: número máximo de jobs simultâneos por tenant, evitando que um cliente domine o pool de workers.',
+            'Quota de armazenamento e mídia: teto de uploads e retenção por tenant para conter custo e abuso.',
+            'Circuit breaker por tenant: ao detectar erros repetidos (ex.: template inválido em massa), pausar o tenant específico sem afetar os demais.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A chave conceitual e que toda quota carrega o tenant_id como dimensao. Um rate limit global protege a Meta de bloquear sua conta, mas nao protege os tenants entre si. So um limite por tenant garante isolamento de desempenho, que e tao importante quanto o isolamento de dados em um SaaS.',
+            'A chave conceitual é que toda quota carrega o tenant_id como dimensão. Um rate limit global protege a Meta de bloquear sua conta, mas não protege os tenants entre si. Só um limite por tenant garante isolamento de desempenho, que é tão importante quanto o isolamento de dados em um SaaS.',
         },
       ],
     },
     {
-      title: 'Governanca de configuracao por tenant',
+      title: 'Governança de configuração por tenant',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Cada tenant traz sua propria configuracao: numeros, templates aprovados, credenciais da Meta, integracoes e comportamento de produto. Governar isso significa armazenar, versionar e resolver essas configuracoes por tenant de forma segura, sem hardcode e sem que a config de um cliente vaze para outro.',
+            'Cada tenant traz sua própria configuração: números, templates aprovados, credenciais da Meta, integrações e comportamento de produto. Governar isso significa armazenar, versionar e resolver essas configurações por tenant de forma segura, sem hardcode e sem que a config de um cliente vaze para outro.',
         },
         {
           type: 'list',
           items: [
-            'Templates por tenant: cada cliente tem seu catalogo de templates aprovados, com nome, idioma e status, isolados por tenant_id; nunca presuma que um template existe para todos.',
-            'Credenciais isoladas: o access token e o WABA de cada tenant ficam cifrados em um cofre (KMS / Secrets Manager), referenciados por tenant, nunca em variaveis de ambiente compartilhadas.',
-            'Feature flags por tenant: habilite recursos (IA, novo fluxo, beta) por cliente ou plano, permitindo rollout gradual e planos diferenciados sem branches de codigo.',
-            'Webhooks de saida e integracoes: cada tenant configura seus proprios destinos e segredos de assinatura, resolvidos a partir do contexto do tenant.',
-            'Branding e copy: saudacoes, menus e textos especificos por tenant, carregados pela mesma camada de resolucao de config.',
+            'Templates por tenant: cada cliente tem seu catálogo de templates aprovados, com nome, idioma e status, isolados por tenant_id; nunca presuma que um template existe para todos.',
+            'Credenciais isoladas: o access token e o WABA de cada tenant ficam cifrados em um cofre (KMS / Secrets Manager), referenciados por tenant, nunca em variáveis de ambiente compartilhadas.',
+            'Feature flags por tenant: habilite recursos (IA, novo fluxo, beta) por cliente ou plano, permitindo rollout gradual e planos diferenciados sem branches de código.',
+            'Webhooks de saída e integrações: cada tenant configura seus próprios destinos e segredos de assinatura, resolvidos a partir do contexto do tenant.',
+            'Branding e copy: saudações, menus e textos específicos por tenant, carregados pela mesma camada de resolução de config.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Trate a configuracao como dado de primeira classe, com a mesma disciplina de isolamento do resto. Uma camada de resolucao de configuracao recebe o tenant_id e devolve apenas a config daquele tenant, com cache invalidavel. Credenciais nunca trafegam em claro nem aparecem em logs.',
+            'Trate a configuração como dado de primeira classe, com a mesma disciplina de isolamento do resto. Uma camada de resolução de configuração recebe o tenant_id e devolve apenas a config daquele tenant, com cache invalidável. Credenciais nunca trafegam em claro nem aparecem em logs.',
         },
       ],
     },
     {
-      title: 'Seguranca e prevencao de vazamento entre tenants',
+      title: 'Segurança e prevenção de vazamento entre tenants',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'No modelo pool, o vazamento entre tenants e a falha mais grave possivel: um filtro tenant_id esquecido em uma query e o suficiente para um cliente ler dados de outro. A defesa nao pode depender da disciplina manual de cada desenvolvedor; precisa ser estrutural, com camadas que tornem o vazamento dificil de introduzir e facil de detectar.',
+            'No modelo pool, o vazamento entre tenants é a falha mais grave possível: um filtro tenant_id esquecido em uma query é o suficiente para um cliente ler dados de outro. A defesa não pode depender da disciplina manual de cada desenvolvedor; precisa ser estrutural, com camadas que tornem o vazamento difícil de introduzir e fácil de detectar.',
         },
         {
           type: 'ordered',
           items: [
-            'Sempre filtrar por tenant_id: toda query de leitura e escrita inclui tenant_id na clausula WHERE; nunca confie em filtro implicito.',
-            'Centralizar o acesso a dados: um repositorio ou data layer que injeta tenant_id automaticamente a partir do contexto, removendo a chance de esquecer o filtro na mao.',
-            'Aplicar Row-Level Security (RLS) no banco: politicas no Postgres que forcam o tenant_id no nivel do SGBD, como ultima barreira mesmo se a aplicacao falhar.',
-            'Propagar o contexto do tenant: o tenant_id resolvido no webhook viaja por toda a request, fila e worker; nenhuma camada deduz o tenant por conta propria.',
-            'Cifrar e isolar credenciais: tokens por tenant em cofre, nunca compartilhados; o vazamento de um segredo nao deve dar acesso a outro tenant.',
+            'Sempre filtrar por tenant_id: toda query de leitura e escrita inclui tenant_id na cláusula WHERE; nunca confie em filtro implícito.',
+            'Centralizar o acesso a dados: um repositório ou data layer que injeta tenant_id automaticamente a partir do contexto, removendo a chance de esquecer o filtro na mão.',
+            'Aplicar Row-Level Security (RLS) no banco: políticas no Postgres que forçam o tenant_id no nível do SGBD, como última barreira mesmo se a aplicação falhar.',
+            'Propagar o contexto do tenant: o tenant_id resolvido no webhook viaja por toda a request, fila e worker; nenhuma camada deduz o tenant por conta própria.',
+            'Cifrar e isolar credenciais: tokens por tenant em cofre, nunca compartilhados; o vazamento de um segredo não deve dar acesso a outro tenant.',
             'Testes automatizados de isolamento: suites que, com dois tenants populados, tentam ler dados cruzados e falham o build se qualquer vazamento ocorrer.',
-            'Auditoria e logs com tenant_id: toda operacao registra o tenant, permitindo rastrear e detectar acessos anomalos entre clientes.',
+            'Auditoria e logs com tenant_id: toda operação registra o tenant, permitindo rastrear e detectar acessos anômalos entre clientes.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O teste de isolamento merece destaque: criar dois tenants, popular dados em ambos e afirmar que nenhuma operacao de um enxerga o outro deve ser parte do pipeline de CI. Esse teste e o que transforma isolamento de uma promessa em uma garantia verificada a cada commit.',
+            'O teste de isolamento merece destaque: criar dois tenants, popular dados em ambos e afirmar que nenhuma operação de um enxerga o outro deve ser parte do pipeline de CI. Esse teste é o que transforma isolamento de uma promessa em uma garantia verificada a cada commit.',
         },
       ],
     },
@@ -226,59 +226,59 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'Um SaaS multi-tenant precisa de um processo claro para criar, suspender e remover tenants. Onboarding e offboarding malfeitos sao fontes silenciosas de vazamento e de custo: dados orfaos, numeros mal mapeados e credenciais que sobrevivem ao fim do contrato.',
+            'Um SaaS multi-tenant precisa de um processo claro para criar, suspender e remover tenants. Onboarding e offboarding malfeitos são fontes silenciosas de vazamento e de custo: dados órfãos, números mal mapeados e credenciais que sobrevivem ao fim do contrato.',
         },
         {
           type: 'ordered',
           items: [
             'Provisionar o tenant: criar o registro, o storage conforme o plano (row-level, schema ou banco) e o namespace de filas.',
-            'Registrar numeros: mapear cada phone_number_id ao tenant na tabela de roteamento e invalidar o cache.',
-            'Configurar credenciais e templates: armazenar tokens cifrados e sincronizar o catalogo de templates aprovados da Meta.',
+            'Registrar números: mapear cada phone_number_id ao tenant na tabela de roteamento e invalidar o cache.',
+            'Configurar credenciais e templates: armazenar tokens cifrados e sincronizar o catálogo de templates aprovados da Meta.',
             'Aplicar limites do plano: definir rate limit, cotas e flags conforme o tier contratado.',
-            'Suspender com seguranca: ao inadimplir ou pausar, marcar o tenant como inativo para que o webhook rejeite eventos sem apagar dados.',
-            'Offboarding: exportar dados, revogar credenciais e remover storage de forma auditavel ao encerrar o contrato.',
+            'Suspender com segurança: ao inadimplir ou pausar, marcar o tenant como inativo para que o webhook rejeite eventos sem apagar dados.',
+            'Offboarding: exportar dados, revogar credenciais e remover storage de forma auditável ao encerrar o contrato.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Tratar o ciclo de vida como um fluxo explicito e versionado evita o acumulo de tenants zumbis. Cada estado (ativo, suspenso, encerrado) tem comportamento definido no roteamento e nos limites, e a transicao entre eles e auditavel.',
+            'Tratar o ciclo de vida como um fluxo explícito e versionado evita o acúmulo de tenants zumbis. Cada estado (ativo, suspenso, encerrado) tem comportamento definido no roteamento e nos limites, e a transição entre eles é auditável.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Devo comecar com banco por tenant ou row-level com tenant_id?',
+      question: 'Devo começar com banco por tenant ou row-level com tenant_id?',
       answer:
-        'Para a maioria dos SaaS em estagio inicial, comece com row-level usando tenant_id: o custo por tenant e baixo e o onboarding e instantaneo, o que importa quando voce ainda esta validando o produto. Reserve banco ou schema por tenant para clientes enterprise com exigencias de compliance ou isolamento fisico, oferecendo isso como plano premium. O importante e desenhar a aplicacao para tolerar ambos os modelos desde o inicio, com o tenant_id propagado em todo o codigo, para que migrar um cliente especifico para um silo nao exija reescrita.',
+        'Para a maioria dos SaaS em estágio inicial, comece com row-level usando tenant_id: o custo por tenant é baixo e o onboarding é instantâneo, o que importa quando você ainda está validando o produto. Reserve banco ou schema por tenant para clientes enterprise com exigências de compliance ou isolamento físico, oferecendo isso como plano premium. O importante é desenhar a aplicação para tolerar ambos os modelos desde o início, com o tenant_id propagado em todo o código, para que migrar um cliente específico para um silo não exija reescrita.',
     },
     {
       question: 'Como o webhook sabe a qual tenant pertence cada mensagem?',
       answer:
-        'Pelo phone_number_id presente no payload, em entry[].changes[].value.metadata.phone_number_id. Esse identificador e estavel e unico por numero. Voce mantem uma tabela que mapeia cada phone_number_id ao seu tenant e resolve o tenant logo no inicio do processamento, idealmente com cache no Redis para evitar um hit no banco a cada evento. Se o phone_number_id nao estiver mapeado a nenhum tenant ativo, o evento deve ser rejeitado: nunca processe um webhook sem tenant resolvido.',
+        'Pelo phone_number_id presente no payload, em entry[].changes[].value.metadata.phone_number_id. Esse identificador é estável e único por número. Você mantém uma tabela que mapeia cada phone_number_id ao seu tenant e resolve o tenant logo no início do processamento, idealmente com cache no Redis para evitar um hit no banco a cada evento. Se o phone_number_id não estiver mapeado a nenhum tenant ativo, o evento deve ser rejeitado: nunca processe um webhook sem tenant resolvido.',
     },
     {
       question: 'Como evito que um tenant degrade o desempenho dos outros?',
       answer:
-        'Aplicando limites por tenant em varias camadas: rate limit por tenant_id com token bucket, cota de mensagens por plano, filas isoladas (ou com prioridade ponderada) e limite de concorrencia de workers por tenant. A ideia central e que toda quota carregue o tenant_id como dimensao. Um limite global protege sua conta na Meta, mas nao protege os clientes entre si; somente limites por tenant garantem isolamento de desempenho e evitam o problema do noisy neighbor.',
+        'Aplicando limites por tenant em várias camadas: rate limit por tenant_id com token bucket, cota de mensagens por plano, filas isoladas (ou com prioridade ponderada) e limite de concorrência de workers por tenant. A ideia central é que toda quota carregue o tenant_id como dimensão. Um limite global protege sua conta na Meta, mas não protege os clientes entre si; somente limites por tenant garantem isolamento de desempenho e evitam o problema do noisy neighbor.',
     },
   ],
   conclusion: {
-    title: 'Multi-tenant e isolamento desenhado, nao improvisado',
+    title: 'Multi-tenant é isolamento desenhado, não improvisado',
     description:
-      'Escolher o modelo de isolamento certo, rotear webhooks por phone_number_id, impor limites por tenant e testar isolamento a cada commit formam a espinha dorsal de um SaaS de WhatsApp confiavel e escalavel. Se voce esta projetando ou escalando uma plataforma multi-tenant, posso ajudar a desenhar essa arquitetura.',
+      'Escolher o modelo de isolamento certo, rotear webhooks por phone_number_id, impor limites por tenant e testar isolamento a cada commit formam a espinha dorsal de um SaaS de WhatsApp confiável e escalável. Se você está projetando ou escalando uma plataforma multi-tenant, posso ajudar a desenhar essa arquitetura.',
     cta: 'Falar sobre minha plataforma',
   },
   related: [
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
-    { label: 'Seguranca em integracoes Meta WhatsApp', to: '/blog/seguranca-integracoes-meta-whatsapp' },
+    { label: 'Segurança em integrações Meta WhatsApp', to: '/blog/seguranca-integracoes-meta-whatsapp' },
     { label: 'Governanca de templates em times grandes', to: '/blog/governanca-templates-times-grandes' },
   ],
   repo: {
     name: 'whatsapp-multitenant-router',
     description:
-      'Exemplo de roteamento multi-tenant para WhatsApp: resolucao de tenant por phone_number_id, filas isoladas e limites por tenant.',
+      'Exemplo de roteamento multi-tenant para WhatsApp: resolução de tenant por phone_number_id, filas isoladas e limites por tenant.',
     url: 'https://github.com/joaosouz4dev/whatsapp-multitenant-router',
   },
 };
@@ -566,7 +566,7 @@ async function handleWebhook(req, res) {
 
 const es = {
   intro:
-    'Construir un SaaS sobre la WhatsApp Cloud API significa servir a muchos clientes desde la misma base de codigo y la misma infraestructura. El reto no es enviar mensajes: es garantizar que el tenant A nunca vea, toque ni afecte los datos del tenant B, que un cliente ruidoso no degrade la experiencia de los demas y que cada configuracion (plantillas, credenciales, feature flags) este aislada y sea gobernable. Esta guia trata los patrones de arquitectura multi-tenant que lo sostienen: modelos de aislamiento, enrutamiento de webhook por phone_number_id, limites y cuotas por tenant y gobernanza de configuracion.',
+    'Construir un SaaS sobre la WhatsApp Cloud API significa servir a muchos clientes desde la misma base de código y la misma infraestructura. El reto no es enviar mensajes: es garantizar que el tenant A nunca vea, toque ni afecte los datos del tenant B, que un cliente ruidoso no degrade la experiencia de los demás y que cada configuración (plantillas, credenciales, feature flags) esté aislada y sea gobernable. Esta guía trata los patrones de arquitectura multi-tenant que lo sostienen: modelos de aislamiento, enrutamiento de webhook por phone_number_id, límites y cuotas por tenant y gobernanza de configuración.',
   sections: [
     {
       title: 'Modelos de aislamiento: silo, pool y bridge',
@@ -574,28 +574,28 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La primera decision de un SaaS multi-tenant es el grado de aislamiento entre clientes. Tres modelos dominan el debate. En el modelo silo, cada tenant recibe su propia stack (base de datos, colas, a veces incluso compute) dedicada. En el modelo pool, todos los tenants comparten la misma infraestructura y el aislamiento es logico, garantizado por una columna tenant_id en cada tabla. El modelo bridge es el termino medio: comparte compute y aplicacion, pero aisla el dato sensible (una base o schema por tenant) donde el costo de una fuga es mas alto.',
+            'La primera decisión de un SaaS multi-tenant es el grado de aislamiento entre clientes. Tres modelos dominan el debate. En el modelo silo, cada tenant recibe su propia stack (base de datos, colas, a veces incluso compute) dedicada. En el modelo pool, todos los tenants comparten la misma infraestructura y el aislamiento es lógico, garantizado por una columna tenant_id en cada tabla. El modelo bridge es el término medio: comparte compute y aplicación, pero aísla el dato sensible (una base o schema por tenant) donde el costo de una fuga es más alto.',
         },
         {
           type: 'paragraph',
           value:
-            'A nivel de base de datos, esto se materializa en tres estrategias: base por tenant (aislamiento fisico maximo, costo operativo alto), schema por tenant (aislamiento logico fuerte dentro del mismo cluster) y row-level con tenant_id (una unica tabla con la columna discriminadora). La eleccion define tu costo, tu blast radius y la complejidad de onboarding de cada nuevo cliente.',
+            'A nivel de base de datos, esto se materializa en tres estrategias: base por tenant (aislamiento físico máximo, costo operativo alto), schema por tenant (aislamiento lógico fuerte dentro del mismo cluster) y row-level con tenant_id (una única tabla con la columna discriminadora). La elección define tu costo, tu blast radius y la complejidad de onboarding de cada nuevo cliente.',
         },
         {
           type: 'table',
-          columns: ['Modelo', 'Aislamiento', 'Costo / tenant', 'Onboarding', 'Blast radius', 'Cuando usar'],
+          columns: ['Modelo', 'Aislamiento', 'Costo / tenant', 'Onboarding', 'Blast radius', 'Cuándo usar'],
           rows: [
             [
               'Base por tenant (silo)',
-              'Fisico, maximo',
+              'Físico, máximo',
               'Alto',
               'Lento (aprovisiona stack)',
-              'Minimo: el fallo queda contenido',
+              'Mínimo: el fallo queda contenido',
               'Enterprise, compliance estricto, dato regulado',
             ],
             [
               'Schema por tenant (bridge)',
-              'Logico fuerte',
+              'Lógico fuerte',
               'Medio',
               'Medio (crea schema + migra)',
               'Medio: cluster compartido',
@@ -603,9 +603,9 @@ const es = {
             ],
             [
               'Row-level tenant_id (pool)',
-              'Logico via aplicacion',
+              'Lógico vía aplicación',
               'Bajo',
-              'Rapido (inserta fila)',
+              'Rápido (inserta fila)',
               'Alto: un filtro olvidado lo filtra todo',
               'SMB a escala, alto volumen de tenants',
             ],
@@ -614,7 +614,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'En la practica, los SaaS maduros rara vez eligen un unico modelo. Adoptan un pool para la mayoria (SMB) y ofrecen silo como plan premium para clientes enterprise que exigen aislamiento fisico. Ese hibrido es el bridge en su forma mas comercial: la misma aplicacion enruta al storage correcto segun el plan del tenant.',
+            'En la práctica, los SaaS maduros rara vez eligen un único modelo. Adoptan un pool para la mayoría (SMB) y ofrecen silo como plan premium para clientes enterprise que exigen aislamiento físico. Ese híbrido es el bridge en su forma más comercial: la misma aplicación enruta al storage correcto según el plan del tenant.',
         },
       ],
     },
@@ -624,12 +624,12 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'En un SaaS de WhatsApp, cada tenant tiene uno o mas numeros, y cada numero tiene un phone_number_id estable asignado por Meta. Cuando llega un mensaje, el webhook es el mismo para todos los clientes: lo que cambia es el phone_number_id dentro del payload. Ese identificador es la clave de enrutamiento. Antes de cualquier procesamiento, resuelves el tenant a partir de el e inyectas el contexto del tenant en todo el flujo posterior.',
+            'En un SaaS de WhatsApp, cada tenant tiene uno o más números, y cada número tiene un phone_number_id estable asignado por Meta. Cuando llega un mensaje, el webhook es el mismo para todos los clientes: lo que cambia es el phone_number_id dentro del payload. Ese identificador es la clave de enrutamiento. Antes de cualquier procesamiento, resuelves el tenant a partir de él e inyectas el contexto del tenant en todo el flujo posterior.',
         },
         {
           type: 'paragraph',
           value:
-            'El payload entrega el phone_number_id en entry[].changes[].value.metadata.phone_number_id. A partir de el, una busqueda (idealmente cacheada) devuelve el tenant correspondiente. Si no hay tenant mapeado, el evento se rechaza: nunca proceses un webhook sin tenant resuelto, pues ese es justamente el vector de fuga entre clientes.',
+            'El payload entrega el phone_number_id en entry[].changes[].value.metadata.phone_number_id. A partir de él, una búsqueda (idealmente cacheada) devuelve el tenant correspondiente. Si no hay tenant mapeado, el evento se rechaza: nunca proceses un webhook sin tenant resuelto, pues ese es justamente el vector de fuga entre clientes.',
         },
         {
           type: 'code',
@@ -700,7 +700,7 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'El contexto del tenant resuelto aqui debe viajar con el evento por todo el pipeline. Workers, queries y llamadas de envio siempre reciben el tenant_id de forma explicita. Resolver el tenant temprano y propagarlo es lo que impide que la logica posterior tenga que adivinar a quien pertenece el evento.',
+            'El contexto del tenant resuelto aquí debe viajar con el evento por todo el pipeline. Workers, queries y llamadas de envío siempre reciben el tenant_id de forma explícita. Resolver el tenant temprano y propagarlo es lo que impide que la lógica posterior tenga que adivinar a quién pertenece el evento.',
         },
       ],
     },
@@ -710,75 +710,75 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'En infraestructura compartida, el mayor riesgo operativo es el noisy neighbor: un tenant que dispara una campana masiva o entra en bucle y consume toda la capacidad, degradando a los demas. La defensa es imponer limites por tenant en varias capas, de modo que ningun cliente pueda monopolizar los recursos compartidos.',
+            'En infraestructura compartida, el mayor riesgo operativo es el noisy neighbor: un tenant que dispara una campaña masiva o entra en bucle y consume toda la capacidad, degradando a los demás. La defensa es imponer límites por tenant en varias capas, de modo que ningún cliente pueda monopolizar los recursos compartidos.',
         },
         {
           type: 'list',
           items: [
-            'Rate limit por tenant: limite de peticiones por segundo aislado por tenant_id, con token bucket en Redis, para que el pico de uno no consuma la cuota global de Meta.',
-            'Cuota de mensajes: techo diario o mensual por plan, contabilizado por tenant, con bloqueo o degradacion graciosa al alcanzar el limite.',
-            'Cola aislada por tenant: colas separadas (o prioridad ponderada) para que el backlog de un tenant no retrase el procesamiento de los demas.',
-            'Limite de concurrencia de workers: numero maximo de jobs simultaneos por tenant, evitando que un cliente domine el pool de workers.',
-            'Cuota de almacenamiento y media: techo de uploads y retencion por tenant para contener costo y abuso.',
-            'Circuit breaker por tenant: al detectar errores repetidos (ej.: plantilla invalida en masa), pausar el tenant especifico sin afectar a los demas.',
+            'Rate limit por tenant: límite de peticiones por segundo aislado por tenant_id, con token bucket en Redis, para que el pico de uno no consuma la cuota global de Meta.',
+            'Cuota de mensajes: techo diario o mensual por plan, contabilizado por tenant, con bloqueo o degradación graciosa al alcanzar el límite.',
+            'Cola aislada por tenant: colas separadas (o prioridad ponderada) para que el backlog de un tenant no retrase el procesamiento de los demás.',
+            'Límite de concurrencia de workers: número máximo de jobs simultáneos por tenant, evitando que un cliente domine el pool de workers.',
+            'Cuota de almacenamiento y media: techo de uploads y retención por tenant para contener costo y abuso.',
+            'Circuit breaker por tenant: al detectar errores repetidos (ej.: plantilla inválida en masa), pausar el tenant específico sin afectar a los demás.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La clave conceptual es que toda cuota lleva el tenant_id como dimension. Un rate limit global protege tu cuenta de Meta de ser bloqueada, pero no protege a los tenants entre si. Solo un limite por tenant garantiza aislamiento de rendimiento, que es tan importante como el aislamiento de datos en un SaaS.',
+            'La clave conceptual es que toda cuota lleva el tenant_id como dimensión. Un rate limit global protege tu cuenta de Meta de ser bloqueada, pero no protege a los tenants entre sí. Solo un límite por tenant garantiza aislamiento de rendimiento, que es tan importante como el aislamiento de datos en un SaaS.',
         },
       ],
     },
     {
-      title: 'Gobernanza de configuracion por tenant',
+      title: 'Gobernanza de configuración por tenant',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Cada tenant trae su propia configuracion: numeros, plantillas aprobadas, credenciales de Meta, integraciones y comportamiento de producto. Gobernar esto significa almacenar, versionar y resolver esas configuraciones por tenant de forma segura, sin hardcode y sin que la config de un cliente se filtre a otro.',
+            'Cada tenant trae su propia configuración: números, plantillas aprobadas, credenciales de Meta, integraciones y comportamiento de producto. Gobernar esto significa almacenar, versionar y resolver esas configuraciones por tenant de forma segura, sin hardcode y sin que la config de un cliente se filtre a otro.',
         },
         {
           type: 'list',
           items: [
-            'Plantillas por tenant: cada cliente tiene su catalogo de plantillas aprobadas, con nombre, idioma y estado, aisladas por tenant_id; nunca asumas que una plantilla existe para todos.',
+            'Plantillas por tenant: cada cliente tiene su catálogo de plantillas aprobadas, con nombre, idioma y estado, aisladas por tenant_id; nunca asumas que una plantilla existe para todos.',
             'Credenciales aisladas: el access token y la WABA de cada tenant quedan cifrados en un vault (KMS / Secrets Manager), referenciados por tenant, nunca en variables de entorno compartidas.',
-            'Feature flags por tenant: habilita recursos (IA, nuevo flujo, beta) por cliente o plan, permitiendo rollout gradual y planes diferenciados sin ramas de codigo.',
+            'Feature flags por tenant: habilita recursos (IA, nuevo flujo, beta) por cliente o plan, permitiendo rollout gradual y planes diferenciados sin ramas de código.',
             'Webhooks de salida e integraciones: cada tenant configura sus propios destinos y secretos de firma, resueltos a partir del contexto del tenant.',
-            'Branding y copy: saludos, menus y textos especificos por tenant, cargados por la misma capa de resolucion de config.',
+            'Branding y copy: saludos, menús y textos específicos por tenant, cargados por la misma capa de resolución de config.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Trata la configuracion como dato de primera clase, con la misma disciplina de aislamiento que el resto. Una capa de resolucion de configuracion recibe el tenant_id y devuelve solo la config de ese tenant, con cache invalidable. Las credenciales nunca viajan en claro ni aparecen en logs.',
+            'Trata la configuración como dato de primera clase, con la misma disciplina de aislamiento que el resto. Una capa de resolución de configuración recibe el tenant_id y devuelve solo la config de ese tenant, con cache invalidable. Las credenciales nunca viajan en claro ni aparecen en logs.',
         },
       ],
     },
     {
-      title: 'Seguridad y prevencion de fugas entre tenants',
+      title: 'Seguridad y prevención de fugas entre tenants',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'En el modelo pool, la fuga entre tenants es el fallo mas grave posible: un filtro tenant_id olvidado en una query basta para que un cliente lea datos de otro. La defensa no puede depender de la disciplina manual de cada desarrollador; debe ser estructural, con capas que hagan la fuga dificil de introducir y facil de detectar.',
+            'En el modelo pool, la fuga entre tenants es el fallo más grave posible: un filtro tenant_id olvidado en una query basta para que un cliente lea datos de otro. La defensa no puede depender de la disciplina manual de cada desarrollador; debe ser estructural, con capas que hagan la fuga difícil de introducir y fácil de detectar.',
         },
         {
           type: 'ordered',
           items: [
-            'Siempre filtrar por tenant_id: toda query de lectura y escritura incluye tenant_id en la clausula WHERE; nunca confies en un filtro implicito.',
-            'Centralizar el acceso a datos: un repositorio o data layer que inyecta tenant_id automaticamente desde el contexto, eliminando la posibilidad de olvidar el filtro a mano.',
-            'Aplicar Row-Level Security (RLS) en la base: politicas en Postgres que fuerzan el tenant_id a nivel del motor, como ultima barrera incluso si la aplicacion falla.',
+            'Siempre filtrar por tenant_id: toda query de lectura y escritura incluye tenant_id en la cláusula WHERE; nunca confíes en un filtro implícito.',
+            'Centralizar el acceso a datos: un repositorio o data layer que inyecta tenant_id automáticamente desde el contexto, eliminando la posibilidad de olvidar el filtro a mano.',
+            'Aplicar Row-Level Security (RLS) en la base: políticas en Postgres que fuerzan el tenant_id a nivel del motor, como última barrera incluso si la aplicación falla.',
             'Propagar el contexto del tenant: el tenant_id resuelto en el webhook viaja por todo el request, cola y worker; ninguna capa deduce el tenant por su cuenta.',
             'Cifrar y aislar credenciales: tokens por tenant en vault, nunca compartidos; la fuga de un secreto no debe dar acceso a otro tenant.',
             'Tests automatizados de aislamiento: suites que, con dos tenants poblados, intentan leer datos cruzados y fallan el build si ocurre cualquier fuga.',
-            'Auditoria y logs con tenant_id: toda operacion registra el tenant, permitiendo rastrear y detectar accesos anomalos entre clientes.',
+            'Auditoría y logs con tenant_id: toda operación registra el tenant, permitiendo rastrear y detectar accesos anómalos entre clientes.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El test de aislamiento merece destacarse: crear dos tenants, poblar datos en ambos y afirmar que ninguna operacion de uno ve al otro debe ser parte del pipeline de CI. Ese test es lo que convierte el aislamiento de una promesa en una garantia verificada en cada commit.',
+            'El test de aislamiento merece destacarse: crear dos tenants, poblar datos en ambos y afirmar que ninguna operación de uno ve al otro debe ser parte del pipeline de CI. Ese test es lo que convierte el aislamiento de una promesa en una garantía verificada en cada commit.',
         },
       ],
     },
@@ -788,15 +788,15 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'Un SaaS multi-tenant necesita un proceso claro para crear, suspender y eliminar tenants. Un onboarding y offboarding mal hechos son fuentes silenciosas de fuga y de costo: datos huerfanos, numeros mal mapeados y credenciales que sobreviven al fin del contrato.',
+            'Un SaaS multi-tenant necesita un proceso claro para crear, suspender y eliminar tenants. Un onboarding y offboarding mal hechos son fuentes silenciosas de fuga y de costo: datos huérfanos, números mal mapeados y credenciales que sobreviven al fin del contrato.',
         },
         {
           type: 'ordered',
           items: [
-            'Aprovisionar el tenant: crear el registro, el storage segun el plan (row-level, schema o base) y el namespace de colas.',
-            'Registrar numeros: mapear cada phone_number_id al tenant en la tabla de enrutamiento e invalidar el cache.',
-            'Configurar credenciales y plantillas: almacenar tokens cifrados y sincronizar el catalogo de plantillas aprobadas de Meta.',
-            'Aplicar limites del plan: definir rate limit, cuotas y flags segun el tier contratado.',
+            'Aprovisionar el tenant: crear el registro, el storage según el plan (row-level, schema o base) y el namespace de colas.',
+            'Registrar números: mapear cada phone_number_id al tenant en la tabla de enrutamiento e invalidar el cache.',
+            'Configurar credenciales y plantillas: almacenar tokens cifrados y sincronizar el catálogo de plantillas aprobadas de Meta.',
+            'Aplicar límites del plan: definir rate limit, cuotas y flags según el tier contratado.',
             'Suspender con seguridad: al impagar o pausar, marcar el tenant como inactivo para que el webhook rechace eventos sin borrar datos.',
             'Offboarding: exportar datos, revocar credenciales y eliminar storage de forma auditable al cerrar el contrato.',
           ],
@@ -804,32 +804,32 @@ async function handleWebhook(req, res) {
         {
           type: 'paragraph',
           value:
-            'Tratar el ciclo de vida como un flujo explicito y versionado evita la acumulacion de tenants zombis. Cada estado (activo, suspendido, cerrado) tiene comportamiento definido en el enrutamiento y en los limites, y la transicion entre ellos es auditable.',
+            'Tratar el ciclo de vida como un flujo explícito y versionado evita la acumulación de tenants zombis. Cada estado (activo, suspendido, cerrado) tiene comportamiento definido en el enrutamiento y en los límites, y la transición entre ellos es auditable.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Debo empezar con base por tenant o row-level con tenant_id?',
+      question: '¿Debo empezar con base por tenant o row-level con tenant_id?',
       answer:
-        'Para la mayoria de los SaaS en etapa inicial, empieza con row-level usando tenant_id: el costo por tenant es bajo y el onboarding es instantaneo, lo que importa cuando aun estas validando el producto. Reserva base o schema por tenant para clientes enterprise con exigencias de compliance o aislamiento fisico, ofreciendolo como plan premium. Lo importante es disenar la aplicacion para tolerar ambos modelos desde el inicio, con el tenant_id propagado en todo el codigo, para que migrar un cliente especifico a un silo no exija reescritura.',
+        'Para la mayoría de los SaaS en etapa inicial, empieza con row-level usando tenant_id: el costo por tenant es bajo y el onboarding es instantáneo, lo que importa cuando aún estás validando el producto. Reserva base o schema por tenant para clientes enterprise con exigencias de compliance o aislamiento físico, ofreciéndolo como plan premium. Lo importante es diseñar la aplicación para tolerar ambos modelos desde el inicio, con el tenant_id propagado en todo el código, para que migrar un cliente específico a un silo no exija reescritura.',
     },
     {
-      question: 'Como sabe el webhook a que tenant pertenece cada mensaje?',
+      question: '¿Cómo sabe el webhook a qué tenant pertenece cada mensaje?',
       answer:
-        'Por el phone_number_id presente en el payload, en entry[].changes[].value.metadata.phone_number_id. Ese identificador es estable y unico por numero. Mantienes una tabla que mapea cada phone_number_id a su tenant y resuelves el tenant al inicio del procesamiento, idealmente con cache en Redis para evitar un hit a la base en cada evento. Si el phone_number_id no esta mapeado a ningun tenant activo, el evento debe rechazarse: nunca proceses un webhook sin tenant resuelto.',
+        'Por el phone_number_id presente en el payload, en entry[].changes[].value.metadata.phone_number_id. Ese identificador es estable y único por número. Mantienes una tabla que mapea cada phone_number_id a su tenant y resuelves el tenant al inicio del procesamiento, idealmente con cache en Redis para evitar un hit a la base en cada evento. Si el phone_number_id no está mapeado a ningún tenant activo, el evento debe rechazarse: nunca proceses un webhook sin tenant resuelto.',
     },
     {
-      question: 'Como evito que un tenant degrade el rendimiento de los demas?',
+      question: '¿Cómo evito que un tenant degrade el rendimiento de los demás?',
       answer:
-        'Aplicando limites por tenant en varias capas: rate limit por tenant_id con token bucket, cuota de mensajes por plan, colas aisladas (o con prioridad ponderada) y limite de concurrencia de workers por tenant. La idea central es que toda cuota lleve el tenant_id como dimension. Un limite global protege tu cuenta en Meta, pero no protege a los clientes entre si; solo los limites por tenant garantizan aislamiento de rendimiento y evitan el problema del noisy neighbor.',
+        'Aplicando límites por tenant en varias capas: rate limit por tenant_id con token bucket, cuota de mensajes por plan, colas aisladas (o con prioridad ponderada) y límite de concurrencia de workers por tenant. La idea central es que toda cuota lleve el tenant_id como dimensión. Un límite global protege tu cuenta en Meta, pero no protege a los clientes entre sí; solo los límites por tenant garantizan aislamiento de rendimiento y evitan el problema del noisy neighbor.',
     },
   ],
   conclusion: {
-    title: 'Multi-tenant es aislamiento disenado, no improvisado',
+    title: 'Multi-tenant es aislamiento diseñado, no improvisado',
     description:
-      'Elegir el modelo de aislamiento correcto, enrutar webhooks por phone_number_id, imponer limites por tenant y probar el aislamiento en cada commit forman la columna vertebral de un SaaS de WhatsApp confiable y escalable. Si estas disenando o escalando una plataforma multi-tenant, puedo ayudar a disenar esta arquitectura.',
+      'Elegir el modelo de aislamiento correcto, enrutar webhooks por phone_number_id, imponer límites por tenant y probar el aislamiento en cada commit forman la columna vertebral de un SaaS de WhatsApp confiable y escalable. Si estás diseñando o escalando una plataforma multi-tenant, puedo ayudar a diseñar esta arquitectura.',
     cta: 'Hablar sobre mi plataforma',
   },
   related: [
@@ -840,7 +840,7 @@ async function handleWebhook(req, res) {
   repo: {
     name: 'whatsapp-multitenant-router',
     description:
-      'Ejemplo de enrutamiento multi-tenant para WhatsApp: resolucion de tenant por phone_number_id, colas aisladas y limites por tenant.',
+      'Ejemplo de enrutamiento multi-tenant para WhatsApp: resolución de tenant por phone_number_id, colas aisladas y límites por tenant.',
     url: 'https://github.com/joaosouz4dev/whatsapp-multitenant-router',
   },
 };

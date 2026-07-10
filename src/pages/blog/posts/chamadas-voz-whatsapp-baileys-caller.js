@@ -1,41 +1,41 @@
 const pt = {
   intro:
-    'A Cloud API oficial do WhatsApp e excelente para mensagens, templates e webhooks, mas tem um limite claro: ela nao permite originar chamadas de voz arbitrarias a partir do seu sistema. Quando o caso de uso exige isso (um callback de atendimento, uma confirmacao por voz, um alerta urgente), o caminho passa por bibliotecas nao oficiais baseadas em Baileys, como o baileys-caller. Este artigo mostra como iniciar chamadas de voz programaticamente, como o Baileys funciona por baixo dos panos e, principalmente, quando esse trade-off (solucao nao oficial versus Cloud API oficial) realmente vale a pena.',
+    'A Cloud API oficial do WhatsApp é excelente para mensagens, templates e webhooks, mas tem um limite claro: ela não permite originar chamadas de voz arbitrárias a partir do seu sistema. Quando o caso de uso exige isso (um callback de atendimento, uma confirmação por voz, um alerta urgente), o caminho passa por bibliotecas não oficiais baseadas em Baileys, como o baileys-caller. Este artigo mostra como iniciar chamadas de voz programaticamente, como o Baileys funciona por baixo dos panos e, principalmente, quando esse trade-off (solução não oficial versus Cloud API oficial) realmente vale a pena.',
   sections: [
     {
-      title: 'O gap: a Cloud API oficial nao origina chamadas de voz',
+      title: 'O gap: a Cloud API oficial não origina chamadas de voz',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A Cloud API oficial cobre o envio e o recebimento de mensagens, templates aprovados, midias e webhooks de status. Ela nao expoe um endpoint para o seu backend discar uma chamada de voz para um numero. Para alguns casos de uso (confirmar uma entrega por voz, fazer um callback automatico de atendimento, disparar um alerta que precisa tocar como uma ligacao), essa lacuna e um bloqueio real, e e ai que entram bibliotecas baseadas no protocolo do WhatsApp Web.',
+            'A Cloud API oficial cobre o envio e o recebimento de mensagens, templates aprovados, mídias e webhooks de status. Ela não expõe um endpoint para o seu backend discar uma chamada de voz para um número. Para alguns casos de uso (confirmar uma entrega por voz, fazer um callback automático de atendimento, disparar um alerta que precisa tocar como uma ligação), essa lacuna é um bloqueio real, e é aí que entram bibliotecas baseadas no protocolo do WhatsApp Web.',
         },
         {
           type: 'paragraph',
           value:
-            'Baileys e uma biblioteca Node.js que fala o protocolo do WhatsApp Web via WebSocket. Ela nao e a Cloud API oficial: roda em cima de uma sessao pareada (como se fosse o seu WhatsApp Web), o que abre portas que a API oficial fecha, mas tambem traz riscos que a API oficial nao tem. O baileys-caller (https://github.com/SheIITear/baileys-caller) e um projeto focado em iniciar e gerenciar chamadas de voz e video em cima dessa sessao Baileys.',
+            'Baileys é uma biblioteca Node.js que fala o protocolo do WhatsApp Web via WebSocket. Ela não é a Cloud API oficial: roda em cima de uma sessão pareada (como se fosse o seu WhatsApp Web), o que abre portas que a API oficial fecha, mas também traz riscos que a API oficial não tem. O baileys-caller (https://github.com/SheIITear/baileys-caller) é um projeto focado em iniciar e gerenciar chamadas de voz e vídeo em cima dessa sessão Baileys.',
         },
         {
           type: 'table',
-          columns: ['Criterio', 'Cloud API oficial', 'Baileys / baileys-caller'],
+          columns: ['Critério', 'Cloud API oficial', 'Baileys / baileys-caller'],
           rows: [
-            ['Oficial', 'Sim, suportada pela Meta', 'Nao, biblioteca da comunidade'],
-            ['Chamadas de voz', 'Nao origina chamadas', 'Inicia chamadas de voz e video'],
-            ['Estabilidade', 'Alta, contrato versionado', 'Fragil, quebra quando o protocolo muda'],
+            ['Oficial', 'Sim, suportada pela Meta', 'Não, biblioteca da comunidade'],
+            ['Chamadas de voz', 'Não origina chamadas', 'Inicia chamadas de voz e vídeo'],
+            ['Estabilidade', 'Alta, contrato versionado', 'Frágil, quebra quando o protocolo muda'],
             ['Risco de ban', 'Baixo, dentro do ToS', 'Alto, fora do ToS oficial'],
-            ['Custo', 'Por conversa, previsivel', 'Infra propria, sem taxa por chamada'],
-            ['Suporte', 'Documentacao e suporte Meta', 'Comunidade, sem garantia'],
+            ['Custo', 'Por conversa, previsível', 'Infra própria, sem taxa por chamada'],
+            ['Suporte', 'Documentação e suporte Meta', 'Comunidade, sem garantia'],
           ],
         },
       ],
     },
     {
-      title: 'Como o Baileys funciona em alto nivel',
+      title: 'Como o Baileys funciona em alto nível',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O Baileys nao usa HTTP REST como a Cloud API. Ele abre um WebSocket contra a infraestrutura do WhatsApp Web e mantem uma sessao autenticada, exatamente como o aplicativo WhatsApp Web faz no navegador. O pareamento acontece via QR code ou via pairing code (um codigo numerico digitado no celular). A partir dai, mensagens e eventos chegam por um fluxo de eventos assincrono.',
+            'O Baileys não usa HTTP REST como a Cloud API. Ele abre um WebSocket contra a infraestrutura do WhatsApp Web e mantém uma sessão autenticada, exatamente como o aplicativo WhatsApp Web faz no navegador. O pareamento acontece via QR code ou via pairing code (um código numérico digitado no celular). A partir daí, mensagens e eventos chegam por um fluxo de eventos assíncrono.',
         },
         {
           type: 'diagram',
@@ -43,7 +43,7 @@ const pt = {
         |
    [Baileys socket]  <== WebSocket ==>  WhatsApp Web infra
         |                                       |
-   credenciais da sessao                   celular pareado
+   credenciais da sessão                   celular pareado
    (auth state salvo)                       (QR / pairing code)
         |
    eventos: connection.update, messages.upsert, call`,
@@ -51,7 +51,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A sessao precisa ser persistida (o chamado auth state) para nao exigir um novo pareamento a cada reinicio. Os eventos mais relevantes sao connection.update (estado da conexao), messages.upsert (mensagens) e os eventos de chamada, que sao justamente o que o baileys-caller estende para permitir originar a ligacao, e nao apenas observa-la.',
+            'A sessão precisa ser persistida (o chamado auth state) para não exigir um novo pareamento a cada reinício. Os eventos mais relevantes são connection.update (estado da conexão), messages.upsert (mensagens) e os eventos de chamada, que são justamente o que o baileys-caller estende para permitir originar a ligação, e não apenas observá-la.',
         },
       ],
     },
@@ -61,7 +61,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O codigo abaixo e ilustrativo. Ele mostra o padrao geral de conexao com Baileys, autenticacao via pairing code e a ideia de iniciar uma chamada com o baileys-caller. Os nomes exatos de funcoes podem diferir da versao real do projeto, consulte sempre o repositorio (https://github.com/SheIITear/baileys-caller) antes de usar em qualquer ambiente.',
+            'O código abaixo é ilustrativo. Ele mostra o padrão geral de conexão com Baileys, autenticação via pairing code e a ideia de iniciar uma chamada com o baileys-caller. Os nomes exatos de funções podem diferir da versão real do projeto, consulte sempre o repositório (https://github.com/SheIITear/baileys-caller) antes de usar em qualquer ambiente.',
         },
         {
           type: 'code',
@@ -96,7 +96,7 @@ async function start() {
         {
           type: 'paragraph',
           value:
-            'Com a sessao ativa, voce inicia a chamada e trata os eventos de ciclo de vida. De novo, os nomes sao ilustrativos: o importante e o padrao de tratar ringing, accepted, rejected e timeout.',
+            'Com a sessão ativa, você inicia a chamada e trata os eventos de ciclo de vida. De novo, os nomes são ilustrativos: o importante é o padrão de tratar ringing, accepted, rejected e timeout.',
         },
         {
           type: 'code',
@@ -117,62 +117,62 @@ async function ligar(caller, destino) {
       ],
     },
     {
-      title: 'Riscos e mitigacao',
+      title: 'Riscos e mitigação',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Usar uma biblioteca nao oficial nao e gratuito em termos de risco. O ponto mais importante: o WhatsApp pode banir o numero usado, sem aviso e sem recurso pratico. Trate isso como uma certeza eventual, nao como uma possibilidade remota, e desenhe o sistema para sobreviver a ela.',
+            'Usar uma biblioteca não oficial não é gratuito em termos de risco. O ponto mais importante: o WhatsApp pode banir o número usado, sem aviso e sem recurso prático. Trate isso como uma certeza eventual, não como uma possibilidade remota, e desenhe o sistema para sobreviver a ela.',
         },
         {
           type: 'list',
           items: [
-            'ToS do WhatsApp: originar chamadas via Baileys esta fora dos termos de uso oficiais. Avalie o risco juridico e de marca antes de seguir.',
-            'Risco de ban do numero: use um numero dedicado e descartavel, nunca o numero principal do negocio ou um numero pessoal.',
-            'Instabilidade do protocolo: quando o WhatsApp muda o protocolo do Web, a biblioteca pode parar de funcionar ate ser atualizada. Tenha um plano para indisponibilidade.',
-            'Rate limit proprio: limite a frequencia de chamadas (por minuto e por destino) para nao parecer comportamento automatizado abusivo, que acelera o ban.',
-            'Consentimento do destinatario: so ligue para quem aceitou receber chamadas. Chamadas nao solicitadas geram denuncias, que tambem aceleram o ban.',
-            'Sessao isolada: rode a sessao Baileys isolada, com auth state protegido, para conter o impacto se a credencial vazar.',
+            'ToS do WhatsApp: originar chamadas via Baileys está fora dos termos de uso oficiais. Avalie o risco jurídico e de marca antes de seguir.',
+            'Risco de ban do número: use um número dedicado e descartável, nunca o número principal do negócio ou um número pessoal.',
+            'Instabilidade do protocolo: quando o WhatsApp muda o protocolo do Web, a biblioteca pode parar de funcionar até ser atualizada. Tenha um plano para indisponibilidade.',
+            'Rate limit próprio: limite a frequência de chamadas (por minuto e por destino) para não parecer comportamento automatizado abusivo, que acelera o ban.',
+            'Consentimento do destinatário: só ligue para quem aceitou receber chamadas. Chamadas não solicitadas geram denúncias, que também aceleram o ban.',
+            'Sessão isolada: rode a sessão Baileys isolada, com auth state protegido, para conter o impacto se a credencial vazar.',
           ],
         },
       ],
     },
     {
-      title: 'Quando usar e quando NAO usar',
+      title: 'Quando usar e quando NÃO usar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A regra pratica e simples: so use baileys-caller se o valor de negocio justificar o risco de ban e a manutencao continua. Para producao critica, prefira sempre um canal de voz oficial (telefonia, SIP, provedores de voz) e deixe o WhatsApp para mensagens via Cloud API.',
+            'A regra prática é simples: só use baileys-caller se o valor de negócio justificar o risco de ban e a manutenção contínua. Para produção crítica, prefira sempre um canal de voz oficial (telefonia, SIP, provedores de voz) e deixe o WhatsApp para mensagens via Cloud API.',
         },
         {
           type: 'list',
           items: [
-            'Use se: for um piloto, um caso de uso de baixo volume, com numero dedicado e tolerancia explicita a quedas e ban.',
-            'Use se: o valor da chamada por voz no WhatsApp for alto o suficiente para compensar a infra e a manutencao continua.',
-            'NAO use se: o fluxo for critico para receita ou compliance e nao puder tolerar indisponibilidade ou perda do numero.',
-            'NAO use se: existir um canal de voz oficial (telefonia ou provedor de voz) que atenda o mesmo caso de uso com previsibilidade.',
-            'NAO use se: voce nao puder garantir consentimento do destinatario e rate limit responsavel.',
+            'Use se: for um piloto, um caso de uso de baixo volume, com número dedicado e tolerância explícita a quedas e ban.',
+            'Use se: o valor da chamada por voz no WhatsApp for alto o suficiente para compensar a infra e a manutenção contínua.',
+            'NÃO use se: o fluxo for crítico para receita ou compliance e não puder tolerar indisponibilidade ou perda do número.',
+            'NÃO use se: existir um canal de voz oficial (telefonia ou provedor de voz) que atenda o mesmo caso de uso com previsibilidade.',
+            'NÃO use se: você não puder garantir consentimento do destinatário e rate limit responsável.',
           ],
         },
       ],
     },
     {
-      title: 'Arquitetura responsavel',
+      title: 'Arquitetura responsável',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Se a decisao for seguir, contenha o risco com arquitetura. O objetivo e isolar a parte fragil e nao oficial do resto do sistema, com fallback claro e observabilidade.',
+            'Se a decisão for seguir, contenha o risco com arquitetura. O objetivo é isolar a parte frágil e não oficial do resto do sistema, com fallback claro e observabilidade.',
         },
         {
           type: 'ordered',
           items: [
-            'Isole a sessao Baileys em um worker dedicado, separado da sua API principal, com o auth state em armazenamento protegido.',
-            'Coloque as chamadas atras de uma fila, para controlar concorrencia, aplicar rate limit e nunca disparar tudo de uma vez.',
-            'Defina um fallback explicito: se a sessao Baileys cair ou o numero for banido, caia para a Cloud API (mensagem) ou para SMS / telefonia.',
-            'Registre logging estruturado de cada chamada (destino mascarado, status, duracao, motivo de falha) para auditar e detectar degradacao cedo.',
-            'Monitore a saude da sessao (connection.update) e alerte quando o pareamento cair, para reagir antes que a fila acumule.',
+            'Isole a sessão Baileys em um worker dedicado, separado da sua API principal, com o auth state em armazenamento protegido.',
+            'Coloque as chamadas atrás de uma fila, para controlar concorrência, aplicar rate limit e nunca disparar tudo de uma vez.',
+            'Defina um fallback explícito: se a sessão Baileys cair ou o número for banido, caia para a Cloud API (mensagem) ou para SMS / telefonia.',
+            'Registre logging estruturado de cada chamada (destino mascarado, status, duração, motivo de falha) para auditar e detectar degradação cedo.',
+            'Monitore a saúde da sessão (connection.update) e alerte quando o pareamento cair, para reagir antes que a fila acumule.',
           ],
         },
       ],
@@ -180,30 +180,30 @@ async function ligar(caller, destino) {
   ],
   faq: [
     {
-      question: 'baileys-caller e oficial?',
+      question: 'baileys-caller é oficial?',
       answer:
-        'Nao. E um projeto da comunidade baseado em Baileys, que fala o protocolo do WhatsApp Web via WebSocket. Nao tem relacao, suporte nem garantia da Meta, e opera fora dos termos de uso oficiais do WhatsApp.',
+        'Não. É um projeto da comunidade baseado em Baileys, que fala o protocolo do WhatsApp Web via WebSocket. Não tem relação, suporte nem garantia da Meta, e opera fora dos termos de uso oficiais do WhatsApp.',
     },
     {
-      question: 'Posso usar em producao?',
+      question: 'Posso usar em produção?',
       answer:
-        'Tecnicamente sim, mas com ressalvas serias. Para fluxos criticos de receita ou compliance, prefira um canal de voz oficial. Se mesmo assim usar, faca com numero dedicado, fila, rate limit, consentimento do destinatario e fallback para Cloud API ou telefonia.',
+        'Tecnicamente sim, mas com ressalvas sérias. Para fluxos críticos de receita ou compliance, prefira um canal de voz oficial. Se mesmo assim usar, faça com número dedicado, fila, rate limit, consentimento do destinatário e fallback para Cloud API ou telefonia.',
     },
     {
       question: 'Qual o risco de ban?',
       answer:
-        'Alto e imprevisivel. Originar chamadas via Baileys esta fora do ToS, entao o WhatsApp pode banir o numero a qualquer momento, sem aviso. Trate o ban como algo que vai acontecer e use sempre um numero descartavel, nunca o principal do negocio.',
+        'Alto e imprevisível. Originar chamadas via Baileys está fora do ToS, então o WhatsApp pode banir o número a qualquer momento, sem aviso. Trate o ban como algo que vai acontecer e use sempre um número descartável, nunca o principal do negócio.',
     },
   ],
   conclusion: {
     title: 'Use o trade-off com os olhos abertos',
     description:
-      'O baileys-caller resolve um gap real (originar chamadas de voz que a Cloud API nao permite), mas cobra esse poder em risco de ban e manutencao continua. Trate como solucao nao oficial, isole a sessao, tenha fallback e so siga quando o valor justificar o risco.',
+      'O baileys-caller resolve um gap real (originar chamadas de voz que a Cloud API não permite), mas cobra esse poder em risco de ban e manutenção contínua. Trate como solução não oficial, isole a sessão, tenha fallback e só siga quando o valor justificar o risco.',
     cta: 'Quer avaliar se chamadas de voz no WhatsApp fazem sentido no seu caso? Vamos conversar.',
   },
   related: [
     { label: 'Guia do WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
-    { label: 'Seguranca em integracoes Meta e WhatsApp', to: '/blog/seguranca-integracoes-meta-whatsapp' },
+    { label: 'Segurança em integrações Meta e WhatsApp', to: '/blog/seguranca-integracoes-meta-whatsapp' },
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
   ],
   repo: {
@@ -430,7 +430,7 @@ async function call(caller, target) {
 
 const es = {
   intro:
-    'La Cloud API oficial de WhatsApp es excelente para mensajes, plantillas y webhooks, pero tiene un limite claro: no permite originar llamadas de voz arbitrarias desde tu sistema. Cuando el caso de uso lo exige (un callback de atencion, una confirmacion por voz, una alerta urgente), el camino pasa por bibliotecas no oficiales basadas en Baileys, como baileys-caller. Este articulo muestra como iniciar llamadas de voz de forma programatica, como funciona Baileys por debajo y, sobre todo, cuando este trade-off (solucion no oficial versus Cloud API oficial) realmente vale la pena.',
+    'La Cloud API oficial de WhatsApp es excelente para mensajes, plantillas y webhooks, pero tiene un límite claro: no permite originar llamadas de voz arbitrarias desde tu sistema. Cuando el caso de uso lo exige (un callback de atención, una confirmación por voz, una alerta urgente), el camino pasa por bibliotecas no oficiales basadas en Baileys, como baileys-caller. Este artículo muestra cómo iniciar llamadas de voz de forma programática, cómo funciona Baileys por debajo y, sobre todo, cuándo este trade-off (solución no oficial versus Cloud API oficial) realmente vale la pena.',
   sections: [
     {
       title: 'El gap: la Cloud API oficial no origina llamadas de voz',
@@ -438,34 +438,34 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La Cloud API oficial cubre el envio y la recepcion de mensajes, plantillas aprobadas, medios y webhooks de estado. No expone un endpoint para que tu backend marque una llamada de voz a un numero. Para algunos casos de uso (confirmar una entrega por voz, hacer un callback automatico de atencion, disparar una alerta que necesita sonar como una llamada), esa brecha es un bloqueo real, y ahi entran las bibliotecas basadas en el protocolo de WhatsApp Web.',
+            'La Cloud API oficial cubre el envío y la recepción de mensajes, plantillas aprobadas, medios y webhooks de estado. No expone un endpoint para que tu backend marque una llamada de voz a un número. Para algunos casos de uso (confirmar una entrega por voz, hacer un callback automático de atención, disparar una alerta que necesita sonar como una llamada), esa brecha es un bloqueo real, y ahí entran las bibliotecas basadas en el protocolo de WhatsApp Web.',
         },
         {
           type: 'paragraph',
           value:
-            'Baileys es una biblioteca Node.js que habla el protocolo de WhatsApp Web por WebSocket. No es la Cloud API oficial: corre sobre una sesion emparejada (como si fuera tu WhatsApp Web), lo que abre puertas que la API oficial cierra, pero tambien trae riesgos que la API oficial no tiene. baileys-caller (https://github.com/SheIITear/baileys-caller) es un proyecto enfocado en iniciar y gestionar llamadas de voz y video sobre esa sesion Baileys.',
+            'Baileys es una biblioteca Node.js que habla el protocolo de WhatsApp Web por WebSocket. No es la Cloud API oficial: corre sobre una sesión emparejada (como si fuera tu WhatsApp Web), lo que abre puertas que la API oficial cierra, pero también trae riesgos que la API oficial no tiene. baileys-caller (https://github.com/SheIITear/baileys-caller) es un proyecto enfocado en iniciar y gestionar llamadas de voz y vídeo sobre esa sesión Baileys.',
         },
         {
           type: 'table',
           columns: ['Criterio', 'Cloud API oficial', 'Baileys / baileys-caller'],
           rows: [
-            ['Oficial', 'Si, soportada por Meta', 'No, biblioteca de la comunidad'],
-            ['Llamadas de voz', 'No origina llamadas', 'Inicia llamadas de voz y video'],
-            ['Estabilidad', 'Alta, contrato versionado', 'Fragil, se rompe al cambiar el protocolo'],
+            ['Oficial', 'Sí, soportada por Meta', 'No, biblioteca de la comunidad'],
+            ['Llamadas de voz', 'No origina llamadas', 'Inicia llamadas de voz y vídeo'],
+            ['Estabilidad', 'Alta, contrato versionado', 'Frágil, se rompe al cambiar el protocolo'],
             ['Riesgo de ban', 'Bajo, dentro del ToS', 'Alto, fuera del ToS oficial'],
-            ['Costo', 'Por conversacion, previsible', 'Infra propia, sin tarifa por llamada'],
-            ['Soporte', 'Documentacion y soporte de Meta', 'Comunidad, sin garantia'],
+            ['Costo', 'Por conversación, previsible', 'Infra propia, sin tarifa por llamada'],
+            ['Soporte', 'Documentación y soporte de Meta', 'Comunidad, sin garantía'],
           ],
         },
       ],
     },
     {
-      title: 'Como funciona Baileys a alto nivel',
+      title: 'Cómo funciona Baileys a alto nivel',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Baileys no usa HTTP REST como la Cloud API. Abre un WebSocket contra la infraestructura de WhatsApp Web y mantiene una sesion autenticada, exactamente como hace la app de WhatsApp Web en el navegador. El emparejamiento ocurre por codigo QR o por un pairing code (un codigo numerico que se escribe en el celular). A partir de ahi, los mensajes y eventos llegan por un flujo de eventos asincrono.',
+            'Baileys no usa HTTP REST como la Cloud API. Abre un WebSocket contra la infraestructura de WhatsApp Web y mantiene una sesión autenticada, exactamente como hace la app de WhatsApp Web en el navegador. El emparejamiento ocurre por código QR o por un pairing code (un código numérico que se escribe en el celular). A partir de ahí, los mensajes y eventos llegan por un flujo de eventos asíncrono.',
         },
         {
           type: 'diagram',
@@ -473,7 +473,7 @@ const es = {
         |
    [Baileys socket]  <== WebSocket ==>  WhatsApp Web infra
         |                                       |
-   credenciales de la sesion               celular emparejado
+   credenciales de la sesión               celular emparejado
    (auth state guardado)                   (QR / pairing code)
         |
    eventos: connection.update, messages.upsert, call`,
@@ -481,7 +481,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La sesion debe persistirse (el llamado auth state) para no exigir un nuevo emparejamiento en cada reinicio. Los eventos mas relevantes son connection.update (estado de la conexion), messages.upsert (mensajes) y los eventos de llamada, que son justamente lo que baileys-caller extiende para permitir originar la llamada, y no solo observarla.',
+            'La sesión debe persistirse (el llamado auth state) para no exigir un nuevo emparejamiento en cada reinicio. Los eventos más relevantes son connection.update (estado de la conexión), messages.upsert (mensajes) y los eventos de llamada, que son justamente lo que baileys-caller extiende para permitir originar la llamada, y no solo observarla.',
         },
       ],
     },
@@ -491,7 +491,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El codigo de abajo es ilustrativo. Muestra el patron general de conexion con Baileys, autenticacion por pairing code y la idea de iniciar una llamada con baileys-caller. Los nombres exactos de las funciones pueden diferir de la version real del proyecto, consulta siempre el repositorio (https://github.com/SheIITear/baileys-caller) antes de usarlo en cualquier entorno.',
+            'El código de abajo es ilustrativo. Muestra el patrón general de conexión con Baileys, autenticación por pairing code y la idea de iniciar una llamada con baileys-caller. Los nombres exactos de las funciones pueden diferir de la versión real del proyecto, consulta siempre el repositorio (https://github.com/SheIITear/baileys-caller) antes de usarlo en cualquier entorno.',
         },
         {
           type: 'code',
@@ -526,7 +526,7 @@ async function start() {
         {
           type: 'paragraph',
           value:
-            'Con la sesion activa, inicias la llamada y manejas los eventos del ciclo de vida. De nuevo, los nombres son ilustrativos: lo importante es el patron de manejar ringing, accepted, rejected y timeout.',
+            'Con la sesión activa, inicias la llamada y manejas los eventos del ciclo de vida. De nuevo, los nombres son ilustrativos: lo importante es el patrón de manejar ringing, accepted, rejected y timeout.',
         },
         {
           type: 'code',
@@ -547,41 +547,41 @@ async function llamar(caller, destino) {
       ],
     },
     {
-      title: 'Riesgos y mitigacion',
+      title: 'Riesgos y mitigación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Usar una biblioteca no oficial no es gratis en terminos de riesgo. El punto mas importante: WhatsApp puede banear el numero que uses, sin aviso y sin recurso practico. Trata esto como una certeza eventual, no como una posibilidad remota, y disena el sistema para sobrevivir a ello.',
+            'Usar una biblioteca no oficial no es gratis en términos de riesgo. El punto más importante: WhatsApp puede banear el número que uses, sin aviso y sin recurso práctico. Trata esto como una certeza eventual, no como una posibilidad remota, y diseña el sistema para sobrevivir a ello.',
         },
         {
           type: 'list',
           items: [
-            'ToS de WhatsApp: originar llamadas via Baileys esta fuera de los terminos de uso oficiales. Evalua el riesgo juridico y de marca antes de seguir.',
-            'Riesgo de ban del numero: usa un numero dedicado y descartable, nunca el numero principal del negocio ni uno personal.',
+            'ToS de WhatsApp: originar llamadas vía Baileys está fuera de los términos de uso oficiales. Evalúa el riesgo jurídico y de marca antes de seguir.',
+            'Riesgo de ban del número: usa un número dedicado y descartable, nunca el número principal del negocio ni uno personal.',
             'Inestabilidad del protocolo: cuando WhatsApp cambia el protocolo de Web, la biblioteca puede dejar de funcionar hasta actualizarse. Ten un plan para la indisponibilidad.',
             'Rate limit propio: limita la frecuencia de llamadas (por minuto y por destino) para no parecer comportamiento automatizado abusivo, que acelera el ban.',
-            'Consentimiento del destinatario: solo llama a quien acepto recibir llamadas. Las llamadas no solicitadas generan denuncias, que tambien aceleran el ban.',
-            'Sesion aislada: corre la sesion Baileys aislada, con el auth state protegido, para contener el impacto si la credencial se filtra.',
+            'Consentimiento del destinatario: solo llama a quien aceptó recibir llamadas. Las llamadas no solicitadas generan denuncias, que también aceleran el ban.',
+            'Sesión aislada: corre la sesión Baileys aislada, con el auth state protegido, para contener el impacto si la credencial se filtra.',
           ],
         },
       ],
     },
     {
-      title: 'Cuando usar y cuando NO usar',
+      title: 'Cuándo usar y cuándo NO usar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La regla practica es simple: solo usa baileys-caller si el valor de negocio justifica el riesgo de ban y el mantenimiento continuo. Para produccion critica, prefiere siempre un canal de voz oficial (telefonia, SIP, proveedores de voz) y deja WhatsApp para mensajes via Cloud API.',
+            'La regla práctica es simple: solo usa baileys-caller si el valor de negocio justifica el riesgo de ban y el mantenimiento continuo. Para producción crítica, prefiere siempre un canal de voz oficial (telefonía, SIP, proveedores de voz) y deja WhatsApp para mensajes vía Cloud API.',
         },
         {
           type: 'list',
           items: [
-            'Usa si: es un piloto, un caso de uso de bajo volumen, con numero dedicado y tolerancia explicita a caidas y bans.',
+            'Usa si: es un piloto, un caso de uso de bajo volumen, con número dedicado y tolerancia explícita a caídas y bans.',
             'Usa si: el valor de la llamada de voz en WhatsApp es lo bastante alto para compensar la infra y el mantenimiento continuo.',
-            'NO uses si: el flujo es critico para ingresos o compliance y no puede tolerar indisponibilidad ni la perdida del numero.',
-            'NO uses si: existe un canal de voz oficial (telefonia o proveedor de voz) que atienda el mismo caso de uso con previsibilidad.',
+            'NO uses si: el flujo es crítico para ingresos o compliance y no puede tolerar indisponibilidad ni la pérdida del número.',
+            'NO uses si: existe un canal de voz oficial (telefonía o proveedor de voz) que atienda el mismo caso de uso con previsibilidad.',
             'NO uses si: no puedes garantizar el consentimiento del destinatario y un rate limit responsable.',
           ],
         },
@@ -593,16 +593,16 @@ async function llamar(caller, destino) {
         {
           type: 'paragraph',
           value:
-            'Si la decision es seguir, contiene el riesgo con arquitectura. El objetivo es aislar la parte fragil y no oficial del resto del sistema, con fallback claro y observabilidad.',
+            'Si la decisión es seguir, contén el riesgo con arquitectura. El objetivo es aislar la parte frágil y no oficial del resto del sistema, con fallback claro y observabilidad.',
         },
         {
           type: 'ordered',
           items: [
-            'Aisla la sesion Baileys en un worker dedicado, separado de tu API principal, con el auth state en almacenamiento protegido.',
-            'Coloca las llamadas detras de una cola, para controlar concurrencia, aplicar rate limit y nunca disparar todo de una vez.',
-            'Define un fallback explicito: si la sesion Baileys cae o el numero es baneado, cae a la Cloud API (mensaje) o a SMS / telefonia.',
-            'Registra logging estructurado de cada llamada (destino enmascarado, estado, duracion, motivo de falla) para auditar y detectar degradacion temprano.',
-            'Monitorea la salud de la sesion (connection.update) y alerta cuando el emparejamiento caiga, para reaccionar antes de que la cola se acumule.',
+            'Aísla la sesión Baileys en un worker dedicado, separado de tu API principal, con el auth state en almacenamiento protegido.',
+            'Coloca las llamadas detrás de una cola, para controlar concurrencia, aplicar rate limit y nunca disparar todo de una vez.',
+            'Define un fallback explícito: si la sesión Baileys cae o el número es baneado, cae a la Cloud API (mensaje) o a SMS / telefonía.',
+            'Registra logging estructurado de cada llamada (destino enmascarado, estado, duración, motivo de falla) para auditar y detectar degradación temprano.',
+            'Monitorea la salud de la sesión (connection.update) y alerta cuando el emparejamiento caiga, para reaccionar antes de que la cola se acumule.',
           ],
         },
       ],
@@ -610,29 +610,29 @@ async function llamar(caller, destino) {
   ],
   faq: [
     {
-      question: 'baileys-caller es oficial?',
+      question: '¿baileys-caller es oficial?',
       answer:
-        'No. Es un proyecto de la comunidad basado en Baileys, que habla el protocolo de WhatsApp Web por WebSocket. No tiene relacion, soporte ni garantia de Meta, y opera fuera de los terminos de uso oficiales de WhatsApp.',
+        'No. Es un proyecto de la comunidad basado en Baileys, que habla el protocolo de WhatsApp Web por WebSocket. No tiene relación, soporte ni garantía de Meta, y opera fuera de los términos de uso oficiales de WhatsApp.',
     },
     {
-      question: 'Puedo usarlo en produccion?',
+      question: '¿Puedo usarlo en producción?',
       answer:
-        'Tecnicamente si, pero con reservas serias. Para flujos criticos de ingresos o compliance, prefiere un canal de voz oficial. Si aun asi lo usas, hazlo con numero dedicado, cola, rate limit, consentimiento del destinatario y fallback a la Cloud API o telefonia.',
+        'Técnicamente sí, pero con reservas serias. Para flujos críticos de ingresos o compliance, prefiere un canal de voz oficial. Si aun así lo usas, hazlo con número dedicado, cola, rate limit, consentimiento del destinatario y fallback a la Cloud API o telefonía.',
     },
     {
-      question: 'Cual es el riesgo de ban?',
+      question: '¿Cuál es el riesgo de ban?',
       answer:
-        'Alto e impredecible. Originar llamadas via Baileys esta fuera del ToS, asi que WhatsApp puede banear el numero en cualquier momento, sin aviso. Trata el ban como algo que va a pasar y usa siempre un numero descartable, nunca el principal del negocio.',
+        'Alto e impredecible. Originar llamadas vía Baileys está fuera del ToS, así que WhatsApp puede banear el número en cualquier momento, sin aviso. Trata el ban como algo que va a pasar y usa siempre un número descartable, nunca el principal del negocio.',
     },
   ],
   conclusion: {
     title: 'Usa el trade-off con los ojos abiertos',
     description:
-      'baileys-caller resuelve un gap real (originar llamadas de voz que la Cloud API no permite), pero cobra ese poder en riesgo de ban y mantenimiento continuo. Tratalo como solucion no oficial, aisla la sesion, ten fallback y solo sigue cuando el valor justifique el riesgo.',
-    cta: 'Quieres evaluar si las llamadas de voz en WhatsApp tienen sentido en tu caso? Hablemos.',
+      'baileys-caller resuelve un gap real (originar llamadas de voz que la Cloud API no permite), pero cobra ese poder en riesgo de ban y mantenimiento continuo. Trátalo como solución no oficial, aísla la sesión, ten fallback y solo sigue cuando el valor justifique el riesgo.',
+    cta: '¿Quieres evaluar si las llamadas de voz en WhatsApp tienen sentido en tu caso? Hablemos.',
   },
   related: [
-    { label: 'Guia del WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
+    { label: 'Guía del WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
     { label: 'Seguridad en integraciones Meta y WhatsApp', to: '/blog/seguranca-integracoes-meta-whatsapp' },
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
   ],

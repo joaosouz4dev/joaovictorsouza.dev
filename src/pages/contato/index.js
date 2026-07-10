@@ -69,7 +69,7 @@ const Contato = () => {
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="block h-full"
               >
-                <Card spotlight className="group h-full p-8 transition-transform hover:-translate-y-1">
+                <Card spotlight interactive className="group h-full p-8">
                   <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent text-white shadow-glow">
                     <Icon size={20} />
                   </div>

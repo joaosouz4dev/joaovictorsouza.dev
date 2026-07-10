@@ -4,70 +4,70 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'Camada minima de guardrails de saida para LLM: valida a resposta contra um schema, repara e faz retry com feedback estruturado, detecta recusa e vazamento de dado sensivel, bloqueia acao perigosa antes de executar e sempre entrega um fallback seguro em vez de propagar saida invalida para o usuario.',
+  pt: 'Camada mínima de guardrails de saída para LLM: valida a resposta contra um schema, repara e faz retry com feedback estruturado, detecta recusa e vazamento de dado sensível, bloqueia ação perigosa antes de executar e sempre entrega um fallback seguro em vez de propagar saída inválida para o usuário.',
   en: 'Minimal output-guardrail layer for LLMs: validates the response against a schema, repairs and retries with structured feedback, detects refusal and sensitive-data leakage, blocks a dangerous action before executing and always delivers a safe fallback instead of propagating invalid output to the user.',
-  es: 'Capa minima de guardrails de salida para LLM: valida la respuesta contra un schema, repara y reintenta con feedback estructurado, detecta rechazo y filtracion de dato sensible, bloquea una accion peligrosa antes de ejecutar y siempre entrega un fallback seguro en vez de propagar salida invalida al usuario.',
+  es: 'Capa mínima de guardrails de salida para LLM: valida la respuesta contra un schema, repara y reintenta con feedback estructurado, detecta rechazo y filtración de dato sensible, bloquea una acción peligrosa antes de ejecutar y siempre entrega un fallback seguro en vez de propagar salida inválida al usuario.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/llm-output-guardrails-mini';
 
 const pt = {
   intro:
-    'A parte perigosa de um sistema com LLM nao e o prompt que entra, e a resposta que sai. O modelo pode devolver JSON quebrado que estoura o parser, inventar um campo que nunca existiu, vazar o CPF que estava no contexto, recusar uma pergunta legitima ou pedir para chamar uma tool destrutiva com argumento errado. Sem uma camada que inspeciona a saida antes de ela chegar ao usuario ou ao banco, cada uma dessas falhas vira bug de producao, incidente de privacidade ou acao irreversivel. Guardrails de saida sao essa camada: um conjunto de validacoes entre o modelo e o mundo que decide se a resposta pode passar, precisa ser reparada ou tem que ser bloqueada. Este artigo mostra como construir essa camada sem transformar o produto num labirinto de if: validacao de schema com reparo e retry, deteccao de recusa e de vazamento, bloqueio de acao perigosa antes da execucao, e a regra de ouro que amarra tudo, sempre ter um fallback seguro. O foco e o minimo que impede a saida ruim de virar dano real.',
+    'A parte perigosa de um sistema com LLM não é o prompt que entra, é a resposta que sai. O modelo pode devolver JSON quebrado que estoura o parser, inventar um campo que nunca existiu, vazar o CPF que estava no contexto, recusar uma pergunta legítima ou pedir para chamar uma tool destrutiva com argumento errado. Sem uma camada que inspeciona a saída antes de ela chegar ao usuário ou ao banco, cada uma dessas falhas vira bug de produção, incidente de privacidade ou ação irreversível. Guardrails de saída são essa camada: um conjunto de validações entre o modelo e o mundo que decide se a resposta pode passar, precisa ser reparada ou tem que ser bloqueada. Este artigo mostra como construir essa camada sem transformar o produto num labirinto de if: validação de schema com reparo e retry, detecção de recusa e de vazamento, bloqueio de ação perigosa antes da execução, e a regra de ouro que amarra tudo, sempre ter um fallback seguro. O foco é o mínimo que impede a saída ruim de virar dano real.',
   sections: [
     {
-      title: 'Guardrail de entrada nao e guardrail de saida',
+      title: 'Guardrail de entrada não é guardrail de saída',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A confusao mais comum e achar que validar o prompt de entrada resolve o problema. Nao resolve: sao dois riscos diferentes em momentos diferentes. O guardrail de entrada protege contra o que o usuario manda (prompt injection, pedido abusivo, conteudo proibido) e roda antes do modelo. O guardrail de saida protege contra o que o modelo devolve (formato invalido, alucinacao, vazamento, acao perigosa) e roda depois do modelo, antes de a resposta chegar ao usuario, ao banco ou a uma tool. Uma entrada perfeitamente valida pode gerar uma saida perigosa, porque o modelo e probabilistico e nao garante nada sobre o que produz.',
+            'A confusão mais comum é achar que validar o prompt de entrada resolve o problema. Não resolve: são dois riscos diferentes em momentos diferentes. O guardrail de entrada protege contra o que o usuário manda (prompt injection, pedido abusivo, conteúdo proibido) e roda antes do modelo. O guardrail de saída protege contra o que o modelo devolve (formato inválido, alucinação, vazamento, ação perigosa) e roda depois do modelo, antes de a resposta chegar ao usuário, ao banco ou a uma tool. Uma entrada perfeitamente válida pode gerar uma saída perigosa, porque o modelo é probabilístico e não garante nada sobre o que produz.',
         },
         {
           type: 'paragraph',
           value:
-            'O ponto de instalacao importa: o guardrail de saida fica no caminho de retorno, envelopando a resposta do modelo como um interceptor. Nada que o modelo produz chega ao mundo externo sem passar por ele. A tabela abaixo separa os dois para deixar claro que um nao substitui o outro.',
+            'O ponto de instalação importa: o guardrail de saída fica no caminho de retorno, envelopando a resposta do modelo como um interceptor. Nada que o modelo produz chega ao mundo externo sem passar por ele. A tabela abaixo separa os dois para deixar claro que um não substitui o outro.',
         },
         {
           type: 'table',
-          columns: ['Dimensao', 'Guardrail de entrada', 'Guardrail de saida'],
+          columns: ['Dimensão', 'Guardrail de entrada', 'Guardrail de saída'],
           rows: [
             [
               'Quando roda',
               'Antes de chamar o modelo',
-              'Depois do modelo, antes do usuario/banco/tool',
+              'Depois do modelo, antes do usuário/banco/tool',
             ],
             [
               'Protege contra',
               'Prompt injection, pedido abusivo, PII na entrada',
-              'Formato invalido, alucinacao, vazamento, acao perigosa',
+              'Formato inválido, alucinação, vazamento, ação perigosa',
             ],
             [
-              'Acao tipica',
+              'Ação típica',
               'Recusar, sanitizar, rotear',
               'Reparar, fazer retry, bloquear, fallback',
             ],
             [
               'Se falhar',
               'Modelo recebe entrada ruim',
-              'Usuario recebe saida ruim (dano real)',
+              'Usuário recebe saída ruim (dano real)',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A regra pratica: guardrail de entrada reduz a chance de saida ruim, mas nunca a elimina. A validacao que de fato protege o usuario e a de saida, porque e a ultima antes do dano. Investir so na entrada e trancar a porta da frente e deixar a dos fundos aberta.',
+            'A regra prática: guardrail de entrada reduz a chance de saída ruim, mas nunca a elimina. A validação que de fato protege o usuário é a de saída, porque é a última antes do dano. Investir só na entrada é trancar a porta da frente e deixar a dos fundos aberta.',
         },
       ],
     },
     {
-      title: 'Validacao de schema: o retry estruturado que conserta em vez de quebrar',
+      title: 'Validação de schema: o retry estruturado que conserta em vez de quebrar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O guardrail mais barato e mais rentavel e a validacao de schema. Quando a saida do modelo deveria ser JSON estruturado (para virar chamada de API, registro no banco ou decisao de fluxo), voce nao confia que veio certo, voce valida contra um schema. Mas o passo que separa um sistema fragil de um robusto e o que fazer quando a validacao falha: em vez de estourar um erro para o usuario, voce devolve o erro de validacao ao proprio modelo e pede para ele corrigir. O modelo que produziu o JSON quebrado quase sempre acerta na segunda tentativa quando recebe a mensagem exata do que estava errado.',
+            'O guardrail mais barato e mais rentável é a validação de schema. Quando a saída do modelo deveria ser JSON estruturado (para virar chamada de API, registro no banco ou decisão de fluxo), você não confia que veio certo, você valida contra um schema. Mas o passo que separa um sistema frágil de um robusto é o que fazer quando a validação falha: em vez de estourar um erro para o usuário, você devolve o erro de validação ao próprio modelo e pede para ele corrigir. O modelo que produziu o JSON quebrado quase sempre acerta na segunda tentativa quando recebe a mensagem exata do que estava errado.',
         },
         {
           type: 'code',
@@ -110,41 +110,41 @@ function feedbackFor(err) {
         {
           type: 'paragraph',
           value:
-            'Dois detalhes fazem a diferenca. Primeiro, o retry tem limite: duas tentativas cobrem a esmagadora maioria dos casos, e insistir alem disso so queima token e latencia num modelo que nao vai convergir. Segundo, quando o retry esgota, o retorno nao e a saida invalida, e um sinal de falha que o fallback vai tratar. Propagar JSON quebrado depois de duas tentativas e trocar um erro controlado por um erro em producao.',
+            'Dois detalhes fazem a diferença. Primeiro, o retry tem limite: duas tentativas cobrem a esmagadora maioria dos casos, e insistir além disso só queima token e latência num modelo que não vai convergir. Segundo, quando o retry esgota, o retorno não é a saída inválida, é um sinal de falha que o fallback vai tratar. Propagar JSON quebrado depois de duas tentativas é trocar um erro controlado por um erro em produção.',
         },
       ],
     },
     {
-      title: 'Detectar recusa indevida e recusa legitima',
+      title: 'Detectar recusa indevida e recusa legítima',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Nem toda recusa e um problema, e nem toda resposta fluida esta correta. O modelo pode recusar uma pergunta perfeitamente legitima ("nao posso ajudar com isso") por excesso de zelo, e pode responder com confianca algo que deveria ter recusado. O guardrail de recusa mede esse eixo: ele classifica se a resposta e uma recusa e decide se aquela recusa faz sentido no contexto. Recusa em cima de pedido valido e degradacao de produto, o usuario bateu numa parede sem motivo. Ausencia de recusa em pedido perigoso e risco, o modelo passou por cima de um limite que deveria respeitar.',
+            'Nem toda recusa é um problema, e nem toda resposta fluida está correta. O modelo pode recusar uma pergunta perfeitamente legítima ("não posso ajudar com isso") por excesso de zelo, e pode responder com confiança algo que deveria ter recusado. O guardrail de recusa mede esse eixo: ele classifica se a resposta é uma recusa e decide se aquela recusa faz sentido no contexto. Recusa em cima de pedido válido é degradação de produto, o usuário bateu numa parede sem motivo. Ausência de recusa em pedido perigoso é risco, o modelo passou por cima de um limite que deveria respeitar.',
         },
         {
           type: 'list',
           items: [
-            'Detectar a recusa: procure os padroes de recusa da sua stack ("nao posso", "nao consigo ajudar", "isso vai contra") e trate como um sinal classificavel, nao como texto qualquer.',
-            'Classificar o contexto: a pergunta era legitima? Se sim, uma recusa e falha, e o caminho e re-perguntar com prompt ajustado ou rotear para humano, nao devolver a parede ao usuario.',
-            'Medir a taxa de recusa: recusa subindo de repente costuma ser prompt quebrado ou guardrail agressivo demais, e so aparece se voce conta as recusas como metrica.',
-            'Nao suprimir recusa legitima: quando o modelo recusa algo que deve mesmo recusar, o guardrail confirma e registra, ele nao forca uma resposta que abriria um buraco de seguranca.',
+            'Detectar a recusa: procure os padrões de recusa da sua stack ("não posso", "não consigo ajudar", "isso vai contra") e trate como um sinal classificável, não como texto qualquer.',
+            'Classificar o contexto: a pergunta era legítima? Se sim, uma recusa é falha, e o caminho é re-perguntar com prompt ajustado ou rotear para humano, não devolver a parede ao usuário.',
+            'Medir a taxa de recusa: recusa subindo de repente costuma ser prompt quebrado ou guardrail agressivo demais, e só aparece se você conta as recusas como métrica.',
+            'Não suprimir recusa legítima: quando o modelo recusa algo que deve mesmo recusar, o guardrail confirma e registra, ele não força uma resposta que abriria um buraco de segurança.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O erro classico e tratar recusa como falha sempre, e reescrever o prompt ate o modelo responder qualquer coisa. Isso quebra a recusa legitima e transforma o guardrail num vetor de ataque. A postura certa e distinguir: recusa indevida se conserta, recusa legitima se respeita. O guardrail nao existe para forcar resposta, existe para garantir que a decisao de responder ou nao esteja alinhada com o contexto.',
+            'O erro clássico é tratar recusa como falha sempre, e reescrever o prompt até o modelo responder qualquer coisa. Isso quebra a recusa legítima e transforma o guardrail num vetor de ataque. A postura certa é distinguir: recusa indevida se conserta, recusa legítima se respeita. O guardrail não existe para forçar resposta, existe para garantir que a decisão de responder ou não esteja alinhada com o contexto.',
         },
       ],
     },
     {
-      title: 'Vazamento de dado sensivel na saida',
+      title: 'Vazamento de dado sensível na saída',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Um risco silencioso: o contexto do modelo carrega dado sensivel (CPF, telefone, dado de outro usuario que entrou por engano no retrieval) e o modelo repete esse dado na resposta. A entrada estava sob controle, mas a saida vaza. O guardrail de vazamento inspeciona a resposta antes de entregar e bloqueia ou redige o que nao deveria sair. E a mesma logica da redacao de log, mas aqui o alvo e o que chega ao usuario final, entao a barra e mais alta: em log voce redige para nao persistir, na saida voce redige ou bloqueia para nao expor.',
+            'Um risco silencioso: o contexto do modelo carrega dado sensível (CPF, telefone, dado de outro usuário que entrou por engano no retrieval) e o modelo repete esse dado na resposta. A entrada estava sob controle, mas a saída vaza. O guardrail de vazamento inspeciona a resposta antes de entregar e bloqueia ou redige o que não deveria sair. É a mesma lógica da redação de log, mas aqui o alvo é o que chega ao usuário final, então a barra é mais alta: em log você redige para não persistir, na saída você redige ou bloqueia para não expor.',
         },
         {
           type: 'code',
@@ -182,17 +182,17 @@ export function checkLeak(output, { allowed = [] }) {
         {
           type: 'paragraph',
           value:
-            'A decisao entre redigir e bloquear e o que separa um guardrail util de um perigoso. Mascarar um email num texto que ainda faz sentido e razoavel. Mas quando a resposta inteira gira em torno de um dado que vazou por engano (o modelo confundiu o pedido de um usuario com o cadastro de outro), redigir deixa passar uma resposta sem sentido e potencialmente incriminadora. Nesse caso, bloquear e cair no fallback e mais seguro do que entregar algo mutilado.',
+            'A decisão entre redigir e bloquear é o que separa um guardrail útil de um perigoso. Mascarar um email num texto que ainda faz sentido é razoável. Mas quando a resposta inteira gira em torno de um dado que vazou por engano (o modelo confundiu o pedido de um usuário com o cadastro de outro), redigir deixa passar uma resposta sem sentido e potencialmente incriminadora. Nesse caso, bloquear e cair no fallback é mais seguro do que entregar algo mutilado.',
         },
       ],
     },
     {
-      title: 'Bloquear acao perigosa antes de executar',
+      title: 'Bloquear ação perigosa antes de executar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O guardrail mais critico e o que fica entre o modelo e uma acao com efeito colateral. Quando o LLM decide chamar uma tool (cancelar pedido, emitir reembolso, apagar registro, disparar mensagem em massa), a saida do modelo deixa de ser texto e vira comando. Um argumento alucinado, um id errado ou um valor fora de faixa nao geram uma resposta ruim, geram uma acao irreversivel. Aqui a saida do modelo e uma proposta de acao, e o guardrail e a aprovacao: valida os argumentos, checa limites e politicas, e so entao deixa executar.',
+            'O guardrail mais crítico é o que fica entre o modelo e uma ação com efeito colateral. Quando o LLM decide chamar uma tool (cancelar pedido, emitir reembolso, apagar registro, disparar mensagem em massa), a saída do modelo deixa de ser texto e vira comando. Um argumento alucinado, um id errado ou um valor fora de faixa não geram uma resposta ruim, geram uma ação irreversível. Aqui a saída do modelo é uma proposta de ação, e o guardrail é a aprovação: valida os argumentos, checa limites e políticas, e só então deixa executar.',
         },
         {
           type: 'code',
@@ -226,7 +226,7 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'Dois principios sustentam esse guardrail. Negar por padrao: uma acao que nao esta na tabela de politicas nao executa, porque o modelo pode inventar um nome de tool que voce nunca definiu. E escalar em vez de simplesmente falhar: reembolso acima do limite ou disparo em massa nao viram erro seco, viram um pedido de aprovacao humana. O guardrail nao existe so para dizer nao, existe para rotear a decisao para quem tem autoridade quando o modelo esta fora da alcada.',
+            'Dois princípios sustentam esse guardrail. Negar por padrão: uma ação que não está na tabela de políticas não executa, porque o modelo pode inventar um nome de tool que você nunca definiu. E escalar em vez de simplesmente falhar: reembolso acima do limite ou disparo em massa não viram erro seco, viram um pedido de aprovação humana. O guardrail não existe só para dizer não, existe para rotear a decisão para quem tem autoridade quando o modelo está fora da alçada.',
         },
       ],
     },
@@ -236,40 +236,40 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'Todo guardrail acima compartilha a mesma regra de ouro: quando algo da errado, a saida nunca e a resposta ruim, e sempre um fallback seguro. Schema que nao valida depois do retry, recusa que nao se conserta, vazamento critico, acao fora da politica, todos convergem para o mesmo lugar, uma resposta controlada que voce escreveu, nao uma que o modelo alucinou. O anti-padrao e deixar a falha vazar como erro tecnico (stack trace, 500, JSON quebrado na tela) ou, pior, deixar a saida ruim passar porque o guardrail so logou e nao bloqueou.',
+            'Todo guardrail acima compartilha a mesma regra de ouro: quando algo dá errado, a saída nunca é a resposta ruim, é sempre um fallback seguro. Schema que não valida depois do retry, recusa que não se conserta, vazamento crítico, ação fora da política, todos convergem para o mesmo lugar, uma resposta controlada que você escreveu, não uma que o modelo alucinou. O anti-padrão é deixar a falha vazar como erro técnico (stack trace, 500, JSON quebrado na tela) ou, pior, deixar a saída ruim passar porque o guardrail só logou e não bloqueou.',
         },
         {
           type: 'diagram',
-          value: `Caminho da saida do modelo pelos guardrails
+          value: `Caminho da saída do modelo pelos guardrails
 
   resposta do modelo
         |
         v
-  [ schema valido? ] --nao--> retry (ate 2x) --falhou--> FALLBACK
+  [ schema válido? ] --não--> retry (até 2x) --falhou--> FALLBACK
         | sim
         v
-  [ e recusa? ] --sim--> legitima? --nao--> re-perguntar / humano
-        | nao (ou legitima)
+  [ é recusa? ] --sim--> legítima? --não--> re-perguntar / humano
+        | não (ou legítima)
         v
-  [ vaza dado sensivel? ] --critico--> BLOQUEIA --> FALLBACK
+  [ vaza dado sensível? ] --crítico--> BLOQUEIA --> FALLBACK
         |                --redige--> segue com texto redigido
         v
-  [ e acao? ] --fora da politica--> BLOQUEIA --> aprovacao humana
-        | dentro da politica
+  [ é ação? ] --fora da política--> BLOQUEIA --> aprovação humana
+        | dentro da política
         v
-  entrega ao usuario / executa a acao
+  entrega ao usuário / executa a ação
 
-  FALLBACK = resposta segura escrita por voce, nunca erro cru na tela`,
+  FALLBACK = resposta segura escrita por você, nunca erro cru na tela`,
         },
         {
           type: 'paragraph',
           value:
-            'O fallback certo depende do contexto: numa resposta de texto, e uma mensagem honesta ("nao consegui gerar uma resposta confiavel agora, vou te transferir"); numa chamada de tool, e nao executar e escalar; num fluxo automatico, e parar e alertar em vez de seguir com dado suspeito. O que ele nunca e: um erro tecnico jogado na cara do usuario ou uma saida invalida que passou porque ninguem bloqueou. A diferenca entre um sistema que degrada com dignidade e um que quebra feio esta inteira nessa decisao.',
+            'O fallback certo depende do contexto: numa resposta de texto, é uma mensagem honesta ("não consegui gerar uma resposta confiável agora, vou te transferir"); numa chamada de tool, é não executar e escalar; num fluxo automático, é parar e alertar em vez de seguir com dado suspeito. O que ele nunca é: um erro técnico jogado na cara do usuário ou uma saída inválida que passou porque ninguém bloqueou. A diferença entre um sistema que degrada com dignidade e um que quebra feio está inteira nessa decisão.',
         },
         {
           type: 'paragraph',
           value:
-            'Um detalhe operacional fecha o ciclo: todo acionamento de fallback e um evento que voce quer contar. Fallback subindo e o sinal mais direto de que o modelo, o prompt ou o schema mudaram de comportamento, e conecta o guardrail a observabilidade, o assunto do artigo relacionado. Guardrail sem metrica de acionamento e uma rede de seguranca que voce nao sabe se esta segurando alguem.',
+            'Um detalhe operacional fecha o ciclo: todo acionamento de fallback é um evento que você quer contar. Fallback subindo é o sinal mais direto de que o modelo, o prompt ou o schema mudaram de comportamento, e conecta o guardrail à observabilidade, o assunto do artigo relacionado. Guardrail sem métrica de acionamento é uma rede de segurança que você não sabe se está segurando alguém.',
         },
       ],
     },
@@ -279,52 +279,52 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'A armadilha e espalhar validacao por todo o codigo em ifs soltos, ate ninguem saber mais qual regra roda quando. A camada de guardrails deve ser uma esteira ordenada e centralizada: a saida do modelo entra por uma ponta, passa pelos guardrails na ordem certa, e sai validada pela outra, ou cai no fallback. Cada guardrail e uma funcao pequena e testavel isoladamente; a esteira apenas os encadeia. O caminho e adicionar por ordem de risco.',
+            'A armadilha é espalhar validação por todo o código em ifs soltos, até ninguém saber mais qual regra roda quando. A camada de guardrails deve ser uma esteira ordenada e centralizada: a saída do modelo entra por uma ponta, passa pelos guardrails na ordem certa, e sai validada pela outra, ou cai no fallback. Cada guardrail é uma função pequena e testável isoladamente; a esteira apenas os encadeia. O caminho é adicionar por ordem de risco.',
         },
         {
           type: 'ordered',
           items: [
-            'Comece pela validacao de schema com retry: e o mais barato, o mais frequente e o que mais evita bug bobo de parser em producao.',
-            'Adicione o fallback seguro logo em seguida: sem ele, os outros guardrails so trocam um erro por outro; com ele, toda falha tem destino controlado.',
-            'Ligue o guardrail de acao antes de qualquer tool com efeito colateral: aqui o custo de errar e irreversivel, entao ele nao e opcional.',
-            'Instrumente o guardrail de vazamento onde a resposta contem dado do usuario: quanto mais sensivel o dominio, mais cedo ele entra.',
-            'Coloque a deteccao de recusa por ultimo e conecte tudo a metricas: acionamento de cada guardrail vira linha no dashboard, e o baseline revela quando algo mudou.',
+            'Comece pela validação de schema com retry: é o mais barato, o mais frequente e o que mais evita bug bobo de parser em produção.',
+            'Adicione o fallback seguro logo em seguida: sem ele, os outros guardrails só trocam um erro por outro; com ele, toda falha tem destino controlado.',
+            'Ligue o guardrail de ação antes de qualquer tool com efeito colateral: aqui o custo de errar é irreversível, então ele não é opcional.',
+            'Instrumente o guardrail de vazamento onde a resposta contém dado do usuário: quanto mais sensível o domínio, mais cedo ele entra.',
+            'Coloque a detecção de recusa por último e conecte tudo a métricas: acionamento de cada guardrail vira linha no dashboard, e o baseline revela quando algo mudou.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A diferenca entre um sistema com LLM que da confianca e um que assusta esta em quem controla a saida. Sem guardrails, e o modelo, probabilistico e sem garantia, que decide o que chega ao usuario e ao banco. Com guardrails, o modelo propoe e a sua camada dispoe: valida, repara, bloqueia ou cai no fallback, mas nunca deixa a saida ruim virar dano. Poucas centenas de linhas de guardrail bem colocadas separam um piloto que voce nao poe na frente do cliente de um produto que aguenta producao.',
+            'A diferença entre um sistema com LLM que dá confiança e um que assusta está em quem controla a saída. Sem guardrails, é o modelo, probabilístico e sem garantia, que decide o que chega ao usuário e ao banco. Com guardrails, o modelo propõe e a sua camada dispõe: valida, repara, bloqueia ou cai no fallback, mas nunca deixa a saída ruim virar dano. Poucas centenas de linhas de guardrail bem colocadas separam um piloto que você não põe na frente do cliente de um produto que aguenta produção.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Guardrail de saida nao e a mesma coisa que validar o prompt de entrada?',
+      question: 'Guardrail de saída não é a mesma coisa que validar o prompt de entrada?',
       answer:
-        'Nao. Sao dois controles em momentos diferentes. O guardrail de entrada roda antes do modelo e protege contra o que o usuario manda (prompt injection, pedido abusivo). O guardrail de saida roda depois do modelo e protege contra o que ele devolve (formato invalido, alucinacao, vazamento, acao perigosa). Uma entrada perfeitamente valida pode gerar uma saida perigosa, porque o modelo e probabilistico. A validacao que de fato protege o usuario e a de saida, porque e a ultima antes do dano chegar ao banco, a uma tool ou a tela.',
+        'Não. São dois controles em momentos diferentes. O guardrail de entrada roda antes do modelo e protege contra o que o usuário manda (prompt injection, pedido abusivo). O guardrail de saída roda depois do modelo e protege contra o que ele devolve (formato inválido, alucinação, vazamento, ação perigosa). Uma entrada perfeitamente válida pode gerar uma saída perigosa, porque o modelo é probabilístico. A validação que de fato protege o usuário é a de saída, porque é a última antes do dano chegar ao banco, a uma tool ou à tela.',
     },
     {
-      question: 'Por que fazer retry em vez de so retornar erro quando o schema falha?',
+      question: 'Por que fazer retry em vez de só retornar erro quando o schema falha?',
       answer:
-        'Porque o modelo que produziu o JSON quebrado quase sempre acerta na segunda tentativa quando recebe a mensagem exata do que estava errado. Retornar erro na primeira falha desperdicaria uma correcao facil e barata. A chave e o retry ser estruturado (voce injeta o erro de validacao como feedback) e limitado (duas tentativas cobrem quase tudo; insistir alem disso so queima token). E, quando o retry esgota, o retorno nao e a saida invalida, e um sinal de falha que cai no fallback seguro, nunca JSON quebrado propagado para o usuario.',
+        'Porque o modelo que produziu o JSON quebrado quase sempre acerta na segunda tentativa quando recebe a mensagem exata do que estava errado. Retornar erro na primeira falha desperdiçaria uma correção fácil e barata. A chave é o retry ser estruturado (você injeta o erro de validação como feedback) e limitado (duas tentativas cobrem quase tudo; insistir além disso só queima token). E, quando o retry esgota, o retorno não é a saída inválida, é um sinal de falha que cai no fallback seguro, nunca JSON quebrado propagado para o usuário.',
     },
     {
-      question: 'O guardrail deve sempre bloquear quando encontra dado sensivel na saida?',
+      question: 'O guardrail deve sempre bloquear quando encontra dado sensível na saída?',
       answer:
-        'Nao sempre; depende do dado e do papel dele na resposta. Se e um dado que so precisa ser ocultado e a resposta continua fazendo sentido sem ele, redigir (mascarar) e suficiente. Mas se o dado e critico (CPF, cartao) ou se a resposta inteira gira em torno de um dado que vazou por engano, redigir deixaria passar algo sem sentido ou incriminador, entao o certo e bloquear e cair no fallback. A regra: redija quando ocultar preserva a resposta, bloqueie quando o vazamento contamina a resposta toda.',
+        'Não sempre; depende do dado e do papel dele na resposta. Se é um dado que só precisa ser ocultado e a resposta continua fazendo sentido sem ele, redigir (mascarar) é suficiente. Mas se o dado é crítico (CPF, cartão) ou se a resposta inteira gira em torno de um dado que vazou por engano, redigir deixaria passar algo sem sentido ou incriminador, então o certo é bloquear e cair no fallback. A regra: redija quando ocultar preserva a resposta, bloqueie quando o vazamento contamina a resposta toda.',
     },
   ],
   conclusion: {
-    title: 'Guardrails de saida sao o que impede a resposta ruim de virar dano real',
+    title: 'Guardrails de saída são o que impede a resposta ruim de virar dano real',
     description:
-      'Validacao de schema com retry, deteccao de recusa e vazamento, bloqueio de acao perigosa e fallback seguro sao o minimo para que nada que o modelo produz chegue ao usuario ou ao banco sem passar por um controle. Posso desenhar essa camada no seu produto, encadeada e observavel, do schema ao fallback, integrada ao seu stack.',
+      'Validação de schema com retry, detecção de recusa e vazamento, bloqueio de ação perigosa e fallback seguro são o mínimo para que nada que o modelo produz chegue ao usuário ou ao banco sem passar por um controle. Posso desenhar essa camada no seu produto, encadeada e observável, do schema ao fallback, integrada ao seu stack.',
     cta: 'Falar sobre guardrails no meu sistema de IA',
   },
   related: [
     { label: 'Observabilidade de LLM: tracing, custo e qualidade', to: '/blog/observabilidade-llm-tracing-custo-qualidade' },
-    { label: 'Avaliacao continua de bots: do eval manual ao automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'Avaliação contínua de bots: do eval manual ao automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
     { label: 'Chatbots e IA', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'llm-output-guardrails-mini', description: repo.pt, url: repoUrl },
@@ -651,7 +651,7 @@ export function authorizeAction(action) {
 
 const es = {
   intro:
-    'La parte peligrosa de un sistema con LLM no es el prompt que entra, es la respuesta que sale. El modelo puede devolver JSON roto que revienta el parser, inventar un campo que nunca existio, filtrar el documento que estaba en el contexto, rechazar una pregunta legitima o pedir llamar a una tool destructiva con el argumento equivocado. Sin una capa que inspecciona la salida antes de que llegue al usuario o a la base de datos, cada una de esas fallas se vuelve bug de produccion, incidente de privacidad o accion irreversible. Los guardrails de salida son esa capa: un conjunto de validaciones entre el modelo y el mundo que decide si la respuesta puede pasar, necesita repararse o hay que bloquearla. Este articulo muestra como construir esa capa sin volver el producto un laberinto de if: validacion de schema con reparacion y retry, deteccion de rechazo y de filtracion, bloqueo de accion peligrosa antes de ejecutar, y la regla de oro que amarra todo, siempre tener un fallback seguro. El foco es el minimo que impide que una salida mala se vuelva dano real.',
+    'La parte peligrosa de un sistema con LLM no es el prompt que entra, es la respuesta que sale. El modelo puede devolver JSON roto que revienta el parser, inventar un campo que nunca existió, filtrar el documento que estaba en el contexto, rechazar una pregunta legítima o pedir llamar a una tool destructiva con el argumento equivocado. Sin una capa que inspecciona la salida antes de que llegue al usuario o a la base de datos, cada una de esas fallas se vuelve bug de producción, incidente de privacidad o acción irreversible. Los guardrails de salida son esa capa: un conjunto de validaciones entre el modelo y el mundo que decide si la respuesta puede pasar, necesita repararse o hay que bloquearla. Este artículo muestra cómo construir esa capa sin volver el producto un laberinto de if: validación de schema con reparación y retry, detección de rechazo y de filtración, bloqueo de acción peligrosa antes de ejecutar, y la regla de oro que amarra todo, siempre tener un fallback seguro. El foco es el mínimo que impide que una salida mala se vuelva daño real.',
   sections: [
     {
       title: 'Un guardrail de entrada no es un guardrail de salida',
@@ -659,53 +659,53 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La confusion mas comun es creer que validar el prompt de entrada resuelve el problema. No lo resuelve: son dos riesgos distintos en momentos distintos. El guardrail de entrada protege contra lo que el usuario manda (prompt injection, pedido abusivo, contenido prohibido) y corre antes del modelo. El guardrail de salida protege contra lo que el modelo devuelve (formato invalido, alucinacion, filtracion, accion peligrosa) y corre despues del modelo, antes de que la respuesta llegue al usuario, a la base de datos o a una tool. Una entrada perfectamente valida puede generar una salida peligrosa, porque el modelo es probabilistico y no garantiza nada sobre lo que produce.',
+            'La confusión más común es creer que validar el prompt de entrada resuelve el problema. No lo resuelve: son dos riesgos distintos en momentos distintos. El guardrail de entrada protege contra lo que el usuario manda (prompt injection, pedido abusivo, contenido prohibido) y corre antes del modelo. El guardrail de salida protege contra lo que el modelo devuelve (formato inválido, alucinación, filtración, acción peligrosa) y corre después del modelo, antes de que la respuesta llegue al usuario, a la base de datos o a una tool. Una entrada perfectamente válida puede generar una salida peligrosa, porque el modelo es probabilístico y no garantiza nada sobre lo que produce.',
         },
         {
           type: 'paragraph',
           value:
-            'El punto de instalacion importa: el guardrail de salida esta en el camino de retorno, envolviendo la respuesta del modelo como un interceptor. Nada que el modelo produce llega al mundo externo sin pasar por el. La tabla de abajo separa los dos para dejar claro que uno no reemplaza al otro.',
+            'El punto de instalación importa: el guardrail de salida está en el camino de retorno, envolviendo la respuesta del modelo como un interceptor. Nada que el modelo produce llega al mundo externo sin pasar por él. La tabla de abajo separa los dos para dejar claro que uno no reemplaza al otro.',
         },
         {
           type: 'table',
-          columns: ['Dimension', 'Guardrail de entrada', 'Guardrail de salida'],
+          columns: ['Dimensión', 'Guardrail de entrada', 'Guardrail de salida'],
           rows: [
             [
-              'Cuando corre',
+              'Cuándo corre',
               'Antes de llamar al modelo',
-              'Despues del modelo, antes del usuario/base/tool',
+              'Después del modelo, antes del usuario/base/tool',
             ],
             [
               'Protege contra',
               'Prompt injection, pedido abusivo, PII en la entrada',
-              'Formato invalido, alucinacion, filtracion, accion peligrosa',
+              'Formato inválido, alucinación, filtración, acción peligrosa',
             ],
             [
-              'Accion tipica',
+              'Acción típica',
               'Rechazar, sanitizar, rutear',
               'Reparar, retry, bloquear, fallback',
             ],
             [
               'Si falla',
               'El modelo recibe entrada mala',
-              'El usuario recibe salida mala (dano real)',
+              'El usuario recibe salida mala (daño real)',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La regla practica: un guardrail de entrada reduce la probabilidad de salida mala, pero nunca la elimina. La validacion que de verdad protege al usuario es la de salida, porque es la ultima antes del dano. Invertir solo en la entrada es trancar la puerta del frente y dejar la de atras abierta.',
+            'La regla práctica: un guardrail de entrada reduce la probabilidad de salida mala, pero nunca la elimina. La validación que de verdad protege al usuario es la de salida, porque es la última antes del daño. Invertir solo en la entrada es trancar la puerta del frente y dejar la de atrás abierta.',
         },
       ],
     },
     {
-      title: 'Validacion de schema: el retry estructurado que repara en vez de romper',
+      title: 'Validación de schema: el retry estructurado que repara en vez de romper',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El guardrail mas barato y mas rentable es la validacion de schema. Cuando la salida del modelo deberia ser JSON estructurado (para volverse llamada de API, registro en la base o decision de flujo), no confias en que salio bien, la validas contra un schema. Pero el paso que separa un sistema fragil de uno robusto es que haces cuando la validacion falla: en vez de reventar un error al usuario, devuelves el error de validacion al propio modelo y le pides que lo corrija. El modelo que produjo el JSON roto casi siempre acierta en el segundo intento cuando recibe el mensaje exacto de lo que estaba mal.',
+            'El guardrail más barato y más rentable es la validación de schema. Cuando la salida del modelo debería ser JSON estructurado (para volverse llamada de API, registro en la base o decisión de flujo), no confías en que salió bien, la validas contra un schema. Pero el paso que separa un sistema frágil de uno robusto es qué haces cuando la validación falla: en vez de reventar un error al usuario, devuelves el error de validación al propio modelo y le pides que lo corrija. El modelo que produjo el JSON roto casi siempre acierta en el segundo intento cuando recibe el mensaje exacto de lo que estaba mal.',
         },
         {
           type: 'code',
@@ -748,41 +748,41 @@ function feedbackFor(err) {
         {
           type: 'paragraph',
           value:
-            'Dos detalles hacen la diferencia. Primero, el retry tiene limite: dos intentos cubren la abrumadora mayoria de los casos, e insistir mas alla solo quema tokens y latencia en un modelo que no va a converger. Segundo, cuando el retry se agota, el retorno no es la salida invalida, es una senal de falla que el fallback va a tratar. Propagar JSON roto despues de dos intentos es cambiar un error controlado por uno de produccion.',
+            'Dos detalles hacen la diferencia. Primero, el retry tiene límite: dos intentos cubren la abrumadora mayoría de los casos, e insistir más allá solo quema tokens y latencia en un modelo que no va a converger. Segundo, cuando el retry se agota, el retorno no es la salida inválida, es una señal de falla que el fallback va a tratar. Propagar JSON roto después de dos intentos es cambiar un error controlado por uno de producción.',
         },
       ],
     },
     {
-      title: 'Detectar rechazo indebido y rechazo legitimo',
+      title: 'Detectar rechazo indebido y rechazo legítimo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'No todo rechazo es un problema, y no toda respuesta fluida es correcta. El modelo puede rechazar una pregunta perfectamente legitima ("no puedo ayudar con eso") por exceso de celo, y puede responder con confianza algo que deberia haber rechazado. El guardrail de rechazo mide ese eje: clasifica si la respuesta es un rechazo y decide si ese rechazo tiene sentido en el contexto. Rechazo sobre un pedido valido es degradacion de producto, el usuario choco con una pared sin motivo. Ausencia de rechazo en un pedido peligroso es riesgo, el modelo paso por encima de un limite que deberia respetar.',
+            'No todo rechazo es un problema, y no toda respuesta fluida es correcta. El modelo puede rechazar una pregunta perfectamente legítima ("no puedo ayudar con eso") por exceso de celo, y puede responder con confianza algo que debería haber rechazado. El guardrail de rechazo mide ese eje: clasifica si la respuesta es un rechazo y decide si ese rechazo tiene sentido en el contexto. Rechazo sobre un pedido válido es degradación de producto, el usuario chocó con una pared sin motivo. Ausencia de rechazo en un pedido peligroso es riesgo, el modelo pasó por encima de un límite que debería respetar.',
         },
         {
           type: 'list',
           items: [
-            'Detectar el rechazo: busca los patrones de rechazo de tu stack ("no puedo", "no consigo ayudar", "eso va contra") y tratalo como una senal clasificable, no como texto cualquiera.',
-            'Clasificar el contexto: la pregunta era legitima? Si lo era, un rechazo es falla, y el camino es re-preguntar con prompt ajustado o rutear a humano, no devolver la pared al usuario.',
-            'Medir la tasa de rechazo: un rechazo subiendo de repente suele ser prompt roto o guardrail demasiado agresivo, y solo aparece si cuentas los rechazos como metrica.',
-            'No suprimir rechazo legitimo: cuando el modelo rechaza algo que si debe rechazar, el guardrail lo confirma y registra, no fuerza una respuesta que abriria un hueco de seguridad.',
+            'Detectar el rechazo: busca los patrones de rechazo de tu stack ("no puedo", "no consigo ayudar", "eso va contra") y trátalo como una señal clasificable, no como texto cualquiera.',
+            'Clasificar el contexto: ¿la pregunta era legítima? Si lo era, un rechazo es falla, y el camino es re-preguntar con prompt ajustado o rutear a humano, no devolver la pared al usuario.',
+            'Medir la tasa de rechazo: un rechazo subiendo de repente suele ser prompt roto o guardrail demasiado agresivo, y solo aparece si cuentas los rechazos como métrica.',
+            'No suprimir rechazo legítimo: cuando el modelo rechaza algo que sí debe rechazar, el guardrail lo confirma y registra, no fuerza una respuesta que abriría un hueco de seguridad.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El error clasico es tratar el rechazo como falla siempre, y reescribir el prompt hasta que el modelo responda cualquier cosa. Eso rompe el rechazo legitimo y convierte el guardrail en un vector de ataque. La postura correcta es distinguir: rechazo indebido se repara, rechazo legitimo se respeta. El guardrail no existe para forzar respuesta, existe para garantizar que la decision de responder o no este alineada con el contexto.',
+            'El error clásico es tratar el rechazo como falla siempre, y reescribir el prompt hasta que el modelo responda cualquier cosa. Eso rompe el rechazo legítimo y convierte el guardrail en un vector de ataque. La postura correcta es distinguir: rechazo indebido se repara, rechazo legítimo se respeta. El guardrail no existe para forzar respuesta, existe para garantizar que la decisión de responder o no esté alineada con el contexto.',
         },
       ],
     },
     {
-      title: 'Filtracion de dato sensible en la salida',
+      title: 'Filtración de dato sensible en la salida',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un riesgo silencioso: el contexto del modelo carga dato sensible (documento, telefono, dato de otro usuario que entro por error en el retrieval) y el modelo repite ese dato en la respuesta. La entrada estaba bajo control, pero la salida filtra. El guardrail de filtracion inspecciona la respuesta antes de entregar y bloquea o redacta lo que no deberia salir. Es la misma logica de la redaccion de log, pero aqui el objetivo es lo que llega al usuario final, asi que la vara es mas alta: en un log redactas para no persistir, en la salida redactas o bloqueas para no exponer.',
+            'Un riesgo silencioso: el contexto del modelo carga dato sensible (documento, teléfono, dato de otro usuario que entró por error en el retrieval) y el modelo repite ese dato en la respuesta. La entrada estaba bajo control, pero la salida filtra. El guardrail de filtración inspecciona la respuesta antes de entregar y bloquea o redacta lo que no debería salir. Es la misma lógica de la redacción de log, pero aquí el objetivo es lo que llega al usuario final, así que la vara es más alta: en un log redactas para no persistir, en la salida redactas o bloqueas para no exponer.',
         },
         {
           type: 'code',
@@ -820,17 +820,17 @@ export function checkLeak(output, { allowed = [] }) {
         {
           type: 'paragraph',
           value:
-            'La decision entre redactar y bloquear es lo que separa un guardrail util de uno peligroso. Enmascarar un email en un texto que aun tiene sentido es razonable. Pero cuando la respuesta entera gira en torno a un dato que se filtro por error (el modelo confundio el pedido de un usuario con el registro de otro), redactar deja pasar una respuesta sin sentido y potencialmente incriminadora. En ese caso, bloquear y caer en el fallback es mas seguro que entregar algo mutilado.',
+            'La decisión entre redactar y bloquear es lo que separa un guardrail útil de uno peligroso. Enmascarar un email en un texto que aún tiene sentido es razonable. Pero cuando la respuesta entera gira en torno a un dato que se filtró por error (el modelo confundió el pedido de un usuario con el registro de otro), redactar deja pasar una respuesta sin sentido y potencialmente incriminadora. En ese caso, bloquear y caer en el fallback es más seguro que entregar algo mutilado.',
         },
       ],
     },
     {
-      title: 'Bloquear una accion peligrosa antes de ejecutar',
+      title: 'Bloquear una acción peligrosa antes de ejecutar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El guardrail mas critico es el que esta entre el modelo y una accion con efecto colateral. Cuando el LLM decide llamar a una tool (cancelar pedido, emitir reembolso, borrar registro, disparar mensaje masivo), la salida del modelo deja de ser texto y se vuelve comando. Un argumento alucinado, un id equivocado o un valor fuera de rango no generan una respuesta mala, generan una accion irreversible. Aqui la salida del modelo es una propuesta de accion, y el guardrail es la aprobacion: valida los argumentos, chequea limites y politicas, y solo entonces deja ejecutar.',
+            'El guardrail más crítico es el que está entre el modelo y una acción con efecto colateral. Cuando el LLM decide llamar a una tool (cancelar pedido, emitir reembolso, borrar registro, disparar mensaje masivo), la salida del modelo deja de ser texto y se vuelve comando. Un argumento alucinado, un id equivocado o un valor fuera de rango no generan una respuesta mala, generan una acción irreversible. Aquí la salida del modelo es una propuesta de acción, y el guardrail es la aprobación: valida los argumentos, chequea límites y políticas, y solo entonces deja ejecutar.',
         },
         {
           type: 'code',
@@ -864,7 +864,7 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'Dos principios sostienen este guardrail. Negar por defecto: una accion que no esta en la tabla de politicas no ejecuta, porque el modelo puede inventar un nombre de tool que nunca definiste. Y escalar en vez de simplemente fallar: un reembolso sobre el limite o un disparo masivo no se vuelven un error seco, se vuelven un pedido de aprobacion humana. El guardrail no existe solo para decir no, existe para rutear la decision a quien tiene autoridad cuando el modelo esta fuera de su alcance.',
+            'Dos principios sostienen este guardrail. Negar por defecto: una acción que no está en la tabla de políticas no ejecuta, porque el modelo puede inventar un nombre de tool que nunca definiste. Y escalar en vez de simplemente fallar: un reembolso sobre el límite o un disparo masivo no se vuelven un error seco, se vuelven un pedido de aprobación humana. El guardrail no existe solo para decir no, existe para rutear la decisión a quien tiene autoridad cuando el modelo está fuera de su alcance.',
         },
       ],
     },
@@ -874,7 +874,7 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'Todo guardrail de arriba comparte la misma regla de oro: cuando algo sale mal, la salida nunca es la respuesta mala, es siempre un fallback seguro. Un schema que no valida despues del retry, un rechazo que no se repara, una filtracion critica, una accion fuera de la politica, todos convergen al mismo lugar, una respuesta controlada que escribiste tu, no una que el modelo alucino. El anti-patron es dejar que la falla se filtre como error tecnico (stack trace, 500, JSON roto en la pantalla) o, peor, dejar pasar la salida mala porque el guardrail solo la logueo y no la bloqueo.',
+            'Todo guardrail de arriba comparte la misma regla de oro: cuando algo sale mal, la salida nunca es la respuesta mala, es siempre un fallback seguro. Un schema que no valida después del retry, un rechazo que no se repara, una filtración crítica, una acción fuera de la política, todos convergen al mismo lugar, una respuesta controlada que escribiste tú, no una que el modelo alucinó. El anti-patrón es dejar que la falla se filtre como error técnico (stack trace, 500, JSON roto en la pantalla) o, peor, dejar pasar la salida mala porque el guardrail solo la logueó y no la bloqueó.',
         },
         {
           type: 'diagram',
@@ -883,31 +883,31 @@ export function authorizeAction(action) {
   respuesta del modelo
         |
         v
-  [ schema valido? ] --no--> retry (hasta 2x) --fallo--> FALLBACK
-        | si
+  [ ¿schema válido? ] --no--> retry (hasta 2x) --falló--> FALLBACK
+        | sí
         v
-  [ es rechazo? ] --si--> legitimo? --no--> re-preguntar / humano
-        | no (o legitimo)
+  [ ¿es rechazo? ] --sí--> ¿legítimo? --no--> re-preguntar / humano
+        | no (o legítimo)
         v
-  [ filtra dato sensible? ] --critico--> BLOQUEA --> FALLBACK
+  [ ¿filtra dato sensible? ] --crítico--> BLOQUEA --> FALLBACK
         |                --redacta--> sigue con texto redactado
         v
-  [ es accion? ] --fuera de la politica--> BLOQUEA --> aprobacion humana
-        | dentro de la politica
+  [ ¿es acción? ] --fuera de la política--> BLOQUEA --> aprobación humana
+        | dentro de la política
         v
-  entrega al usuario / ejecuta la accion
+  entrega al usuario / ejecuta la acción
 
   FALLBACK = respuesta segura escrita por ti, nunca error crudo en la pantalla`,
         },
         {
           type: 'paragraph',
           value:
-            'El fallback correcto depende del contexto: en una respuesta de texto, es un mensaje honesto ("no logre generar una respuesta confiable ahora, te voy a transferir"); en una llamada de tool, es no ejecutar y escalar; en un flujo automatico, es parar y alertar en vez de seguir con dato sospechoso. Lo que nunca es: un error tecnico tirado en la cara del usuario o una salida invalida que paso porque nadie la bloqueo. La diferencia entre un sistema que degrada con dignidad y uno que se rompe feo esta entera en esa decision.',
+            'El fallback correcto depende del contexto: en una respuesta de texto, es un mensaje honesto ("no logré generar una respuesta confiable ahora, te voy a transferir"); en una llamada de tool, es no ejecutar y escalar; en un flujo automático, es parar y alertar en vez de seguir con dato sospechoso. Lo que nunca es: un error técnico tirado en la cara del usuario o una salida inválida que pasó porque nadie la bloqueó. La diferencia entre un sistema que degrada con dignidad y uno que se rompe feo está entera en esa decisión.',
         },
         {
           type: 'paragraph',
           value:
-            'Un detalle operativo cierra el ciclo: todo disparo de fallback es un evento que quieres contar. Un fallback subiendo es la senal mas directa de que el modelo, el prompt o el schema cambiaron de comportamiento, y conecta el guardrail con la observabilidad, el tema del articulo relacionado. Un guardrail sin metrica de disparo es una red de seguridad que no sabes si esta sosteniendo a alguien.',
+            'Un detalle operativo cierra el ciclo: todo disparo de fallback es un evento que quieres contar. Un fallback subiendo es la señal más directa de que el modelo, el prompt o el schema cambiaron de comportamiento, y conecta el guardrail con la observabilidad, el tema del artículo relacionado. Un guardrail sin métrica de disparo es una red de seguridad que no sabes si está sosteniendo a alguien.',
         },
       ],
     },
@@ -917,52 +917,52 @@ export function authorizeAction(action) {
         {
           type: 'paragraph',
           value:
-            'La trampa es desparramar la validacion por todo el codigo en ifs sueltos, hasta que nadie sepa que regla corre cuando. La capa de guardrails debe ser una cinta ordenada y centralizada: la salida del modelo entra por una punta, pasa por los guardrails en el orden correcto, y sale validada por la otra, o cae en el fallback. Cada guardrail es una funcion pequena y testeable de forma aislada; la cinta solo los encadena. El camino es agregar por orden de riesgo.',
+            'La trampa es desparramar la validación por todo el código en ifs sueltos, hasta que nadie sepa qué regla corre cuándo. La capa de guardrails debe ser una cinta ordenada y centralizada: la salida del modelo entra por una punta, pasa por los guardrails en el orden correcto, y sale validada por la otra, o cae en el fallback. Cada guardrail es una función pequeña y testeable de forma aislada; la cinta solo los encadena. El camino es agregar por orden de riesgo.',
         },
         {
           type: 'ordered',
           items: [
-            'Empieza por la validacion de schema con retry: es lo mas barato, lo mas frecuente y lo que mas evita bug tonto de parser en produccion.',
-            'Agrega el fallback seguro justo despues: sin el, los otros guardrails solo cambian un error por otro; con el, toda falla tiene destino controlado.',
-            'Enciende el guardrail de accion antes de cualquier tool con efecto colateral: aqui el costo de errar es irreversible, asi que no es opcional.',
-            'Instrumenta el guardrail de filtracion donde la respuesta contiene dato del usuario: cuanto mas sensible el dominio, mas temprano entra.',
-            'Pon la deteccion de rechazo al final y conecta todo a metricas: el disparo de cada guardrail se vuelve linea en el dashboard, y el baseline revela cuando algo cambio.',
+            'Empieza por la validación de schema con retry: es lo más barato, lo más frecuente y lo que más evita bug tonto de parser en producción.',
+            'Agrega el fallback seguro justo después: sin él, los otros guardrails solo cambian un error por otro; con él, toda falla tiene destino controlado.',
+            'Enciende el guardrail de acción antes de cualquier tool con efecto colateral: aquí el costo de errar es irreversible, así que no es opcional.',
+            'Instrumenta el guardrail de filtración donde la respuesta contiene dato del usuario: cuanto más sensible el dominio, más temprano entra.',
+            'Pon la detección de rechazo al final y conecta todo a métricas: el disparo de cada guardrail se vuelve línea en el dashboard, y el baseline revela cuándo algo cambió.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La diferencia entre un sistema con LLM que da confianza y uno que asusta esta en quien controla la salida. Sin guardrails, es el modelo, probabilistico y sin garantia, el que decide que llega al usuario y a la base. Con guardrails, el modelo propone y tu capa dispone: valida, repara, bloquea o cae en el fallback, pero nunca deja que una salida mala se vuelva dano. Pocas centenas de lineas de guardrail bien puestas separan un piloto que no pondrias frente al cliente de un producto que aguanta produccion.',
+            'La diferencia entre un sistema con LLM que da confianza y uno que asusta está en quién controla la salida. Sin guardrails, es el modelo, probabilístico y sin garantía, el que decide qué llega al usuario y a la base. Con guardrails, el modelo propone y tu capa dispone: valida, repara, bloquea o cae en el fallback, pero nunca deja que una salida mala se vuelva daño. Pocas centenas de líneas de guardrail bien puestas separan un piloto que no pondrías frente al cliente de un producto que aguanta producción.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Un guardrail de salida no es lo mismo que validar el prompt de entrada?',
+      question: '¿Un guardrail de salida no es lo mismo que validar el prompt de entrada?',
       answer:
-        'No. Son dos controles en momentos distintos. El guardrail de entrada corre antes del modelo y protege contra lo que el usuario manda (prompt injection, pedido abusivo). El guardrail de salida corre despues del modelo y protege contra lo que devuelve (formato invalido, alucinacion, filtracion, accion peligrosa). Una entrada perfectamente valida puede generar una salida peligrosa, porque el modelo es probabilistico. La validacion que de verdad protege al usuario es la de salida, porque es la ultima antes de que el dano llegue a la base, a una tool o a la pantalla.',
+        'No. Son dos controles en momentos distintos. El guardrail de entrada corre antes del modelo y protege contra lo que el usuario manda (prompt injection, pedido abusivo). El guardrail de salida corre después del modelo y protege contra lo que devuelve (formato inválido, alucinación, filtración, acción peligrosa). Una entrada perfectamente válida puede generar una salida peligrosa, porque el modelo es probabilístico. La validación que de verdad protege al usuario es la de salida, porque es la última antes de que el daño llegue a la base, a una tool o a la pantalla.',
     },
     {
-      question: 'Por que hacer retry en vez de solo retornar error cuando el schema falla?',
+      question: '¿Por qué hacer retry en vez de solo retornar error cuando el schema falla?',
       answer:
-        'Porque el modelo que produjo el JSON roto casi siempre acierta en el segundo intento cuando recibe el mensaje exacto de lo que estaba mal. Retornar error en la primera falla desperdiciaria una correccion facil y barata. La clave es que el retry sea estructurado (inyectas el error de validacion como feedback) y limitado (dos intentos cubren casi todo; insistir mas solo quema tokens). Y cuando el retry se agota, el retorno no es la salida invalida, es una senal de falla que cae en el fallback seguro, nunca JSON roto propagado al usuario.',
+        'Porque el modelo que produjo el JSON roto casi siempre acierta en el segundo intento cuando recibe el mensaje exacto de lo que estaba mal. Retornar error en la primera falla desperdiciaría una corrección fácil y barata. La clave es que el retry sea estructurado (inyectas el error de validación como feedback) y limitado (dos intentos cubren casi todo; insistir más solo quema tokens). Y cuando el retry se agota, el retorno no es la salida inválida, es una señal de falla que cae en el fallback seguro, nunca JSON roto propagado al usuario.',
     },
     {
-      question: 'El guardrail debe siempre bloquear cuando encuentra dato sensible en la salida?',
+      question: '¿El guardrail debe siempre bloquear cuando encuentra dato sensible en la salida?',
       answer:
-        'No siempre; depende del dato y de su papel en la respuesta. Si es un dato que solo necesita ocultarse y la respuesta sigue teniendo sentido sin el, redactar (enmascarar) alcanza. Pero si el dato es critico (documento, tarjeta) o la respuesta entera gira en torno a un dato que se filtro por error, redactar dejaria pasar algo sin sentido o incriminador, asi que lo correcto es bloquear y caer en el fallback. La regla: redacta cuando ocultar preserva la respuesta, bloquea cuando la filtracion contamina la respuesta entera.',
+        'No siempre; depende del dato y de su papel en la respuesta. Si es un dato que solo necesita ocultarse y la respuesta sigue teniendo sentido sin él, redactar (enmascarar) alcanza. Pero si el dato es crítico (documento, tarjeta) o la respuesta entera gira en torno a un dato que se filtró por error, redactar dejaría pasar algo sin sentido o incriminador, así que lo correcto es bloquear y caer en el fallback. La regla: redacta cuando ocultar preserva la respuesta, bloquea cuando la filtración contamina la respuesta entera.',
     },
   ],
   conclusion: {
-    title: 'Los guardrails de salida son lo que impide que una respuesta mala se vuelva dano real',
+    title: 'Los guardrails de salida son lo que impide que una respuesta mala se vuelva daño real',
     description:
-      'Validacion de schema con retry, deteccion de rechazo y filtracion, bloqueo de accion peligrosa y fallback seguro son el minimo para que nada que el modelo produce llegue al usuario o a la base sin pasar por un control. Puedo disenar esa capa en tu producto, encadenada y observable, del schema al fallback, integrada a tu stack.',
+      'Validación de schema con retry, detección de rechazo y filtración, bloqueo de acción peligrosa y fallback seguro son el mínimo para que nada que el modelo produce llegue al usuario o a la base sin pasar por un control. Puedo diseñar esa capa en tu producto, encadenada y observable, del schema al fallback, integrada a tu stack.',
     cta: 'Hablar sobre guardrails en mi sistema de IA',
   },
   related: [
     { label: 'Observabilidad de LLM: tracing, costo y calidad', to: '/blog/observabilidade-llm-tracing-custo-qualidade' },
-    { label: 'Evaluacion continua de bots: del eval manual al automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'Evaluación continua de bots: del eval manual al automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
     { label: 'Chatbots e IA', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'llm-output-guardrails-mini', description: repo.es, url: repoUrl },

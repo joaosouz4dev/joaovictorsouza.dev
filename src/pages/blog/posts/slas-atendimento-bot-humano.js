@@ -4,27 +4,27 @@
 
 const pt = {
   intro:
-    'Quando o atendimento mistura bot e humano, o SLA classico de "responder em X minutos" ' +
-    'desmorona. O bot responde em milissegundos, mas a duvida real so e resolvida quando alguem ' +
-    'do time entra. Se voce cobra o time pelo relogio que rodou enquanto o bot conversava ou ' +
-    'enquanto o cliente sumiu, mede injustica, nao desempenho. Este guia mostra um modelo de SLA ' +
-    'por estagio: quais metricas importam, onde o relogio conta ou pausa, como priorizar a fila e ' +
-    'como cobrar cada lado so pelo que ele controla.',
+    'Quando o atendimento mistura bot e humano, o SLA clássico de "responder em X minutos" ' +
+    'desmorona. O bot responde em milissegundos, mas a dúvida real só é resolvida quando alguém ' +
+    'do time entra. Se você cobra o time pelo relógio que rodou enquanto o bot conversava ou ' +
+    'enquanto o cliente sumiu, mede injustiça, não desempenho. Este guia mostra um modelo de SLA ' +
+    'por estágio: quais métricas importam, onde o relógio conta ou pausa, como priorizar a fila e ' +
+    'como cobrar cada lado só pelo que ele controla.',
   sections: [
     {
-      title: 'Por que um SLA unico nao funciona com bot + humano',
+      title: 'Por que um SLA único não funciona com bot + humano',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Um SLA unico assume que um unico ator e responsavel do inicio ao fim. No atendimento ' +
-            'hibrido isso e falso: a responsabilidade troca de mao varias vezes. O bot atende, ' +
+            'Um SLA único assume que um único ator é responsável do início ao fim. No atendimento ' +
+            'híbrido isso é falso: a responsabilidade troca de mão várias vezes. O bot atende, ' +
             'tenta resolver, transfere para a fila humana, o agente responde, pede um dado ao ' +
-            'cliente e espera. Se o relogio do SLA corre o tempo todo, o time leva a culpa por ' +
-            'periodos em que a bola nem estava com ele. O relogio precisa pausar e contar por ' +
-            'estagio, seguindo quem de fato deve agir naquele momento. Sem isso, voce penaliza o ' +
-            'agente pelo tempo que o cliente demorou para responder e premia uma operacao que ' +
-            'parece rapida so porque o bot fecha ticket sem resolver nada.',
+            'cliente e espera. Se o relógio do SLA corre o tempo todo, o time leva a culpa por ' +
+            'períodos em que a bola nem estava com ele. O relógio precisa pausar e contar por ' +
+            'estágio, seguindo quem de fato deve agir naquele momento. Sem isso, você penaliza o ' +
+            'agente pelo tempo que o cliente demorou para responder e premia uma operação que ' +
+            'parece rápida só porque o bot fecha ticket sem resolver nada.',
         },
       ],
     },
@@ -34,60 +34,60 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Em vez de um numero, trabalhe com um pequeno conjunto de SLAs que medem momentos ' +
+            'Em vez de um número, trabalhe com um pequeno conjunto de SLAs que medem momentos ' +
             'diferentes da jornada. Cada um responde a uma pergunta distinta e o bot influencia ' +
-            'cada um de um jeito proprio.',
+            'cada um de um jeito próprio.',
         },
         {
           type: 'table',
           columns: ['SLA', 'O que mede', 'Como o bot afeta'],
           rows: [
-            ['First response time', 'Tempo ate a primeira resposta ao cliente', 'O bot quase zera: responde na hora, mas isso nao prova resolucao'],
-            ['Time to human', 'Tempo do pedido de humano ate um agente assumir', 'O bot pode adiar ou antecipar conforme decide quando escalar'],
-            ['Resolution time', 'Tempo total ate o problema ser resolvido', 'O bot reduz se resolve sozinho; infla se so empurra ao humano'],
-            ['Handoff accuracy', 'Quantos handoffs chegam com contexto util', 'Bom bot entrega resumo e intencao; bot ruim joga o ticket cru'],
+            ['First response time', 'Tempo até a primeira resposta ao cliente', 'O bot quase zera: responde na hora, mas isso não prova resolução'],
+            ['Time to human', 'Tempo do pedido de humano até um agente assumir', 'O bot pode adiar ou antecipar conforme decide quando escalar'],
+            ['Resolution time', 'Tempo total até o problema ser resolvido', 'O bot reduz se resolve sozinho; infla se só empurra ao humano'],
+            ['Handoff accuracy', 'Quantos handoffs chegam com contexto útil', 'Bom bot entrega resumo e intenção; bot ruim joga o ticket cru'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O erro comum e otimizar so o first response time. Com bot, ele fica lindo e esconde o ' +
-            'que importa: o time to human e o resolution time. Meca os tres juntos, senao o bot vira ' +
-            'uma maquina de responder rapido sem resolver.',
+            'O erro comum é otimizar só o first response time. Com bot, ele fica lindo e esconde o ' +
+            'que importa: o time to human e o resolution time. Meça os três juntos, senão o bot vira ' +
+            'uma máquina de responder rápido sem resolver.',
         },
       ],
     },
     {
-      title: 'A maquina de estados do ticket e onde o relogio conta',
+      title: 'A máquina de estados do ticket e onde o relógio conta',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Modele o ticket como uma maquina de estados. Cada estado define de quem e a ' +
-            'responsabilidade e, portanto, se o relogio do SLA de resolucao conta ou pausa. A regra ' +
-            'e simples: o relogio so conta quando a bola esta com o time. Quando o bot esta no ' +
-            'controle ou quando se espera o cliente, o relogio do time pausa.',
+            'Modele o ticket como uma máquina de estados. Cada estado define de quem é a ' +
+            'responsabilidade e, portanto, se o relógio do SLA de resolução conta ou pausa. A regra ' +
+            'é simples: o relógio só conta quando a bola está com o time. Quando o bot está no ' +
+            'controle ou quando se espera o cliente, o relógio do time pausa.',
         },
         {
           type: 'diagram',
           value:
             '            [Bot ativo]\n' +
-            '          relogio: nao conta p/ time\n' +
+            '          relógio: não conta p/ time\n' +
             '                |\n' +
             '         pede humano | resolve\n' +
             '                v          \\\n' +
             '         [Fila humana]      v\n' +
-            '       relogio: CONTA    [Resolvido]\n' +
+            '       relógio: CONTA    [Resolvido]\n' +
             '                |\n' +
             '          agente assume\n' +
             '                v\n' +
             '       [Em atendimento]\n' +
-            '         relogio: CONTA\n' +
+            '         relógio: CONTA\n' +
             '            /        \\\n' +
             '   pede dado          resolve\n' +
             '        v                v\n' +
             '[Aguardando cliente]  [Resolvido]\n' +
-            ' relogio: PAUSA\n' +
+            ' relógio: PAUSA\n' +
             '        |\n' +
             '  cliente responde\n' +
             '        v\n' +
@@ -96,9 +96,9 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Os estados que mais geram disputa sao "bot ativo" e "aguardando cliente". Nos dois, o ' +
-            'tempo nao deve pesar contra o agente, porque a acao depende do bot ou do proprio ' +
-            'cliente. Ja "fila humana" e "em atendimento" sao integralmente do time e ali o relogio ' +
+            'Os estados que mais geram disputa são "bot ativo" e "aguardando cliente". Nos dois, o ' +
+            'tempo não deve pesar contra o agente, porque a ação depende do bot ou do próprio ' +
+            'cliente. Já "fila humana" e "em atendimento" são integralmente do time e ali o relógio ' +
             'corre cheio.',
         },
       ],
@@ -109,25 +109,25 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Quando varios tickets esperam um agente, a ordem importa tanto quanto a velocidade. ' +
-            'Atender por ordem de chegada e simples, mas deixa caso urgente atras de caso trivial e ' +
-            'estoura SLA sem necessidade. Combine criterios.',
+            'Quando vários tickets esperam um agente, a ordem importa tanto quanto a velocidade. ' +
+            'Atender por ordem de chegada é simples, mas deixa caso urgente atrás de caso trivial e ' +
+            'estoura SLA sem necessidade. Combine critérios.',
         },
         {
           type: 'list',
           items: [
-            'Por prioridade: cliente VIP, plano pago ou assunto critico (cobranca, falha de pagamento) sobem na fila.',
-            'Por tempo de espera: dentro da mesma prioridade, quem espera ha mais tempo e atendido primeiro, evitando inanicao.',
-            'Por SLA em risco: tickets cujo tempo restante ate estourar o SLA esta baixo ganham boost automatico, mesmo com prioridade media.',
-            'Por esforco do handoff: ticket que o bot ja qualificou e resumiu pode ser resolvido rapido e desafogar a fila.',
+            'Por prioridade: cliente VIP, plano pago ou assunto crítico (cobrança, falha de pagamento) sobem na fila.',
+            'Por tempo de espera: dentro da mesma prioridade, quem espera há mais tempo é atendido primeiro, evitando inanição.',
+            'Por SLA em risco: tickets cujo tempo restante até estourar o SLA está baixo ganham boost automático, mesmo com prioridade média.',
+            'Por esforço do handoff: ticket que o bot já qualificou e resumiu pode ser resolvido rápido e desafogar a fila.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Uma fila madura mistura esses sinais num score unico. O SLA em risco e o desempate mais ' +
-            'importante: nao adianta priorizar VIP se um caso comum vai estourar em dois minutos e ' +
-            'manchar a metrica do dia.',
+            'Uma fila madura mistura esses sinais num score único. O SLA em risco é o desempate mais ' +
+            'importante: não adianta priorizar VIP se um caso comum vai estourar em dois minutos e ' +
+            'manchar a métrica do dia.',
         },
       ],
     },
@@ -137,8 +137,8 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O calculo justo soma apenas o tempo em que o ticket esteve sob responsabilidade do ' +
-            'time. A funcao abaixo percorre os intervalos de estado e acumula so os que contam, ' +
+            'O cálculo justo soma apenas o tempo em que o ticket esteve sob responsabilidade do ' +
+            'time. A função abaixo percorre os intervalos de estado e acumula só os que contam, ' +
             'ignorando bot ativo e aguardando cliente.',
         },
         {
@@ -181,80 +181,80 @@ module.exports = { tempoSobResponsabilidadeDoTime, cumpriuSla };`,
         {
           type: 'paragraph',
           value:
-            'Repare que o relogio bruto marcaria 75 minutos, mas o tempo justo e 13. Sem a pausa, ' +
-            'esse ticket estouraria o SLA por culpa do cliente que sumiu por uma hora. O segredo e ' +
-            'guardar cada transicao de estado com timestamp para reconstruir os segmentos depois.',
+            'Repare que o relógio bruto marcaria 75 minutos, mas o tempo justo é 13. Sem a pausa, ' +
+            'esse ticket estouraria o SLA por culpa do cliente que sumiu por uma hora. O segredo é ' +
+            'guardar cada transição de estado com timestamp para reconstruir os segmentos depois.',
         },
       ],
     },
     {
-      title: 'Metricas para nao cobrar o time pelo que nao controla',
+      title: 'Métricas para não cobrar o time pelo que não controla',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Um numero agregado de resolution time esconde de quem foi a demora. Separe o tempo por ' +
-            'fase para que cada area olhe a sua. Assim voce melhora o bot, dimensiona o time e cobra ' +
-            'o cliente sem injusticas.',
+            'Um número agregado de resolution time esconde de quem foi a demora. Separe o tempo por ' +
+            'fase para que cada área olhe a sua. Assim você melhora o bot, dimensiona o time e cobra ' +
+            'o cliente sem injustiças.',
         },
         {
           type: 'list',
           items: [
-            'Tempo de bot: quanto o ticket passou em bot ativo. Mede se o bot resolve ou so empurra.',
+            'Tempo de bot: quanto o ticket passou em bot ativo. Mede se o bot resolve ou só empurra.',
             'Tempo de fila: quanto esperou na fila humana antes de um agente assumir. Mede dimensionamento do time.',
-            'Tempo de humano: quanto durou o atendimento ativo do agente. Mede a produtividade real, e o unico que pesa no SLA dele.',
-            'Tempo aguardando cliente: quanto ficou parado esperando resposta. Nunca entra no SLA do time, mas ajuda a entender resolucao lenta.',
+            'Tempo de humano: quanto durou o atendimento ativo do agente. Mede a produtividade real, é o único que pesa no SLA dele.',
+            'Tempo aguardando cliente: quanto ficou parado esperando resposta. Nunca entra no SLA do time, mas ajuda a entender resolução lenta.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Com essa separacao, fila alta vira problema de capacidade (contrate ou ajuste turnos), ' +
+            'Com essa separação, fila alta vira problema de capacidade (contrate ou ajuste turnos), ' +
             'tempo de humano alto vira problema de treino ou ferramenta, e tempo de bot alto sem ' +
-            'resolucao vira problema de fluxo do bot. Cada um responde pelo que controla, e a ' +
-            'conversa de melhoria deixa de ser briga sobre um numero unico.',
+            'resolução vira problema de fluxo do bot. Cada um responde pelo que controla, e a ' +
+            'conversa de melhoria deixa de ser briga sobre um número único.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'O bot que responde na hora nao deveria zerar meu SLA?',
+      question: 'O bot que responde na hora não deveria zerar meu SLA?',
       answer:
-        'Ele zera so o first response time, e isso engana. Uma resposta automatica instantanea nao ' +
-        'e resolucao. Se voce parar so nessa metrica, o painel fica verde enquanto o cliente segue ' +
-        'sem solucao. Por isso meca tambem time to human e resolution time, que sao os SLAs que ' +
-        'refletem a experiencia real.',
+        'Ele zera só o first response time, e isso engana. Uma resposta automática instantânea não ' +
+        'é resolução. Se você parar só nessa métrica, o painel fica verde enquanto o cliente segue ' +
+        'sem solução. Por isso meça também time to human e resolution time, que são os SLAs que ' +
+        'refletem a experiência real.',
     },
     {
-      question: 'Como impeco que o cliente que some estoure meu SLA?',
+      question: 'Como impeço que o cliente que some estoure meu SLA?',
       answer:
-        'Use o estado "aguardando cliente" e pause o relogio do SLA enquanto o ticket estiver nele. ' +
-        'O tempo so volta a contar quando o cliente responde e a bola retorna ao time. A funcao de ' +
-        'calculo deve somar apenas os estados sob responsabilidade do time, ignorando esse periodo.',
+        'Use o estado "aguardando cliente" e pause o relógio do SLA enquanto o ticket estiver nele. ' +
+        'O tempo só volta a contar quando o cliente responde e a bola retorna ao time. A função de ' +
+        'cálculo deve somar apenas os estados sob responsabilidade do time, ignorando esse período.',
     },
     {
-      question: 'Por ordem de chegada nao e a fila mais justa?',
+      question: 'Por ordem de chegada não é a fila mais justa?',
       answer:
-        'E a mais simples, nao a mais justa. Ordem de chegada pura deixa um caso critico atras de ' +
-        'um trivial e estoura SLA a toa. O ideal e combinar prioridade, tempo de espera e SLA em ' +
-        'risco num score, dando boost automatico aos tickets perto de estourar para nao penalizar ' +
-        'quem ja esperou demais.',
+        'É a mais simples, não a mais justa. Ordem de chegada pura deixa um caso crítico atrás de ' +
+        'um trivial e estoura SLA à toa. O ideal é combinar prioridade, tempo de espera e SLA em ' +
+        'risco num score, dando boost automático aos tickets perto de estourar para não penalizar ' +
+        'quem já esperou demais.',
     },
   ],
   conclusion: {
-    title: 'SLA justo mede responsabilidade, nao relogio',
+    title: 'SLA justo mede responsabilidade, não relógio',
     description:
-      'Atendimento com bot e humano so e mensuravel quando o SLA segue a maquina de estados e o ' +
-      'relogio pausa fora da mao do time. Adote os SLAs por estagio, priorize a fila por risco e ' +
-      'separe os tempos de bot, fila e humano. Assim voce cobra cada lado pelo que controla e ' +
-      'melhora a operacao com dado, nao com achismo. Posso ajudar a desenhar esse modelo no seu ' +
+      'Atendimento com bot e humano só é mensurável quando o SLA segue a máquina de estados e o ' +
+      'relógio pausa fora da mão do time. Adote os SLAs por estágio, priorize a fila por risco e ' +
+      'separe os tempos de bot, fila e humano. Assim você cobra cada lado pelo que controla e ' +
+      'melhora a operação com dado, não com achismo. Posso ajudar a desenhar esse modelo no seu ' +
       'atendimento.',
     cta: 'Desenhar SLAs do meu atendimento',
   },
   related: [
     { label: 'Handoff humano no WhatsApp com IA', to: '/blog/handoff-humano-whatsapp-ia' },
-    { label: 'Roadmap de automacao de suporte com IA em 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
+    { label: 'Roadmap de automação de suporte com IA em 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
     { label: 'Fale comigo', to: '/contato' },
   ],
 };
@@ -518,68 +518,68 @@ module.exports = { timeUnderTeamResponsibility, metSla };`,
 
 const es = {
   intro:
-    'Cuando la atencion mezcla bot y humano, el SLA clasico de "responder en X minutos" se ' +
+    'Cuando la atención mezcla bot y humano, el SLA clásico de "responder en X minutos" se ' +
     'derrumba. El bot responde en milisegundos, pero la duda real solo se resuelve cuando entra ' +
-    'alguien del equipo. Si cobras al equipo por el reloj que corrio mientras el bot conversaba o ' +
-    'mientras el cliente desaparecio, mides injusticia, no desempeno. Esta guia muestra un modelo ' +
-    'de SLA por etapa: que metricas importan, donde el reloj cuenta o se pausa, como priorizar la ' +
-    'cola y como responsabilizar a cada lado solo por lo que controla.',
+    'alguien del equipo. Si cobras al equipo por el reloj que corrió mientras el bot conversaba o ' +
+    'mientras el cliente desapareció, mides injusticia, no desempeño. Esta guía muestra un modelo ' +
+    'de SLA por etapa: qué métricas importan, dónde el reloj cuenta o se pausa, cómo priorizar la ' +
+    'cola y cómo responsabilizar a cada lado solo por lo que controla.',
   sections: [
     {
-      title: 'Por que un SLA unico no funciona con bot + humano',
+      title: '¿Por qué un SLA único no funciona con bot + humano?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un SLA unico asume que un solo actor es responsable de principio a fin. En la atencion ' +
-            'hibrida eso es falso: la responsabilidad cambia de mano varias veces. El bot atiende, ' +
+            'Un SLA único asume que un solo actor es responsable de principio a fin. En la atención ' +
+            'híbrida eso es falso: la responsabilidad cambia de mano varias veces. El bot atiende, ' +
             'intenta resolver, transfiere a la cola humana, el agente responde, pide un dato al ' +
             'cliente y espera. Si el reloj del SLA corre todo el tiempo, el equipo carga la culpa ' +
-            'por periodos en que la pelota ni estaba con el. El reloj debe pausarse y contar por ' +
+            'por períodos en que la pelota ni estaba con él. El reloj debe pausarse y contar por ' +
             'etapa, siguiendo a quien de verdad debe actuar en ese momento. Sin eso, penalizas al ' +
-            'agente por el tiempo que el cliente tardo en responder y premias una operacion que ' +
-            'parece rapida solo porque el bot cierra tickets sin resolver nada.',
+            'agente por el tiempo que el cliente tardó en responder y premias una operación que ' +
+            'parece rápida solo porque el bot cierra tickets sin resolver nada.',
         },
       ],
     },
     {
-      title: 'Los SLAs que importan y como el bot afecta a cada uno',
+      title: 'Los SLAs que importan y cómo el bot afecta a cada uno',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'En lugar de un numero, trabaja con un pequeno conjunto de SLAs que miden momentos ' +
+            'En lugar de un número, trabaja con un pequeño conjunto de SLAs que miden momentos ' +
             'distintos del recorrido. Cada uno responde a una pregunta diferente y el bot influye en ' +
             'cada uno a su manera.',
         },
         {
           type: 'table',
-          columns: ['SLA', 'Que mide', 'Como lo afecta el bot'],
+          columns: ['SLA', 'Qué mide', 'Cómo lo afecta el bot'],
           rows: [
-            ['First response time', 'Tiempo hasta la primera respuesta al cliente', 'El bot casi lo anula: responde al instante, pero eso no prueba resolucion'],
-            ['Time to human', 'Tiempo desde el pedido de humano hasta que un agente asume', 'El bot puede retrasar o adelantar segun cuando escala'],
+            ['First response time', 'Tiempo hasta la primera respuesta al cliente', 'El bot casi lo anula: responde al instante, pero eso no prueba resolución'],
+            ['Time to human', 'Tiempo desde el pedido de humano hasta que un agente asume', 'El bot puede retrasar o adelantar según cuándo escala'],
             ['Resolution time', 'Tiempo total hasta resolver el problema', 'El bot lo reduce si resuelve solo; lo infla si solo empuja al humano'],
-            ['Handoff accuracy', 'Cuantos handoffs llegan con contexto util', 'Un buen bot entrega resumen e intencion; uno malo arroja el ticket crudo'],
+            ['Handoff accuracy', 'Cuántos handoffs llegan con contexto útil', 'Un buen bot entrega resumen e intención; uno malo arroja el ticket crudo'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El error comun es optimizar solo el first response time. Con bot queda lindo y esconde ' +
+            'El error común es optimizar solo el first response time. Con bot queda lindo y esconde ' +
             'lo que importa: el time to human y el resolution time. Mide los tres juntos, si no el ' +
-            'bot se vuelve una maquina de responder rapido sin resolver.',
+            'bot se vuelve una máquina de responder rápido sin resolver.',
         },
       ],
     },
     {
-      title: 'La maquina de estados del ticket y donde el reloj cuenta',
+      title: 'La máquina de estados del ticket y dónde el reloj cuenta',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Modela el ticket como una maquina de estados. Cada estado define de quien es la ' +
-            'responsabilidad y, por tanto, si el reloj del SLA de resolucion cuenta o se pausa. La ' +
-            'regla es simple: el reloj solo cuenta cuando la pelota esta con el equipo. Cuando el bot ' +
+            'Modela el ticket como una máquina de estados. Cada estado define de quién es la ' +
+            'responsabilidad y, por tanto, si el reloj del SLA de resolución cuenta o se pausa. La ' +
+            'regla es simple: el reloj solo cuenta cuando la pelota está con el equipo. Cuando el bot ' +
             'tiene el control o cuando se espera al cliente, el reloj del equipo se pausa.',
         },
         {
@@ -595,7 +595,7 @@ const es = {
             '                |\n' +
             '          agente asume\n' +
             '                v\n' +
-            '       [En atencion]\n' +
+            '       [En atención]\n' +
             '        reloj: CUENTA\n' +
             '            /        \\\n' +
             '   pide dato           resuelve\n' +
@@ -605,43 +605,43 @@ const es = {
             '        |\n' +
             '  cliente responde\n' +
             '        v\n' +
-            '  vuelve a Cola humana o En atencion',
+            '  vuelve a Cola humana o En atención',
         },
         {
           type: 'paragraph',
           value:
-            'Los estados que mas generan disputa son "bot activo" y "esperando cliente". En ambos, el ' +
-            'tiempo no debe pesar contra el agente, porque la accion depende del bot o del propio ' +
-            'cliente. En cambio "cola humana" y "en atencion" son enteramente del equipo, y ahi el ' +
+            'Los estados que más generan disputa son "bot activo" y "esperando cliente". En ambos, el ' +
+            'tiempo no debe pesar contra el agente, porque la acción depende del bot o del propio ' +
+            'cliente. En cambio "cola humana" y "en atención" son enteramente del equipo, y ahí el ' +
             'reloj corre completo.',
         },
       ],
     },
     {
-      title: 'Como priorizar la cola humana',
+      title: 'Cómo priorizar la cola humana',
       blocks: [
         {
           type: 'paragraph',
           value:
             'Cuando varios tickets esperan a un agente, el orden importa tanto como la velocidad. ' +
-            'Atender por orden de llegada es simple, pero deja un caso urgente detras de uno trivial ' +
+            'Atender por orden de llegada es simple, pero deja un caso urgente detrás de uno trivial ' +
             'y revienta el SLA sin necesidad. Combina criterios.',
         },
         {
           type: 'list',
           items: [
-            'Por prioridad: cliente VIP, plan pago o asunto critico (cobranza, fallo de pago) suben en la cola.',
-            'Por tiempo de espera: dentro de la misma prioridad, quien espera hace mas tiempo se atiende primero, evitando inanicion.',
-            'Por SLA en riesgo: los tickets cuyo tiempo restante antes de reventar el SLA es bajo reciben un boost automatico, aun con prioridad media.',
-            'Por esfuerzo del handoff: un ticket que el bot ya califico y resumio puede resolverse rapido y descongestionar la cola.',
+            'Por prioridad: cliente VIP, plan pago o asunto crítico (cobranza, fallo de pago) suben en la cola.',
+            'Por tiempo de espera: dentro de la misma prioridad, quien espera hace más tiempo se atiende primero, evitando inanición.',
+            'Por SLA en riesgo: los tickets cuyo tiempo restante antes de reventar el SLA es bajo reciben un boost automático, aun con prioridad media.',
+            'Por esfuerzo del handoff: un ticket que el bot ya calificó y resumió puede resolverse rápido y descongestionar la cola.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Una cola madura mezcla esas senales en un score unico. El SLA en riesgo es el desempate ' +
-            'mas importante: no sirve priorizar a un VIP si un caso comun va a reventar en dos ' +
-            'minutos y mancha la metrica del dia.',
+            'Una cola madura mezcla esas señales en un score único. El SLA en riesgo es el desempate ' +
+            'más importante: no sirve priorizar a un VIP si un caso común va a reventar en dos ' +
+            'minutos y mancha la métrica del día.',
         },
       ],
     },
@@ -651,8 +651,8 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El calculo justo suma solo el tiempo en que el ticket estuvo bajo responsabilidad del ' +
-            'equipo. La funcion de abajo recorre los intervalos de estado y acumula solo los que ' +
+            'El cálculo justo suma solo el tiempo en que el ticket estuvo bajo responsabilidad del ' +
+            'equipo. La función de abajo recorre los intervalos de estado y acumula solo los que ' +
             'cuentan, ignorando bot activo y esperando cliente.',
         },
         {
@@ -695,83 +695,83 @@ module.exports = { tiempoBajoResponsabilidadDelEquipo, cumplioSla };`,
         {
           type: 'paragraph',
           value:
-            'Fijate que el reloj bruto marcaria 75 minutos, pero el tiempo justo es 13. Sin la pausa, ' +
-            'este ticket reventaria el SLA por culpa del cliente que desaparecio por una hora. El ' +
-            'secreto es guardar cada transicion de estado con timestamp para reconstruir los ' +
-            'segmentos despues.',
+            'Fíjate que el reloj bruto marcaría 75 minutos, pero el tiempo justo es 13. Sin la pausa, ' +
+            'este ticket reventaría el SLA por culpa del cliente que desapareció por una hora. El ' +
+            'secreto es guardar cada transición de estado con timestamp para reconstruir los ' +
+            'segmentos después.',
         },
       ],
     },
     {
-      title: 'Metricas para no cobrar al equipo por lo que no controla',
+      title: 'Métricas para no cobrar al equipo por lo que no controla',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un numero agregado de resolution time esconde de quien fue la demora. Separa el tiempo ' +
-            'por fase para que cada area mire la suya. Asi mejoras el bot, dimensionas el equipo y ' +
+            'Un número agregado de resolution time esconde de quién fue la demora. Separa el tiempo ' +
+            'por fase para que cada área mire la suya. Así mejoras el bot, dimensionas el equipo y ' +
             'das seguimiento al cliente sin injusticias.',
         },
         {
           type: 'list',
           items: [
-            'Tiempo de bot: cuanto paso el ticket en bot activo. Mide si el bot resuelve o solo empuja.',
-            'Tiempo de cola: cuanto espero en la cola humana antes de que un agente asumiera. Mide el dimensionamiento del equipo.',
-            'Tiempo de humano: cuanto duro la atencion activa del agente. Mide la productividad real, el unico que pesa en su SLA.',
-            'Tiempo esperando cliente: cuanto quedo parado esperando respuesta. Nunca entra en el SLA del equipo, pero ayuda a entender una resolucion lenta.',
+            'Tiempo de bot: cuánto pasó el ticket en bot activo. Mide si el bot resuelve o solo empuja.',
+            'Tiempo de cola: cuánto esperó en la cola humana antes de que un agente asumiera. Mide el dimensionamiento del equipo.',
+            'Tiempo de humano: cuánto duró la atención activa del agente. Mide la productividad real, el único que pesa en su SLA.',
+            'Tiempo esperando cliente: cuánto quedó parado esperando respuesta. Nunca entra en el SLA del equipo, pero ayuda a entender una resolución lenta.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Con esa separacion, una cola alta se vuelve un problema de capacidad (contrata o ajusta ' +
+            'Con esa separación, una cola alta se vuelve un problema de capacidad (contrata o ajusta ' +
             'turnos), un tiempo de humano alto se vuelve un problema de entrenamiento o herramienta, ' +
-            'y un tiempo de bot alto sin resolucion se vuelve un problema de flujo del bot. Cada uno ' +
-            'responde por lo que controla, y la conversacion de mejora deja de ser una pelea por un ' +
-            'numero unico.',
+            'y un tiempo de bot alto sin resolución se vuelve un problema de flujo del bot. Cada uno ' +
+            'responde por lo que controla, y la conversación de mejora deja de ser una pelea por un ' +
+            'número único.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'El bot que responde al instante no deberia anular mi SLA?',
+      question: '¿El bot que responde al instante no debería anular mi SLA?',
       answer:
-        'Solo anula el first response time, y eso engana. Una respuesta automatica instantanea no es ' +
-        'resolucion. Si te quedas solo en esa metrica, el panel queda verde mientras el cliente ' +
-        'sigue sin solucion. Por eso mide tambien time to human y resolution time, que son los SLAs ' +
+        'Solo anula el first response time, y eso engaña. Una respuesta automática instantánea no es ' +
+        'resolución. Si te quedas solo en esa métrica, el panel queda verde mientras el cliente ' +
+        'sigue sin solución. Por eso mide también time to human y resolution time, que son los SLAs ' +
         'que reflejan la experiencia real.',
     },
     {
-      question: 'Como impido que el cliente que desaparece reviente mi SLA?',
+      question: '¿Cómo impido que el cliente que desaparece reviente mi SLA?',
       answer:
-        'Usa el estado "esperando cliente" y pausa el reloj del SLA mientras el ticket este en el. ' +
+        'Usa el estado "esperando cliente" y pausa el reloj del SLA mientras el ticket esté en él. ' +
         'El tiempo solo vuelve a contar cuando el cliente responde y la pelota regresa al equipo. La ' +
-        'funcion de calculo debe sumar solo los estados bajo responsabilidad del equipo, ignorando ' +
-        'ese periodo.',
+        'función de cálculo debe sumar solo los estados bajo responsabilidad del equipo, ignorando ' +
+        'ese período.',
     },
     {
-      question: 'No es la cola por orden de llegada la mas justa?',
+      question: '¿No es la cola por orden de llegada la más justa?',
       answer:
-        'Es la mas simple, no la mas justa. El orden de llegada puro deja un caso critico detras de ' +
+        'Es la más simple, no la más justa. El orden de llegada puro deja un caso crítico detrás de ' +
         'uno trivial y revienta el SLA en vano. Lo ideal es combinar prioridad, tiempo de espera y ' +
-        'SLA en riesgo en un score, dando boost automatico a los tickets cerca de reventar para no ' +
-        'penalizar a quien ya espero demasiado.',
+        'SLA en riesgo en un score, dando boost automático a los tickets cerca de reventar para no ' +
+        'penalizar a quien ya esperó demasiado.',
     },
   ],
   conclusion: {
     title: 'Un SLA justo mide responsabilidad, no el reloj',
     description:
-      'La atencion con bot y humano solo es medible cuando el SLA sigue la maquina de estados y el ' +
+      'La atención con bot y humano solo es medible cuando el SLA sigue la máquina de estados y el ' +
       'reloj se pausa fuera de la mano del equipo. Adopta SLAs por etapa, prioriza la cola por ' +
-      'riesgo y separa los tiempos de bot, cola y humano. Asi responsabilizas a cada lado por lo ' +
-      'que controla y mejoras la operacion con datos, no con suposiciones. Puedo ayudarte a disenar ' +
-      'este modelo en tu atencion.',
-    cta: 'Disenar los SLAs de mi atencion',
+      'riesgo y separa los tiempos de bot, cola y humano. Así responsabilizas a cada lado por lo ' +
+      'que controla y mejoras la operación con datos, no con suposiciones. Puedo ayudarte a diseñar ' +
+      'este modelo en tu atención.',
+    cta: 'Diseñar los SLAs de mi atención',
   },
   related: [
     { label: 'Handoff humano en WhatsApp con IA', to: '/blog/handoff-humano-whatsapp-ia' },
-    { label: 'Roadmap de automatizacion de soporte con IA en 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
+    { label: 'Roadmap de automatización de soporte con IA en 90 días', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
     { label: 'Hablemos', to: '/contato' },
   ],
 };

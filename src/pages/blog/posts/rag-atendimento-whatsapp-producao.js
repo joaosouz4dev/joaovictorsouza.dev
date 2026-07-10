@@ -12,7 +12,7 @@ const repo = {
 
 const pt = {
   intro:
-    'Um bot de atendimento que inventa politica de troca, prazo de entrega ou preco nao economiza suporte: gera reclamacao, chargeback e desconfianca. A diferenca entre um RAG de demo e um RAG de producao nao esta no modelo de linguagem, e sim na engenharia ao redor dele: como voce estrutura a base de conhecimento, como recupera o trecho certo, como obriga o modelo a responder somente com o que recuperou e como mede isso de forma continua. Este artigo desenha um pipeline RAG completo para WhatsApp, com guardrails contra alucinacao e avaliacao automatizada, e mostra tambem quando RAG nao e a ferramenta certa.',
+    'Um bot de atendimento que inventa política de troca, prazo de entrega ou preço não economiza suporte: gera reclamação, chargeback e desconfiança. A diferença entre um RAG de demo e um RAG de produção não está no modelo de linguagem, e sim na engenharia ao redor dele: como você estrutura a base de conhecimento, como recupera o trecho certo, como obriga o modelo a responder somente com o que recuperou e como mede isso de forma contínua. Este artigo desenha um pipeline RAG completo para WhatsApp, com guardrails contra alucinação e avaliação automatizada, e mostra também quando RAG não é a ferramenta certa.',
   sections: [
     {
       title: 'O pipeline RAG de ponta a ponta',
@@ -20,14 +20,14 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'RAG (Retrieval Augmented Generation) injeta contexto recuperado da sua base de conhecimento dentro do prompt, para que o modelo responda ancorado em fatos seus, e nao apenas na memoria de treino. O fluxo tem duas metades: uma offline (ingestao da base) e uma online (cada mensagem do cliente). Tratar essas duas metades como sistemas separados, com seus proprios testes, e o primeiro passo para ter previsibilidade.',
+            'RAG (Retrieval Augmented Generation) injeta contexto recuperado da sua base de conhecimento dentro do prompt, para que o modelo responda ancorado em fatos seus, e não apenas na memória de treino. O fluxo tem duas metades: uma offline (ingestão da base) e uma online (cada mensagem do cliente). Tratar essas duas metades como sistemas separados, com seus próprios testes, é o primeiro passo para ter previsibilidade.',
         },
         {
           type: 'diagram',
-          value: `OFFLINE (indexacao da base)
+          value: `OFFLINE (indexação da base)
   Documentos  ->  Chunking  ->  Embeddings  ->  Vector Store
   (FAQ, PDFs,     (trechos +     (vetores)       (Postgres/pgvector,
-   politicas)      metadados)                     Qdrant, etc.)
+   políticas)      metadados)                     Qdrant, etc.)
 
 ONLINE (por mensagem no WhatsApp)
   Pergunta do cliente
@@ -39,13 +39,13 @@ ONLINE (por mensagem no WhatsApp)
   Retrieval (top-k por similaridade) + filtro por metadados
        |
        v
-  Reranking (cross-encoder reordena por relevancia real)
+  Reranking (cross-encoder reordena por relevância real)
        |
        v
-  Checagem de score  --(abaixo do threshold)-->  fallback "nao sei" + handoff
+  Checagem de score  --(abaixo do threshold)-->  fallback "não sei" + handoff
        |
        v (acima do threshold)
-  Geracao com grounding + citacao da fonte
+  Geração com grounding + citação da fonte
        |
        v
   Resposta no WhatsApp`,
@@ -53,7 +53,7 @@ ONLINE (por mensagem no WhatsApp)
         {
           type: 'paragraph',
           value:
-            'Note que o reranking e a checagem de score sao etapas separadas do retrieval. O retrieval por similaridade vetorial e barato e amplo (traz candidatos), o reranking e caro e preciso (reordena os melhores), e a checagem de score decide se ha contexto suficiente para sequer tentar responder. Pular qualquer uma dessas tres etapas e a causa mais comum de alucinacao em producao.',
+            'Note que o reranking e a checagem de score são etapas separadas do retrieval. O retrieval por similaridade vetorial é barato e amplo (traz candidatos), o reranking é caro e preciso (reordena os melhores), e a checagem de score decide se há contexto suficiente para sequer tentar responder. Pular qualquer uma dessas três etapas é a causa mais comum de alucinação em produção.',
         },
       ],
     },
@@ -63,17 +63,17 @@ ONLINE (por mensagem no WhatsApp)
         {
           type: 'paragraph',
           value:
-            'A maior parte da qualidade de um RAG e decidida no chunking, nao no prompt. Se o trecho recuperado nao contem a resposta, nenhum prompt salva. Chunk grande demais dilui o sinal e estoura o contexto; chunk pequeno demais perde a frase que da sentido. O ponto de partida pratico para base de atendimento (FAQ, politicas, manuais) e filtro por metadados para nao recuperar lixo de outro produto ou idioma.',
+            'A maior parte da qualidade de um RAG é decidida no chunking, não no prompt. Se o trecho recuperado não contém a resposta, nenhum prompt salva. Chunk grande demais dilui o sinal e estoura o contexto; chunk pequeno demais perde a frase que dá sentido. O ponto de partida prático para base de atendimento (FAQ, políticas, manuais) é filtro por metadados para não recuperar lixo de outro produto ou idioma.',
         },
         {
           type: 'list',
           items: [
-            'Tamanho de chunk: comece com 300 a 500 tokens para FAQ e politicas. Texto denso (contratos, especificacoes) tolera chunks menores; narrativa tolera maiores.',
+            'Tamanho de chunk: comece com 300 a 500 tokens para FAQ e políticas. Texto denso (contratos, especificações) tolera chunks menores; narrativa tolera maiores.',
             'Overlap: 10 a 20 por cento do tamanho do chunk. O overlap evita cortar uma frase no meio e perder a resposta que cruza a fronteira de dois chunks.',
-            'Respeite a estrutura: quebre por secao, titulo ou pergunta de FAQ antes de quebrar por contagem cega de tokens. Um chunk = uma ideia completa.',
-            'Metadados para filtro: anexe a cada chunk campos como produto, idioma, categoria, versao do documento e data de atualizacao. O retrieval filtra por esses campos antes de calcular similaridade.',
-            'Metadados para citacao: guarde titulo do documento, url ou id e secao de origem. Sao eles que viram a citacao "fonte: ..." na resposta e o que sua equipe usa para auditar.',
-            'Reindexe quando o documento muda: trate o chunk como derivado da fonte. Mudou a politica, reprocessa o documento e troca os vetores, nunca edita o vetor a mao.',
+            'Respeite a estrutura: quebre por seção, título ou pergunta de FAQ antes de quebrar por contagem cega de tokens. Um chunk = uma ideia completa.',
+            'Metadados para filtro: anexe a cada chunk campos como produto, idioma, categoria, versão do documento e data de atualização. O retrieval filtra por esses campos antes de calcular similaridade.',
+            'Metadados para citação: guarde título do documento, url ou id e seção de origem. São eles que viram a citação "fonte: ..." na resposta e o que sua equipe usa para auditar.',
+            'Reindexe quando o documento muda: trate o chunk como derivado da fonte. Mudou a política, reprocessa o documento e troca os vetores, nunca edita o vetor a mão.',
           ],
         },
       ],
@@ -84,7 +84,7 @@ ONLINE (por mensagem no WhatsApp)
         {
           type: 'paragraph',
           value:
-            'Guardrail nao e so prompt. E uma combinacao de tres mecanismos: um prompt de sistema que obriga grounding, um threshold de similaridade que bloqueia respostas sem base, e um fallback explicito que assume "nao sei" e aciona handoff humano. O modelo deve preferir admitir ignorancia a inventar. No WhatsApp isso e ainda mais critico porque a resposta vira registro de uma conversa com um cliente real.',
+            'Guardrail não é só prompt. É uma combinação de três mecanismos: um prompt de sistema que obriga grounding, um threshold de similaridade que bloqueia respostas sem base, e um fallback explícito que assume "não sei" e aciona handoff humano. O modelo deve preferir admitir ignorância a inventar. No WhatsApp isso é ainda mais crítico porque a resposta vira registro de uma conversa com um cliente real.',
         },
         {
           type: 'code',
@@ -140,31 +140,31 @@ CONTEXTO:
         {
           type: 'paragraph',
           value:
-            'Tres detalhes que separam producao de demo: temperatura baixa (0 a 0.2) reduz criatividade indesejada; o threshold e calibrado contra o golden set, nao chutado; e o "NAO_SEI" e um token de controle, nao uma frase livre, para a deteccao ser deterministica. O handoff fecha o ciclo: quando o bot nao sabe, um humano assume sem o cliente perceber atrito.',
+            'Três detalhes que separam produção de demo: temperatura baixa (0 a 0.2) reduz criatividade indesejada; o threshold é calibrado contra o golden set, não chutado; e o "NAO_SEI" é um token de controle, não uma frase livre, para a detecção ser determinística. O handoff fecha o ciclo: quando o bot não sabe, um humano assume sem o cliente perceber atrito.',
         },
       ],
     },
     {
-      title: 'Avaliacao continua: medir antes de confiar',
+      title: 'Avaliação contínua: medir antes de confiar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Sem avaliacao, "melhorar o prompt" e fe, nao engenharia. Voce precisa de um golden set (perguntas reais com a resposta e a fonte corretas) e de metricas automatizadas rodando em CI a cada mudanca de chunking, prompt ou modelo. As duas metricas centrais sao faithfulness (a resposta esta ancorada no contexto recuperado, sem inventar) e answer relevancy (a resposta de fato endereca a pergunta). Context recall fecha o trio medindo se o retrieval trouxe o trecho que continha a resposta.',
+            'Sem avaliação, "melhorar o prompt" é fé, não engenharia. Você precisa de um golden set (perguntas reais com a resposta e a fonte corretas) e de métricas automatizadas rodando em CI a cada mudança de chunking, prompt ou modelo. As duas métricas centrais são faithfulness (a resposta está ancorada no contexto recuperado, sem inventar) e answer relevancy (a resposta de fato endereça a pergunta). Context recall fecha o trio medindo se o retrieval trouxe o trecho que continha a resposta.',
         },
         {
           type: 'table',
-          columns: ['Metrica', 'O que mede', 'Como avaliar', 'Acao se cair'],
+          columns: ['Métrica', 'O que mede', 'Como avaliar', 'Ação se cair'],
           rows: [
             [
               'Faithfulness',
               'Resposta ancorada no contexto, sem alucinar',
-              'LLM-as-judge compara afirmacoes da resposta com o contexto',
+              'LLM-as-judge compara afirmações da resposta com o contexto',
               'Endurecer prompt de grounding e baixar temperatura',
             ],
             [
               'Answer relevancy',
-              'A resposta endereca a pergunta do cliente',
+              'A resposta endereça a pergunta do cliente',
               'Similaridade entre pergunta e resposta gerada',
               'Revisar reranking e top-k',
             ],
@@ -176,14 +176,14 @@ CONTEXTO:
             ],
             [
               'Context precision',
-              'Quanto do contexto recuperado e util',
-              'Proporcao de chunks relevantes no top-k',
+              'Quanto do contexto recuperado é útil',
+              'Proporção de chunks relevantes no top-k',
               'Subir threshold ou reduzir top-k',
             ],
             [
               'Taxa de fallback',
-              'Quantas vezes o bot disse "nao sei"',
-              'Log de producao por intencao',
+              'Quantas vezes o bot disse "não sei"',
+              'Log de produção por intenção',
               'Cobrir lacunas da base ou recalibrar threshold',
             ],
           ],
@@ -191,9 +191,9 @@ CONTEXTO:
         {
           type: 'ordered',
           items: [
-            'Monte o golden set com 50 a 100 perguntas reais extraidas do historico de atendimento, com resposta e fonte revisadas por um humano.',
-            'Rode o eval automatizado a cada PR que toque chunking, prompt, modelo ou threshold, e bloqueie o merge se uma metrica regredir alem de um limite.',
-            'Amostre conversas reais de producao semanalmente e adicione os casos de falha ao golden set, fechando o ciclo de melhoria.',
+            'Monte o golden set com 50 a 100 perguntas reais extraídas do histórico de atendimento, com resposta e fonte revisadas por um humano.',
+            'Rode o eval automatizado a cada PR que toque chunking, prompt, modelo ou threshold, e bloqueie o merge se uma métrica regredir além de um limite.',
+            'Amostre conversas reais de produção semanalmente e adicione os casos de falha ao golden set, fechando o ciclo de melhoria.',
           ],
         },
       ],
@@ -204,15 +204,15 @@ CONTEXTO:
         {
           type: 'paragraph',
           value:
-            'RAG brilha em conhecimento textual relativamente estavel: politicas, FAQ, manuais, base de produto. Ele e a ferramenta errada quando o dado e muito dinamico ou transacional. "Qual o status do meu pedido?", "qual meu saldo?", "tem horario amanha as 15h?" nao moram numa base vetorial: a resposta esta num sistema vivo e muda a cada segundo. Indexar isso garante resposta desatualizada.',
+            'RAG brilha em conhecimento textual relativamente estável: políticas, FAQ, manuais, base de produto. Ele é a ferramenta errada quando o dado é muito dinâmico ou transacional. "Qual o status do meu pedido?", "qual meu saldo?", "tem horário amanhã às 15h?" não moram numa base vetorial: a resposta está num sistema vivo e muda a cada segundo. Indexar isso garante resposta desatualizada.',
         },
         {
           type: 'list',
           items: [
-            'Dado dinamico ou por cliente (status de pedido, saldo, estoque, agenda): use function calling ou tool use chamando a API real, nao RAG.',
-            'Acoes (cancelar pedido, agendar, gerar segunda via): isso e function calling com efeito colateral, fora do escopo de recuperacao.',
-            'Base pequena e estavel que cabe inteira no contexto: considere CAG (Cache Augmented Generation), que carrega toda a base no contexto do modelo e reaproveita o cache de KV, eliminando a etapa de retrieval. Sem vector store, sem reranking, latencia menor. So funciona enquanto a base couber na janela de contexto e mudar pouco; acima disso, RAG volta a ser necessario.',
-            'Padrao hibrido comum: RAG para "o que diz a politica", function calling para "qual o meu caso especifico". A maioria dos bots de producao usa os dois lado a lado.',
+            'Dado dinâmico ou por cliente (status de pedido, saldo, estoque, agenda): use function calling ou tool use chamando a API real, não RAG.',
+            'Ações (cancelar pedido, agendar, gerar segunda via): isso é function calling com efeito colateral, fora do escopo de recuperação.',
+            'Base pequena e estável que cabe inteira no contexto: considere CAG (Cache Augmented Generation), que carrega toda a base no contexto do modelo e reaproveita o cache de KV, eliminando a etapa de retrieval. Sem vector store, sem reranking, latência menor. Só funciona enquanto a base couber na janela de contexto e mudar pouco; acima disso, RAG volta a ser necessário.',
+            'Padrão híbrido comum: RAG para "o que diz a política", function calling para "qual o meu caso específico". A maioria dos bots de produção usa os dois lado a lado.',
           ],
         },
       ],
@@ -222,29 +222,29 @@ CONTEXTO:
     {
       question: 'Qual tamanho de chunk e overlap devo usar?',
       answer:
-        'Comece com 300 a 500 tokens e overlap de 10 a 20 por cento para base de atendimento, mas trate isso como hipotese a validar contra o golden set. Quebre por estrutura (secao, pergunta de FAQ) antes de quebrar por contagem de tokens, para que cada chunk contenha uma ideia completa. Se o context recall estiver baixo, o problema quase sempre e chunking, nao prompt.',
+        'Comece com 300 a 500 tokens e overlap de 10 a 20 por cento para base de atendimento, mas trate isso como hipótese a validar contra o golden set. Quebre por estrutura (seção, pergunta de FAQ) antes de quebrar por contagem de tokens, para que cada chunk contenha uma ideia completa. Se o context recall estiver baixo, o problema quase sempre é chunking, não prompt.',
     },
     {
       question: 'Como impeco o bot de inventar respostas?',
       answer:
-        'Combine tres camadas: um threshold de similaridade que bloqueia a chamada ao LLM quando nada e relevante o suficiente, um prompt de sistema que obriga responder somente com o contexto recuperado e retornar um token de controle quando nao houver base, e um fallback que aciona handoff humano. Adicione temperatura baixa e exija citacao da fonte. Nenhum desses sozinho basta; o efeito vem da combinacao.',
+        'Combine três camadas: um threshold de similaridade que bloqueia a chamada ao LLM quando nada é relevante o suficiente, um prompt de sistema que obriga responder somente com o contexto recuperado e retornar um token de controle quando não houver base, e um fallback que aciona handoff humano. Adicione temperatura baixa e exija citação da fonte. Nenhum desses sozinho basta; o efeito vem da combinação.',
     },
     {
       question: 'RAG ou function calling para responder sobre pedidos?',
       answer:
-        'Function calling. RAG e para conhecimento textual estavel (politicas, FAQ). Status de pedido, saldo e agenda sao dados vivos que mudam a cada momento e moram num sistema transacional. Indexar isso entrega resposta desatualizada. O padrao maduro e hibrido: RAG para o que a politica diz, function calling para o caso especifico do cliente.',
+        'Function calling. RAG é para conhecimento textual estável (políticas, FAQ). Status de pedido, saldo e agenda são dados vivos que mudam a cada momento e moram num sistema transacional. Indexar isso entrega resposta desatualizada. O padrão maduro é híbrido: RAG para o que a política diz, function calling para o caso específico do cliente.',
     },
   ],
   conclusion: {
-    title: 'Precisao em producao e engenharia, nao sorte',
+    title: 'Precisão em produção é engenharia, não sorte',
     description:
-      'Um RAG confiavel no WhatsApp se constroi com chunking deliberado, retrieval com reranking, guardrails de grounding e avaliacao continua contra um golden set. Posso desenhar e implementar esse pipeline para o seu atendimento, com handoff humano e metricas de fidelidade.',
+      'Um RAG confiável no WhatsApp se constrói com chunking deliberado, retrieval com reranking, guardrails de grounding e avaliação contínua contra um golden set. Posso desenhar e implementar esse pipeline para o seu atendimento, com handoff humano e métricas de fidelidade.',
     cta: 'Falar sobre meu projeto de RAG',
   },
   related: [
     { label: 'Chatbots e IA para atendimento', to: '/servicos/chatbots-e-ia' },
     { label: 'Handoff humano no WhatsApp com IA', to: '/blog/handoff-humano-whatsapp-ia' },
-    { label: 'ROI real de automacao com IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de automação com IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo,
 };
@@ -490,7 +490,7 @@ CONTEXT:
 
 const es = {
   intro:
-    'Un bot de atencion que inventa la politica de cambios, el plazo de entrega o el precio no ahorra soporte: genera reclamos, contracargos y desconfianza. La diferencia entre un RAG de demo y un RAG de produccion no esta en el modelo de lenguaje, sino en la ingenieria a su alrededor: como estructuras la base de conocimiento, como recuperas el fragmento correcto, como obligas al modelo a responder solo con lo que recupero y como lo mides de forma continua. Este articulo disena un pipeline RAG completo para WhatsApp, con guardrails contra alucinaciones y evaluacion automatizada, y muestra tambien cuando RAG no es la herramienta adecuada.',
+    'Un bot de atención que inventa la política de cambios, el plazo de entrega o el precio no ahorra soporte: genera reclamos, contracargos y desconfianza. La diferencia entre un RAG de demo y un RAG de producción no está en el modelo de lenguaje, sino en la ingeniería a su alrededor: cómo estructuras la base de conocimiento, cómo recuperas el fragmento correcto, cómo obligas al modelo a responder solo con lo que recuperó y cómo lo mides de forma continua. Este artículo diseña un pipeline RAG completo para WhatsApp, con guardrails contra alucinaciones y evaluación automatizada, y muestra también cuándo RAG no es la herramienta adecuada.',
   sections: [
     {
       title: 'El pipeline RAG de punta a punta',
@@ -502,10 +502,10 @@ const es = {
         },
         {
           type: 'diagram',
-          value: `OFFLINE (indexacion de la base)
+          value: `OFFLINE (indexación de la base)
   Documentos  ->  Chunking  ->  Embeddings  ->  Vector Store
   (FAQ, PDFs,     (fragmentos     (vectores)      (Postgres/pgvector,
-   politicas)      + metadatos)                    Qdrant, etc.)
+   políticas)      + metadatos)                    Qdrant, etc.)
 
 ONLINE (por mensaje en WhatsApp)
   Pregunta del cliente
@@ -520,10 +520,10 @@ ONLINE (por mensaje en WhatsApp)
   Reranking (cross-encoder reordena por relevancia real)
        |
        v
-  Chequeo de score  --(bajo el umbral)-->  fallback "no se" + handoff
+  Chequeo de score  --(bajo el umbral)-->  fallback "no sé" + handoff
        |
        v (sobre el umbral)
-  Generacion con grounding + cita de la fuente
+  Generación con grounding + cita de la fuente
        |
        v
   Respuesta en WhatsApp`,
@@ -531,7 +531,7 @@ ONLINE (por mensaje en WhatsApp)
         {
           type: 'paragraph',
           value:
-            'Observa que el reranking y el chequeo de score son etapas separadas del retrieval. El retrieval por similitud vectorial es barato y amplio (trae candidatos), el reranking es caro y preciso (reordena los mejores), y el chequeo de score decide si hay contexto suficiente para siquiera intentar responder. Saltarse cualquiera de estas tres etapas es la causa mas comun de alucinacion en produccion.',
+            'Observa que el reranking y el chequeo de score son etapas separadas del retrieval. El retrieval por similitud vectorial es barato y amplio (trae candidatos), el reranking es caro y preciso (reordena los mejores), y el chequeo de score decide si hay contexto suficiente para siquiera intentar responder. Saltarse cualquiera de estas tres etapas es la causa más común de alucinación en producción.',
         },
       ],
     },
@@ -541,17 +541,17 @@ ONLINE (por mensaje en WhatsApp)
         {
           type: 'paragraph',
           value:
-            'La mayor parte de la calidad de un RAG se decide en el chunking, no en el prompt. Si el fragmento recuperado no contiene la respuesta, ningun prompt te salva. Un fragmento demasiado grande diluye la senal y desborda el contexto; uno demasiado pequeno pierde la frase que da sentido. Un punto de partida practico para bases de atencion (FAQ, politicas, manuales) es filtrar por metadatos para no recuperar ruido de otro producto o idioma.',
+            'La mayor parte de la calidad de un RAG se decide en el chunking, no en el prompt. Si el fragmento recuperado no contiene la respuesta, ningún prompt te salva. Un fragmento demasiado grande diluye la señal y desborda el contexto; uno demasiado pequeño pierde la frase que da sentido. Un punto de partida práctico para bases de atención (FAQ, políticas, manuales) es filtrar por metadatos para no recuperar ruido de otro producto o idioma.',
         },
         {
           type: 'list',
           items: [
-            'Tamano de fragmento: empieza con 300 a 500 tokens para FAQ y politicas. El texto denso (contratos, especificaciones) tolera fragmentos menores; la narrativa tolera mayores.',
-            'Overlap: 10 a 20 por ciento del tamano del fragmento. El overlap evita cortar una frase a la mitad y perder la respuesta que cruza la frontera de dos fragmentos.',
-            'Respeta la estructura: divide por seccion, titulo o pregunta de FAQ antes de dividir por conteo ciego de tokens. Un fragmento = una idea completa.',
-            'Metadatos para filtrar: agrega a cada fragmento campos como producto, idioma, categoria, version del documento y fecha de actualizacion. El retrieval filtra por estos campos antes de calcular similitud.',
-            'Metadatos para citar: guarda el titulo del documento, url o id, y la seccion de origen. Son los que se convierten en la cita "fuente: ..." de la respuesta y lo que tu equipo usa para auditar.',
-            'Reindexa cuando el documento cambia: trata el fragmento como derivado de la fuente. Si cambia la politica, reprocesa el documento y reemplaza los vectores, nunca edites un vector a mano.',
+            'Tamaño de fragmento: empieza con 300 a 500 tokens para FAQ y políticas. El texto denso (contratos, especificaciones) tolera fragmentos menores; la narrativa tolera mayores.',
+            'Overlap: 10 a 20 por ciento del tamaño del fragmento. El overlap evita cortar una frase a la mitad y perder la respuesta que cruza la frontera de dos fragmentos.',
+            'Respeta la estructura: divide por sección, título o pregunta de FAQ antes de dividir por conteo ciego de tokens. Un fragmento = una idea completa.',
+            'Metadatos para filtrar: agrega a cada fragmento campos como producto, idioma, categoría, versión del documento y fecha de actualización. El retrieval filtra por estos campos antes de calcular similitud.',
+            'Metadatos para citar: guarda el título del documento, url o id, y la sección de origen. Son los que se convierten en la cita "fuente: ..." de la respuesta y lo que tu equipo usa para auditar.',
+            'Reindexa cuando el documento cambia: trata el fragmento como derivado de la fuente. Si cambia la política, reprocesa el documento y reemplaza los vectores, nunca edites un vector a mano.',
           ],
         },
       ],
@@ -562,7 +562,7 @@ ONLINE (por mensaje en WhatsApp)
         {
           type: 'paragraph',
           value:
-            'Un guardrail no es solo un prompt. Es la combinacion de tres mecanismos: un prompt de sistema que obliga al grounding, un umbral de similitud que bloquea respuestas sin base, y un fallback explicito que asume "no se" y activa el handoff humano. El modelo debe preferir admitir ignorancia antes que inventar. En WhatsApp esto importa aun mas porque la respuesta queda como registro de una conversacion con un cliente real.',
+            'Un guardrail no es solo un prompt. Es la combinación de tres mecanismos: un prompt de sistema que obliga al grounding, un umbral de similitud que bloquea respuestas sin base, y un fallback explícito que asume "no sé" y activa el handoff humano. El modelo debe preferir admitir ignorancia antes que inventar. En WhatsApp esto importa aún más porque la respuesta queda como registro de una conversación con un cliente real.',
         },
         {
           type: 'code',
@@ -618,21 +618,21 @@ CONTEXTO:
         {
           type: 'paragraph',
           value:
-            'Tres detalles que separan produccion de demo: temperatura baja (0 a 0.2) reduce la creatividad indeseada; el umbral se calibra contra el golden set, no se adivina; y "NO_SE" es un token de control, no una frase libre, para que la deteccion sea determinista. El handoff cierra el ciclo: cuando el bot no sabe, un humano asume sin que el cliente sienta friccion.',
+            'Tres detalles que separan producción de demo: temperatura baja (0 a 0.2) reduce la creatividad indeseada; el umbral se calibra contra el golden set, no se adivina; y "NO_SE" es un token de control, no una frase libre, para que la detección sea determinista. El handoff cierra el ciclo: cuando el bot no sabe, un humano asume sin que el cliente sienta fricción.',
         },
       ],
     },
     {
-      title: 'Evaluacion continua: medir antes de confiar',
+      title: 'Evaluación continua: medir antes de confiar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Sin evaluacion, "mejorar el prompt" es fe, no ingenieria. Necesitas un golden set (preguntas reales con la respuesta y la fuente correctas) y metricas automatizadas corriendo en CI en cada cambio de chunking, prompt o modelo. Las dos metricas centrales son faithfulness (la respuesta esta anclada en el contexto recuperado, sin inventar) y answer relevancy (la respuesta realmente aborda la pregunta). Context recall completa el trio midiendo si el retrieval trajo el fragmento que contenia la respuesta.',
+            'Sin evaluación, "mejorar el prompt" es fe, no ingeniería. Necesitas un golden set (preguntas reales con la respuesta y la fuente correctas) y métricas automatizadas corriendo en CI en cada cambio de chunking, prompt o modelo. Las dos métricas centrales son faithfulness (la respuesta está anclada en el contexto recuperado, sin inventar) y answer relevancy (la respuesta realmente aborda la pregunta). Context recall completa el trío midiendo si el retrieval trajo el fragmento que contenía la respuesta.',
         },
         {
           type: 'table',
-          columns: ['Metrica', 'Que mide', 'Como evaluar', 'Accion si cae'],
+          columns: ['Métrica', 'Qué mide', 'Cómo evaluar', 'Acción si cae'],
           rows: [
             [
               'Faithfulness',
@@ -654,14 +654,14 @@ CONTEXTO:
             ],
             [
               'Context precision',
-              'Cuanto del contexto recuperado es util',
-              'Proporcion de fragmentos relevantes en el top-k',
+              'Cuánto del contexto recuperado es útil',
+              'Proporción de fragmentos relevantes en el top-k',
               'Subir el umbral o reducir top-k',
             ],
             [
               'Tasa de fallback',
-              'Cuantas veces el bot dijo "no se"',
-              'Logs de produccion por intencion',
+              'Cuántas veces el bot dijo "no sé"',
+              'Logs de producción por intención',
               'Cubrir vacios de la base o recalibrar el umbral',
             ],
           ],
@@ -669,28 +669,28 @@ CONTEXTO:
         {
           type: 'ordered',
           items: [
-            'Arma el golden set con 50 a 100 preguntas reales del historial de atencion, con respuesta y fuente revisadas por un humano.',
-            'Corre el eval automatizado en cada PR que toque chunking, prompt, modelo o umbral, y bloquea el merge si una metrica regresa mas alla de un limite.',
-            'Muestrea conversaciones reales de produccion cada semana y agrega los casos de falla al golden set, cerrando el ciclo de mejora.',
+            'Arma el golden set con 50 a 100 preguntas reales del historial de atención, con respuesta y fuente revisadas por un humano.',
+            'Corre el eval automatizado en cada PR que toque chunking, prompt, modelo o umbral, y bloquea el merge si una métrica regresa más allá de un límite.',
+            'Muestrea conversaciones reales de producción cada semana y agrega los casos de falla al golden set, cerrando el ciclo de mejora.',
           ],
         },
       ],
     },
     {
-      title: 'Cuando NO usar RAG',
+      title: 'Cuándo NO usar RAG',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG brilla en conocimiento textual relativamente estable: politicas, FAQ, manuales, base de producto. Es la herramienta equivocada cuando el dato es muy dinamico o transaccional. "Cual es el estado de mi pedido?", "cual es mi saldo?", "hay turno manana a las 15h?" no viven en una base vectorial: la respuesta esta en un sistema vivo y cambia a cada segundo. Indexar eso garantiza una respuesta desactualizada.',
+            'RAG brilla en conocimiento textual relativamente estable: políticas, FAQ, manuales, base de producto. Es la herramienta equivocada cuando el dato es muy dinámico o transaccional. "¿Cuál es el estado de mi pedido?", "¿cuál es mi saldo?", "¿hay turno mañana a las 15h?" no viven en una base vectorial: la respuesta está en un sistema vivo y cambia a cada segundo. Indexar eso garantiza una respuesta desactualizada.',
         },
         {
           type: 'list',
           items: [
-            'Dato dinamico o por cliente (estado de pedido, saldo, stock, agenda): usa function calling o tool use contra la API real, no RAG.',
-            'Acciones (cancelar un pedido, agendar, reemitir una factura): eso es function calling con efecto secundario, fuera del alcance de la recuperacion.',
-            'Base pequena y estable que cabe entera en el contexto: considera CAG (Cache Augmented Generation), que carga toda la base en el contexto del modelo y reutiliza el cache de KV, eliminando la etapa de retrieval. Sin vector store, sin reranking, menor latencia. Solo funciona mientras la base quepa en la ventana de contexto y cambie poco; mas alla de eso, RAG vuelve a ser necesario.',
-            'Patron hibrido comun: RAG para "que dice la politica", function calling para "cual es mi caso especifico". La mayoria de los bots de produccion usan ambos lado a lado.',
+            'Dato dinámico o por cliente (estado de pedido, saldo, stock, agenda): usa function calling o tool use contra la API real, no RAG.',
+            'Acciones (cancelar un pedido, agendar, reemitir una factura): eso es function calling con efecto secundario, fuera del alcance de la recuperación.',
+            'Base pequeña y estable que cabe entera en el contexto: considera CAG (Cache Augmented Generation), que carga toda la base en el contexto del modelo y reutiliza el cache de KV, eliminando la etapa de retrieval. Sin vector store, sin reranking, menor latencia. Solo funciona mientras la base quepa en la ventana de contexto y cambie poco; más allá de eso, RAG vuelve a ser necesario.',
+            'Patrón híbrido común: RAG para "qué dice la política", function calling para "cuál es mi caso específico". La mayoría de los bots de producción usan ambos lado a lado.',
           ],
         },
       ],
@@ -698,31 +698,31 @@ CONTEXTO:
   ],
   faq: [
     {
-      question: 'Que tamano de fragmento y overlap debo usar?',
+      question: '¿Qué tamaño de fragmento y overlap debo usar?',
       answer:
-        'Empieza con 300 a 500 tokens y un overlap de 10 a 20 por ciento para una base de atencion, pero tratalo como hipotesis a validar contra el golden set. Divide por estructura (seccion, pregunta de FAQ) antes de dividir por conteo de tokens, para que cada fragmento contenga una idea completa. Si el context recall esta bajo, el problema casi siempre es el chunking, no el prompt.',
+        'Empieza con 300 a 500 tokens y un overlap de 10 a 20 por ciento para una base de atención, pero trátalo como hipótesis a validar contra el golden set. Divide por estructura (sección, pregunta de FAQ) antes de dividir por conteo de tokens, para que cada fragmento contenga una idea completa. Si el context recall está bajo, el problema casi siempre es el chunking, no el prompt.',
     },
     {
-      question: 'Como evito que el bot invente respuestas?',
+      question: '¿Cómo evito que el bot invente respuestas?',
       answer:
-        'Combina tres capas: un umbral de similitud que bloquea la llamada al LLM cuando nada es lo bastante relevante, un prompt de sistema que obliga a responder solo con el contexto recuperado y devuelve un token de control cuando no hay base, y un fallback que activa el handoff humano. Agrega temperatura baja y exige cita de la fuente. Ninguno por si solo alcanza; el efecto viene de la combinacion.',
+        'Combina tres capas: un umbral de similitud que bloquea la llamada al LLM cuando nada es lo bastante relevante, un prompt de sistema que obliga a responder solo con el contexto recuperado y devuelve un token de control cuando no hay base, y un fallback que activa el handoff humano. Agrega temperatura baja y exige cita de la fuente. Ninguno por sí solo alcanza; el efecto viene de la combinación.',
     },
     {
-      question: 'RAG o function calling para responder sobre pedidos?',
+      question: '¿RAG o function calling para responder sobre pedidos?',
       answer:
-        'Function calling. RAG es para conocimiento textual estable (politicas, FAQ). Estado de pedido, saldo y agenda son datos vivos que cambian a cada momento y viven en un sistema transaccional. Indexar eso entrega respuestas desactualizadas. El patron maduro es hibrido: RAG para lo que dice la politica, function calling para el caso especifico del cliente.',
+        'Function calling. RAG es para conocimiento textual estable (políticas, FAQ). Estado de pedido, saldo y agenda son datos vivos que cambian a cada momento y viven en un sistema transaccional. Indexar eso entrega respuestas desactualizadas. El patrón maduro es híbrido: RAG para lo que dice la política, function calling para el caso específico del cliente.',
     },
   ],
   conclusion: {
-    title: 'La precision en produccion es ingenieria, no suerte',
+    title: 'La precisión en producción es ingeniería, no suerte',
     description:
-      'Un RAG confiable en WhatsApp se construye con chunking deliberado, retrieval con reranking, guardrails de grounding y evaluacion continua contra un golden set. Puedo disenar e implementar este pipeline para tu atencion, con handoff humano y metricas de fidelidad.',
+      'Un RAG confiable en WhatsApp se construye con chunking deliberado, retrieval con reranking, guardrails de grounding y evaluación continua contra un golden set. Puedo diseñar e implementar este pipeline para tu atención, con handoff humano y métricas de fidelidad.',
     cta: 'Hablar sobre mi proyecto de RAG',
   },
   related: [
-    { label: 'Chatbots e IA para atencion', to: '/servicos/chatbots-e-ia' },
+    { label: 'Chatbots e IA para atención', to: '/servicos/chatbots-e-ia' },
     { label: 'Handoff humano en WhatsApp con IA', to: '/blog/handoff-humano-whatsapp-ia' },
-    { label: 'ROI real de la automatizacion con IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de la automatización con IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo,
 };

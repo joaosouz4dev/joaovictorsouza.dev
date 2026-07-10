@@ -4,73 +4,73 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'Exemplo lado a lado de CAG e RAG: base de conhecimento em cache de contexto com prompt caching versus retrieval em vector store, com medicao de latencia e custo.',
+  pt: 'Exemplo lado a lado de CAG e RAG: base de conhecimento em cache de contexto com prompt caching versus retrieval em vector store, com medição de latência e custo.',
   en: 'Side-by-side example of CAG and RAG: knowledge base in a context cache with prompt caching versus vector store retrieval, with latency and cost measurement.',
-  es: 'Ejemplo lado a lado de CAG y RAG: base de conocimiento en cache de contexto con prompt caching frente a retrieval en vector store, con medicion de latencia y costo.',
+  es: 'Ejemplo lado a lado de CAG y RAG: base de conocimiento en cache de contexto con prompt caching frente a retrieval en vector store, con medición de latencia y costo.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/cag-vs-rag-example';
 
 const pt = {
   intro:
-    'Quase todo mundo que precisa de um assistente sobre uma base propria assume que a resposta e RAG. Mas RAG carrega um custo escondido: a cada pergunta voce embeda, busca, reordena e injeta chunks, e qualquer erro nessa cadeia vira resposta errada com confianca. CAG (Cache Augmented Generation) propoe outro caminho: se a sua base inteira cabe na janela de contexto do modelo, carregue tudo de uma vez, marque como cacheada e reutilize esse cache em cada pergunta, sem retrieval nenhum. Este artigo compara os dois de frente, mostra os fluxos lado a lado, quando cada um vence, um exemplo real de prompt caching e como combinar os dois numa arquitetura hibrida.',
+    'Quase todo mundo que precisa de um assistente sobre uma base própria assume que a resposta é RAG. Mas RAG carrega um custo escondido: a cada pergunta você embeda, busca, reordena e injeta chunks, e qualquer erro nessa cadeia vira resposta errada com confiança. CAG (Cache Augmented Generation) propõe outro caminho: se a sua base inteira cabe na janela de contexto do modelo, carregue tudo de uma vez, marque como cacheada e reutilize esse cache em cada pergunta, sem retrieval nenhum. Este artigo compara os dois de frente, mostra os fluxos lado a lado, quando cada um vence, um exemplo real de prompt caching e como combinar os dois numa arquitetura híbrida.',
   sections: [
     {
-      title: 'O que e RAG e o que e CAG',
+      title: 'O que é RAG e o que é CAG',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG (Retrieval Augmented Generation) recupera, a cada query, os trechos mais relevantes de um vector store e os injeta no prompt antes de gerar a resposta. A base nunca entra inteira no contexto: voce indexa documentos em chunks com embeddings e, na hora da pergunta, traz apenas o top-k mais parecido. E a abordagem padrao quando a base e grande demais para caber no contexto.',
+            'RAG (Retrieval Augmented Generation) recupera, a cada query, os trechos mais relevantes de um vector store e os injeta no prompt antes de gerar a resposta. A base nunca entra inteira no contexto: você indexa documentos em chunks com embeddings e, na hora da pergunta, traz apenas o top-k mais parecido. É a abordagem padrão quando a base é grande demais para caber no contexto.',
         },
         {
           type: 'paragraph',
           value:
-            'CAG (Cache Augmented Generation) inverte a logica: carrega TODA a base de conhecimento dentro do contexto do modelo uma unica vez, deixa o modelo processar esse bloco e reaproveita o estado interno (o KV cache, exposto pelos provedores como prompt cache) nas perguntas seguintes. Nao ha embedding por query, nao ha vector store, nao ha reranking. A pergunta do usuario e anexada ao contexto ja cacheado e a geracao acontece direto. O preco a pagar e que a base toda precisa caber na janela de contexto.',
+            'CAG (Cache Augmented Generation) inverte a lógica: carrega TODA a base de conhecimento dentro do contexto do modelo uma única vez, deixa o modelo processar esse bloco e reaproveita o estado interno (o KV cache, exposto pelos provedores como prompt cache) nas perguntas seguintes. Não há embedding por query, não há vector store, não há reranking. A pergunta do usuário é anexada ao contexto já cacheado e a geração acontece direto. O preço a pagar é que a base toda precisa caber na janela de contexto.',
         },
       ],
     },
     {
-      title: 'Comparacao direta',
+      title: 'Comparação direta',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A escolha entre RAG e CAG nao e ideologica: cada dimensao puxa para um lado. A tabela abaixo coloca as seis dimensoes que mais pesam na decisao real de engenharia.',
+            'A escolha entre RAG e CAG não é ideológica: cada dimensão puxa para um lado. A tabela abaixo coloca as seis dimensões que mais pesam na decisão real de engenharia.',
         },
         {
           type: 'table',
-          columns: ['Dimensao', 'RAG', 'CAG'],
+          columns: ['Dimensão', 'RAG', 'CAG'],
           rows: [
             [
-              'Latencia por query',
-              'Maior: embed da pergunta, busca, reranking e so depois geracao',
-              'Menor: sem retrieval, a base ja cacheada vai direto para a geracao',
+              'Latência por query',
+              'Maior: embed da pergunta, busca, reranking e só depois geração',
+              'Menor: sem retrieval, a base já cacheada vai direto para a geração',
             ],
             [
               'Custo',
               'Paga embeddings e infra de busca, mas processa poucos tokens por query',
-              'Processa a base inteira na primeira vez; com prompt cache, as proximas saem baratas',
+              'Processa a base inteira na primeira vez; com prompt cache, as próximas saem baratas',
             ],
             [
               'Frescor do dado',
-              'Alto: reindexa um documento e a mudanca vale na proxima query',
+              'Alto: reindexa um documento e a mudança vale na próxima query',
               'Menor: ao mudar a base, o cache precisa ser refeito',
             ],
             [
-              'Tamanho maximo da base',
-              'Praticamente ilimitado (milhoes de chunks no vector store)',
+              'Tamanho máximo da base',
+              'Praticamente ilimitado (milhões de chunks no vector store)',
               'Limitado pela janela de contexto do modelo',
             ],
             [
               'Complexidade de infra',
-              'Alta: pipeline de ingestao, vector store, embeddings, reranking',
+              'Alta: pipeline de ingestão, vector store, embeddings, reranking',
               'Baixa: sem vector store, apenas montar o contexto e cachear',
             ],
             [
               'Risco de recuperar chunk errado',
               'Existe: retrieval pode trazer o trecho errado e o modelo responde em cima dele',
-              'Inexistente: o modelo ve a base inteira, nao depende de buscar o trecho certo',
+              'Inexistente: o modelo vê a base inteira, não depende de buscar o trecho certo',
             ],
           ],
         },
@@ -82,7 +82,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Visualizar os dois caminhos deixa clara a diferenca de superficie: RAG tem uma cadeia de etapas por query, cada uma com seu ponto de falha; CAG concentra o trabalho pesado uma unica vez e depois so anexa a pergunta.',
+            'Visualizar os dois caminhos deixa clara a diferença de superfície: RAG tem uma cadeia de etapas por query, cada uma com seu ponto de falha; CAG concentra o trabalho pesado uma única vez e depois só anexa a pergunta.',
         },
         {
           type: 'diagram',
@@ -100,7 +100,7 @@ CAG (uma vez + por query)
         {
           type: 'paragraph',
           value:
-            'Em RAG, cada seta antes de "Gerar" e uma chance de errar: a pergunta pode embedar mal, o top-k pode nao trazer o trecho certo, o reranking pode reordenar errado. Em CAG, o caminho entre a pergunta e a resposta e curto porque o conhecimento ja esta presente e processado.',
+            'Em RAG, cada seta antes de "Gerar" é uma chance de errar: a pergunta pode embedar mal, o top-k pode não trazer o trecho certo, o reranking pode reordenar errado. Em CAG, o caminho entre a pergunta e a resposta é curto porque o conhecimento já está presente e processado.',
         },
       ],
     },
@@ -110,16 +110,16 @@ CAG (uma vez + por query)
         {
           type: 'paragraph',
           value:
-            'CAG e a escolha certa quando a base e contida e estavel, e quando latencia ou correcao do retrieval importam mais do que escalar para milhoes de documentos.',
+            'CAG é a escolha certa quando a base é contida e estável, e quando latência ou correção do retrieval importam mais do que escalar para milhões de documentos.',
         },
         {
           type: 'list',
           items: [
-            'Base pequena ou media que cabe inteira na janela de contexto: FAQ, manual de produto, politicas de troca e entrega, base de regras de um nicho.',
-            'Dado relativamente estavel: muda em semanas ou meses, nao a cada minuto, entao refazer o cache de vez em quando e barato.',
-            'Latencia critica: ao eliminar embed, busca e reranking, a primeira resposta apos o cache quente sai bem mais rapido.',
-            'Evitar erro de retrieval: como o modelo ve a base inteira, some a classe de falha em que o chunk certo simplesmente nao foi recuperado.',
-            'Infra enxuta: sem vector store nem pipeline de embeddings para manter, o sistema tem menos partes moveis e menos custo operacional.',
+            'Base pequena ou média que cabe inteira na janela de contexto: FAQ, manual de produto, políticas de troca e entrega, base de regras de um nicho.',
+            'Dado relativamente estável: muda em semanas ou meses, não a cada minuto, então refazer o cache de vez em quando é barato.',
+            'Latência crítica: ao eliminar embed, busca e reranking, a primeira resposta após o cache quente sai bem mais rápido.',
+            'Evitar erro de retrieval: como o modelo vê a base inteira, some a classe de falha em que o chunk certo simplesmente não foi recuperado.',
+            'Infra enxuta: sem vector store nem pipeline de embeddings para manter, o sistema tem menos partes móveis e menos custo operacional.',
           ],
         },
       ],
@@ -130,26 +130,26 @@ CAG (uma vez + por query)
         {
           type: 'paragraph',
           value:
-            'RAG continua imbativel quando a base nao cabe no contexto, muda o tempo todo, precisa de rastreabilidade fina por fonte ou serve muitos clientes com bases isoladas.',
+            'RAG continua imbatível quando a base não cabe no contexto, muda o tempo todo, precisa de rastreabilidade fina por fonte ou serve muitos clientes com bases isoladas.',
         },
         {
           type: 'list',
           items: [
-            'Base grande que nao cabe no contexto: dezenas de milhares de documentos, anos de tickets, catalogos extensos. Aqui CAG simplesmente nao entra.',
-            'Dado que muda muito: estoque, precos, conteudo atualizado todo dia. Reindexar um documento e barato; refazer o cache da base inteira a cada mudanca nao.',
-            'Necessidade de citar fonte especifica: quando cada afirmacao precisa apontar exatamente para o documento e a secao de origem, o retrieval entrega esse rastro naturalmente.',
+            'Base grande que não cabe no contexto: dezenas de milhares de documentos, anos de tickets, catálogos extensos. Aqui CAG simplesmente não entra.',
+            'Dado que muda muito: estoque, preços, conteúdo atualizado todo dia. Reindexar um documento é barato; refazer o cache da base inteira a cada mudança não.',
+            'Necessidade de citar fonte específica: quando cada afirmação precisa apontar exatamente para o documento e a seção de origem, o retrieval entrega esse rastro naturalmente.',
             'Multi-tenant com bases isoladas: muitos clientes, cada um com sua base privada. O vector store filtra por tenant; manter um cache gigante por cliente seria caro e arriscado.',
           ],
         },
       ],
     },
     {
-      title: 'Exemplo pratico com prompt caching',
+      title: 'Exemplo prático com prompt caching',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O coracao do CAG e o prompt cache: o provedor processa o bloco grande da base de conhecimento uma vez e guarda o estado, de forma que as proximas requisicoes que comecam com o mesmo prefixo reaproveitam esse trabalho. No exemplo abaixo, usando a Anthropic Messages API, a base de conhecimento vai como um bloco de sistema marcado com cache_control. A primeira pergunta paga o processamento da base; as seguintes leem do cache e custam uma fracao.',
+            'O coração do CAG é o prompt cache: o provedor processa o bloco grande da base de conhecimento uma vez e guarda o estado, de forma que as próximas requisições que começam com o mesmo prefixo reaproveitam esse trabalho. No exemplo abaixo, usando a Anthropic Messages API, a base de conhecimento vai como um bloco de sistema marcado com cache_control. A primeira pergunta paga o processamento da base; as seguintes leem do cache e custam uma fração.',
         },
         {
           type: 'code',
@@ -157,7 +157,7 @@ CAG (uma vez + por query)
 
 const client = new Anthropic();
 
-// A base de conhecimento inteira: FAQ + politicas + manual.
+// A base de conhecimento inteira: FAQ + políticas + manual.
 // Carregada uma vez e marcada como cacheada.
 const KNOWLEDGE_BASE = loadKnowledgeBase(); // string grande, cabe no contexto
 
@@ -168,13 +168,13 @@ async function ask(question) {
     system: [
       {
         type: 'text',
-        text: 'Voce responde EXCLUSIVAMENTE com base na BASE DE CONHECIMENTO abaixo. Se nao houver resposta nela, diga que nao sabe.',
+        text: 'Você responde EXCLUSIVAMENTE com base na BASE DE CONHECIMENTO abaixo. Se não houver resposta nela, diga que não sabe.',
       },
       {
         type: 'text',
         text: KNOWLEDGE_BASE,
         // Marca este bloco como cacheado: processado uma vez,
-        // reaproveitado nas proximas requisicoes com o mesmo prefixo.
+        // reaproveitado nas próximas requisições com o mesmo prefixo.
         cache_control: { type: 'ephemeral' },
       },
     ],
@@ -185,33 +185,33 @@ async function ask(question) {
 // 1a pergunta: cache_creation_input_tokens (paga o processamento da base).
 await ask('Qual o prazo de troca de um produto com defeito?');
 
-// 2a pergunta em diante: cache_read_input_tokens (le do cache, custa fracao).
-await ask('Voces entregam no interior?');
+// 2a pergunta em diante: cache_read_input_tokens (lê do cache, custa fração).
+await ask('Vocês entregam no interior?');
 await ask('Como funciona a garantia estendida?');`,
         },
         {
           type: 'paragraph',
           value:
-            'O ganho fica explicito nos contadores de uso: a primeira chamada registra cache_creation_input_tokens (a base foi processada e cacheada) e as seguintes registram cache_read_input_tokens, cobrados por uma fracao do preco normal de entrada. Ou seja, a base e processada uma vez e o mesmo cache serve todas as perguntas seguintes, enquanto o cache estiver quente. Sem retrieval, sem vector store: o conhecimento ja esta no contexto.',
+            'O ganho fica explícito nos contadores de uso: a primeira chamada registra cache_creation_input_tokens (a base foi processada e cacheada) e as seguintes registram cache_read_input_tokens, cobrados por uma fração do preço normal de entrada. Ou seja, a base é processada uma vez e o mesmo cache serve todas as perguntas seguintes, enquanto o cache estiver quente. Sem retrieval, sem vector store: o conhecimento já está no contexto.',
         },
       ],
     },
     {
-      title: 'Abordagem hibrida: o melhor dos dois',
+      title: 'Abordagem híbrida: o melhor dos dois',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Na pratica, CAG e RAG nao sao rivais: a arquitetura mais robusta usa CAG para o core estavel e RAG para o long tail. O nucleo de conhecimento que quase nao muda e que responde a maioria das perguntas fica cacheado no contexto; o que e raro, volumoso ou volatil fica no vector store e so e recuperado quando o core nao basta.',
+            'Na prática, CAG e RAG não são rivais: a arquitetura mais robusta usa CAG para o core estável e RAG para o long tail. O núcleo de conhecimento que quase não muda e que responde a maioria das perguntas fica cacheado no contexto; o que é raro, volumoso ou volátil fica no vector store e só é recuperado quando o core não basta.',
         },
         {
           type: 'ordered',
           items: [
-            'Identifique o core estavel: as politicas, o FAQ e o manual que respondem a maior parte das perguntas e mudam pouco. Esse bloco vira o contexto cacheado (CAG).',
-            'Mantenha o long tail no vector store: documentos extensos, casos raros, conteudo que muda com frequencia. Eles ficam indexados para RAG.',
-            'Responda primeiro pelo cache: a pergunta chega ao contexto ja cacheado. Se o core cobre, responde direto, com baixa latencia e sem risco de retrieval.',
-            'Acione RAG so no long tail: quando a resposta nao esta no core, dispare o retrieval para buscar o trecho especifico no vector store e injete-o junto.',
-            'Reavalie a fronteira periodicamente: promova ao core estavel o que virou pergunta frequente e refaca o cache; rebaixe ao vector store o que ficou raro.',
+            'Identifique o core estável: as políticas, o FAQ e o manual que respondem a maior parte das perguntas e mudam pouco. Esse bloco vira o contexto cacheado (CAG).',
+            'Mantenha o long tail no vector store: documentos extensos, casos raros, conteúdo que muda com frequência. Eles ficam indexados para RAG.',
+            'Responda primeiro pelo cache: a pergunta chega ao contexto já cacheado. Se o core cobre, responde direto, com baixa latência e sem risco de retrieval.',
+            'Acione RAG só no long tail: quando a resposta não está no core, dispare o retrieval para buscar o trecho específico no vector store e injete-o junto.',
+            'Reavalie a fronteira periodicamente: promova ao core estável o que virou pergunta frequente e refaça o cache; rebaixe ao vector store o que ficou raro.',
           ],
         },
       ],
@@ -221,29 +221,29 @@ await ask('Como funciona a garantia estendida?');`,
     {
       question: 'CAG substitui RAG?',
       answer:
-        'Nao. CAG substitui RAG apenas no recorte em que a base inteira cabe no contexto e muda pouco: ali ele vence em latencia, simplicidade e ausencia de erro de retrieval. Para bases grandes, muito dinamicas ou multi-tenant com isolamento, RAG continua necessario. O cenario mais comum em producao e hibrido: CAG para o core estavel e RAG para o long tail.',
+        'Não. CAG substitui RAG apenas no recorte em que a base inteira cabe no contexto e muda pouco: ali ele vence em latência, simplicidade e ausência de erro de retrieval. Para bases grandes, muito dinâmicas ou multi-tenant com isolamento, RAG continua necessário. O cenário mais comum em produção é híbrido: CAG para o core estável e RAG para o long tail.',
     },
     {
       question: 'Qual o limite de tamanho para CAG?',
       answer:
-        'O limite e a janela de contexto do modelo: a base de conhecimento, mais o prompt de sistema, mais a pergunta e a resposta precisam caber nela. Na pratica, voce deixa margem confortavel para a conversa e nao enche a janela ate o teto, porque contexto muito cheio degrada qualidade e encarece. Quando a base ultrapassa esse limite, e o sinal de migrar para RAG ou para a abordagem hibrida.',
+        'O limite é a janela de contexto do modelo: a base de conhecimento, mais o prompt de sistema, mais a pergunta e a resposta precisam caber nela. Na prática, você deixa margem confortável para a conversa e não enche a janela até o teto, porque contexto muito cheio degrada qualidade e encarece. Quando a base ultrapassa esse limite, é o sinal de migrar para RAG ou para a abordagem híbrida.',
     },
     {
       question: 'Como o prompt cache reduz custo?',
       answer:
-        'O bloco grande da base de conhecimento e processado uma unica vez e guardado como cache. A primeira requisicao paga a criacao do cache (cache_creation_input_tokens); as seguintes, com o mesmo prefixo, apenas leem dele (cache_read_input_tokens), cobrados por uma fracao do preco normal de entrada. Como a base se repete em toda pergunta, esse prefixo cacheado dilui o custo entre muitas requisicoes em vez de reprocessar a base toda vez.',
+        'O bloco grande da base de conhecimento é processado uma única vez e guardado como cache. A primeira requisição paga a criação do cache (cache_creation_input_tokens); as seguintes, com o mesmo prefixo, apenas leem dele (cache_read_input_tokens), cobrados por uma fração do preço normal de entrada. Como a base se repete em toda pergunta, esse prefixo cacheado dilui o custo entre muitas requisições em vez de reprocessar a base toda vez.',
     },
   ],
   conclusion: {
-    title: 'Escolha pelo formato da sua base, nao pela moda',
+    title: 'Escolha pelo formato da sua base, não pela moda',
     description:
-      'RAG e CAG resolvem problemas diferentes: retrieval para bases grandes e dinamicas, cache de contexto para bases contidas e estaveis onde latencia e precisao importam. Posso avaliar a sua base e desenhar a arquitetura certa, CAG, RAG ou hibrida, com prompt caching e medicao de custo e latencia.',
+      'RAG e CAG resolvem problemas diferentes: retrieval para bases grandes e dinâmicas, cache de contexto para bases contidas e estáveis onde latência e precisão importam. Posso avaliar a sua base e desenhar a arquitetura certa, CAG, RAG ou híbrida, com prompt caching e medição de custo e latência.',
     cta: 'Falar sobre minha arquitetura de IA',
   },
   related: [
-    { label: 'RAG para atendimento no WhatsApp em producao', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'RAG para atendimento no WhatsApp em produção', to: '/blog/rag-atendimento-whatsapp-producao' },
     { label: 'Chatbots e IA para atendimento', to: '/servicos/chatbots-e-ia' },
-    { label: 'ROI real de automacao com IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de automação com IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo: { name: 'cag-vs-rag-example', description: repo.pt, url: repoUrl },
 };
@@ -487,63 +487,63 @@ await ask('How does the extended warranty work?');`,
 
 const es = {
   intro:
-    'Casi todos los que necesitan un asistente sobre una base propia asumen que la respuesta es RAG. Pero RAG carga un costo escondido: en cada pregunta embebes, buscas, reordenas e inyectas chunks, y cualquier error en esa cadena se vuelve una respuesta equivocada con confianza. CAG (Cache Augmented Generation) propone otro camino: si tu base entera cabe en la ventana de contexto del modelo, cargala toda de una vez, marcala como cacheada y reutiliza ese cache en cada pregunta, sin retrieval alguno. Este articulo compara los dos de frente, muestra los flujos lado a lado, cuando gana cada uno, un ejemplo real de prompt caching y como combinar ambos en una arquitectura hibrida.',
+    'Casi todos los que necesitan un asistente sobre una base propia asumen que la respuesta es RAG. Pero RAG carga un costo escondido: en cada pregunta embebes, buscas, reordenas e inyectas chunks, y cualquier error en esa cadena se vuelve una respuesta equivocada con confianza. CAG (Cache Augmented Generation) propone otro camino: si tu base entera cabe en la ventana de contexto del modelo, cárgala toda de una vez, márcala como cacheada y reutiliza ese cache en cada pregunta, sin retrieval alguno. Este artículo compara los dos de frente, muestra los flujos lado a lado, cuándo gana cada uno, un ejemplo real de prompt caching y cómo combinar ambos en una arquitectura híbrida.',
   sections: [
     {
-      title: 'Que es RAG y que es CAG',
+      title: '¿Qué es RAG y qué es CAG?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'RAG (Retrieval Augmented Generation) recupera, en cada query, los fragmentos mas relevantes de un vector store y los inyecta en el prompt antes de generar la respuesta. La base nunca entra entera en el contexto: indexas documentos en chunks con embeddings y, al momento de la pregunta, traes solo el top-k mas parecido. Es el enfoque estandar cuando la base es demasiado grande para caber en el contexto.',
+            'RAG (Retrieval Augmented Generation) recupera, en cada query, los fragmentos más relevantes de un vector store y los inyecta en el prompt antes de generar la respuesta. La base nunca entra entera en el contexto: indexas documentos en chunks con embeddings y, al momento de la pregunta, traes solo el top-k más parecido. Es el enfoque estándar cuando la base es demasiado grande para caber en el contexto.',
         },
         {
           type: 'paragraph',
           value:
-            'CAG (Cache Augmented Generation) invierte la logica: carga TODA la base de conocimiento dentro del contexto del modelo una sola vez, deja que el modelo procese ese bloque y reaprovecha el estado interno (el KV cache, expuesto por los proveedores como prompt cache) en las preguntas siguientes. No hay embedding por query, no hay vector store, no hay reranking. La pregunta del usuario se anexa al contexto ya cacheado y la generacion ocurre directo. El precio a pagar es que la base completa debe caber en la ventana de contexto.',
+            'CAG (Cache Augmented Generation) invierte la lógica: carga TODA la base de conocimiento dentro del contexto del modelo una sola vez, deja que el modelo procese ese bloque y reaprovecha el estado interno (el KV cache, expuesto por los proveedores como prompt cache) en las preguntas siguientes. No hay embedding por query, no hay vector store, no hay reranking. La pregunta del usuario se anexa al contexto ya cacheado y la generación ocurre directo. El precio a pagar es que la base completa debe caber en la ventana de contexto.',
         },
       ],
     },
     {
-      title: 'Comparacion directa',
+      title: 'Comparación directa',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La eleccion entre RAG y CAG no es ideologica: cada dimension tira para un lado. La tabla siguiente expone las seis dimensiones que mas pesan en la decision real de ingenieria.',
+            'La elección entre RAG y CAG no es ideológica: cada dimensión tira para un lado. La tabla siguiente expone las seis dimensiones que más pesan en la decisión real de ingeniería.',
         },
         {
           type: 'table',
-          columns: ['Dimension', 'RAG', 'CAG'],
+          columns: ['Dimensión', 'RAG', 'CAG'],
           rows: [
             [
               'Latencia por query',
-              'Mayor: embed de la pregunta, busqueda, reranking y solo despues generacion',
-              'Menor: sin retrieval, la base ya cacheada va directo a la generacion',
+              'Mayor: embed de la pregunta, búsqueda, reranking y solo después generación',
+              'Menor: sin retrieval, la base ya cacheada va directo a la generación',
             ],
             [
               'Costo',
-              'Paga embeddings e infra de busqueda, pero procesa pocos tokens por query',
+              'Paga embeddings e infra de búsqueda, pero procesa pocos tokens por query',
               'Procesa la base entera la primera vez; con prompt cache, las siguientes salen baratas',
             ],
             [
               'Frescura del dato',
-              'Alta: reindexas un documento y el cambio vale en la proxima query',
+              'Alta: reindexas un documento y el cambio vale en la próxima query',
               'Menor: al cambiar la base, el cache debe rehacerse',
             ],
             [
-              'Tamano maximo de la base',
-              'Practicamente ilimitado (millones de chunks en el vector store)',
+              'Tamaño máximo de la base',
+              'Prácticamente ilimitado (millones de chunks en el vector store)',
               'Limitado por la ventana de contexto del modelo',
             ],
             [
               'Complejidad de infra',
-              'Alta: pipeline de ingestion, vector store, embeddings, reranking',
+              'Alta: pipeline de ingestión, vector store, embeddings, reranking',
               'Baja: sin vector store, solo montar el contexto y cachearlo',
             ],
             [
               'Riesgo de recuperar el chunk equivocado',
-              'Existe: el retrieval puede traer el fragmento equivocado y el modelo responde sobre el',
+              'Existe: el retrieval puede traer el fragmento equivocado y el modelo responde sobre él',
               'Inexistente: el modelo ve la base entera, no depende de buscar el fragmento correcto',
             ],
           ],
@@ -574,32 +574,32 @@ CAG (una vez + por query)
         {
           type: 'paragraph',
           value:
-            'En RAG, cada flecha antes de "Generar" es una oportunidad de fallar: la pregunta puede embeber mal, el top-k puede no traer el fragmento correcto, el reranking puede reordenar mal. En CAG, el camino entre la pregunta y la respuesta es corto porque el conocimiento ya esta presente y procesado.',
+            'En RAG, cada flecha antes de "Generar" es una oportunidad de fallar: la pregunta puede embeber mal, el top-k puede no traer el fragmento correcto, el reranking puede reordenar mal. En CAG, el camino entre la pregunta y la respuesta es corto porque el conocimiento ya está presente y procesado.',
         },
       ],
     },
     {
-      title: 'Cuando gana CAG',
+      title: 'Cuándo gana CAG',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'CAG es la eleccion correcta cuando la base es contenida y estable, y cuando la latencia o la correccion del retrieval importan mas que escalar a millones de documentos.',
+            'CAG es la elección correcta cuando la base es contenida y estable, y cuando la latencia o la corrección del retrieval importan más que escalar a millones de documentos.',
         },
         {
           type: 'list',
           items: [
-            'Base pequena o mediana que cabe entera en la ventana de contexto: FAQ, manual de producto, politicas de cambio y entrega, base de reglas de un nicho.',
-            'Dato relativamente estable: cambia en semanas o meses, no a cada minuto, asi que rehacer el cache de vez en cuando es barato.',
-            'Latencia critica: al eliminar embed, busqueda y reranking, la primera respuesta tras el cache caliente sale mucho mas rapido.',
+            'Base pequeña o mediana que cabe entera en la ventana de contexto: FAQ, manual de producto, políticas de cambio y entrega, base de reglas de un nicho.',
+            'Dato relativamente estable: cambia en semanas o meses, no a cada minuto, así que rehacer el cache de vez en cuando es barato.',
+            'Latencia crítica: al eliminar embed, búsqueda y reranking, la primera respuesta tras el cache caliente sale mucho más rápido.',
             'Evitar error de retrieval: como el modelo ve la base entera, desaparece la clase de falla en que el chunk correcto simplemente no fue recuperado.',
-            'Infra liviana: sin vector store ni pipeline de embeddings que mantener, el sistema tiene menos partes moviles y menor costo operativo.',
+            'Infra liviana: sin vector store ni pipeline de embeddings que mantener, el sistema tiene menos partes móviles y menor costo operativo.',
           ],
         },
       ],
     },
     {
-      title: 'Cuando gana RAG',
+      title: 'Cuándo gana RAG',
       blocks: [
         {
           type: 'paragraph',
@@ -609,21 +609,21 @@ CAG (una vez + por query)
         {
           type: 'list',
           items: [
-            'Base grande que no cabe en el contexto: decenas de miles de documentos, anos de tickets, catalogos extensos. Aqui CAG simplemente no entra.',
-            'Dato que cambia mucho: inventario, precios, contenido actualizado cada dia. Reindexar un documento es barato; rehacer el cache de la base entera en cada cambio no.',
-            'Necesidad de citar fuente especifica: cuando cada afirmacion debe apuntar exactamente al documento y la seccion de origen, el retrieval entrega ese rastro de forma natural.',
+            'Base grande que no cabe en el contexto: decenas de miles de documentos, años de tickets, catálogos extensos. Aquí CAG simplemente no entra.',
+            'Dato que cambia mucho: inventario, precios, contenido actualizado cada día. Reindexar un documento es barato; rehacer el cache de la base entera en cada cambio no.',
+            'Necesidad de citar fuente específica: cuando cada afirmación debe apuntar exactamente al documento y la sección de origen, el retrieval entrega ese rastro de forma natural.',
             'Multi-tenant con bases aisladas: muchos clientes, cada uno con su base privada. El vector store filtra por tenant; mantener un cache gigante por cliente seria costoso y arriesgado.',
           ],
         },
       ],
     },
     {
-      title: 'Ejemplo practico con prompt caching',
+      title: 'Ejemplo práctico con prompt caching',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El corazon del CAG es el prompt cache: el proveedor procesa el bloque grande de la base de conocimiento una vez y guarda el estado, de modo que las proximas solicitudes que empiezan con el mismo prefijo reaprovechan ese trabajo. En el ejemplo siguiente, usando la Anthropic Messages API, la base de conocimiento va como un bloque de sistema marcado con cache_control. La primera pregunta paga el procesamiento de la base; las siguientes leen del cache y cuestan una fraccion.',
+            'El corazón del CAG es el prompt cache: el proveedor procesa el bloque grande de la base de conocimiento una vez y guarda el estado, de modo que las próximas solicitudes que empiezan con el mismo prefijo reaprovechan ese trabajo. En el ejemplo siguiente, usando la Anthropic Messages API, la base de conocimiento va como un bloque de sistema marcado con cache_control. La primera pregunta paga el procesamiento de la base; las siguientes leen del cache y cuestan una fracción.',
         },
         {
           type: 'code',
@@ -631,7 +631,7 @@ CAG (una vez + por query)
 
 const client = new Anthropic();
 
-// La base de conocimiento entera: FAQ + politicas + manual.
+// La base de conocimiento entera: FAQ + políticas + manual.
 // Cargada una vez y marcada como cacheada.
 const KNOWLEDGE_BASE = loadKnowledgeBase(); // string grande, cabe en el contexto
 
@@ -642,13 +642,13 @@ async function ask(question) {
     system: [
       {
         type: 'text',
-        text: 'Respondes EXCLUSIVAMENTE con base en la BASE DE CONOCIMIENTO abajo. Si la respuesta no esta en ella, di que no lo sabes.',
+        text: 'Respondes EXCLUSIVAMENTE con base en la BASE DE CONOCIMIENTO abajo. Si la respuesta no está en ella, di que no lo sabes.',
       },
       {
         type: 'text',
         text: KNOWLEDGE_BASE,
         // Marca este bloque como cacheado: procesado una vez,
-        // reutilizado en las proximas solicitudes con el mismo prefijo.
+        // reutilizado en las próximas solicitudes con el mismo prefijo.
         cache_control: { type: 'ephemeral' },
       },
     ],
@@ -657,35 +657,35 @@ async function ask(question) {
 }
 
 // 1a pregunta: cache_creation_input_tokens (paga el procesamiento de la base).
-await ask('Cual es el plazo de cambio de un producto con defecto?');
+await ask('¿Cuál es el plazo de cambio de un producto con defecto?');
 
-// 2a pregunta en adelante: cache_read_input_tokens (lee del cache, cuesta fraccion).
-await ask('Entregan en zonas alejadas?');
-await ask('Como funciona la garantia extendida?');`,
+// 2a pregunta en adelante: cache_read_input_tokens (lee del cache, cuesta fracción).
+await ask('¿Entregan en zonas alejadas?');
+await ask('¿Cómo funciona la garantía extendida?');`,
         },
         {
           type: 'paragraph',
           value:
-            'La ganancia se ve explicita en los contadores de uso: la primera llamada registra cache_creation_input_tokens (la base fue procesada y cacheada) y las siguientes registran cache_read_input_tokens, cobrados por una fraccion del precio normal de entrada. Es decir, la base se procesa una vez y el mismo cache sirve a todas las preguntas siguientes, mientras el cache este caliente. Sin retrieval, sin vector store: el conocimiento ya esta en el contexto.',
+            'La ganancia se ve explícita en los contadores de uso: la primera llamada registra cache_creation_input_tokens (la base fue procesada y cacheada) y las siguientes registran cache_read_input_tokens, cobrados por una fracción del precio normal de entrada. Es decir, la base se procesa una vez y el mismo cache sirve a todas las preguntas siguientes, mientras el cache esté caliente. Sin retrieval, sin vector store: el conocimiento ya está en el contexto.',
         },
       ],
     },
     {
-      title: 'Enfoque hibrido: lo mejor de ambos',
+      title: 'Enfoque híbrido: lo mejor de ambos',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'En la practica, CAG y RAG no son rivales: la arquitectura mas robusta usa CAG para el core estable y RAG para el long tail. El nucleo de conocimiento que casi no cambia y que responde la mayoria de las preguntas queda cacheado en el contexto; lo que es raro, voluminoso o volatil queda en el vector store y solo se recupera cuando el core no alcanza.',
+            'En la práctica, CAG y RAG no son rivales: la arquitectura más robusta usa CAG para el core estable y RAG para el long tail. El núcleo de conocimiento que casi no cambia y que responde la mayoría de las preguntas queda cacheado en el contexto; lo que es raro, voluminoso o volátil queda en el vector store y solo se recupera cuando el core no alcanza.',
         },
         {
           type: 'ordered',
           items: [
-            'Identifica el core estable: las politicas, el FAQ y el manual que responden la mayor parte de las preguntas y cambian poco. Ese bloque se vuelve el contexto cacheado (CAG).',
-            'Manten el long tail en el vector store: documentos extensos, casos raros, contenido que cambia con frecuencia. Quedan indexados para RAG.',
+            'Identifica el core estable: las políticas, el FAQ y el manual que responden la mayor parte de las preguntas y cambian poco. Ese bloque se vuelve el contexto cacheado (CAG).',
+            'Mantén el long tail en el vector store: documentos extensos, casos raros, contenido que cambia con frecuencia. Quedan indexados para RAG.',
             'Responde primero por el cache: la pregunta llega al contexto ya cacheado. Si el core la cubre, responde directo, con baja latencia y sin riesgo de retrieval.',
-            'Activa RAG solo en el long tail: cuando la respuesta no esta en el core, dispara el retrieval para buscar el fragmento especifico en el vector store e inyectalo junto.',
-            'Reevalua la frontera periodicamente: promueve al core estable lo que se volvio pregunta frecuente y rehaz el cache; degrada al vector store lo que quedo raro.',
+            'Activa RAG solo en el long tail: cuando la respuesta no está en el core, dispara el retrieval para buscar el fragmento específico en el vector store e inyéctalo junto.',
+            'Reevalúa la frontera periódicamente: promueve al core estable lo que se volvió pregunta frecuente y rehaz el cache; degrada al vector store lo que quedó raro.',
           ],
         },
       ],
@@ -693,31 +693,31 @@ await ask('Como funciona la garantia extendida?');`,
   ],
   faq: [
     {
-      question: 'CAG sustituye a RAG?',
+      question: '¿CAG sustituye a RAG?',
       answer:
-        'No. CAG sustituye a RAG solo en el recorte donde la base entera cabe en el contexto y cambia poco: ahi gana en latencia, simplicidad y ausencia de error de retrieval. Para bases grandes, muy dinamicas o multi-tenant con aislamiento, RAG sigue siendo necesario. El escenario mas comun en produccion es hibrido: CAG para el core estable y RAG para el long tail.',
+        'No. CAG sustituye a RAG solo en el recorte donde la base entera cabe en el contexto y cambia poco: ahí gana en latencia, simplicidad y ausencia de error de retrieval. Para bases grandes, muy dinámicas o multi-tenant con aislamiento, RAG sigue siendo necesario. El escenario más común en producción es híbrido: CAG para el core estable y RAG para el long tail.',
     },
     {
-      question: 'Cual es el limite de tamano para CAG?',
+      question: '¿Cuál es el límite de tamaño para CAG?',
       answer:
-        'El limite es la ventana de contexto del modelo: la base de conocimiento, mas el prompt de sistema, mas la pregunta y la respuesta deben caber en ella. En la practica dejas margen comodo para la conversacion y no llenas la ventana hasta el tope, porque un contexto demasiado lleno degrada la calidad y encarece. Cuando la base supera ese limite, es la senal de migrar a RAG o al enfoque hibrido.',
+        'El límite es la ventana de contexto del modelo: la base de conocimiento, más el prompt de sistema, más la pregunta y la respuesta deben caber en ella. En la práctica dejas margen cómodo para la conversación y no llenas la ventana hasta el tope, porque un contexto demasiado lleno degrada la calidad y encarece. Cuando la base supera ese límite, es la señal de migrar a RAG o al enfoque híbrido.',
     },
     {
-      question: 'Como reduce el costo el prompt cache?',
+      question: '¿Cómo reduce el costo el prompt cache?',
       answer:
-        'El bloque grande de la base de conocimiento se procesa una sola vez y se guarda como cache. La primera solicitud paga la creacion del cache (cache_creation_input_tokens); las siguientes, con el mismo prefijo, solo leen de el (cache_read_input_tokens), cobradas por una fraccion del precio normal de entrada. Como la base se repite en cada pregunta, ese prefijo cacheado reparte el costo entre muchas solicitudes en vez de reprocesar la base cada vez.',
+        'El bloque grande de la base de conocimiento se procesa una sola vez y se guarda como cache. La primera solicitud paga la creación del cache (cache_creation_input_tokens); las siguientes, con el mismo prefijo, solo leen de él (cache_read_input_tokens), cobradas por una fracción del precio normal de entrada. Como la base se repite en cada pregunta, ese prefijo cacheado reparte el costo entre muchas solicitudes en vez de reprocesar la base cada vez.',
     },
   ],
   conclusion: {
     title: 'Elige por la forma de tu base, no por la moda',
     description:
-      'RAG y CAG resuelven problemas distintos: retrieval para bases grandes y dinamicas, cache de contexto para bases contenidas y estables donde la latencia y la precision importan. Puedo evaluar tu base y disenar la arquitectura correcta, CAG, RAG o hibrida, con prompt caching y medicion de costo y latencia.',
+      'RAG y CAG resuelven problemas distintos: retrieval para bases grandes y dinámicas, cache de contexto para bases contenidas y estables donde la latencia y la precisión importan. Puedo evaluar tu base y diseñar la arquitectura correcta, CAG, RAG o híbrida, con prompt caching y medición de costo y latencia.',
     cta: 'Hablar sobre mi arquitectura de IA',
   },
   related: [
-    { label: 'RAG para atencion en WhatsApp en produccion', to: '/blog/rag-atendimento-whatsapp-producao' },
-    { label: 'Chatbots e IA para atencion', to: '/servicos/chatbots-e-ia' },
-    { label: 'ROI real de automatizacion con IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'RAG para atención en WhatsApp en producción', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Chatbots e IA para atención', to: '/servicos/chatbots-e-ia' },
+    { label: 'ROI real de automatización con IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo: { name: 'cag-vs-rag-example', description: repo.es, url: repoUrl },
 };

@@ -4,7 +4,7 @@
 
 const pt = {
   intro:
-    'Em producao, o webhook do WhatsApp nao e um endpoint qualquer: a Meta entrega eventos com garantia at-least-once, o que significa que o mesmo evento pode chegar mais de uma vez. Se o seu handler processa tudo inline e nao trata duplicatas, voce envia mensagens repetidas, cobra o cliente duas vezes ou dispara fluxos em duplicidade. Este guia mostra os padroes que sustentam um webhook estavel em alto volume: idempotencia por message id, resposta rapida com enfileiramento e retry exponencial com DLQ.',
+    'Em produção, o webhook do WhatsApp não é um endpoint qualquer: a Meta entrega eventos com garantia at-least-once, o que significa que o mesmo evento pode chegar mais de uma vez. Se o seu handler processa tudo inline e não trata duplicatas, você envia mensagens repetidas, cobra o cliente duas vezes ou dispara fluxos em duplicidade. Este guia mostra os padrões que sustentam um webhook estável em alto volume: idempotência por message id, resposta rápida com enfileiramento e retry exponencial com DLQ.',
   sections: [
     {
       title: 'Por que o WhatsApp reenvia o mesmo webhook',
@@ -12,36 +12,36 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A infraestrutura de webhooks da Meta opera com entrega at-least-once. Ela garante que o evento sera entregue pelo menos uma vez, mas nao garante exatamente uma vez. Sempre que a Meta nao recebe uma resposta HTTP 200 dentro da janela esperada, ela assume falha e reenvia o mesmo evento. O resultado e duplicacao natural do trafego.',
+            'A infraestrutura de webhooks da Meta opera com entrega at-least-once. Ela garante que o evento será entregue pelo menos uma vez, mas não garante exatamente uma vez. Sempre que a Meta não recebe uma resposta HTTP 200 dentro da janela esperada, ela assume falha e reenvia o mesmo evento. O resultado é duplicação natural do tráfego.',
         },
         {
           type: 'list',
           items: [
             'Timeout: seu servidor demorou para responder 200 e a Meta considerou a entrega falha.',
-            'Erro de rede: a resposta 200 se perdeu no caminho mesmo com o processamento ja concluido.',
-            'Status 5xx ou conexao recusada: deploy, reinicio ou pico de carga derrubaram o handler.',
+            'Erro de rede: a resposta 200 se perdeu no caminho mesmo com o processamento já concluído.',
+            'Status 5xx ou conexão recusada: deploy, reinício ou pico de carga derrubaram o handler.',
             'Replays internos da Meta: retentativas agendadas que repetem eventos antigos.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A consequencia pratica e direta: voce nao pode confiar que cada POST representa um evento novo. O mesmo message id pode aparecer duas, tres ou mais vezes. O desenho do sistema precisa assumir duplicatas como normais, nao como excecao.',
+            'A consequência prática é direta: você não pode confiar que cada POST representa um evento novo. O mesmo message id pode aparecer duas, três ou mais vezes. O desenho do sistema precisa assumir duplicatas como normais, não como exceção.',
         },
       ],
     },
     {
-      title: 'Idempotencia por message id com Redis SET NX',
+      title: 'Idempotência por message id com Redis SET NX',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A defesa central contra duplicatas e a idempotencia. Cada mensagem do WhatsApp carrega um id unico e estavel. A ideia e registrar esse id na primeira vez que ele chega e descartar qualquer reaparicao. O Redis resolve isso com uma operacao atomica: SET com a flag NX (set if not exists) e um TTL, que evita crescimento infinito da memoria.',
+            'A defesa central contra duplicatas é a idempotência. Cada mensagem do WhatsApp carrega um id único e estável. A ideia é registrar esse id na primeira vez que ele chega e descartar qualquer reaparição. O Redis resolve isso com uma operação atômica: SET com a flag NX (set if not exists) e um TTL, que evita crescimento infinito da memória.',
         },
         {
           type: 'paragraph',
           value:
-            'O SET NX e atomico: se duas entregas do mesmo id chegam ao mesmo tempo, apenas uma vence a corrida e marca o id. A outra recebe null e e ignorada. Nao ha janela de race condition entre um GET e um SET separados.',
+            'O SET NX é atômico: se duas entregas do mesmo id chegam ao mesmo tempo, apenas uma vence a corrida e marca o id. A outra recebe null e é ignorada. Não há janela de race condition entre um GET e um SET separados.',
         },
         {
           type: 'code',
@@ -80,7 +80,7 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Escolha um TTL maior do que a janela de retries da Meta (24h e uma margem segura). Se o TTL for curto demais, um retry tardio pode passar como evento novo e gerar duplicacao.',
+            'Escolha um TTL maior do que a janela de retries da Meta (24h é uma margem segura). Se o TTL for curto demais, um retry tardio pode passar como evento novo e gerar duplicação.',
         },
       ],
     },
@@ -90,12 +90,12 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'O erro mais comum em producao e processar o evento inline antes de responder a Meta. Chamadas a banco, APIs externas, modelos de IA ou envio de mensagens podem levar segundos. Se a resposta 200 nao sai a tempo, a Meta considera falha e reenvia. Isso cria um ciclo vicioso: quanto mais lento, mais retries, mais carga, mais lento ainda.',
+            'O erro mais comum em produção é processar o evento inline antes de responder a Meta. Chamadas a banco, APIs externas, modelos de IA ou envio de mensagens podem levar segundos. Se a resposta 200 não sai a tempo, a Meta considera falha e reenvia. Isso cria um ciclo vicioso: quanto mais lento, mais retries, mais carga, mais lento ainda.',
         },
         {
           type: 'paragraph',
           value:
-            'A regra de ouro: o webhook valida, registra a idempotencia, coloca o evento numa fila e responde 200 em milissegundos. Todo o trabalho pesado acontece em workers assincronos, fora do ciclo de request.',
+            'A regra de ouro: o webhook valida, registra a idempotência, coloca o evento numa fila e responde 200 em milissegundos. Todo o trabalho pesado acontece em workers assíncronos, fora do ciclo de request.',
         },
         {
           type: 'diagram',
@@ -128,7 +128,7 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Com esse desenho, picos de trafego nao derrubam o endpoint. A fila absorve a rajada e os workers consomem no ritmo que conseguem, sem provocar timeouts e retries na origem.',
+            'Com esse desenho, picos de tráfego não derrubam o endpoint. A fila absorve a rajada e os workers consomem no ritmo que conseguem, sem provocar timeouts e retries na origem.',
         },
       ],
     },
@@ -138,12 +138,12 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Enfileirar nao basta: o processamento em si pode falhar (API instavel, timeout de banco, erro transitorio). A estrategia correta e retry com backoff exponencial e, apos esgotar as tentativas, mover o evento para uma Dead Letter Queue (DLQ) para inspecao manual em vez de descartar.',
+            'Enfileirar não basta: o processamento em si pode falhar (API instável, timeout de banco, erro transitório). A estratégia correta é retry com backoff exponencial e, após esgotar as tentativas, mover o evento para uma Dead Letter Queue (DLQ) para inspeção manual em vez de descartar.',
         },
         {
           type: 'paragraph',
           value:
-            'O backoff exponencial espalha as tentativas no tempo (1s, 2s, 4s, 8s...) para nao martelar um servico que ja esta sofrendo. A DLQ garante que nenhum evento se perca silenciosamente.',
+            'O backoff exponencial espalha as tentativas no tempo (1s, 2s, 4s, 8s...) para não martelar um serviço que já está sofrendo. A DLQ garante que nenhum evento se perca silenciosamente.',
         },
         {
           type: 'code',
@@ -186,7 +186,7 @@ worker.on('failed', async (job, err) => {
         {
           type: 'paragraph',
           value:
-            'Monitore o tamanho da DLQ: ela deve ficar vazia em condicoes normais. Crescimento da DLQ e o sinal mais claro de que algo a jusante esta quebrado e precisa de atencao humana.',
+            'Monitore o tamanho da DLQ: ela deve ficar vazia em condições normais. Crescimento da DLQ é o sinal mais claro de que algo a jusante está quebrado e precisa de atenção humana.',
         },
       ],
     },
@@ -195,11 +195,11 @@ worker.on('failed', async (job, err) => {
       blocks: [
         {
           type: 'table',
-          columns: ['Falha', 'Causa', 'Mitigacao'],
+          columns: ['Falha', 'Causa', 'Mitigação'],
           rows: [
             [
-              'Mensagens duplicadas para o usuario',
-              'Processamento sem idempotencia; a Meta reenviou o evento',
+              'Mensagens duplicadas para o usuário',
+              'Processamento sem idempotência; a Meta reenviou o evento',
               'SET NX por message id no Redis com TTL antes de qualquer efeito colateral',
             ],
             [
@@ -214,12 +214,12 @@ worker.on('failed', async (job, err) => {
             ],
             [
               'Eventos perdidos silenciosamente',
-              'Erro transitorio sem retry; excecao engolida no handler',
-              'Retry exponencial com tentativas limitadas e DLQ para inspecao',
+              'Erro transitório sem retry; exceção engolida no handler',
+              'Retry exponencial com tentativas limitadas e DLQ para inspeção',
             ],
             [
-              'Memoria do Redis crescendo sem fim',
-              'Chaves de idempotencia sem expiracao',
+              'Memória do Redis crescendo sem fim',
+              'Chaves de idempotência sem expiração',
               'Sempre definir TTL no SET NX (ex.: 24h) cobrindo a janela de retries',
             ],
           ],
@@ -227,7 +227,7 @@ worker.on('failed', async (job, err) => {
       ],
     },
     {
-      title: 'Checklist de producao',
+      title: 'Checklist de produção',
       blocks: [
         {
           type: 'ordered',
@@ -235,10 +235,10 @@ worker.on('failed', async (job, err) => {
             'Validar a assinatura do webhook (X-Hub-Signature-256) antes de processar.',
             'Aplicar SET NX no Redis por message id com TTL antes de qualquer efeito colateral.',
             'Responder 200 imediatamente, antes de qualquer trabalho pesado.',
-            'Enfileirar o evento e processar em workers assincronos.',
-            'Configurar retry exponencial com numero limitado de tentativas.',
+            'Enfileirar o evento e processar em workers assíncronos.',
+            'Configurar retry exponencial com número limitado de tentativas.',
             'Encaminhar falhas definitivas para a DLQ e alertar sobre o crescimento dela.',
-            'Monitorar latencia do endpoint, profundidade da fila e taxa de duplicatas.',
+            'Monitorar latência do endpoint, profundidade da fila e taxa de duplicatas.',
           ],
         },
       ],
@@ -248,29 +248,29 @@ worker.on('failed', async (job, err) => {
     {
       question: 'Por que preciso responder 200 em poucos segundos?',
       answer:
-        'Porque a entrega da Meta e at-least-once com timeout. Se a resposta 200 nao chega dentro da janela esperada, a Meta considera a entrega falha e reenvia o mesmo evento. Respostas lentas geram retries, que aumentam a carga e deixam o endpoint ainda mais lento. Em casos extremos, a Meta pode desativar o webhook. Por isso, responda 200 em milissegundos e processe o trabalho pesado fora do ciclo de request.',
+        'Porque a entrega da Meta é at-least-once com timeout. Se a resposta 200 não chega dentro da janela esperada, a Meta considera a entrega falha e reenvia o mesmo evento. Respostas lentas geram retries, que aumentam a carga e deixam o endpoint ainda mais lento. Em casos extremos, a Meta pode desativar o webhook. Por isso, responda 200 em milissegundos e processe o trabalho pesado fora do ciclo de request.',
     },
     {
-      question: 'O message id do WhatsApp e confiavel para idempotencia?',
+      question: 'O message id do WhatsApp é confiável para idempotência?',
       answer:
-        'Sim. Cada mensagem carrega um id unico e estavel que se mantem identico entre os reenvios da Meta. Usar esse id como chave de idempotencia (SET NX no Redis com TTL) e a forma mais direta de descartar duplicatas com seguranca, desde que voce aplique a verificacao antes de qualquer efeito colateral.',
+        'Sim. Cada mensagem carrega um id único e estável que se mantém idêntico entre os reenvios da Meta. Usar esse id como chave de idempotência (SET NX no Redis com TTL) é a forma mais direta de descartar duplicatas com segurança, desde que você aplique a verificação antes de qualquer efeito colateral.',
     },
     {
-      question: 'Qual TTL usar nas chaves de idempotencia?',
+      question: 'Qual TTL usar nas chaves de idempotência?',
       answer:
-        'Use um TTL maior do que a janela de retries da Meta. 24 horas e uma margem segura e pratica. Um TTL curto demais arrisca deixar um retry tardio passar como evento novo, gerando duplicacao. Um TTL muito longo apenas consome mais memoria sem ganho real. O importante e nunca deixar a chave sem expiracao.',
+        'Use um TTL maior do que a janela de retries da Meta. 24 horas é uma margem segura e prática. Um TTL curto demais arrisca deixar um retry tardio passar como evento novo, gerando duplicação. Um TTL muito longo apenas consome mais memória sem ganho real. O importante é nunca deixar a chave sem expiração.',
     },
   ],
   conclusion: {
-    title: 'Webhook estavel e questao de arquitetura, nao de sorte',
+    title: 'Webhook estável é questão de arquitetura, não de sorte',
     description:
-      'Idempotencia por message id, resposta 200 imediata com enfileiramento e retry exponencial com DLQ formam o trio que mantem seu webhook do WhatsApp confiavel sob alto volume. Se voce esta lidando com duplicatas ou instabilidade em producao, posso ajudar a desenhar essa arquitetura.',
-    cta: 'Falar sobre minha integracao',
+      'Idempotência por message id, resposta 200 imediata com enfileiramento e retry exponencial com DLQ formam o trio que mantém seu webhook do WhatsApp confiável sob alto volume. Se você está lidando com duplicatas ou instabilidade em produção, posso ajudar a desenhar essa arquitetura.',
+    cta: 'Falar sobre minha integração',
   },
   related: [
     { label: 'Guia da WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
     { label: 'Filas para picos de campanha no WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
-    { label: 'Monitoramento e alertas em integracoes', to: '/blog/monitoramento-alertas-integracoes' },
+    { label: 'Monitoramento e alertas em integrações', to: '/blog/monitoramento-alertas-integracoes' },
   ],
   repo: {
     name: 'whatsapp-webhook-idempotent',
@@ -560,29 +560,29 @@ worker.on('failed', async (job, err) => {
 
 const es = {
   intro:
-    'En produccion, el webhook de WhatsApp no es un endpoint cualquiera: Meta entrega eventos con garantia at-least-once, lo que significa que el mismo evento puede llegar mas de una vez. Si tu handler procesa todo inline y no trata duplicados, envias mensajes repetidos, cobras al cliente dos veces o disparas flujos por duplicado. Esta guia muestra los patrones que sostienen un webhook estable en alto volumen: idempotencia por message id, respuesta rapida con encolado y retry exponencial con DLQ.',
+    'En producción, el webhook de WhatsApp no es un endpoint cualquiera: Meta entrega eventos con garantía at-least-once, lo que significa que el mismo evento puede llegar más de una vez. Si tu handler procesa todo inline y no trata duplicados, envías mensajes repetidos, cobras al cliente dos veces o disparas flujos por duplicado. Esta guía muestra los patrones que sostienen un webhook estable en alto volumen: idempotencia por message id, respuesta rápida con encolado y retry exponencial con DLQ.',
   sections: [
     {
-      title: 'Por que WhatsApp reenvia el mismo webhook',
+      title: '¿Por qué WhatsApp reenvía el mismo webhook?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La infraestructura de webhooks de Meta opera con entrega at-least-once. Garantiza que el evento se entregara al menos una vez, pero no garantiza exactamente una vez. Cada vez que Meta no recibe una respuesta HTTP 200 dentro de la ventana esperada, asume fallo y reenvia el mismo evento. El resultado es duplicacion natural del trafico.',
+            'La infraestructura de webhooks de Meta opera con entrega at-least-once. Garantiza que el evento se entregará al menos una vez, pero no garantiza exactamente una vez. Cada vez que Meta no recibe una respuesta HTTP 200 dentro de la ventana esperada, asume fallo y reenvía el mismo evento. El resultado es duplicación natural del tráfico.',
         },
         {
           type: 'list',
           items: [
-            'Timeout: tu servidor tardo demasiado en responder 200 y Meta considero la entrega fallida.',
-            'Error de red: la respuesta 200 se perdio en el camino aunque el procesamiento ya habia terminado.',
-            'Estado 5xx o conexion rechazada: un deploy, reinicio o pico de carga tumbaron el handler.',
+            'Timeout: tu servidor tardó demasiado en responder 200 y Meta consideró la entrega fallida.',
+            'Error de red: la respuesta 200 se perdió en el camino aunque el procesamiento ya había terminado.',
+            'Estado 5xx o conexión rechazada: un deploy, reinicio o pico de carga tumbaron el handler.',
             'Replays internos de Meta: reintentos programados que repiten eventos antiguos.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La consecuencia practica es directa: no puedes confiar en que cada POST represente un evento nuevo. El mismo message id puede aparecer dos, tres o mas veces. El diseno del sistema debe asumir los duplicados como algo normal, no como una excepcion.',
+            'La consecuencia práctica es directa: no puedes confiar en que cada POST represente un evento nuevo. El mismo message id puede aparecer dos, tres o más veces. El diseño del sistema debe asumir los duplicados como algo normal, no como una excepción.',
         },
       ],
     },
@@ -592,12 +592,12 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La defensa central contra los duplicados es la idempotencia. Cada mensaje de WhatsApp lleva un id unico y estable. La idea es registrar ese id la primera vez que llega y descartar cualquier reaparicion. Redis lo resuelve con una operacion atomica: SET con la flag NX (set if not exists) y un TTL, que evita el crecimiento infinito de la memoria.',
+            'La defensa central contra los duplicados es la idempotencia. Cada mensaje de WhatsApp lleva un id único y estable. La idea es registrar ese id la primera vez que llega y descartar cualquier reaparición. Redis lo resuelve con una operación atómica: SET con la flag NX (set if not exists) y un TTL, que evita el crecimiento infinito de la memoria.',
         },
         {
           type: 'paragraph',
           value:
-            'SET NX es atomico: si dos entregas del mismo id llegan al mismo tiempo, solo una gana la carrera y marca el id. La otra recibe null y se ignora. No hay ventana de race condition entre un GET y un SET separados.',
+            'SET NX es atómico: si dos entregas del mismo id llegan al mismo tiempo, solo una gana la carrera y marca el id. La otra recibe null y se ignora. No hay ventana de race condition entre un GET y un SET separados.',
         },
         {
           type: 'code',
@@ -636,22 +636,22 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Elige un TTL mayor que la ventana de retries de Meta (24h es un margen seguro). Si el TTL es demasiado corto, un retry tardio puede pasar como evento nuevo y generar duplicacion.',
+            'Elige un TTL mayor que la ventana de retries de Meta (24h es un margen seguro). Si el TTL es demasiado corto, un retry tardío puede pasar como evento nuevo y generar duplicación.',
         },
       ],
     },
     {
-      title: 'Responde 200 rapido y encola el procesamiento',
+      title: 'Responde 200 rápido y encola el procesamiento',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El error mas comun en produccion es procesar el evento inline antes de responder a Meta. Las llamadas a base de datos, APIs externas, modelos de IA o envio de mensajes pueden tardar segundos. Si la respuesta 200 no sale a tiempo, Meta lo considera un fallo y reenvia. Esto crea un circulo vicioso: cuanto mas lento, mas retries, mas carga, mas lento aun.',
+            'El error más común en producción es procesar el evento inline antes de responder a Meta. Las llamadas a base de datos, APIs externas, modelos de IA o envío de mensajes pueden tardar segundos. Si la respuesta 200 no sale a tiempo, Meta lo considera un fallo y reenvía. Esto crea un círculo vicioso: cuanto más lento, más retries, más carga, más lento aún.',
         },
         {
           type: 'paragraph',
           value:
-            'La regla de oro: el webhook valida, registra la idempotencia, coloca el evento en una cola y responde 200 en milisegundos. Todo el trabajo pesado ocurre en workers asincronos, fuera del ciclo de request.',
+            'La regla de oro: el webhook valida, registra la idempotencia, coloca el evento en una cola y responde 200 en milisegundos. Todo el trabajo pesado ocurre en workers asíncronos, fuera del ciclo de request.',
         },
         {
           type: 'diagram',
@@ -684,7 +684,7 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Con este diseno, los picos de trafico no tumban el endpoint. La cola absorbe la rafaga y los workers consumen al ritmo que pueden, sin provocar timeouts ni retries en el origen.',
+            'Con este diseño, los picos de tráfico no tumban el endpoint. La cola absorbe la ráfaga y los workers consumen al ritmo que pueden, sin provocar timeouts ni retries en el origen.',
         },
       ],
     },
@@ -694,12 +694,12 @@ async function handleWebhookEvent(event) {
         {
           type: 'paragraph',
           value:
-            'Encolar no basta: el procesamiento en si puede fallar (API inestable, timeout de base de datos, error transitorio). La estrategia correcta es retry con backoff exponencial y, tras agotar los intentos, mover el evento a una Dead Letter Queue (DLQ) para inspeccion manual en lugar de descartarlo.',
+            'Encolar no basta: el procesamiento en sí puede fallar (API inestable, timeout de base de datos, error transitorio). La estrategia correcta es retry con backoff exponencial y, tras agotar los intentos, mover el evento a una Dead Letter Queue (DLQ) para inspección manual en lugar de descartarlo.',
         },
         {
           type: 'paragraph',
           value:
-            'El backoff exponencial reparte los reintentos en el tiempo (1s, 2s, 4s, 8s...) para no golpear un servicio que ya esta sufriendo. La DLQ garantiza que ningun evento se pierda en silencio.',
+            'El backoff exponencial reparte los reintentos en el tiempo (1s, 2s, 4s, 8s...) para no golpear un servicio que ya está sufriendo. La DLQ garantiza que ningún evento se pierda en silencio.',
         },
         {
           type: 'code',
@@ -742,40 +742,40 @@ worker.on('failed', async (job, err) => {
         {
           type: 'paragraph',
           value:
-            'Monitorea el tamano de la DLQ: debe permanecer vacia en condiciones normales. El crecimiento de la DLQ es la senal mas clara de que algo aguas abajo esta roto y necesita atencion humana.',
+            'Monitorea el tamaño de la DLQ: debe permanecer vacía en condiciones normales. El crecimiento de la DLQ es la señal más clara de que algo aguas abajo está roto y necesita atención humana.',
         },
       ],
     },
     {
-      title: 'Fallos comunes y como mitigarlos',
+      title: 'Fallos comunes y cómo mitigarlos',
       blocks: [
         {
           type: 'table',
-          columns: ['Fallo', 'Causa', 'Mitigacion'],
+          columns: ['Fallo', 'Causa', 'Mitigación'],
           rows: [
             [
               'Mensajes duplicados al usuario',
-              'Procesamiento sin idempotencia; Meta reenvio el evento',
+              'Procesamiento sin idempotencia; Meta reenvió el evento',
               'SET NX por message id en Redis con TTL antes de cualquier efecto secundario',
             ],
             [
               'Webhook desactivado por Meta',
               'Respuestas 200 lentas o errores 5xx repetidos',
-              'Responder 200 en milisegundos; procesar fuera del request via cola',
+              'Responder 200 en milisegundos; procesar fuera del request vía cola',
             ],
             [
               'Tormenta de retries de Meta',
-              'Un endpoint lento bajo pico de carga genera mas retries',
-              'Encolar y desacoplar; la cola absorbe la rafaga, los workers consumen al ritmo',
+              'Un endpoint lento bajo pico de carga genera más retries',
+              'Encolar y desacoplar; la cola absorbe la ráfaga, los workers consumen al ritmo',
             ],
             [
               'Eventos perdidos en silencio',
-              'Error transitorio sin retry; excepcion tragada en el handler',
-              'Retry exponencial con intentos limitados y DLQ para inspeccion',
+              'Error transitorio sin retry; excepción tragada en el handler',
+              'Retry exponencial con intentos limitados y DLQ para inspección',
             ],
             [
               'Memoria de Redis creciendo sin fin',
-              'Claves de idempotencia sin expiracion',
+              'Claves de idempotencia sin expiración',
               'Definir siempre un TTL en SET NX (ej.: 24h) que cubra la ventana de retries',
             ],
           ],
@@ -783,7 +783,7 @@ worker.on('failed', async (job, err) => {
       ],
     },
     {
-      title: 'Checklist de produccion',
+      title: 'Checklist de producción',
       blocks: [
         {
           type: 'ordered',
@@ -791,8 +791,8 @@ worker.on('failed', async (job, err) => {
             'Validar la firma del webhook (X-Hub-Signature-256) antes de procesar.',
             'Aplicar SET NX en Redis por message id con un TTL antes de cualquier efecto secundario.',
             'Responder 200 de inmediato, antes de cualquier trabajo pesado.',
-            'Encolar el evento y procesarlo en workers asincronos.',
-            'Configurar retry exponencial con un numero limitado de intentos.',
+            'Encolar el evento y procesarlo en workers asíncronos.',
+            'Configurar retry exponencial con un número limitado de intentos.',
             'Enviar los fallos definitivos a la DLQ y alertar sobre su crecimiento.',
             'Monitorear la latencia del endpoint, la profundidad de la cola y la tasa de duplicados.',
           ],
@@ -802,30 +802,30 @@ worker.on('failed', async (job, err) => {
   ],
   faq: [
     {
-      question: 'Por que necesito responder 200 en pocos segundos?',
+      question: '¿Por qué necesito responder 200 en pocos segundos?',
       answer:
-        'Porque la entrega de Meta es at-least-once con timeout. Si la respuesta 200 no llega dentro de la ventana esperada, Meta considera la entrega fallida y reenvia el mismo evento. Las respuestas lentas generan retries, que aumentan la carga y dejan el endpoint aun mas lento. En casos extremos, Meta puede desactivar el webhook. Por eso debes responder 200 en milisegundos y procesar el trabajo pesado fuera del ciclo de request.',
+        'Porque la entrega de Meta es at-least-once con timeout. Si la respuesta 200 no llega dentro de la ventana esperada, Meta considera la entrega fallida y reenvía el mismo evento. Las respuestas lentas generan retries, que aumentan la carga y dejan el endpoint aún más lento. En casos extremos, Meta puede desactivar el webhook. Por eso debes responder 200 en milisegundos y procesar el trabajo pesado fuera del ciclo de request.',
     },
     {
-      question: 'El message id de WhatsApp es confiable para idempotencia?',
+      question: '¿El message id de WhatsApp es confiable para idempotencia?',
       answer:
-        'Si. Cada mensaje lleva un id unico y estable que se mantiene identico entre los reenvios de Meta. Usar ese id como clave de idempotencia (SET NX en Redis con TTL) es la forma mas directa de descartar duplicados con seguridad, siempre que apliques la verificacion antes de cualquier efecto secundario.',
+        'Sí. Cada mensaje lleva un id único y estable que se mantiene idéntico entre los reenvíos de Meta. Usar ese id como clave de idempotencia (SET NX en Redis con TTL) es la forma más directa de descartar duplicados con seguridad, siempre que apliques la verificación antes de cualquier efecto secundario.',
     },
     {
-      question: 'Que TTL usar en las claves de idempotencia?',
+      question: '¿Qué TTL usar en las claves de idempotencia?',
       answer:
-        'Usa un TTL mayor que la ventana de retries de Meta. 24 horas es un margen seguro y practico. Un TTL demasiado corto arriesga dejar que un retry tardio pase como evento nuevo, generando duplicacion. Un TTL muy largo solo consume mas memoria sin ganancia real. Lo importante es nunca dejar la clave sin expiracion.',
+        'Usa un TTL mayor que la ventana de retries de Meta. 24 horas es un margen seguro y práctico. Un TTL demasiado corto arriesga dejar que un retry tardío pase como evento nuevo, generando duplicación. Un TTL muy largo solo consume más memoria sin ganancia real. Lo importante es nunca dejar la clave sin expiración.',
     },
   ],
   conclusion: {
-    title: 'Un webhook estable es cuestion de arquitectura, no de suerte',
+    title: 'Un webhook estable es cuestión de arquitectura, no de suerte',
     description:
-      'Idempotencia por message id, respuesta 200 inmediata con encolado y retry exponencial con DLQ forman el trio que mantiene tu webhook de WhatsApp confiable en alto volumen. Si estas lidiando con duplicados o inestabilidad en produccion, puedo ayudar a disenar esta arquitectura.',
-    cta: 'Hablar sobre mi integracion',
+      'Idempotencia por message id, respuesta 200 inmediata con encolado y retry exponencial con DLQ forman el trío que mantiene tu webhook de WhatsApp confiable en alto volumen. Si estás lidiando con duplicados o inestabilidad en producción, puedo ayudar a diseñar esta arquitectura.',
+    cta: 'Hablar sobre mi integración',
   },
   related: [
-    { label: 'Guia de la WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
-    { label: 'Colas para picos de campana en WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
+    { label: 'Guía de la WhatsApp Cloud API', to: '/blog/guia-whatsapp-cloud-api' },
+    { label: 'Colas para picos de campaña en WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
     { label: 'Monitoreo y alertas en integraciones', to: '/blog/monitoramento-alertas-integracoes' },
   ],
   repo: {

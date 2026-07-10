@@ -4,83 +4,83 @@
 
 const pt = {
   intro:
-    'Integracao que so e observada quando ja caiu vira rotina de apagar incendio. ' +
-    'Voce descobre o problema pelo cliente reclamando, nao pelo painel. ' +
-    'Este guia mostra o minimo viavel de monitoramento e alertas para webhook, fila, ' +
+    'Integração que só é observada quando já caiu vira rotina de apagar incêndio. ' +
+    'Você descobre o problema pelo cliente reclamando, não pelo painel. ' +
+    'Este guia mostra o mínimo viável de monitoramento e alertas para webhook, fila, ' +
     'worker e APIs externas, com foco em tempo de resposta. Nada de Datadog enterprise: ' +
-    'o objetivo e enxergar o que importa e ser avisado antes do estrago.',
+    'o objetivo é enxergar o que importa e ser avisado antes do estrago.',
   sections: [
     {
-      title: 'Por que o minimo importa mais que o completo',
+      title: 'Por que o mínimo importa mais que o completo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Painel cheio de grafico que ninguem olha nao reduz incidente. O que reduz e ' +
-            'um conjunto pequeno de sinais que respondem rapido a pergunta certa: o sistema ' +
-            'esta saudavel agora? Comece pelo essencial e cresca so quando houver dor real.',
+            'Painel cheio de gráfico que ninguém olha não reduz incidente. O que reduz é ' +
+            'um conjunto pequeno de sinais que respondem rápido à pergunta certa: o sistema ' +
+            'está saudável agora? Comece pelo essencial e cresça só quando houver dor real.',
         },
         {
           type: 'list',
           items: [
-            'Prefira poucos sinais acionaveis a muitos graficos decorativos.',
-            'Todo alerta precisa de um dono e de uma acao clara associada.',
-            'Se um alerta nao muda nenhuma decisao, ele e ruido e deve ser removido.',
+            'Prefira poucos sinais acionáveis a muitos gráficos decorativos.',
+            'Todo alerta precisa de um dono e de uma ação clara associada.',
+            'Se um alerta não muda nenhuma decisão, ele é ruído e deve ser removido.',
             'Meça primeiro o que afeta o cliente: tempo de resposta e taxa de erro.',
           ],
         },
       ],
     },
     {
-      title: 'Os 4 sinais de ouro aplicados a integracoes',
+      title: 'Os 4 sinais de ouro aplicados a integrações',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Os Golden Signals do SRE (latencia, trafego, erros e saturacao) cabem bem em ' +
-            'integracoes. Eles cobrem 80% dos incidentes com pouca instrumentacao.',
+            'Os Golden Signals do SRE (latência, tráfego, erros e saturação) cabem bem em ' +
+            'integrações. Eles cobrem 80% dos incidentes com pouca instrumentação.',
         },
         {
           type: 'list',
           items: [
-            'Latencia: tempo de resposta do webhook e das chamadas a APIs externas, sempre em p95 e p99, nunca so a media.',
-            'Trafego: volume de eventos recebidos por minuto e mensagens processadas pela fila.',
+            'Latência: tempo de resposta do webhook e das chamadas a APIs externas, sempre em p95 e p99, nunca só a média.',
+            'Tráfego: volume de eventos recebidos por minuto e mensagens processadas pela fila.',
             'Erros: taxa de respostas 5xx, falhas de processamento no worker e timeouts de parceiros.',
-            'Saturacao: profundidade da fila, uso de conexoes do banco e memoria ou CPU do worker.',
+            'Saturação: profundidade da fila, uso de conexões do banco e memória ou CPU do worker.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Regra pratica: latencia e erros avisam que algo ja esta ruim para o cliente; ' +
-            'trafego e saturacao avisam que algo vai ficar ruim em breve.',
+            'Regra prática: latência e erros avisam que algo já está ruim para o cliente; ' +
+            'tráfego e saturação avisam que algo vai ficar ruim em breve.',
         },
       ],
     },
     {
-      title: 'Metricas minimas por componente',
+      title: 'Métricas mínimas por componente',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Cada componente da cadeia tem um punhado de metricas que vale a pena coletar. ' +
+            'Cada componente da cadeia tem um punhado de métricas que vale a pena coletar. ' +
             'Abaixo o conjunto enxuto que entrega visibilidade sem virar projeto.',
         },
         {
           type: 'table',
-          columns: ['Componente', 'Metrica minima', 'Por que importa'],
+          columns: ['Componente', 'Métrica mínima', 'Por que importa'],
           rows: [
-            ['Webhook', 'p95 de latencia, taxa de 5xx, eventos/min', 'Detecta lentidao e rejeicao antes do parceiro reenviar'],
-            ['Fila', 'Profundidade e idade da mensagem mais antiga', 'Mostra acumulo e atraso real de processamento'],
+            ['Webhook', 'p95 de latência, taxa de 5xx, eventos/min', 'Detecta lentidão e rejeição antes do parceiro reenviar'],
+            ['Fila', 'Profundidade e idade da mensagem mais antiga', 'Mostra acúmulo e atraso real de processamento'],
             ['Worker', 'Throughput, taxa de falha, tempo por job', 'Revela travamento, retry em loop e gargalo'],
-            ['APIs externas', 'Latencia p95, taxa de erro, timeouts', 'Isola culpa do parceiro e protege seu SLA'],
+            ['APIs externas', 'Latência p95, taxa de erro, timeouts', 'Isola culpa do parceiro e protege seu SLA'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A idade da mensagem mais antiga na fila e a metrica mais subestimada. ' +
-            'Profundidade alta pode ser pico saudavel; idade alta significa que alguem ja esta esperando demais.',
+            'A idade da mensagem mais antiga na fila é a métrica mais subestimada. ' +
+            'Profundidade alta pode ser pico saudável; idade alta significa que alguém já está esperando demais.',
         },
       ],
     },
@@ -90,7 +90,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'De todas as metricas, poucas merecem acordar alguem. Foque nos alertas que ' +
+            'De todas as métricas, poucas merecem acordar alguém. Foque nos alertas que ' +
             'representam dor para o cliente ou risco iminente de fila travada.',
         },
         {
@@ -98,8 +98,8 @@ const pt = {
           items: [
             'Taxa de erro 5xx acima de um limite por janela curta, por exemplo 2% em 5 minutos.',
             'Fila acumulando: profundidade crescente sem cair ou idade da mensagem acima do SLA.',
-            'p95 de latencia do webhook ou de API parceira acima do limite acordado.',
-            'Falha de API parceira: sequencia de timeouts ou taxa de erro que indica parceiro fora do ar.',
+            'p95 de latência do webhook ou de API parceira acima do limite acordado.',
+            'Falha de API parceira: sequência de timeouts ou taxa de erro que indica parceiro fora do ar.',
           ],
         },
       ],
@@ -110,33 +110,33 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Alerta demais e tao perigoso quanto alerta de menos. Quando tudo apita, ninguem ' +
-            'reage. Tres alavancas mantem o ruido baixo: thresholds, janelas e severidade.',
+            'Alerta demais é tão perigoso quanto alerta de menos. Quando tudo apita, ninguém ' +
+            'reage. Três alavancas mantêm o ruído baixo: thresholds, janelas e severidade.',
         },
         {
           type: 'list',
           items: [
-            'Thresholds calibrados: defina limites a partir do comportamento real, nao de chute, e revise apos cada incidente.',
-            'Janelas e duracao: so dispare se a condicao persistir por X minutos, evitando ruido de picos instantaneos.',
-            'Severidade clara: separe page (acorda alguem) de ticket (revisa no horario comercial) de info (so registra).',
-            'Agrupamento e silenciamento: agrupe alertas correlatos e silencie durante deploys ou janelas de manutencao conhecidas.',
+            'Thresholds calibrados: defina limites a partir do comportamento real, não de chute, e revise após cada incidente.',
+            'Janelas e duração: só dispare se a condição persistir por X minutos, evitando ruído de picos instantâneos.',
+            'Severidade clara: separe page (acorda alguém) de ticket (revisa no horário comercial) de info (só registra).',
+            'Agrupamento e silenciamento: agrupe alertas correlatos e silencie durante deploys ou janelas de manutenção conhecidas.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Meta saudavel: todo alerta de page deve ser acionavel e raro. Se ele dispara toda ' +
-            'semana sem acao real, vire ticket ou ajuste o threshold.',
+            'Meta saudável: todo alerta de page deve ser acionável e raro. Se ele dispara toda ' +
+            'semana sem ação real, vire ticket ou ajuste o threshold.',
         },
       ],
     },
     {
-      title: 'Health check e metricas na pratica',
+      title: 'Health check e métricas na prática',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O minimo viavel cabe em duas rotas: um /health para liveness e readiness, e um ' +
+            'O mínimo viável cabe em duas rotas: um /health para liveness e readiness, e um ' +
             '/metrics no formato Prometheus. Em Node, prom-client resolve com pouca cola.',
         },
         {
@@ -220,8 +220,8 @@ app.use((req, res, next) => {
         {
           type: 'paragraph',
           value:
-            'Alerta sem runbook gera panico. Cada disparo precisa de um roteiro de 3 a 5 passos ' +
-            'que qualquer pessoa de plantao consiga seguir as 3 da manha.',
+            'Alerta sem runbook gera pânico. Cada disparo precisa de um roteiro de 3 a 5 passos ' +
+            'que qualquer pessoa de plantão consiga seguir às 3 da manhã.',
         },
         {
           type: 'paragraph',
@@ -230,11 +230,11 @@ app.use((req, res, next) => {
         {
           type: 'ordered',
           items: [
-            'Abra o painel e confirme se o pico e geral ou de uma rota especifica.',
-            'Verifique logs recentes de erro e correlacione com o ultimo deploy.',
-            'Cheque dependencias: banco, fila e APIs externas estao respondendo?',
-            'Se foi deploy, faca rollback; se for dependencia externa, ative o fallback ou circuit breaker.',
-            'Registre a causa e abra ticket de follow-up para acao definitiva.',
+            'Abra o painel e confirme se o pico é geral ou de uma rota específica.',
+            'Verifique logs recentes de erro e correlacione com o último deploy.',
+            'Cheque dependências: banco, fila e APIs externas estão respondendo?',
+            'Se foi deploy, faça rollback; se for dependência externa, ative o fallback ou circuit breaker.',
+            'Registre a causa e abra ticket de follow-up para ação definitiva.',
           ],
         },
         {
@@ -244,10 +244,10 @@ app.use((req, res, next) => {
         {
           type: 'ordered',
           items: [
-            'Confirme se o worker esta vivo e consumindo, olhando throughput recente.',
-            'Verifique se ha mensagem em loop de retry travando o consumo.',
-            'Avalie escalar workers temporariamente para drenar o acumulo.',
-            'Se a causa for API externa lenta, considere pausar producao ate o parceiro normalizar.',
+            'Confirme se o worker está vivo e consumindo, olhando throughput recente.',
+            'Verifique se há mensagem em loop de retry travando o consumo.',
+            'Avalie escalar workers temporariamente para drenar o acúmulo.',
+            'Se a causa for API externa lenta, considere pausar produção até o parceiro normalizar.',
           ],
         },
       ],
@@ -255,40 +255,40 @@ app.use((req, res, next) => {
   ],
   faq: [
     {
-      question: 'Preciso de uma ferramenta paga como Datadog para comecar?',
+      question: 'Preciso de uma ferramenta paga como Datadog para começar?',
       answer:
-        'Nao. Para o minimo viavel, prom-client mais Prometheus e um Grafana ou Alertmanager ' +
-        'cobrem health check, metricas e alertas sem custo de licenca. Ferramenta paga so se ' +
-        'justifica quando o volume e a operacao crescem a ponto de o esforco de manter a stack ' +
-        'aberta superar o preco da gerenciada.',
+        'Não. Para o mínimo viável, prom-client mais Prometheus e um Grafana ou Alertmanager ' +
+        'cobrem health check, métricas e alertas sem custo de licença. Ferramenta paga só se ' +
+        'justifica quando o volume e a operação crescem a ponto de o esforço de manter a stack ' +
+        'aberta superar o preço da gerenciada.',
     },
     {
-      question: 'Qual a diferenca entre /health de liveness e de readiness?',
+      question: 'Qual a diferença entre /health de liveness e de readiness?',
       answer:
-        'Liveness responde se o processo esta vivo e deve ser reiniciado caso trave. Readiness ' +
-        'responde se ele esta pronto para receber trafego, checando dependencias como banco e ' +
-        'fila. Voce pode separar em duas rotas ou retornar ambos os checks em um /health unico, ' +
-        'usando 200 para saudavel e 503 para degradado.',
+        'Liveness responde se o processo está vivo e deve ser reiniciado caso trave. Readiness ' +
+        'responde se ele está pronto para receber tráfego, checando dependências como banco e ' +
+        'fila. Você pode separar em duas rotas ou retornar ambos os checks em um /health único, ' +
+        'usando 200 para saudável e 503 para degradado.',
     },
     {
-      question: 'Por que medir p95 e p99 em vez da media de latencia?',
+      question: 'Por que medir p95 e p99 em vez da média de latência?',
       answer:
-        'A media esconde a cauda. Um p95 ruim significa que 5% das requisicoes estao lentas, e ' +
-        'sao justamente esses clientes que reclamam. Media baixa com p99 alto e um padrao classico ' +
-        'de problema invisivel: tudo parece bem no agregado enquanto uma parcela sofre.',
+        'A média esconde a cauda. Um p95 ruim significa que 5% das requisições estão lentas, e ' +
+        'são justamente esses clientes que reclamam. Média baixa com p99 alto é um padrão clássico ' +
+        'de problema invisível: tudo parece bem no agregado enquanto uma parcela sofre.',
     },
   ],
   conclusion: {
     title: 'Comece pequeno e durma melhor',
     description:
-      'Monitoramento bom nao e o que tem mais grafico, e o que avisa cedo e diz o que fazer. ' +
-      'Implemente os 4 sinais de ouro, as metricas minimas por componente, poucos alertas ' +
-      'acionaveis e um runbook curto. Esse minimo viavel troca a rotina de apagar incendio por ' +
-      'operacao previsivel. Posso ajudar a montar isso na sua integracao.',
-    cta: 'Falar sobre observabilidade da minha integracao',
+      'Monitoramento bom não é o que tem mais gráfico, é o que avisa cedo e diz o que fazer. ' +
+      'Implemente os 4 sinais de ouro, as métricas mínimas por componente, poucos alertas ' +
+      'acionáveis e um runbook curto. Esse mínimo viável troca a rotina de apagar incêndio por ' +
+      'operação previsível. Posso ajudar a montar isso na sua integração.',
+    cta: 'Falar sobre observabilidade da minha integração',
   },
   related: [
-    { label: 'Webhook, idempotencia e filas no WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
+    { label: 'Webhook, idempotência e filas no WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
     { label: 'Fila para picos de campanha no WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
     { label: 'Fale comigo', to: '/contato' },
   ],
@@ -589,82 +589,82 @@ app.use((req, res, next) => {
 
 const es = {
   intro:
-    'Una integracion que solo se observa cuando ya se cayo se vuelve una rutina de apagar ' +
+    'Una integración que solo se observa cuando ya se cayó se vuelve una rutina de apagar ' +
     'incendios. Te enteras del problema porque el cliente se queja, no por el panel. ' +
-    'Esta guia muestra el minimo viable de monitoreo y alertas para webhook, cola, worker y ' +
+    'Esta guía muestra el mínimo viable de monitoreo y alertas para webhook, cola, worker y ' +
     'APIs externas, con foco en el tiempo de respuesta. Nada de Datadog enterprise: el objetivo ' +
-    'es ver lo que importa y recibir aviso antes del dano.',
+    'es ver lo que importa y recibir aviso antes del daño.',
   sections: [
     {
-      title: 'Por que el minimo importa mas que lo completo',
+      title: '¿Por qué el mínimo importa más que lo completo?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un panel lleno de graficos que nadie mira no reduce incidentes. Lo que los reduce es ' +
-            'un conjunto pequeno de senales que responden rapido a la pregunta correcta: el sistema ' +
-            'esta sano ahora? Empieza por lo esencial y crece solo cuando haya dolor real.',
+            'Un panel lleno de gráficos que nadie mira no reduce incidentes. Lo que los reduce es ' +
+            'un conjunto pequeño de señales que responden rápido a la pregunta correcta: ¿el sistema ' +
+            'está sano ahora? Empieza por lo esencial y crece solo cuando haya dolor real.',
         },
         {
           type: 'list',
           items: [
-            'Prefiere pocas senales accionables a muchos graficos decorativos.',
-            'Toda alerta necesita un dueno y una accion clara asociada.',
-            'Si una alerta no cambia ninguna decision, es ruido y debe eliminarse.',
+            'Prefiere pocas señales accionables a muchos gráficos decorativos.',
+            'Toda alerta necesita un dueño y una acción clara asociada.',
+            'Si una alerta no cambia ninguna decisión, es ruido y debe eliminarse.',
             'Mide primero lo que afecta al cliente: tiempo de respuesta y tasa de error.',
           ],
         },
       ],
     },
     {
-      title: 'Las 4 senales de oro aplicadas a integraciones',
+      title: 'Las 4 señales de oro aplicadas a integraciones',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Las senales de oro del SRE (latencia, trafico, errores y saturacion) encajan bien en ' +
-            'integraciones. Cubren el 80% de los incidentes con muy poca instrumentacion.',
+            'Las señales de oro del SRE (latencia, tráfico, errores y saturación) encajan bien en ' +
+            'integraciones. Cubren el 80% de los incidentes con muy poca instrumentación.',
         },
         {
           type: 'list',
           items: [
             'Latencia: tiempo de respuesta del webhook y de las llamadas a APIs externas, siempre en p95 y p99, nunca solo el promedio.',
-            'Trafico: volumen de eventos recibidos por minuto y mensajes procesados por la cola.',
+            'Tráfico: volumen de eventos recibidos por minuto y mensajes procesados por la cola.',
             'Errores: tasa de respuestas 5xx, fallos de procesamiento en el worker y timeouts de socios.',
-            'Saturacion: profundidad de la cola, uso de conexiones de la base y memoria o CPU del worker.',
+            'Saturación: profundidad de la cola, uso de conexiones de la base y memoria o CPU del worker.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Regla practica: latencia y errores avisan que algo ya esta mal para el cliente; ' +
-            'trafico y saturacion avisan que algo se pondra mal pronto.',
+            'Regla práctica: latencia y errores avisan que algo ya está mal para el cliente; ' +
+            'tráfico y saturación avisan que algo se pondrá mal pronto.',
         },
       ],
     },
     {
-      title: 'Metricas minimas por componente',
+      title: 'Métricas mínimas por componente',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Cada componente de la cadena tiene un punado de metricas que vale la pena recolectar. ' +
+            'Cada componente de la cadena tiene un puñado de métricas que vale la pena recolectar. ' +
             'Abajo el conjunto reducido que entrega visibilidad sin convertirse en un proyecto.',
         },
         {
           type: 'table',
-          columns: ['Componente', 'Metrica minima', 'Por que importa'],
+          columns: ['Componente', 'Métrica mínima', 'Por qué importa'],
           rows: [
             ['Webhook', 'p95 de latencia, tasa de 5xx, eventos/min', 'Detecta lentitud y rechazo antes de que el socio reintente'],
-            ['Cola', 'Profundidad y edad del mensaje mas antiguo', 'Muestra acumulacion y retraso real de procesamiento'],
+            ['Cola', 'Profundidad y edad del mensaje más antiguo', 'Muestra acumulación y retraso real de procesamiento'],
             ['Worker', 'Throughput, tasa de fallo, tiempo por job', 'Revela bloqueos, bucles de reintento y cuellos de botella'],
-            ['APIs externas', 'p95 de latencia, tasa de error, timeouts', 'Aisla la culpa del socio y protege tu SLA'],
+            ['APIs externas', 'p95 de latencia, tasa de error, timeouts', 'Aísla la culpa del socio y protege tu SLA'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La edad del mensaje mas antiguo en la cola es la metrica mas subestimada. Una ' +
+            'La edad del mensaje más antiguo en la cola es la métrica más subestimada. Una ' +
             'profundidad alta puede ser un pico sano; una edad alta significa que alguien ya espera demasiado.',
         },
       ],
@@ -675,22 +675,22 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'De todas las metricas, pocas merecen despertar a alguien. Enfocate en las alertas que ' +
+            'De todas las métricas, pocas merecen despertar a alguien. Enfócate en las alertas que ' +
             'representan dolor para el cliente o riesgo inminente de cola bloqueada.',
         },
         {
           type: 'list',
           items: [
-            'Tasa de error 5xx por encima de un limite en una ventana corta, por ejemplo 2% en 5 minutos.',
+            'Tasa de error 5xx por encima de un límite en una ventana corta, por ejemplo 2% en 5 minutos.',
             'Cola acumulando: profundidad creciente que no baja o edad del mensaje por encima del SLA.',
-            'p95 de latencia del webhook o de la API socia por encima del limite acordado.',
-            'Fallo de API socia: una serie de timeouts o una tasa de error que indica que el socio esta caido.',
+            'p95 de latencia del webhook o de la API socia por encima del límite acordado.',
+            'Fallo de API socia: una serie de timeouts o una tasa de error que indica que el socio está caído.',
           ],
         },
       ],
     },
     {
-      title: 'Como evitar la fatiga de alertas',
+      title: 'Cómo evitar la fatiga de alertas',
       blocks: [
         {
           type: 'paragraph',
@@ -701,27 +701,27 @@ const es = {
         {
           type: 'list',
           items: [
-            'Thresholds calibrados: define limites a partir del comportamiento real, no de suposiciones, y revisalos tras cada incidente.',
-            'Ventanas y duracion: dispara solo si la condicion persiste por X minutos, evitando ruido de picos instantaneos.',
+            'Thresholds calibrados: define límites a partir del comportamiento real, no de suposiciones, y revísalos tras cada incidente.',
+            'Ventanas y duración: dispara solo si la condición persiste por X minutos, evitando ruido de picos instantáneos.',
             'Severidad clara: separa page (despierta a alguien) de ticket (se revisa en horario laboral) de info (solo registra).',
-            'Agrupacion y silenciamiento: agrupa alertas correlacionadas y silencia durante deploys o ventanas de mantenimiento conocidas.',
+            'Agrupación y silenciamiento: agrupa alertas correlacionadas y silencia durante deploys o ventanas de mantenimiento conocidas.',
           ],
         },
         {
           type: 'paragraph',
           value:
             'Meta sana: toda alerta de page debe ser accionable y rara. Si dispara cada semana sin ' +
-            'accion real, conviertela en ticket o ajusta el threshold.',
+            'acción real, conviértela en ticket o ajusta el threshold.',
         },
       ],
     },
     {
-      title: 'Health check y metricas en la practica',
+      title: 'Health check y métricas en la práctica',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El minimo viable cabe en dos rutas: un /health para liveness y readiness, y un ' +
+            'El mínimo viable cabe en dos rutas: un /health para liveness y readiness, y un ' +
             '/metrics en formato Prometheus. En Node, prom-client lo resuelve con poco pegamento.',
         },
         {
@@ -805,8 +805,8 @@ app.use((req, res, next) => {
         {
           type: 'paragraph',
           value:
-            'Una alerta sin runbook genera panico. Cada disparo necesita un guion de 3 a 5 pasos ' +
-            'que cualquier persona de guardia pueda seguir a las 3 de la manana.',
+            'Una alerta sin runbook genera pánico. Cada disparo necesita un guion de 3 a 5 pasos ' +
+            'que cualquier persona de guardia pueda seguir a las 3 de la mañana.',
         },
         {
           type: 'paragraph',
@@ -815,11 +815,11 @@ app.use((req, res, next) => {
         {
           type: 'ordered',
           items: [
-            'Abre el panel y confirma si el pico es general o de una ruta especifica.',
-            'Revisa los logs recientes de error y correlaciona con el ultimo deploy.',
-            'Verifica las dependencias: la base, la cola y las APIs externas responden?',
+            'Abre el panel y confirma si el pico es general o de una ruta específica.',
+            'Revisa los logs recientes de error y correlaciona con el último deploy.',
+            'Verifica las dependencias: ¿la base, la cola y las APIs externas responden?',
             'Si fue un deploy, haz rollback; si es una dependencia externa, activa el fallback o circuit breaker.',
-            'Registra la causa y abre un ticket de seguimiento para la solucion definitiva.',
+            'Registra la causa y abre un ticket de seguimiento para la solución definitiva.',
           ],
         },
         {
@@ -829,10 +829,10 @@ app.use((req, res, next) => {
         {
           type: 'ordered',
           items: [
-            'Confirma que el worker esta vivo y consumiendo, mirando el throughput reciente.',
+            'Confirma que el worker está vivo y consumiendo, mirando el throughput reciente.',
             'Verifica si hay un mensaje en bucle de reintento bloqueando el consumo.',
-            'Evalua escalar workers temporalmente para drenar la acumulacion.',
-            'Si la causa es una API externa lenta, considera pausar la produccion hasta que el socio se normalice.',
+            'Evalúa escalar workers temporalmente para drenar la acumulación.',
+            'Si la causa es una API externa lenta, considera pausar la producción hasta que el socio se normalice.',
           ],
         },
       ],
@@ -840,42 +840,42 @@ app.use((req, res, next) => {
   ],
   faq: [
     {
-      question: 'Necesito una herramienta de pago como Datadog para empezar?',
+      question: '¿Necesito una herramienta de pago como Datadog para empezar?',
       answer:
-        'No. Para el minimo viable, prom-client mas Prometheus y un Grafana o Alertmanager cubren ' +
-        'health check, metricas y alertas sin costo de licencia. Una herramienta de pago solo se ' +
-        'justifica cuando el volumen y la operacion crecen al punto de que mantener la stack ' +
-        'abierta cuesta mas esfuerzo que el precio de la gestionada.',
+        'No. Para el mínimo viable, prom-client más Prometheus y un Grafana o Alertmanager cubren ' +
+        'health check, métricas y alertas sin costo de licencia. Una herramienta de pago solo se ' +
+        'justifica cuando el volumen y la operación crecen al punto de que mantener la stack ' +
+        'abierta cuesta más esfuerzo que el precio de la gestionada.',
     },
     {
-      question: 'Cual es la diferencia entre liveness y readiness en /health?',
+      question: '¿Cuál es la diferencia entre liveness y readiness en /health?',
       answer:
-        'Liveness reporta si el proceso esta vivo y debe reiniciarse si se cuelga. Readiness ' +
-        'reporta si esta listo para recibir trafico, revisando dependencias como la base y la ' +
-        'cola. Puedes separarlo en dos rutas o devolver ambos checks en un /health unico, usando ' +
+        'Liveness reporta si el proceso está vivo y debe reiniciarse si se cuelga. Readiness ' +
+        'reporta si está listo para recibir tráfico, revisando dependencias como la base y la ' +
+        'cola. Puedes separarlo en dos rutas o devolver ambos checks en un /health único, usando ' +
         '200 para sano y 503 para degradado.',
     },
     {
-      question: 'Por que medir p95 y p99 en lugar del promedio de latencia?',
+      question: '¿Por qué medir p95 y p99 en lugar del promedio de latencia?',
       answer:
-        'El promedio esconde la cola. Un p95 malo significa que el 5% de las peticiones estan ' +
+        'El promedio esconde la cola. Un p95 malo significa que el 5% de las peticiones están ' +
         'lentas, y son justamente esos clientes los que se quejan. Un promedio bajo con un p99 ' +
-        'alto es un patron clasico de problema invisible: todo parece bien en el agregado mientras ' +
+        'alto es un patrón clásico de problema invisible: todo parece bien en el agregado mientras ' +
         'una parte sufre.',
     },
   ],
   conclusion: {
-    title: 'Empieza pequeno y duerme mejor',
+    title: 'Empieza pequeño y duerme mejor',
     description:
-      'Un buen monitoreo no es el que tiene mas graficos, es el que avisa temprano y dice que ' +
-      'hacer. Implementa las 4 senales de oro, las metricas minimas por componente, pocas alertas ' +
-      'accionables y un runbook corto. Este minimo viable cambia la rutina de apagar incendios por ' +
-      'una operacion previsible. Puedo ayudarte a montar esto en tu integracion.',
-    cta: 'Hablar sobre observabilidad de mi integracion',
+      'Un buen monitoreo no es el que tiene más gráficos, es el que avisa temprano y dice qué ' +
+      'hacer. Implementa las 4 señales de oro, las métricas mínimas por componente, pocas alertas ' +
+      'accionables y un runbook corto. Este mínimo viable cambia la rutina de apagar incendios por ' +
+      'una operación previsible. Puedo ayudarte a montar esto en tu integración.',
+    cta: 'Hablar sobre observabilidad de mi integración',
   },
   related: [
     { label: 'Webhook, idempotencia y colas en WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
-    { label: 'Cola para picos de campana en WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
+    { label: 'Cola para picos de campaña en WhatsApp', to: '/blog/fila-picos-campanha-whatsapp' },
     { label: 'Hablemos', to: '/contato' },
   ],
 };

@@ -173,6 +173,7 @@ const en = {
     heroDescription:
       'I implement integrations and automations focused on operational performance, data reliability and conversion growth.',
     viewDetails: 'View details',
+    talkOnWhatsapp: 'Talk on WhatsApp',
   },
   servicePage: {
     notFoundSeoTitle: 'Service not found | Joao Victor Souza',

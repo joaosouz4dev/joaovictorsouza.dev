@@ -4,30 +4,30 @@
 
 const pt = {
   intro:
-    'Em uma empresa pequena, um time so cuida dos templates de WhatsApp e tudo funciona. Quando marketing, suporte e produto passam a criar templates no mesmo WABA, o namespace vira terra de ninguem: nomes conflitantes, definicoes duplicadas, rejeicoes da Meta por copy fora de politica e categoria errada que faz voce pagar marketing onde deveria ser utility. Governar templates em times grandes nao e burocracia, e o que mantem o canal previsivel e barato. Este artigo cobre convencao de nomenclatura, ciclo de vida e versionamento, processo de aprovacao, template as code e as metricas que dizem se um template merece continuar vivo.',
+    'Em uma empresa pequena, um time só cuida dos templates de WhatsApp e tudo funciona. Quando marketing, suporte e produto passam a criar templates no mesmo WABA, o namespace vira terra de ninguém: nomes conflitantes, definições duplicadas, rejeições da Meta por copy fora de política e categoria errada que faz você pagar marketing onde deveria ser utility. Governar templates em times grandes não é burocracia, é o que mantém o canal previsível e barato. Este artigo cobre convenção de nomenclatura, ciclo de vida e versionamento, processo de aprovação, template as code e as métricas que dizem se um template merece continuar vivo.',
   sections: [
     {
-      title: 'O problema: varios times, um WABA',
+      title: 'O problema: vários times, um WABA',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O WhatsApp Business Account (WABA) e compartilhado, e o namespace de templates tambem. Quando marketing, suporte e produto criam templates no mesmo painel sem coordenacao, os sintomas aparecem rapido. Dois times criam "atualizacao_pedido" com copy ligeiramente diferente e ninguem sabe qual usar. Alguem reaproveita o nome errado em producao. Marketing submete um template promocional classificado como utility para fugir da regra de cobranca e a Meta rejeita ou reclassifica. Produto cria um template de teste que nunca foi removido e polui a lista.',
+            'O WhatsApp Business Account (WABA) é compartilhado, e o namespace de templates também. Quando marketing, suporte e produto criam templates no mesmo painel sem coordenação, os sintomas aparecem rápido. Dois times criam "atualizacao_pedido" com copy ligeiramente diferente e ninguém sabe qual usar. Alguém reaproveita o nome errado em produção. Marketing submete um template promocional classificado como utility para fugir da regra de cobrança e a Meta rejeita ou reclassifica. Produto cria um template de teste que nunca foi removido e polui a lista.',
         },
         {
           type: 'paragraph',
           value:
-            'A raiz do problema e que o painel da Meta trata templates como recursos globais do WABA, sem nocao de dono, sem historico de versao e sem ambiente de homologacao. Cada criacao manual e uma decisao isolada que afeta todos os times. Sem governanca, o resultado e duplicacao, rejeicoes recorrentes, custo inflado por categoria errada e um namespace impossivel de auditar.',
+            'A raiz do problema é que o painel da Meta trata templates como recursos globais do WABA, sem noção de dono, sem histórico de versão e sem ambiente de homologação. Cada criação manual é uma decisão isolada que afeta todos os times. Sem governança, o resultado é duplicação, rejeições recorrentes, custo inflado por categoria errada e um namespace impossível de auditar.',
         },
       ],
     },
     {
-      title: 'Convencao de nomenclatura e namespace',
+      title: 'Convenção de nomenclatura e namespace',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A primeira defesa e um padrao de nomes que torne o dono, a jornada e o idioma obvios no proprio nome do template. A Meta so aceita minusculas, numeros e underscore, entao o padrao precisa caber nessa restricao. Um esquema que funciona bem e prefixo por time, depois jornada, depois idioma, depois versao: time_jornada_idioma_versao. Exemplo: support_orderupdate_pt_v2.',
+            'A primeira defesa é um padrão de nomes que torne o dono, a jornada e o idioma óbvios no próprio nome do template. A Meta só aceita minúsculas, números e underscore, então o padrão precisa caber nessa restrição. Um esquema que funciona bem é prefixo por time, depois jornada, depois idioma, depois versão: time_jornada_idioma_versao. Exemplo: support_orderupdate_pt_v2.',
         },
         {
           type: 'table',
@@ -35,23 +35,23 @@ const pt = {
           rows: [
             ['time', 'Time dono do template', 'support, marketing, product'],
             ['jornada', 'Fluxo ou evento que o template atende', 'orderupdate, otp, cartabandon'],
-            ['idioma', 'Locale do conteudo', 'pt, en, es'],
-            ['versao', 'Versao logica do template', 'v1, v2, v3'],
+            ['idioma', 'Locale do conteúdo', 'pt, en, es'],
+            ['versao', 'Versão lógica do template', 'v1, v2, v3'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Com esse padrao, support_orderupdate_pt_v2 se le sozinho: e do suporte, trata atualizacao de pedido, em portugues, segunda versao. O prefixo de time elimina conflito de nomes entre equipes, porque cada uma so cria dentro do seu proprio espaco. As regras minimas que sustentam a convencao:',
+            'Com esse padrão, support_orderupdate_pt_v2 se lê sozinho: é do suporte, trata atualização de pedido, em português, segunda versão. O prefixo de time elimina conflito de nomes entre equipes, porque cada uma só cria dentro do seu próprio espaço. As regras mínimas que sustentam a convenção:',
         },
         {
           type: 'list',
           items: [
-            'Prefixo de time obrigatorio: nenhum template existe sem dono explicito no nome.',
-            'Uma jornada por template: nao misture confirmacao de pedido e pesquisa de satisfacao no mesmo nome.',
-            'Idioma sempre no nome: variantes de locale sao templates distintos, nunca o mesmo template com texto trocado na mao.',
-            'Versao no sufixo: mudou conteudo, estrutura ou categoria, sobe a versao em vez de editar o template antigo.',
-            'Sem nomes de teste em producao: temp, teste, copy e final ficam fora do WABA de producao.',
+            'Prefixo de time obrigatório: nenhum template existe sem dono explícito no nome.',
+            'Uma jornada por template: não misture confirmação de pedido e pesquisa de satisfação no mesmo nome.',
+            'Idioma sempre no nome: variantes de locale são templates distintos, nunca o mesmo template com texto trocado na mão.',
+            'Versão no sufixo: mudou conteúdo, estrutura ou categoria, sobe a versão em vez de editar o template antigo.',
+            'Sem nomes de teste em produção: temp, teste, copy e final ficam fora do WABA de produção.',
           ],
         },
       ],
@@ -62,57 +62,57 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Um template nao e estatico: ele nasce como rascunho, passa por revisao interna, vai para aprovacao da Meta, entra em uso e um dia e aposentado. Tratar esse ciclo de forma explicita evita que rascunhos vazem para producao e que templates mortos continuem na lista. Cada transicao tem um responsavel e um criterio claro de passagem.',
+            'Um template não é estático: ele nasce como rascunho, passa por revisão interna, vai para aprovação da Meta, entra em uso e um dia é aposentado. Tratar esse ciclo de forma explícita evita que rascunhos vazem para produção e que templates mortos continuem na lista. Cada transição tem um responsável e um critério claro de passagem.',
         },
         {
           type: 'diagram',
           value: `  draft
-    |  copy escrita, revisao interna de texto e variaveis
+    |  copy escrita, revisão interna de texto e variáveis
     v
   review
-    |  aprovacao de copy + checagem de categoria correta
+    |  aprovação de copy + checagem de categoria correta
     v
   submit Meta
-    |  envio via Graph API; aguarda analise da Meta
+    |  envio via Graph API; aguarda análise da Meta
     v
   approved
-    |  Meta aprovou; ainda nao em uso
+    |  Meta aprovou; ainda não em uso
     v
   active
-    |  em producao, recebendo trafego
+    |  em produção, recebendo tráfego
     v
   deprecated
-       substituido por nova versao; mantido so para auditoria`,
+       substituído por nova versão; mantido só para auditoria`,
         },
         {
           type: 'paragraph',
           value:
-            'O ponto chave do versionamento e que aprovado pela Meta nao significa editavel. Mudou a copy de support_orderupdate_pt_v2? Crie support_orderupdate_pt_v3, submeta, valide e so entao mova o trafego. O v2 vira deprecated, nao desaparece: ele fica como registro do que estava no ar quando uma mensagem foi enviada. Editar template aprovado no painel quebra o historico e costuma forcar nova analise da Meta de qualquer forma.',
+            'O ponto chave do versionamento é que aprovado pela Meta não significa editável. Mudou a copy de support_orderupdate_pt_v2? Crie support_orderupdate_pt_v3, submeta, valide e só então mova o tráfego. O v2 vira deprecated, não desaparece: ele fica como registro do que estava no ar quando uma mensagem foi enviada. Editar template aprovado no painel quebra o histórico e costuma forçar nova análise da Meta de qualquer forma.',
         },
       ],
     },
     {
-      title: 'Processo de aprovacao',
+      title: 'Processo de aprovação',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Governanca exige separar quem cria de quem submete. Qualquer pessoa do time dono pode propor um template, mas a submissao para a Meta passa por um portao com revisao de copy e checagem de categoria. Esse portao e o que impede tanto o texto fora de politica quanto o erro de categoria que estoura o custo.',
+            'Governança exige separar quem cria de quem submete. Qualquer pessoa do time dono pode propor um template, mas a submissão para a Meta passa por um portão com revisão de copy e checagem de categoria. Esse portão é o que impede tanto o texto fora de política quanto o erro de categoria que estoura o custo.',
         },
         {
           type: 'ordered',
           items: [
-            'Criacao (autor do time dono): redige a definicao no formato de codigo, define variaveis, idioma e a categoria pretendida. Nada vai direto para a Meta nesse passo.',
-            'Revisao de copy (revisor designado): confere clareza, tom, conformidade com a politica do WhatsApp e ausencia de conteudo que motive rejeicao. Aprova ou devolve com comentarios.',
-            'Checagem de categoria (responsavel de governanca): valida se a categoria esta correta. Confirmacao e atualizacao ligada a uma acao do usuario e utility; promocao e reengajamento e marketing. Classificar marketing como utility para pagar menos e reclassificado pela Meta e mina a confianca do WABA.',
-            'Submissao (papel autorizado): so um conjunto restrito de pessoas tem permissao de submeter via API. Esse passo registra quem submeteu, quando e qual versao.',
-            'Validacao pos-aprovacao (autor + governanca): ao voltar approved da Meta, faz um envio de teste, confere render de variaveis e botoes, e so entao promove para active.',
+            'Criação (autor do time dono): redige a definição no formato de código, define variáveis, idioma e a categoria pretendida. Nada vai direto para a Meta nesse passo.',
+            'Revisão de copy (revisor designado): confere clareza, tom, conformidade com a política do WhatsApp e ausência de conteúdo que motive rejeição. Aprova ou devolve com comentários.',
+            'Checagem de categoria (responsável de governança): valida se a categoria está correta. Confirmação e atualização ligada a uma ação do usuário é utility; promoção e reengajamento é marketing. Classificar marketing como utility para pagar menos é reclassificado pela Meta e mina a confiança do WABA.',
+            'Submissão (papel autorizado): só um conjunto restrito de pessoas tem permissão de submeter via API. Esse passo registra quem submeteu, quando e qual versão.',
+            'Validação pós-aprovação (autor + governança): ao voltar approved da Meta, faz um envio de teste, confere render de variáveis e botões, e só então promove para active.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A checagem de categoria merece destaque porque e onde governanca vira dinheiro. Utility costuma ser mais barata que marketing, e a tentacao de rotular tudo como utility e real. A Meta detecta o padrao, reclassifica e, em caso reincidente, pode prejudicar a qualidade do numero. O portao de categoria protege o orcamento e a reputacao ao mesmo tempo.',
+            'A checagem de categoria merece destaque porque é onde governança vira dinheiro. Utility costuma ser mais barata que marketing, e a tentação de rotular tudo como utility é real. A Meta detecta o padrão, reclassifica e, em caso reincidente, pode prejudicar a qualidade do número. O portão de categoria protege o orçamento e a reputação ao mesmo tempo.',
         },
       ],
     },
@@ -122,7 +122,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Criar template manualmente no painel da Meta nao escala nem audita. A alternativa e tratar template como codigo: a definicao vive em um repositorio versionado, passa por pull request (a revisao de copy e a checagem de categoria viram revisao de PR) e e sincronizada para a Meta via Graph API. O painel deixa de ser a fonte da verdade; o repositorio passa a ser. Cada mudanca tem autor, diff, historico e rollback.',
+            'Criar template manualmente no painel da Meta não escala nem audita. A alternativa é tratar template como código: a definição vive em um repositório versionado, passa por pull request (a revisão de copy e a checagem de categoria viram revisão de PR) e é sincronizada para a Meta via Graph API. O painel deixa de ser a fonte da verdade; o repositório passa a ser. Cada mudança tem autor, diff, histórico e rollback.',
         },
         {
           type: 'code',
@@ -149,7 +149,7 @@ components:
         {
           type: 'paragraph',
           value:
-            'A sincronizacao le o arquivo e cria ou atualiza o template no WABA via Graph API. O mesmo script roda em CI: ao mergear o PR, o template e submetido a Meta e o pipeline registra o status retornado.',
+            'A sincronização lê o arquivo e cria ou atualiza o template no WABA via Graph API. O mesmo script roda em CI: ao mergear o PR, o template é submetido à Meta e o pipeline registra o status retornado.',
         },
         {
           type: 'code',
@@ -202,57 +202,57 @@ syncTemplate(process.argv[2]).catch((err) => {
         {
           type: 'paragraph',
           value:
-            'Com essa base, todo o processo de aprovacao acontece na revisao do PR e a Meta recebe apenas o que ja passou pelos portoes. O namespace fica auditavel: para saber por que um template existe, quem o criou e o que mudou entre versoes, basta olhar o historico do repositorio.',
+            'Com essa base, todo o processo de aprovação acontece na revisão do PR e a Meta recebe apenas o que já passou pelos portões. O namespace fica auditável: para saber por que um template existe, quem o criou e o que mudou entre versões, basta olhar o histórico do repositório.',
         },
       ],
     },
     {
-      title: 'Metricas por template',
+      title: 'Métricas por template',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Governanca nao termina na aprovacao. Cada template ativo precisa ser medido para saber se ainda merece existir. As metricas que importam vem da propria Meta (status de entrega e leitura) e do seu produto (resposta e bloqueio), e devem ser acompanhadas por template, nao em agregado.',
+            'Governança não termina na aprovação. Cada template ativo precisa ser medido para saber se ainda merece existir. As métricas que importam vêm da própria Meta (status de entrega e leitura) e do seu produto (resposta e bloqueio), e devem ser acompanhadas por template, não em agregado.',
         },
         {
           type: 'list',
           items: [
-            'Taxa de entrega: proporcao de mensagens entregues sobre enviadas. Queda persistente sugere numero invalido na base, bloqueio ou problema de qualidade do template.',
-            'Taxa de leitura: proporcao de entregues que foram lidas. Leitura baixa em utility pode indicar copy irrelevante ou disparo na hora errada.',
-            'Taxa de resposta: proporcao que gerou resposta do cliente. Em templates que esperam acao (confirmar, agendar), e o sinal mais direto de eficacia.',
-            'Taxa de bloqueio e denuncia: proporcao de destinatarios que bloquearam ou marcaram como spam. Em templates de marketing, e o indicador critico: alto bloqueio derruba a qualidade do numero e ameaca todos os times do WABA.',
+            'Taxa de entrega: proporção de mensagens entregues sobre enviadas. Queda persistente sugere número inválido na base, bloqueio ou problema de qualidade do template.',
+            'Taxa de leitura: proporção de entregues que foram lidas. Leitura baixa em utility pode indicar copy irrelevante ou disparo na hora errada.',
+            'Taxa de resposta: proporção que gerou resposta do cliente. Em templates que esperam ação (confirmar, agendar), é o sinal mais direto de eficácia.',
+            'Taxa de bloqueio e denúncia: proporção de destinatários que bloquearam ou marcaram como spam. Em templates de marketing, é o indicador crítico: alto bloqueio derruba a qualidade do número e ameaça todos os times do WABA.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A leitura cruzada e o que orienta a decisao de manter, revisar ou aposentar. Um template de marketing com leitura ok mas bloqueio subindo deve ser pausado antes que prejudique o WABA inteiro. Um utility com entrega caindo aponta para higiene de base. Medir por template fecha o ciclo de governanca: o que entra pelo portao de aprovacao tambem sai por um criterio de dados quando para de servir.',
+            'A leitura cruzada é o que orienta a decisão de manter, revisar ou aposentar. Um template de marketing com leitura ok mas bloqueio subindo deve ser pausado antes que prejudique o WABA inteiro. Um utility com entrega caindo aponta para higiene de base. Medir por template fecha o ciclo de governança: o que entra pelo portão de aprovação também sai por um critério de dados quando para de servir.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Posso editar um template ja aprovado pela Meta?',
+      question: 'Posso editar um template já aprovado pela Meta?',
       answer:
-        'Evite. Editar conteudo de um template aprovado costuma forcar nova analise da Meta e quebra o historico de versao. A pratica de governanca e criar uma nova versao (por exemplo, de _v2 para _v3), submeter, validar e so entao mover o trafego. A versao antiga vira deprecated e fica como registro do que estava no ar.',
+        'Evite. Editar conteúdo de um template aprovado costuma forçar nova análise da Meta e quebra o histórico de versão. A prática de governança é criar uma nova versão (por exemplo, de _v2 para _v3), submeter, validar e só então mover o tráfego. A versão antiga vira deprecated e fica como registro do que estava no ar.',
     },
     {
-      question: 'Por que nao deixar cada time criar templates direto no painel?',
+      question: 'Por que não deixar cada time criar templates direto no painel?',
       answer:
-        'Porque o WABA e o namespace de templates sao compartilhados. Criacao livre no painel gera nomes conflitantes, definicoes duplicadas, categoria errada e rejeicoes da Meta, sem dono nem historico. Centralizar as definicoes em um repositorio versionado e submeter via API da a cada template um dono explicito, revisao e auditoria.',
+        'Porque o WABA e o namespace de templates são compartilhados. Criação livre no painel gera nomes conflitantes, definições duplicadas, categoria errada e rejeições da Meta, sem dono nem histórico. Centralizar as definições em um repositório versionado e submeter via API dá a cada template um dono explícito, revisão e auditoria.',
     },
     {
       question: 'Como a categoria errada do template aumenta meu custo?',
       answer:
-        'As categorias tem regras de cobranca diferentes e utility costuma ser mais barata que marketing. Rotular uma promocao como utility para pagar menos nao funciona: a Meta reclassifica e, em reincidencia, pode prejudicar a qualidade do numero. Por isso a checagem de categoria e um portao obrigatorio antes da submissao.',
+        'As categorias têm regras de cobrança diferentes e utility costuma ser mais barata que marketing. Rotular uma promoção como utility para pagar menos não funciona: a Meta reclassifica e, em reincidência, pode prejudicar a qualidade do número. Por isso a checagem de categoria é um portão obrigatório antes da submissão.',
     },
   ],
   conclusion: {
-    title: 'Templates governados sao previsiveis, baratos e auditaveis',
+    title: 'Templates governados são previsíveis, baratos e auditáveis',
     description:
-      'Nomenclatura com dono, ciclo de vida com versao, processo de aprovacao com checagem de categoria, template as code e metricas por template transformam um namespace caotico em um canal sob controle. Se varios times disputam o mesmo WABA na sua operacao, posso ajudar a estruturar essa governanca de ponta a ponta.',
-    cta: 'Falar sobre governanca de templates',
+      'Nomenclatura com dono, ciclo de vida com versão, processo de aprovação com checagem de categoria, template as code e métricas por template transformam um namespace caótico em um canal sob controle. Se vários times disputam o mesmo WABA na sua operação, posso ajudar a estruturar essa governança de ponta a ponta.',
+    cta: 'Falar sobre governança de templates',
   },
   related: [
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
@@ -262,7 +262,7 @@ syncTemplate(process.argv[2]).catch((err) => {
   repo: {
     name: 'whatsapp-templates-as-code',
     description:
-      'Exemplo de governanca de templates de WhatsApp como codigo: definicoes versionadas em YAML, revisao por PR e sincronizacao para a Meta via Graph API.',
+      'Exemplo de governança de templates de WhatsApp como código: definições versionadas em YAML, revisão por PR e sincronização para a Meta via Graph API.',
     url: 'https://github.com/joaosouz4dev/whatsapp-templates-as-code',
   },
 };
@@ -534,7 +534,7 @@ syncTemplate(process.argv[2]).catch((err) => {
 
 const es = {
   intro:
-    'En una empresa pequena, un solo equipo cuida las plantillas de WhatsApp y todo funciona. Cuando marketing, soporte y producto pasan a crear plantillas en el mismo WABA, el namespace se vuelve tierra de nadie: nombres conflictivos, definiciones duplicadas, rechazos de Meta por copy fuera de politica y categoria equivocada que te hace pagar marketing donde deberia ser utility. Gobernar plantillas en equipos grandes no es burocracia, es lo que mantiene el canal predecible y barato. Este articulo cubre convencion de nomenclatura, ciclo de vida y versionado, proceso de aprobacion, template as code y las metricas que dicen si una plantilla merece seguir viva.',
+    'En una empresa pequeña, un solo equipo cuida las plantillas de WhatsApp y todo funciona. Cuando marketing, soporte y producto pasan a crear plantillas en el mismo WABA, el namespace se vuelve tierra de nadie: nombres conflictivos, definiciones duplicadas, rechazos de Meta por copy fuera de política y categoría equivocada que te hace pagar marketing donde debería ser utility. Gobernar plantillas en equipos grandes no es burocracia, es lo que mantiene el canal predecible y barato. Este artículo cubre convención de nomenclatura, ciclo de vida y versionado, proceso de aprobación, template as code y las métricas que dicen si una plantilla merece seguir viva.',
   sections: [
     {
       title: 'El problema: varios equipos, un WABA',
@@ -542,46 +542,46 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El WhatsApp Business Account (WABA) es compartido, y el namespace de plantillas tambien. Cuando marketing, soporte y producto crean plantillas en el mismo panel sin coordinacion, los sintomas aparecen rapido. Dos equipos crean "actualizacion_pedido" con copy ligeramente distinto y nadie sabe cual usar. Alguien reutiliza el nombre equivocado en produccion. Marketing envia una plantilla promocional clasificada como utility para esquivar la regla de cobro y Meta la rechaza o reclasifica. Producto crea una plantilla de prueba que nunca se elimino y ensucia la lista.',
+            'El WhatsApp Business Account (WABA) es compartido, y el namespace de plantillas también. Cuando marketing, soporte y producto crean plantillas en el mismo panel sin coordinación, los síntomas aparecen rápido. Dos equipos crean "actualizacion_pedido" con copy ligeramente distinto y nadie sabe cuál usar. Alguien reutiliza el nombre equivocado en producción. Marketing envía una plantilla promocional clasificada como utility para esquivar la regla de cobro y Meta la rechaza o reclasifica. Producto crea una plantilla de prueba que nunca se eliminó y ensucia la lista.',
         },
         {
           type: 'paragraph',
           value:
-            'La raiz del problema es que el panel de Meta trata las plantillas como recursos globales del WABA, sin nocion de dueno, sin historial de version y sin ambiente de homologacion. Cada creacion manual es una decision aislada que afecta a todos los equipos. Sin gobernanza, el resultado es duplicacion, rechazos recurrentes, costo inflado por categoria equivocada y un namespace imposible de auditar.',
+            'La raíz del problema es que el panel de Meta trata las plantillas como recursos globales del WABA, sin noción de dueño, sin historial de versión y sin ambiente de homologación. Cada creación manual es una decisión aislada que afecta a todos los equipos. Sin gobernanza, el resultado es duplicación, rechazos recurrentes, costo inflado por categoría equivocada y un namespace imposible de auditar.',
         },
       ],
     },
     {
-      title: 'Convencion de nomenclatura y namespace',
+      title: 'Convención de nomenclatura y namespace',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La primera defensa es un estandar de nombres que haga obvios el dueno, la jornada y el idioma en el propio nombre de la plantilla. Meta solo acepta minusculas, numeros y guion bajo, asi que el estandar debe caber en esa restriccion. Un esquema que funciona bien es prefijo por equipo, luego jornada, luego idioma, luego version: equipo_jornada_idioma_version. Ejemplo: support_orderupdate_es_v2.',
+            'La primera defensa es un estándar de nombres que haga obvios el dueño, la jornada y el idioma en el propio nombre de la plantilla. Meta solo acepta minúsculas, números y guion bajo, así que el estándar debe caber en esa restricción. Un esquema que funciona bien es prefijo por equipo, luego jornada, luego idioma, luego versión: equipo_jornada_idioma_version. Ejemplo: support_orderupdate_es_v2.',
         },
         {
           type: 'table',
           columns: ['Segmento', 'Significado', 'Ejemplo'],
           rows: [
-            ['equipo', 'Equipo dueno de la plantilla', 'support, marketing, product'],
+            ['equipo', 'Equipo dueño de la plantilla', 'support, marketing, product'],
             ['jornada', 'Flujo o evento que atiende la plantilla', 'orderupdate, otp, cartabandon'],
             ['idioma', 'Locale del contenido', 'pt, en, es'],
-            ['version', 'Version logica de la plantilla', 'v1, v2, v3'],
+            ['version', 'Versión lógica de la plantilla', 'v1, v2, v3'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Con este estandar, support_orderupdate_es_v2 se lee solo: es de soporte, trata actualizacion de pedido, en espanol, segunda version. El prefijo de equipo elimina el conflicto de nombres entre equipos, porque cada uno solo crea dentro de su propio espacio. Las reglas minimas que sostienen la convencion:',
+            'Con este estándar, support_orderupdate_es_v2 se lee solo: es de soporte, trata actualización de pedido, en español, segunda versión. El prefijo de equipo elimina el conflicto de nombres entre equipos, porque cada uno solo crea dentro de su propio espacio. Las reglas mínimas que sostienen la convención:',
         },
         {
           type: 'list',
           items: [
-            'Prefijo de equipo obligatorio: ninguna plantilla existe sin dueno explicito en el nombre.',
-            'Una jornada por plantilla: no mezcles confirmacion de pedido y encuesta de satisfaccion en el mismo nombre.',
+            'Prefijo de equipo obligatorio: ninguna plantilla existe sin dueño explícito en el nombre.',
+            'Una jornada por plantilla: no mezcles confirmación de pedido y encuesta de satisfacción en el mismo nombre.',
             'Idioma siempre en el nombre: las variantes de locale son plantillas distintas, nunca la misma plantilla con texto cambiado a mano.',
-            'Version en el sufijo: si cambio el contenido, la estructura o la categoria, sube la version en vez de editar la plantilla antigua.',
-            'Sin nombres de prueba en produccion: temp, test, copy y final quedan fuera del WABA de produccion.',
+            'Versión en el sufijo: si cambió el contenido, la estructura o la categoría, sube la versión en vez de editar la plantilla antigua.',
+            'Sin nombres de prueba en producción: temp, test, copy y final quedan fuera del WABA de producción.',
           ],
         },
       ],
@@ -592,57 +592,57 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Una plantilla no es estatica: nace como borrador, pasa por revision interna, va a aprobacion de Meta, entra en uso y un dia se retira. Tratar ese ciclo de forma explicita evita que los borradores se filtren a produccion y que las plantillas muertas sigan en la lista. Cada transicion tiene un responsable y un criterio claro de paso.',
+            'Una plantilla no es estática: nace como borrador, pasa por revisión interna, va a aprobación de Meta, entra en uso y un día se retira. Tratar ese ciclo de forma explícita evita que los borradores se filtren a producción y que las plantillas muertas sigan en la lista. Cada transición tiene un responsable y un criterio claro de paso.',
         },
         {
           type: 'diagram',
           value: `  draft
-    |  copy escrita, revision interna de texto y variables
+    |  copy escrita, revisión interna de texto y variables
     v
   review
-    |  aprobacion de copy + chequeo de categoria correcta
+    |  aprobación de copy + chequeo de categoría correcta
     v
   submit Meta
-    |  enviado via Graph API; espera analisis de Meta
+    |  enviado via Graph API; espera análisis de Meta
     v
   approved
-    |  Meta aprobo; aun no esta en uso
+    |  Meta aprobó; aún no está en uso
     v
   active
-    |  en produccion, recibiendo trafico
+    |  en producción, recibiendo tráfico
     v
   deprecated
-       reemplazada por una nueva version; conservada solo para auditoria`,
+       reemplazada por una nueva versión; conservada solo para auditoría`,
         },
         {
           type: 'paragraph',
           value:
-            'El punto clave del versionado es que aprobada por Meta no significa editable. Cambio el copy de support_orderupdate_es_v2? Crea support_orderupdate_es_v3, envia, valida y solo entonces mueve el trafico. La v2 pasa a deprecated, no desaparece: queda como registro de lo que estaba en el aire cuando se envio un mensaje. Editar una plantilla aprobada en el panel rompe el historial y suele forzar un nuevo analisis de Meta de todos modos.',
+            'El punto clave del versionado es que aprobada por Meta no significa editable. ¿Cambió el copy de support_orderupdate_es_v2? Crea support_orderupdate_es_v3, envía, valida y solo entonces mueve el tráfico. La v2 pasa a deprecated, no desaparece: queda como registro de lo que estaba en el aire cuando se envió un mensaje. Editar una plantilla aprobada en el panel rompe el historial y suele forzar un nuevo análisis de Meta de todos modos.',
         },
       ],
     },
     {
-      title: 'Proceso de aprobacion',
+      title: 'Proceso de aprobación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La gobernanza exige separar quien crea de quien envia. Cualquier persona del equipo dueno puede proponer una plantilla, pero el envio a Meta pasa por una puerta con revision de copy y chequeo de categoria. Esa puerta es lo que frena tanto el texto fuera de politica como el error de categoria que dispara el costo.',
+            'La gobernanza exige separar quien crea de quien envía. Cualquier persona del equipo dueño puede proponer una plantilla, pero el envío a Meta pasa por una puerta con revisión de copy y chequeo de categoría. Esa puerta es lo que frena tanto el texto fuera de política como el error de categoría que dispara el costo.',
         },
         {
           type: 'ordered',
           items: [
-            'Creacion (autor del equipo dueno): redacta la definicion en el formato de codigo, define variables, idioma y la categoria pretendida. Nada va directo a Meta en este paso.',
-            'Revision de copy (revisor designado): verifica claridad, tono, cumplimiento de la politica de WhatsApp y ausencia de contenido que motive rechazo. Aprueba o devuelve con comentarios.',
-            'Chequeo de categoria (responsable de gobernanza): valida que la categoria sea correcta. Una confirmacion o actualizacion ligada a una accion del usuario es utility; promocion y reenganche es marketing. Clasificar marketing como utility para pagar menos lo reclasifica Meta y mina la confianza del WABA.',
-            'Envio (rol autorizado): solo un conjunto restringido de personas tiene permiso de enviar via API. Este paso registra quien envio, cuando y que version.',
-            'Validacion pos-aprobacion (autor + gobernanza): cuando Meta devuelve approved, haz un envio de prueba, verifica el render de variables y botones, y solo entonces promueve a active.',
+            'Creación (autor del equipo dueño): redacta la definición en el formato de código, define variables, idioma y la categoría pretendida. Nada va directo a Meta en este paso.',
+            'Revisión de copy (revisor designado): verifica claridad, tono, cumplimiento de la política de WhatsApp y ausencia de contenido que motive rechazo. Aprueba o devuelve con comentarios.',
+            'Chequeo de categoría (responsable de gobernanza): valida que la categoría sea correcta. Una confirmación o actualización ligada a una acción del usuario es utility; promoción y reenganche es marketing. Clasificar marketing como utility para pagar menos lo reclasifica Meta y mina la confianza del WABA.',
+            'Envío (rol autorizado): solo un conjunto restringido de personas tiene permiso de enviar via API. Este paso registra quién envió, cuándo y qué versión.',
+            'Validación pos-aprobación (autor + gobernanza): cuando Meta devuelve approved, haz un envío de prueba, verifica el render de variables y botones, y solo entonces promueve a active.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El chequeo de categoria merece destaque porque es donde la gobernanza se vuelve dinero. Utility suele ser mas barata que marketing, y la tentacion de etiquetar todo como utility es real. Meta detecta el patron, reclasifica y, en caso reincidente, puede perjudicar la calidad del numero. La puerta de categoria protege el presupuesto y la reputacion al mismo tiempo.',
+            'El chequeo de categoría merece destaque porque es donde la gobernanza se vuelve dinero. Utility suele ser más barata que marketing, y la tentación de etiquetar todo como utility es real. Meta detecta el patrón, reclasifica y, en caso reincidente, puede perjudicar la calidad del número. La puerta de categoría protege el presupuesto y la reputación al mismo tiempo.',
         },
       ],
     },
@@ -652,7 +652,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Crear plantillas a mano en el panel de Meta no escala ni audita. La alternativa es tratar la plantilla como codigo: la definicion vive en un repositorio versionado, pasa por pull request (la revision de copy y el chequeo de categoria se vuelven revision de PR) y se sincroniza a Meta via Graph API. El panel deja de ser la fuente de la verdad; el repositorio pasa a serlo. Cada cambio tiene autor, diff, historial y rollback.',
+            'Crear plantillas a mano en el panel de Meta no escala ni audita. La alternativa es tratar la plantilla como código: la definición vive en un repositorio versionado, pasa por pull request (la revisión de copy y el chequeo de categoría se vuelven revisión de PR) y se sincroniza a Meta via Graph API. El panel deja de ser la fuente de la verdad; el repositorio pasa a serlo. Cada cambio tiene autor, diff, historial y rollback.',
         },
         {
           type: 'code',
@@ -679,7 +679,7 @@ components:
         {
           type: 'paragraph',
           value:
-            'La sincronizacion lee el archivo y crea o actualiza la plantilla en el WABA via Graph API. El mismo script corre en CI: al mergear el PR, la plantilla se envia a Meta y el pipeline registra el estado devuelto.',
+            'La sincronización lee el archivo y crea o actualiza la plantilla en el WABA via Graph API. El mismo script corre en CI: al mergear el PR, la plantilla se envía a Meta y el pipeline registra el estado devuelto.',
         },
         {
           type: 'code',
@@ -732,56 +732,56 @@ syncTemplate(process.argv[2]).catch((err) => {
         {
           type: 'paragraph',
           value:
-            'Con esta base, todo el proceso de aprobacion ocurre en la revision del PR y Meta solo recibe lo que ya paso por las puertas. El namespace queda auditable: para saber por que existe una plantilla, quien la creo y que cambio entre versiones, basta mirar el historial del repositorio.',
+            'Con esta base, todo el proceso de aprobación ocurre en la revisión del PR y Meta solo recibe lo que ya pasó por las puertas. El namespace queda auditable: para saber por qué existe una plantilla, quién la creó y qué cambió entre versiones, basta mirar el historial del repositorio.',
         },
       ],
     },
     {
-      title: 'Metricas por plantilla',
+      title: 'Métricas por plantilla',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La gobernanza no termina en la aprobacion. Cada plantilla activa necesita medirse para saber si aun merece existir. Las metricas que importan vienen de la propia Meta (estado de entrega y lectura) y de tu producto (respuesta y bloqueo), y deben seguirse por plantilla, no en agregado.',
+            'La gobernanza no termina en la aprobación. Cada plantilla activa necesita medirse para saber si aún merece existir. Las métricas que importan vienen de la propia Meta (estado de entrega y lectura) y de tu producto (respuesta y bloqueo), y deben seguirse por plantilla, no en agregado.',
         },
         {
           type: 'list',
           items: [
-            'Tasa de entrega: proporcion de mensajes entregados sobre enviados. Una caida persistente sugiere numeros invalidos en la base, bloqueos o un problema de calidad de la plantilla.',
-            'Tasa de lectura: proporcion de entregados que fueron leidos. Lectura baja en utility puede indicar copy irrelevante o envio en el momento equivocado.',
-            'Tasa de respuesta: proporcion que genero respuesta del cliente. En plantillas que esperan accion (confirmar, agendar), es la senal mas directa de eficacia.',
-            'Tasa de bloqueo y denuncia: proporcion de destinatarios que bloquearon o marcaron como spam. En plantillas de marketing es el indicador critico: un bloqueo alto derrumba la calidad del numero y amenaza a todos los equipos del WABA.',
+            'Tasa de entrega: proporción de mensajes entregados sobre enviados. Una caída persistente sugiere números inválidos en la base, bloqueos o un problema de calidad de la plantilla.',
+            'Tasa de lectura: proporción de entregados que fueron leídos. Lectura baja en utility puede indicar copy irrelevante o envío en el momento equivocado.',
+            'Tasa de respuesta: proporción que generó respuesta del cliente. En plantillas que esperan acción (confirmar, agendar), es la señal más directa de eficacia.',
+            'Tasa de bloqueo y denuncia: proporción de destinatarios que bloquearon o marcaron como spam. En plantillas de marketing es el indicador crítico: un bloqueo alto derrumba la calidad del número y amenaza a todos los equipos del WABA.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La lectura cruzada es lo que orienta la decision de mantener, revisar o retirar. Una plantilla de marketing con lectura ok pero bloqueo en subida debe pausarse antes de que perjudique todo el WABA. Una utility con entrega cayendo apunta a higiene de base. Medir por plantilla cierra el ciclo de gobernanza: lo que entra por la puerta de aprobacion tambien sale por un criterio de datos cuando deja de servir.',
+            'La lectura cruzada es lo que orienta la decisión de mantener, revisar o retirar. Una plantilla de marketing con lectura ok pero bloqueo en subida debe pausarse antes de que perjudique todo el WABA. Una utility con entrega cayendo apunta a higiene de base. Medir por plantilla cierra el ciclo de gobernanza: lo que entra por la puerta de aprobación también sale por un criterio de datos cuando deja de servir.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Puedo editar una plantilla ya aprobada por Meta?',
+      question: '¿Puedo editar una plantilla ya aprobada por Meta?',
       answer:
-        'Evitalo. Editar el contenido de una plantilla aprobada suele forzar un nuevo analisis de Meta y rompe el historial de version. La practica de gobernanza es crear una nueva version (por ejemplo, de _v2 a _v3), enviar, validar y solo entonces mover el trafico. La version antigua pasa a deprecated y queda como registro de lo que estaba en el aire.',
+        'Evítalo. Editar el contenido de una plantilla aprobada suele forzar un nuevo análisis de Meta y rompe el historial de versión. La práctica de gobernanza es crear una nueva versión (por ejemplo, de _v2 a _v3), enviar, validar y solo entonces mover el tráfico. La versión antigua pasa a deprecated y queda como registro de lo que estaba en el aire.',
     },
     {
-      question: 'Por que no dejar que cada equipo cree plantillas directo en el panel?',
+      question: '¿Por qué no dejar que cada equipo cree plantillas directo en el panel?',
       answer:
-        'Porque el WABA y el namespace de plantillas son compartidos. La creacion libre en el panel genera nombres conflictivos, definiciones duplicadas, categoria equivocada y rechazos de Meta, sin dueno ni historial. Centralizar las definiciones en un repositorio versionado y enviar via API da a cada plantilla un dueno explicito, revision y auditoria.',
+        'Porque el WABA y el namespace de plantillas son compartidos. La creación libre en el panel genera nombres conflictivos, definiciones duplicadas, categoría equivocada y rechazos de Meta, sin dueño ni historial. Centralizar las definiciones en un repositorio versionado y enviar via API da a cada plantilla un dueño explícito, revisión y auditoría.',
     },
     {
-      question: 'Como la categoria equivocada de la plantilla aumenta mi costo?',
+      question: '¿Cómo la categoría equivocada de la plantilla aumenta mi costo?',
       answer:
-        'Las categorias tienen reglas de cobro distintas y utility suele ser mas barata que marketing. Etiquetar una promocion como utility para pagar menos no funciona: Meta la reclasifica y, en reincidencia, puede perjudicar la calidad del numero. Por eso el chequeo de categoria es una puerta obligatoria antes del envio.',
+        'Las categorías tienen reglas de cobro distintas y utility suele ser más barata que marketing. Etiquetar una promoción como utility para pagar menos no funciona: Meta la reclasifica y, en reincidencia, puede perjudicar la calidad del número. Por eso el chequeo de categoría es una puerta obligatoria antes del envío.',
     },
   ],
   conclusion: {
     title: 'Las plantillas gobernadas son predecibles, baratas y auditables',
     description:
-      'Nomenclatura con dueno, ciclo de vida con version, proceso de aprobacion con chequeo de categoria, template as code y metricas por plantilla transforman un namespace caotico en un canal bajo control. Si varios equipos disputan el mismo WABA en tu operacion, puedo ayudar a estructurar esa gobernanza de punta a punta.',
+      'Nomenclatura con dueño, ciclo de vida con versión, proceso de aprobación con chequeo de categoría, template as code y métricas por plantilla transforman un namespace caótico en un canal bajo control. Si varios equipos disputan el mismo WABA en tu operación, puedo ayudar a estructurar esa gobernanza de punta a punta.',
     cta: 'Hablar sobre gobernanza de plantillas',
   },
   related: [
@@ -792,7 +792,7 @@ syncTemplate(process.argv[2]).catch((err) => {
   repo: {
     name: 'whatsapp-templates-as-code',
     description:
-      'Ejemplo de gobernanza de plantillas de WhatsApp como codigo: definiciones versionadas en YAML, revision por PR y sincronizacion a Meta via Graph API.',
+      'Ejemplo de gobernanza de plantillas de WhatsApp como código: definiciones versionadas en YAML, revisión por PR y sincronización a Meta via Graph API.',
     url: 'https://github.com/joaosouz4dev/whatsapp-templates-as-code',
   },
 };

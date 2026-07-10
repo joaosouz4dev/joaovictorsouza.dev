@@ -4,78 +4,78 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'Orquestrador minimo de agentes de IA em producao: um supervisor que roteia a tarefa para agentes especializados, executa tools com timeout e retry, mantem estado duravel para retomar de onde parou e emite tracing por passo para custo e latencia.',
+  pt: 'Orquestrador mínimo de agentes de IA em produção: um supervisor que roteia a tarefa para agentes especializados, executa tools com timeout e retry, mantém estado durável para retomar de onde parou e emite tracing por passo para custo e latência.',
   en: 'Minimal AI agent orchestrator for production: a supervisor that routes the task to specialized agents, runs tools with timeout and retry, keeps durable state to resume where it stopped and emits per-step tracing for cost and latency.',
-  es: 'Orquestador minimo de agentes de IA en produccion: un supervisor que rutea la tarea a agentes especializados, ejecuta tools con timeout y retry, mantiene estado durable para retomar donde se detuvo y emite tracing por paso para costo y latencia.',
+  es: 'Orquestador mínimo de agentes de IA en producción: un supervisor que rutea la tarea a agentes especializados, ejecuta tools con timeout y retry, mantiene estado durable para retomar donde se detuvo y emite tracing por paso para costo y latencia.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/agent-orchestrator-mini';
 
 const pt = {
   intro:
-    'Um agente de IA sozinho e um prototipo. Ele funciona na demo, resolve o caso feliz e trava na primeira tool que da timeout, no primeiro loop infinito de raciocinio ou no primeiro deploy que perde o estado no meio de uma tarefa longa. Producao exige outra coisa: um orquestrador que coordena varios agentes especializados, decide quem faz o que, executa ferramentas com falha controlada, guarda estado para retomar e mede cada passo. Este artigo mostra como sair do agente unico monolitico para uma orquestracao confiavel: os padroes de coordenacao (supervisor, sequencial, paralelo), como modelar estado duravel, como blindar a chamada de tool, como cortar loop e custo com limites, e o que observar para nao operar no escuro. O foco e engenharia de producao, nao a demo de sexta a tarde.',
+    'Um agente de IA sozinho é um protótipo. Ele funciona na demo, resolve o caso feliz e trava na primeira tool que dá timeout, no primeiro loop infinito de raciocínio ou no primeiro deploy que perde o estado no meio de uma tarefa longa. Produção exige outra coisa: um orquestrador que coordena vários agentes especializados, decide quem faz o que, executa ferramentas com falha controlada, guarda estado para retomar e mede cada passo. Este artigo mostra como sair do agente único monolítico para uma orquestração confiável: os padrões de coordenação (supervisor, sequencial, paralelo), como modelar estado durável, como blindar a chamada de tool, como cortar loop e custo com limites, e o que observar para não operar no escuro. O foco é engenharia de produção, não a demo de sexta à tarde.',
   sections: [
     {
-      title: 'Por que um agente unico nao aguenta producao',
+      title: 'Por que um agente único não aguenta produção',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O agente unico com um prompt gigante e todas as tools no mesmo contexto e a arquitetura que mais rapido chega na demo e mais rapido quebra em producao. O contexto incha, o modelo confunde qual tool usar, o custo por chamada explode porque tudo entra no prompt, e uma tarefa que precisa de dez passos vira uma sequencia de decisoes onde qualquer erro no meio contamina o resto. Nao existe onde intervir: e uma caixa preta que ou acerta tudo ou erra tudo.',
+            'O agente único com um prompt gigante e todas as tools no mesmo contexto é a arquitetura que mais rápido chega na demo e mais rápido quebra em produção. O contexto incha, o modelo confunde qual tool usar, o custo por chamada explode porque tudo entra no prompt, e uma tarefa que precisa de dez passos vira uma sequência de decisões onde qualquer erro no meio contamina o resto. Não existe onde intervir: é uma caixa preta que ou acerta tudo ou erra tudo.',
         },
         {
           type: 'paragraph',
           value:
-            'Orquestrar e quebrar essa caixa preta em partes com responsabilidade unica. Um agente que so classifica intencao. Um que so consulta a base. Um que so redige a resposta. Um supervisor que decide a ordem. Cada parte tem contexto menor, prompt focado, tools limitadas e ponto de observacao proprio. Quando algo falha, voce sabe qual agente falhou e por que, em vez de reprocessar a conversa inteira tentando adivinhar. E a mesma logica de quebrar um monolito em servicos, aplicada ao raciocinio.',
+            'Orquestrar é quebrar essa caixa preta em partes com responsabilidade única. Um agente que só classifica intenção. Um que só consulta a base. Um que só redige a resposta. Um supervisor que decide a ordem. Cada parte tem contexto menor, prompt focado, tools limitadas e ponto de observação próprio. Quando algo falha, você sabe qual agente falhou e por que, em vez de reprocessar a conversa inteira tentando adivinhar. É a mesma lógica de quebrar um monolito em serviços, aplicada ao raciocínio.',
         },
       ],
     },
     {
-      title: 'Os tres padroes de coordenacao',
+      title: 'Os três padrões de coordenação',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Nao existe um jeito unico de orquestrar. Ha tres padroes base, e a maioria dos sistemas reais combina os tres. Escolher o padrao certo por etapa e o que separa uma orquestracao enxuta de uma que gasta o dobro de tokens sem ganho.',
+            'Não existe um jeito único de orquestrar. Há três padrões base, e a maioria dos sistemas reais combina os três. Escolher o padrão certo por etapa é o que separa uma orquestração enxuta de uma que gasta o dobro de tokens sem ganho.',
         },
         {
           type: 'table',
-          columns: ['Padrao', 'Como funciona', 'Quando usar', 'Custo e risco'],
+          columns: ['Padrão', 'Como funciona', 'Quando usar', 'Custo e risco'],
           rows: [
             [
               'Sequencial (pipeline)',
-              'Saida de um agente vira entrada do proximo, em ordem fixa',
-              'Etapas com dependencia clara: classificar -> buscar -> redigir',
-              'Baixo custo, latencia soma; um passo lento trava a cadeia',
+              'Saída de um agente vira entrada do próximo, em ordem fixa',
+              'Etapas com dependência clara: classificar -> buscar -> redigir',
+              'Baixo custo, latência soma; um passo lento trava a cadeia',
             ],
             [
               'Supervisor (roteador)',
               'Um agente central decide para qual especialista mandar cada tarefa',
-              'Muitas intencoes distintas, cada uma com um agente proprio',
+              'Muitas intenções distintas, cada uma com um agente próprio',
               'Custo do passo de roteamento; erro do supervisor propaga',
             ],
             [
               'Paralelo (fan-out)',
-              'Varios agentes rodam ao mesmo tempo e um passo agrega',
+              'Vários agentes rodam ao mesmo tempo e um passo agrega',
               'Sub-tarefas independentes: consultar 3 fontes de uma vez',
-              'Latencia = a mais lenta, mas custo soma todas em paralelo',
+              'Latência = a mais lenta, mas custo soma todas em paralelo',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Na pratica voce aninha os padroes. O supervisor roteia para um pipeline; dentro do pipeline, um passo faz fan-out para tres consultas paralelas e agrega. A regra e usar paralelo so quando as sub-tarefas sao de fato independentes (senao voce paga o custo sem ganhar latencia) e usar supervisor so quando ha divergencia real de intencao (senao um pipeline fixo e mais barato e mais previsivel).',
+            'Na prática você aninha os padrões. O supervisor roteia para um pipeline; dentro do pipeline, um passo faz fan-out para três consultas paralelas e agrega. A regra é usar paralelo só quando as sub-tarefas são de fato independentes (senão você paga o custo sem ganhar latência) e usar supervisor só quando há divergência real de intenção (senão um pipeline fixo é mais barato e mais previsível).',
         },
       ],
     },
     {
-      title: 'Estado duravel: retomar de onde parou',
+      title: 'Estado durável: retomar de onde parou',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O erro mais caro em agentes de producao e tratar o estado como algo que vive na memoria do processo. Uma tarefa de agente pode levar segundos ou minutos, chamar varias tools e sobreviver a um deploy no meio. Se o estado esta so na RAM, qualquer restart perde o progresso, e voce ou reprocessa tudo (caro, e as tools com efeito colateral rodam duas vezes) ou perde a tarefa. Estado duravel significa persistir cada passo concluido, de forma que o orquestrador consiga retomar exatamente de onde parou.',
+            'O erro mais caro em agentes de produção é tratar o estado como algo que vive na memória do processo. Uma tarefa de agente pode levar segundos ou minutos, chamar várias tools e sobreviver a um deploy no meio. Se o estado está só na RAM, qualquer restart perde o progresso, e você ou reprocessa tudo (caro, e as tools com efeito colateral rodam duas vezes) ou perde a tarefa. Estado durável significa persistir cada passo concluído, de forma que o orquestrador consiga retomar exatamente de onde parou.',
         },
         {
           type: 'code',
@@ -118,7 +118,7 @@ export async function resume(store, runId, agents) {
         {
           type: 'paragraph',
           value:
-            'A consequencia pratica: tools com efeito colateral (enviar mensagem, cobrar, criar pedido) precisam ser idempotentes ou registradas como concluidas no estado, para que a retomada nao dispare a mesma acao de novo. Persistir o passo antes de avancar, e nao depois, e o detalhe que garante que a retomada nunca pule nem repita um passo critico.',
+            'A consequência prática: tools com efeito colateral (enviar mensagem, cobrar, criar pedido) precisam ser idempotentes ou registradas como concluídas no estado, para que a retomada não dispare a mesma ação de novo. Persistir o passo antes de avançar, e não depois, é o detalhe que garante que a retomada nunca pule nem repita um passo crítico.',
         },
       ],
     },
@@ -128,7 +128,7 @@ export async function resume(store, runId, agents) {
         {
           type: 'paragraph',
           value:
-            'A tool e onde o agente toca o mundo real, e por isso e onde mais falha. API externa cai, responde lento, devolve payload fora do contrato ou retorna erro transitorio. Um agente de producao nunca chama uma tool crua: ele envolve toda chamada em timeout, retry com backoff, validacao de saida e um caminho de degradacao para quando a tool falha de vez. Sem isso, uma unica API instavel derruba a execucao inteira.',
+            'A tool é onde o agente toca o mundo real, e por isso é onde mais falha. API externa cai, responde lento, devolve payload fora do contrato ou retorna erro transitório. Um agente de produção nunca chama uma tool crua: ele envolve toda chamada em timeout, retry com backoff, validação de saída e um caminho de degradação para quando a tool falha de vez. Sem isso, uma única API instável derruba a execução inteira.',
         },
         {
           type: 'code',
@@ -171,46 +171,46 @@ function withTimeout(promise, ms) {
         {
           type: 'paragraph',
           value:
-            'O ponto sutil: retry so faz sentido em erro transitorio (timeout, 503, conexao caiu). Erro de contrato ou 4xx nao melhora repetindo, so queima tempo e tokens. E quando a tool falha de vez, o orquestrador precisa de um plano B explicito: responder com o que tem, escalar para humano, ou marcar a tarefa como parcial. O agente nunca deve inventar o resultado de uma tool que falhou, porque ai a falha vira alucinacao silenciosa, que e pior que o erro visivel.',
+            'O ponto sutil: retry só faz sentido em erro transitório (timeout, 503, conexão caiu). Erro de contrato ou 4xx não melhora repetindo, só queima tempo e tokens. E quando a tool falha de vez, o orquestrador precisa de um plano B explícito: responder com o que tem, escalar para humano, ou marcar a tarefa como parcial. O agente nunca deve inventar o resultado de uma tool que falhou, porque aí a falha vira alucinação silenciosa, que é pior que o erro visível.',
         },
       ],
     },
     {
-      title: 'Cortando loop, custo e divagacao',
+      title: 'Cortando loop, custo e divagação',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Agente sem limite e um gerador de custo. Ele pode entrar em loop chamando a mesma tool, raciocinar em circulos, ou expandir o contexto ate estourar o limite do modelo. Producao exige guardrails duros que cortam a execucao antes de virar prejuizo. Esses limites nao sao opcionais nem "para depois": sao o que impede uma unica tarefa de consumir o orcamento de mil.',
+            'Agente sem limite é um gerador de custo. Ele pode entrar em loop chamando a mesma tool, raciocinar em círculos, ou expandir o contexto até estourar o limite do modelo. Produção exige guardrails duros que cortam a execução antes de virar prejuízo. Esses limites não são opcionais nem "para depois": são o que impede uma única tarefa de consumir o orçamento de mil.',
         },
         {
           type: 'list',
           items: [
-            'Limite de passos: um teto de iteracoes por execucao (por exemplo, 12). Ao atingir, o orquestrador para e devolve o melhor resultado parcial em vez de rodar para sempre.',
-            'Orcamento de tokens por tarefa: some os tokens de todos os passos e aborte se passar do limite. Uma tarefa que ja gastou o esperado provavelmente esta em loop.',
-            'Deteccao de repeticao: se o agente chama a mesma tool com os mesmos argumentos duas vezes seguidas, e sinal de loop; interrompa e mude de estrategia.',
-            'Timeout de ponta a ponta: alem do timeout por tool, um teto de tempo total da tarefa, para nada ficar pendurado indefinidamente segurando recurso.',
-            'Confianca minima para agir: em acao com efeito colateral, exija que o agente esteja acima de um limiar de certeza; abaixo dele, escale para humano em vez de arriscar.',
+            'Limite de passos: um teto de iterações por execução (por exemplo, 12). Ao atingir, o orquestrador para e devolve o melhor resultado parcial em vez de rodar para sempre.',
+            'Orçamento de tokens por tarefa: some os tokens de todos os passos e aborte se passar do limite. Uma tarefa que já gastou o esperado provavelmente está em loop.',
+            'Detecção de repetição: se o agente chama a mesma tool com os mesmos argumentos duas vezes seguidas, é sinal de loop; interrompa e mude de estratégia.',
+            'Timeout de ponta a ponta: além do timeout por tool, um teto de tempo total da tarefa, para nada ficar pendurado indefinidamente segurando recurso.',
+            'Confiança mínima para agir: em ação com efeito colateral, exija que o agente esteja acima de um limiar de certeza; abaixo dele, escale para humano em vez de arriscar.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A filosofia e simples: prefira falhar de forma visivel e barata a ter sucesso caro e imprevisivel. Um limite atingido e um evento observavel que voce investiga e ajusta; um loop sem limite e uma fatura no fim do mes que ninguem entende. Cada guardrail que dispara deve virar log e metrica, para voce saber quais tarefas batem no teto e por que.',
+            'A filosofia é simples: prefira falhar de forma visível e barata a ter sucesso caro e imprevisível. Um limite atingido é um evento observável que você investiga e ajusta; um loop sem limite é uma fatura no fim do mês que ninguém entende. Cada guardrail que dispara deve virar log e métrica, para você saber quais tarefas batem no teto e por que.',
         },
       ],
     },
     {
-      title: 'Observabilidade: nao operar no escuro',
+      title: 'Observabilidade: não operar no escuro',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Orquestracao sem tracing e impossivel de depurar. Quando uma tarefa da errado, voce precisa ver a arvore inteira: qual agente rodou, qual tool chamou, o que cada passo custou em tokens e latencia, onde parou. Sem isso, todo bug vira arqueologia. O modelo mental certo e o de tracing distribuido: cada execucao e um trace, cada passo de agente ou tool e um span aninhado, com atributos de custo e resultado.',
+            'Orquestração sem tracing é impossível de depurar. Quando uma tarefa dá errado, você precisa ver a árvore inteira: qual agente rodou, qual tool chamou, o que cada passo custou em tokens e latência, onde parou. Sem isso, todo bug vira arqueologia. O modelo mental certo é o de tracing distribuído: cada execução é um trace, cada passo de agente ou tool é um span aninhado, com atributos de custo e resultado.',
         },
         {
           type: 'diagram',
-          value: `Trace de uma execucao orquestrada
+          value: `Trace de uma execução orquestrada
 
   Run abc123  (tarefa: "trocar meu pedido")
     |
@@ -230,42 +230,42 @@ function withTimeout(promise, ms) {
         {
           type: 'ordered',
           items: [
-            'Gere um runId por execucao e propague em todos os passos, para amarrar o trace inteiro a uma tarefa.',
-            'Emita um span por agente e por tool, com tokens de entrada e saida, latencia, numero de retries e status.',
-            'Registre a decisao do supervisor: para qual agente roteou e por que, senao o roteamento vira caixa preta.',
-            'Agregue custo e latencia por execucao e por tipo de tarefa, para achar qual jornada esta cara ou lenta.',
+            'Gere um runId por execução e propague em todos os passos, para amarrar o trace inteiro a uma tarefa.',
+            'Emita um span por agente e por tool, com tokens de entrada e saída, latência, número de retries e status.',
+            'Registre a decisão do supervisor: para qual agente roteou e por que, senão o roteamento vira caixa preta.',
+            'Agregue custo e latência por execução e por tipo de tarefa, para achar qual jornada está cara ou lenta.',
             'Alerte em sinais que importam: taxa de tarefas que batem o limite de passos, retries de tool acima do normal, custo por tarefa subindo.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Com o trace, um problema que seria horas de adivinhacao vira minutos: voce abre a tarefa que falhou, ve que a tool checkStock deu retry e estourou o timeout, e sabe exatamente onde agir. Sem o trace, voce so tem "o bot respondeu errado" e nenhum caminho ate a causa. Observabilidade nao e enfeite; e o que torna a orquestracao operavel.',
+            'Com o trace, um problema que seria horas de adivinhação vira minutos: você abre a tarefa que falhou, vê que a tool checkStock deu retry e estourou o timeout, e sabe exatamente onde agir. Sem o trace, você só tem "o bot respondeu errado" e nenhum caminho até a causa. Observabilidade não é enfeite; é o que torna a orquestração operável.',
         },
       ],
     },
     {
-      title: 'Do prototipo a producao sem reescrever tudo',
+      title: 'Do protótipo à produção sem reescrever tudo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A boa noticia e que voce nao precisa de um framework pesado para chegar la. Um orquestrador de producao cabe em poucas pecas bem definidas, e a maioria dos frameworks so embrulha esses mesmos conceitos. O caminho pratico e evoluir o prototipo por camadas, adicionando confiabilidade sem jogar fora o que ja funciona.',
+            'A boa notícia é que você não precisa de um framework pesado para chegar lá. Um orquestrador de produção cabe em poucas peças bem definidas, e a maioria dos frameworks só embrulha esses mesmos conceitos. O caminho prático é evoluir o protótipo por camadas, adicionando confiabilidade sem jogar fora o que já funciona.',
         },
         {
           type: 'list',
           items: [
-            'Comece separando o agente unico em papeis: extraia o roteamento e um ou dois especialistas antes de otimizar qualquer coisa.',
-            'Adicione estado duravel cedo: e o que mais dificulta refatorar depois, porque muda a forma como cada passo e chamado.',
-            'Envolva toda tool no runner com timeout e retry desde o primeiro dia; e barato de adicionar e caro de esquecer.',
-            'Ponha os guardrails de passo, custo e timeout antes de abrir para trafego real, nunca depois do primeiro susto de fatura.',
-            'Instrumente o tracing junto com a primeira versao orquestrada; retro-encaixar observabilidade e sempre mais trabalhoso que nascer com ela.',
+            'Comece separando o agente único em papéis: extraia o roteamento e um ou dois especialistas antes de otimizar qualquer coisa.',
+            'Adicione estado durável cedo: é o que mais dificulta refatorar depois, porque muda a forma como cada passo é chamado.',
+            'Envolva toda tool no runner com timeout e retry desde o primeiro dia; é barato de adicionar e caro de esquecer.',
+            'Ponha os guardrails de passo, custo e timeout antes de abrir para tráfego real, nunca depois do primeiro susto de fatura.',
+            'Instrumente o tracing junto com a primeira versão orquestrada; retro-encaixar observabilidade é sempre mais trabalhoso que nascer com ela.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A diferenca entre o agente de demo e o de producao nao esta na inteligencia do modelo, esta na engenharia ao redor dele: coordenacao clara, estado que sobrevive a falha, tools blindadas, limites que cortam o desperdicio e tracing que te deixa enxergar. Quem trata isso como detalhe descobre o custo em producao, no pior momento possivel.',
+            'A diferença entre o agente de demo e o de produção não está na inteligência do modelo, está na engenharia ao redor dele: coordenação clara, estado que sobrevive à falha, tools blindadas, limites que cortam o desperdício e tracing que te deixa enxergar. Quem trata isso como detalhe descobre o custo em produção, no pior momento possível.',
         },
       ],
     },
@@ -274,28 +274,28 @@ function withTimeout(promise, ms) {
     {
       question: 'Preciso de um framework de agentes para orquestrar?',
       answer:
-        'Nao para comecar. Os conceitos que importam (supervisor, estado duravel, runner de tool com retry, guardrails e tracing) cabem em poucas centenas de linhas e sao os mesmos que os frameworks embrulham. Um framework ajuda quando o time cresce e voce quer padronizar, mas adotar um cedo demais esconde o funcionamento e dificulta depurar. Entenda as pecas primeiro; escolha o framework depois, sabendo o que ele resolve.',
+        'Não para começar. Os conceitos que importam (supervisor, estado durável, runner de tool com retry, guardrails e tracing) cabem em poucas centenas de linhas e são os mesmos que os frameworks embrulham. Um framework ajuda quando o time cresce e você quer padronizar, mas adotar um cedo demais esconde o funcionamento e dificulta depurar. Entenda as peças primeiro; escolha o framework depois, sabendo o que ele resolve.',
     },
     {
-      question: 'Quando uso varios agentes em vez de um so?',
+      question: 'Quando uso vários agentes em vez de um só?',
       answer:
-        'Quando o contexto ou as tools de um unico agente comecam a competir. Se um prompt precisa cobrir intencoes muito distintas, ou se a lista de tools ficou grande a ponto de o modelo confundir qual usar, separar em agentes com contexto menor e escopo focado melhora precisao e reduz custo. Nao separe por separar: um pipeline fixo de dois passos costuma ser mais barato e previsivel que um enxame de agentes quando a tarefa e linear.',
+        'Quando o contexto ou as tools de um único agente começam a competir. Se um prompt precisa cobrir intenções muito distintas, ou se a lista de tools ficou grande a ponto de o modelo confundir qual usar, separar em agentes com contexto menor e escopo focado melhora precisão e reduz custo. Não separe por separar: um pipeline fixo de dois passos costuma ser mais barato e previsível que um enxame de agentes quando a tarefa é linear.',
     },
     {
-      question: 'Como controlo o custo de uma orquestracao com varios agentes?',
+      question: 'Como controlo o custo de uma orquestração com vários agentes?',
       answer:
-        'Com limites duros e tracing por passo. Ponha teto de iteracoes, orcamento de tokens por tarefa, deteccao de repeticao e timeout de ponta a ponta, para nenhuma tarefa rodar sem freio. Em paralelo, emita um span por agente e por tool com tokens e latencia, agregue custo por tipo de tarefa e alerte quando ele sobe. O custo foge quando ninguem olha; com limite e trace ele vira um numero que voce gerencia.',
+        'Com limites duros e tracing por passo. Ponha teto de iterações, orçamento de tokens por tarefa, detecção de repetição e timeout de ponta a ponta, para nenhuma tarefa rodar sem freio. Em paralelo, emita um span por agente e por tool com tokens e latência, agregue custo por tipo de tarefa e alerte quando ele sobe. O custo foge quando ninguém olha; com limite e trace ele vira um número que você gerencia.',
     },
   ],
   conclusion: {
-    title: 'Orquestracao e a engenharia que transforma agente de demo em agente de producao',
+    title: 'Orquestração é a engenharia que transforma agente de demo em agente de produção',
     description:
-      'Coordenacao clara, estado duravel, tools blindadas, guardrails de custo e tracing por passo sao o que faz um agente de IA aguentar producao. Posso desenhar e montar essa orquestracao no seu produto, do roteamento ao tracing, integrada ao seu stack e pronta para escalar.',
+      'Coordenação clara, estado durável, tools blindadas, guardrails de custo e tracing por passo são o que faz um agente de IA aguentar produção. Posso desenhar e montar essa orquestração no seu produto, do roteamento ao tracing, integrada ao seu stack e pronta para escalar.',
     cta: 'Falar sobre orquestrar meus agentes',
   },
   related: [
-    { label: 'Avaliacao continua de bots: do eval manual ao automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
-    { label: 'RAG para atendimento no WhatsApp em producao', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Avaliação contínua de bots: do eval manual ao automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'RAG para atendimento no WhatsApp em produção', to: '/blog/rag-atendimento-whatsapp-producao' },
     { label: 'Chatbots e IA para atendimento', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'agent-orchestrator-mini', description: repo.pt, url: repoUrl },
@@ -593,34 +593,34 @@ function withTimeout(promise, ms) {
 
 const es = {
   intro:
-    'Un agente de IA solo es un prototipo. Funciona en la demo, resuelve el camino feliz y se congela en la primera tool que da timeout, en el primer loop infinito de razonamiento o en el primer deploy que pierde el estado a mitad de una tarea larga. Produccion exige otra cosa: un orquestador que coordina varios agentes especializados, decide quien hace que, ejecuta herramientas con falla controlada, persiste estado para retomar y mide cada paso. Este articulo muestra como pasar del agente unico monolitico a una orquestacion confiable: los patrones de coordinacion (supervisor, secuencial, paralelo), como modelar estado durable, como blindar la llamada de tool, como cortar loops y costo con limites, y que observar para no operar a ciegas. El foco es ingenieria de produccion, no la demo del viernes por la tarde.',
+    'Un agente de IA solo es un prototipo. Funciona en la demo, resuelve el camino feliz y se congela en la primera tool que da timeout, en el primer loop infinito de razonamiento o en el primer deploy que pierde el estado a mitad de una tarea larga. Producción exige otra cosa: un orquestador que coordina varios agentes especializados, decide quién hace qué, ejecuta herramientas con falla controlada, persiste estado para retomar y mide cada paso. Este artículo muestra cómo pasar del agente único monolítico a una orquestación confiable: los patrones de coordinación (supervisor, secuencial, paralelo), cómo modelar estado durable, cómo blindar la llamada de tool, cómo cortar loops y costo con límites, y qué observar para no operar a ciegas. El foco es ingeniería de producción, no la demo del viernes por la tarde.',
   sections: [
     {
-      title: 'Por que un agente unico no aguanta produccion',
+      title: '¿Por qué un agente único no aguanta producción?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El agente unico con un prompt gigante y todas las tools en el mismo contexto es la arquitectura que mas rapido llega a la demo y mas rapido se rompe en produccion. El contexto se infla, el modelo se confunde sobre que tool usar, el costo por llamada explota porque todo entra en el prompt, y una tarea que necesita diez pasos se vuelve una cadena de decisiones donde cualquier error a mitad contamina el resto. No hay donde intervenir: es una caja negra que o acierta todo o falla todo.',
+            'El agente único con un prompt gigante y todas las tools en el mismo contexto es la arquitectura que más rápido llega a la demo y más rápido se rompe en producción. El contexto se infla, el modelo se confunde sobre qué tool usar, el costo por llamada explota porque todo entra en el prompt, y una tarea que necesita diez pasos se vuelve una cadena de decisiones donde cualquier error a mitad contamina el resto. No hay dónde intervenir: es una caja negra que o acierta todo o falla todo.',
         },
         {
           type: 'paragraph',
           value:
-            'Orquestar es romper esa caja negra en partes con responsabilidad unica. Un agente que solo clasifica intencion. Uno que solo consulta la base. Uno que solo redacta la respuesta. Un supervisor que decide el orden. Cada parte tiene contexto menor, prompt enfocado, tools limitadas y su propio punto de observacion. Cuando algo falla, sabes cual agente fallo y por que, en vez de reprocesar la conversacion entera tratando de adivinar. Es la misma logica de romper un monolito en servicios, aplicada al razonamiento.',
+            'Orquestar es romper esa caja negra en partes con responsabilidad única. Un agente que solo clasifica intención. Uno que solo consulta la base. Uno que solo redacta la respuesta. Un supervisor que decide el orden. Cada parte tiene contexto menor, prompt enfocado, tools limitadas y su propio punto de observación. Cuando algo falla, sabes cuál agente falló y por qué, en vez de reprocesar la conversación entera tratando de adivinar. Es la misma lógica de romper un monolito en servicios, aplicada al razonamiento.',
         },
       ],
     },
     {
-      title: 'Los tres patrones de coordinacion',
+      title: 'Los tres patrones de coordinación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'No hay una unica forma de orquestar. Hay tres patrones base, y la mayoria de los sistemas reales combina los tres. Elegir el patron correcto por etapa es lo que separa una orquestacion enjuta de una que quema el doble de tokens sin ganancia.',
+            'No hay una única forma de orquestar. Hay tres patrones base, y la mayoría de los sistemas reales combina los tres. Elegir el patrón correcto por etapa es lo que separa una orquestación enjuta de una que quema el doble de tokens sin ganancia.',
         },
         {
           type: 'table',
-          columns: ['Patron', 'Como funciona', 'Cuando usar', 'Costo y riesgo'],
+          columns: ['Patrón', 'Cómo funciona', 'Cuándo usar', 'Costo y riesgo'],
           rows: [
             [
               'Secuencial (pipeline)',
@@ -630,7 +630,7 @@ const es = {
             ],
             [
               'Supervisor (router)',
-              'Un agente central decide a que especialista mandar cada tarea',
+              'Un agente central decide a qué especialista mandar cada tarea',
               'Muchas intenciones distintas, cada una con su agente',
               'Costo del paso de ruteo; un error del supervisor se propaga',
             ],
@@ -638,14 +638,14 @@ const es = {
               'Paralelo (fan-out)',
               'Varios agentes corren a la vez y un paso agrega',
               'Sub-tareas independientes: consultar 3 fuentes de una vez',
-              'Latencia = la mas lenta, pero el costo suma todas en paralelo',
+              'Latencia = la más lenta, pero el costo suma todas en paralelo',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'En la practica anidas los patrones. El supervisor rutea a un pipeline; dentro del pipeline, un paso hace fan-out a tres consultas paralelas y agrega. La regla es usar paralelo solo cuando las sub-tareas son de hecho independientes (si no, pagas el costo sin ganar latencia) y usar supervisor solo cuando hay divergencia real de intencion (si no, un pipeline fijo es mas barato y mas previsible).',
+            'En la práctica anidas los patrones. El supervisor rutea a un pipeline; dentro del pipeline, un paso hace fan-out a tres consultas paralelas y agrega. La regla es usar paralelo solo cuando las sub-tareas son de hecho independientes (si no, pagas el costo sin ganar latencia) y usar supervisor solo cuando hay divergencia real de intención (si no, un pipeline fijo es más barato y más previsible).',
         },
       ],
     },
@@ -655,7 +655,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El error mas caro en agentes de produccion es tratar el estado como algo que vive en la memoria del proceso. Una tarea de agente puede tardar segundos o minutos, llamar varias tools y sobrevivir a un deploy en el medio. Si el estado esta solo en RAM, cualquier restart pierde el progreso, y o reprocesas todo (caro, y las tools con efecto colateral corren dos veces) o pierdes la tarea. Estado durable significa persistir cada paso concluido, para que el orquestador pueda retomar exactamente donde se detuvo.',
+            'El error más caro en agentes de producción es tratar el estado como algo que vive en la memoria del proceso. Una tarea de agente puede tardar segundos o minutos, llamar varias tools y sobrevivir a un deploy en el medio. Si el estado está solo en RAM, cualquier restart pierde el progreso, y o reprocesas todo (caro, y las tools con efecto colateral corren dos veces) o pierdes la tarea. Estado durable significa persistir cada paso concluido, para que el orquestador pueda retomar exactamente donde se detuvo.',
         },
         {
           type: 'code',
@@ -698,7 +698,7 @@ export async function resume(store, runId, agents) {
         {
           type: 'paragraph',
           value:
-            'La consecuencia practica: las tools con efecto colateral (enviar mensaje, cobrar, crear pedido) deben ser idempotentes o registradas como concluidas en el estado, para que el retome no dispare la misma accion de nuevo. Persistir el paso antes de avanzar, y no despues, es el detalle que garantiza que el retome nunca salte ni repita un paso critico.',
+            'La consecuencia práctica: las tools con efecto colateral (enviar mensaje, cobrar, crear pedido) deben ser idempotentes o registradas como concluidas en el estado, para que el retome no dispare la misma acción de nuevo. Persistir el paso antes de avanzar, y no después, es el detalle que garantiza que el retome nunca salte ni repita un paso crítico.',
         },
       ],
     },
@@ -708,7 +708,7 @@ export async function resume(store, runId, agents) {
         {
           type: 'paragraph',
           value:
-            'La tool es donde el agente toca el mundo real, y por eso es donde mas falla. Una API externa se cae, responde lento, devuelve un payload fuera del contrato o retorna un error transitorio. Un agente de produccion nunca llama una tool cruda: envuelve toda llamada en timeout, retry con backoff, validacion de salida y un camino de degradacion para cuando la tool falla del todo. Sin eso, una sola API inestable tumba la ejecucion entera.',
+            'La tool es donde el agente toca el mundo real, y por eso es donde más falla. Una API externa se cae, responde lento, devuelve un payload fuera del contrato o retorna un error transitorio. Un agente de producción nunca llama una tool cruda: envuelve toda llamada en timeout, retry con backoff, validación de salida y un camino de degradación para cuando la tool falla del todo. Sin eso, una sola API inestable tumba la ejecución entera.',
         },
         {
           type: 'code',
@@ -751,32 +751,32 @@ function withTimeout(promise, ms) {
         {
           type: 'paragraph',
           value:
-            'El punto sutil: el retry solo tiene sentido en error transitorio (timeout, 503, conexion caida). Un error de contrato o 4xx no mejora repitiendo, solo quema tiempo y tokens. Y cuando la tool falla del todo, el orquestador necesita un plan B explicito: responder con lo que tiene, escalar a un humano, o marcar la tarea como parcial. El agente nunca debe inventar el resultado de una tool que fallo, porque ahi la falla se vuelve una alucinacion silenciosa, que es peor que el error visible.',
+            'El punto sutil: el retry solo tiene sentido en error transitorio (timeout, 503, conexión caída). Un error de contrato o 4xx no mejora repitiendo, solo quema tiempo y tokens. Y cuando la tool falla del todo, el orquestador necesita un plan B explícito: responder con lo que tiene, escalar a un humano, o marcar la tarea como parcial. El agente nunca debe inventar el resultado de una tool que falló, porque ahí la falla se vuelve una alucinación silenciosa, que es peor que el error visible.',
         },
       ],
     },
     {
-      title: 'Cortando loops, costo y divagacion',
+      title: 'Cortando loops, costo y divagación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un agente sin limite es un generador de costo. Puede entrar en loop llamando la misma tool, razonar en circulos, o expandir el contexto hasta reventar el limite del modelo. Produccion exige guardrails duros que cortan la ejecucion antes de volverse perdida. Estos limites no son opcionales ni "para despues": son lo que impide que una sola tarea consuma el presupuesto de mil.',
+            'Un agente sin límite es un generador de costo. Puede entrar en loop llamando la misma tool, razonar en círculos, o expandir el contexto hasta reventar el límite del modelo. Producción exige guardrails duros que cortan la ejecución antes de volverse pérdida. Estos límites no son opcionales ni "para después": son lo que impide que una sola tarea consuma el presupuesto de mil.',
         },
         {
           type: 'list',
           items: [
-            'Limite de pasos: un techo de iteraciones por ejecucion (por ejemplo, 12). Al alcanzarlo, el orquestador para y devuelve el mejor resultado parcial en vez de correr para siempre.',
-            'Presupuesto de tokens por tarea: suma los tokens de todos los pasos y aborta si pasa del limite. Una tarea que ya gasto lo esperado probablemente esta en loop.',
-            'Deteccion de repeticion: si el agente llama la misma tool con los mismos argumentos dos veces seguidas, es senal de loop; interrumpe y cambia de estrategia.',
-            'Timeout de punta a punta: ademas del timeout por tool, un techo de tiempo total de la tarea, para que nada quede colgado indefinidamente reteniendo un recurso.',
-            'Confianza minima para actuar: en accion con efecto colateral, exige que el agente este por encima de un umbral de certeza; por debajo, escala a un humano en vez de arriesgar.',
+            'Límite de pasos: un techo de iteraciones por ejecución (por ejemplo, 12). Al alcanzarlo, el orquestador para y devuelve el mejor resultado parcial en vez de correr para siempre.',
+            'Presupuesto de tokens por tarea: suma los tokens de todos los pasos y aborta si pasa del límite. Una tarea que ya gastó lo esperado probablemente está en loop.',
+            'Detección de repetición: si el agente llama la misma tool con los mismos argumentos dos veces seguidas, es señal de loop; interrumpe y cambia de estrategia.',
+            'Timeout de punta a punta: además del timeout por tool, un techo de tiempo total de la tarea, para que nada quede colgado indefinidamente reteniendo un recurso.',
+            'Confianza mínima para actuar: en acción con efecto colateral, exige que el agente esté por encima de un umbral de certeza; por debajo, escala a un humano en vez de arriesgar.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La filosofia es simple: prefiere fallar de forma visible y barata a tener exito caro e impredecible. Un limite alcanzado es un evento observable que investigas y ajustas; un loop sin limite es una factura a fin de mes que nadie entiende. Cada guardrail que dispara debe volverse log y metrica, para que sepas que tareas tocan el techo y por que.',
+            'La filosofía es simple: prefiere fallar de forma visible y barata a tener éxito caro e impredecible. Un límite alcanzado es un evento observable que investigas y ajustas; un loop sin límite es una factura a fin de mes que nadie entiende. Cada guardrail que dispara debe volverse log y métrica, para que sepas qué tareas tocan el techo y por qué.',
         },
       ],
     },
@@ -786,11 +786,11 @@ function withTimeout(promise, ms) {
         {
           type: 'paragraph',
           value:
-            'Orquestacion sin tracing es imposible de depurar. Cuando una tarea sale mal, necesitas ver el arbol entero: que agente corrio, que tool llamo, cuanto costo cada paso en tokens y latencia, donde se detuvo. Sin eso, todo bug se vuelve arqueologia. El modelo mental correcto es el de tracing distribuido: cada ejecucion es un trace, cada paso de agente o tool es un span anidado, con atributos de costo y resultado.',
+            'Orquestación sin tracing es imposible de depurar. Cuando una tarea sale mal, necesitas ver el árbol entero: qué agente corrió, qué tool llamó, cuánto costó cada paso en tokens y latencia, dónde se detuvo. Sin eso, todo bug se vuelve arqueología. El modelo mental correcto es el de tracing distribuido: cada ejecución es un trace, cada paso de agente o tool es un span anidado, con atributos de costo y resultado.',
         },
         {
           type: 'diagram',
-          value: `Trace de una ejecucion orquestada
+          value: `Trace de una ejecución orquestada
 
   Run abc123  (tarea: "cambiar mi pedido")
     |
@@ -810,73 +810,73 @@ function withTimeout(promise, ms) {
         {
           type: 'ordered',
           items: [
-            'Genera un runId por ejecucion y propagalo en todos los pasos, para amarrar el trace entero a una tarea.',
-            'Emite un span por agente y por tool, con tokens de entrada y salida, latencia, numero de retries y status.',
-            'Registra la decision del supervisor: a que agente ruteo y por que, si no el ruteo se vuelve caja negra.',
-            'Agrega costo y latencia por ejecucion y por tipo de tarea, para hallar que jornada esta cara o lenta.',
-            'Alerta en senales que importan: tasa de tareas que tocan el limite de pasos, retries de tool por encima de lo normal, costo por tarea subiendo.',
+            'Genera un runId por ejecución y propágalo en todos los pasos, para amarrar el trace entero a una tarea.',
+            'Emite un span por agente y por tool, con tokens de entrada y salida, latencia, número de retries y status.',
+            'Registra la decisión del supervisor: a qué agente ruteó y por qué, si no el ruteo se vuelve caja negra.',
+            'Agrega costo y latencia por ejecución y por tipo de tarea, para hallar qué jornada está cara o lenta.',
+            'Alerta en señales que importan: tasa de tareas que tocan el límite de pasos, retries de tool por encima de lo normal, costo por tarea subiendo.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Con el trace, un problema que serian horas de adivinanza se vuelve minutos: abres la tarea que fallo, ves que la tool checkStock dio retry y revento el timeout, y sabes exactamente donde actuar. Sin el trace, solo tienes "el bot respondio mal" y ningun camino hasta la causa. La observabilidad no es adorno; es lo que hace operable la orquestacion.',
+            'Con el trace, un problema que serían horas de adivinanza se vuelve minutos: abres la tarea que falló, ves que la tool checkStock dio retry y reventó el timeout, y sabes exactamente dónde actuar. Sin el trace, solo tienes "el bot respondió mal" y ningún camino hasta la causa. La observabilidad no es adorno; es lo que hace operable la orquestación.',
         },
       ],
     },
     {
-      title: 'Del prototipo a produccion sin reescribir todo',
+      title: 'Del prototipo a producción sin reescribir todo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La buena noticia es que no necesitas un framework pesado para llegar ahi. Un orquestador de produccion cabe en pocas piezas bien definidas, y la mayoria de los frameworks solo envuelven esos mismos conceptos. El camino practico es evolucionar el prototipo por capas, agregando confiabilidad sin tirar lo que ya funciona.',
+            'La buena noticia es que no necesitas un framework pesado para llegar ahí. Un orquestador de producción cabe en pocas piezas bien definidas, y la mayoría de los frameworks solo envuelven esos mismos conceptos. El camino práctico es evolucionar el prototipo por capas, agregando confiabilidad sin tirar lo que ya funciona.',
         },
         {
           type: 'list',
           items: [
-            'Empieza separando el agente unico en roles: extrae el ruteo y uno o dos especialistas antes de optimizar cualquier cosa.',
-            'Agrega estado durable temprano: es lo que mas dificulta refactorizar despues, porque cambia como se llama cada paso.',
-            'Envuelve toda tool en el runner con timeout y retry desde el primer dia; es barato de agregar y caro de olvidar.',
-            'Pon los guardrails de paso, costo y timeout antes de abrir a trafico real, nunca despues del primer susto de factura.',
-            'Instrumenta el tracing junto con la primera version orquestada; retro-encajar observabilidad es siempre mas trabajo que nacer con ella.',
+            'Empieza separando el agente único en roles: extrae el ruteo y uno o dos especialistas antes de optimizar cualquier cosa.',
+            'Agrega estado durable temprano: es lo que más dificulta refactorizar después, porque cambia cómo se llama cada paso.',
+            'Envuelve toda tool en el runner con timeout y retry desde el primer día; es barato de agregar y caro de olvidar.',
+            'Pon los guardrails de paso, costo y timeout antes de abrir a tráfico real, nunca después del primer susto de factura.',
+            'Instrumenta el tracing junto con la primera versión orquestada; retro-encajar observabilidad es siempre más trabajo que nacer con ella.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La diferencia entre el agente de demo y el de produccion no esta en la inteligencia del modelo, esta en la ingenieria a su alrededor: coordinacion clara, estado que sobrevive a la falla, tools blindadas, limites que cortan el desperdicio y tracing que te deja ver. Quien trata esto como un detalle descubre el costo en produccion, en el peor momento posible.',
+            'La diferencia entre el agente de demo y el de producción no está en la inteligencia del modelo, está en la ingeniería a su alrededor: coordinación clara, estado que sobrevive a la falla, tools blindadas, límites que cortan el desperdicio y tracing que te deja ver. Quien trata esto como un detalle descubre el costo en producción, en el peor momento posible.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Necesito un framework de agentes para orquestar?',
+      question: '¿Necesito un framework de agentes para orquestar?',
       answer:
-        'No para empezar. Los conceptos que importan (supervisor, estado durable, runner de tool con retry, guardrails y tracing) caben en unos cientos de lineas y son los mismos que los frameworks envuelven. Un framework ayuda cuando el equipo crece y quieres estandarizar, pero adoptarlo demasiado pronto esconde el funcionamiento y dificulta depurar. Entiende las piezas primero; elige el framework despues, sabiendo que resuelve.',
+        'No para empezar. Los conceptos que importan (supervisor, estado durable, runner de tool con retry, guardrails y tracing) caben en unos cientos de líneas y son los mismos que los frameworks envuelven. Un framework ayuda cuando el equipo crece y quieres estandarizar, pero adoptarlo demasiado pronto esconde el funcionamiento y dificulta depurar. Entiende las piezas primero; elige el framework después, sabiendo qué resuelve.',
     },
     {
-      question: 'Cuando uso varios agentes en vez de uno solo?',
+      question: '¿Cuándo uso varios agentes en vez de uno solo?',
       answer:
-        'Cuando el contexto o las tools de un unico agente empiezan a competir. Si un prompt tiene que cubrir intenciones muy distintas, o si la lista de tools crecio al punto de que el modelo confunde cual usar, separar en agentes con contexto menor y alcance enfocado mejora precision y reduce costo. No separes por separar: un pipeline fijo de dos pasos suele ser mas barato y previsible que un enjambre de agentes cuando la tarea es lineal.',
+        'Cuando el contexto o las tools de un único agente empiezan a competir. Si un prompt tiene que cubrir intenciones muy distintas, o si la lista de tools creció al punto de que el modelo confunde cuál usar, separar en agentes con contexto menor y alcance enfocado mejora precisión y reduce costo. No separes por separar: un pipeline fijo de dos pasos suele ser más barato y previsible que un enjambre de agentes cuando la tarea es lineal.',
     },
     {
-      question: 'Como controlo el costo de una orquestacion con varios agentes?',
+      question: '¿Cómo controlo el costo de una orquestación con varios agentes?',
       answer:
-        'Con limites duros y tracing por paso. Pon techo de iteraciones, presupuesto de tokens por tarea, deteccion de repeticion y timeout de punta a punta, para que ninguna tarea corra sin freno. En paralelo, emite un span por agente y por tool con tokens y latencia, agrega costo por tipo de tarea y alerta cuando sube. El costo se escapa cuando nadie mira; con limite y trace se vuelve un numero que gestionas.',
+        'Con límites duros y tracing por paso. Pon techo de iteraciones, presupuesto de tokens por tarea, detección de repetición y timeout de punta a punta, para que ninguna tarea corra sin freno. En paralelo, emite un span por agente y por tool con tokens y latencia, agrega costo por tipo de tarea y alerta cuando sube. El costo se escapa cuando nadie mira; con límite y trace se vuelve un número que gestionas.',
     },
   ],
   conclusion: {
-    title: 'La orquestacion es la ingenieria que convierte un agente de demo en un agente de produccion',
+    title: 'La orquestación es la ingeniería que convierte un agente de demo en un agente de producción',
     description:
-      'Coordinacion clara, estado durable, tools blindadas, guardrails de costo y tracing por paso son lo que hace que un agente de IA aguante produccion. Puedo disenar y montar esta orquestacion en tu producto, del ruteo al tracing, integrada a tu stack y lista para escalar.',
+      'Coordinación clara, estado durable, tools blindadas, guardrails de costo y tracing por paso son lo que hace que un agente de IA aguante producción. Puedo diseñar y montar esta orquestación en tu producto, del ruteo al tracing, integrada a tu stack y lista para escalar.',
     cta: 'Hablar sobre orquestar mis agentes',
   },
   related: [
-    { label: 'Evaluacion continua de bots: del eval manual al automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
-    { label: 'RAG para atencion en WhatsApp en produccion', to: '/blog/rag-atendimento-whatsapp-producao' },
-    { label: 'Chatbots e IA para atencion', to: '/servicos/chatbots-e-ia' },
+    { label: 'Evaluación continua de bots: del eval manual al automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'RAG para atención en WhatsApp en producción', to: '/blog/rag-atendimento-whatsapp-producao' },
+    { label: 'Chatbots e IA para atención', to: '/servicos/chatbots-e-ia' },
   ],
   repo: { name: 'agent-orchestrator-mini', description: repo.es, url: repoUrl },
 };

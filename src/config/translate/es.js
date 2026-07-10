@@ -174,6 +174,7 @@ const es = {
     heroDescription:
       'Actúo en la implementación de integraciones y automatizaciones con foco en desempeño operativo, confiabilidad de datos y aumento de conversión.',
     viewDetails: 'Ver detalles',
+    talkOnWhatsapp: 'Hablar por WhatsApp',
   },
   servicePage: {
     notFoundSeoTitle: 'Servicio no encontrado | Joao Victor Souza',

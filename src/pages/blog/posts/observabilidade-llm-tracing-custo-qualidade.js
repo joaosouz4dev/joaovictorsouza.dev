@@ -4,58 +4,58 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'Middleware minimo de observabilidade para chamadas de LLM: envelopa cada chamada com trace e span, calcula custo por tokens de entrada e saida, mede latencia por fase (fila, modelo, tools), registra prompt e resposta com redacao de dados sensiveis e exporta metricas agregadas por rota e por modelo.',
+  pt: 'Middleware mínimo de observabilidade para chamadas de LLM: envelopa cada chamada com trace e span, calcula custo por tokens de entrada e saída, mede latência por fase (fila, modelo, tools), registra prompt e resposta com redação de dados sensíveis e exporta métricas agregadas por rota e por modelo.',
   en: 'Minimal observability middleware for LLM calls: wraps every call with a trace and span, computes cost from input and output tokens, measures latency per phase (queue, model, tools), records prompt and response with sensitive-data redaction and exports aggregated metrics per route and per model.',
-  es: 'Middleware minimo de observabilidad para llamadas de LLM: envuelve cada llamada con trace y span, calcula el costo por tokens de entrada y salida, mide la latencia por fase (cola, modelo, tools), registra prompt y respuesta con redaccion de datos sensibles y exporta metricas agregadas por ruta y por modelo.',
+  es: 'Middleware mínimo de observabilidad para llamadas de LLM: envuelve cada llamada con trace y span, calcula el costo por tokens de entrada y salida, mide la latencia por fase (cola, modelo, tools), registra prompt y respuesta con redacción de datos sensibles y exporta métricas agregadas por ruta y por modelo.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/llm-observability-mini';
 
 const pt = {
   intro:
-    'Sistema com LLM em producao sem observabilidade e uma caixa preta que voce paga sem entender. A resposta piorou? Nao sabe dizer. A fatura triplicou? Nao sabe qual rota. O bot ficou lento? Nao sabe se e a fila, o modelo ou a tool. Diferente de um servico tradicional, onde bastam latencia e taxa de erro, um LLM tem tres eixos que precisam ser observados juntos: latencia (quanto demora), custo (quanto gasta em tokens) e qualidade (se a resposta presta). Observar so um deles engana: um modelo mais barato pode alucinar mais, um mais rapido pode custar o dobro. Este artigo mostra como instrumentar as tres dimensoes sem virar um projeto de plataforma: o modelo de tracing certo para LLM, como calcular custo por chamada de verdade, como medir qualidade em producao sem gabarito, o que logar sem vazar dado sensivel e quais alertas evitam a surpresa no fim do mes. O foco e o minimo que torna o sistema operavel.',
+    'Sistema com LLM em produção sem observabilidade é uma caixa preta que você paga sem entender. A resposta piorou? Não sabe dizer. A fatura triplicou? Não sabe qual rota. O bot ficou lento? Não sabe se é a fila, o modelo ou a tool. Diferente de um serviço tradicional, onde bastam latência e taxa de erro, um LLM tem três eixos que precisam ser observados juntos: latência (quanto demora), custo (quanto gasta em tokens) e qualidade (se a resposta presta). Observar só um deles engana: um modelo mais barato pode alucinar mais, um mais rápido pode custar o dobro. Este artigo mostra como instrumentar as três dimensões sem virar um projeto de plataforma: o modelo de tracing certo para LLM, como calcular custo por chamada de verdade, como medir qualidade em produção sem gabarito, o que logar sem vazar dado sensível e quais alertas evitam a surpresa no fim do mês. O foco é o mínimo que torna o sistema operável.',
   sections: [
     {
-      title: 'Por que os tres pilares tradicionais nao bastam',
+      title: 'Por que os três pilares tradicionais não bastam',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A observabilidade classica se apoia em logs, metricas e traces, e mira latencia, throughput e taxa de erro. Isso responde "o servico esta de pe?", mas nao responde nenhuma das perguntas que importam num sistema com LLM. Uma chamada pode retornar 200 OK, dentro do SLA de latencia, e ainda assim ter alucinado a resposta, recusado indevidamente ou gasto tres vezes mais tokens do que o esperado. O sucesso HTTP nao diz nada sobre o sucesso semantico.',
+            'A observabilidade clássica se apoia em logs, métricas e traces, e mira latência, throughput e taxa de erro. Isso responde "o serviço está de pé?", mas não responde nenhuma das perguntas que importam num sistema com LLM. Uma chamada pode retornar 200 OK, dentro do SLA de latência, e ainda assim ter alucinado a resposta, recusado indevidamente ou gasto três vezes mais tokens do que o esperado. O sucesso HTTP não diz nada sobre o sucesso semântico.',
         },
         {
           type: 'paragraph',
           value:
-            'Um LLM precisa de tres eixos observados em conjunto, porque eles se movem em direcoes opostas. Trocar de modelo para reduzir custo pode derrubar a qualidade. Encurtar o prompt para reduzir latencia pode remover contexto e aumentar o retrabalho. Cada decisao mexe nos tres ao mesmo tempo, e sem medir os tres voce otimiza um numero e degrada outro sem perceber. A tabela abaixo mostra o que cada eixo exige que a observabilidade tradicional nao entrega.',
+            'Um LLM precisa de três eixos observados em conjunto, porque eles se movem em direções opostas. Trocar de modelo para reduzir custo pode derrubar a qualidade. Encurtar o prompt para reduzir latência pode remover contexto e aumentar o retrabalho. Cada decisão mexe nos três ao mesmo tempo, e sem medir os três você otimiza um número e degrada outro sem perceber. A tabela abaixo mostra o que cada eixo exige que a observabilidade tradicional não entrega.',
         },
         {
           type: 'table',
-          columns: ['Eixo', 'O que mede', 'Sinal que importa', 'Por que APM classico nao pega'],
+          columns: ['Eixo', 'O que mede', 'Sinal que importa', 'Por que APM clássico não pega'],
           rows: [
             [
-              'Latencia',
+              'Latência',
               'Tempo por fase: fila, prompt, modelo, tools, streaming',
-              'Percentil p95 por rota, nao a media',
-              'Nao separa tempo de modelo de tempo de tool',
+              'Percentil p95 por rota, não a média',
+              'Não separa tempo de modelo de tempo de tool',
             ],
             [
               'Custo',
-              'Tokens de entrada e saida por chamada, convertidos em moeda',
-              'Custo por rota e por usuario, tendencia diaria',
-              'Nao existe o conceito de token no APM padrao',
+              'Tokens de entrada e saída por chamada, convertidos em moeda',
+              'Custo por rota e por usuário, tendência diária',
+              'Não existe o conceito de token no APM padrão',
             ],
             [
               'Qualidade',
-              'A resposta esta correta, util e no formato esperado',
-              'Taxa de alucinacao, recusa, formato invalido',
-              'HTTP 200 nao significa resposta boa',
+              'A resposta está correta, útil e no formato esperado',
+              'Taxa de alucinação, recusa, formato inválido',
+              'HTTP 200 não significa resposta boa',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A regra pratica: nunca olhe um eixo isolado. Um dashboard de LLM util mostra latencia, custo e qualidade lado a lado por rota, para que qualquer mudanca revele o trade-off imediatamente. Melhorar a media sem olhar o p95, ou baixar custo sem olhar qualidade, e trocar um problema visivel por um invisivel.',
+            'A regra prática: nunca olhe um eixo isolado. Um dashboard de LLM útil mostra latência, custo e qualidade lado a lado por rota, para que qualquer mudança revele o trade-off imediatamente. Melhorar a média sem olhar o p95, ou baixar custo sem olhar qualidade, é trocar um problema visível por um invisível.',
         },
       ],
     },
@@ -65,7 +65,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O tracing distribuido resolve a pergunta "onde o tempo foi gasto?", e num sistema com LLM a resposta quase nunca e obvia. Uma unica requisicao do usuario pode disparar um retrieval, uma ou mais chamadas ao modelo, varias tools e um passo de pos-processamento. Sem span por fase, tudo vira um bloco unico de latencia e voce nao sabe se o gargalo e o modelo, a busca vetorial ou a API externa que a tool chamou. O modelo mental e o mesmo do tracing de microservico, mas os atributos do span sao especificos de LLM.',
+            'O tracing distribuído resolve a pergunta "onde o tempo foi gasto?", e num sistema com LLM a resposta quase nunca é óbvia. Uma única requisição do usuário pode disparar um retrieval, uma ou mais chamadas ao modelo, várias tools e um passo de pós-processamento. Sem span por fase, tudo vira um bloco único de latência e você não sabe se o gargalo é o modelo, a busca vetorial ou a API externa que a tool chamou. O modelo mental é o mesmo do tracing de microserviço, mas os atributos do span são específicos de LLM.',
         },
         {
           type: 'code',
@@ -105,17 +105,17 @@ export async function tracedCompletion(tracer, { route, model }, call) {
         {
           type: 'paragraph',
           value:
-            'O detalhe que a maioria esquece: registrar o finish_reason. Um pico de respostas terminando em max_tokens indica prompt ou saida mal dimensionados, custo desnecessario e resposta cortada, tudo invisivel se voce so olha latencia. E propagar um traceId unico do inicio da requisicao ate a resposta final amarra retrieval, modelo e tools no mesmo trace, permitindo abrir uma reclamacao de usuario e ver a arvore inteira daquela conversa.',
+            'O detalhe que a maioria esquece: registrar o finish_reason. Um pico de respostas terminando em max_tokens indica prompt ou saída mal dimensionados, custo desnecessário e resposta cortada, tudo invisível se você só olha latência. E propagar um traceId único do início da requisição até a resposta final amarra retrieval, modelo e tools no mesmo trace, permitindo abrir uma reclamação de usuário e ver a árvore inteira daquela conversa.',
         },
       ],
     },
     {
-      title: 'Custo: o eixo que ninguem mede ate a fatura chegar',
+      title: 'Custo: o eixo que ninguém mede até a fatura chegar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Custo de LLM e a metrica mais facil de ignorar e a mais cara de ignorar. Ele nao aparece no APM, nao dispara erro, e cresce silenciosamente ate a fatura do fim do mes. A base e simples: cada chamada tem tokens de entrada e de saida, cada um com um preco por milhao de tokens que difere por modelo. O erro comum e medir custo agregado da conta inteira, quando o que importa e custo por rota e por usuario, porque e ali que voce descobre qual funcionalidade esta cara e qual usuario esta abusando.',
+            'Custo de LLM é a métrica mais fácil de ignorar e a mais cara de ignorar. Ele não aparece no APM, não dispara erro, e cresce silenciosamente até a fatura do fim do mês. A base é simples: cada chamada tem tokens de entrada e de saída, cada um com um preço por milhão de tokens que difere por modelo. O erro comum é medir custo agregado da conta inteira, quando o que importa é custo por rota e por usuário, porque é ali que você descobre qual funcionalidade está cara e qual usuário está abusando.',
         },
         {
           type: 'code',
@@ -152,42 +152,42 @@ export function estimateCost(model, usage) {
         {
           type: 'paragraph',
           value:
-            'Com o custo por chamada calculado e anexado ao span, o resto e agregacao: some por rota para achar a funcionalidade cara, por usuario para achar abuso, por dia para ver a tendencia. O prompt cache e o maior alavanca de custo em prompts longos e repetidos (system prompt fixo, contexto reaproveitado), e so aparece se voce medir os tokens de cache separado. Sem observar custo por dimensao, a unica alavanca que sobra e cortar features depois do susto.',
+            'Com o custo por chamada calculado e anexado ao span, o resto é agregação: some por rota para achar a funcionalidade cara, por usuário para achar abuso, por dia para ver a tendência. O prompt cache é o maior alavanca de custo em prompts longos e repetidos (system prompt fixo, contexto reaproveitado), e só aparece se você medir os tokens de cache separado. Sem observar custo por dimensão, a única alavanca que sobra é cortar features depois do susto.',
         },
       ],
     },
     {
-      title: 'Qualidade em producao: medir sem gabarito',
+      title: 'Qualidade em produção: medir sem gabarito',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Qualidade e o eixo mais dificil, porque em producao voce raramente tem a resposta certa para comparar. Diferente do eval offline, onde existe um dataset com gabarito, em producao a resposta acabou de ser gerada e ninguem sabe se esta correta. A saida e medir sinais indiretos de qualidade que nao precisam de gabarito, combinados: nenhum e definitivo sozinho, mas juntos desenham um retrato confiavel de degradacao.',
+            'Qualidade é o eixo mais difícil, porque em produção você raramente tem a resposta certa para comparar. Diferente do eval offline, onde existe um dataset com gabarito, em produção a resposta acabou de ser gerada e ninguém sabe se está correta. A saída é medir sinais indiretos de qualidade que não precisam de gabarito, combinados: nenhum é definitivo sozinho, mas juntos desenham um retrato confiável de degradação.',
         },
         {
           type: 'list',
           items: [
-            'Validacao de formato: se a resposta deveria ser JSON com um schema, valide e conte quantas falham. Taxa de formato invalido subindo e degradacao mensuravel sem gabarito.',
-            'Taxa de recusa: quantas respostas foram "nao posso ajudar" ou similar. Recusa subindo pode ser prompt quebrado, guardrail agressivo ou mudanca de modelo.',
-            'finish_reason por max_tokens: respostas cortadas por limite de saida sao qualidade degradada e custo desperdicado ao mesmo tempo.',
-            'Sinais do usuario: retentativa na mesma sessao, reformulacao da pergunta, thumbs down, escalada para humano. Sao o eval humano de graca, se voce os captura.',
-            'LLM como juiz amostrado: rode um modelo avaliador sobre uma amostra do trafego real (1 a 5 por cento), pontuando fidelidade e utilidade, para ter um numero continuo de qualidade sem avaliar tudo.',
+            'Validação de formato: se a resposta deveria ser JSON com um schema, valide e conte quantas falham. Taxa de formato inválido subindo é degradação mensurável sem gabarito.',
+            'Taxa de recusa: quantas respostas foram "não posso ajudar" ou similar. Recusa subindo pode ser prompt quebrado, guardrail agressivo ou mudança de modelo.',
+            'finish_reason por max_tokens: respostas cortadas por limite de saída são qualidade degradada e custo desperdiçado ao mesmo tempo.',
+            'Sinais do usuário: retentativa na mesma sessão, reformulação da pergunta, thumbs down, escalada para humano. São o eval humano de graça, se você os captura.',
+            'LLM como juiz amostrado: rode um modelo avaliador sobre uma amostra do tráfego real (1 a 5 por cento), pontuando fidelidade e utilidade, para ter um número contínuo de qualidade sem avaliar tudo.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A tecnica que mais rende e o LLM como juiz amostrado: voce nao avalia cem por cento do trafego (caro e lento), avalia uma fatia representativa e trata o resultado como uma metrica de qualidade que sobe e desce ao longo do tempo. Combinado com validacao de formato e sinais do usuario, isso transforma qualidade de "acho que piorou" em uma linha no dashboard que dispara alerta quando cai. Nenhum sinal e perfeito, mas o conjunto e o suficiente para saber que algo mudou antes do cliente reclamar.',
+            'A técnica que mais rende é o LLM como juiz amostrado: você não avalia cem por cento do tráfego (caro e lento), avalia uma fatia representativa e trata o resultado como uma métrica de qualidade que sobe e desce ao longo do tempo. Combinado com validação de formato e sinais do usuário, isso transforma qualidade de "acho que piorou" em uma linha no dashboard que dispara alerta quando cai. Nenhum sinal é perfeito, mas o conjunto é o suficiente para saber que algo mudou antes do cliente reclamar.',
         },
       ],
     },
     {
-      title: 'O que logar sem vazar dado sensivel',
+      title: 'O que logar sem vazar dado sensível',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Logar prompt e resposta e o que torna a depuracao possivel: sem ver o que entrou e o que saiu, todo bug de qualidade vira adivinhacao. Mas prompt de producao carrega dado do usuario (nome, telefone, documento, historico), e jogar isso cru no log e um incidente de privacidade esperando para acontecer. O equilibrio e logar o suficiente para depurar, com redacao de dados sensiveis antes de persistir, e retencao curta para o conteudo bruto.',
+            'Logar prompt e resposta é o que torna a depuração possível: sem ver o que entrou e o que saiu, todo bug de qualidade vira adivinhação. Mas prompt de produção carrega dado do usuário (nome, telefone, documento, histórico), e jogar isso cru no log é um incidente de privacidade esperando para acontecer. O equilíbrio é logar o suficiente para depurar, com redação de dados sensíveis antes de persistir, e retenção curta para o conteúdo bruto.',
         },
         {
           type: 'code',
@@ -223,7 +223,7 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         {
           type: 'paragraph',
           value:
-            'A separacao que importa: metadados (tokens, custo, latencia, rota, finish_reason) sao baratos e seguros, entao guarde por muito tempo para analise de tendencia. Conteudo bruto (prompt e resposta) e caro e sensivel, entao redija sempre e retenha por pouco (dias, nao meses), o suficiente para depurar o incidente recente. Nunca logue chave de API, token de sessao ou credencial, e trate o log de LLM com o mesmo cuidado de qualquer store de dado pessoal, porque e exatamente isso que ele e.',
+            'A separação que importa: metadados (tokens, custo, latência, rota, finish_reason) são baratos e seguros, então guarde por muito tempo para análise de tendência. Conteúdo bruto (prompt e resposta) é caro e sensível, então redija sempre e retenha por pouco (dias, não meses), o suficiente para depurar o incidente recente. Nunca logue chave de API, token de sessão ou credencial, e trate o log de LLM com o mesmo cuidado de qualquer store de dado pessoal, porque é exatamente isso que ele é.',
         },
       ],
     },
@@ -233,23 +233,23 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         {
           type: 'paragraph',
           value:
-            'Dashboard voce olha quando lembra; alerta te avisa quando voce nao esta olhando. O objetivo dos alertas de LLM e o mesmo dos guardrails: transformar um problema silencioso (custo subindo, qualidade caindo) em um evento acionavel antes de virar prejuizo ou reclamacao. O erro e alertar so em erro tecnico (5xx, timeout) e ignorar os sinais que sao unicos de LLM.',
+            'Dashboard você olha quando lembra; alerta te avisa quando você não está olhando. O objetivo dos alertas de LLM é o mesmo dos guardrails: transformar um problema silencioso (custo subindo, qualidade caindo) em um evento acionável antes de virar prejuízo ou reclamação. O erro é alertar só em erro técnico (5xx, timeout) e ignorar os sinais que são únicos de LLM.',
         },
         {
           type: 'ordered',
           items: [
-            'Custo por dia acima do orcamento esperado, ou custo por rota subindo mais de X por cento semana a semana: pega abuso, loop e regressao de prompt antes da fatura.',
-            'Taxa de formato invalido ou de recusa acima da linha de base: sinal direto de que o prompt ou o modelo mudou de comportamento.',
-            'p95 de latencia por rota estourando o SLA, separando tempo de modelo de tempo de tool, para saber onde agir.',
-            'Proporcao de respostas terminando em max_tokens subindo: prompt ou limite de saida mal dimensionados, gerando custo e resposta cortada.',
-            'Score do juiz amostrado caindo abaixo do limiar: a metrica de qualidade continua que dispara antes do cliente perceber.',
+            'Custo por dia acima do orçamento esperado, ou custo por rota subindo mais de X por cento semana a semana: pega abuso, loop e regressão de prompt antes da fatura.',
+            'Taxa de formato inválido ou de recusa acima da linha de base: sinal direto de que o prompt ou o modelo mudou de comportamento.',
+            'p95 de latência por rota estourando o SLA, separando tempo de modelo de tempo de tool, para saber onde agir.',
+            'Proporção de respostas terminando em max_tokens subindo: prompt ou limite de saída mal dimensionados, gerando custo e resposta cortada.',
+            'Score do juiz amostrado caindo abaixo do limiar: a métrica de qualidade contínua que dispara antes do cliente perceber.',
           ],
         },
         {
           type: 'diagram',
           value: `Fluxo de observabilidade de uma chamada de LLM
 
-  requisicao do usuario
+  requisição do usuário
         |
         v
   [ trace inicia: traceId ]
@@ -262,39 +262,39 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         v
   [ trace fecha ]
         |
-        +--> metricas agregadas:  custo/rota   p95/rota   qualidade/rota
-        +--> log redigido:        prompt/output (retencao curta)
-        +--> alertas:             custo, formato, recusa, latencia, juiz`,
+        +--> métricas agregadas:  custo/rota   p95/rota   qualidade/rota
+        +--> log redigido:        prompt/output (retenção curta)
+        +--> alertas:             custo, formato, recusa, latência, juiz`,
         },
         {
           type: 'paragraph',
           value:
-            'Cada alerta deve apontar para a rota e o trace, nao para um numero global. "Custo subiu" nao ajuda; "custo da rota /suporte subiu 40 por cento, veja o trace abc123" leva direto a causa. Observabilidade so vale quando encurta o caminho do sintoma ate a origem, e um alerta sem contexto e so mais um numero que a equipe aprende a ignorar.',
+            'Cada alerta deve apontar para a rota e o trace, não para um número global. "Custo subiu" não ajuda; "custo da rota /suporte subiu 40 por cento, veja o trace abc123" leva direto à causa. Observabilidade só vale quando encurta o caminho do sintoma até a origem, e um alerta sem contexto é só mais um número que a equipe aprende a ignorar.',
         },
       ],
     },
     {
-      title: 'Comecar pequeno sem virar projeto de plataforma',
+      title: 'Começar pequeno sem virar projeto de plataforma',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A armadilha e achar que observabilidade de LLM exige uma plataforma inteira antes de dar valor. Nao exige. Um middleware que envelopa a chamada, calcula custo, mede latencia por fase e loga redigido ja entrega noventa por cento do valor em poucas centenas de linhas. O caminho e adicionar por camadas, na ordem de retorno.',
+            'A armadilha é achar que observabilidade de LLM exige uma plataforma inteira antes de dar valor. Não exige. Um middleware que envelopa a chamada, calcula custo, mede latência por fase e loga redigido já entrega noventa por cento do valor em poucas centenas de linhas. O caminho é adicionar por camadas, na ordem de retorno.',
         },
         {
           type: 'list',
           items: [
-            'Comece pelo custo por chamada: e o mais barato de instrumentar e o que mais surpreende, porque ninguem sabia o numero real por rota.',
-            'Adicione o span por fase logo depois: separa tempo de modelo de tempo de tool e retrieval, o que torna a latencia acionavel.',
-            'Ligue o log redigido cedo, com retencao curta: e o que permite depurar o primeiro bug de qualidade sem virar risco de privacidade.',
-            'Instrumente os sinais de qualidade baratos (formato invalido, recusa, max_tokens) antes do juiz amostrado, que e mais caro de montar.',
-            'Ponha os alertas por ultimo, quando ja tem linha de base: alertar sem baseline gera ruido, alertar com baseline gera acao.',
+            'Comece pelo custo por chamada: é o mais barato de instrumentar e o que mais surpreende, porque ninguém sabia o número real por rota.',
+            'Adicione o span por fase logo depois: separa tempo de modelo de tempo de tool e retrieval, o que torna a latência acionável.',
+            'Ligue o log redigido cedo, com retenção curta: é o que permite depurar o primeiro bug de qualidade sem virar risco de privacidade.',
+            'Instrumente os sinais de qualidade baratos (formato inválido, recusa, max_tokens) antes do juiz amostrado, que é mais caro de montar.',
+            'Ponha os alertas por último, quando já tem linha de base: alertar sem baseline gera ruído, alertar com baseline gera ação.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A diferenca entre operar um sistema com LLM e reza-lo esta em enxergar os tres eixos juntos: quanto demora, quanto custa e se presta. Quem instrumenta isso cedo descobre a regressao de qualidade em um dashboard e o pico de custo em um alerta; quem deixa para depois descobre os dois no lugar errado, o primeiro na reclamacao do cliente e o segundo na fatura.',
+            'A diferença entre operar um sistema com LLM e rezá-lo está em enxergar os três eixos juntos: quanto demora, quanto custa e se presta. Quem instrumenta isso cedo descobre a regressão de qualidade em um dashboard e o pico de custo em um alerta; quem deixa para depois descobre os dois no lugar errado, o primeiro na reclamação do cliente e o segundo na fatura.',
         },
       ],
     },
@@ -303,28 +303,28 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
     {
       question: 'Preciso de uma plataforma dedicada de observabilidade de LLM?',
       answer:
-        'Nao para comecar. Um middleware que envelopa a chamada do modelo, calcula custo por tokens, emite span por fase e loga com redacao cabe em poucas centenas de linhas e entrega a maior parte do valor. Plataformas dedicadas ajudam quando o volume cresce e voce quer visualizacao de trace pronta e eval integrado, mas adotar uma cedo demais adiciona custo e dependencia antes de voce entender o que precisa medir. Instrumente os tres eixos primeiro; escolha a ferramenta depois, sabendo o que ela resolve.',
+        'Não para começar. Um middleware que envelopa a chamada do modelo, calcula custo por tokens, emite span por fase e loga com redação cabe em poucas centenas de linhas e entrega a maior parte do valor. Plataformas dedicadas ajudam quando o volume cresce e você quer visualização de trace pronta e eval integrado, mas adotar uma cedo demais adiciona custo e dependência antes de você entender o que precisa medir. Instrumente os três eixos primeiro; escolha a ferramenta depois, sabendo o que ela resolve.',
     },
     {
-      question: 'Como meco qualidade se nao tenho a resposta certa em producao?',
+      question: 'Como meço qualidade se não tenho a resposta certa em produção?',
       answer:
-        'Com sinais indiretos combinados, nenhum definitivo sozinho: taxa de formato invalido, taxa de recusa, respostas cortadas por max_tokens, sinais do usuario (retentativa, reformulacao, thumbs down, escalada) e um LLM como juiz rodando sobre uma amostra do trafego (1 a 5 por cento). Cada um e um proxy imperfeito, mas o conjunto vira uma metrica de qualidade continua que sobe e desce ao longo do tempo e dispara alerta quando cai, permitindo detectar degradacao antes do cliente reclamar.',
+        'Com sinais indiretos combinados, nenhum definitivo sozinho: taxa de formato inválido, taxa de recusa, respostas cortadas por max_tokens, sinais do usuário (retentativa, reformulação, thumbs down, escalada) e um LLM como juiz rodando sobre uma amostra do tráfego (1 a 5 por cento). Cada um é um proxy imperfeito, mas o conjunto vira uma métrica de qualidade contínua que sobe e desce ao longo do tempo e dispara alerta quando cai, permitindo detectar degradação antes do cliente reclamar.',
     },
     {
       question: 'Como calculo o custo real de cada chamada?',
       answer:
-        'Cada resposta do provedor traz o numero de tokens de entrada e de saida; multiplique cada um pelo preco por milhao de tokens do modelo (entrada e saida tem precos diferentes) e some. Tokens lidos do prompt cache custam uma fracao do preco de entrada, entao conte-os a parte. Anexe esse custo ao span da chamada e agregue por rota, por usuario e por dia. O erro comum e olhar so o total da conta; o valor esta em saber qual rota e qual usuario geram o gasto.',
+        'Cada resposta do provedor traz o número de tokens de entrada e de saída; multiplique cada um pelo preço por milhão de tokens do modelo (entrada e saída têm preços diferentes) e some. Tokens lidos do prompt cache custam uma fração do preço de entrada, então conte-os à parte. Anexe esse custo ao span da chamada e agregue por rota, por usuário e por dia. O erro comum é olhar só o total da conta; o valor está em saber qual rota e qual usuário geram o gasto.',
     },
   ],
   conclusion: {
-    title: 'Observabilidade e o que transforma um sistema de LLM de caixa preta em operacao',
+    title: 'Observabilidade é o que transforma um sistema de LLM de caixa preta em operação',
     description:
-      'Tracing por fase, custo por chamada, sinais de qualidade e alertas com contexto sao o minimo para operar LLM sem surpresa de fatura nem regressao invisivel. Posso instrumentar essas tres dimensoes no seu produto, do middleware ao dashboard, integradas ao seu stack e prontas para escalar.',
+      'Tracing por fase, custo por chamada, sinais de qualidade e alertas com contexto são o mínimo para operar LLM sem surpresa de fatura nem regressão invisível. Posso instrumentar essas três dimensões no seu produto, do middleware ao dashboard, integradas ao seu stack e prontas para escalar.',
     cta: 'Falar sobre observabilidade do meu sistema de IA',
   },
   related: [
-    { label: 'Orquestracao de agentes de IA em producao', to: '/blog/orquestracao-agentes-ia-producao' },
-    { label: 'Avaliacao continua de bots: do eval manual ao automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'Orquestração de agentes de IA em produção', to: '/blog/orquestracao-agentes-ia-producao' },
+    { label: 'Avaliação contínua de bots: do eval manual ao automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
     { label: 'Observabilidade e confiabilidade', to: '/servicos/observabilidade-e-confiabilidade' },
   ],
   repo: { name: 'llm-observability-mini', description: repo.pt, url: repoUrl },
@@ -651,24 +651,24 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
 
 const es = {
   intro:
-    'Un sistema con LLM en produccion sin observabilidad es una caja negra que pagas sin entender. La respuesta empeoro? No sabes decir. La factura se triplico? No sabes que ruta. El bot se puso lento? No sabes si es la cola, el modelo o la tool. A diferencia de un servicio tradicional, donde bastan latencia y tasa de error, un LLM tiene tres ejes que hay que observar juntos: latencia (cuanto tarda), costo (cuanto gasta en tokens) y calidad (si la respuesta sirve). Observar solo uno engana: un modelo mas barato puede alucinar mas, uno mas rapido puede costar el doble. Este articulo muestra como instrumentar las tres dimensiones sin volverlo un proyecto de plataforma: el modelo de tracing correcto para LLM, como calcular el costo por llamada de verdad, como medir calidad en produccion sin gabarito, que loguear sin filtrar dato sensible y que alertas evitan la sorpresa de fin de mes. El foco es el minimo que hace operable el sistema.',
+    'Un sistema con LLM en producción sin observabilidad es una caja negra que pagas sin entender. ¿La respuesta empeoró? No sabes decir. ¿La factura se triplicó? No sabes qué ruta. ¿El bot se puso lento? No sabes si es la cola, el modelo o la tool. A diferencia de un servicio tradicional, donde bastan latencia y tasa de error, un LLM tiene tres ejes que hay que observar juntos: latencia (cuánto tarda), costo (cuánto gasta en tokens) y calidad (si la respuesta sirve). Observar solo uno engaña: un modelo más barato puede alucinar más, uno más rápido puede costar el doble. Este artículo muestra cómo instrumentar las tres dimensiones sin volverlo un proyecto de plataforma: el modelo de tracing correcto para LLM, cómo calcular el costo por llamada de verdad, cómo medir calidad en producción sin gabarito, qué loguear sin filtrar dato sensible y qué alertas evitan la sorpresa de fin de mes. El foco es el mínimo que hace operable el sistema.',
   sections: [
     {
-      title: 'Por que los tres pilares clasicos no bastan',
+      title: '¿Por qué los tres pilares clásicos no bastan?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La observabilidad clasica se apoya en logs, metricas y traces, y apunta a latencia, throughput y tasa de error. Eso responde "el servicio esta arriba?", pero no responde ninguna de las preguntas que importan en un sistema con LLM. Una llamada puede retornar 200 OK, dentro del SLA de latencia, y aun asi haber alucinado la respuesta, rechazado indebidamente o gastado tres veces mas tokens de lo esperado. El exito HTTP no dice nada sobre el exito semantico.',
+            'La observabilidad clásica se apoya en logs, métricas y traces, y apunta a latencia, throughput y tasa de error. Eso responde "¿el servicio está arriba?", pero no responde ninguna de las preguntas que importan en un sistema con LLM. Una llamada puede retornar 200 OK, dentro del SLA de latencia, y aun así haber alucinado la respuesta, rechazado indebidamente o gastado tres veces más tokens de lo esperado. El éxito HTTP no dice nada sobre el éxito semántico.',
         },
         {
           type: 'paragraph',
           value:
-            'Un LLM necesita tres ejes observados en conjunto, porque se mueven en direcciones opuestas. Cambiar de modelo para reducir costo puede tumbar la calidad. Acortar el prompt para reducir latencia puede quitar contexto y aumentar el retrabajo. Cada decision mueve los tres a la vez, y sin medir los tres optimizas un numero y degradas otro sin darte cuenta. La tabla de abajo muestra lo que cada eje exige que la observabilidad tradicional no entrega.',
+            'Un LLM necesita tres ejes observados en conjunto, porque se mueven en direcciones opuestas. Cambiar de modelo para reducir costo puede tumbar la calidad. Acortar el prompt para reducir latencia puede quitar contexto y aumentar el retrabajo. Cada decisión mueve los tres a la vez, y sin medir los tres optimizas un número y degradas otro sin darte cuenta. La tabla de abajo muestra lo que cada eje exige que la observabilidad tradicional no entrega.',
         },
         {
           type: 'table',
-          columns: ['Eje', 'Que mide', 'Senal que importa', 'Por que el APM clasico no lo capta'],
+          columns: ['Eje', 'Qué mide', 'Señal que importa', 'Por qué el APM clásico no lo capta'],
           rows: [
             [
               'Latencia',
@@ -680,12 +680,12 @@ const es = {
               'Costo',
               'Tokens de entrada y salida por llamada, convertidos a moneda',
               'Costo por ruta y por usuario, tendencia diaria',
-              'No existe el concepto de token en el APM estandar',
+              'No existe el concepto de token en el APM estándar',
             ],
             [
               'Calidad',
-              'Si la respuesta es correcta, util y en el formato esperado',
-              'Tasa de alucinacion, rechazo, formato invalido',
+              'Si la respuesta es correcta, útil y en el formato esperado',
+              'Tasa de alucinación, rechazo, formato inválido',
               'HTTP 200 no significa buena respuesta',
             ],
           ],
@@ -693,7 +693,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La regla practica: nunca mires un eje aislado. Un dashboard de LLM util muestra latencia, costo y calidad lado a lado por ruta, para que cualquier cambio revele el trade-off de inmediato. Mejorar el promedio sin mirar el p95, o bajar costo sin mirar calidad, es cambiar un problema visible por uno invisible.',
+            'La regla práctica: nunca mires un eje aislado. Un dashboard de LLM útil muestra latencia, costo y calidad lado a lado por ruta, para que cualquier cambio revele el trade-off de inmediato. Mejorar el promedio sin mirar el p95, o bajar costo sin mirar calidad, es cambiar un problema visible por uno invisible.',
         },
       ],
     },
@@ -703,7 +703,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El tracing distribuido responde "donde se gasto el tiempo?", y en un sistema con LLM la respuesta casi nunca es obvia. Una unica peticion del usuario puede disparar un retrieval, una o mas llamadas al modelo, varias tools y un paso de posprocesamiento. Sin span por fase, todo se vuelve un bloque unico de latencia y no sabes si el cuello de botella es el modelo, la busqueda vectorial o la API externa que llamo la tool. El modelo mental es el mismo del tracing de microservicio, pero los atributos del span son especificos de LLM.',
+            'El tracing distribuido responde "¿dónde se gastó el tiempo?", y en un sistema con LLM la respuesta casi nunca es obvia. Una única petición del usuario puede disparar un retrieval, una o más llamadas al modelo, varias tools y un paso de posprocesamiento. Sin span por fase, todo se vuelve un bloque único de latencia y no sabes si el cuello de botella es el modelo, la búsqueda vectorial o la API externa que llamó la tool. El modelo mental es el mismo del tracing de microservicio, pero los atributos del span son específicos de LLM.',
         },
         {
           type: 'code',
@@ -743,7 +743,7 @@ export async function tracedCompletion(tracer, { route, model }, call) {
         {
           type: 'paragraph',
           value:
-            'El detalle que la mayoria olvida: registrar el finish_reason. Un pico de respuestas terminando en max_tokens indica prompt o salida mal dimensionados, costo innecesario y respuesta cortada, todo invisible si solo miras latencia. Y propagar un traceId unico desde el inicio de la peticion hasta la respuesta final amarra retrieval, modelo y tools en el mismo trace, permitiendo abrir una queja de usuario y ver el arbol entero de esa conversacion.',
+            'El detalle que la mayoría olvida: registrar el finish_reason. Un pico de respuestas terminando en max_tokens indica prompt o salida mal dimensionados, costo innecesario y respuesta cortada, todo invisible si solo miras latencia. Y propagar un traceId único desde el inicio de la petición hasta la respuesta final amarra retrieval, modelo y tools en el mismo trace, permitiendo abrir una queja de usuario y ver el árbol entero de esa conversación.',
         },
       ],
     },
@@ -753,7 +753,7 @@ export async function tracedCompletion(tracer, { route, model }, call) {
         {
           type: 'paragraph',
           value:
-            'El costo de LLM es la metrica mas facil de ignorar y la mas cara de ignorar. No aparece en el APM, no dispara error, y crece en silencio hasta la factura de fin de mes. La base es simple: cada llamada tiene tokens de entrada y de salida, cada uno con un precio por millon de tokens que difiere por modelo. El error comun es medir el costo agregado de la cuenta entera, cuando lo que importa es el costo por ruta y por usuario, porque ahi descubres que funcionalidad esta cara y que usuario esta abusando.',
+            'El costo de LLM es la métrica más fácil de ignorar y la más cara de ignorar. No aparece en el APM, no dispara error, y crece en silencio hasta la factura de fin de mes. La base es simple: cada llamada tiene tokens de entrada y de salida, cada uno con un precio por millón de tokens que difiere por modelo. El error común es medir el costo agregado de la cuenta entera, cuando lo que importa es el costo por ruta y por usuario, porque ahí descubres qué funcionalidad está cara y qué usuario está abusando.',
         },
         {
           type: 'code',
@@ -790,42 +790,42 @@ export function estimateCost(model, usage) {
         {
           type: 'paragraph',
           value:
-            'Con el costo por llamada calculado y anexado al span, el resto es agregacion: suma por ruta para hallar la funcionalidad cara, por usuario para hallar abuso, por dia para ver la tendencia. El prompt cache es la mayor palanca de costo en prompts largos y repetidos (system prompt fijo, contexto reaprovechado), y solo aparece si mides los tokens de cache aparte. Sin observar el costo por dimension, la unica palanca que queda es cortar features despues del susto.',
+            'Con el costo por llamada calculado y anexado al span, el resto es agregación: suma por ruta para hallar la funcionalidad cara, por usuario para hallar abuso, por día para ver la tendencia. El prompt cache es la mayor palanca de costo en prompts largos y repetidos (system prompt fijo, contexto reaprovechado), y solo aparece si mides los tokens de cache aparte. Sin observar el costo por dimensión, la única palanca que queda es cortar features después del susto.',
         },
       ],
     },
     {
-      title: 'Calidad en produccion: medir sin gabarito',
+      title: 'Calidad en producción: medir sin gabarito',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La calidad es el eje mas dificil, porque en produccion rara vez tienes la respuesta correcta para comparar. A diferencia del eval offline, donde existe un dataset con gabarito, en produccion la respuesta acaba de generarse y nadie sabe si es correcta. La salida es medir senales indirectas de calidad que no necesitan gabarito, combinadas: ninguna es definitiva sola, pero juntas dibujan un retrato confiable de degradacion.',
+            'La calidad es el eje más difícil, porque en producción rara vez tienes la respuesta correcta para comparar. A diferencia del eval offline, donde existe un dataset con gabarito, en producción la respuesta acaba de generarse y nadie sabe si es correcta. La salida es medir señales indirectas de calidad que no necesitan gabarito, combinadas: ninguna es definitiva sola, pero juntas dibujan un retrato confiable de degradación.',
         },
         {
           type: 'list',
           items: [
-            'Validacion de formato: si la respuesta deberia ser JSON con un schema, validala y cuenta cuantas fallan. Una tasa de formato invalido en alza es degradacion medible sin gabarito.',
-            'Tasa de rechazo: cuantas respuestas fueron "no puedo ayudar" o similar. Un rechazo en alza puede ser prompt roto, guardrail agresivo o cambio de modelo.',
-            'finish_reason por max_tokens: respuestas cortadas por el limite de salida son calidad degradada y costo desperdiciado a la vez.',
-            'Senales del usuario: reintento en la misma sesion, reformulacion de la pregunta, thumbs down, escalada a un humano. Son el eval humano gratis, si los capturas.',
-            'LLM como juez muestreado: corre un modelo evaluador sobre una muestra del trafico real (1 a 5 por ciento), puntuando fidelidad y utilidad, para tener un numero continuo de calidad sin evaluar todo.',
+            'Validación de formato: si la respuesta debería ser JSON con un schema, valídala y cuenta cuántas fallan. Una tasa de formato inválido en alza es degradación medible sin gabarito.',
+            'Tasa de rechazo: cuántas respuestas fueron "no puedo ayudar" o similar. Un rechazo en alza puede ser prompt roto, guardrail agresivo o cambio de modelo.',
+            'finish_reason por max_tokens: respuestas cortadas por el límite de salida son calidad degradada y costo desperdiciado a la vez.',
+            'Señales del usuario: reintento en la misma sesión, reformulación de la pregunta, thumbs down, escalada a un humano. Son el eval humano gratis, si los capturas.',
+            'LLM como juez muestreado: corre un modelo evaluador sobre una muestra del tráfico real (1 a 5 por ciento), puntuando fidelidad y utilidad, para tener un número continuo de calidad sin evaluar todo.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La tecnica que mas rinde es el LLM como juez muestreado: no evaluas el cien por ciento del trafico (caro y lento), evaluas una porcion representativa y tratas el resultado como una metrica de calidad que sube y baja a lo largo del tiempo. Combinado con validacion de formato y senales del usuario, esto convierte la calidad de "creo que empeoro" en una linea del dashboard que dispara alerta cuando cae. Ninguna senal es perfecta, pero el conjunto basta para saber que algo cambio antes de que el cliente se queje.',
+            'La técnica que más rinde es el LLM como juez muestreado: no evalúas el cien por ciento del tráfico (caro y lento), evalúas una porción representativa y tratas el resultado como una métrica de calidad que sube y baja a lo largo del tiempo. Combinado con validación de formato y señales del usuario, esto convierte la calidad de "creo que empeoró" en una línea del dashboard que dispara alerta cuando cae. Ninguna señal es perfecta, pero el conjunto basta para saber que algo cambió antes de que el cliente se queje.',
         },
       ],
     },
     {
-      title: 'Que loguear sin filtrar dato sensible',
+      title: 'Qué loguear sin filtrar dato sensible',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Loguear prompt y respuesta es lo que hace posible la depuracion: sin ver que entro y que salio, todo bug de calidad se vuelve adivinanza. Pero un prompt de produccion carga dato del usuario (nombre, telefono, documento, historial), y volcar eso crudo en el log es un incidente de privacidad esperando pasar. El equilibrio es loguear lo suficiente para depurar, con redaccion de datos sensibles antes de persistir, y retencion corta para el contenido crudo.',
+            'Loguear prompt y respuesta es lo que hace posible la depuración: sin ver qué entró y qué salió, todo bug de calidad se vuelve adivinanza. Pero un prompt de producción carga dato del usuario (nombre, teléfono, documento, historial), y volcar eso crudo en el log es un incidente de privacidad esperando pasar. El equilibrio es loguear lo suficiente para depurar, con redacción de datos sensibles antes de persistir, y retención corta para el contenido crudo.',
         },
         {
           type: 'code',
@@ -861,7 +861,7 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         {
           type: 'paragraph',
           value:
-            'La separacion que importa: los metadatos (tokens, costo, latencia, ruta, finish_reason) son baratos y seguros, asi que guardalos por mucho tiempo para analisis de tendencia. El contenido crudo (prompt y respuesta) es caro y sensible, asi que redactalo siempre y retenlo poco (dias, no meses), lo suficiente para depurar el incidente reciente. Nunca loguees clave de API, token de sesion o credencial, y trata el log de LLM con el mismo cuidado que cualquier store de dato personal, porque es exactamente eso lo que es.',
+            'La separación que importa: los metadatos (tokens, costo, latencia, ruta, finish_reason) son baratos y seguros, así que guárdalos por mucho tiempo para análisis de tendencia. El contenido crudo (prompt y respuesta) es caro y sensible, así que redáctalo siempre y retenlo poco (días, no meses), lo suficiente para depurar el incidente reciente. Nunca loguees clave de API, token de sesión o credencial, y trata el log de LLM con el mismo cuidado que cualquier store de dato personal, porque es exactamente eso lo que es.',
         },
       ],
     },
@@ -871,23 +871,23 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         {
           type: 'paragraph',
           value:
-            'El dashboard lo miras cuando te acuerdas; la alerta te avisa cuando no estas mirando. El objetivo de las alertas de LLM es el mismo de los guardrails: convertir un problema silencioso (costo subiendo, calidad cayendo) en un evento accionable antes de que se vuelva perdida o queja. El error es alertar solo en error tecnico (5xx, timeout) e ignorar las senales que son unicas de LLM.',
+            'El dashboard lo miras cuando te acuerdas; la alerta te avisa cuando no estás mirando. El objetivo de las alertas de LLM es el mismo de los guardrails: convertir un problema silencioso (costo subiendo, calidad cayendo) en un evento accionable antes de que se vuelva pérdida o queja. El error es alertar solo en error técnico (5xx, timeout) e ignorar las señales que son únicas de LLM.',
         },
         {
           type: 'ordered',
           items: [
-            'Costo por dia por encima del presupuesto esperado, o costo por ruta subiendo mas de X por ciento semana a semana: capta abuso, loops y regresion de prompt antes de la factura.',
-            'Tasa de formato invalido o de rechazo por encima de la linea base: senal directa de que el prompt o el modelo cambio de comportamiento.',
-            'p95 de latencia por ruta reventando el SLA, separando tiempo de modelo de tiempo de tool, para saber donde actuar.',
-            'Proporcion de respuestas terminando en max_tokens subiendo: prompt o limite de salida mal dimensionados, generando costo y respuesta cortada.',
-            'Score del juez muestreado cayendo por debajo del umbral: la metrica de calidad continua que dispara antes de que el cliente lo note.',
+            'Costo por día por encima del presupuesto esperado, o costo por ruta subiendo más de X por ciento semana a semana: capta abuso, loops y regresión de prompt antes de la factura.',
+            'Tasa de formato inválido o de rechazo por encima de la línea base: señal directa de que el prompt o el modelo cambió de comportamiento.',
+            'p95 de latencia por ruta reventando el SLA, separando tiempo de modelo de tiempo de tool, para saber dónde actuar.',
+            'Proporción de respuestas terminando en max_tokens subiendo: prompt o límite de salida mal dimensionados, generando costo y respuesta cortada.',
+            'Score del juez muestreado cayendo por debajo del umbral: la métrica de calidad continua que dispara antes de que el cliente lo note.',
           ],
         },
         {
           type: 'diagram',
           value: `Flujo de observabilidad de una llamada de LLM
 
-  peticion del usuario
+  petición del usuario
         |
         v
   [ trace inicia: traceId ]
@@ -900,69 +900,69 @@ export function buildLogRecord({ traceId, route, model, usage, prompt, output })
         v
   [ trace cierra ]
         |
-        +--> metricas agregadas:  costo/ruta   p95/ruta   calidad/ruta
-        +--> log redactado:       prompt/output (retencion corta)
+        +--> métricas agregadas:  costo/ruta   p95/ruta   calidad/ruta
+        +--> log redactado:       prompt/output (retención corta)
         +--> alertas:             costo, formato, rechazo, latencia, juez`,
         },
         {
           type: 'paragraph',
           value:
-            'Cada alerta debe apuntar a la ruta y al trace, no a un numero global. "El costo subio" no ayuda; "el costo de la ruta /soporte subio 40 por ciento, mira el trace abc123" lleva directo a la causa. La observabilidad solo rinde cuando acorta el camino del sintoma al origen, y una alerta sin contexto es solo un numero mas que el equipo aprende a ignorar.',
+            'Cada alerta debe apuntar a la ruta y al trace, no a un número global. "El costo subió" no ayuda; "el costo de la ruta /soporte subió 40 por ciento, mira el trace abc123" lleva directo a la causa. La observabilidad solo rinde cuando acorta el camino del síntoma al origen, y una alerta sin contexto es solo un número más que el equipo aprende a ignorar.',
         },
       ],
     },
     {
-      title: 'Empezar pequeno sin volverlo un proyecto de plataforma',
+      title: 'Empezar pequeño sin volverlo un proyecto de plataforma',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La trampa es creer que la observabilidad de LLM exige una plataforma entera antes de dar valor. No la exige. Un middleware que envuelve la llamada, calcula costo, mide latencia por fase y loguea redactado ya entrega el noventa por ciento del valor en pocas centenas de lineas. El camino es agregar por capas, en orden de retorno.',
+            'La trampa es creer que la observabilidad de LLM exige una plataforma entera antes de dar valor. No la exige. Un middleware que envuelve la llamada, calcula costo, mide latencia por fase y loguea redactado ya entrega el noventa por ciento del valor en pocas centenas de líneas. El camino es agregar por capas, en orden de retorno.',
         },
         {
           type: 'list',
           items: [
-            'Empieza por el costo por llamada: es lo mas barato de instrumentar y lo que mas sorprende, porque nadie sabia el numero real por ruta.',
-            'Agrega el span por fase justo despues: separa tiempo de modelo de tiempo de tool y retrieval, lo que vuelve accionable la latencia.',
-            'Enciende el log redactado temprano, con retencion corta: es lo que permite depurar el primer bug de calidad sin volverse riesgo de privacidad.',
-            'Instrumenta las senales de calidad baratas (formato invalido, rechazo, max_tokens) antes del juez muestreado, que es mas caro de montar.',
-            'Pon las alertas al final, cuando ya tienes linea base: alertar sin baseline genera ruido, alertar con baseline genera accion.',
+            'Empieza por el costo por llamada: es lo más barato de instrumentar y lo que más sorprende, porque nadie sabía el número real por ruta.',
+            'Agrega el span por fase justo después: separa tiempo de modelo de tiempo de tool y retrieval, lo que vuelve accionable la latencia.',
+            'Enciende el log redactado temprano, con retención corta: es lo que permite depurar el primer bug de calidad sin volverse riesgo de privacidad.',
+            'Instrumenta las señales de calidad baratas (formato inválido, rechazo, max_tokens) antes del juez muestreado, que es más caro de montar.',
+            'Pon las alertas al final, cuando ya tienes línea base: alertar sin baseline genera ruido, alertar con baseline genera acción.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La diferencia entre operar un sistema con LLM y rezarle esta en ver los tres ejes juntos: cuanto tarda, cuanto cuesta y si sirve. Quien instrumenta esto temprano descubre la regresion de calidad en un dashboard y el pico de costo en una alerta; quien lo deja para despues descubre ambos en el lugar equivocado, el primero en la queja del cliente y el segundo en la factura.',
+            'La diferencia entre operar un sistema con LLM y rezarle está en ver los tres ejes juntos: cuánto tarda, cuánto cuesta y si sirve. Quien instrumenta esto temprano descubre la regresión de calidad en un dashboard y el pico de costo en una alerta; quien lo deja para después descubre ambos en el lugar equivocado, el primero en la queja del cliente y el segundo en la factura.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Necesito una plataforma dedicada de observabilidad de LLM?',
+      question: '¿Necesito una plataforma dedicada de observabilidad de LLM?',
       answer:
-        'No para empezar. Un middleware que envuelve la llamada del modelo, calcula costo por tokens, emite un span por fase y loguea con redaccion cabe en pocas centenas de lineas y entrega la mayor parte del valor. Las plataformas dedicadas ayudan cuando el volumen crece y quieres visualizacion de trace lista y eval integrado, pero adoptar una demasiado pronto agrega costo y dependencia antes de que entiendas que necesitas medir. Instrumenta los tres ejes primero; elige la herramienta despues, sabiendo que resuelve.',
+        'No para empezar. Un middleware que envuelve la llamada del modelo, calcula costo por tokens, emite un span por fase y loguea con redacción cabe en pocas centenas de líneas y entrega la mayor parte del valor. Las plataformas dedicadas ayudan cuando el volumen crece y quieres visualización de trace lista y eval integrado, pero adoptar una demasiado pronto agrega costo y dependencia antes de que entiendas qué necesitas medir. Instrumenta los tres ejes primero; elige la herramienta después, sabiendo qué resuelve.',
     },
     {
-      question: 'Como mido calidad si no tengo la respuesta correcta en produccion?',
+      question: '¿Cómo mido calidad si no tengo la respuesta correcta en producción?',
       answer:
-        'Con senales indirectas combinadas, ninguna definitiva sola: tasa de formato invalido, tasa de rechazo, respuestas cortadas por max_tokens, senales del usuario (reintento, reformulacion, thumbs down, escalada) y un LLM como juez corriendo sobre una muestra del trafico (1 a 5 por ciento). Cada uno es un proxy imperfecto, pero el conjunto se vuelve una metrica de calidad continua que sube y baja a lo largo del tiempo y dispara alerta cuando cae, permitiendo detectar degradacion antes de que el cliente se queje.',
+        'Con señales indirectas combinadas, ninguna definitiva sola: tasa de formato inválido, tasa de rechazo, respuestas cortadas por max_tokens, señales del usuario (reintento, reformulación, thumbs down, escalada) y un LLM como juez corriendo sobre una muestra del tráfico (1 a 5 por ciento). Cada uno es un proxy imperfecto, pero el conjunto se vuelve una métrica de calidad continua que sube y baja a lo largo del tiempo y dispara alerta cuando cae, permitiendo detectar degradación antes de que el cliente se queje.',
     },
     {
-      question: 'Como calculo el costo real de cada llamada?',
+      question: '¿Cómo calculo el costo real de cada llamada?',
       answer:
-        'Cada respuesta del proveedor trae el numero de tokens de entrada y de salida; multiplica cada uno por el precio por millon de tokens del modelo (entrada y salida tienen precios distintos) y suma. Los tokens leidos del prompt cache cuestan una fraccion del precio de entrada, asi que cuentalos aparte. Anexa ese costo al span de la llamada y agrega por ruta, por usuario y por dia. El error comun es mirar solo el total de la cuenta; el valor esta en saber que ruta y que usuario generan el gasto.',
+        'Cada respuesta del proveedor trae el número de tokens de entrada y de salida; multiplica cada uno por el precio por millón de tokens del modelo (entrada y salida tienen precios distintos) y suma. Los tokens leídos del prompt cache cuestan una fracción del precio de entrada, así que cuéntalos aparte. Anexa ese costo al span de la llamada y agrega por ruta, por usuario y por día. El error común es mirar solo el total de la cuenta; el valor está en saber qué ruta y qué usuario generan el gasto.',
     },
   ],
   conclusion: {
-    title: 'La observabilidad es lo que convierte un sistema de LLM de caja negra en operacion',
+    title: 'La observabilidad es lo que convierte un sistema de LLM de caja negra en operación',
     description:
-      'Tracing por fase, costo por llamada, senales de calidad y alertas con contexto son el minimo para operar LLM sin sorpresa de factura ni regresion invisible. Puedo instrumentar estas tres dimensiones en tu producto, del middleware al dashboard, integradas a tu stack y listas para escalar.',
+      'Tracing por fase, costo por llamada, señales de calidad y alertas con contexto son el mínimo para operar LLM sin sorpresa de factura ni regresión invisible. Puedo instrumentar estas tres dimensiones en tu producto, del middleware al dashboard, integradas a tu stack y listas para escalar.',
     cta: 'Hablar sobre observabilidad de mi sistema de IA',
   },
   related: [
-    { label: 'Orquestacion de agentes de IA en produccion', to: '/blog/orquestracao-agentes-ia-producao' },
-    { label: 'Evaluacion continua de bots: del eval manual al automatico', to: '/blog/avaliacao-continua-bots-eval-automatico' },
+    { label: 'Orquestación de agentes de IA en producción', to: '/blog/orquestracao-agentes-ia-producao' },
+    { label: 'Evaluación continua de bots: del eval manual al automático', to: '/blog/avaliacao-continua-bots-eval-automatico' },
     { label: 'Observabilidad y confiabilidad', to: '/servicos/observabilidade-e-confiabilidade' },
     // slug de servico e o mesmo nos 3 idiomas
   ],
