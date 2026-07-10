@@ -4,25 +4,25 @@
 
 const pt = {
   intro:
-    'Quase todo calculo de ROI de automacao com IA que circula por ai esta errado, e errado para mais. A conta ingenua pega o numero de mensagens que o bot respondeu, multiplica pelo custo de um atendente humano e declara uma economia gigante. O problema e que mensagem respondida nao e jornada resolvida, e custo de licenca nao e custo total. Este artigo aplica logica de FinOps e estrategia ao tema: por que o ROI ingenuo engana, qual e o custo total de operar IA, como montar a formula de ROI por jornada com contencao real, como medir contencao de verdade, qual o horizonte de payback e as armadilhas que destroem qualquer estimativa. Nenhum valor de mercado e inventado aqui; tudo entra como variavel para voce preencher com os seus numeros.',
+    'Quase todo cálculo de ROI de automação com IA que circula por aí está errado, e errado para mais. A conta ingênua pega o número de mensagens que o bot respondeu, multiplica pelo custo de um atendente humano e declara uma economia gigante. O problema é que mensagem respondida não é jornada resolvida, e custo de licença não é custo total. Este artigo aplica lógica de FinOps e estratégia ao tema: por que o ROI ingênuo engana, qual é o custo total de operar IA, como montar a fórmula de ROI por jornada com contenção real, como medir contenção de verdade, qual o horizonte de payback e as armadilhas que destroem qualquer estimativa. Nenhum valor de mercado é inventado aqui; tudo entra como variável para você preencher com os seus números.',
   sections: [
     {
-      title: 'Por que o ROI ingenuo engana',
+      title: 'Por que o ROI ingênuo engana',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O calculo ingenuo costuma ser este: "o bot respondeu 10 mil mensagens este mes, um atendente custaria X por mensagem, logo economizamos 10 mil vezes X". Tres erros se escondem nessa frase. O primeiro e confundir mensagem respondida com problema resolvido: o bot pode ter respondido 10 mil vezes e mesmo assim metade dos clientes acabou caindo no humano ou voltou no dia seguinte, o que significa que a jornada nao foi contida e o custo humano nao foi evitado. O segundo erro e tratar o custo da automacao como zero ou quase zero, ignorando tokens, infra, build, manutencao e curadoria de base. O terceiro e nao ter baseline: sem saber quanto custava resolver aquela jornada antes da IA, qualquer economia declarada e um chute. ROI honesto exige contencao real, qualidade preservada e custo total na conta; sem esses tres, o numero so serve para enganar quem aprova o orcamento.',
+            'O cálculo ingênuo costuma ser este: "o bot respondeu 10 mil mensagens este mês, um atendente custaria X por mensagem, logo economizamos 10 mil vezes X". Três erros se escondem nessa frase. O primeiro é confundir mensagem respondida com problema resolvido: o bot pode ter respondido 10 mil vezes e mesmo assim metade dos clientes acabou caindo no humano ou voltou no dia seguinte, o que significa que a jornada não foi contida e o custo humano não foi evitado. O segundo erro é tratar o custo da automação como zero ou quase zero, ignorando tokens, infra, build, manutenção e curadoria de base. O terceiro é não ter baseline: sem saber quanto custava resolver aquela jornada antes da IA, qualquer economia declarada é um chute. ROI honesto exige contenção real, qualidade preservada e custo total na conta; sem esses três, o número só serve para enganar quem aprova o orçamento.',
         },
       ],
     },
     {
-      title: 'O custo TOTAL da automacao',
+      title: 'O custo TOTAL da automação',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Antes de falar em retorno, e preciso somar tudo o que a automacao consome. O custo de IA nao e so o preco do modelo: ele tem componentes recorrentes (tokens, infra) e componentes de capital e manutencao que muita gente esquece. A tabela abaixo lista as categorias que precisam entrar no denominador do ROI. Os valores variam por fornecedor, regiao e maturidade do projeto, entao trate-os como variaveis a preencher, nao como numeros fixos.',
+            'Antes de falar em retorno, é preciso somar tudo o que a automação consome. O custo de IA não é só o preço do modelo: ele tem componentes recorrentes (tokens, infra) e componentes de capital e manutenção que muita gente esquece. A tabela abaixo lista as categorias que precisam entrar no denominador do ROI. Os valores variam por fornecedor, região e maturidade do projeto, então trate-os como variáveis a preencher, não como números fixos.',
         },
         {
           type: 'table',
@@ -30,56 +30,56 @@ const pt = {
           rows: [
             [
               'LLM / tokens',
-              'Tokens de entrada e saida, embeddings, reranking, retries',
+              'Tokens de entrada e saída, embeddings, reranking, retries',
               'Recorrente (escala com volume)',
-              'So conta o caso feliz e ignora retries, prompts longos e contexto de RAG',
+              'Só conta o caso feliz e ignora retries, prompts longos e contexto de RAG',
             ],
             [
               'Infra',
               'Hospedagem, banco vetorial, filas, observabilidade, gateway',
               'Recorrente',
-              'Tratada como custo fixo invisivel ate a conta da nuvem chegar',
+              'Tratada como custo fixo invisível até a conta da nuvem chegar',
             ],
             [
               'Build',
-              'Engenharia inicial, integracao, prompts, fluxos, testes',
+              'Engenharia inicial, integração, prompts, fluxos, testes',
               'Pontual (amortizado)',
-              'Considerado custo unico, mas precisa ser diluido no horizonte do ROI',
+              'Considerado custo único, mas precisa ser diluído no horizonte do ROI',
             ],
             [
-              'Manutencao',
-              'Ajustes de prompt, correcao de regressao, atualizacao de integracoes',
+              'Manutenção',
+              'Ajustes de prompt, correção de regressão, atualização de integrações',
               'Recorrente',
-              'Some do orcamento porque "ja foi entregue", quando na verdade nunca para',
+              'Some do orçamento porque "já foi entregue", quando na verdade nunca para',
             ],
             [
               'Curadoria de base',
               'Atualizar e revisar a base de conhecimento que alimenta o RAG',
               'Recorrente',
-              'Sem curadoria a contencao cai e o custo de erro sobe silenciosamente',
+              'Sem curadoria a contenção cai e o custo de erro sobe silenciosamente',
             ],
             [
               'Custo de erro / escalonamento',
               'Handoff para humano, retrabalho, reabertura, dano de uma resposta errada',
-              'Recorrente (variavel)',
-              'Tratado como zero, quando e o que mais corroi o ganho liquido',
+              'Recorrente (variável)',
+              'Tratado como zero, quando é o que mais corrói o ganho líquido',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A leitura de FinOps aqui e direta: o custo recorrente (tokens, infra, manutencao, curadoria, escalonamento) e o que determina se a automacao continua valendo a pena ao longo do tempo, enquanto o build e um investimento inicial que se dilui. Quem so olha o preco do modelo enxerga uma fracao do custo real e superestima o ROI.',
+            'A leitura de FinOps aqui é direta: o custo recorrente (tokens, infra, manutenção, curadoria, escalonamento) é o que determina se a automação continua valendo a pena ao longo do tempo, enquanto o build é um investimento inicial que se dilui. Quem só olha o preço do modelo enxerga uma fração do custo real e superestima o ROI.',
         },
       ],
     },
     {
-      title: 'A formula de ROI por jornada',
+      title: 'A fórmula de ROI por jornada',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O ROI nao deve ser calculado por mensagem, e sim por jornada. Uma jornada e um problema do cliente do inicio ao fim. O ganho de uma automacao e o custo humano que ela realmente evitou: o volume de jornadas multiplicado pela taxa de contencao (quantas o bot resolveu de fato) multiplicado pelo custo que cada atendimento humano teria. Desse ganho bruto voce subtrai o custo total da automacao (recorrente mais build amortizado) para chegar ao ganho liquido. O ROI e o ganho liquido sobre o custo total. A funcao abaixo formaliza isso e ja calcula tambem o payback. Os inputs sao ilustrativos: troque pelos seus.',
+            'O ROI não deve ser calculado por mensagem, e sim por jornada. Uma jornada é um problema do cliente do início ao fim. O ganho de uma automação é o custo humano que ela realmente evitou: o volume de jornadas multiplicado pela taxa de contenção (quantas o bot resolveu de fato) multiplicado pelo custo que cada atendimento humano teria. Desse ganho bruto você subtrai o custo total da automação (recorrente mais build amortizado) para chegar ao ganho líquido. O ROI é o ganho líquido sobre o custo total. A função abaixo formaliza isso e já calcula também o payback. Os inputs são ilustrativos: troque pelos seus.',
         },
         {
           type: 'code',
@@ -144,32 +144,32 @@ console.log(roiAutomacao(exemplo));`,
         {
           type: 'paragraph',
           value:
-            'Repare na sensibilidade: o ganho bruto e linear na taxa de contencao, enquanto o custo total e quase inelastico no curto prazo. Isso significa que o ROI depende muito mais de quanto o bot realmente resolve do que de qualquer otimizacao de preco por token. Por isso a proxima secao trata de medir contencao de verdade.',
+            'Repare na sensibilidade: o ganho bruto é linear na taxa de contenção, enquanto o custo total é quase inelástico no curto prazo. Isso significa que o ROI depende muito mais de quanto o bot realmente resolve do que de qualquer otimização de preço por token. Por isso a próxima seção trata de medir contenção de verdade.',
         },
       ],
     },
     {
-      title: 'Taxa de contencao: como medir de verdade',
+      title: 'Taxa de contenção: como medir de verdade',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Contencao nao e "o bot respondeu". Contencao e "o bot resolveu". Uma jornada so conta como contida quando satisfaz duas condicoes simultaneas: foi resolvida sem handoff para humano E sem reabertura dentro de uma janela razoavel. Se qualquer uma falha, a jornada nao foi contida e o custo humano nao foi evitado de fato.',
+            'Contenção não é "o bot respondeu". Contenção é "o bot resolveu". Uma jornada só conta como contida quando satisfaz duas condições simultâneas: foi resolvida sem handoff para humano E sem reabertura dentro de uma janela razoável. Se qualquer uma falha, a jornada não foi contida e o custo humano não foi evitado de fato.',
         },
         {
           type: 'list',
           items: [
-            'Resolvida sem handoff: a jornada terminou no proprio bot, sem ser transferida para um atendente humano. Transferiu, nao conteve.',
-            'Sem reabertura: o cliente nao voltou com o mesmo problema dentro da janela de acompanhamento (por exemplo 24 a 72 horas). Voltou, a primeira resolucao foi falsa.',
-            'Medida por jornada, nao por mensagem: a unidade e o problema do cliente, nao a quantidade de mensagens trocadas no caminho.',
-            'Com baseline: compare a taxa de contencao com o periodo pre-automacao ou com um grupo de controle, senao voce nao sabe quanto a IA realmente mudou.',
-            'Segmentada por intencao: a contencao de "segunda via de boleto" e muito diferente da de "cancelamento com retencao"; uma media unica esconde onde o bot ganha e onde perde.',
+            'Resolvida sem handoff: a jornada terminou no próprio bot, sem ser transferida para um atendente humano. Transferiu, não conteve.',
+            'Sem reabertura: o cliente não voltou com o mesmo problema dentro da janela de acompanhamento (por exemplo 24 a 72 horas). Voltou, a primeira resolução foi falsa.',
+            'Medida por jornada, não por mensagem: a unidade é o problema do cliente, não a quantidade de mensagens trocadas no caminho.',
+            'Com baseline: compare a taxa de contenção com o período pré-automação ou com um grupo de controle, senão você não sabe quanto a IA realmente mudou.',
+            'Segmentada por intenção: a contenção de "segunda via de boleto" é muito diferente da de "cancelamento com retenção"; uma média única esconde onde o bot ganha e onde perde.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A diferenca entre deflexao (o bot respondeu e o cliente nao insistiu naquele instante) e resolucao (o problema acabou) costuma ser de varios pontos percentuais. Usar deflexao no lugar de resolucao infla a taxa de contencao e, por consequencia, o ROI. Meca resolucao com as duas condicoes acima e use isso na formula.',
+            'A diferença entre deflexão (o bot respondeu e o cliente não insistiu naquele instante) e resolução (o problema acabou) costuma ser de vários pontos percentuais. Usar deflexão no lugar de resolução infla a taxa de contenção e, por consequência, o ROI. Meça resolução com as duas condições acima e use isso na fórmula.',
         },
       ],
     },
@@ -179,22 +179,22 @@ console.log(roiAutomacao(exemplo));`,
         {
           type: 'paragraph',
           value:
-            'ROI mensal positivo nao significa que o projeto ja se pagou. O build e um investimento de capital que precisa ser recuperado pelo ganho liquido acumulado ao longo do tempo. Payback e o numero de meses ate o ganho acumulado cobrir esse investimento inicial. Pensar em horizonte evita dois erros opostos: declarar vitoria cedo demais e desistir cedo demais.',
+            'ROI mensal positivo não significa que o projeto já se pagou. O build é um investimento de capital que precisa ser recuperado pelo ganho líquido acumulado ao longo do tempo. Payback é o número de meses até o ganho acumulado cobrir esse investimento inicial. Pensar em horizonte evita dois erros opostos: declarar vitória cedo demais e desistir cedo demais.',
         },
         {
           type: 'ordered',
           items: [
-            'Defina o baseline: quanto custava resolver essas jornadas antes da IA. Sem esse ponto de partida nao ha como medir ganho real.',
-            'Estime o ganho liquido recorrente: ganho bruto (volume x contencao real x custo humano evitado) menos o custo recorrente mensal, ainda sem contar o build.',
-            'Calcule o payback: divida o custo de build pelo ganho liquido recorrente mensal. O resultado e em quantos meses o investimento inicial se paga.',
-            'Compare com o horizonte de validade da solucao: se o payback e de 8 meses mas a base de conhecimento muda a cada 3, o investimento pode nunca quitar de forma estavel.',
-            'Reavalie periodicamente: contencao, volume e custos mudam. Recalcule ROI e payback a cada ciclo para confirmar que a automacao continua no verde, e nao apenas no mes do lancamento.',
+            'Defina o baseline: quanto custava resolver essas jornadas antes da IA. Sem esse ponto de partida não há como medir ganho real.',
+            'Estime o ganho líquido recorrente: ganho bruto (volume x contenção real x custo humano evitado) menos o custo recorrente mensal, ainda sem contar o build.',
+            'Calcule o payback: divida o custo de build pelo ganho líquido recorrente mensal. O resultado é em quantos meses o investimento inicial se paga.',
+            'Compare com o horizonte de validade da solução: se o payback é de 8 meses mas a base de conhecimento muda a cada 3, o investimento pode nunca quitar de forma estável.',
+            'Reavalie periodicamente: contenção, volume e custos mudam. Recalcule ROI e payback a cada ciclo para confirmar que a automação continua no verde, e não apenas no mês do lançamento.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Um payback curto com contencao estavel e o cenario ideal; um payback longo so se justifica se o volume e a qualidade tendem a crescer. A decisao de seguir, ajustar ou desligar a automacao deve sair desse calculo, nao da empolgacao do lancamento.',
+            'Um payback curto com contenção estável é o cenário ideal; um payback longo só se justifica se o volume e a qualidade tendem a crescer. A decisão de seguir, ajustar ou desligar a automação deve sair desse cálculo, não da empolgação do lançamento.',
         },
       ],
     },
@@ -204,52 +204,52 @@ console.log(roiAutomacao(exemplo));`,
         {
           type: 'paragraph',
           value:
-            'Mesmo com a formula certa, alguns erros recorrentes corrompem o calculo. Eles tem em comum o efeito de inflar o ganho ou esconder o custo, sempre empurrando o ROI para cima de forma artificial.',
+            'Mesmo com a fórmula certa, alguns erros recorrentes corrompem o cálculo. Eles têm em comum o efeito de inflar o ganho ou esconder o custo, sempre empurrando o ROI para cima de forma artificial.',
         },
         {
           type: 'list',
           items: [
-            'Medir deflexao e nao resolucao: contar como contido tudo que o bot respondeu, mesmo quando o cliente voltou ou foi para o humano. E a armadilha numero um e a que mais infla o ROI.',
-            'Ignorar o custo de manutencao: assumir que depois do build a automacao roda sozinha. Prompt, integracao e base exigem cuidado continuo, e esse custo recorrente e parte do denominador.',
-            'Nao ter baseline: declarar economia sem saber o custo anterior por jornada. Sem ponto de comparacao, o ROI e narrativa, nao numero.',
+            'Medir deflexão e não resolução: contar como contido tudo que o bot respondeu, mesmo quando o cliente voltou ou foi para o humano. É a armadilha número um e a que mais infla o ROI.',
+            'Ignorar o custo de manutenção: assumir que depois do build a automação roda sozinha. Prompt, integração e base exigem cuidado contínuo, e esse custo recorrente é parte do denominador.',
+            'Não ter baseline: declarar economia sem saber o custo anterior por jornada. Sem ponto de comparação, o ROI é narrativa, não número.',
             'Esquecer o custo de erro: uma resposta errada pode gerar retrabalho, reabertura ou dano que custa mais do que o atendimento humano que se quis evitar.',
-            'Amortizar mal o build: jogar todo o custo inicial em um mes (e declarar prejuizo) ou nunca dilui-lo (e declarar lucro irreal). O horizonte de amortizacao precisa ser explicito.',
+            'Amortizar mal o build: jogar todo o custo inicial em um mês (e declarar prejuízo) ou nunca diluí-lo (e declarar lucro irreal). O horizonte de amortização precisa ser explícito.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A defesa contra todas elas e a mesma disciplina de FinOps: medir resolucao real, somar o custo total e comparar contra um baseline honesto. Com esses tres pilares, o ROI deixa de ser uma peca de marketing interno e vira um instrumento de decisao.',
+            'A defesa contra todas elas é a mesma disciplina de FinOps: medir resolução real, somar o custo total e comparar contra um baseline honesto. Com esses três pilares, o ROI deixa de ser uma peça de marketing interno e vira um instrumento de decisão.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Qual a diferenca entre deflexao e contencao real?',
+      question: 'Qual a diferença entre deflexão e contenção real?',
       answer:
-        'Deflexao e o bot ter respondido e o cliente nao ter insistido naquele momento; contencao real e a jornada ter sido resolvida sem handoff para humano e sem reabertura na janela de acompanhamento. Deflexao quase sempre e maior que contencao, e usar uma no lugar da outra infla o ROI. No calculo de retorno, use apenas resolucao verificada.',
+        'Deflexão é o bot ter respondido e o cliente não ter insistido naquele momento; contenção real é a jornada ter sido resolvida sem handoff para humano e sem reabertura na janela de acompanhamento. Deflexão quase sempre é maior que contenção, e usar uma no lugar da outra infla o ROI. No cálculo de retorno, use apenas resolução verificada.',
     },
     {
-      question: 'O custo da automacao e so o preco dos tokens?',
+      question: 'O custo da automação é só o preço dos tokens?',
       answer:
-        'Nao. Tokens sao apenas uma parte do custo recorrente. O custo total inclui infra, manutencao continua, curadoria da base de conhecimento, custo de erro e escalonamento, alem do build inicial amortizado no horizonte. Quem soma apenas tokens enxerga uma fracao do denominador e superestima o ROI de forma sistematica.',
+        'Não. Tokens são apenas uma parte do custo recorrente. O custo total inclui infra, manutenção contínua, curadoria da base de conhecimento, custo de erro e escalonamento, além do build inicial amortizado no horizonte. Quem soma apenas tokens enxerga uma fração do denominador e superestima o ROI de forma sistemática.',
     },
     {
-      question: 'Por que voce nao da numeros de mercado prontos?',
+      question: 'Por que você não dá números de mercado prontos?',
       answer:
-        'Porque custo de modelo, infra e atendimento variam por fornecedor, regiao, volume e maturidade do projeto, e mudam com frequencia. Trabalhar com valores fixos leva a decisoes erradas assim que a realidade muda. Por isso a formula trata tudo como variavel: voce preenche com os seus numeros, com baseline proprio, e obtem um ROI que reflete a sua operacao.',
+        'Porque custo de modelo, infra e atendimento variam por fornecedor, região, volume e maturidade do projeto, e mudam com frequência. Trabalhar com valores fixos leva a decisões erradas assim que a realidade muda. Por isso a fórmula trata tudo como variável: você preenche com os seus números, com baseline próprio, e obtém um ROI que reflete a sua operação.',
     },
   ],
   conclusion: {
-    title: 'ROI honesto e contencao real menos custo total',
+    title: 'ROI honesto é contenção real menos custo total',
     description:
-      'Calcular retorno de automacao com IA de forma honesta exige medir contencao de verdade, somar o custo total e comparar contra um baseline proprio. A conta ingenua de mensagens vezes custo humano quase sempre superestima o ganho. Se voce quer montar esse modelo com os numeros da sua operacao e descobrir o ROI e o payback reais, posso ajudar nessa analise.',
-    cta: 'Calcular o ROI da minha automacao',
+      'Calcular retorno de automação com IA de forma honesta exige medir contenção de verdade, somar o custo total e comparar contra um baseline próprio. A conta ingênua de mensagens vezes custo humano quase sempre superestima o ganho. Se você quer montar esse modelo com os números da sua operação e descobrir o ROI e o payback reais, posso ajudar nessa análise.',
+    cta: 'Calcular o ROI da minha automação',
   },
   related: [
-    { label: 'Roadmap de automacao de suporte com IA em 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
-    { label: 'Custos da WhatsApp Cloud API e otimizacao', to: '/blog/custos-whatsapp-cloud-api-otimizacao' },
+    { label: 'Roadmap de automação de suporte com IA em 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
+    { label: 'Custos da WhatsApp Cloud API e otimização', to: '/blog/custos-whatsapp-cloud-api-otimizacao' },
     { label: 'Chatbots e IA', to: '/servicos/chatbots-e-ia' },
   ],
 };
@@ -508,29 +508,29 @@ console.log(automationRoi(example));`,
 
 const es = {
   intro:
-    'Casi todo calculo de ROI de automatizacion con IA que circula por ahi esta mal, y mal por exceso. La cuenta ingenua toma el numero de mensajes que el bot respondio, lo multiplica por el costo de un agente humano y declara un ahorro gigante. El problema es que un mensaje respondido no es una jornada resuelta, y un costo de licencia no es un costo total. Este articulo aplica logica de FinOps y estrategia al tema: por que el ROI ingenuo engana, cual es el costo total de operar IA, como armar la formula de ROI por jornada con contencion real, como medir contencion de verdad, cual es el horizonte de payback y las trampas que destruyen cualquier estimacion. Aqui no se inventa ningun valor de mercado; todo entra como variable para que lo completes con tus propios numeros.',
+    'Casi todo cálculo de ROI de automatización con IA que circula por ahí está mal, y mal por exceso. La cuenta ingenua toma el número de mensajes que el bot respondió, lo multiplica por el costo de un agente humano y declara un ahorro gigante. El problema es que un mensaje respondido no es una jornada resuelta, y un costo de licencia no es un costo total. Este artículo aplica lógica de FinOps y estrategia al tema: por qué el ROI ingenuo engaña, cuál es el costo total de operar IA, cómo armar la fórmula de ROI por jornada con contención real, cómo medir contención de verdad, cuál es el horizonte de payback y las trampas que destruyen cualquier estimación. Aquí no se inventa ningún valor de mercado; todo entra como variable para que lo completes con tus propios números.',
   sections: [
     {
-      title: 'Por que el ROI ingenuo engana',
+      title: 'Por qué el ROI ingenuo engaña',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El calculo ingenuo suele ser este: "el bot respondio 10 mil mensajes este mes, un agente costaria X por mensaje, asi que ahorramos 10 mil por X". Tres errores se esconden en esa frase. El primero es confundir mensaje respondido con problema resuelto: el bot pudo responder 10 mil veces y aun asi la mitad de los clientes termino en el humano o volvio al dia siguiente, lo que significa que la jornada no fue contenida y el costo humano no se evito. El segundo error es tratar el costo de la automatizacion como cero o casi cero, ignorando tokens, infra, build, mantenimiento y curaduria de base. El tercero es no tener baseline: sin saber cuanto costaba resolver esa jornada antes de la IA, cualquier ahorro declarado es una conjetura. Un ROI honesto exige contencion real, calidad preservada y costo total en la cuenta; sin esos tres, el numero solo sirve para enganar a quien aprueba el presupuesto.',
+            'El cálculo ingenuo suele ser este: "el bot respondió 10 mil mensajes este mes, un agente costaría X por mensaje, así que ahorramos 10 mil por X". Tres errores se esconden en esa frase. El primero es confundir mensaje respondido con problema resuelto: el bot pudo responder 10 mil veces y aún así la mitad de los clientes terminó en el humano o volvió al día siguiente, lo que significa que la jornada no fue contenida y el costo humano no se evitó. El segundo error es tratar el costo de la automatización como cero o casi cero, ignorando tokens, infra, build, mantenimiento y curaduría de base. El tercero es no tener baseline: sin saber cuánto costaba resolver esa jornada antes de la IA, cualquier ahorro declarado es una conjetura. Un ROI honesto exige contención real, calidad preservada y costo total en la cuenta; sin esos tres, el número solo sirve para engañar a quien aprueba el presupuesto.',
         },
       ],
     },
     {
-      title: 'El costo TOTAL de la automatizacion',
+      title: 'El costo TOTAL de la automatización',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Antes de hablar de retorno, hay que sumar todo lo que consume la automatizacion. El costo de IA no es solo el precio del modelo: tiene componentes recurrentes (tokens, infra) y componentes de capital y mantenimiento que mucha gente olvida. La tabla siguiente lista las categorias que deben entrar en el denominador del ROI. Los valores varian por proveedor, region y madurez del proyecto, asi que tratalos como variables a completar, no como numeros fijos.',
+            'Antes de hablar de retorno, hay que sumar todo lo que consume la automatización. El costo de IA no es solo el precio del modelo: tiene componentes recurrentes (tokens, infra) y componentes de capital y mantenimiento que mucha gente olvida. La tabla siguiente lista las categorías que deben entrar en el denominador del ROI. Los valores varían por proveedor, región y madurez del proyecto, así que trátalos como variables a completar, no como números fijos.',
         },
         {
           type: 'table',
-          columns: ['Categoria de costo', 'Que incluye', 'Recurrente o puntual', 'Por que suele subestimarse'],
+          columns: ['Categoría de costo', 'Qué incluye', 'Recurrente o puntual', 'Por qué suele subestimarse'],
           rows: [
             [
               'LLM / tokens',
@@ -546,44 +546,44 @@ const es = {
             ],
             [
               'Build',
-              'Ingenieria inicial, integracion, prompts, flujos, pruebas',
+              'Ingeniería inicial, integración, prompts, flujos, pruebas',
               'Puntual (amortizado)',
-              'Visto como costo unico, pero hay que diluirlo en el horizonte del ROI',
+              'Visto como costo único, pero hay que diluirlo en el horizonte del ROI',
             ],
             [
               'Mantenimiento',
-              'Ajustes de prompt, correccion de regresion, actualizacion de integraciones',
+              'Ajustes de prompt, corrección de regresión, actualización de integraciones',
               'Recurrente',
-              'Desaparece del presupuesto porque "ya se entrego", cuando en realidad nunca para',
+              'Desaparece del presupuesto porque "ya se entregó", cuando en realidad nunca para',
             ],
             [
-              'Curaduria de base',
+              'Curaduría de base',
               'Actualizar y revisar la base de conocimiento que alimenta el RAG',
               'Recurrente',
-              'Sin curaduria la contencion baja y el costo de error sube en silencio',
+              'Sin curaduría la contención baja y el costo de error sube en silencio',
             ],
             [
               'Costo de error / escalamiento',
-              'Handoff al humano, retrabajo, reapertura, dano de una respuesta equivocada',
+              'Handoff al humano, retrabajo, reapertura, daño de una respuesta equivocada',
               'Recurrente (variable)',
-              'Tratado como cero, cuando es lo que mas corroe la ganancia neta',
+              'Tratado como cero, cuando es lo que más corroe la ganancia neta',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La lectura de FinOps aqui es directa: el costo recurrente (tokens, infra, mantenimiento, curaduria, escalamiento) es lo que determina si la automatizacion sigue valiendo la pena con el tiempo, mientras que el build es una inversion inicial que se diluye. Quien solo mira el precio del modelo ve una fraccion del costo real y sobreestima el ROI.',
+            'La lectura de FinOps aquí es directa: el costo recurrente (tokens, infra, mantenimiento, curaduría, escalamiento) es lo que determina si la automatización sigue valiendo la pena con el tiempo, mientras que el build es una inversión inicial que se diluye. Quien solo mira el precio del modelo ve una fracción del costo real y sobreestima el ROI.',
         },
       ],
     },
     {
-      title: 'La formula de ROI por jornada',
+      title: 'La fórmula de ROI por jornada',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El ROI no debe calcularse por mensaje, sino por jornada. Una jornada es un problema del cliente de principio a fin. La ganancia de una automatizacion es el costo humano que realmente evito: el volumen de jornadas multiplicado por la tasa de contencion (cuantas resolvio el bot de verdad) multiplicado por el costo que habria tenido cada atencion humana. A esa ganancia bruta le restas el costo total de la automatizacion (recurrente mas build amortizado) para llegar a la ganancia neta. El ROI es la ganancia neta sobre el costo total. La funcion siguiente formaliza esto y tambien calcula el payback. Los inputs son ilustrativos: cambialos por los tuyos.',
+            'El ROI no debe calcularse por mensaje, sino por jornada. Una jornada es un problema del cliente de principio a fin. La ganancia de una automatización es el costo humano que realmente evitó: el volumen de jornadas multiplicado por la tasa de contención (cuántas resolvió el bot de verdad) multiplicado por el costo que habría tenido cada atención humana. A esa ganancia bruta le restas el costo total de la automatización (recurrente más build amortizado) para llegar a la ganancia neta. El ROI es la ganancia neta sobre el costo total. La función siguiente formaliza esto y también calcula el payback. Los inputs son ilustrativos: cámbialos por los tuyos.',
         },
         {
           type: 'code',
@@ -648,112 +648,112 @@ console.log(roiAutomatizacion(ejemplo));`,
         {
           type: 'paragraph',
           value:
-            'Fijate en la sensibilidad: la ganancia bruta es lineal en la tasa de contencion, mientras que el costo total es casi inelastico en el corto plazo. Esto significa que el ROI depende mucho mas de cuanto resuelve el bot de verdad que de cualquier optimizacion de precio por token. Por eso la proxima seccion trata de medir contencion de verdad.',
+            'Fíjate en la sensibilidad: la ganancia bruta es lineal en la tasa de contención, mientras que el costo total es casi inelástico en el corto plazo. Esto significa que el ROI depende mucho más de cuánto resuelve el bot de verdad que de cualquier optimización de precio por token. Por eso la próxima sección trata de medir contención de verdad.',
         },
       ],
     },
     {
-      title: 'Tasa de contencion: como medir de verdad',
+      title: 'Tasa de contención: cómo medir de verdad',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Contencion no es "el bot respondio". Contencion es "el bot resolvio". Una jornada solo cuenta como contenida cuando cumple dos condiciones a la vez: fue resuelta sin handoff al humano Y sin reapertura dentro de una ventana razonable. Si alguna falla, la jornada no fue contenida y el costo humano no se evito de verdad.',
+            'Contención no es "el bot respondió". Contención es "el bot resolvió". Una jornada solo cuenta como contenida cuando cumple dos condiciones a la vez: fue resuelta sin handoff al humano Y sin reapertura dentro de una ventana razonable. Si alguna falla, la jornada no fue contenida y el costo humano no se evitó de verdad.',
         },
         {
           type: 'list',
           items: [
-            'Resuelta sin handoff: la jornada termino en el propio bot, sin ser transferida a un agente humano. Si se transfirio, no hubo contencion.',
-            'Sin reapertura: el cliente no volvio con el mismo problema dentro de la ventana de seguimiento (por ejemplo 24 a 72 horas). Si volvio, la primera resolucion fue falsa.',
+            'Resuelta sin handoff: la jornada terminó en el propio bot, sin ser transferida a un agente humano. Si se transfirió, no hubo contención.',
+            'Sin reapertura: el cliente no volvió con el mismo problema dentro de la ventana de seguimiento (por ejemplo 24 a 72 horas). Si volvió, la primera resolución fue falsa.',
             'Medida por jornada, no por mensaje: la unidad es el problema del cliente, no la cantidad de mensajes intercambiados en el camino.',
-            'Con baseline: compara la tasa de contencion con el periodo previo a la automatizacion o con un grupo de control, si no, no sabes cuanto cambio la IA en realidad.',
-            'Segmentada por intencion: la contencion de "duplicado de factura" es muy distinta de la de "cancelacion con retencion"; un promedio unico esconde donde el bot gana y donde pierde.',
+            'Con baseline: compara la tasa de contención con el período previo a la automatización o con un grupo de control, si no, no sabes cuánto cambió la IA en realidad.',
+            'Segmentada por intención: la contención de "duplicado de factura" es muy distinta de la de "cancelación con retención"; un promedio único esconde dónde el bot gana y dónde pierde.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La diferencia entre deflexion (el bot respondio y el cliente no insistio en ese momento) y resolucion (el problema termino) suele ser de varios puntos porcentuales. Usar deflexion en lugar de resolucion infla la tasa de contencion y, por consecuencia, el ROI. Mide resolucion con las dos condiciones de arriba y usa eso en la formula.',
+            'La diferencia entre deflexión (el bot respondió y el cliente no insistió en ese momento) y resolución (el problema terminó) suele ser de varios puntos porcentuales. Usar deflexión en lugar de resolución infla la tasa de contención y, por consecuencia, el ROI. Mide resolución con las dos condiciones de arriba y usa eso en la fórmula.',
         },
       ],
     },
     {
-      title: 'Payback y horizonte: cuando la inversion se paga',
+      title: 'Payback y horizonte: cuándo la inversión se paga',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un ROI mensual positivo no significa que el proyecto ya se pago. El build es una inversion de capital que debe recuperarse con la ganancia neta acumulada a lo largo del tiempo. El payback es el numero de meses hasta que la ganancia acumulada cubra esa inversion inicial. Pensar en horizonte evita dos errores opuestos: declarar victoria demasiado pronto y rendirse demasiado pronto.',
+            'Un ROI mensual positivo no significa que el proyecto ya se pagó. El build es una inversión de capital que debe recuperarse con la ganancia neta acumulada a lo largo del tiempo. El payback es el número de meses hasta que la ganancia acumulada cubra esa inversión inicial. Pensar en horizonte evita dos errores opuestos: declarar victoria demasiado pronto y rendirse demasiado pronto.',
         },
         {
           type: 'ordered',
           items: [
-            'Define el baseline: cuanto costaba resolver esas jornadas antes de la IA. Sin ese punto de partida no hay forma de medir la ganancia real.',
-            'Estima la ganancia neta recurrente: ganancia bruta (volumen x contencion real x costo humano evitado) menos el costo recurrente mensual, todavia sin contar el build.',
-            'Calcula el payback: divide el costo de build entre la ganancia neta recurrente mensual. El resultado es en cuantos meses se paga la inversion inicial.',
-            'Compara con el horizonte de validez de la solucion: si el payback es de 8 meses pero la base de conocimiento cambia cada 3, la inversion puede no saldarse nunca de forma estable.',
-            'Reevalua periodicamente: la contencion, el volumen y los costos cambian. Recalcula ROI y payback en cada ciclo para confirmar que la automatizacion sigue en verde, y no solo en el mes del lanzamiento.',
+            'Define el baseline: cuánto costaba resolver esas jornadas antes de la IA. Sin ese punto de partida no hay forma de medir la ganancia real.',
+            'Estima la ganancia neta recurrente: ganancia bruta (volumen x contención real x costo humano evitado) menos el costo recurrente mensual, todavía sin contar el build.',
+            'Calcula el payback: divide el costo de build entre la ganancia neta recurrente mensual. El resultado es en cuántos meses se paga la inversión inicial.',
+            'Compara con el horizonte de validez de la solución: si el payback es de 8 meses pero la base de conocimiento cambia cada 3, la inversión puede no saldarse nunca de forma estable.',
+            'Reevalúa periódicamente: la contención, el volumen y los costos cambian. Recalcula ROI y payback en cada ciclo para confirmar que la automatización sigue en verde, y no solo en el mes del lanzamiento.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Un payback corto con contencion estable es el escenario ideal; un payback largo solo se justifica si el volumen y la calidad tienden a crecer. La decision de seguir, ajustar o apagar la automatizacion debe salir de este calculo, no de la euforia del lanzamiento.',
+            'Un payback corto con contención estable es el escenario ideal; un payback largo solo se justifica si el volumen y la calidad tienden a crecer. La decisión de seguir, ajustar o apagar la automatización debe salir de este cálculo, no de la euforia del lanzamiento.',
         },
       ],
     },
     {
-      title: 'Trampas que destruyen la estimacion',
+      title: 'Trampas que destruyen la estimación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Aun con la formula correcta, algunos errores recurrentes corrompen el calculo. Tienen en comun el efecto de inflar la ganancia o esconder el costo, siempre empujando el ROI hacia arriba de forma artificial.',
+            'Aun con la fórmula correcta, algunos errores recurrentes corrompen el cálculo. Tienen en común el efecto de inflar la ganancia o esconder el costo, siempre empujando el ROI hacia arriba de forma artificial.',
         },
         {
           type: 'list',
           items: [
-            'Medir deflexion y no resolucion: contar como contenido todo lo que el bot respondio, incluso cuando el cliente volvio o paso al humano. Es la trampa numero uno y la que mas infla el ROI.',
-            'Ignorar el costo de mantenimiento: asumir que despues del build la automatizacion funciona sola. Prompt, integracion y base exigen cuidado continuo, y ese costo recurrente es parte del denominador.',
-            'No tener baseline: declarar ahorro sin conocer el costo anterior por jornada. Sin punto de comparacion, el ROI es relato, no numero.',
-            'Olvidar el costo de error: una respuesta equivocada puede generar retrabajo, reapertura o dano que cuesta mas que la atencion humana que se queria evitar.',
-            'Amortizar mal el build: cargar todo el costo inicial en un mes (y declarar perdida) o nunca diluirlo (y declarar una ganancia irreal). El horizonte de amortizacion debe ser explicito.',
+            'Medir deflexión y no resolución: contar como contenido todo lo que el bot respondió, incluso cuando el cliente volvió o pasó al humano. Es la trampa número uno y la que más infla el ROI.',
+            'Ignorar el costo de mantenimiento: asumir que después del build la automatización funciona sola. Prompt, integración y base exigen cuidado continuo, y ese costo recurrente es parte del denominador.',
+            'No tener baseline: declarar ahorro sin conocer el costo anterior por jornada. Sin punto de comparación, el ROI es relato, no número.',
+            'Olvidar el costo de error: una respuesta equivocada puede generar retrabajo, reapertura o daño que cuesta más que la atención humana que se quería evitar.',
+            'Amortizar mal el build: cargar todo el costo inicial en un mes (y declarar pérdida) o nunca diluirlo (y declarar una ganancia irreal). El horizonte de amortización debe ser explícito.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La defensa contra todas ellas es la misma disciplina de FinOps: medir resolucion real, sumar el costo total y comparar contra un baseline honesto. Con esos tres pilares, el ROI deja de ser una pieza de marketing interno y se vuelve un instrumento de decision.',
+            'La defensa contra todas ellas es la misma disciplina de FinOps: medir resolución real, sumar el costo total y comparar contra un baseline honesto. Con esos tres pilares, el ROI deja de ser una pieza de marketing interno y se vuelve un instrumento de decisión.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Cual es la diferencia entre deflexion y contencion real?',
+      question: '¿Cuál es la diferencia entre deflexión y contención real?',
       answer:
-        'La deflexion es que el bot haya respondido y el cliente no haya insistido en ese momento; la contencion real es que la jornada se haya resuelto sin handoff al humano y sin reapertura en la ventana de seguimiento. La deflexion casi siempre es mayor que la contencion, y usar una en lugar de la otra infla el ROI. En el calculo de retorno, usa solo resolucion verificada.',
+        'La deflexión es que el bot haya respondido y el cliente no haya insistido en ese momento; la contención real es que la jornada se haya resuelto sin handoff al humano y sin reapertura en la ventana de seguimiento. La deflexión casi siempre es mayor que la contención, y usar una en lugar de la otra infla el ROI. En el cálculo de retorno, usa solo resolución verificada.',
     },
     {
-      question: 'El costo de la automatizacion es solo el precio de los tokens?',
+      question: '¿El costo de la automatización es solo el precio de los tokens?',
       answer:
-        'No. Los tokens son solo una parte del costo recurrente. El costo total incluye infra, mantenimiento continuo, curaduria de la base de conocimiento, costo de error y escalamiento, ademas del build inicial amortizado en el horizonte. Quien suma solo tokens ve una fraccion del denominador y sobreestima el ROI de forma sistematica.',
+        'No. Los tokens son solo una parte del costo recurrente. El costo total incluye infra, mantenimiento continuo, curaduría de la base de conocimiento, costo de error y escalamiento, además del build inicial amortizado en el horizonte. Quien suma solo tokens ve una fracción del denominador y sobreestima el ROI de forma sistemática.',
     },
     {
-      question: 'Por que no das numeros de mercado listos?',
+      question: '¿Por qué no das números de mercado listos?',
       answer:
-        'Porque el costo de modelo, infra y atencion varia por proveedor, region, volumen y madurez del proyecto, y cambia con frecuencia. Trabajar con valores fijos lleva a decisiones equivocadas en cuanto la realidad cambia. Por eso la formula trata todo como variable: completas con tus propios numeros, con tu propio baseline, y obtienes un ROI que refleja tu operacion.',
+        'Porque el costo de modelo, infra y atención varía por proveedor, región, volumen y madurez del proyecto, y cambia con frecuencia. Trabajar con valores fijos lleva a decisiones equivocadas en cuanto la realidad cambia. Por eso la fórmula trata todo como variable: completas con tus propios números, con tu propio baseline, y obtienes un ROI que refleja tu operación.',
     },
   ],
   conclusion: {
-    title: 'El ROI honesto es contencion real menos costo total',
+    title: 'El ROI honesto es contención real menos costo total',
     description:
-      'Calcular el retorno de automatizacion con IA de forma honesta exige medir contencion de verdad, sumar el costo total y comparar contra tu propio baseline. La cuenta ingenua de mensajes por costo humano casi siempre sobreestima la ganancia. Si quieres armar este modelo con los numeros de tu operacion y descubrir el ROI y el payback reales, puedo ayudarte en ese analisis.',
-    cta: 'Calcular el ROI de mi automatizacion',
+      'Calcular el retorno de automatización con IA de forma honesta exige medir contención de verdad, sumar el costo total y comparar contra tu propio baseline. La cuenta ingenua de mensajes por costo humano casi siempre sobreestima la ganancia. Si quieres armar este modelo con los números de tu operación y descubrir el ROI y el payback reales, puedo ayudarte en ese análisis.',
+    cta: 'Calcular el ROI de mi automatización',
   },
   related: [
-    { label: 'Roadmap de automatizacion de soporte con IA en 90 dias', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
-    { label: 'Costos de la WhatsApp Cloud API y optimizacion', to: '/blog/custos-whatsapp-cloud-api-otimizacao' },
+    { label: 'Roadmap de automatización de soporte con IA en 90 días', to: '/blog/roadmap-automacao-suporte-ia-90-dias' },
+    { label: 'Costos de la WhatsApp Cloud API y optimización', to: '/blog/custos-whatsapp-cloud-api-otimizacao' },
     { label: 'Chatbots e IA', to: '/servicos/chatbots-e-ia' },
   ],
 };

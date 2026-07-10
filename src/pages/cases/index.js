@@ -81,7 +81,7 @@ const Cases = () => {
           {visible.map((c) => (
             <RevealItem key={c.slug}>
               <Link to={`/cases/${c.slug}`} className="block h-full">
-                <Card spotlight className="h-full p-6 md:p-8 transition-transform hover:-translate-y-1">
+                <Card spotlight interactive className="h-full p-6 md:p-8">
                   <div className="flex items-start justify-between gap-3">
                     <span className="rounded-full border border-border/80 bg-surface/60 px-3 py-1 text-[10px] md:text-xs font-mono uppercase tracking-[0.16em] text-foreground/80 break-words">
                       {c.category}

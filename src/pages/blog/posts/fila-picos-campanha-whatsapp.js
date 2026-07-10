@@ -4,7 +4,7 @@
 
 const pt = {
   intro:
-    'Uma campanha de marketing aperta o botao de disparo e, em um instante, 100 mil mensagens entram na fila para sair. O problema e que a WhatsApp Cloud API nao aceita esse volume de uma vez: existe um rate limit de chamadas por segundo e o numero tem um messaging tier que limita quantos usuarios unicos voce pode iniciar conversa em 24h. Disparar tudo de uma vez e a receita certa para erros 429, quedas de qualidade e bloqueio do numero. Este guia mostra como dimensionar fila, rate limiter e backpressure para entregar picos de campanha sem bloqueio e sem perda.',
+    'Uma campanha de marketing aperta o botão de disparo e, em um instante, 100 mil mensagens entram na fila para sair. O problema é que a WhatsApp Cloud API não aceita esse volume de uma vez: existe um rate limit de chamadas por segundo e o número tem um messaging tier que limita quantos usuários únicos você pode iniciar conversa em 24h. Disparar tudo de uma vez é a receita certa para erros 429, quedas de qualidade e bloqueio do número. Este guia mostra como dimensionar fila, rate limiter e backpressure para entregar picos de campanha sem bloqueio e sem perda.',
   sections: [
     {
       title: 'O problema: 100k mensagens contra um rate limit',
@@ -12,12 +12,12 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Quando uma campanha dispara, o instinto e iterar a lista de contatos e chamar a API em loop. Funciona com mil contatos. Com cem mil, o sistema colide com tres limites simultaneos. Primeiro, o rate limit da Cloud API: ha um teto de requisicoes por segundo por numero, e estourar esse teto retorna HTTP 429 com Retry-After. Segundo, o messaging tier do numero, que limita quantas conversas iniciadas por negocio (business-initiated) voce pode abrir em uma janela de 24h: 1k, 10k, 100k ou ilimitado, dependendo do tier. Terceiro, a qualidade do numero, que a Meta avalia em tempo real e que, se cair, rebaixa o tier ou bloqueia o envio.',
+            'Quando uma campanha dispara, o instinto é iterar a lista de contatos e chamar a API em loop. Funciona com mil contatos. Com cem mil, o sistema colide com três limites simultâneos. Primeiro, o rate limit da Cloud API: há um teto de requisições por segundo por número, e estourar esse teto retorna HTTP 429 com Retry-After. Segundo, o messaging tier do número, que limita quantas conversas iniciadas por negócio (business-initiated) você pode abrir em uma janela de 24h: 1k, 10k, 100k ou ilimitado, dependendo do tier. Terceiro, a qualidade do número, que a Meta avalia em tempo real e que, se cair, rebaixa o tier ou bloqueia o envio.',
         },
         {
           type: 'paragraph',
           value:
-            'A consequencia de ignorar esses limites nao e so lentidao. Disparos em rajada geram um pico de 429, e o codigo ingenuo costuma reagir com retry imediato, o que aumenta a carga e piora a tempestade. Pior: marcar contatos como bloqueio ou erro permanente quando na verdade era throttling temporario faz voce perder entregas que poderiam ter saido minutos depois. O envio em massa precisa ser tratado como um problema de fluxo controlado, nao de loop.',
+            'A consequência de ignorar esses limites não é só lentidão. Disparos em rajada geram um pico de 429, e o código ingênuo costuma reagir com retry imediato, o que aumenta a carga e piora a tempestade. Pior: marcar contatos como bloqueio ou erro permanente quando na verdade era throttling temporário faz você perder entregas que poderiam ter saído minutos depois. O envio em massa precisa ser tratado como um problema de fluxo controlado, não de loop.',
         },
       ],
     },
@@ -27,7 +27,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'A arquitetura que sustenta picos separa quem produz trabalho de quem o executa. Um produtor recebe a campanha e enfileira um job por mensagem (ou por lote pequeno). Uma fila duravel guarda esses jobs. Um pool de workers consome a fila, mas nao a velocidade maxima: um rate limiter no estilo token bucket regula a saida para respeitar exatamente o limite de mensagens por segundo da Cloud API. O token bucket e a peca central: ele enche tokens a uma taxa constante (igual ao seu throughput alvo) e cada envio consome um token. Sem token, o worker espera. Isso transforma uma rajada de 100k em um fluxo suave de X msg/s.',
+            'A arquitetura que sustenta picos separa quem produz trabalho de quem o executa. Um produtor recebe a campanha e enfileira um job por mensagem (ou por lote pequeno). Uma fila durável guarda esses jobs. Um pool de workers consome a fila, mas não a velocidade máxima: um rate limiter no estilo token bucket regula a saída para respeitar exatamente o limite de mensagens por segundo da Cloud API. O token bucket é a peça central: ele enche tokens a uma taxa constante (igual ao seu throughput alvo) e cada envio consome um token. Sem token, o worker espera. Isso transforma uma rajada de 100k em um fluxo suave de X msg/s.',
         },
         {
           type: 'diagram',
@@ -68,32 +68,32 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O ponto-chave e que dois controles atuam juntos e por motivos diferentes. A concorrencia do worker pool (quantos envios acontecem em paralelo) protege seus proprios recursos: conexoes, memoria, sockets. O rate limiter (quantos envios por segundo no total) protege o limite externo da Cloud API. Voce pode ter 20 workers concorrentes, mas se o token bucket so libera 80 tokens por segundo, o teto efetivo continua 80 msg/s. Os dois precisam ser dimensionados juntos.',
+            'O ponto-chave é que dois controles atuam juntos e por motivos diferentes. A concorrência do worker pool (quantos envios acontecem em paralelo) protege seus próprios recursos: conexões, memória, sockets. O rate limiter (quantos envios por segundo no total) protege o limite externo da Cloud API. Você pode ter 20 workers concorrentes, mas se o token bucket só libera 80 tokens por segundo, o teto efetivo continua 80 msg/s. Os dois precisam ser dimensionados juntos.',
         },
       ],
     },
     {
-      title: 'Backpressure: por que nao disparar tudo de uma vez',
+      title: 'Backpressure: por que não disparar tudo de uma vez',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Backpressure e o mecanismo que faz o produtor desacelerar quando o consumidor nao da conta. Numa campanha, a fila ja exerce esse papel: o produtor enfileira rapido, mas os workers consomem na taxa do rate limiter. O que voce nao pode fazer e burlar a fila e empurrar tudo para a API. Os motivos sao concretos:',
+            'Backpressure é o mecanismo que faz o produtor desacelerar quando o consumidor não dá conta. Numa campanha, a fila já exerce esse papel: o produtor enfileira rápido, mas os workers consomem na taxa do rate limiter. O que você não pode fazer é burlar a fila e empurrar tudo para a API. Os motivos são concretos:',
         },
         {
           type: 'list',
           items: [
-            'Messaging tier: o numero so pode iniciar um numero fixo de conversas business-initiated em 24h (1k, 10k, 100k). Passar do tier retorna erro e nao adianta insistir no mesmo dia.',
-            'Qualidade do numero: a Meta mede em tempo real bloqueios, denuncias e marcacoes de spam. Um pico de disparo para uma lista fria derruba a qualidade rapido, e qualidade baixa rebaixa o tier.',
-            'Risco de block: qualidade vermelha somada a volume agressivo leva a Meta a restringir ou banir o numero, derrubando inclusive as mensagens transacionais legitimas.',
-            'Erros 429 em cascata: estourar o rate limit gera 429 em massa; sem backpressure, o retry ingenuo realimenta a tempestade e degrada a taxa de entrega geral.',
-            'Custo e janela: conversas tem custo e janela de 24h. Disparar fora do ritmo desperdicia tier util e pode estourar orcamento sem entregar mais rapido de fato.',
+            'Messaging tier: o número só pode iniciar um número fixo de conversas business-initiated em 24h (1k, 10k, 100k). Passar do tier retorna erro e não adianta insistir no mesmo dia.',
+            'Qualidade do número: a Meta mede em tempo real bloqueios, denúncias e marcações de spam. Um pico de disparo para uma lista fria derruba a qualidade rápido, e qualidade baixa rebaixa o tier.',
+            'Risco de block: qualidade vermelha somada a volume agressivo leva a Meta a restringir ou banir o número, derrubando inclusive as mensagens transacionais legítimas.',
+            'Erros 429 em cascata: estourar o rate limit gera 429 em massa; sem backpressure, o retry ingênuo realimenta a tempestade e degrada a taxa de entrega geral.',
+            'Custo e janela: conversas têm custo e janela de 24h. Disparar fora do ritmo desperdiça tier útil e pode estourar orçamento sem entregar mais rápido de fato.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A leitura de sistemas distribuidos e simples: a fila e o seu buffer e o rate limiter e a sua valvula. Backpressure nao e uma limitacao a contornar, e a garantia de que o pico se transforma em entrega sustentada em vez de bloqueio.',
+            'A leitura de sistemas distribuídos é simples: a fila é o seu buffer e o rate limiter é a sua válvula. Backpressure não é uma limitação a contornar, é a garantia de que o pico se transforma em entrega sustentada em vez de bloqueio.',
         },
       ],
     },
@@ -103,7 +103,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Na pratica, BullMQ ja oferece um limiter nativo no Worker, que implementa o controle de taxa sobre o grupo de workers que compartilham a mesma fila e Redis. Voce define quantos jobs podem ser processados por janela de tempo, e a concorrencia controla o paralelismo dentro desse teto. O exemplo abaixo enfileira a campanha e consome respeitando 80 mensagens por segundo, com retry exponencial e DLQ para falhas definitivas.',
+            'Na prática, BullMQ já oferece um limiter nativo no Worker, que implementa o controle de taxa sobre o grupo de workers que compartilham a mesma fila e Redis. Você define quantos jobs podem ser processados por janela de tempo, e a concorrência controla o paralelismo dentro desse teto. O exemplo abaixo enfileira a campanha e consome respeitando 80 mensagens por segundo, com retry exponencial e DLQ para falhas definitivas.',
         },
         {
           type: 'code',
@@ -169,55 +169,55 @@ worker.on('failed', async (job, err) => {
         {
           type: 'paragraph',
           value:
-            'Note como o 429 nao e tratado como erro permanente: o worker lanca um erro de rate limit e o job volta para a fila com backoff, respeitando o Retry-After da Meta. So depois de esgotar todas as tentativas o evento vai para a DLQ. Isso e o que diferencia throttling temporario de falha real e evita perder entregas que sairiam minutos depois.',
+            'Note como o 429 não é tratado como erro permanente: o worker lança um erro de rate limit e o job volta para a fila com backoff, respeitando o Retry-After da Meta. Só depois de esgotar todas as tentativas o evento vai para a DLQ. Isso é o que diferencia throttling temporário de falha real e evita perder entregas que sairiam minutos depois.',
         },
       ],
     },
     {
-      title: 'Priorizacao: transacional na frente de marketing',
+      title: 'Priorização: transacional na frente de marketing',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Durante um pico de campanha, uma mensagem transacional (codigo OTP, confirmacao de pedido, alerta) nao pode ficar atras de 100 mil mensagens de marketing na fila. A solucao e separar por prioridade. Ha duas abordagens, e em alto volume vale combinar as duas:',
+            'Durante um pico de campanha, uma mensagem transacional (código OTP, confirmação de pedido, alerta) não pode ficar atrás de 100 mil mensagens de marketing na fila. A solução é separar por prioridade. Há duas abordagens, e em alto volume vale combinar as duas:',
         },
         {
           type: 'list',
           items: [
-            'Filas separadas por classe: uma fila wa-transactional e outra wa-campaign, com workers e ate budgets de taxa distintos. A transacional tem prioridade de recursos e nao compete por tokens com a campanha.',
-            'Prioridade dentro da fila: usar o campo de priority do BullMQ para que jobs urgentes furem a frente sem precisar de uma fila fisica separada quando o volume e menor.',
+            'Filas separadas por classe: uma fila wa-transactional e outra wa-campaign, com workers e até budgets de taxa distintos. A transacional tem prioridade de recursos e não compete por tokens com a campanha.',
+            'Prioridade dentro da fila: usar o campo de priority do BullMQ para que jobs urgentes furem a frente sem precisar de uma fila física separada quando o volume é menor.',
             'Reserva de capacidade: se a Cloud API permite N msg/s no total, reserve uma fatia (ex.: 20%) para transacional e dimensione o limiter da campanha para o restante, garantindo que o marketing nunca consuma 100% do throughput.',
-            'Throttle assimetrico: marketing tolera atraso de minutos; transacional nao. Dimensione retries e backoff mais agressivos na campanha e mais curtos no transacional.',
+            'Throttle assimétrico: marketing tolera atraso de minutos; transacional não. Dimensione retries e backoff mais agressivos na campanha e mais curtos no transacional.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'O principio de sistemas distribuidos aqui e isolamento de recursos: voce nao deixa uma carga de baixa prioridade e alto volume degradar a latencia de uma carga critica e de baixo volume. Filas separadas com budgets proprios sao a forma mais limpa de garantir esse isolamento.',
+            'O princípio de sistemas distribuídos aqui é isolamento de recursos: você não deixa uma carga de baixa prioridade e alto volume degradar a latência de uma carga crítica e de baixo volume. Filas separadas com budgets próprios são a forma mais limpa de garantir esse isolamento.',
         },
       ],
     },
     {
-      title: 'Parametros a dimensionar',
+      title: 'Parâmetros a dimensionar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Dimensionar a fila e um exercicio de calibrar poucos parametros contra o limite real do seu numero e a urgencia de cada classe de mensagem. A tabela resume os principais e os criterios.',
+            'Dimensionar a fila é um exercício de calibrar poucos parâmetros contra o limite real do seu número e a urgência de cada classe de mensagem. A tabela resume os principais e os critérios.',
         },
         {
           type: 'table',
-          columns: ['Parametro', 'O que controla', 'Como dimensionar'],
+          columns: ['Parâmetro', 'O que controla', 'Como dimensionar'],
           rows: [
             [
               'Throughput alvo (msg/s)',
-              'Taxa de saida do limiter',
-              'Abaixo do rate limit real da Cloud API, com margem de seguranca (ex.: 80% do teto)',
+              'Taxa de saída do limiter',
+              'Abaixo do rate limit real da Cloud API, com margem de segurança (ex.: 80% do teto)',
             ],
             [
-              'Concorrencia do worker',
+              'Concorrência do worker',
               'Paralelismo dos envios em voo',
-              'Suficiente para saturar o throughput sem esgotar conexoes/memoria; sobe ate o limiter virar o gargalo',
+              'Suficiente para saturar o throughput sem esgotar conexões/memória; sobe até o limiter virar o gargalo',
             ],
             [
               'TTL / janela de validade',
@@ -232,12 +232,12 @@ worker.on('failed', async (job, err) => {
             [
               'DLQ',
               'Destino das falhas definitivas',
-              'Sempre ativa; com alerta de crescimento para inspecao humana de erros reais (numero invalido, template rejeitado)',
+              'Sempre ativa; com alerta de crescimento para inspeção humana de erros reais (número inválido, template rejeitado)',
             ],
             [
               'Reserva transacional',
               'Fatia de throughput protegida',
-              'Percentual fixo (ex.: 20%) que a campanha nunca consome, garantindo latencia do critico',
+              'Percentual fixo (ex.: 20%) que a campanha nunca consome, garantindo latência do crítico',
             ],
           ],
         },
@@ -249,16 +249,16 @@ worker.on('failed', async (job, err) => {
         {
           type: 'paragraph',
           value:
-            'Durante um pico, tres sinais dizem se o sistema esta saudavel ou afundando. Profundidade da fila mostra o backlog: subir e esperado no inicio, mas precisa drenar a uma taxa estavel. Idade da mensagem (quanto tempo o job mais antigo espera) revela se a entrega esta dentro da janela aceitavel; idade crescente no transacional e alarme imediato. Taxa de erro, separada por tipo (429 de rate limit, 4xx de template invalido, 5xx da API), distingue throttling esperado de falha real.',
+            'Durante um pico, três sinais dizem se o sistema está saudável ou afundando. Profundidade da fila mostra o backlog: subir é esperado no início, mas precisa drenar a uma taxa estável. Idade da mensagem (quanto tempo o job mais antigo espera) revela se a entrega está dentro da janela aceitável; idade crescente no transacional é alarme imediato. Taxa de erro, separada por tipo (429 de rate limit, 4xx de template inválido, 5xx da API), distingue throttling esperado de falha real.',
         },
         {
           type: 'ordered',
           items: [
             'Profundidade da fila por classe: backlog de campanha e de transacional medidos separadamente, com a taxa de drenagem.',
             'Idade da mensagem mais antiga: tempo de espera do job no topo da fila, com alerta diferente por prioridade.',
-            'Taxa de erro segmentada: 429 (rate limit, esperado), 4xx (template/numero, acionavel), 5xx (API instavel).',
-            'Tamanho e crescimento da DLQ: deve ficar proxima de zero; crescimento aponta erro real a investigar.',
-            'Qualidade e tier do numero: acompanhar o phone quality rating e o messaging tier para frear a campanha antes do rebaixamento.',
+            'Taxa de erro segmentada: 429 (rate limit, esperado), 4xx (template/número, acionável), 5xx (API instável).',
+            'Tamanho e crescimento da DLQ: deve ficar próxima de zero; crescimento aponta erro real a investigar.',
+            'Qualidade e tier do número: acompanhar o phone quality rating e o messaging tier para frear a campanha antes do rebaixamento.',
             'Throughput efetivo vs alvo: comparar msg/s reais com o alvo do limiter para detectar gargalo de worker ou throttle da API.',
           ],
         },
@@ -269,34 +269,34 @@ worker.on('failed', async (job, err) => {
     {
       question: 'Como descubro o rate limit certo para configurar o limiter?',
       answer:
-        'Comece pelo limite documentado da Cloud API para o seu numero e tier, mas trate-o como teto, nao como alvo. Configure o limiter com margem (por exemplo 80% do teto) e observe a taxa de 429 durante um pico real. Se aparecerem 429 mesmo abaixo do teto, reduza o throughput alvo. O objetivo e operar num ponto onde o 429 e raro e tratado por retry, nao a norma.',
+        'Comece pelo limite documentado da Cloud API para o seu número e tier, mas trate-o como teto, não como alvo. Configure o limiter com margem (por exemplo 80% do teto) e observe a taxa de 429 durante um pico real. Se aparecerem 429 mesmo abaixo do teto, reduza o throughput alvo. O objetivo é operar num ponto onde o 429 é raro e tratado por retry, não a norma.',
     },
     {
-      question: 'Qual a diferenca entre concorrencia do worker e rate limiter?',
+      question: 'Qual a diferença entre concorrência do worker e rate limiter?',
       answer:
-        'Sao dois controles com proposito distinto. A concorrencia limita quantos envios acontecem em paralelo e protege seus recursos locais (conexoes, memoria, sockets). O rate limiter limita quantos envios por segundo no total e protege o limite externo da Cloud API. Voce pode ter alta concorrencia, mas o rate limiter ainda segura a saida no teto de msg/s. Os dois precisam ser dimensionados em conjunto.',
+        'São dois controles com propósito distinto. A concorrência limita quantos envios acontecem em paralelo e protege seus recursos locais (conexões, memória, sockets). O rate limiter limita quantos envios por segundo no total e protege o limite externo da Cloud API. Você pode ter alta concorrência, mas o rate limiter ainda segura a saída no teto de msg/s. Os dois precisam ser dimensionados em conjunto.',
     },
     {
-      question: 'O que fazer quando o messaging tier do numero se esgota no meio da campanha?',
+      question: 'O que fazer quando o messaging tier do número se esgota no meio da campanha?',
       answer:
-        'Quando o tier se esgota, novos disparos business-initiated retornam erro e nao adianta reenviar no mesmo dia. O correto e detectar esse erro especifico, pausar a fila de campanha (sem perder os jobs, que ficam enfileirados) e retomar quando a janela de 24h renova ou quando o tier sobe. As mensagens transacionais em fila separada continuam fluindo. Tratar isso como pausa controlada, e nao como falha, evita marcar contatos validos como erro.',
+        'Quando o tier se esgota, novos disparos business-initiated retornam erro e não adianta reenviar no mesmo dia. O correto é detectar esse erro específico, pausar a fila de campanha (sem perder os jobs, que ficam enfileirados) e retomar quando a janela de 24h renova ou quando o tier sobe. As mensagens transacionais em fila separada continuam fluindo. Tratar isso como pausa controlada, e não como falha, evita marcar contatos válidos como erro.',
     },
   ],
   conclusion: {
-    title: 'Pico de campanha e problema de fluxo, nao de loop',
+    title: 'Pico de campanha é problema de fluxo, não de loop',
     description:
-      'Fila duravel, token bucket respeitando o rate limit da Cloud API, backpressure consciente do messaging tier e priorizacao do transacional formam a arquitetura que entrega campanhas em massa sem bloqueio nem perda. Se voce precisa disparar volume alto sem arriscar a qualidade do numero, posso ajudar a desenhar essa fila.',
+      'Fila durável, token bucket respeitando o rate limit da Cloud API, backpressure consciente do messaging tier e priorização do transacional formam a arquitetura que entrega campanhas em massa sem bloqueio nem perda. Se você precisa disparar volume alto sem arriscar a qualidade do número, posso ajudar a desenhar essa fila.',
     cta: 'Falar sobre minha campanha',
   },
   related: [
-    { label: 'Idempotencia e filas no webhook do WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
-    { label: 'Monitoramento e alertas em integracoes', to: '/blog/monitoramento-alertas-integracoes' },
+    { label: 'Idempotência e filas no webhook do WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
+    { label: 'Monitoramento e alertas em integrações', to: '/blog/monitoramento-alertas-integracoes' },
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
   ],
   repo: {
     name: 'whatsapp-campaign-queue',
     description:
-      'Exemplo de fila de campanha no WhatsApp com rate limiter token bucket, worker pool, priorizacao e DLQ.',
+      'Exemplo de fila de campanha no WhatsApp com rate limiter token bucket, worker pool, priorização e DLQ.',
     url: 'https://github.com/joaosouz4dev/whatsapp-campaign-queue',
   },
 };
@@ -602,7 +602,7 @@ worker.on('failed', async (job, err) => {
 
 const es = {
   intro:
-    'Una campana de marketing pulsa el boton de disparo y, en un instante, 100 mil mensajes se forman en cola para salir. El problema es que la WhatsApp Cloud API no acepta ese volumen de una vez: existe un rate limit de llamadas por segundo y el numero tiene un messaging tier que limita con cuantos usuarios unicos puedes iniciar conversacion en 24h. Disparar todo de una vez es la receta segura para errores 429, caidas de calidad y bloqueo del numero. Esta guia muestra como dimensionar la cola, el rate limiter y el backpressure para entregar picos de campana sin bloqueo y sin perdida.',
+    'Una campaña de marketing pulsa el botón de disparo y, en un instante, 100 mil mensajes se forman en cola para salir. El problema es que la WhatsApp Cloud API no acepta ese volumen de una vez: existe un rate limit de llamadas por segundo y el número tiene un messaging tier que limita con cuántos usuarios únicos puedes iniciar conversación en 24h. Disparar todo de una vez es la receta segura para errores 429, caídas de calidad y bloqueo del número. Esta guía muestra cómo dimensionar la cola, el rate limiter y el backpressure para entregar picos de campaña sin bloqueo y sin pérdida.',
   sections: [
     {
       title: 'El problema: 100k mensajes contra un rate limit',
@@ -610,12 +610,12 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Cuando una campana dispara, el instinto es iterar la lista de contactos y llamar a la API en bucle. Funciona con mil contactos. Con cien mil, el sistema choca con tres limites a la vez. Primero, el rate limit de la Cloud API: hay un techo de peticiones por segundo por numero, y superarlo devuelve HTTP 429 con Retry-After. Segundo, el messaging tier del numero, que limita cuantas conversaciones iniciadas por el negocio (business-initiated) puedes abrir en una ventana de 24h: 1k, 10k, 100k o ilimitado, segun el tier. Tercero, la calidad del numero, que Meta evalua en tiempo real y que, si cae, rebaja el tier o bloquea el envio.',
+            'Cuando una campaña dispara, el instinto es iterar la lista de contactos y llamar a la API en bucle. Funciona con mil contactos. Con cien mil, el sistema choca con tres límites a la vez. Primero, el rate limit de la Cloud API: hay un techo de peticiones por segundo por número, y superarlo devuelve HTTP 429 con Retry-After. Segundo, el messaging tier del número, que limita cuántas conversaciones iniciadas por el negocio (business-initiated) puedes abrir en una ventana de 24h: 1k, 10k, 100k o ilimitado, según el tier. Tercero, la calidad del número, que Meta evalúa en tiempo real y que, si cae, rebaja el tier o bloquea el envío.',
         },
         {
           type: 'paragraph',
           value:
-            'La consecuencia de ignorar estos limites no es solo lentitud. Los disparos en rafaga generan un pico de 429, y el codigo ingenuo suele reaccionar con retry inmediato, lo que aumenta la carga y empeora la tormenta. Peor aun: marcar contactos como bloqueo o error permanente cuando en realidad era throttling temporal te hace perder entregas que podrian haber salido minutos despues. El envio masivo debe tratarse como un problema de flujo controlado, no de bucle.',
+            'La consecuencia de ignorar estos límites no es solo lentitud. Los disparos en ráfaga generan un pico de 429, y el código ingenuo suele reaccionar con retry inmediato, lo que aumenta la carga y empeora la tormenta. Peor aún: marcar contactos como bloqueo o error permanente cuando en realidad era throttling temporal te hace perder entregas que podrían haber salido minutos después. El envío masivo debe tratarse como un problema de flujo controlado, no de bucle.',
         },
       ],
     },
@@ -625,7 +625,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'La arquitectura que sostiene los picos separa a quien produce el trabajo de quien lo ejecuta. Un productor recibe la campana y encola un job por mensaje (o por lote pequeno). Una cola durable guarda esos jobs. Un pool de workers consume la cola, pero no a velocidad maxima: un rate limiter al estilo token bucket regula la salida para respetar exactamente el limite de mensajes por segundo de la Cloud API. El token bucket es la pieza central: llena tokens a una tasa constante (igual a tu throughput objetivo) y cada envio consume un token. Sin token, el worker espera. Esto convierte una rafaga de 100k en un flujo suave de X msg/s.',
+            'La arquitectura que sostiene los picos separa a quien produce el trabajo de quien lo ejecuta. Un productor recibe la campaña y encola un job por mensaje (o por lote pequeño). Una cola durable guarda esos jobs. Un pool de workers consume la cola, pero no a velocidad máxima: un rate limiter al estilo token bucket regula la salida para respetar exactamente el límite de mensajes por segundo de la Cloud API. El token bucket es la pieza central: llena tokens a una tasa constante (igual a tu throughput objetivo) y cada envío consume un token. Sin token, el worker espera. Esto convierte una ráfaga de 100k en un flujo suave de X msg/s.',
         },
         {
           type: 'diagram',
@@ -666,32 +666,32 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El punto clave es que dos controles actuan juntos y por motivos distintos. La concurrencia del worker pool (cuantos envios ocurren en paralelo) protege tus propios recursos: conexiones, memoria, sockets. El rate limiter (cuantos envios por segundo en total) protege el limite externo de la Cloud API. Puedes tener 20 workers concurrentes, pero si el token bucket solo libera 80 tokens por segundo, el techo efectivo sigue siendo 80 msg/s. Ambos deben dimensionarse juntos.',
+            'El punto clave es que dos controles actúan juntos y por motivos distintos. La concurrencia del worker pool (cuántos envíos ocurren en paralelo) protege tus propios recursos: conexiones, memoria, sockets. El rate limiter (cuántos envíos por segundo en total) protege el límite externo de la Cloud API. Puedes tener 20 workers concurrentes, pero si el token bucket solo libera 80 tokens por segundo, el techo efectivo sigue siendo 80 msg/s. Ambos deben dimensionarse juntos.',
         },
       ],
     },
     {
-      title: 'Backpressure: por que no disparar todo de una vez',
+      title: 'Backpressure: por qué no disparar todo de una vez',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El backpressure es el mecanismo que hace que el productor desacelere cuando el consumidor no da abasto. En una campana, la cola ya cumple ese papel: el productor encola rapido, pero los workers consumen al ritmo del rate limiter. Lo que no puedes hacer es saltarte la cola y empujar todo a la API. Los motivos son concretos:',
+            'El backpressure es el mecanismo que hace que el productor desacelere cuando el consumidor no da abasto. En una campaña, la cola ya cumple ese papel: el productor encola rápido, pero los workers consumen al ritmo del rate limiter. Lo que no puedes hacer es saltarte la cola y empujar todo a la API. Los motivos son concretos:',
         },
         {
           type: 'list',
           items: [
-            'Messaging tier: el numero solo puede iniciar un numero fijo de conversaciones business-initiated en 24h (1k, 10k, 100k). Pasar del tier devuelve error y no sirve insistir el mismo dia.',
-            'Calidad del numero: Meta mide en tiempo real bloqueos, denuncias y marcas de spam. Un pico de disparo a una lista fria derrumba la calidad rapido, y la calidad baja rebaja el tier.',
-            'Riesgo de block: calidad roja sumada a volumen agresivo lleva a Meta a restringir o banear el numero, tumbando incluso los mensajes transaccionales legitimos.',
+            'Messaging tier: el número solo puede iniciar un número fijo de conversaciones business-initiated en 24h (1k, 10k, 100k). Pasar del tier devuelve error y no sirve insistir el mismo día.',
+            'Calidad del número: Meta mide en tiempo real bloqueos, denuncias y marcas de spam. Un pico de disparo a una lista fría derrumba la calidad rápido, y la calidad baja rebaja el tier.',
+            'Riesgo de block: calidad roja sumada a volumen agresivo lleva a Meta a restringir o banear el número, tumbando incluso los mensajes transaccionales legítimos.',
             'Errores 429 en cascada: superar el rate limit genera 429 en masa; sin backpressure, el retry ingenuo realimenta la tormenta y degrada la tasa de entrega general.',
-            'Costo y ventana: las conversaciones tienen costo y ventana de 24h. Disparar fuera de ritmo desperdicia tier util y puede reventar el presupuesto sin entregar mas rapido en realidad.',
+            'Costo y ventana: las conversaciones tienen costo y ventana de 24h. Disparar fuera de ritmo desperdicia tier útil y puede reventar el presupuesto sin entregar más rápido en realidad.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La lectura de sistemas distribuidos es simple: la cola es tu buffer y el rate limiter es tu valvula. El backpressure no es una limitacion a sortear, es la garantia de que el pico se convierte en entrega sostenida en vez de bloqueo.',
+            'La lectura de sistemas distribuidos es simple: la cola es tu buffer y el rate limiter es tu válvula. El backpressure no es una limitación a sortear, es la garantía de que el pico se convierte en entrega sostenida en vez de bloqueo.',
         },
       ],
     },
@@ -701,7 +701,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'En la practica, BullMQ ya ofrece un limiter nativo en el Worker, que implementa el control de tasa sobre el grupo de workers que comparten la misma cola y Redis. Defines cuantos jobs pueden procesarse por ventana de tiempo, y la concurrencia controla el paralelismo dentro de ese techo. El ejemplo siguiente encola la campana y la consume respetando 80 mensajes por segundo, con retry exponencial y DLQ para fallos definitivos.',
+            'En la práctica, BullMQ ya ofrece un limiter nativo en el Worker, que implementa el control de tasa sobre el grupo de workers que comparten la misma cola y Redis. Defines cuántos jobs pueden procesarse por ventana de tiempo, y la concurrencia controla el paralelismo dentro de ese techo. El ejemplo siguiente encola la campaña y la consume respetando 80 mensajes por segundo, con retry exponencial y DLQ para fallos definitivos.',
         },
         {
           type: 'code',
@@ -767,45 +767,45 @@ worker.on('failed', async (job, err) => {
         {
           type: 'paragraph',
           value:
-            'Observa como el 429 no se trata como error permanente: el worker lanza un error de rate limit y el job vuelve a la cola con backoff, respetando el Retry-After de Meta. Solo tras agotar todos los intentos el evento va a la DLQ. Eso es lo que diferencia el throttling temporal de un fallo real y evita perder entregas que saldrian minutos despues.',
+            'Observa cómo el 429 no se trata como error permanente: el worker lanza un error de rate limit y el job vuelve a la cola con backoff, respetando el Retry-After de Meta. Solo tras agotar todos los intentos el evento va a la DLQ. Eso es lo que diferencia el throttling temporal de un fallo real y evita perder entregas que saldrían minutos después.',
         },
       ],
     },
     {
-      title: 'Priorizacion: transaccional por delante del marketing',
+      title: 'Priorización: transaccional por delante del marketing',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Durante un pico de campana, un mensaje transaccional (codigo OTP, confirmacion de pedido, alerta) no puede quedar detras de 100 mil mensajes de marketing en la cola. La solucion es separar por prioridad. Hay dos enfoques, y en alto volumen conviene combinar ambos:',
+            'Durante un pico de campaña, un mensaje transaccional (código OTP, confirmación de pedido, alerta) no puede quedar detrás de 100 mil mensajes de marketing en la cola. La solución es separar por prioridad. Hay dos enfoques, y en alto volumen conviene combinar ambos:',
         },
         {
           type: 'list',
           items: [
-            'Colas separadas por clase: una cola wa-transactional y otra wa-campaign, con workers e incluso budgets de tasa distintos. La transaccional tiene prioridad de recursos y no compite por tokens con la campana.',
-            'Prioridad dentro de la cola: usar el campo priority de BullMQ para que los jobs urgentes pasen al frente sin necesitar una cola fisica separada cuando el volumen es menor.',
-            'Reserva de capacidad: si la Cloud API permite N msg/s en total, reserva una porcion (ej.: 20%) para transaccional y dimensiona el limiter de la campana para el resto, garantizando que el marketing nunca consuma el 100% del throughput.',
-            'Throttle asimetrico: el marketing tolera retraso de minutos; el transaccional no. Dimensiona retries y backoff mas agresivos en la campana y mas cortos en el transaccional.',
+            'Colas separadas por clase: una cola wa-transactional y otra wa-campaign, con workers e incluso budgets de tasa distintos. La transaccional tiene prioridad de recursos y no compite por tokens con la campaña.',
+            'Prioridad dentro de la cola: usar el campo priority de BullMQ para que los jobs urgentes pasen al frente sin necesitar una cola física separada cuando el volumen es menor.',
+            'Reserva de capacidad: si la Cloud API permite N msg/s en total, reserva una porción (ej.: 20%) para transaccional y dimensiona el limiter de la campaña para el resto, garantizando que el marketing nunca consuma el 100% del throughput.',
+            'Throttle asimétrico: el marketing tolera retraso de minutos; el transaccional no. Dimensiona retries y backoff más agresivos en la campaña y más cortos en el transaccional.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'El principio de sistemas distribuidos aqui es el aislamiento de recursos: no dejas que una carga de baja prioridad y alto volumen degrade la latencia de una carga critica y de bajo volumen. Las colas separadas con budgets propios son la forma mas limpia de garantizar ese aislamiento.',
+            'El principio de sistemas distribuidos aquí es el aislamiento de recursos: no dejas que una carga de baja prioridad y alto volumen degrade la latencia de una carga crítica y de bajo volumen. Las colas separadas con budgets propios son la forma más limpia de garantizar ese aislamiento.',
         },
       ],
     },
     {
-      title: 'Parametros a dimensionar',
+      title: 'Parámetros a dimensionar',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Dimensionar la cola es un ejercicio de calibrar pocos parametros contra el limite real de tu numero y la urgencia de cada clase de mensaje. La tabla resume los principales y los criterios.',
+            'Dimensionar la cola es un ejercicio de calibrar pocos parámetros contra el límite real de tu número y la urgencia de cada clase de mensaje. La tabla resume los principales y los criterios.',
         },
         {
           type: 'table',
-          columns: ['Parametro', 'Que controla', 'Como dimensionarlo'],
+          columns: ['Parámetro', 'Qué controla', 'Cómo dimensionarlo'],
           rows: [
             [
               'Throughput objetivo (msg/s)',
@@ -814,12 +814,12 @@ worker.on('failed', async (job, err) => {
             ],
             [
               'Concurrencia del worker',
-              'Paralelismo de los envios en vuelo',
+              'Paralelismo de los envíos en vuelo',
               'Suficiente para saturar el throughput sin agotar conexiones/memoria; sube hasta que el limiter sea el cuello de botella',
             ],
             [
               'TTL / ventana de validez',
-              'Cuanto puede esperar un job antes de volverse irrelevante',
+              'Cuánto puede esperar un job antes de volverse irrelevante',
               'Corto para transaccional (segundos/minutos); mayor para marketing dentro de la ventana de 24h',
             ],
             [
@@ -830,33 +830,33 @@ worker.on('failed', async (job, err) => {
             [
               'DLQ',
               'Destino de los fallos definitivos',
-              'Siempre activa; con alerta de crecimiento para inspeccion humana de errores reales (numero invalido, template rechazado)',
+              'Siempre activa; con alerta de crecimiento para inspección humana de errores reales (número inválido, template rechazado)',
             ],
             [
               'Reserva transaccional',
-              'Porcion de throughput protegida',
-              'Porcentaje fijo (ej.: 20%) que la campana nunca consume, garantizando la latencia de lo critico',
+              'Porción de throughput protegida',
+              'Porcentaje fijo (ej.: 20%) que la campaña nunca consume, garantizando la latencia de lo crítico',
             ],
           ],
         },
       ],
     },
     {
-      title: 'Que monitorear durante el pico',
+      title: 'Qué monitorear durante el pico',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Durante un pico, tres senales dicen si el sistema esta sano o hundiendose. La profundidad de la cola muestra el backlog: subir es esperado al inicio, pero debe drenar a una tasa estable. La edad del mensaje (cuanto tiempo lleva esperando el job mas antiguo) revela si la entrega esta dentro de la ventana aceptable; una edad creciente en el transaccional es alarma inmediata. La tasa de error, separada por tipo (429 de rate limit, 4xx de template invalido, 5xx de la API), distingue el throttling esperado del fallo real.',
+            'Durante un pico, tres señales dicen si el sistema está sano o hundiéndose. La profundidad de la cola muestra el backlog: subir es esperado al inicio, pero debe drenar a una tasa estable. La edad del mensaje (cuánto tiempo lleva esperando el job más antiguo) revela si la entrega está dentro de la ventana aceptable; una edad creciente en el transaccional es alarma inmediata. La tasa de error, separada por tipo (429 de rate limit, 4xx de template inválido, 5xx de la API), distingue el throttling esperado del fallo real.',
         },
         {
           type: 'ordered',
           items: [
-            'Profundidad de la cola por clase: backlog de campana y de transaccional medidos por separado, con la tasa de drenaje.',
-            'Edad del mensaje mas antiguo: tiempo de espera del job en la cima de la cola, con alerta distinta por prioridad.',
-            'Tasa de error segmentada: 429 (rate limit, esperado), 4xx (template/numero, accionable), 5xx (API inestable).',
-            'Tamano y crecimiento de la DLQ: debe quedar cerca de cero; el crecimiento apunta a un error real a investigar.',
-            'Calidad y tier del numero: seguir el phone quality rating y el messaging tier para frenar la campana antes del rebaje.',
+            'Profundidad de la cola por clase: backlog de campaña y de transaccional medidos por separado, con la tasa de drenaje.',
+            'Edad del mensaje más antiguo: tiempo de espera del job en la cima de la cola, con alerta distinta por prioridad.',
+            'Tasa de error segmentada: 429 (rate limit, esperado), 4xx (template/número, accionable), 5xx (API inestable).',
+            'Tamaño y crecimiento de la DLQ: debe quedar cerca de cero; el crecimiento apunta a un error real a investigar.',
+            'Calidad y tier del número: seguir el phone quality rating y el messaging tier para frenar la campaña antes del rebaje.',
             'Throughput efectivo vs objetivo: comparar los msg/s reales con el objetivo del limiter para detectar cuello de botella de worker o throttle de la API.',
           ],
         },
@@ -865,26 +865,26 @@ worker.on('failed', async (job, err) => {
   ],
   faq: [
     {
-      question: 'Como descubro el rate limit correcto para configurar el limiter?',
+      question: '¿Cómo descubro el rate limit correcto para configurar el limiter?',
       answer:
-        'Empieza por el limite documentado de la Cloud API para tu numero y tier, pero tratalo como techo, no como objetivo. Configura el limiter con margen (por ejemplo 80% del techo) y observa la tasa de 429 durante un pico real. Si aparecen 429 incluso por debajo del techo, reduce el throughput objetivo. La meta es operar en un punto donde el 429 sea raro y se maneje con retry, no la norma.',
+        'Empieza por el límite documentado de la Cloud API para tu número y tier, pero trátalo como techo, no como objetivo. Configura el limiter con margen (por ejemplo 80% del techo) y observa la tasa de 429 durante un pico real. Si aparecen 429 incluso por debajo del techo, reduce el throughput objetivo. La meta es operar en un punto donde el 429 sea raro y se maneje con retry, no la norma.',
     },
     {
-      question: 'Cual es la diferencia entre la concurrencia del worker y el rate limiter?',
+      question: '¿Cuál es la diferencia entre la concurrencia del worker y el rate limiter?',
       answer:
-        'Son dos controles con proposito distinto. La concurrencia limita cuantos envios ocurren en paralelo y protege tus recursos locales (conexiones, memoria, sockets). El rate limiter limita cuantos envios por segundo en total y protege el limite externo de la Cloud API. Puedes tener alta concurrencia, pero el rate limiter sigue sujetando la salida en el techo de msg/s. Ambos deben dimensionarse en conjunto.',
+        'Son dos controles con propósito distinto. La concurrencia limita cuántos envíos ocurren en paralelo y protege tus recursos locales (conexiones, memoria, sockets). El rate limiter limita cuántos envíos por segundo en total y protege el límite externo de la Cloud API. Puedes tener alta concurrencia, pero el rate limiter sigue sujetando la salida en el techo de msg/s. Ambos deben dimensionarse en conjunto.',
     },
     {
-      question: 'Que hago cuando el messaging tier del numero se agota a mitad de la campana?',
+      question: '¿Qué hago cuando el messaging tier del número se agota a mitad de la campaña?',
       answer:
-        'Cuando el tier se agota, los nuevos disparos business-initiated devuelven error y no sirve reenviar el mismo dia. Lo correcto es detectar ese error especifico, pausar la cola de campana (sin perder los jobs, que quedan encolados) y retomar cuando la ventana de 24h se renueva o cuando el tier sube. Los mensajes transaccionales en cola separada siguen fluyendo. Tratar esto como pausa controlada, y no como fallo, evita marcar contactos validos como error.',
+        'Cuando el tier se agota, los nuevos disparos business-initiated devuelven error y no sirve reenviar el mismo día. Lo correcto es detectar ese error específico, pausar la cola de campaña (sin perder los jobs, que quedan encolados) y retomar cuando la ventana de 24h se renueva o cuando el tier sube. Los mensajes transaccionales en cola separada siguen fluyendo. Tratar esto como pausa controlada, y no como fallo, evita marcar contactos válidos como error.',
     },
   ],
   conclusion: {
-    title: 'Un pico de campana es problema de flujo, no de bucle',
+    title: 'Un pico de campaña es problema de flujo, no de bucle',
     description:
-      'Una cola durable, un token bucket que respeta el rate limit de la Cloud API, backpressure consciente del messaging tier y priorizacion del transaccional forman la arquitectura que entrega campanas masivas sin bloqueo ni perdida. Si necesitas disparar volumen alto sin arriesgar la calidad del numero, puedo ayudar a disenar esta cola.',
-    cta: 'Hablar sobre mi campana',
+      'Una cola durable, un token bucket que respeta el rate limit de la Cloud API, backpressure consciente del messaging tier y priorización del transaccional forman la arquitectura que entrega campañas masivas sin bloqueo ni pérdida. Si necesitas disparar volumen alto sin arriesgar la calidad del número, puedo ayudar a diseñar esta cola.',
+    cta: 'Hablar sobre mi campaña',
   },
   related: [
     { label: 'Idempotencia y colas en el webhook de WhatsApp', to: '/blog/webhook-whatsapp-idempotencia-filas' },
@@ -894,7 +894,7 @@ worker.on('failed', async (job, err) => {
   repo: {
     name: 'whatsapp-campaign-queue',
     description:
-      'Ejemplo de cola de campana en WhatsApp con rate limiter token bucket, worker pool, priorizacion y DLQ.',
+      'Ejemplo de cola de campaña en WhatsApp con rate limiter token bucket, worker pool, priorización y DLQ.',
     url: 'https://github.com/joaosouz4dev/whatsapp-campaign-queue',
   },
 };

@@ -9,7 +9,7 @@ const projectDefinitions = [
       pt: {
         title: 'WPPConnect',
         summary:
-          'Projeto open-source que mantenho no ecossistema WPPConnect para automacao e integracao com WhatsApp Web.',
+          'Projeto open-source que mantenho no ecossistema WPPConnect para automação e integração com WhatsApp Web.',
       },
       en: {
         title: 'WPPConnect',
@@ -19,7 +19,7 @@ const projectDefinitions = [
       es: {
         title: 'WPPConnect',
         summary:
-          'Proyecto open-source que mantengo en el ecosistema WPPConnect para automatizacion e integracion con WhatsApp Web.',
+          'Proyecto open-source que mantengo en el ecosistema WPPConnect para automatización e integración con WhatsApp Web.',
       },
     },
   },
@@ -31,7 +31,7 @@ const projectDefinitions = [
       pt: {
         title: 'WPPConnect Server',
         summary:
-          'Camada de API/servidor do WPPConnect que mantenho para expor endpoints de mensageria e operacao em producao.',
+          'Camada de API/servidor do WPPConnect que mantenho para expor endpoints de mensageria e operação em produção.',
       },
       en: {
         title: 'WPPConnect Server',
@@ -41,7 +41,7 @@ const projectDefinitions = [
       es: {
         title: 'WPPConnect Server',
         summary:
-          'Capa de API/servidor de WPPConnect que mantengo para exponer endpoints de mensajeria en produccion.',
+          'Capa de API/servidor de WPPConnect que mantengo para exponer endpoints de mensajería en producción.',
       },
     },
   },
@@ -53,7 +53,7 @@ const projectDefinitions = [
       pt: {
         title: 'WPPConnect Mobile',
         summary:
-          'Aplicacao mobile do ecossistema WPPConnect, com suporte operacional e evolucao que mantenho junto ao time.',
+          'Aplicação mobile do ecossistema WPPConnect, com suporte operacional e evolução que mantenho junto ao time.',
       },
       en: {
         title: 'WPPConnect Mobile',
@@ -63,7 +63,7 @@ const projectDefinitions = [
       es: {
         title: 'WPPConnect Mobile',
         summary:
-          'Aplicacion mobile del ecosistema WPPConnect que mantengo y evoluciono junto al equipo.',
+          'Aplicación mobile del ecosistema WPPConnect que mantengo y evoluciono junto al equipo.',
       },
     },
   },
@@ -75,7 +75,7 @@ const projectDefinitions = [
       pt: {
         title: 'API Prices Webscraping',
         summary:
-          'API que mantenho para coleta de precos via web scraping, normalizacao de dados e disponibilizacao para consumo externo.',
+          'API que mantenho para coleta de preços via web scraping, normalização de dados e disponibilização para consumo externo.',
       },
       en: {
         title: 'API Prices Webscraping',
@@ -85,7 +85,7 @@ const projectDefinitions = [
       es: {
         title: 'API Prices Webscraping',
         summary:
-          'API que mantengo para recoleccion de precios por web scraping, normalizacion de datos y consumo externo.',
+          'API que mantengo para recolección de precios por web scraping, normalización de datos y consumo externo.',
       },
     },
   },
@@ -97,7 +97,7 @@ const projectDefinitions = [
       pt: {
         title: 'Zap REST API',
         summary:
-          'Projeto proprio que mantenho para integrar fluxos de WhatsApp via API REST com foco em atendimento e automacao.',
+          'Projeto próprio que mantenho para integrar fluxos de WhatsApp via API REST com foco em atendimento e automação.',
       },
       en: {
         title: 'Zap REST API',
@@ -107,7 +107,7 @@ const projectDefinitions = [
       es: {
         title: 'Zap REST API',
         summary:
-          'Proyecto propio que mantengo para integrar flujos de WhatsApp via API REST con foco en atencion y automatizacion.',
+          'Proyecto propio que mantengo para integrar flujos de WhatsApp vía API REST con foco en atención y automatización.',
       },
     },
   },
@@ -119,7 +119,7 @@ const projectDefinitions = [
       pt: {
         title: 'Zap Bot',
         summary:
-          'Bot de WhatsApp que mantenho para automacao de conversas, roteamento de mensagens e aceleracao de operacao.',
+          'Bot de WhatsApp que mantenho para automação de conversas, roteamento de mensagens e aceleração de operação.',
       },
       en: {
         title: 'Zap Bot',
@@ -129,7 +129,7 @@ const projectDefinitions = [
       es: {
         title: 'Zap Bot',
         summary:
-          'Bot de WhatsApp que mantengo para automatizacion de conversaciones y ruteo de mensajes.',
+          'Bot de WhatsApp que mantengo para automatización de conversaciones y ruteo de mensajes.',
       },
     },
   },

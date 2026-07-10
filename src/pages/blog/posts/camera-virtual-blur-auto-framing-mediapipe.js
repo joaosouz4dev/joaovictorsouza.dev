@@ -5,16 +5,16 @@
 //     conclusion: { title, description, cta }, related: [{ label, to }], repo?: { name, description, url } }
 
 const repo = {
-  pt: 'CamFX: app desktop em Python (MediaPipe + OpenCV + pyvirtualcam) que aplica blur de fundo e auto-framing so na webcam e expoe o resultado como camera virtual para Zoom, Meet, Discord e OBS.',
+  pt: 'CamFX: app desktop em Python (MediaPipe + OpenCV + pyvirtualcam) que aplica blur de fundo e auto-framing só na webcam e expõe o resultado como câmera virtual para Zoom, Meet, Discord e OBS.',
   en: 'CamFX: a Python desktop app (MediaPipe + OpenCV + pyvirtualcam) that applies background blur and auto-framing only to the webcam and exposes the result as a virtual camera for Zoom, Meet, Discord and OBS.',
-  es: 'CamFX: app de escritorio en Python (MediaPipe + OpenCV + pyvirtualcam) que aplica blur de fondo y auto-framing solo a la webcam y expone el resultado como camara virtual para Zoom, Meet, Discord y OBS.',
+  es: 'CamFX: app de escritorio en Python (MediaPipe + OpenCV + pyvirtualcam) que aplica blur de fondo y auto-framing solo a la webcam y expone el resultado como cámara virtual para Zoom, Meet, Discord y OBS.',
 };
 
 const repoUrl = 'https://github.com/joaosouz4dev/cam-fx';
 
 const pt = {
   intro:
-    'Eu usava o NVIDIA Broadcast so para uma coisa: desfocar o fundo da minha webcam. So que ele insistia em ser muito mais do que eu pedia. Ativava efeito de ruido no microfone e nos alto-falantes quando eu so queria mexer na camera, e ao ligar o PC abria a janela cheia na minha cara em vez de iniciar quieto na bandeja. Decidi resolver isso construindo minha propria ferramenta: um app de desktop que aplica blur de fundo e auto-framing apenas na camera, expoe o resultado como uma webcam virtual para qualquer programa de chamada e inicia minimizado. Este artigo conta a decisao de arquitetura, o porque de cada escolha tecnica e como o app foi montado e validado.',
+    'Eu usava o NVIDIA Broadcast só para uma coisa: desfocar o fundo da minha webcam. Só que ele insistia em ser muito mais do que eu pedia. Ativava efeito de ruído no microfone e nos alto-falantes quando eu só queria mexer na câmera, e ao ligar o PC abria a janela cheia na minha cara em vez de iniciar quieto na bandeja. Decidi resolver isso construindo minha própria ferramenta: um app de desktop que aplica blur de fundo e auto-framing apenas na câmera, expõe o resultado como uma webcam virtual para qualquer programa de chamada e inicia minimizado. Este artigo conta a decisão de arquitetura, o porquê de cada escolha técnica e como o app foi montado e validado.',
   sections: [
     {
       title: 'O problema com o NVIDIA Broadcast',
@@ -22,20 +22,20 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O NVIDIA Broadcast e uma otima suite, mas para o meu uso ele resolvia demais. Tres incomodos concretos me empurraram para construir algo proprio.',
+            'O NVIDIA Broadcast é uma ótima suíte, mas para o meu uso ele resolvia demais. Três incômodos concretos me empurraram para construir algo próprio.',
         },
         {
           type: 'list',
           items: [
-            'Escopo amplo demais: eu so queria blur na camera, e o app girava em torno de tres dispositivos (camera, microfone e alto-falantes). Cada vez que eu mexia numa coisa, tinha o risco de ativar efeito onde eu nao queria.',
-            'Abria maximizado no boot: ao ligar o PC, a janela do Broadcast aparecia inteira na tela, em vez de iniciar minimizada na bandeja. Todo dia eu fechava na mao.',
-            'Peso e acoplamento: uma suite grande para uma funcao pequena. Eu queria uma ferramenta enxuta que fizesse so o blur e o enquadramento, do meu jeito.',
+            'Escopo amplo demais: eu só queria blur na câmera, e o app girava em torno de três dispositivos (câmera, microfone e alto-falantes). Cada vez que eu mexia numa coisa, tinha o risco de ativar efeito onde eu não queria.',
+            'Abria maximizado no boot: ao ligar o PC, a janela do Broadcast aparecia inteira na tela, em vez de iniciar minimizada na bandeja. Todo dia eu fechava na mão.',
+            'Peso e acoplamento: uma suíte grande para uma função pequena. Eu queria uma ferramenta enxuta que fizesse só o blur e o enquadramento, do meu jeito.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A inspiracao veio de um projeto web open source do Takashi Yoshinaga que faz blur de fundo e auto-framing com MediaPipe rodando no navegador. A ideia era exatamente o que eu queria, mas em pagina web nao da para virar webcam dos outros apps. Eu precisava de um aplicativo instalavel no PC que expusesse uma camera virtual.',
+            'A inspiração veio de um projeto web open source do Takashi Yoshinaga que faz blur de fundo e auto-framing com MediaPipe rodando no navegador. A ideia era exatamente o que eu queria, mas em página web não dá para virar webcam dos outros apps. Eu precisava de um aplicativo instalável no PC que expusesse uma câmera virtual.',
         },
       ],
     },
@@ -45,7 +45,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O requisito que define tudo nao e o blur em si: e fazer o video processado aparecer como uma webcam selecionavel no Zoom, Meet, Discord e OBS. Isso exige registrar uma camera virtual no Windows. Avaliei tres caminhos.',
+            'O requisito que define tudo não é o blur em si: é fazer o vídeo processado aparecer como uma webcam selecionável no Zoom, Meet, Discord e OBS. Isso exige registrar uma câmera virtual no Windows. Avaliei três caminhos.',
         },
         {
           type: 'table',
@@ -53,25 +53,25 @@ const pt = {
           rows: [
             [
               'Electron + JS (igual ao repo original)',
-              'Reaproveita o MediaPipe.js do projeto web; UI facil',
-              'Criar camera virtual real no Windows a partir do Electron e instavel; bom so para janela de preview',
+              'Reaproveita o MediaPipe.js do projeto web; UI fácil',
+              'Criar câmera virtual real no Windows a partir do Electron é instável; bom só para janela de preview',
             ],
             [
               'C# / .NET nativo',
-              'App nativo robusto, instalador limpo, camera virtual via DirectShow',
-              'MediaPipe em C# e menos direto; desenvolvimento bem mais longo',
+              'App nativo robusto, instalador limpo, câmera virtual via DirectShow',
+              'MediaPipe em C# é menos direto; desenvolvimento bem mais longo',
             ],
             [
               'Python + pyvirtualcam',
-              'MediaPipe oficial, OpenCV maduro, camera virtual pronta via backend do OBS, vira .exe com PyInstaller',
-              'Depende do OBS instalado uma vez para registrar o driver da camera virtual',
+              'MediaPipe oficial, OpenCV maduro, câmera virtual pronta via backend do OBS, vira .exe com PyInstaller',
+              'Depende do OBS instalado uma vez para registrar o driver da câmera virtual',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Escolhi Python. O MediaPipe tem suporte oficial em Python, o OpenCV resolve captura e processamento de imagem com folga, e a biblioteca pyvirtualcam entrega a camera virtual reaproveitando o driver que o OBS Studio ja instala. E o melhor custo-beneficio: chego rapido num app funcional e ainda empacoto tudo num executavel.',
+            'Escolhi Python. O MediaPipe tem suporte oficial em Python, o OpenCV resolve captura e processamento de imagem com folga, e a biblioteca pyvirtualcam entrega a câmera virtual reaproveitando o driver que o OBS Studio já instala. É o melhor custo-benefício: chego rápido num app funcional e ainda empacoto tudo num executável.',
         },
       ],
     },
@@ -81,7 +81,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'O blur depende de separar a pessoa do fundo. Para isso uso o Image Segmenter do MediaPipe com o modelo de selfie segmentation, que devolve, para cada pixel, a confianca de pertencer a pessoa. Com essa mascara, componho a pessoa nitida sobre uma copia desfocada do mesmo frame.',
+            'O blur depende de separar a pessoa do fundo. Para isso uso o Image Segmenter do MediaPipe com o modelo de selfie segmentation, que devolve, para cada pixel, a confiança de pertencer à pessoa. Com essa máscara, componho a pessoa nítida sobre uma cópia desfocada do mesmo frame.',
         },
         {
           type: 'code',
@@ -116,7 +116,7 @@ def blur_background(frame_bgr, ts_ms, strength=25, threshold=0.5):
         {
           type: 'paragraph',
           value:
-            'Dois cuidados fazem diferenca na qualidade: binarizar a mascara num limiar e depois suavizar a borda com um leve blur gaussiano, para a transicao entre pessoa e fundo nao ficar serrilhada; e usar o modo VIDEO do segmenter passando o timestamp de cada frame, o que da rastreamento temporal e estabiliza o resultado quadro a quadro.',
+            'Dois cuidados fazem diferença na qualidade: binarizar a máscara num limiar e depois suavizar a borda com um leve blur gaussiano, para a transição entre pessoa e fundo não ficar serrilhada; e usar o modo VIDEO do segmenter passando o timestamp de cada frame, o que dá rastreamento temporal e estabiliza o resultado quadro a quadro.',
         },
       ],
     },
@@ -126,7 +126,7 @@ def blur_background(frame_bgr, ts_ms, strength=25, threshold=0.5):
         {
           type: 'paragraph',
           value:
-            'O auto-framing mantem seu rosto sempre bem enquadrado, como se a camera te seguisse. Detecto o rosto com o Face Detector do MediaPipe (BlazeFace), calculo um retangulo de corte centrado nele com um zoom configuravel e redimensiono esse corte de volta ao tamanho de saida. O segredo para nao tremer e suavizar o movimento com media exponencial, a mesma ideia do projeto original.',
+            'O auto-framing mantém seu rosto sempre bem enquadrado, como se a câmera te seguisse. Detecto o rosto com o Face Detector do MediaPipe (BlazeFace), calculo um retângulo de corte centrado nele com um zoom configurável e redimensiono esse corte de volta ao tamanho de saída. O segredo para não tremer é suavizar o movimento com média exponencial, a mesma ideia do projeto original.',
         },
         {
           type: 'code',
@@ -145,17 +145,17 @@ def target_crop(detection, w, h, zoom=1.4):
         {
           type: 'paragraph',
           value:
-            'A cada frame eu calculo o corte alvo a partir do rosto, misturo com o corte anterior pela media exponencial e fixo o resultado dentro dos limites da imagem. Quando nenhum rosto e detectado, o enquadramento relaxa devagar de volta para o frame cheio, em vez de saltar.',
+            'A cada frame eu calculo o corte alvo a partir do rosto, misturo com o corte anterior pela média exponencial e fixo o resultado dentro dos limites da imagem. Quando nenhum rosto é detectado, o enquadramento relaxa devagar de volta para o frame cheio, em vez de saltar.',
         },
       ],
     },
     {
-      title: 'A camera virtual: a peca central',
+      title: 'A câmera virtual: a peça central',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'De nada adianta processar o video se ele nao aparece como webcam nos outros programas. Esse e o papel do pyvirtualcam, que no Windows usa o driver da camera virtual do OBS Studio. Por isso o OBS precisa estar instalado uma vez (nem precisa abrir): ele registra o driver que o app reutiliza. O loop e simples: capturo da camera fisica, aplico os efeitos e envio o frame para a camera virtual.',
+            'De nada adianta processar o vídeo se ele não aparece como webcam nos outros programas. Esse é o papel do pyvirtualcam, que no Windows usa o driver da câmera virtual do OBS Studio. Por isso o OBS precisa estar instalado uma vez (nem precisa abrir): ele registra o driver que o app reutiliza. O loop é simples: capturo da câmera física, aplico os efeitos e envio o frame para a câmera virtual.',
         },
         {
           type: 'code',
@@ -175,22 +175,22 @@ with pyvirtualcam.Camera(width=1280, height=720, fps=30, fmt=PixelFormat.BGR) as
         },
         {
           type: 'diagram',
-          value: `camera fisica
+          value: `câmera física
    -> OpenCV (captura)
       -> auto-framing  (FaceDetector + corte suavizado)
-         -> blur de fundo (ImageSegmenter + composicao alpha)
+         -> blur de fundo (ImageSegmenter + composição alpha)
             -> pyvirtualcam (OBS Virtual Camera)
                -> Zoom / Meet / Discord / OBS`,
         },
       ],
     },
     {
-      title: 'Uma armadilha real: capturar a propria camera virtual',
+      title: 'Uma armadilha real: capturar a própria câmera virtual',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'No teste de ponta a ponta apareceu um problema que vale registrar. Ao listar as cameras pelo OpenCV, a OBS Virtual Camera tambem aparece como um dispositivo de entrada. Se o app captura ela por engano, voce acaba enquadrando a tela de standby do OBS em vez do seu rosto, ou cria um loop de video. A correcao foi enumerar as cameras pelo nome (via DirectShow) e filtrar qualquer dispositivo cujo nome contenha "OBS Virtual", deixando so as cameras fisicas na lista de entrada.',
+            'No teste de ponta a ponta apareceu um problema que vale registrar. Ao listar as câmeras pelo OpenCV, a OBS Virtual Camera também aparece como um dispositivo de entrada. Se o app captura ela por engano, você acaba enquadrando a tela de standby do OBS em vez do seu rosto, ou cria um loop de vídeo. A correção foi enumerar as câmeras pelo nome (via DirectShow) e filtrar qualquer dispositivo cujo nome contenha "OBS Virtual", deixando só as câmeras físicas na lista de entrada.',
         },
         {
           type: 'code',
@@ -209,17 +209,17 @@ def list_cameras():
         {
           type: 'paragraph',
           value:
-            'Para confirmar que o efeito realmente acontece, alem da inspecao visual eu medi a variancia do Laplaciano (um indicador de nitidez) no centro do frame, onde fica a pessoa, e num canto, onde fica o fundo. O centro deu cerca de 680 e o canto perto de zero, ou seja, fundo desfocado e pessoa preservada nitida, exatamente o esperado.',
+            'Para confirmar que o efeito realmente acontece, além da inspeção visual eu medi a variância do Laplaciano (um indicador de nitidez) no centro do frame, onde fica a pessoa, e num canto, onde fica o fundo. O centro deu cerca de 680 e o canto perto de zero, ou seja, fundo desfocado e pessoa preservada nítida, exatamente o esperado.',
         },
       ],
     },
     {
-      title: 'Resolvendo as queixas: bandeja e inicio minimizado',
+      title: 'Resolvendo as queixas: bandeja e início minimizado',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Os dois incomodos que me motivaram viraram requisitos explicitos. Primeiro, escopo: o app mexe so na camera, ponto. Nao toca em microfone nem em alto-falantes, porque simplesmente nao lida com audio. Segundo, comportamento de inicializacao: um icone na bandeja do sistema (com pystray) permite rodar minimizado, pausar e retomar; e o inicio com o Windows registra o app no boot ja com a flag de iniciar minimizado, o oposto do Broadcast abrindo maximizado.',
+            'Os dois incômodos que me motivaram viraram requisitos explícitos. Primeiro, escopo: o app mexe só na câmera, ponto. Não toca em microfone nem em alto-falantes, porque simplesmente não lida com áudio. Segundo, comportamento de inicialização: um ícone na bandeja do sistema (com pystray) permite rodar minimizado, pausar e retomar; e o início com o Windows registra o app no boot já com a flag de iniciar minimizado, o oposto do Broadcast abrindo maximizado.',
         },
         {
           type: 'code',
@@ -238,12 +238,12 @@ def set_autostart(enabled):
       ],
     },
     {
-      title: 'Empacotando como executavel',
+      title: 'Empacotando como executável',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Para virar algo instalavel, gerei um executavel unico com o PyInstaller. O detalhe importante e empacotar junto os modelos .tflite do MediaPipe e os assets internos da biblioteca, para o app rodar sem depender de download na primeira vez. Os modelos sao baixados automaticamente na primeira execucao a partir do fonte e ficam em cache na pasta do usuario; no executavel, vao embutidos.',
+            'Para virar algo instalável, gerei um executável único com o PyInstaller. O detalhe importante é empacotar junto os modelos .tflite do MediaPipe e os assets internos da biblioteca, para o app rodar sem depender de download na primeira vez. Os modelos são baixados automaticamente na primeira execução a partir do fonte e ficam em cache na pasta do usuário; no executável, vão embutidos.',
         },
         {
           type: 'code',
@@ -256,7 +256,7 @@ def set_autostart(enabled):
         {
           type: 'paragraph',
           value:
-            'Resultado: um CamFX.exe que abre, deixa escolher a camera, ligar blur e auto-framing com controles de intensidade, e manda o video para a camera virtual. No Zoom ou no Meet basta selecionar a OBS Virtual Camera como webcam. Fazendo so o que eu precisava, do jeito que eu queria.',
+            'Resultado: um CamFX.exe que abre, deixa escolher a câmera, ligar blur e auto-framing com controles de intensidade, e manda o vídeo para a câmera virtual. No Zoom ou no Meet basta selecionar a OBS Virtual Camera como webcam. Fazendo só o que eu precisava, do jeito que eu queria.',
         },
       ],
     },
@@ -265,28 +265,28 @@ def set_autostart(enabled):
     {
       question: 'Por que precisa do OBS instalado?',
       answer:
-        'O pyvirtualcam, no Windows, usa o driver da camera virtual que o OBS Studio registra ao ser instalado. Voce nao precisa abrir o OBS, apenas instala-lo uma vez para que o driver exista. A partir dai o CamFX cria a camera virtual sozinho e o video processado aparece como a webcam OBS Virtual Camera nos outros aplicativos.',
+        'O pyvirtualcam, no Windows, usa o driver da câmera virtual que o OBS Studio registra ao ser instalado. Você não precisa abrir o OBS, apenas instalá-lo uma vez para que o driver exista. A partir daí o CamFX cria a câmera virtual sozinho e o vídeo processado aparece como a webcam OBS Virtual Camera nos outros aplicativos.',
     },
     {
-      question: 'Da para rodar sem placa NVIDIA?',
+      question: 'Dá para rodar sem placa NVIDIA?',
       answer:
-        'Sim. Diferente do NVIDIA Broadcast, que exige GPU NVIDIA RTX, o CamFX roda o MediaPipe na CPU por padrao. Nos meus testes, blur e auto-framing juntos em 720p rodaram em torno de 13 FPS na CPU, suficiente para chamadas; em maquinas mais fortes ou reduzindo a resolucao, o numero sobe.',
+        'Sim. Diferente do NVIDIA Broadcast, que exige GPU NVIDIA RTX, o CamFX roda o MediaPipe na CPU por padrão. Nos meus testes, blur e auto-framing juntos em 720p rodaram em torno de 13 FPS na CPU, suficiente para chamadas; em máquinas mais fortes ou reduzindo a resolução, o número sobe.',
     },
     {
-      question: 'Por que o efeito so na camera e nao no audio?',
+      question: 'Por que o efeito só na câmera e não no áudio?',
       answer:
-        'Por escolha de escopo. O incomodo que me levou a construir a ferramenta era justamente o efeito vazar para microfone e alto-falantes quando eu so queria mexer na camera. O CamFX nao lida com audio de proposito: ele captura video, processa e expoe uma camera virtual, e nada mais.',
+        'Por escolha de escopo. O incômodo que me levou a construir a ferramenta era justamente o efeito vazar para microfone e alto-falantes quando eu só queria mexer na câmera. O CamFX não lida com áudio de propósito: ele captura vídeo, processa e expõe uma câmera virtual, e nada mais.',
     },
   ],
   conclusion: {
-    title: 'Uma ferramenta que faz so o que voce precisa',
+    title: 'Uma ferramenta que faz só o que você precisa',
     description:
-      'Construir o proprio substituto do NVIDIA Broadcast me deu exatamente o que eu queria: blur e auto-framing so na camera, inicio minimizado na bandeja e nenhum efeito indesejado no audio. Se voce tem um incomodo parecido com uma ferramenta grande demais para a sua necessidade, posso ajudar a desenhar e construir a solucao enxuta certa.',
+      'Construir o próprio substituto do NVIDIA Broadcast me deu exatamente o que eu queria: blur e auto-framing só na câmera, início minimizado na bandeja e nenhum efeito indesejado no áudio. Se você tem um incômodo parecido com uma ferramenta grande demais para a sua necessidade, posso ajudar a desenhar e construir a solução enxuta certa.',
     cta: 'Conversar sobre um projeto sob medida',
   },
   related: [
     { label: 'CAG x RAG: quando cache de contexto vence retrieval', to: '/blog/cag-vs-rag-cache-contexto' },
-    { label: 'ROI real de automacao com IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de automação com IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo: { name: 'cam-fx', description: repo.pt, url: repoUrl },
 };
@@ -572,7 +572,7 @@ def set_autostart(enabled):
 
 const es = {
   intro:
-    'Yo usaba NVIDIA Broadcast para exactamente una cosa: desenfocar el fondo de mi webcam. El problema es que insistia en ser mucho mas de lo que yo pedia. Activaba efectos de ruido en el microfono y los altavoces cuando yo solo queria la camara, y al encender el PC abria la ventana completa en mi cara en vez de iniciar callado en la bandeja. Decidi resolverlo construyendo mi propia herramienta: una app de escritorio que aplica blur de fondo y auto-framing solo a la camara, expone el resultado como una webcam virtual para cualquier app de llamadas e inicia minimizada. Este articulo cuenta la decision de arquitectura, el porque de cada eleccion tecnica y como se construyo y valido la app.',
+    'Yo usaba NVIDIA Broadcast para exactamente una cosa: desenfocar el fondo de mi webcam. El problema es que insistía en ser mucho más de lo que yo pedía. Activaba efectos de ruido en el micrófono y los altavoces cuando yo solo quería la cámara, y al encender el PC abría la ventana completa en mi cara en vez de iniciar callado en la bandeja. Decidí resolverlo construyendo mi propia herramienta: una app de escritorio que aplica blur de fondo y auto-framing solo a la cámara, expone el resultado como una webcam virtual para cualquier app de llamadas e inicia minimizada. Este artículo cuenta la decisión de arquitectura, el porqué de cada elección técnica y cómo se construyó y validó la app.',
   sections: [
     {
       title: 'El problema con NVIDIA Broadcast',
@@ -580,20 +580,20 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'NVIDIA Broadcast es una gran suite, pero para mi uso resolvia demasiado. Tres molestias concretas me empujaron a construir lo mio.',
+            'NVIDIA Broadcast es una gran suite, pero para mi uso resolvía demasiado. Tres molestias concretas me empujaron a construir lo mío.',
         },
         {
           type: 'list',
           items: [
-            'Alcance demasiado amplio: yo solo queria blur en la camara, y la app giraba en torno a tres dispositivos (camara, microfono y altavoces). Cada vez que tocaba algo, arriesgaba activar un efecto donde no queria.',
-            'Abria maximizado al arrancar: al encender el PC, la ventana de Broadcast aparecia completa en pantalla en vez de iniciar minimizada en la bandeja. La cerraba a mano todos los dias.',
-            'Peso y acoplamiento: una suite grande para una funcion pequena. Yo queria una herramienta liviana que hiciera solo blur y encuadre, a mi manera.',
+            'Alcance demasiado amplio: yo solo quería blur en la cámara, y la app giraba en torno a tres dispositivos (cámara, micrófono y altavoces). Cada vez que tocaba algo, arriesgaba activar un efecto donde no quería.',
+            'Abría maximizado al arrancar: al encender el PC, la ventana de Broadcast aparecía completa en pantalla en vez de iniciar minimizada en la bandeja. La cerraba a mano todos los días.',
+            'Peso y acoplamiento: una suite grande para una función pequeña. Yo quería una herramienta liviana que hiciera solo blur y encuadre, a mi manera.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La inspiracion vino de un proyecto web open source de Takashi Yoshinaga que hace blur de fondo y auto-framing con MediaPipe corriendo en el navegador. La idea era justo lo que yo queria, pero una pagina web no puede convertirse en webcam de otras apps. Yo necesitaba una aplicacion instalable en el PC que expusiera una camara virtual.',
+            'La inspiración vino de un proyecto web open source de Takashi Yoshinaga que hace blur de fondo y auto-framing con MediaPipe corriendo en el navegador. La idea era justo lo que yo quería, pero una página web no puede convertirse en webcam de otras apps. Yo necesitaba una aplicación instalable en el PC que expusiera una cámara virtual.',
         },
       ],
     },
@@ -603,7 +603,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'El requisito que define todo no es el blur en si: es lograr que el video procesado aparezca como una webcam seleccionable en Zoom, Meet, Discord y OBS. Eso exige registrar una camara virtual en Windows. Evalue tres caminos.',
+            'El requisito que define todo no es el blur en sí: es lograr que el video procesado aparezca como una webcam seleccionable en Zoom, Meet, Discord y OBS. Eso exige registrar una cámara virtual en Windows. Evalué tres caminos.',
         },
         {
           type: 'table',
@@ -611,35 +611,35 @@ const es = {
           rows: [
             [
               'Electron + JS (como el repo original)',
-              'Reutiliza el MediaPipe.js del proyecto web; UI facil',
-              'Crear una camara virtual real en Windows desde Electron es inestable; sirve solo para una ventana de preview',
+              'Reutiliza el MediaPipe.js del proyecto web; UI fácil',
+              'Crear una cámara virtual real en Windows desde Electron es inestable; sirve solo para una ventana de preview',
             ],
             [
               'C# / .NET nativo',
-              'App nativa robusta, instalador limpio, camara virtual via DirectShow',
-              'MediaPipe en C# es menos directo; desarrollo mucho mas largo',
+              'App nativa robusta, instalador limpio, cámara virtual vía DirectShow',
+              'MediaPipe en C# es menos directo; desarrollo mucho más largo',
             ],
             [
               'Python + pyvirtualcam',
-              'MediaPipe oficial, OpenCV maduro, camara virtual lista via el backend de OBS, compila a .exe con PyInstaller',
-              'Depende de OBS instalado una vez para registrar el driver de la camara virtual',
+              'MediaPipe oficial, OpenCV maduro, cámara virtual lista vía el backend de OBS, compila a .exe con PyInstaller',
+              'Depende de OBS instalado una vez para registrar el driver de la cámara virtual',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Eligi Python. MediaPipe tiene soporte oficial en Python, OpenCV resuelve captura y procesamiento de imagen de sobra, y la libreria pyvirtualcam entrega la camara virtual reutilizando el driver que OBS Studio ya instala. Es el mejor costo-beneficio: llego rapido a una app funcional y ademas empaqueto todo en un ejecutable.',
+            'Elegí Python. MediaPipe tiene soporte oficial en Python, OpenCV resuelve captura y procesamiento de imagen de sobra, y la librería pyvirtualcam entrega la cámara virtual reutilizando el driver que OBS Studio ya instala. Es el mejor costo-beneficio: llego rápido a una app funcional y además empaqueto todo en un ejecutable.',
         },
       ],
     },
     {
-      title: 'Como funciona el blur de fondo',
+      title: 'Cómo funciona el blur de fondo',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El blur depende de separar a la persona del fondo. Para eso uso el Image Segmenter de MediaPipe con el modelo de selfie segmentation, que devuelve, para cada pixel, la confianza de pertenecer a la persona. Con esa mascara, compongo a la persona nitida sobre una copia desenfocada del mismo frame.',
+            'El blur depende de separar a la persona del fondo. Para eso uso el Image Segmenter de MediaPipe con el modelo de selfie segmentation, que devuelve, para cada pixel, la confianza de pertenecer a la persona. Con esa máscara, compongo a la persona nítida sobre una copia desenfocada del mismo frame.',
         },
         {
           type: 'code',
@@ -674,17 +674,17 @@ def blur_background(frame_bgr, ts_ms, strength=25, threshold=0.5):
         {
           type: 'paragraph',
           value:
-            'Dos cuidados marcan la diferencia en la calidad: binarizar la mascara en un umbral y luego suavizar el borde con un leve blur gaussiano, para que la transicion entre persona y fondo no quede dentada; y usar el modo VIDEO del segmenter pasando el timestamp de cada frame, lo que da seguimiento temporal y estabiliza el resultado cuadro a cuadro.',
+            'Dos cuidados marcan la diferencia en la calidad: binarizar la máscara en un umbral y luego suavizar el borde con un leve blur gaussiano, para que la transición entre persona y fondo no quede dentada; y usar el modo VIDEO del segmenter pasando el timestamp de cada frame, lo que da seguimiento temporal y estabiliza el resultado cuadro a cuadro.',
         },
       ],
     },
     {
-      title: 'Como funciona el auto-framing',
+      title: 'Cómo funciona el auto-framing',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El auto-framing mantiene tu rostro siempre bien encuadrado, como si la camara te siguiera. Detecto el rostro con el Face Detector de MediaPipe (BlazeFace), calculo un rectangulo de recorte centrado en el con un zoom configurable y redimensiono ese recorte de vuelta al tamano de salida. El secreto para no temblar es suavizar el movimiento con media exponencial, la misma idea del proyecto original.',
+            'El auto-framing mantiene tu rostro siempre bien encuadrado, como si la cámara te siguiera. Detecto el rostro con el Face Detector de MediaPipe (BlazeFace), calculo un rectángulo de recorte centrado en él con un zoom configurable y redimensiono ese recorte de vuelta al tamaño de salida. El secreto para no temblar es suavizar el movimiento con media exponencial, la misma idea del proyecto original.',
         },
         {
           type: 'code',
@@ -703,17 +703,17 @@ def target_crop(detection, w, h, zoom=1.4):
         {
           type: 'paragraph',
           value:
-            'En cada frame calculo el recorte objetivo a partir del rostro, lo mezclo con el recorte anterior por la media exponencial y fijo el resultado dentro de los limites de la imagen. Cuando no se detecta ningun rostro, el encuadre se relaja despacio de vuelta al frame completo, en vez de saltar.',
+            'En cada frame calculo el recorte objetivo a partir del rostro, lo mezclo con el recorte anterior por la media exponencial y fijo el resultado dentro de los límites de la imagen. Cuando no se detecta ningún rostro, el encuadre se relaja despacio de vuelta al frame completo, en vez de saltar.',
         },
       ],
     },
     {
-      title: 'La camara virtual: la pieza central',
+      title: 'La cámara virtual: la pieza central',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'De nada sirve procesar el video si no aparece como webcam en los otros programas. Ese es el papel de pyvirtualcam, que en Windows usa el driver de la camara virtual de OBS Studio. Por eso OBS debe estar instalado una vez (ni siquiera hace falta abrirlo): registra el driver que la app reutiliza. El loop es simple: capturo de la camara fisica, aplico los efectos y envio el frame a la camara virtual.',
+            'De nada sirve procesar el video si no aparece como webcam en los otros programas. Ese es el papel de pyvirtualcam, que en Windows usa el driver de la cámara virtual de OBS Studio. Por eso OBS debe estar instalado una vez (ni siquiera hace falta abrirlo): registra el driver que la app reutiliza. El loop es simple: capturo de la cámara física, aplico los efectos y envío el frame a la cámara virtual.',
         },
         {
           type: 'code',
@@ -733,22 +733,22 @@ with pyvirtualcam.Camera(width=1280, height=720, fps=30, fmt=PixelFormat.BGR) as
         },
         {
           type: 'diagram',
-          value: `camara fisica
+          value: `cámara física
    -> OpenCV (captura)
       -> auto-framing  (FaceDetector + recorte suavizado)
-         -> blur de fondo (ImageSegmenter + composicion alpha)
+         -> blur de fondo (ImageSegmenter + composición alpha)
             -> pyvirtualcam (OBS Virtual Camera)
                -> Zoom / Meet / Discord / OBS`,
         },
       ],
     },
     {
-      title: 'Una trampa real: capturar tu propia camara virtual',
+      title: 'Una trampa real: capturar tu propia cámara virtual',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'En la prueba de punta a punta aparecio un problema que vale la pena registrar. Al listar las camaras por OpenCV, la OBS Virtual Camera tambien aparece como un dispositivo de entrada. Si la app la captura por error, terminas encuadrando la pantalla de standby de OBS en vez de tu rostro, o creas un loop de video. La correccion fue enumerar las camaras por nombre (via DirectShow) y filtrar cualquier dispositivo cuyo nombre contenga "OBS Virtual", dejando solo las camaras fisicas en la lista de entrada.',
+            'En la prueba de punta a punta apareció un problema que vale la pena registrar. Al listar las cámaras por OpenCV, la OBS Virtual Camera también aparece como un dispositivo de entrada. Si la app la captura por error, terminas encuadrando la pantalla de standby de OBS en vez de tu rostro, o creas un loop de video. La corrección fue enumerar las cámaras por nombre (vía DirectShow) y filtrar cualquier dispositivo cuyo nombre contenga "OBS Virtual", dejando solo las cámaras físicas en la lista de entrada.',
         },
         {
           type: 'code',
@@ -767,7 +767,7 @@ def list_cameras():
         {
           type: 'paragraph',
           value:
-            'Para confirmar que el efecto realmente ocurre, ademas de la inspeccion visual medi la varianza del Laplaciano (un indicador de nitidez) en el centro del frame, donde esta la persona, y en una esquina, donde esta el fondo. El centro dio alrededor de 680 y la esquina cerca de cero, es decir, fondo desenfocado y persona preservada nitida, exactamente lo esperado.',
+            'Para confirmar que el efecto realmente ocurre, además de la inspección visual medí la varianza del Laplaciano (un indicador de nitidez) en el centro del frame, donde está la persona, y en una esquina, donde está el fondo. El centro dio alrededor de 680 y la esquina cerca de cero, es decir, fondo desenfocado y persona preservada nítida, exactamente lo esperado.',
         },
       ],
     },
@@ -777,7 +777,7 @@ def list_cameras():
         {
           type: 'paragraph',
           value:
-            'Las dos molestias que me motivaron se volvieron requisitos explicitos. Primero, alcance: la app toca solo la camara, punto. No toca el microfono ni los altavoces, porque simplemente no maneja audio. Segundo, comportamiento de inicio: un icono en la bandeja del sistema (con pystray) permite correr minimizado, pausar y reanudar; y el inicio con Windows registra la app en el arranque ya con la bandera de iniciar minimizado, lo opuesto a Broadcast abriendo maximizado.',
+            'Las dos molestias que me motivaron se volvieron requisitos explícitos. Primero, alcance: la app toca solo la cámara, punto. No toca el micrófono ni los altavoces, porque simplemente no maneja audio. Segundo, comportamiento de inicio: un icono en la bandeja del sistema (con pystray) permite correr minimizado, pausar y reanudar; y el inicio con Windows registra la app en el arranque ya con la bandera de iniciar minimizado, lo opuesto a Broadcast abriendo maximizado.',
         },
         {
           type: 'code',
@@ -801,7 +801,7 @@ def set_autostart(enabled):
         {
           type: 'paragraph',
           value:
-            'Para volverlo instalable, genere un ejecutable unico con PyInstaller. El detalle importante es empaquetar junto los modelos .tflite de MediaPipe y los assets internos de la libreria, para que la app corra sin depender de una descarga la primera vez. Los modelos se descargan automaticamente en la primera ejecucion desde el fuente y quedan en cache en la carpeta del usuario; en el ejecutable, van embebidos.',
+            'Para volverlo instalable, generé un ejecutable único con PyInstaller. El detalle importante es empaquetar junto los modelos .tflite de MediaPipe y los assets internos de la librería, para que la app corra sin depender de una descarga la primera vez. Los modelos se descargan automáticamente en la primera ejecución desde el fuente y quedan en cache en la carpeta del usuario; en el ejecutable, van embebidos.',
         },
         {
           type: 'code',
@@ -814,37 +814,37 @@ def set_autostart(enabled):
         {
           type: 'paragraph',
           value:
-            'Resultado: un CamFX.exe que abre, deja elegir la camara, activar blur y auto-framing con controles de intensidad, y envia el video a la camara virtual. En Zoom o Meet basta seleccionar OBS Virtual Camera como webcam. Haciendo solo lo que yo necesitaba, a mi manera.',
+            'Resultado: un CamFX.exe que abre, deja elegir la cámara, activar blur y auto-framing con controles de intensidad, y envía el video a la cámara virtual. En Zoom o Meet basta seleccionar OBS Virtual Camera como webcam. Haciendo solo lo que yo necesitaba, a mi manera.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'Por que necesita OBS instalado?',
+      question: '¿Por qué necesita OBS instalado?',
       answer:
-        'En Windows, pyvirtualcam usa el driver de la camara virtual que OBS Studio registra al instalarse. No necesitas abrir OBS, solo instalarlo una vez para que el driver exista. A partir de ahi CamFX crea la camara virtual por su cuenta y el video procesado aparece como la webcam OBS Virtual Camera en las otras aplicaciones.',
+        'En Windows, pyvirtualcam usa el driver de la cámara virtual que OBS Studio registra al instalarse. No necesitas abrir OBS, solo instalarlo una vez para que el driver exista. A partir de ahí CamFX crea la cámara virtual por su cuenta y el video procesado aparece como la webcam OBS Virtual Camera en las otras aplicaciones.',
     },
     {
-      question: 'Se puede correr sin tarjeta NVIDIA?',
+      question: '¿Se puede correr sin tarjeta NVIDIA?',
       answer:
-        'Si. A diferencia de NVIDIA Broadcast, que exige GPU NVIDIA RTX, CamFX corre MediaPipe en la CPU por defecto. En mis pruebas, blur y auto-framing juntos en 720p corrieron alrededor de 13 FPS en la CPU, suficiente para llamadas; en maquinas mas potentes o bajando la resolucion, el numero sube.',
+        'Sí. A diferencia de NVIDIA Broadcast, que exige GPU NVIDIA RTX, CamFX corre MediaPipe en la CPU por defecto. En mis pruebas, blur y auto-framing juntos en 720p corrieron alrededor de 13 FPS en la CPU, suficiente para llamadas; en máquinas más potentes o bajando la resolución, el número sube.',
     },
     {
-      question: 'Por que el efecto solo en la camara y no en el audio?',
+      question: '¿Por qué el efecto solo en la cámara y no en el audio?',
       answer:
-        'Por eleccion de alcance. La molestia que me llevo a construir la herramienta era justamente el efecto filtrandose al microfono y los altavoces cuando yo solo queria la camara. CamFX deliberadamente no maneja audio: captura video, lo procesa y expone una camara virtual, nada mas.',
+        'Por elección de alcance. La molestia que me llevó a construir la herramienta era justamente el efecto filtrándose al micrófono y los altavoces cuando yo solo quería la cámara. CamFX deliberadamente no maneja audio: captura video, lo procesa y expone una cámara virtual, nada más.',
     },
   ],
   conclusion: {
     title: 'Una herramienta que hace solo lo que necesitas',
     description:
-      'Construir mi propio reemplazo de NVIDIA Broadcast me dio exactamente lo que queria: blur y auto-framing solo en la camara, inicio minimizado en la bandeja y ningun efecto no deseado en el audio. Si tienes una molestia parecida con una herramienta demasiado grande para tu necesidad, puedo ayudar a disenar y construir la solucion liviana correcta.',
+      'Construir mi propio reemplazo de NVIDIA Broadcast me dio exactamente lo que quería: blur y auto-framing solo en la cámara, inicio minimizado en la bandeja y ningún efecto no deseado en el audio. Si tienes una molestia parecida con una herramienta demasiado grande para tu necesidad, puedo ayudar a diseñar y construir la solución liviana correcta.',
     cta: 'Hablar sobre un proyecto a medida',
   },
   related: [
     { label: 'CAG vs RAG: cuando el cache de contexto le gana al retrieval', to: '/blog/cag-vs-rag-cache-contexto' },
-    { label: 'ROI real de automatizacion con IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de automatización con IA', to: '/blog/roi-real-automacao-ia' },
   ],
   repo: { name: 'cam-fx', description: repo.es, url: repoUrl },
 };

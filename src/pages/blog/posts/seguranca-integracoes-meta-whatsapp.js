@@ -1,37 +1,37 @@
 const pt = {
   intro:
-    'Integrar com a Meta e o WhatsApp Cloud API significa expor endpoints publicos, manipular tokens de longa duracao e processar dados de pessoas reais. Cada um desses pontos e uma superficie de ataque. Este checklist reune as praticas de AppSec que evitam que um webhook vire porta de entrada: verificacao de assinatura, segregacao e rotacao de credenciais, rate limiting e trilha de auditoria. O foco e pratico, com codigo que voce pode colar e adaptar hoje.',
+    'Integrar com a Meta e o WhatsApp Cloud API significa expor endpoints públicos, manipular tokens de longa duração e processar dados de pessoas reais. Cada um desses pontos é uma superfície de ataque. Este checklist reúne as práticas de AppSec que evitam que um webhook vire porta de entrada: verificação de assinatura, segregação e rotação de credenciais, rate limiting e trilha de auditoria. O foco é prático, com código que você pode colar e adaptar hoje.',
   sections: [
     {
-      title: 'Por que a seguranca de webhooks da Meta exige atencao especial',
+      title: 'Por que a segurança de webhooks da Meta exige atenção especial',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Um webhook e um endpoint HTTP publico. Qualquer pessoa na internet pode envia-lo um POST forjado. Sem verificacao de assinatura, seu sistema processaria mensagens falsas, eventos duplicados e payloads maliciosos como se fossem legitimos. A Meta resolve isso assinando cada requisicao com HMAC SHA-256 usando o App Secret, e cabe a voce validar essa assinatura antes de confiar em qualquer byte do corpo.',
+            'Um webhook é um endpoint HTTP público. Qualquer pessoa na internet pode enviá-lo um POST forjado. Sem verificação de assinatura, seu sistema processaria mensagens falsas, eventos duplicados e payloads maliciosos como se fossem legítimos. A Meta resolve isso assinando cada requisição com HMAC SHA-256 usando o App Secret, e cabe a você validar essa assinatura antes de confiar em qualquer byte do corpo.',
         },
         {
           type: 'paragraph',
           value:
-            'Alem da assinatura, ha tres outras camadas que separam uma integracao amadora de uma integracao de producao: credenciais segregadas e rotacionaveis, limites de taxa para conter abuso e uma trilha de auditoria que permite reconstruir o que aconteceu sem vazar dados pessoais.',
+            'Além da assinatura, há três outras camadas que separam uma integração amadora de uma integração de produção: credenciais segregadas e rotacionáveis, limites de taxa para conter abuso e uma trilha de auditoria que permite reconstruir o que aconteceu sem vazar dados pessoais.',
         },
         {
           type: 'diagram',
-          value: `Internet  -->  [Edge / WAF]  -->  [Verificacao HMAC]  -->  [Rate limit]  -->  [Handler]
+          value: `Internet  -->  [Edge / WAF]  -->  [Verificação HMAC]  -->  [Rate limit]  -->  [Handler]
                                 |                    |                 |
                             bloqueia            rejeita 401       rejeita 429
                             payload bruto       assinatura        excedeu cota
-                                                invalida`,
+                                                inválida`,
         },
       ],
     },
     {
-      title: 'Verificacao de assinatura do webhook (x-hub-signature-256)',
+      title: 'Verificação de assinatura do webhook (x-hub-signature-256)',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A Meta envia o cabecalho x-hub-signature-256 no formato sha256=<hex>. O valor e o HMAC SHA-256 do corpo bruto da requisicao usando o App Secret como chave. Duas regras inegociaveis: use o body cru (raw), nao o JSON ja parseado e re-serializado, porque qualquer diferenca de bytes muda o hash; e compare com timingSafeEqual para evitar ataques de timing.',
+            'A Meta envia o cabeçalho x-hub-signature-256 no formato sha256=<hex>. O valor é o HMAC SHA-256 do corpo bruto da requisição usando o App Secret como chave. Duas regras inegociáveis: use o body cru (raw), não o JSON já parseado e re-serializado, porque qualquer diferença de bytes muda o hash; e compare com timingSafeEqual para evitar ataques de timing.',
         },
         {
           type: 'code',
@@ -68,38 +68,38 @@ app.post('/webhook', (req, res) => {
         {
           type: 'paragraph',
           value:
-            'Note o padrao: responda 200 imediatamente apos validar e empurre o processamento para uma fila. A Meta reentrega eventos nao confirmados, entao processamento sincrono e lento gera duplicatas e timeouts.',
+            'Note o padrão: responda 200 imediatamente após validar e empurre o processamento para uma fila. A Meta reentrega eventos não confirmados, então processamento síncrono e lento gera duplicatas e timeouts.',
         },
       ],
     },
     {
-      title: 'Segregacao e rotacao de credenciais',
+      title: 'Segregação e rotação de credenciais',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Tratar App Secret e tokens como segredos de verdade e o que evita o pior cenario: um vazamento de credencial com permissoes amplas e sem expiracao. Cada credencial deve ter escopo minimo, origem clara e um plano de rotacao.',
+            'Tratar App Secret e tokens como segredos de verdade é o que evita o pior cenário: um vazamento de credencial com permissões amplas e sem expiração. Cada credencial deve ter escopo mínimo, origem clara e um plano de rotação.',
         },
         {
           type: 'list',
           items: [
-            'App Secret: usado apenas para verificar assinaturas. Nunca o exponha em frontend, logs ou repositorio. Trate-o como chave criptografica.',
-            'System User token: prefira tokens de System User (longa duracao e renovaveis) a tokens de usuario pessoal, que quebram quando a pessoa sai da empresa.',
-            'Escopo minimo: conceda apenas as permissoes que a integracao realmente usa (por exemplo whatsapp_business_messaging), nada de pedir tudo por conveniencia.',
-            'Cofre de segredos: armazene em um secrets manager (AWS Secrets Manager, Vault, GCP Secret Manager). Nunca em .env versionado ou em variaveis de imagem Docker.',
-            'Rotacao programada: defina um ciclo (por exemplo a cada 90 dias) e tenha um runbook para girar o App Secret e revogar tokens antigos sem downtime.',
-            'Segregacao por ambiente: credenciais de producao, staging e dev devem ser distintas. Um vazamento em dev nunca pode comprometer producao.',
+            'App Secret: usado apenas para verificar assinaturas. Nunca o exponha em frontend, logs ou repositório. Trate-o como chave criptográfica.',
+            'System User token: prefira tokens de System User (longa duração e renováveis) a tokens de usuário pessoal, que quebram quando a pessoa sai da empresa.',
+            'Escopo mínimo: conceda apenas as permissões que a integração realmente usa (por exemplo whatsapp_business_messaging), nada de pedir tudo por conveniência.',
+            'Cofre de segredos: armazene em um secrets manager (AWS Secrets Manager, Vault, GCP Secret Manager). Nunca em .env versionado ou em variáveis de imagem Docker.',
+            'Rotação programada: defina um ciclo (por exemplo a cada 90 dias) e tenha um runbook para girar o App Secret e revogar tokens antigos sem downtime.',
+            'Segregação por ambiente: credenciais de produção, staging e dev devem ser distintas. Um vazamento em dev nunca pode comprometer produção.',
           ],
         },
       ],
     },
     {
-      title: 'Rate limiting e protecao contra abuso',
+      title: 'Rate limiting e proteção contra abuso',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Mesmo com assinatura valida, voce precisa limitar a taxa por origem para conter picos, loops de reentrega e tentativas de exaustao de recursos. Aplique limites por IP na borda e por tenant na aplicacao, usando um algoritmo de token bucket que tolera rajadas curtas mas corta abuso sustentado.',
+            'Mesmo com assinatura válida, você precisa limitar a taxa por origem para conter picos, loops de reentrega e tentativas de exaustão de recursos. Aplique limites por IP na borda e por tenant na aplicação, usando um algoritmo de token bucket que tolera rajadas curtas mas corta abuso sustentado.',
         },
         {
           type: 'code',
@@ -133,7 +133,7 @@ function rateLimit(key) {
         {
           type: 'paragraph',
           value:
-            'Em escala, troque o Map em memoria por Redis para que o limite seja consistente entre instancias. Responda 429 com Retry-After quando a cota estourar.',
+            'Em escala, troque o Map em memória por Redis para que o limite seja consistente entre instâncias. Responda 429 com Retry-After quando a cota estourar.',
         },
       ],
     },
@@ -143,41 +143,41 @@ function rateLimit(key) {
         {
           type: 'paragraph',
           value:
-            'Uma boa trilha de auditoria responde quem fez o que, quando e a partir de onde, sem transformar o log em um deposito de dados pessoais. Registre identificadores e metadados, nunca o conteudo da mensagem ou numeros de telefone em texto puro. Para correlacionar sem expor, use hash ou pseudonimizacao.',
+            'Uma boa trilha de auditoria responde quem fez o que, quando e a partir de onde, sem transformar o log em um depósito de dados pessoais. Registre identificadores e metadados, nunca o conteúdo da mensagem ou números de telefone em texto puro. Para correlacionar sem expor, use hash ou pseudonimização.',
         },
         {
           type: 'table',
           columns: ['Campo', 'O que registrar', 'PII?'],
           rows: [
-            ['quem', 'ID do tenant, ID do app, sub do token', 'Nao (use IDs internos)'],
-            ['o que', 'Tipo do evento (ex: message.received), acao tomada', 'Nao'],
-            ['quando', 'Timestamp UTC e ID de correlacao do evento', 'Nao'],
+            ['quem', 'ID do tenant, ID do app, sub do token', 'Não (use IDs internos)'],
+            ['o que', 'Tipo do evento (ex: message.received), ação tomada', 'Não'],
+            ['quando', 'Timestamp UTC e ID de correlação do evento', 'Não'],
             ['de onde', 'IP de origem (mascarado), user-agent', 'Parcial (mascare IP)'],
-            ['contato', 'Hash do telefone (SHA-256 + salt), nunca o numero', 'Nao se hasheado'],
-            ['resultado', 'Status (ok, rejeitado, 401, 429) e motivo', 'Nao'],
+            ['contato', 'Hash do telefone (SHA-256 + salt), nunca o número', 'Não se hasheado'],
+            ['resultado', 'Status (ok, rejeitado, 401, 429) e motivo', 'Não'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Defina retencao explicita para os logs e garanta que eles sejam imutaveis (append-only). Sob LGPD e GDPR, log nao e desculpa para reter dados pessoais indefinidamente.',
+            'Defina retenção explícita para os logs e garanta que eles sejam imutáveis (append-only). Sob LGPD e GDPR, log não é desculpa para reter dados pessoais indefinidamente.',
         },
       ],
     },
     {
-      title: 'LGPD e GDPR: consentimento e minimizacao',
+      title: 'LGPD e GDPR: consentimento e minimização',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'WhatsApp envolve dados pessoais por definicao. Dois principios guiam a conformidade no contexto de integracoes: base legal e consentimento para iniciar conversas (especialmente mensagens de marketing), e minimizacao de dados, ou seja, colete e armazene apenas o estritamente necessario para a finalidade declarada.',
+            'WhatsApp envolve dados pessoais por definição. Dois princípios guiam a conformidade no contexto de integrações: base legal e consentimento para iniciar conversas (especialmente mensagens de marketing), e minimização de dados, ou seja, colete e armazene apenas o estritamente necessário para a finalidade declarada.',
         },
         {
           type: 'list',
           items: [
             'Consentimento: tenha registro de opt-in antes de enviar mensagens proativas e respeite o opt-out imediatamente.',
-            'Minimizacao: nao persista o corpo das mensagens se a finalidade nao exige; prefira processar e descartar.',
-            'Direitos do titular: tenha um caminho para exclusao e portabilidade dos dados quando solicitado.',
+            'Minimização: não persista o corpo das mensagens se a finalidade não exige; prefira processar e descartar.',
+            'Direitos do titular: tenha um caminho para exclusão e portabilidade dos dados quando solicitado.',
           ],
         },
       ],
@@ -189,13 +189,13 @@ function rateLimit(key) {
           type: 'ordered',
           items: [
             'Capturar o corpo cru e validar x-hub-signature-256 com HMAC SHA-256 e timingSafeEqual antes de processar.',
-            'Responder 200 rapido e processar em fila, com idempotencia por ID de evento.',
+            'Responder 200 rápido e processar em fila, com idempotência por ID de evento.',
             'Mover App Secret e tokens para um secrets manager, fora de qualquer arquivo versionado.',
-            'Usar System User token com escopo minimo e separar credenciais por ambiente.',
-            'Definir e testar um ciclo de rotacao de credenciais com runbook sem downtime.',
-            'Aplicar rate limiting por IP na borda e por tenant na aplicacao (token bucket + Redis).',
-            'Registrar trilha de auditoria append-only com IDs e hashes, sem PII em claro, com retencao definida.',
-            'Documentar base legal, opt-in/opt-out e politica de minimizacao para LGPD e GDPR.',
+            'Usar System User token com escopo mínimo e separar credenciais por ambiente.',
+            'Definir e testar um ciclo de rotação de credenciais com runbook sem downtime.',
+            'Aplicar rate limiting por IP na borda e por tenant na aplicação (token bucket + Redis).',
+            'Registrar trilha de auditoria append-only com IDs e hashes, sem PII em claro, com retenção definida.',
+            'Documentar base legal, opt-in/opt-out e política de minimização para LGPD e GDPR.',
           ],
         },
       ],
@@ -205,33 +205,33 @@ function rateLimit(key) {
     {
       question: 'Posso usar JSON.stringify do corpo para calcular o HMAC?',
       answer:
-        'Nao. A assinatura e calculada sobre os bytes exatos enviados pela Meta. Re-serializar o JSON muda espacos, ordem e escaping, gerando um hash diferente. Capture o raw body com um verify do parser e use esse Buffer.',
+        'Não. A assinatura é calculada sobre os bytes exatos enviados pela Meta. Re-serializar o JSON muda espaços, ordem e escaping, gerando um hash diferente. Capture o raw body com um verify do parser e use esse Buffer.',
     },
     {
       question: 'Por que comparar a assinatura com timingSafeEqual em vez de ===?',
       answer:
-        'Comparacoes de string normais retornam mais rapido quando os primeiros caracteres divergem, o que vaza informacao por timing e permite reconstruir a assinatura tentativa a tentativa. timingSafeEqual compara em tempo constante, fechando esse canal lateral.',
+        'Comparações de string normais retornam mais rápido quando os primeiros caracteres divergem, o que vaza informação por timing e permite reconstruir a assinatura tentativa a tentativa. timingSafeEqual compara em tempo constante, fechando esse canal lateral.',
     },
     {
-      question: 'Onde devo guardar o App Secret em producao?',
+      question: 'Onde devo guardar o App Secret em produção?',
       answer:
-        'Em um secrets manager dedicado (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager) com acesso por IAM e rotacao programada. Nunca em .env commitado, em variaveis de build da imagem Docker ou em qualquer lugar acessivel pelo frontend.',
+        'Em um secrets manager dedicado (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager) com acesso por IAM e rotação programada. Nunca em .env commitado, em variáveis de build da imagem Docker ou em qualquer lugar acessível pelo frontend.',
     },
   ],
   conclusion: {
-    title: 'Seguranca de integracao nao e opcional',
+    title: 'Segurança de integração não é opcional',
     description:
-      'Assinatura verificada, credenciais segregadas, limites de taxa e auditoria limpa formam a base de uma integracao Meta e WhatsApp que aguenta producao e auditoria. Comece pelo checklist final e feche cada lacuna antes de ir ao ar.',
-    cta: 'Precisa de uma revisao de seguranca da sua integracao WhatsApp? Fale comigo.',
+      'Assinatura verificada, credenciais segregadas, limites de taxa e auditoria limpa formam a base de uma integração Meta e WhatsApp que aguenta produção e auditoria. Comece pelo checklist final e feche cada lacuna antes de ir ao ar.',
+    cta: 'Precisa de uma revisão de segurança da sua integração WhatsApp? Fale comigo.',
   },
   related: [
-    { label: 'Webhook do WhatsApp: idempotencia e filas', to: '/blog/webhook-whatsapp-idempotencia-filas' },
-    { label: 'Monitoramento e alertas para integracoes', to: '/blog/monitoramento-alertas-integracoes' },
+    { label: 'Webhook do WhatsApp: idempotência e filas', to: '/blog/webhook-whatsapp-idempotencia-filas' },
+    { label: 'Monitoramento e alertas para integrações', to: '/blog/monitoramento-alertas-integracoes' },
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
   ],
   repo: {
     name: 'meta-webhook-security',
-    description: 'Exemplo de verificacao de assinatura, rate limiting e auditoria para webhooks da Meta.',
+    description: 'Exemplo de verificação de assinatura, rate limiting e auditoria para webhooks da Meta.',
     url: 'https://github.com/joaosouz4dev/meta-webhook-security',
   },
 };
@@ -475,37 +475,37 @@ function rateLimit(key) {
 
 const es = {
   intro:
-    'Integrar con Meta y la WhatsApp Cloud API significa exponer endpoints publicos, manejar tokens de larga duracion y procesar datos de personas reales. Cada uno de esos puntos es una superficie de ataque. Este checklist reune las practicas de AppSec que evitan que un webhook se convierta en puerta de entrada: verificacion de firma, segregacion y rotacion de credenciales, rate limiting y trazas de auditoria. El enfoque es practico, con codigo que puedes pegar y adaptar hoy.',
+    'Integrar con Meta y la WhatsApp Cloud API significa exponer endpoints públicos, manejar tokens de larga duración y procesar datos de personas reales. Cada uno de esos puntos es una superficie de ataque. Este checklist reúne las prácticas de AppSec que evitan que un webhook se convierta en puerta de entrada: verificación de firma, segregación y rotación de credenciales, rate limiting y trazas de auditoría. El enfoque es práctico, con código que puedes pegar y adaptar hoy.',
   sections: [
     {
-      title: 'Por que la seguridad de webhooks de Meta exige atencion especial',
+      title: '¿Por qué la seguridad de webhooks de Meta exige atención especial?',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Un webhook es un endpoint HTTP publico. Cualquier persona en internet puede enviarle un POST falsificado. Sin verificacion de firma, tu sistema procesaria mensajes falsos, eventos duplicados y payloads maliciosos como si fueran legitimos. Meta resuelve esto firmando cada solicitud con HMAC SHA-256 usando el App Secret, y te toca a ti validar esa firma antes de confiar en un solo byte del cuerpo.',
+            'Un webhook es un endpoint HTTP público. Cualquier persona en internet puede enviarle un POST falsificado. Sin verificación de firma, tu sistema procesaría mensajes falsos, eventos duplicados y payloads maliciosos como si fueran legítimos. Meta resuelve esto firmando cada solicitud con HMAC SHA-256 usando el App Secret, y te toca a ti validar esa firma antes de confiar en un solo byte del cuerpo.',
         },
         {
           type: 'paragraph',
           value:
-            'Ademas de la firma, hay tres capas mas que separan una integracion amateur de una de produccion: credenciales segregadas y rotables, limites de tasa para contener el abuso y trazas de auditoria que permiten reconstruir lo que paso sin filtrar datos personales.',
+            'Además de la firma, hay tres capas más que separan una integración amateur de una de producción: credenciales segregadas y rotables, límites de tasa para contener el abuso y trazas de auditoría que permiten reconstruir lo que pasó sin filtrar datos personales.',
         },
         {
           type: 'diagram',
-          value: `Internet  -->  [Edge / WAF]  -->  [Verificacion HMAC]  -->  [Rate limit]  -->  [Handler]
+          value: `Internet  -->  [Edge / WAF]  -->  [Verificación HMAC]  -->  [Rate limit]  -->  [Handler]
                                 |                    |                 |
                             bloquea             rechaza 401       rechaza 429
-                            payload bruto       firma invalida    cuota excedida`,
+                            payload bruto       firma inválida    cuota excedida`,
         },
       ],
     },
     {
-      title: 'Verificacion de firma del webhook (x-hub-signature-256)',
+      title: 'Verificación de firma del webhook (x-hub-signature-256)',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Meta envia el encabezado x-hub-signature-256 con el formato sha256=<hex>. El valor es el HMAC SHA-256 del cuerpo bruto de la solicitud usando el App Secret como clave. Dos reglas innegociables: usa el body crudo (raw), no el JSON ya parseado y re-serializado, porque cualquier diferencia de bytes cambia el hash; y compara con timingSafeEqual para evitar ataques de timing.',
+            'Meta envía el encabezado x-hub-signature-256 con el formato sha256=<hex>. El valor es el HMAC SHA-256 del cuerpo bruto de la solicitud usando el App Secret como clave. Dos reglas innegociables: usa el body crudo (raw), no el JSON ya parseado y re-serializado, porque cualquier diferencia de bytes cambia el hash; y compara con timingSafeEqual para evitar ataques de timing.',
         },
         {
           type: 'code',
@@ -542,38 +542,38 @@ app.post('/webhook', (req, res) => {
         {
           type: 'paragraph',
           value:
-            'Observa el patron: responde 200 de inmediato tras validar y envia el procesamiento a una cola. Meta reenvia los eventos no confirmados, asi que el procesamiento sincrono y lento genera duplicados y timeouts.',
+            'Observa el patrón: responde 200 de inmediato tras validar y envía el procesamiento a una cola. Meta reenvía los eventos no confirmados, así que el procesamiento síncrono y lento genera duplicados y timeouts.',
         },
       ],
     },
     {
-      title: 'Segregacion y rotacion de credenciales',
+      title: 'Segregación y rotación de credenciales',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Tratar el App Secret y los tokens como secretos de verdad es lo que evita el peor escenario: una filtracion de credencial con permisos amplios y sin expiracion. Cada credencial debe tener alcance minimo, origen claro y un plan de rotacion.',
+            'Tratar el App Secret y los tokens como secretos de verdad es lo que evita el peor escenario: una filtración de credencial con permisos amplios y sin expiración. Cada credencial debe tener alcance mínimo, origen claro y un plan de rotación.',
         },
         {
           type: 'list',
           items: [
-            'App Secret: usado solo para verificar firmas. Nunca lo expongas en el frontend, logs o repositorio. Tratalo como una clave criptografica.',
-            'System User token: prefiere tokens de System User (larga duracion y renovables) a tokens de usuario personal, que se rompen cuando la persona deja la empresa.',
-            'Alcance minimo: concede solo los permisos que la integracion realmente usa (por ejemplo whatsapp_business_messaging), no pidas todo por comodidad.',
-            'Boveda de secretos: almacenalos en un secrets manager (AWS Secrets Manager, Vault, GCP Secret Manager). Nunca en un .env versionado ni en variables de imagen Docker.',
-            'Rotacion programada: define un ciclo (por ejemplo cada 90 dias) y ten un runbook para rotar el App Secret y revocar tokens antiguos sin downtime.',
-            'Segregacion por entorno: las credenciales de produccion, staging y dev deben ser distintas. Una filtracion en dev nunca debe comprometer produccion.',
+            'App Secret: usado solo para verificar firmas. Nunca lo expongas en el frontend, logs o repositorio. Trátalo como una clave criptográfica.',
+            'System User token: prefiere tokens de System User (larga duración y renovables) a tokens de usuario personal, que se rompen cuando la persona deja la empresa.',
+            'Alcance mínimo: concede solo los permisos que la integración realmente usa (por ejemplo whatsapp_business_messaging), no pidas todo por comodidad.',
+            'Bóveda de secretos: almacénalos en un secrets manager (AWS Secrets Manager, Vault, GCP Secret Manager). Nunca en un .env versionado ni en variables de imagen Docker.',
+            'Rotación programada: define un ciclo (por ejemplo cada 90 días) y ten un runbook para rotar el App Secret y revocar tokens antiguos sin downtime.',
+            'Segregación por entorno: las credenciales de producción, staging y dev deben ser distintas. Una filtración en dev nunca debe comprometer producción.',
           ],
         },
       ],
     },
     {
-      title: 'Rate limiting y proteccion contra abuso',
+      title: 'Rate limiting y protección contra abuso',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Incluso con una firma valida, necesitas limitar la tasa por origen para contener picos, bucles de reenvio e intentos de agotamiento de recursos. Aplica limites por IP en el borde y por tenant en la aplicacion, usando un algoritmo de token bucket que tolera rafagas cortas pero corta el abuso sostenido.',
+            'Incluso con una firma válida, necesitas limitar la tasa por origen para contener picos, bucles de reenvío e intentos de agotamiento de recursos. Aplica límites por IP en el borde y por tenant en la aplicación, usando un algoritmo de token bucket que tolera ráfagas cortas pero corta el abuso sostenido.',
         },
         {
           type: 'code',
@@ -607,51 +607,51 @@ function rateLimit(key) {
         {
           type: 'paragraph',
           value:
-            'A escala, cambia el Map en memoria por Redis para que el limite sea consistente entre instancias. Responde 429 con Retry-After cuando se exceda la cuota.',
+            'A escala, cambia el Map en memoria por Redis para que el límite sea consistente entre instancias. Responde 429 con Retry-After cuando se exceda la cuota.',
         },
       ],
     },
     {
-      title: 'Trazas de auditoria sin PII en claro',
+      title: 'Trazas de auditoría sin PII en claro',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Una buena traza de auditoria responde quien hizo que, cuando y desde donde, sin convertir el log en un deposito de datos personales. Registra identificadores y metadatos, nunca el contenido del mensaje ni los numeros de telefono en texto plano. Para correlacionar sin exponer, usa hash o seudonimizacion.',
+            'Una buena traza de auditoría responde quién hizo qué, cuándo y desde dónde, sin convertir el log en un depósito de datos personales. Registra identificadores y metadatos, nunca el contenido del mensaje ni los números de teléfono en texto plano. Para correlacionar sin exponer, usa hash o seudonimización.',
         },
         {
           type: 'table',
-          columns: ['Campo', 'Que registrar', 'PII?'],
+          columns: ['Campo', 'Qué registrar', 'PII?'],
           rows: [
-            ['quien', 'ID del tenant, ID de la app, sub del token', 'No (usa IDs internos)'],
-            ['que', 'Tipo de evento (ej: message.received), accion tomada', 'No'],
-            ['cuando', 'Timestamp UTC e ID de correlacion del evento', 'No'],
-            ['desde donde', 'IP de origen (enmascarada), user-agent', 'Parcial (enmascara la IP)'],
-            ['contacto', 'Hash del telefono (SHA-256 + salt), nunca el numero', 'No si esta hasheado'],
+            ['quién', 'ID del tenant, ID de la app, sub del token', 'No (usa IDs internos)'],
+            ['qué', 'Tipo de evento (ej: message.received), acción tomada', 'No'],
+            ['cuándo', 'Timestamp UTC e ID de correlación del evento', 'No'],
+            ['desde dónde', 'IP de origen (enmascarada), user-agent', 'Parcial (enmascara la IP)'],
+            ['contacto', 'Hash del teléfono (SHA-256 + salt), nunca el número', 'No si está hasheado'],
             ['resultado', 'Estado (ok, rechazado, 401, 429) y motivo', 'No'],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Define una retencion explicita para los logs y asegura que sean inmutables (append-only). Bajo LGPD y GDPR, un log no es excusa para retener datos personales indefinidamente.',
+            'Define una retención explícita para los logs y asegura que sean inmutables (append-only). Bajo LGPD y GDPR, un log no es excusa para retener datos personales indefinidamente.',
         },
       ],
     },
     {
-      title: 'LGPD y GDPR: consentimiento y minimizacion',
+      title: 'LGPD y GDPR: consentimiento y minimización',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'WhatsApp involucra datos personales por definicion. Dos principios guian el cumplimiento en el contexto de integraciones: una base legal y consentimiento para iniciar conversaciones (especialmente mensajes de marketing), y minimizacion de datos, es decir, recolectar y almacenar solo lo estrictamente necesario para la finalidad declarada.',
+            'WhatsApp involucra datos personales por definición. Dos principios guían el cumplimiento en el contexto de integraciones: una base legal y consentimiento para iniciar conversaciones (especialmente mensajes de marketing), y minimización de datos, es decir, recolectar y almacenar solo lo estrictamente necesario para la finalidad declarada.',
         },
         {
           type: 'list',
           items: [
-            'Consentimiento: manten un registro de opt-in antes de enviar mensajes proactivos y respeta el opt-out de inmediato.',
-            'Minimizacion: no persistas el cuerpo de los mensajes si la finalidad no lo exige; prefiere procesar y descartar.',
-            'Derechos del titular: ten un camino para la eliminacion y portabilidad de los datos cuando se solicite.',
+            'Consentimiento: mantén un registro de opt-in antes de enviar mensajes proactivos y respeta el opt-out de inmediato.',
+            'Minimización: no persistas el cuerpo de los mensajes si la finalidad no lo exige; prefiere procesar y descartar.',
+            'Derechos del titular: ten un camino para la eliminación y portabilidad de los datos cuando se solicite.',
           ],
         },
       ],
@@ -663,13 +663,13 @@ function rateLimit(key) {
           type: 'ordered',
           items: [
             'Capturar el cuerpo crudo y validar x-hub-signature-256 con HMAC SHA-256 y timingSafeEqual antes de procesar.',
-            'Responder 200 rapido y procesar en cola, con idempotencia por ID de evento.',
+            'Responder 200 rápido y procesar en cola, con idempotencia por ID de evento.',
             'Mover el App Secret y los tokens a un secrets manager, fuera de cualquier archivo versionado.',
-            'Usar un System User token con alcance minimo y separar credenciales por entorno.',
-            'Definir y probar un ciclo de rotacion de credenciales con un runbook sin downtime.',
-            'Aplicar rate limiting por IP en el borde y por tenant en la aplicacion (token bucket + Redis).',
-            'Registrar trazas de auditoria append-only con IDs y hashes, sin PII en claro, con retencion definida.',
-            'Documentar la base legal, opt-in/opt-out y la politica de minimizacion para LGPD y GDPR.',
+            'Usar un System User token con alcance mínimo y separar credenciales por entorno.',
+            'Definir y probar un ciclo de rotación de credenciales con un runbook sin downtime.',
+            'Aplicar rate limiting por IP en el borde y por tenant en la aplicación (token bucket + Redis).',
+            'Registrar trazas de auditoría append-only con IDs y hashes, sin PII en claro, con retención definida.',
+            'Documentar la base legal, opt-in/opt-out y la política de minimización para LGPD y GDPR.',
           ],
         },
       ],
@@ -677,26 +677,26 @@ function rateLimit(key) {
   ],
   faq: [
     {
-      question: 'Puedo usar JSON.stringify del cuerpo para calcular el HMAC?',
+      question: '¿Puedo usar JSON.stringify del cuerpo para calcular el HMAC?',
       answer:
-        'No. La firma se calcula sobre los bytes exactos que envio Meta. Re-serializar el JSON cambia espacios, orden y escaping, generando un hash diferente. Captura el body crudo con un verify del parser y usa ese Buffer.',
+        'No. La firma se calcula sobre los bytes exactos que envió Meta. Re-serializar el JSON cambia espacios, orden y escaping, generando un hash diferente. Captura el body crudo con un verify del parser y usa ese Buffer.',
     },
     {
-      question: 'Por que comparar la firma con timingSafeEqual en lugar de ===?',
+      question: '¿Por qué comparar la firma con timingSafeEqual en lugar de ===?',
       answer:
-        'Las comparaciones de string normales retornan mas rapido cuando los primeros caracteres difieren, lo que filtra informacion por timing y permite reconstruir la firma intento a intento. timingSafeEqual compara en tiempo constante, cerrando ese canal lateral.',
+        'Las comparaciones de string normales retornan más rápido cuando los primeros caracteres difieren, lo que filtra información por timing y permite reconstruir la firma intento a intento. timingSafeEqual compara en tiempo constante, cerrando ese canal lateral.',
     },
     {
-      question: 'Donde debo guardar el App Secret en produccion?',
+      question: '¿Dónde debo guardar el App Secret en producción?',
       answer:
-        'En un secrets manager dedicado (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager) con acceso por IAM y rotacion programada. Nunca en un .env commiteado, en variables de build de la imagen Docker ni en cualquier lugar accesible por el frontend.',
+        'En un secrets manager dedicado (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager) con acceso por IAM y rotación programada. Nunca en un .env commiteado, en variables de build de la imagen Docker ni en cualquier lugar accesible por el frontend.',
     },
   ],
   conclusion: {
-    title: 'La seguridad de la integracion no es opcional',
+    title: 'La seguridad de la integración no es opcional',
     description:
-      'Firma verificada, credenciales segregadas, limites de tasa y una auditoria limpia forman la base de una integracion Meta y WhatsApp que aguanta produccion y auditoria. Empieza por el checklist final y cierra cada brecha antes de salir a produccion.',
-    cta: 'Necesitas una revision de seguridad de tu integracion WhatsApp? Hablemos.',
+      'Firma verificada, credenciales segregadas, límites de tasa y una auditoría limpia forman la base de una integración Meta y WhatsApp que aguanta producción y auditoría. Empieza por el checklist final y cierra cada brecha antes de salir a producción.',
+    cta: '¿Necesitas una revisión de seguridad de tu integración WhatsApp? Hablemos.',
   },
   related: [
     { label: 'Webhook de WhatsApp: idempotencia y colas', to: '/blog/webhook-whatsapp-idempotencia-filas' },
@@ -705,7 +705,7 @@ function rateLimit(key) {
   ],
   repo: {
     name: 'meta-webhook-security',
-    description: 'Ejemplo de verificacion de firma, rate limiting y auditoria para webhooks de Meta.',
+    description: 'Ejemplo de verificación de firma, rate limiting y auditoría para webhooks de Meta.',
     url: 'https://github.com/joaosouz4dev/meta-webhook-security',
   },
 };

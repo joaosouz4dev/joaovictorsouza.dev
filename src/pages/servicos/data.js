@@ -5,32 +5,32 @@ const serviceDefinitions = [
     slug: 'meta-ads-e-integracoes',
     content: {
       pt: {
-        title: 'Meta Ads e Integracoes (Pixel + CAPI)',
-        summary: 'Mensuracao server-side com foco em atribuicao e dados confiaveis.',
-        heroTitle: 'Implementacao Meta Pixel + Conversions API',
+        title: 'Meta Ads e Integrações (Pixel + CAPI)',
+        summary: 'Mensuração server-side com foco em atribuição e dados confiáveis.',
+        heroTitle: 'Implementação Meta Pixel + Conversions API',
         heroDescription:
-          'Arquitetura de tracking com deduplicacao, governanca de eventos e monitoramento.',
+          'Arquitetura de tracking com deduplicação, governança de eventos e monitoramento.',
         steps: [
-          'Diagnostico do tracking atual.',
+          'Diagnóstico do tracking atual.',
           'Desenho de arquitetura Pixel + CAPI.',
-          'Implementacao, validacao e ajustes.',
+          'Implementação, validação e ajustes.',
         ],
         deliverables: [
           'Mapa de eventos do funil.',
-          'Implementacao Pixel + CAPI.',
+          'Implementação Pixel + CAPI.',
           'Checklist de qualidade e dashboard.',
         ],
         faq: [
           {
             question: 'Quando usar Pixel e CAPI juntos?',
-            answer: 'Quando precisa de resiliencia e menor perda de eventos.',
+            answer: 'Quando precisa de resiliência e menor perda de eventos.',
           },
           {
             question: 'Isso melhora performance sozinho?',
-            answer: 'Melhora a qualidade do dado para decisao. Midia e criativo continuam essenciais.',
+            answer: 'Melhora a qualidade do dado para decisão. Mídia e criativo continuam essenciais.',
           },
         ],
-        keywords: 'meta pixel, capi, conversions api, mensuracao',
+        keywords: 'meta pixel, capi, conversions api, mensuração',
       },
       en: {
         title: 'Meta Ads and Integrations (Pixel + CAPI)',
@@ -62,31 +62,31 @@ const serviceDefinitions = [
       },
       es: {
         title: 'Meta Ads e Integraciones (Pixel + CAPI)',
-        summary: 'Medicion server-side enfocada en atribucion y datos confiables.',
-        heroTitle: 'Implementacion Meta Pixel + Conversions API',
+        summary: 'Medición server-side enfocada en atribución y datos confiables.',
+        heroTitle: 'Implementación Meta Pixel + Conversions API',
         heroDescription:
-          'Arquitectura de tracking con deduplicacion, gobernanza de eventos y monitoreo.',
+          'Arquitectura de tracking con deduplicación, gobernanza de eventos y monitoreo.',
         steps: [
-          'Diagnostico del tracking actual.',
-          'Diseno de arquitectura Pixel + CAPI.',
-          'Implementacion, validacion y ajustes.',
+          'Diagnóstico del tracking actual.',
+          'Diseño de arquitectura Pixel + CAPI.',
+          'Implementación, validación y ajustes.',
         ],
         deliverables: [
           'Mapa de eventos del embudo.',
-          'Implementacion Pixel + CAPI.',
+          'Implementación Pixel + CAPI.',
           'Checklist de calidad y dashboard.',
         ],
         faq: [
           {
-            question: 'Cuando usar Pixel y CAPI juntos?',
-            answer: 'Cuando necesitas mayor resiliencia y menor perdida de eventos.',
+            question: '¿Cuándo usar Pixel y CAPI juntos?',
+            answer: 'Cuando necesitas mayor resiliencia y menor pérdida de eventos.',
           },
           {
-            question: 'Esto mejora performance por si solo?',
+            question: '¿Esto mejora performance por sí solo?',
             answer: 'Mejora la calidad del dato. Medios y creativos siguen siendo clave.',
           },
         ],
-        keywords: 'meta pixel, capi, conversions api, medicion',
+        keywords: 'meta pixel, capi, conversions api, medición',
       },
     },
   },
@@ -95,24 +95,24 @@ const serviceDefinitions = [
     content: {
       pt: {
         title: 'WhatsApp Cloud API',
-        summary: 'Integracao oficial com webhook seguro, templates, filas e handoff humano.',
+        summary: 'Integração oficial com webhook seguro, templates, filas e handoff humano.',
         heroTitle: 'WhatsApp Cloud API para atendimento e vendas',
         heroDescription:
-          'Fluxos robustos com idempotencia, observabilidade e integracao a CRM/ERP.',
+          'Fluxos robustos com idempotência, observabilidade e integração a CRM/ERP.',
         steps: [
           'Mapeamento de jornada e casos de uso.',
-          'Webhook seguro com idempotencia.',
-          'Orquestracao com templates e handoff.',
+          'Webhook seguro com idempotência.',
+          'Orquestração com templates e handoff.',
         ],
         deliverables: [
-          'Webhook em producao.',
+          'Webhook em produção.',
           'Fluxos de atendimento com fallback.',
-          'Integracao com CRM e monitoramento.',
+          'Integração com CRM e monitoramento.',
         ],
         faq: [
           {
-            question: 'Voce trabalha com API oficial?',
-            answer: 'Sim, somente API oficial para operacao profissional.',
+            question: 'Você trabalha com API oficial?',
+            answer: 'Sim, somente API oficial para operação profissional.',
           },
           {
             question: 'Consegue integrar com meu CRM?',
@@ -150,27 +150,27 @@ const serviceDefinitions = [
       },
       es: {
         title: 'WhatsApp Cloud API',
-        summary: 'Integracion oficial con webhook seguro, plantillas, colas y handoff humano.',
-        heroTitle: 'WhatsApp Cloud API para atencion y ventas',
-        heroDescription: 'Flujos robustos con idempotencia, observabilidad e integracion a CRM/ERP.',
+        summary: 'Integración oficial con webhook seguro, plantillas, colas y handoff humano.',
+        heroTitle: 'WhatsApp Cloud API para atención y ventas',
+        heroDescription: 'Flujos robustos con idempotencia, observabilidad e integración a CRM/ERP.',
         steps: [
           'Mapeo de jornada y casos de uso.',
           'Webhook seguro con idempotencia.',
-          'Orquestacion con plantillas y handoff.',
+          'Orquestación con plantillas y handoff.',
         ],
         deliverables: [
           'Webhook productivo.',
-          'Flujos de atencion con fallback.',
-          'Integracion con CRM y monitoreo.',
+          'Flujos de atención con fallback.',
+          'Integración con CRM y monitoreo.',
         ],
         faq: [
           {
-            question: 'Trabajas con API oficial?',
-            answer: 'Si, solo API oficial para operacion profesional.',
+            question: '¿Trabajas con API oficial?',
+            answer: 'Sí, solo API oficial para operación profesional.',
           },
           {
-            question: 'Puedes integrar con mi CRM?',
-            answer: 'Si, via API o webhooks del CRM.',
+            question: '¿Puedes integrar con mi CRM?',
+            answer: 'Sí, vía API o webhooks del CRM.',
           },
         ],
         keywords: 'whatsapp cloud api, webhook whatsapp, plantillas',
@@ -183,26 +183,26 @@ const serviceDefinitions = [
       pt: {
         title: 'Chatbots e IA',
         summary: 'Chatbots com IA para suporte e vendas com RAG e handoff humano.',
-        heroTitle: 'Automacao com IA sem perder controle de qualidade',
-        heroDescription: 'Arquitetura com guardrails, avaliacao e melhoria continua.',
+        heroTitle: 'Automação com IA sem perder controle de qualidade',
+        heroDescription: 'Arquitetura com guardrails, avaliação e melhoria contínua.',
         steps: [
-          'Definicao de objetivos do bot.',
-          'Base de conhecimento e politicas.',
+          'Definição de objetivos do bot.',
+          'Base de conhecimento e políticas.',
           'Handoff humano e monitoramento.',
         ],
         deliverables: [
-          'Fluxos IA + regras de negocio.',
-          'Integracao com CRM/FAQ.',
-          'Playbook de operacao.',
+          'Fluxos IA + regras de negócio.',
+          'Integração com CRM/FAQ.',
+          'Playbook de operação.',
         ],
         faq: [
           {
             question: 'Bot substitui time humano?',
-            answer: 'Nao. O modelo ideal combina IA e equipe humana.',
+            answer: 'Não. O modelo ideal combina IA e equipe humana.',
           },
           {
-            question: 'Voce implementa RAG?',
-            answer: 'Sim, para reduzir alucinacoes e melhorar precisao.',
+            question: 'Você implementa RAG?',
+            answer: 'Sim, para reduzir alucinações e melhorar precisão.',
           },
         ],
         keywords: 'chatbot ia, rag, atendimento automatizado',
@@ -237,29 +237,29 @@ const serviceDefinitions = [
       es: {
         title: 'Chatbots e IA',
         summary: 'Chatbots con IA para soporte y ventas con RAG y handoff humano.',
-        heroTitle: 'Automatizacion con IA y control de calidad',
-        heroDescription: 'Arquitectura con guardrails, evaluacion y mejora continua.',
+        heroTitle: 'Automatización con IA y control de calidad',
+        heroDescription: 'Arquitectura con guardrails, evaluación y mejora continua.',
         steps: [
-          'Definicion de objetivos del bot.',
-          'Base de conocimiento y politicas.',
+          'Definición de objetivos del bot.',
+          'Base de conocimiento y políticas.',
           'Handoff humano y monitoreo.',
         ],
         deliverables: [
           'Flujos IA + reglas de negocio.',
-          'Integracion con CRM/FAQ.',
+          'Integración con CRM/FAQ.',
           'Playbook operativo.',
         ],
         faq: [
           {
-            question: 'El bot reemplaza al equipo humano?',
+            question: '¿El bot reemplaza al equipo humano?',
             answer: 'No. El mejor modelo combina IA y humanos.',
           },
           {
-            question: 'Implementas RAG?',
-            answer: 'Si, para reducir alucinaciones y mejorar precision.',
+            question: '¿Implementas RAG?',
+            answer: 'Sí, para reducir alucinaciones y mejorar precisión.',
           },
         ],
-        keywords: 'chatbot ia, rag, automatizacion atencion',
+        keywords: 'chatbot ia, rag, automatización atención',
       },
     },
   },
@@ -267,15 +267,15 @@ const serviceDefinitions = [
     slug: 'automacao-e-integracoes',
     content: {
       pt: {
-        title: 'Automacao e Integracoes',
-        summary: 'Conexao entre APIs, CRM, ERP e marketing para reduzir retrabalho.',
-        heroTitle: 'Automacao de processos entre sistemas',
+        title: 'Automação e Integrações',
+        summary: 'Conexão entre APIs, CRM, ERP e marketing para reduzir retrabalho.',
+        heroTitle: 'Automação de processos entre sistemas',
         heroDescription: 'Pipelines com controle de erro, rastreabilidade e estabilidade.',
-        steps: ['Mapeamento de fluxos atuais.', 'Desenho do fluxo alvo.', 'Implementacao com validacoes.'],
-        deliverables: ['Arquitetura documentada.', 'Automacoes monitoradas.', 'Plano de contingencia.'],
+        steps: ['Mapeamento de fluxos atuais.', 'Desenho do fluxo alvo.', 'Implementação com validações.'],
+        deliverables: ['Arquitetura documentada.', 'Automações monitoradas.', 'Plano de contingência.'],
         faq: [
           {
-            question: 'Quais sistemas voce integra?',
+            question: 'Quais sistemas você integra?',
             answer: 'CRMs, ERPs, gateways, plataformas de marketing e APIs customizadas.',
           },
           {
@@ -283,7 +283,7 @@ const serviceDefinitions = [
             answer: 'Retries, filas de erro, alertas e rastreabilidade por evento.',
           },
         ],
-        keywords: 'automacao, integracao api, crm erp',
+        keywords: 'automação, integração api, crm erp',
       },
       en: {
         title: 'Automation and Integrations',
@@ -305,23 +305,23 @@ const serviceDefinitions = [
         keywords: 'automation, api integration, crm erp',
       },
       es: {
-        title: 'Automatizacion e Integraciones',
-        summary: 'Conexion entre APIs, CRM, ERP y marketing para reducir retrabajo.',
-        heroTitle: 'Automatizacion de procesos entre sistemas',
+        title: 'Automatización e Integraciones',
+        summary: 'Conexión entre APIs, CRM, ERP y marketing para reducir retrabajo.',
+        heroTitle: 'Automatización de procesos entre sistemas',
         heroDescription: 'Pipelines con control de errores, trazabilidad y estabilidad.',
-        steps: ['Mapeo de flujos actuales.', 'Diseno del flujo objetivo.', 'Implementacion con validaciones.'],
+        steps: ['Mapeo de flujos actuales.', 'Diseño del flujo objetivo.', 'Implementación con validaciones.'],
         deliverables: ['Arquitectura documentada.', 'Automatizaciones monitoreadas.', 'Plan de contingencia.'],
         faq: [
           {
-            question: 'Que sistemas integras?',
+            question: '¿Qué sistemas integras?',
             answer: 'CRMs, ERPs, gateways, herramientas de marketing y APIs custom.',
           },
           {
-            question: 'Como manejas fallas?',
+            question: '¿Cómo manejas fallas?',
             answer: 'Retries, colas de error, alertas y trazabilidad por evento.',
           },
         ],
-        keywords: 'automatizacion, integracion api, crm erp',
+        keywords: 'automatización, integración api, crm erp',
       },
     },
   },
@@ -330,19 +330,19 @@ const serviceDefinitions = [
     content: {
       pt: {
         title: 'CRM e Revenue Operations',
-        summary: 'Estrutura de funil, lead scoring e automacoes para escalar conversao.',
-        heroTitle: 'Operacao comercial orientada por dados',
-        heroDescription: 'Conexao entre marketing, vendas e atendimento com SLA e governanca.',
-        steps: ['Mapeamento do funil.', 'Regras de lead routing e SLA.', 'Automacoes e dashboard.'],
-        deliverables: ['Blueprint de funil.', 'Playbook de operacao comercial.', 'Matriz de metricas.'],
+        summary: 'Estrutura de funil, lead scoring e automações para escalar conversão.',
+        heroTitle: 'Operação comercial orientada por dados',
+        heroDescription: 'Conexão entre marketing, vendas e atendimento com SLA e governança.',
+        steps: ['Mapeamento do funil.', 'Regras de lead routing e SLA.', 'Automações e dashboard.'],
+        deliverables: ['Blueprint de funil.', 'Playbook de operação comercial.', 'Matriz de métricas.'],
         faq: [
           {
             question: 'Serve para time pequeno?',
-            answer: 'Sim. Comecamos pelo fluxo mais critico e expandimos.',
+            answer: 'Sim. Começamos pelo fluxo mais crítico e expandimos.',
           },
           {
             question: 'Integra com WhatsApp?',
-            answer: 'Sim, conectando entrada, qualificacao e distribuicao de leads.',
+            answer: 'Sim, conectando entrada, qualificação e distribuição de leads.',
           },
         ],
         keywords: 'crm, revenue operations, lead scoring, funil vendas',
@@ -368,19 +368,19 @@ const serviceDefinitions = [
       },
       es: {
         title: 'CRM y Revenue Operations',
-        summary: 'Estructura de embudo, lead scoring y automatizaciones para escalar conversion.',
-        heroTitle: 'Operacion comercial orientada por datos',
-        heroDescription: 'Conexion entre marketing, ventas y atencion con SLA y gobernanza.',
+        summary: 'Estructura de embudo, lead scoring y automatizaciones para escalar conversión.',
+        heroTitle: 'Operación comercial orientada por datos',
+        heroDescription: 'Conexión entre marketing, ventas y atención con SLA y gobernanza.',
         steps: ['Mapeo del embudo.', 'Reglas de lead routing y SLA.', 'Automatizaciones y dashboard.'],
-        deliverables: ['Blueprint del embudo.', 'Playbook comercial.', 'Matriz de metricas.'],
+        deliverables: ['Blueprint del embudo.', 'Playbook comercial.', 'Matriz de métricas.'],
         faq: [
           {
-            question: 'Sirve para equipos pequenos?',
-            answer: 'Si. Iniciamos por el flujo mas critico y luego expandimos.',
+            question: '¿Sirve para equipos pequeños?',
+            answer: 'Sí. Iniciamos por el flujo más crítico y luego expandimos.',
           },
           {
-            question: 'Integra con WhatsApp?',
-            answer: 'Si, conectando entrada, calificacion y distribucion de leads.',
+            question: '¿Integra con WhatsApp?',
+            answer: 'Sí, conectando entrada, calificación y distribución de leads.',
           },
         ],
         keywords: 'crm, revenue operations, lead scoring, embudo ventas',
@@ -391,23 +391,23 @@ const serviceDefinitions = [
     slug: 'integracao-erp-e-backoffice',
     content: {
       pt: {
-        title: 'Integracao ERP e Backoffice',
-        summary: 'Sincronizacao entre ERP, financeiro, estoque e atendimento.',
+        title: 'Integração ERP e Backoffice',
+        summary: 'Sincronização entre ERP, financeiro, estoque e atendimento.',
         heroTitle: 'Backoffice integrado com menos retrabalho',
-        heroDescription: 'Conectores com conciliacao de dados, logs e operacao assistida.',
-        steps: ['Mapear entidades e regras.', 'Modelar contratos de integracao.', 'Implantar conciliacao e alertas.'],
-        deliverables: ['Mapa de integracao ERP.', 'Conectores homologados.', 'Fluxo de conciliacao.'],
+        heroDescription: 'Conectores com conciliação de dados, logs e operação assistida.',
+        steps: ['Mapear entidades e regras.', 'Modelar contratos de integração.', 'Implantar conciliação e alertas.'],
+        deliverables: ['Mapa de integração ERP.', 'Conectores homologados.', 'Fluxo de conciliação.'],
         faq: [
           {
             question: 'Integra ERP legado?',
-            answer: 'Sim, com camada de adaptacao para reduzir risco.',
+            answer: 'Sim, com camada de adaptação para reduzir risco.',
           },
           {
-            question: 'Como evita divergencia de dados?',
-            answer: 'Idempotencia, reconciliacao periodica e alarmes em casos criticos.',
+            question: 'Como evita divergência de dados?',
+            answer: 'Idempotência, reconciliação periódica e alarmes em casos críticos.',
           },
         ],
-        keywords: 'integracao erp, backoffice, conciliacao dados',
+        keywords: 'integração erp, backoffice, conciliação dados',
       },
       en: {
         title: 'ERP and Backoffice Integration',
@@ -429,23 +429,23 @@ const serviceDefinitions = [
         keywords: 'erp integration, backoffice, data reconciliation',
       },
       es: {
-        title: 'Integracion ERP y Backoffice',
-        summary: 'Sincronizacion entre ERP, financiero, inventario y atencion.',
+        title: 'Integración ERP y Backoffice',
+        summary: 'Sincronización entre ERP, financiero, inventario y atención.',
         heroTitle: 'Backoffice integrado con menos retrabajo',
-        heroDescription: 'Conectores con conciliacion de datos, logs y operacion asistida.',
-        steps: ['Mapear entidades y reglas.', 'Modelar contratos de integracion.', 'Implantar conciliacion y alertas.'],
-        deliverables: ['Mapa de integracion ERP.', 'Conectores homologados.', 'Flujo de conciliacion.'],
+        heroDescription: 'Conectores con conciliación de datos, logs y operación asistida.',
+        steps: ['Mapear entidades y reglas.', 'Modelar contratos de integración.', 'Implantar conciliación y alertas.'],
+        deliverables: ['Mapa de integración ERP.', 'Conectores homologados.', 'Flujo de conciliación.'],
         faq: [
           {
-            question: 'Integras ERP legado?',
-            answer: 'Si, con capa de adaptacion para reducir riesgo.',
+            question: '¿Integras ERP legado?',
+            answer: 'Sí, con capa de adaptación para reducir riesgo.',
           },
           {
-            question: 'Como evitas divergencia de datos?',
-            answer: 'Idempotencia, conciliacion periodica y alarmas criticas.',
+            question: '¿Cómo evitas divergencia de datos?',
+            answer: 'Idempotencia, conciliación periódica y alarmas críticas.',
           },
         ],
-        keywords: 'integracion erp, backoffice, conciliacion datos',
+        keywords: 'integración erp, backoffice, conciliación datos',
       },
     },
   },
@@ -454,15 +454,15 @@ const serviceDefinitions = [
     content: {
       pt: {
         title: 'Observabilidade e Confiabilidade',
-        summary: 'SLO, logs, metricas e alertas para integracoes criticas.',
-        heroTitle: 'Operacao previsivel com observabilidade pratica',
-        heroDescription: 'Monitoramento de webhook, filas, workers e APIs com alertas acionaveis.',
-        steps: ['Definir SLO e eventos criticos.', 'Padronizar logs e metricas.', 'Implementar alertas e runbooks.'],
+        summary: 'SLO, logs, métricas e alertas para integrações críticas.',
+        heroTitle: 'Operação previsível com observabilidade prática',
+        heroDescription: 'Monitoramento de webhook, filas, workers e APIs com alertas acionáveis.',
+        steps: ['Definir SLO e eventos críticos.', 'Padronizar logs e métricas.', 'Implementar alertas e runbooks.'],
         deliverables: ['Dashboard operacional.', 'Alertas com thresholds.', 'Runbooks de resposta.'],
         faq: [
           {
             question: 'Isso vale para produtos menores?',
-            answer: 'Sim, o nivel de observabilidade e proporcional ao tamanho da operacao.',
+            answer: 'Sim, o nível de observabilidade é proporcional ao tamanho da operação.',
           },
           {
             question: 'Pode usar stack atual?',
@@ -492,19 +492,19 @@ const serviceDefinitions = [
       },
       es: {
         title: 'Observabilidad y Confiabilidad',
-        summary: 'SLO, logs, metricas y alertas para integraciones criticas.',
-        heroTitle: 'Operacion previsible con observabilidad practica',
+        summary: 'SLO, logs, métricas y alertas para integraciones críticas.',
+        heroTitle: 'Operación previsible con observabilidad práctica',
         heroDescription: 'Monitoreo de webhook, colas, workers y APIs con alertas accionables.',
-        steps: ['Definir SLO y eventos criticos.', 'Estandarizar logs y metricas.', 'Implementar alertas y runbooks.'],
+        steps: ['Definir SLO y eventos críticos.', 'Estandarizar logs y métricas.', 'Implementar alertas y runbooks.'],
         deliverables: ['Dashboard operativo.', 'Alertas con thresholds.', 'Runbooks de incidente.'],
         faq: [
           {
-            question: 'Esto sirve para productos pequenos?',
-            answer: 'Si, la profundidad se ajusta al tamano de la operacion.',
+            question: '¿Esto sirve para productos pequeños?',
+            answer: 'Sí, la profundidad se ajusta al tamaño de la operación.',
           },
           {
-            question: 'Se puede mantener stack actual?',
-            answer: 'Si, reutilizando herramientas y evolucionando por fases.',
+            question: '¿Se puede mantener stack actual?',
+            answer: 'Sí, reutilizando herramientas y evolucionando por fases.',
           },
         ],
         keywords: 'observabilidad, monitoreo, confiabilidad, alertas',
@@ -515,23 +515,23 @@ const serviceDefinitions = [
     slug: 'arquitetura-e-modernizacao-backend',
     content: {
       pt: {
-        title: 'Arquitetura e Modernizacao Backend',
-        summary: 'Evolucao de legado para arquitetura modular e escalavel.',
-        heroTitle: 'Modernizacao por fases sem parar a operacao',
-        heroDescription: 'Plano tecnico com refatoracao incremental, testes e observabilidade.',
-        steps: ['Assessment tecnico.', 'Arquitetura alvo e roadmap.', 'Migracao incremental com controle.'],
-        deliverables: ['Diagnostico de riscos.', 'Roadmap de modernizacao.', 'Guia de evolucao continua.'],
+        title: 'Arquitetura e Modernização Backend',
+        summary: 'Evolução de legado para arquitetura modular e escalável.',
+        heroTitle: 'Modernização por fases sem parar a operação',
+        heroDescription: 'Plano técnico com refatoração incremental, testes e observabilidade.',
+        steps: ['Assessment técnico.', 'Arquitetura alvo e roadmap.', 'Migração incremental com controle.'],
+        deliverables: ['Diagnóstico de riscos.', 'Roadmap de modernização.', 'Guia de evolução contínua.'],
         faq: [
           {
             question: 'Precisa reescrever tudo?',
-            answer: 'Nao. O foco e migrar por fases com baixo risco.',
+            answer: 'Não. O foco é migrar por fases com baixo risco.',
           },
           {
-            question: 'Como evitar regressao?',
+            question: 'Como evitar regressão?',
             answer: 'Com testes de contrato, rollout controlado e monitoramento ativo.',
           },
         ],
-        keywords: 'arquitetura backend, modernizacao legado, refatoracao',
+        keywords: 'arquitetura backend, modernização legado, refatoração',
       },
       en: {
         title: 'Backend Architecture and Modernization',
@@ -553,23 +553,23 @@ const serviceDefinitions = [
         keywords: 'backend architecture, legacy modernization, refactor',
       },
       es: {
-        title: 'Arquitectura y Modernizacion Backend',
-        summary: 'Evolucion de legado hacia arquitectura modular y escalable.',
-        heroTitle: 'Modernizacion por fases sin detener operacion',
-        heroDescription: 'Plan tecnico con refactor incremental, pruebas y observabilidad.',
-        steps: ['Assessment tecnico.', 'Arquitectura objetivo y roadmap.', 'Migracion incremental controlada.'],
-        deliverables: ['Diagnostico de riesgos.', 'Roadmap de modernizacion.', 'Guia de evolucion continua.'],
+        title: 'Arquitectura y Modernización Backend',
+        summary: 'Evolución de legado hacia arquitectura modular y escalable.',
+        heroTitle: 'Modernización por fases sin detener operación',
+        heroDescription: 'Plan técnico con refactor incremental, pruebas y observabilidad.',
+        steps: ['Assessment técnico.', 'Arquitectura objetivo y roadmap.', 'Migración incremental controlada.'],
+        deliverables: ['Diagnóstico de riesgos.', 'Roadmap de modernización.', 'Guía de evolución continua.'],
         faq: [
           {
-            question: 'Hace falta reescribir todo?',
+            question: '¿Hace falta reescribir todo?',
             answer: 'No. El foco es migrar por fases con bajo riesgo.',
           },
           {
-            question: 'Como evitar regresiones?',
+            question: '¿Cómo evitar regresiones?',
             answer: 'Con pruebas de contrato, rollout controlado y monitoreo activo.',
           },
         ],
-        keywords: 'arquitectura backend, modernizacion legado, refactor',
+        keywords: 'arquitectura backend, modernización legado, refactor',
       },
     },
   },

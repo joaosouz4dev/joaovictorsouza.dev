@@ -121,6 +121,7 @@ function Hero() {
                 <GlitchText
                   text="JOÃO VICTOR SOUZA"
                   pixel
+                  trigger="hover"
                   className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
                 />
               </h1>
@@ -173,7 +174,7 @@ function Hero() {
                     alt="João Victor Souza"
                     loading="eager"
                     decoding="async"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     width="1200"
                     height="2150"
                     className="h-full w-full object-cover object-center"
@@ -496,7 +497,7 @@ function HomeSeoCards() {
         {cards.map(({ key, to, icon }) => (
           <RevealItem key={key}>
             <Link to={to} className="block h-full">
-              <Card spotlight className="h-full p-6 transition-transform hover:-translate-y-1">
+              <Card spotlight interactive className="h-full p-6">
                 <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/80 bg-surface/60 text-foreground">
                   {icon}
                 </div>
@@ -543,7 +544,7 @@ function ContactSection() {
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="block h-full"
             >
-              <Card spotlight className="h-full p-8 text-center transition-transform hover:-translate-y-1">
+              <Card spotlight interactive className="h-full p-8 text-center">
                 <Icon size={24} className="mx-auto text-foreground" />
                 <p className="mt-5 font-display text-base font-medium tracking-tight">{label}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground">

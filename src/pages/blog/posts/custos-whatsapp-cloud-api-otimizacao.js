@@ -4,55 +4,55 @@
 
 const pt = {
   intro:
-    'A WhatsApp Cloud API nao cobra por mensagem, ela cobra por conversa. Esse detalhe muda completamente como voce deve pensar custo. Quem raciocina em "preco por mensagem" tende a otimizar a coisa errada e acaba pagando por conversas abertas sem necessidade, templates de marketing mal segmentados e janelas reabertas a toa. Este artigo aplica logica de FinOps ao canal: entender o modelo de cobranca por conversa, mapear onde o dinheiro vaza, aplicar estrategias concretas de otimizacao e, no fim, medir custo por jornada resolvida em vez de custo por mensagem.',
+    'A WhatsApp Cloud API não cobra por mensagem, ela cobra por conversa. Esse detalhe muda completamente como você deve pensar custo. Quem raciocina em "preço por mensagem" tende a otimizar a coisa errada e acaba pagando por conversas abertas sem necessidade, templates de marketing mal segmentados e janelas reabertas à toa. Este artigo aplica lógica de FinOps ao canal: entender o modelo de cobrança por conversa, mapear onde o dinheiro vaza, aplicar estratégias concretas de otimização e, no fim, medir custo por jornada resolvida em vez de custo por mensagem.',
   sections: [
     {
-      title: 'O modelo de cobranca por conversa',
+      title: 'O modelo de cobrança por conversa',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O WhatsApp adota conversation-based pricing. A unidade de cobranca nao e a mensagem individual, mas a conversa: uma janela de 24 horas que se abre quando a primeira mensagem de uma categoria e entregue. Dentro dessa janela voce pode trocar quantas mensagens quiser pelo mesmo custo da conversa. A cobranca acontece por categoria, e cada categoria tem sua propria regra de quando a conversa e tarifada.',
+            'O WhatsApp adota conversation-based pricing. A unidade de cobrança não é a mensagem individual, mas a conversa: uma janela de 24 horas que se abre quando a primeira mensagem de uma categoria é entregue. Dentro dessa janela você pode trocar quantas mensagens quiser pelo mesmo custo da conversa. A cobrança acontece por categoria, e cada categoria tem sua própria regra de quando a conversa é tarifada.',
         },
         {
           type: 'paragraph',
           value:
-            'Existem quatro categorias. Marketing cobre promocoes, ofertas e reengajamento. Utility cobre transacoes e atualizacoes ligadas a uma acao do usuario (confirmacao de pedido, aviso de entrega, fatura). Authentication cobre codigos de verificacao e OTP. Service cobre o atendimento dentro da janela aberta pelo proprio cliente, quando ele inicia a conversa.',
+            'Existem quatro categorias. Marketing cobre promoções, ofertas e reengajamento. Utility cobre transações e atualizações ligadas a uma ação do usuário (confirmação de pedido, aviso de entrega, fatura). Authentication cobre códigos de verificação e OTP. Service cobre o atendimento dentro da janela aberta pelo próprio cliente, quando ele inicia a conversa.',
         },
         {
           type: 'table',
-          columns: ['Categoria', 'Quem inicia', 'Uso tipico', 'Como reduzir custo'],
+          columns: ['Categoria', 'Quem inicia', 'Uso típico', 'Como reduzir custo'],
           rows: [
             [
               'Marketing',
               'Empresa (template)',
-              'Promocoes, ofertas, reengajamento de base',
-              'Segmentar bem e disparar so para quem tem chance real de converter',
+              'Promoções, ofertas, reengajamento de base',
+              'Segmentar bem e disparar só para quem tem chance real de converter',
             ],
             [
               'Utility',
               'Empresa (template)',
-              'Confirmacoes, atualizacoes de pedido, faturas, lembretes',
-              'Consolidar atualizacoes na mesma janela em vez de varias conversas',
+              'Confirmações, atualizações de pedido, faturas, lembretes',
+              'Consolidar atualizações na mesma janela em vez de várias conversas',
             ],
             [
               'Authentication',
               'Empresa (template)',
-              'Codigos OTP e verificacao de identidade',
-              'Enviar so o necessario; evitar reenvios por timeout curto demais',
+              'Códigos OTP e verificação de identidade',
+              'Enviar só o necessário; evitar reenvios por timeout curto demais',
             ],
             [
               'Service',
               'Cliente',
               'Atendimento e suporte na janela de 24h aberta pelo cliente',
-              'Aproveitar a janela gratuita ou de menor custo iniciada pelo usuario',
+              'Aproveitar a janela gratuita ou de menor custo iniciada pelo usuário',
             ],
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Os valores variam por pais e por categoria e a Meta os reajusta periodicamente, entao nao trabalhe com numeros fixos de cabeca. O que se mantem estavel e a estrutura: voce paga por conversa, por categoria, dentro de uma janela de 24 horas. Toda decisao de otimizacao se apoia nessa estrutura, nao em um preco congelado.',
+            'Os valores variam por país e por categoria e a Meta os reajusta periodicamente, então não trabalhe com números fixos de cabeça. O que se mantém estável é a estrutura: você paga por conversa, por categoria, dentro de uma janela de 24 horas. Toda decisão de otimização se apoia nessa estrutura, não em um preço congelado.',
         },
       ],
     },
@@ -62,57 +62,57 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Antes de otimizar e preciso enxergar o desperdicio. Na pratica, o custo escapa por poucos pontos recorrentes, quase sempre ligados a abrir conversas que nao precisavam existir ou que nao geraram resultado.',
+            'Antes de otimizar é preciso enxergar o desperdício. Na prática, o custo escapa por poucos pontos recorrentes, quase sempre ligados a abrir conversas que não precisavam existir ou que não geraram resultado.',
         },
         {
           type: 'list',
           items: [
-            'Templates de marketing mal segmentados: disparar para a base inteira abre uma conversa cobrada por contato, mesmo nos contatos sem qualquer intencao de compra. O custo escala com o tamanho da lista, nao com a receita.',
-            'Reabertura de janela desnecessaria: enviar uma mensagem proativa para um cliente que voltaria a falar sozinho, ou fragmentar avisos em varios disparos em vez de consolidar, abre conversas extras que poderiam ser uma so.',
-            'Falta de resolucao no primeiro contato: quando o atendimento nao resolve e o assunto volta dias depois, cada retorno pode reabrir conversa e multiplicar o custo da mesma jornada.',
-            'Categoria errada no template: classificar como marketing algo que seria utility (ou vice-versa) muda a regra de cobranca e pode encarecer mensagens que deveriam ser mais baratas.',
+            'Templates de marketing mal segmentados: disparar para a base inteira abre uma conversa cobrada por contato, mesmo nos contatos sem qualquer intenção de compra. O custo escala com o tamanho da lista, não com a receita.',
+            'Reabertura de janela desnecessária: enviar uma mensagem proativa para um cliente que voltaria a falar sozinho, ou fragmentar avisos em vários disparos em vez de consolidar, abre conversas extras que poderiam ser uma só.',
+            'Falta de resolução no primeiro contato: quando o atendimento não resolve e o assunto volta dias depois, cada retorno pode reabrir conversa e multiplicar o custo da mesma jornada.',
+            'Categoria errada no template: classificar como marketing algo que seria utility (ou vice-versa) muda a regra de cobrança e pode encarecer mensagens que deveriam ser mais baratas.',
             'Ignorar a service window: responder via template pago quando o cliente acabou de escrever, em vez de usar a janela de service aberta por ele, paga por algo que poderia custar menos ou nada.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Repare que nenhum desses vazamentos e sobre o preco unitario. Todos sao sobre volume de conversas mal direcionadas. E ai que esta a alavanca de FinOps: reduzir conversas desperdicadas pesa muito mais do que negociar centavos por mensagem.',
+            'Repare que nenhum desses vazamentos é sobre o preço unitário. Todos são sobre volume de conversas mal direcionadas. É aí que está a alavanca de FinOps: reduzir conversas desperdiçadas pesa muito mais do que negociar centavos por mensagem.',
         },
       ],
     },
     {
-      title: 'Estrategias de otimizacao',
+      title: 'Estratégias de otimização',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Com o mapa do desperdicio em maos, as estrategias seguem uma ordem logica: primeiro evitar conversas desnecessarias, depois usar a janela mais barata disponivel, depois classificar certo e, por fim, resolver de uma vez.',
+            'Com o mapa do desperdício em mãos, as estratégias seguem uma ordem lógica: primeiro evitar conversas desnecessárias, depois usar a janela mais barata disponível, depois classificar certo e, por fim, resolver de uma vez.',
         },
         {
           type: 'ordered',
           items: [
-            'Consolide mensagens dentro da janela de 24h. Uma vez aberta a conversa, todas as mensagens daquela categoria cabem nela pelo mesmo custo. Agrupe atualizacoes (pedido confirmado, em separacao, enviado) na mesma janela em vez de abrir uma conversa para cada evento.',
-            'Use a service window gratuita ou mais barata quando o cliente inicia. Se o usuario acabou de escrever, voce esta dentro da janela de service iniciada por ele: responda nessa janela em vez de disparar um template pago. So recorra a template quando a janela ja fechou.',
-            'Escolha a categoria certa do template. Uma confirmacao de pedido e utility, nao marketing. Classificar corretamente alinha a cobranca a regra mais favoravel daquele tipo de mensagem e evita que utilidades sejam tarifadas como promocao.',
-            'Resolva no primeiro contato. Uma jornada resolvida de uma vez consome uma conversa; a mesma jornada arrastada por reaberturas consome varias. Invista em respostas completas, contexto preservado e handoff humano no momento certo para fechar o assunto antes que ele volte.',
-            'Segmente o marketing por intencao, nao por tamanho de base. Disparar para quem demonstrou interesse converte mais e abre menos conversas vazias. Menos volume bem direcionado costuma render mais receita com menos custo do que envio em massa.',
+            'Consolide mensagens dentro da janela de 24h. Uma vez aberta a conversa, todas as mensagens daquela categoria cabem nela pelo mesmo custo. Agrupe atualizações (pedido confirmado, em separação, enviado) na mesma janela em vez de abrir uma conversa para cada evento.',
+            'Use a service window gratuita ou mais barata quando o cliente inicia. Se o usuário acabou de escrever, você está dentro da janela de service iniciada por ele: responda nessa janela em vez de disparar um template pago. Só recorra a template quando a janela já fechou.',
+            'Escolha a categoria certa do template. Uma confirmação de pedido é utility, não marketing. Classificar corretamente alinha a cobrança à regra mais favorável daquele tipo de mensagem e evita que utilidades sejam tarifadas como promoção.',
+            'Resolva no primeiro contato. Uma jornada resolvida de uma vez consome uma conversa; a mesma jornada arrastada por reaberturas consome várias. Invista em respostas completas, contexto preservado e handoff humano no momento certo para fechar o assunto antes que ele volte.',
+            'Segmente o marketing por intenção, não por tamanho de base. Disparar para quem demonstrou interesse converte mais e abre menos conversas vazias. Menos volume bem direcionado costuma render mais receita com menos custo do que envio em massa.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'A logica comum a todas elas: cada conversa aberta deve ter um proposito que justifique o custo. Quando esse proposito existe e a conversa resolve, o gasto vira investimento; quando nao existe, vira vazamento.',
+            'A lógica comum a todas elas: cada conversa aberta deve ter um propósito que justifique o custo. Quando esse propósito existe e a conversa resolve, o gasto vira investimento; quando não existe, vira vazamento.',
         },
       ],
     },
     {
-      title: 'A formula do custo por jornada resolvida',
+      title: 'A fórmula do custo por jornada resolvida',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'A metrica que importa nao e quanto custa uma conversa, e quanto custa resolver uma jornada do cliente. Uma jornada pode consumir mais de uma conversa (um aviso utility, depois um atendimento service, talvez um reengajamento). O custo real e a soma das conversas que aquela jornada precisou para chegar ao fim.',
+            'A métrica que importa não é quanto custa uma conversa, é quanto custa resolver uma jornada do cliente. Uma jornada pode consumir mais de uma conversa (um aviso utility, depois um atendimento service, talvez um reengajamento). O custo real é a soma das conversas que aquela jornada precisou para chegar ao fim.',
         },
         {
           type: 'code',
@@ -173,40 +173,40 @@ function custoPorResolucao(custoTotalConversas, jornadasResolvidas) {
         {
           type: 'paragraph',
           value:
-            'A formula deixa explicito o que melhora o numero: reduzir conversas por jornada e aumentar a taxa de resolucao. Cortar mensagens dentro de uma conversa ja aberta nao muda nada no custo, porque a conversa ja foi tarifada. Por isso otimizar mensagem a mensagem e quase sempre energia desperdicada.',
+            'A fórmula deixa explícito o que melhora o número: reduzir conversas por jornada e aumentar a taxa de resolução. Cortar mensagens dentro de uma conversa já aberta não muda nada no custo, porque a conversa já foi tarifada. Por isso otimizar mensagem a mensagem é quase sempre energia desperdiçada.',
         },
       ],
     },
     {
-      title: 'Meca custo por resolucao, nao por mensagem',
+      title: 'Meça custo por resolução, não por mensagem',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'O erro de FinOps mais comum nesse canal e olhar para o numero de mensagens enviadas. Como a cobranca e por conversa, a contagem de mensagens nao tem relacao direta com o gasto. Uma conversa com 2 mensagens custa o mesmo que uma com 20. Otimizar o numero de mensagens cria atrito no atendimento sem economizar nada.',
+            'O erro de FinOps mais comum nesse canal é olhar para o número de mensagens enviadas. Como a cobrança é por conversa, a contagem de mensagens não tem relação direta com o gasto. Uma conversa com 2 mensagens custa o mesmo que uma com 20. Otimizar o número de mensagens cria atrito no atendimento sem economizar nada.',
         },
         {
           type: 'paragraph',
           value:
-            'A metrica certa e custo por resolucao: quanto voce gastou em conversas dividido pelas jornadas efetivamente resolvidas. Ela captura ao mesmo tempo o desperdicio (conversas que nao resolveram) e a eficiencia (resolver com menos conversas). Acompanhe-a por categoria e por fluxo para descobrir onde o custo por resultado esta alto.',
+            'A métrica certa é custo por resolução: quanto você gastou em conversas dividido pelas jornadas efetivamente resolvidas. Ela captura ao mesmo tempo o desperdício (conversas que não resolveram) e a eficiência (resolver com menos conversas). Acompanhe-a por categoria e por fluxo para descobrir onde o custo por resultado está alto.',
         },
         {
           type: 'table',
-          columns: ['Sinal observado', 'Diagnostico provavel', 'Acao'],
+          columns: ['Sinal observado', 'Diagnóstico provável', 'Ação'],
           rows: [
             [
-              'Muitas conversas de marketing, poucas conversoes',
-              'Segmentacao fraca; disparo por tamanho de base',
-              'Segmentar por intencao e cortar envio em massa',
+              'Muitas conversas de marketing, poucas conversões',
+              'Segmentação fraca; disparo por tamanho de base',
+              'Segmentar por intenção e cortar envio em massa',
             ],
             [
-              'Varias conversas utility por pedido',
-              'Atualizacoes fragmentadas fora da janela de 24h',
+              'Várias conversas utility por pedido',
+              'Atualizações fragmentadas fora da janela de 24h',
               'Consolidar avisos na mesma conversa aberta',
             ],
             [
-              'Custo por resolucao subindo com o tempo',
-              'Baixa resolucao no primeiro contato; jornadas reabrem',
+              'Custo por resolução subindo com o tempo',
+              'Baixa resolução no primeiro contato; jornadas reabrem',
               'Melhorar respostas e handoff para fechar de uma vez',
             ],
             [
@@ -219,7 +219,7 @@ function custoPorResolucao(custoTotalConversas, jornadasResolvidas) {
         {
           type: 'paragraph',
           value:
-            'Quando o time passa a otimizar custo por resolucao, as decisoes mudam de natureza: em vez de cortar mensagens e degradar a experiencia, voce reduz conversas inuteis e resolve mais rapido. O resultado e custo menor com atendimento melhor, que e exatamente o que FinOps aplicado deveria entregar.',
+            'Quando o time passa a otimizar custo por resolução, as decisões mudam de natureza: em vez de cortar mensagens e degradar a experiência, você reduz conversas inúteis e resolve mais rápido. O resultado é custo menor com atendimento melhor, que é exatamente o que FinOps aplicado deveria entregar.',
         },
       ],
     },
@@ -228,29 +228,29 @@ function custoPorResolucao(custoTotalConversas, jornadasResolvidas) {
     {
       question: 'O WhatsApp cobra por mensagem ou por conversa?',
       answer:
-        'Por conversa. A Cloud API usa conversation-based pricing: uma janela de 24 horas que se abre quando a primeira mensagem de uma categoria e entregue, e dentro dela voce troca quantas mensagens quiser pelo mesmo custo. Por isso otimizar o numero de mensagens nao reduz a conta; o que reduz e abrir menos conversas e resolver mais dentro de cada uma.',
+        'Por conversa. A Cloud API usa conversation-based pricing: uma janela de 24 horas que se abre quando a primeira mensagem de uma categoria é entregue, e dentro dela você troca quantas mensagens quiser pelo mesmo custo. Por isso otimizar o número de mensagens não reduz a conta; o que reduz é abrir menos conversas e resolver mais dentro de cada uma.',
     },
     {
       question: 'Como uso a janela de service para gastar menos?',
       answer:
-        'Quando o cliente inicia a conversa, abre-se uma janela de service de 24 horas. Enquanto ela estiver aberta, responda dentro dela em vez de disparar um template pago. So recorra a template (utility ou marketing, conforme o caso) quando essa janela ja tiver fechado e voce precisar reabrir o contato de forma proativa.',
+        'Quando o cliente inicia a conversa, abre-se uma janela de service de 24 horas. Enquanto ela estiver aberta, responda dentro dela em vez de disparar um template pago. Só recorra a template (utility ou marketing, conforme o caso) quando essa janela já tiver fechado e você precisar reabrir o contato de forma proativa.',
     },
     {
-      question: 'Por que nao falar em valores exatos de custo?',
+      question: 'Por que não falar em valores exatos de custo?',
       answer:
-        'Porque os precos por conversa variam por pais e por categoria e a Meta os reajusta periodicamente. Trabalhar com numeros fixos leva a decisoes erradas assim que a tabela muda. O que permanece estavel e a estrutura: cobranca por conversa, por categoria, em janela de 24h. Otimize sobre a estrutura e use os precos vigentes apenas como variaveis de entrada na conta.',
+        'Porque os preços por conversa variam por país e por categoria e a Meta os reajusta periodicamente. Trabalhar com números fixos leva a decisões erradas assim que a tabela muda. O que permanece estável é a estrutura: cobrança por conversa, por categoria, em janela de 24h. Otimize sobre a estrutura e use os preços vigentes apenas como variáveis de entrada na conta.',
     },
   ],
   conclusion: {
-    title: 'Custo controlado e questao de estrutura, nao de cortar mensagens',
+    title: 'Custo controlado é questão de estrutura, não de cortar mensagens',
     description:
-      'Entender a cobranca por conversa, fechar os vazamentos de conversas mal direcionadas e medir custo por resolucao em vez de por mensagem mantem o canal eficiente sem degradar a experiencia. Se voce quer enxergar onde o custo do seu WhatsApp esta vazando e como otimizar, posso ajudar nessa analise.',
+      'Entender a cobrança por conversa, fechar os vazamentos de conversas mal direcionadas e medir custo por resolução em vez de por mensagem mantém o canal eficiente sem degradar a experiência. Se você quer enxergar onde o custo do seu WhatsApp está vazando e como otimizar, posso ajudar nessa análise.',
     cta: 'Falar sobre meus custos de WhatsApp',
   },
   related: [
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
-    { label: 'ROI real de automacao com IA', to: '/blog/roi-real-automacao-ia' },
-    { label: 'Governanca de templates em times grandes', to: '/blog/governanca-templates-times-grandes' },
+    { label: 'ROI real de automação com IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'Governança de templates em times grandes', to: '/blog/governanca-templates-times-grandes' },
   ],
 };
 
@@ -508,24 +508,24 @@ function costPerResolution(totalConversationCost, resolvedJourneys) {
 
 const es = {
   intro:
-    'La WhatsApp Cloud API no cobra por mensaje, cobra por conversacion. Ese unico detalle cambia por completo como debes pensar el costo. Quien razona en "precio por mensaje" tiende a optimizar lo equivocado y termina pagando por conversaciones abiertas sin necesidad, plantillas de marketing mal segmentadas y ventanas reabiertas sin motivo. Este articulo aplica logica de FinOps al canal: entender el modelo de cobro por conversacion, mapear donde se fuga el dinero, aplicar estrategias concretas de optimizacion y, al final, medir costo por jornada resuelta en lugar de costo por mensaje.',
+    'La WhatsApp Cloud API no cobra por mensaje, cobra por conversación. Ese único detalle cambia por completo cómo debes pensar el costo. Quien razona en "precio por mensaje" tiende a optimizar lo equivocado y termina pagando por conversaciones abiertas sin necesidad, plantillas de marketing mal segmentadas y ventanas reabiertas sin motivo. Este artículo aplica lógica de FinOps al canal: entender el modelo de cobro por conversación, mapear dónde se fuga el dinero, aplicar estrategias concretas de optimización y, al final, medir costo por jornada resuelta en lugar de costo por mensaje.',
   sections: [
     {
-      title: 'El modelo de cobro por conversacion',
+      title: 'El modelo de cobro por conversación',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'WhatsApp usa conversation-based pricing. La unidad de cobro no es el mensaje individual, sino la conversacion: una ventana de 24 horas que se abre cuando se entrega el primer mensaje de una categoria. Dentro de esa ventana puedes intercambiar tantos mensajes como quieras por el mismo costo de la conversacion. El cobro ocurre por categoria, y cada categoria tiene su propia regla de cuando se tarifa la conversacion.',
+            'WhatsApp usa conversation-based pricing. La unidad de cobro no es el mensaje individual, sino la conversación: una ventana de 24 horas que se abre cuando se entrega el primer mensaje de una categoría. Dentro de esa ventana puedes intercambiar tantos mensajes como quieras por el mismo costo de la conversación. El cobro ocurre por categoría, y cada categoría tiene su propia regla de cuándo se tarifa la conversación.',
         },
         {
           type: 'paragraph',
           value:
-            'Existen cuatro categorias. Marketing cubre promociones, ofertas y reenganche. Utility cubre transacciones y actualizaciones ligadas a una accion del usuario (confirmacion de pedido, aviso de entrega, factura). Authentication cubre codigos de verificacion y OTP. Service cubre la atencion dentro de la ventana que abre el propio cliente, cuando el inicia la conversacion.',
+            'Existen cuatro categorías. Marketing cubre promociones, ofertas y reenganche. Utility cubre transacciones y actualizaciones ligadas a una acción del usuario (confirmación de pedido, aviso de entrega, factura). Authentication cubre códigos de verificación y OTP. Service cubre la atención dentro de la ventana que abre el propio cliente, cuando él inicia la conversación.',
         },
         {
           type: 'table',
-          columns: ['Categoria', 'Quien inicia', 'Uso tipico', 'Como reducir costo'],
+          columns: ['Categoría', 'Quién inicia', 'Uso típico', 'Cómo reducir costo'],
           rows: [
             [
               'Marketing',
@@ -542,13 +542,13 @@ const es = {
             [
               'Authentication',
               'Empresa (plantilla)',
-              'Codigos OTP y verificacion de identidad',
-              'Enviar solo lo necesario; evitar reenvios por timeout demasiado corto',
+              'Códigos OTP y verificación de identidad',
+              'Enviar solo lo necesario; evitar reenvíos por timeout demasiado corto',
             ],
             [
               'Service',
               'Cliente',
-              'Atencion y soporte en la ventana de 24h abierta por el cliente',
+              'Atención y soporte en la ventana de 24h abierta por el cliente',
               'Aprovechar la ventana gratuita o de menor costo iniciada por el usuario',
             ],
           ],
@@ -556,67 +556,67 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Los valores varian por pais y por categoria y Meta los reajusta periodicamente, asi que no trabajes con numeros fijos de memoria. Lo que se mantiene estable es la estructura: pagas por conversacion, por categoria, dentro de una ventana de 24 horas. Toda decision de optimizacion se apoya en esa estructura, no en un precio congelado.',
+            'Los valores varían por país y por categoría y Meta los reajusta periódicamente, así que no trabajes con números fijos de memoria. Lo que se mantiene estable es la estructura: pagas por conversación, por categoría, dentro de una ventana de 24 horas. Toda decisión de optimización se apoya en esa estructura, no en un precio congelado.',
         },
       ],
     },
     {
-      title: 'Donde se fuga el dinero',
+      title: 'Dónde se fuga el dinero',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Antes de optimizar hay que ver el desperdicio. En la practica, el costo se escapa por pocos puntos recurrentes, casi siempre ligados a abrir conversaciones que no necesitaban existir o que no generaron resultado.',
+            'Antes de optimizar hay que ver el desperdicio. En la práctica, el costo se escapa por pocos puntos recurrentes, casi siempre ligados a abrir conversaciones que no necesitaban existir o que no generaron resultado.',
         },
         {
           type: 'list',
           items: [
-            'Plantillas de marketing mal segmentadas: disparar a toda la base abre una conversacion cobrada por contacto, incluso en contactos sin ninguna intencion de compra. El costo escala con el tamano de la lista, no con los ingresos.',
-            'Reapertura de ventana innecesaria: enviar un mensaje proactivo a un cliente que volveria a escribir solo, o fragmentar avisos en varios envios en vez de consolidar, abre conversaciones extra que podrian ser una sola.',
-            'Falta de resolucion en el primer contacto: cuando la atencion no resuelve y el tema vuelve dias despues, cada retorno puede reabrir conversacion y multiplicar el costo de la misma jornada.',
-            'Categoria equivocada en la plantilla: clasificar como marketing algo que seria utility (o viceversa) cambia la regla de cobro y puede encarecer mensajes que deberian ser mas baratos.',
-            'Ignorar la service window: responder con una plantilla paga cuando el cliente acaba de escribir, en vez de usar la ventana de service que el abrio, paga por algo que podria costar menos o nada.',
+            'Plantillas de marketing mal segmentadas: disparar a toda la base abre una conversación cobrada por contacto, incluso en contactos sin ninguna intención de compra. El costo escala con el tamaño de la lista, no con los ingresos.',
+            'Reapertura de ventana innecesaria: enviar un mensaje proactivo a un cliente que volvería a escribir solo, o fragmentar avisos en varios envíos en vez de consolidar, abre conversaciones extra que podrían ser una sola.',
+            'Falta de resolución en el primer contacto: cuando la atención no resuelve y el tema vuelve días después, cada retorno puede reabrir conversación y multiplicar el costo de la misma jornada.',
+            'Categoría equivocada en la plantilla: clasificar como marketing algo que sería utility (o viceversa) cambia la regla de cobro y puede encarecer mensajes que deberían ser más baratos.',
+            'Ignorar la service window: responder con una plantilla paga cuando el cliente acaba de escribir, en vez de usar la ventana de service que él abrió, paga por algo que podría costar menos o nada.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'Fijate en que ninguna de estas fugas es sobre el precio unitario. Todas son sobre el volumen de conversaciones mal dirigidas. Ahi esta la palanca de FinOps: reducir conversaciones desperdiciadas pesa mucho mas que negociar centavos por mensaje.',
+            'Fíjate en que ninguna de estas fugas es sobre el precio unitario. Todas son sobre el volumen de conversaciones mal dirigidas. Ahí está la palanca de FinOps: reducir conversaciones desperdiciadas pesa mucho más que negociar centavos por mensaje.',
         },
       ],
     },
     {
-      title: 'Estrategias de optimizacion',
+      title: 'Estrategias de optimización',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'Con el mapa del desperdicio en mano, las estrategias siguen un orden logico: primero evitar conversaciones innecesarias, luego usar la ventana mas barata disponible, luego clasificar bien y, por ultimo, resolver de una vez.',
+            'Con el mapa del desperdicio en mano, las estrategias siguen un orden lógico: primero evitar conversaciones innecesarias, luego usar la ventana más barata disponible, luego clasificar bien y, por último, resolver de una vez.',
         },
         {
           type: 'ordered',
           items: [
-            'Consolida mensajes dentro de la ventana de 24h. Una vez abierta la conversacion, todos los mensajes de esa categoria caben en ella por el mismo costo. Agrupa actualizaciones (pedido confirmado, en preparacion, enviado) en la misma ventana en vez de abrir una conversacion por cada evento.',
-            'Usa la service window gratuita o mas barata cuando el cliente inicia. Si el usuario acaba de escribir, estas dentro de la ventana de service que el abrio: responde en esa ventana en vez de disparar una plantilla paga. Solo recurre a plantilla cuando la ventana ya cerro.',
-            'Elige la categoria correcta de la plantilla. Una confirmacion de pedido es utility, no marketing. Clasificar bien alinea el cobro con la regla mas favorable de ese tipo de mensaje y evita que las utilidades se tarifen como promocion.',
-            'Resuelve en el primer contacto. Una jornada resuelta de una vez consume una conversacion; la misma jornada arrastrada por reaperturas consume varias. Invierte en respuestas completas, contexto preservado y handoff humano en el momento justo para cerrar el tema antes de que vuelva.',
-            'Segmenta el marketing por intencion, no por tamano de base. Disparar a quien mostro interes convierte mas y abre menos conversaciones vacias. Menos volumen bien dirigido suele rendir mas ingresos con menos costo que el envio masivo.',
+            'Consolida mensajes dentro de la ventana de 24h. Una vez abierta la conversación, todos los mensajes de esa categoría caben en ella por el mismo costo. Agrupa actualizaciones (pedido confirmado, en preparación, enviado) en la misma ventana en vez de abrir una conversación por cada evento.',
+            'Usa la service window gratuita o más barata cuando el cliente inicia. Si el usuario acaba de escribir, estás dentro de la ventana de service que él abrió: responde en esa ventana en vez de disparar una plantilla paga. Solo recurre a plantilla cuando la ventana ya cerró.',
+            'Elige la categoría correcta de la plantilla. Una confirmación de pedido es utility, no marketing. Clasificar bien alinea el cobro con la regla más favorable de ese tipo de mensaje y evita que las utilidades se tarifen como promoción.',
+            'Resuelve en el primer contacto. Una jornada resuelta de una vez consume una conversación; la misma jornada arrastrada por reaperturas consume varias. Invierte en respuestas completas, contexto preservado y handoff humano en el momento justo para cerrar el tema antes de que vuelva.',
+            'Segmenta el marketing por intención, no por tamaño de base. Disparar a quien mostró interés convierte más y abre menos conversaciones vacías. Menos volumen bien dirigido suele rendir más ingresos con menos costo que el envío masivo.',
           ],
         },
         {
           type: 'paragraph',
           value:
-            'La logica comun a todas: cada conversacion abierta debe tener un proposito que justifique el costo. Cuando ese proposito existe y la conversacion resuelve, el gasto se vuelve inversion; cuando no existe, se vuelve fuga.',
+            'La lógica común a todas: cada conversación abierta debe tener un propósito que justifique el costo. Cuando ese propósito existe y la conversación resuelve, el gasto se vuelve inversión; cuando no existe, se vuelve fuga.',
         },
       ],
     },
     {
-      title: 'La formula del costo por jornada resuelta',
+      title: 'La fórmula del costo por jornada resuelta',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'La metrica que importa no es cuanto cuesta una conversacion, es cuanto cuesta resolver una jornada del cliente. Una jornada puede consumir mas de una conversacion (un aviso utility, luego una atencion service, tal vez un reenganche). El costo real es la suma de las conversaciones que esa jornada necesito para llegar al final.',
+            'La métrica que importa no es cuánto cuesta una conversación, es cuánto cuesta resolver una jornada del cliente. Una jornada puede consumir más de una conversación (un aviso utility, luego una atención service, tal vez un reenganche). El costo real es la suma de las conversaciones que esa jornada necesitó para llegar al final.',
         },
         {
           type: 'code',
@@ -677,44 +677,44 @@ function costoPorResolucion(costoTotalConversaciones, jornadasResueltas) {
         {
           type: 'paragraph',
           value:
-            'La formula deja explicito que mejora el numero: reducir conversaciones por jornada y aumentar la tasa de resolucion. Cortar mensajes dentro de una conversacion ya abierta no cambia nada en el costo, porque la conversacion ya fue tarifada. Por eso optimizar mensaje a mensaje es casi siempre energia desperdiciada.',
+            'La fórmula deja explícito qué mejora el número: reducir conversaciones por jornada y aumentar la tasa de resolución. Cortar mensajes dentro de una conversación ya abierta no cambia nada en el costo, porque la conversación ya fue tarifada. Por eso optimizar mensaje a mensaje es casi siempre energía desperdiciada.',
         },
       ],
     },
     {
-      title: 'Mide costo por resolucion, no por mensaje',
+      title: 'Mide costo por resolución, no por mensaje',
       blocks: [
         {
           type: 'paragraph',
           value:
-            'El error de FinOps mas comun en este canal es mirar el numero de mensajes enviados. Como el cobro es por conversacion, el conteo de mensajes no tiene relacion directa con el gasto. Una conversacion con 2 mensajes cuesta lo mismo que una con 20. Optimizar el numero de mensajes crea friccion en la atencion sin ahorrar nada.',
+            'El error de FinOps más común en este canal es mirar el número de mensajes enviados. Como el cobro es por conversación, el conteo de mensajes no tiene relación directa con el gasto. Una conversación con 2 mensajes cuesta lo mismo que una con 20. Optimizar el número de mensajes crea fricción en la atención sin ahorrar nada.',
         },
         {
           type: 'paragraph',
           value:
-            'La metrica correcta es costo por resolucion: cuanto gastaste en conversaciones dividido por las jornadas efectivamente resueltas. Captura a la vez el desperdicio (conversaciones que no resolvieron) y la eficiencia (resolver con menos conversaciones). Siguela por categoria y por flujo para descubrir donde el costo por resultado esta alto.',
+            'La métrica correcta es costo por resolución: cuánto gastaste en conversaciones dividido por las jornadas efectivamente resueltas. Captura a la vez el desperdicio (conversaciones que no resolvieron) y la eficiencia (resolver con menos conversaciones). Síguela por categoría y por flujo para descubrir dónde el costo por resultado está alto.',
         },
         {
           type: 'table',
-          columns: ['Senal observada', 'Diagnostico probable', 'Accion'],
+          columns: ['Señal observada', 'Diagnóstico probable', 'Acción'],
           rows: [
             [
               'Muchas conversaciones de marketing, pocas conversiones',
-              'Segmentacion debil; envio por tamano de base',
-              'Segmentar por intencion y cortar el envio masivo',
+              'Segmentación débil; envío por tamaño de base',
+              'Segmentar por intención y cortar el envío masivo',
             ],
             [
               'Varias conversaciones utility por pedido',
               'Actualizaciones fragmentadas fuera de la ventana de 24h',
-              'Consolidar avisos en la misma conversacion abierta',
+              'Consolidar avisos en la misma conversación abierta',
             ],
             [
-              'Costo por resolucion subiendo con el tiempo',
-              'Baja resolucion en el primer contacto; las jornadas reabren',
+              'Costo por resolución subiendo con el tiempo',
+              'Baja resolución en el primer contacto; las jornadas reabren',
               'Mejorar respuestas y handoff para cerrar de una vez',
             ],
             [
-              'Plantillas pagas justo despues de que el cliente escribe',
+              'Plantillas pagas justo después de que el cliente escribe',
               'Service window ignorada',
               'Responder en la ventana de service iniciada por el usuario',
             ],
@@ -723,37 +723,37 @@ function costoPorResolucion(costoTotalConversaciones, jornadasResueltas) {
         {
           type: 'paragraph',
           value:
-            'Cuando el equipo pasa a optimizar costo por resolucion, las decisiones cambian de naturaleza: en vez de cortar mensajes y degradar la experiencia, reduces conversaciones inutiles y resuelves mas rapido. El resultado es menor costo con mejor atencion, que es exactamente lo que el FinOps aplicado deberia entregar.',
+            'Cuando el equipo pasa a optimizar costo por resolución, las decisiones cambian de naturaleza: en vez de cortar mensajes y degradar la experiencia, reduces conversaciones inútiles y resuelves más rápido. El resultado es menor costo con mejor atención, que es exactamente lo que el FinOps aplicado debería entregar.',
         },
       ],
     },
   ],
   faq: [
     {
-      question: 'WhatsApp cobra por mensaje o por conversacion?',
+      question: '¿WhatsApp cobra por mensaje o por conversación?',
       answer:
-        'Por conversacion. La Cloud API usa conversation-based pricing: una ventana de 24 horas que se abre cuando se entrega el primer mensaje de una categoria, y dentro de ella intercambias tantos mensajes como quieras por el mismo costo. Por eso optimizar el numero de mensajes no baja la cuenta; lo que la baja es abrir menos conversaciones y resolver mas dentro de cada una.',
+        'Por conversación. La Cloud API usa conversation-based pricing: una ventana de 24 horas que se abre cuando se entrega el primer mensaje de una categoría, y dentro de ella intercambias tantos mensajes como quieras por el mismo costo. Por eso optimizar el número de mensajes no baja la cuenta; lo que la baja es abrir menos conversaciones y resolver más dentro de cada una.',
     },
     {
-      question: 'Como uso la service window para gastar menos?',
+      question: '¿Cómo uso la service window para gastar menos?',
       answer:
-        'Cuando el cliente inicia la conversacion, se abre una ventana de service de 24 horas. Mientras este abierta, responde dentro de ella en vez de disparar una plantilla paga. Solo recurre a plantilla (utility o marketing, segun el caso) cuando esa ventana ya haya cerrado y necesites reabrir el contacto de forma proactiva.',
+        'Cuando el cliente inicia la conversación, se abre una ventana de service de 24 horas. Mientras esté abierta, responde dentro de ella en vez de disparar una plantilla paga. Solo recurre a plantilla (utility o marketing, según el caso) cuando esa ventana ya haya cerrado y necesites reabrir el contacto de forma proactiva.',
     },
     {
-      question: 'Por que no dar valores exactos de costo?',
+      question: '¿Por qué no dar valores exactos de costo?',
       answer:
-        'Porque los precios por conversacion varian por pais y por categoria y Meta los reajusta periodicamente. Trabajar con numeros fijos lleva a decisiones equivocadas en cuanto la tabla cambia. Lo que permanece estable es la estructura: cobro por conversacion, por categoria, en ventana de 24h. Optimiza sobre la estructura y usa los precios vigentes solo como variables de entrada en el calculo.',
+        'Porque los precios por conversación varían por país y por categoría y Meta los reajusta periódicamente. Trabajar con números fijos lleva a decisiones equivocadas en cuanto la tabla cambia. Lo que permanece estable es la estructura: cobro por conversación, por categoría, en ventana de 24h. Optimiza sobre la estructura y usa los precios vigentes solo como variables de entrada en el cálculo.',
     },
   ],
   conclusion: {
-    title: 'El costo controlado es cuestion de estructura, no de cortar mensajes',
+    title: 'El costo controlado es cuestión de estructura, no de cortar mensajes',
     description:
-      'Entender el cobro por conversacion, cerrar las fugas de conversaciones mal dirigidas y medir costo por resolucion en vez de por mensaje mantiene el canal eficiente sin degradar la experiencia. Si quieres ver donde se fuga el costo de tu WhatsApp y como optimizar, puedo ayudarte en ese analisis.',
+      'Entender el cobro por conversación, cerrar las fugas de conversaciones mal dirigidas y medir costo por resolución en vez de por mensaje mantiene el canal eficiente sin degradar la experiencia. Si quieres ver dónde se fuga el costo de tu WhatsApp y cómo optimizar, puedo ayudarte en ese análisis.',
     cta: 'Hablar sobre mis costos de WhatsApp',
   },
   related: [
     { label: 'WhatsApp Cloud API', to: '/servicos/whatsapp-cloud-api' },
-    { label: 'ROI real de automatizacion con IA', to: '/blog/roi-real-automacao-ia' },
+    { label: 'ROI real de automatización con IA', to: '/blog/roi-real-automacao-ia' },
     { label: 'Gobernanza de plantillas en equipos grandes', to: '/blog/governanca-templates-times-grandes' },
   ],
 };
