@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'memoria-longo-prazo-agentes-atendimento',
+    date: '2026-07-11',
+    readTime: '13 min',
+    keywords: {
+      pt: 'memoria de longo prazo, agente de atendimento, janela de contexto, memoria persistente, embedding, recuperacao por relevancia, ttl, esquecimento, privacidade, anthropic',
+      en: 'long-term memory, support agent, context window, persistent memory, embedding, relevance retrieval, ttl, forgetting, privacy, anthropic',
+      es: 'memoria de largo plazo, agente de atencion, ventana de contexto, memoria persistente, embedding, recuperacion por relevancia, ttl, olvido, privacidad, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Memória de longo prazo para agentes de atendimento',
+        excerpt:
+          'O cliente não deveria repetir tudo a cada sessão. Como dar memória ao agente sem estourar contexto: janela contra memória persistente, gravar fato em vez de transcript, recuperar por relevância escopada ao usuário, atualizar e esquecer.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Long-term memory for support agents',
+        excerpt:
+          'The customer should not repeat everything every session. How to give the agent memory without blowing the context: window versus persistent memory, storing facts instead of transcript, retrieving by relevance scoped to the user, update and forget.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Memoria de largo plazo para agentes de atención',
+        excerpt:
+          'El cliente no debería repetir todo en cada sesión. Cómo darle memoria al agente sin reventar el contexto: ventana contra memoria persistente, grabar hecho en vez de transcript, recuperar por relevancia escopada al usuario, actualizar y olvidar.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'guardrails-saida-llm-validacao-recusa-segura',
     date: '2026-07-09',
     readTime: '13 min',
@@ -788,15 +818,21 @@ const publishedPostDefinitions = [
 const upcomingPostsByLanguage = {
   pt: [
     'Cache semântico para reduzir custo de LLM',
-    'Memória de longo prazo para agentes de atendimento',
+    'Roteamento de modelos: modelo certo para cada tarefa',
+    'Streaming de resposta de LLM sem quebrar a UX',
+    'Rate limit e fila de prioridade para APIs de LLM',
   ],
   en: [
     'Semantic cache to cut LLM cost',
-    'Long-term memory for support agents',
+    'Model routing: the right model for each task',
+    'LLM response streaming without breaking the UX',
+    'Rate limit and priority queue for LLM APIs',
   ],
   es: [
     'Cache semantico para reducir el costo de LLM',
-    'Memoria de largo plazo para agentes de atencion',
+    'Ruteo de modelos: el modelo correcto para cada tarea',
+    'Streaming de respuesta de LLM sin romper la UX',
+    'Rate limit y cola de prioridad para APIs de LLM',
   ],
 };
 
