@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'cache-semantico-reduzir-custo-llm',
+    date: '2026-07-12',
+    readTime: '12 min',
+    keywords: {
+      pt: 'cache semantico, reduzir custo de llm, embedding, similaridade de cosseno, limiar, ttl, invalidacao, falso positivo, hit rate, anthropic',
+      en: 'semantic cache, cut llm cost, embedding, cosine similarity, threshold, ttl, invalidation, false positive, hit rate, anthropic',
+      es: 'cache semantico, reducir costo de llm, embedding, similitud de coseno, umbral, ttl, invalidacion, falso positivo, hit rate, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Cache semântico para reduzir custo de LLM',
+        excerpt:
+          'A mesma pergunta em mil formas vira mil chamadas ao modelo. Cache semântico casa por significado, não por texto: embedding, limiar calibrado por domínio, o que nunca pode ser cacheado, TTL com invalidação e a métrica de falso positivo.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Semantic cache to cut LLM cost',
+        excerpt:
+          'The same question in a thousand forms becomes a thousand model calls. Semantic cache matches by meaning, not text: embedding, a threshold calibrated per domain, what can never be cached, TTL with invalidation and the false positive metric.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Cache semantico para reducir el costo de LLM',
+        excerpt:
+          'La misma pregunta en mil formas se vuelve mil llamadas al modelo. El cache semantico casa por significado, no por texto: embedding, umbral calibrado por dominio, lo que nunca puede cachearse, TTL con invalidacion y la metrica de falso positivo.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'memoria-longo-prazo-agentes-atendimento',
     date: '2026-07-11',
     readTime: '13 min',
@@ -817,19 +847,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Cache semântico para reduzir custo de LLM',
     'Roteamento de modelos: modelo certo para cada tarefa',
     'Streaming de resposta de LLM sem quebrar a UX',
     'Rate limit e fila de prioridade para APIs de LLM',
   ],
   en: [
-    'Semantic cache to cut LLM cost',
     'Model routing: the right model for each task',
     'LLM response streaming without breaking the UX',
     'Rate limit and priority queue for LLM APIs',
   ],
   es: [
-    'Cache semantico para reducir el costo de LLM',
     'Ruteo de modelos: el modelo correcto para cada tarea',
     'Streaming de respuesta de LLM sin romper la UX',
     'Rate limit y cola de prioridad para APIs de LLM',

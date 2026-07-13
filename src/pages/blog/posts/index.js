@@ -39,6 +39,7 @@ import functionCallingVsRag from './function-calling-vs-rag-dados-tempo-real.js'
 import observabilidadeLlm from './observabilidade-llm-tracing-custo-qualidade.js';
 import guardrailsSaidaLlm from './guardrails-saida-llm-validacao-recusa-segura.js';
 import memoriaLongoPrazo from './memoria-longo-prazo-agentes-atendimento.js';
+import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
 
 const postContentBySlug = {
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
@@ -68,6 +69,7 @@ const postContentBySlug = {
   'observabilidade-llm-tracing-custo-qualidade': observabilidadeLlm,
   'guardrails-saida-llm-validacao-recusa-segura': guardrailsSaidaLlm,
   'memoria-longo-prazo-agentes-atendimento': memoriaLongoPrazo,
+  'cache-semantico-reduzir-custo-llm': cacheSemantico,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
