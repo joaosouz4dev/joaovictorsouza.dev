@@ -40,8 +40,10 @@ import observabilidadeLlm from './observabilidade-llm-tracing-custo-qualidade.js
 import guardrailsSaidaLlm from './guardrails-saida-llm-validacao-recusa-segura.js';
 import memoriaLongoPrazo from './memoria-longo-prazo-agentes-atendimento.js';
 import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
+import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js';
 
 const postContentBySlug = {
+  'roteamento-modelos-modelo-certo-cada-tarefa': roteamentoModelos,
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
   'meta-pixel-vs-capi-arquitetura': metaPixelVsCapi,
   'webhook-whatsapp-idempotencia-filas': webhookIdempotencia,

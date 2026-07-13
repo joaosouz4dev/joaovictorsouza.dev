@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'roteamento-modelos-modelo-certo-cada-tarefa',
+    date: '2026-07-13',
+    readTime: '12 min',
+    keywords: {
+      pt: 'roteamento de modelos, modelo certo para cada tarefa, custo de llm, classificacao de tarefa, fallback, escalonamento, modelo barato, modelo forte, anthropic',
+      en: 'model routing, right model for each task, llm cost, task classification, fallback, escalation, cheap model, strong model, anthropic',
+      es: 'ruteo de modelos, modelo correcto para cada tarea, costo de llm, clasificacion de tarea, fallback, escalonamiento, modelo barato, modelo fuerte, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Roteamento de modelos: modelo certo para cada tarefa',
+        excerpt:
+          'Mandar tudo para o modelo mais forte paga preço de raciocínio por trabalho de rotina. Roteamento casa cada tarefa com o modelo mais barato que ainda resolve: classificação por complexidade e risco, tabela de custo por tarefa, fallback validado e a métrica de escalonamento.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Model routing: the right model for each task',
+        excerpt:
+          'Sending everything to the strongest model pays reasoning price for routine work. Routing matches each task with the cheapest model that still solves it: classification by complexity and risk, cost-per-task table, validated fallback and the escalation metric.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Ruteo de modelos: el modelo correcto para cada tarea',
+        excerpt:
+          'Mandar todo al modelo más fuerte paga precio de razonamiento por trabajo de rutina. El ruteo casa cada tarea con el modelo más barato que aún la resuelve: clasificación por complejidad y riesgo, tabla de costo por tarea, fallback validado y la métrica de escalonamiento.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'cache-semantico-reduzir-custo-llm',
     date: '2026-07-12',
     readTime: '12 min',
@@ -847,19 +877,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Roteamento de modelos: modelo certo para cada tarefa',
     'Streaming de resposta de LLM sem quebrar a UX',
     'Rate limit e fila de prioridade para APIs de LLM',
+    'Chunking de documento para RAG sem perder contexto',
+    'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
+    'Idempotência em tool use: evitar ação duplicada do agente',
   ],
   en: [
-    'Model routing: the right model for each task',
     'LLM response streaming without breaking the UX',
     'Rate limit and priority queue for LLM APIs',
+    'Document chunking for RAG without losing context',
+    'Reranking in RAG: better retrieval without swapping the model',
+    'Idempotency in tool use: avoiding a duplicated agent action',
   ],
   es: [
-    'Ruteo de modelos: el modelo correcto para cada tarea',
     'Streaming de respuesta de LLM sin romper la UX',
     'Rate limit y cola de prioridad para APIs de LLM',
+    'Chunking de documento para RAG sin perder contexto',
+    'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
+    'Idempotencia en tool use: evitar acción duplicada del agente',
   ],
 };
 
