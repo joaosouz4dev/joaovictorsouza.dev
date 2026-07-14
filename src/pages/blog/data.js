@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'streaming-resposta-llm-sem-quebrar-ux',
+    date: '2026-07-14',
+    readTime: '12 min',
+    keywords: {
+      pt: 'streaming de llm, resposta em tempo real, server-sent events, sse, tempo ate o primeiro token, ttft, cancelamento, heartbeat, ux de chat, anthropic',
+      en: 'llm streaming, real-time response, server-sent events, sse, time to first token, ttft, cancellation, heartbeat, chat ux, anthropic',
+      es: 'streaming de llm, respuesta en tiempo real, server-sent events, sse, tiempo hasta el primer token, ttft, cancelacion, heartbeat, ux de chat, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Streaming de resposta de LLM sem quebrar a UX',
+        excerpt:
+          'A mesma resposta de LLM parece rápida quando começa a surgir em milissegundos e travada quando espera o texto todo. Como transmitir token a token sem quebrar a experiência: transporte SSE, servidor com heartbeat e cancelamento, cliente incremental e as regras de UX que fazem o streaming parecer suave.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'LLM response streaming without breaking the UX',
+        excerpt:
+          'The same LLM answer feels fast when it starts showing up in milliseconds and frozen when it waits for the full text. How to stream token by token without breaking the experience: SSE transport, a server with heartbeat and cancellation, an incremental client and the UX rules that make streaming feel smooth.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Streaming de respuesta de LLM sin romper la UX',
+        excerpt:
+          'La misma respuesta de LLM parece rápida cuando empieza a surgir en milisegundos y trabada cuando espera el texto entero. Cómo transmitir token a token sin romper la experiencia: transporte SSE, servidor con heartbeat y cancelación, cliente incremental y las reglas de UX que hacen que el streaming parezca suave.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'roteamento-modelos-modelo-certo-cada-tarefa',
     date: '2026-07-13',
     readTime: '12 min',
@@ -877,21 +907,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Streaming de resposta de LLM sem quebrar a UX',
     'Rate limit e fila de prioridade para APIs de LLM',
     'Chunking de documento para RAG sem perder contexto',
     'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
     'Idempotência em tool use: evitar ação duplicada do agente',
   ],
   en: [
-    'LLM response streaming without breaking the UX',
     'Rate limit and priority queue for LLM APIs',
     'Document chunking for RAG without losing context',
     'Reranking in RAG: better retrieval without swapping the model',
     'Idempotency in tool use: avoiding a duplicated agent action',
   ],
   es: [
-    'Streaming de respuesta de LLM sin romper la UX',
     'Rate limit y cola de prioridad para APIs de LLM',
     'Chunking de documento para RAG sin perder contexto',
     'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
