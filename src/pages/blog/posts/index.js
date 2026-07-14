@@ -41,8 +41,10 @@ import guardrailsSaidaLlm from './guardrails-saida-llm-validacao-recusa-segura.j
 import memoriaLongoPrazo from './memoria-longo-prazo-agentes-atendimento.js';
 import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
 import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js';
+import streamingRespostaLlm from './streaming-resposta-llm-sem-quebrar-ux.js';
 
 const postContentBySlug = {
+  'streaming-resposta-llm-sem-quebrar-ux': streamingRespostaLlm,
   'roteamento-modelos-modelo-certo-cada-tarefa': roteamentoModelos,
   'guia-whatsapp-cloud-api': guiaWhatsappCloudApi,
   'meta-pixel-vs-capi-arquitetura': metaPixelVsCapi,
