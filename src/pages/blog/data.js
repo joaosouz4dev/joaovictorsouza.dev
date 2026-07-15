@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'rate-limit-fila-prioridade-apis-llm',
+    date: '2026-07-15',
+    readTime: '13 min',
+    keywords: {
+      pt: 'rate limit de llm, fila de prioridade, token bucket, erro 429, backoff exponencial, jitter, retry-after, tokens por minuto, controle de vazao, anthropic',
+      en: 'llm rate limit, priority queue, token bucket, 429 error, exponential backoff, jitter, retry-after, tokens per minute, throughput control, anthropic',
+      es: 'rate limit de llm, cola de prioridad, token bucket, error 429, backoff exponencial, jitter, retry-after, tokens por minuto, control de caudal, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Rate limit e fila de prioridade para APIs de LLM',
+        excerpt:
+          'Retentar na hora um erro 429 é responder ao pedido de desacelerar acelerando. Como transformar o teto do provedor em vazão controlada: token bucket nas duas dimensões, fila com classes de prioridade e envelhecimento, backoff com jitter que respeita o Retry-After e as métricas que dizem se a cota está apertada.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Rate limit and priority queue for LLM APIs',
+        excerpt:
+          'Retrying a 429 immediately is answering a request to slow down by speeding up. How to turn the provider ceiling into controlled throughput: a token bucket on both dimensions, a queue with priority classes and aging, backoff with jitter that honors Retry-After and the metrics that tell you whether the quota is tight.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Rate limit y cola de prioridad para APIs de LLM',
+        excerpt:
+          'Reintentar al instante un error 429 es responder al pedido de desacelerar acelerando. Cómo transformar el techo del proveedor en caudal controlado: token bucket en las dos dimensiones, cola con clases de prioridad y envejecimiento, backoff con jitter que respeta el Retry-After y las métricas que dicen si la cuota está apretada.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'streaming-resposta-llm-sem-quebrar-ux',
     date: '2026-07-14',
     readTime: '12 min',
@@ -907,19 +937,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Rate limit e fila de prioridade para APIs de LLM',
     'Chunking de documento para RAG sem perder contexto',
     'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
     'Idempotência em tool use: evitar ação duplicada do agente',
   ],
   en: [
-    'Rate limit and priority queue for LLM APIs',
     'Document chunking for RAG without losing context',
     'Reranking in RAG: better retrieval without swapping the model',
     'Idempotency in tool use: avoiding a duplicated agent action',
   ],
   es: [
-    'Rate limit y cola de prioridad para APIs de LLM',
     'Chunking de documento para RAG sin perder contexto',
     'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
     'Idempotencia en tool use: evitar acción duplicada del agente',
