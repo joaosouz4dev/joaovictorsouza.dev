@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chunking-documento-rag-sem-perder-contexto',
+    date: '2026-07-16',
+    readTime: '13 min',
+    keywords: {
+      pt: 'chunking de documento, rag, corte por estrutura, sobreposicao, overlap, tamanho de chunk, metadado, recall, retrieval, embedding',
+      en: 'document chunking, rag, structural cut, overlap, chunk size, metadata, recall, retrieval, embedding, ingestion',
+      es: 'chunking de documento, rag, corte por estructura, solapamiento, overlap, tamano de chunk, metadato, recall, retrieval, embedding',
+    },
+    content: {
+      pt: {
+        title: 'Chunking de documento para RAG sem perder contexto',
+        excerpt:
+          'Cortar o documento a cada N caracteres parte a frase no meio e separa a definição da exceção. Como cortar por estrutura em vez de por tamanho: chunking recursivo pelas fronteiras do texto, overlap para costurar as emendas, o tamanho certo do chunk, o metadado que dá procedência e a métrica de recall que diz se o corte está ajudando o retrieval.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Document chunking for RAG without losing context',
+        excerpt:
+          'Cutting the document every N characters splits the sentence in half and separates the definition from its exception. How to cut by structure instead of by size: recursive chunking along the text boundaries, overlap to stitch the seams, the right chunk size, the metadata that gives provenance and the recall metric that tells whether the cut is helping retrieval.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Chunking de documento para RAG sin perder contexto',
+        excerpt:
+          'Cortar el documento cada N caracteres parte la frase a la mitad y separa la definición de su excepción. Cómo cortar por estructura en vez de por tamaño: chunking recursivo por las fronteras del texto, overlap para coser las junturas, el tamaño correcto del chunk, el metadato que da procedencia y la métrica de recall que dice si el corte está ayudando al retrieval.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'rate-limit-fila-prioridade-apis-llm',
     date: '2026-07-15',
     readTime: '13 min',
@@ -937,19 +967,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chunking de documento para RAG sem perder contexto',
     'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
     'Idempotência em tool use: evitar ação duplicada do agente',
+    'Prompt injection em RAG: defender o contexto recuperado',
+    'Fallback entre provedores de LLM sem parar o atendimento',
+    'Compressão de contexto: caber mais na janela sem perder sinal',
   ],
   en: [
-    'Document chunking for RAG without losing context',
     'Reranking in RAG: better retrieval without swapping the model',
     'Idempotency in tool use: avoiding a duplicated agent action',
+    'Prompt injection in RAG: defending the retrieved context',
+    'LLM provider fallback without stopping support',
+    'Context compression: fitting more in the window without losing signal',
   ],
   es: [
-    'Chunking de documento para RAG sin perder contexto',
     'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
     'Idempotencia en tool use: evitar acción duplicada del agente',
+    'Prompt injection en RAG: defender el contexto recuperado',
+    'Fallback entre proveedores de LLM sin detener la atención',
+    'Compresión de contexto: caber más en la ventana sin perder señal',
   ],
 };
 
