@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'reranking-rag-melhorar-retrieval-sem-trocar-modelo',
+    date: '2026-07-17',
+    readTime: '13 min',
+    keywords: {
+      pt: 'reranking em rag, cross-encoder, bi-encoder, reordenar retrieval, recuperar amplo, mrr, ndcg, recall, embedding, latencia',
+      en: 'reranking in rag, cross-encoder, bi-encoder, reorder retrieval, retrieve wide, mrr, ndcg, recall, embedding, latency',
+      es: 'reranking en rag, cross-encoder, bi-encoder, reordenar retrieval, recuperar amplio, mrr, ndcg, recall, embedding, latencia',
+    },
+    content: {
+      pt: {
+        title: 'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
+        excerpt:
+          'A resposta certa muitas vezes é recuperada, só que na nona posição, e você corta o contexto nos três primeiros. Como reordenar por relevância real: por que o embedding erra a ordem, o cross-encoder que lê pergunta e trecho juntos, o padrão recuperar-amplo-reranquear-estreito, o custo em latência e a métrica de posição que diz se o reranking vale a pena.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Reranking in RAG: better retrieval without swapping the model',
+        excerpt:
+          'The right answer is often retrieved, only at ninth place, and you cut the context at the top three. How to reorder by real relevance: why the embedding gets the order wrong, the cross-encoder that reads question and passage together, the retrieve-wide-rerank-narrow pattern, the latency cost and the position metric that tells whether reranking pays off.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
+        excerpt:
+          'La respuesta correcta muchas veces se recupera, solo que en la novena posición, y vos cortás el contexto en los tres primeros. Cómo reordenar por relevancia real: por qué el embedding equivoca el orden, el cross-encoder que lee pregunta y fragmento juntos, el patrón recuperar-amplio-reranquear-estrecho, el costo en latencia y la métrica de posición que dice si el reranking vale la pena.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'chunking-documento-rag-sem-perder-contexto',
     date: '2026-07-16',
     readTime: '13 min',
@@ -967,21 +997,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Reranking em RAG: melhorar o retrieval sem trocar o modelo',
     'Idempotência em tool use: evitar ação duplicada do agente',
     'Prompt injection em RAG: defender o contexto recuperado',
     'Fallback entre provedores de LLM sem parar o atendimento',
     'Compressão de contexto: caber mais na janela sem perder sinal',
   ],
   en: [
-    'Reranking in RAG: better retrieval without swapping the model',
     'Idempotency in tool use: avoiding a duplicated agent action',
     'Prompt injection in RAG: defending the retrieved context',
     'LLM provider fallback without stopping support',
     'Context compression: fitting more in the window without losing signal',
   ],
   es: [
-    'Reranking en RAG: mejorar el retrieval sin cambiar el modelo',
     'Idempotencia en tool use: evitar acción duplicada del agente',
     'Prompt injection en RAG: defender el contexto recuperado',
     'Fallback entre proveedores de LLM sin detener la atención',
