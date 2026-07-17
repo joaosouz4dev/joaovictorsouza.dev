@@ -44,8 +44,10 @@ import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js'
 import streamingRespostaLlm from './streaming-resposta-llm-sem-quebrar-ux.js';
 import rateLimitFilaPrioridade from './rate-limit-fila-prioridade-apis-llm.js';
 import chunkingDocumentoRag from './chunking-documento-rag-sem-perder-contexto.js';
+import rerankingRag from './reranking-rag-melhorar-retrieval-sem-trocar-modelo.js';
 
 const postContentBySlug = {
+  'reranking-rag-melhorar-retrieval-sem-trocar-modelo': rerankingRag,
   'chunking-documento-rag-sem-perder-contexto': chunkingDocumentoRag,
   'rate-limit-fila-prioridade-apis-llm': rateLimitFilaPrioridade,
   'streaming-resposta-llm-sem-quebrar-ux': streamingRespostaLlm,
