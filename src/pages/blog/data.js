@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'idempotencia-tool-use-evitar-acao-duplicada-agente',
+    date: '2026-07-18',
+    readTime: '13 min',
+    keywords: {
+      pt: 'idempotencia em tool use, acao duplicada do agente, chave de idempotencia, deduplicacao, retry, timeout, dupla cobranca, tool use, anthropic',
+      en: 'idempotency in tool use, duplicated agent action, idempotency key, deduplication, retry, timeout, double charge, tool use, anthropic',
+      es: 'idempotencia en tool use, accion duplicada del agente, clave de idempotencia, deduplicacion, retry, timeout, doble cobro, tool use, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Idempotência em tool use: evitar ação duplicada do agente',
+        excerpt:
+          'Retentar uma ferramenta que só lê é inofensivo; retentar uma que cobra o cartão duplica a cobrança. Como tornar o retry do agente seguro: por que o agente duplica ação com tanta facilidade, a chave de idempotência derivada da intenção, a janela de deduplicação que grava a primeira execução, o caso ambíguo do timeout e como testar que a duplicata não passa.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Idempotency in tool use: avoiding a duplicated agent action',
+        excerpt:
+          'Retrying a tool that only reads is harmless; retrying one that charges the card duplicates the charge. How to make the agent retry safe: why the agent duplicates actions so easily, the idempotency key derived from the intent, the deduplication window that stores the first execution, the ambiguous timeout case and how to test that the duplicate does not get through.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Idempotencia en tool use: evitar acción duplicada del agente',
+        excerpt:
+          'Reintentar una herramienta que solo lee es inofensivo; reintentar una que cobra la tarjeta duplica el cobro. Cómo volver seguro el retry del agente: por qué el agente duplica acción con tanta facilidad, la clave de idempotencia derivada de la intención, la ventana de deduplicación que guarda la primera ejecución, el caso ambiguo del timeout y cómo probar que el duplicado no pasa.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'reranking-rag-melhorar-retrieval-sem-trocar-modelo',
     date: '2026-07-17',
     readTime: '13 min',
@@ -997,19 +1027,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Idempotência em tool use: evitar ação duplicada do agente',
     'Prompt injection em RAG: defender o contexto recuperado',
     'Fallback entre provedores de LLM sem parar o atendimento',
     'Compressão de contexto: caber mais na janela sem perder sinal',
   ],
   en: [
-    'Idempotency in tool use: avoiding a duplicated agent action',
     'Prompt injection in RAG: defending the retrieved context',
     'LLM provider fallback without stopping support',
     'Context compression: fitting more in the window without losing signal',
   ],
   es: [
-    'Idempotencia en tool use: evitar acción duplicada del agente',
     'Prompt injection en RAG: defender el contexto recuperado',
     'Fallback entre proveedores de LLM sin detener la atención',
     'Compresión de contexto: caber más en la ventana sin perder señal',
