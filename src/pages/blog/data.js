@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'fallback-provedores-llm-sem-parar-atendimento',
+    date: '2026-07-20',
+    readTime: '13 min',
+    keywords: {
+      pt: 'fallback entre provedores de llm, alta disponibilidade de llm, retry vs fallback, circuit breaker, rate limit 429, retry-after, normalizacao de provedor, roteador de llm, resiliencia, anthropic',
+      en: 'llm provider fallback, llm high availability, retry vs fallback, circuit breaker, rate limit 429, retry-after, provider normalization, llm router, resilience, anthropic',
+      es: 'fallback entre proveedores de llm, alta disponibilidad de llm, retry vs fallback, circuit breaker, rate limit 429, retry-after, normalizacion de proveedor, router de llm, resiliencia, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Fallback entre provedores de LLM sem parar o atendimento',
+        excerpt:
+          'A API do provedor de LLM cai e o seu atendimento cai junto, mesmo com o resto da infra saudável. Como manter um segundo fornecedor pronto para assumir: por que só retry não basta, quais erros disparam o fallback e quais não, o circuit breaker que protege o secundário, a normalização entre APIs diferentes, o cuidado com o rate limit e como testar que a troca acontece sem o cliente perceber.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'LLM provider fallback without stopping support',
+        excerpt:
+          'The LLM provider API goes down and your support goes down with it, even with the rest of the infra healthy. How to keep a second vendor ready to take over: why retry alone is not enough, which errors trigger the fallback and which do not, the circuit breaker that protects the secondary, the normalization across different APIs, the care with rate limit and how to test that the switch happens without the customer noticing.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Fallback entre proveedores de LLM sin detener la atención',
+        excerpt:
+          'La API del proveedor de LLM se cae y tu atención se cae junto, aun con el resto de la infra sana. Cómo mantener un segundo proveedor listo para asumir: por qué solo retry no basta, qué errores disparan el fallback y cuáles no, el circuit breaker que protege al secundario, la normalización entre APIs diferentes, el cuidado con el rate limit y cómo probar que el cambio ocurre sin que el cliente lo perciba.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'prompt-injection-rag-defender-contexto-recuperado',
     date: '2026-07-20',
     readTime: '13 min',
@@ -1057,16 +1087,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Fallback entre provedores de LLM sem parar o atendimento',
     'Compressão de contexto: caber mais na janela sem perder sinal',
+    'Timeout e cancelamento em cadeia de chamadas de LLM',
+    'Versionar prompt como código: rollout, rollback e teste',
+    'Deduplicação de contexto em RAG: cortar o trecho repetido',
   ],
   en: [
-    'LLM provider fallback without stopping support',
     'Context compression: fitting more in the window without losing signal',
+    'Timeout and cancellation across a chain of LLM calls',
+    'Versioning the prompt as code: rollout, rollback and testing',
+    'Context deduplication in RAG: cutting the repeated passage',
   ],
   es: [
-    'Fallback entre proveedores de LLM sin detener la atención',
     'Compresión de contexto: caber más en la ventana sin perder señal',
+    'Timeout y cancelación en una cadena de llamadas de LLM',
+    'Versionar el prompt como código: rollout, rollback y prueba',
+    'Deduplicación de contexto en RAG: cortar el fragmento repetido',
   ],
 };
 

@@ -47,8 +47,10 @@ import chunkingDocumentoRag from './chunking-documento-rag-sem-perder-contexto.j
 import rerankingRag from './reranking-rag-melhorar-retrieval-sem-trocar-modelo.js';
 import idempotenciaToolUse from './idempotencia-tool-use-evitar-acao-duplicada-agente.js';
 import promptInjectionRag from './prompt-injection-rag-defender-contexto-recuperado.js';
+import fallbackProvedoresLlm from './fallback-provedores-llm-sem-parar-atendimento.js';
 
 const postContentBySlug = {
+  'fallback-provedores-llm-sem-parar-atendimento': fallbackProvedoresLlm,
   'prompt-injection-rag-defender-contexto-recuperado': promptInjectionRag,
   'idempotencia-tool-use-evitar-acao-duplicada-agente': idempotenciaToolUse,
   'reranking-rag-melhorar-retrieval-sem-trocar-modelo': rerankingRag,
