@@ -46,8 +46,10 @@ import rateLimitFilaPrioridade from './rate-limit-fila-prioridade-apis-llm.js';
 import chunkingDocumentoRag from './chunking-documento-rag-sem-perder-contexto.js';
 import rerankingRag from './reranking-rag-melhorar-retrieval-sem-trocar-modelo.js';
 import idempotenciaToolUse from './idempotencia-tool-use-evitar-acao-duplicada-agente.js';
+import promptInjectionRag from './prompt-injection-rag-defender-contexto-recuperado.js';
 
 const postContentBySlug = {
+  'prompt-injection-rag-defender-contexto-recuperado': promptInjectionRag,
   'idempotencia-tool-use-evitar-acao-duplicada-agente': idempotenciaToolUse,
   'reranking-rag-melhorar-retrieval-sem-trocar-modelo': rerankingRag,
   'chunking-documento-rag-sem-perder-contexto': chunkingDocumentoRag,

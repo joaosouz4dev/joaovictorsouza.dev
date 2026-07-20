@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'prompt-injection-rag-defender-contexto-recuperado',
+    date: '2026-07-20',
+    readTime: '13 min',
+    keywords: {
+      pt: 'prompt injection em rag, injecao indireta, contexto recuperado, defender rag, delimitador, sanitizacao, menor privilegio, exfiltracao de system prompt, seguranca de llm, retrieval',
+      en: 'prompt injection in rag, indirect injection, retrieved context, defend rag, delimiter, sanitization, least privilege, system prompt exfiltration, llm security, retrieval',
+      es: 'prompt injection en rag, inyeccion indirecta, contexto recuperado, defender rag, delimitador, sanitizacion, menor privilegio, exfiltracion de system prompt, seguridad de llm, retrieval',
+    },
+    content: {
+      pt: {
+        title: 'Prompt injection em RAG: defender o contexto recuperado',
+        excerpt:
+          'A porta que traz conhecimento para o prompt traz também instruções plantadas por um atacante. Como defender o contexto recuperado: por que ele é território hostil, separar dado de instrução com delimitadores e marcação de confiança, sanitizar o trecho antes do modelo, o limite da injeção indireta e o menor privilégio, e como testar que o payload envenenado não sequestra o agente.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Prompt injection in RAG: defending the retrieved context',
+        excerpt:
+          'The door that brings knowledge into the prompt also brings instructions planted by an attacker. How to defend the retrieved context: why it is hostile territory, separating data from instruction with delimiters and trust marking, sanitizing the passage before the model, the limit of indirect injection and least privilege, and how to test that the poisoned payload does not hijack the agent.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Prompt injection en RAG: defender el contexto recuperado',
+        excerpt:
+          'La puerta que trae conocimiento al prompt trae también instrucciones plantadas por un atacante. Cómo defender el contexto recuperado: por qué es territorio hostil, separar dato de instrucción con delimitadores y marcado de confianza, sanitizar el fragmento antes del modelo, el límite de la inyección indirecta y el menor privilegio, y cómo probar que el payload envenenado no secuestra el agente.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'idempotencia-tool-use-evitar-acao-duplicada-agente',
     date: '2026-07-18',
     readTime: '13 min',
@@ -1027,17 +1057,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Prompt injection em RAG: defender o contexto recuperado',
     'Fallback entre provedores de LLM sem parar o atendimento',
     'Compressão de contexto: caber mais na janela sem perder sinal',
   ],
   en: [
-    'Prompt injection in RAG: defending the retrieved context',
     'LLM provider fallback without stopping support',
     'Context compression: fitting more in the window without losing signal',
   ],
   es: [
-    'Prompt injection en RAG: defender el contexto recuperado',
     'Fallback entre proveedores de LLM sin detener la atención',
     'Compresión de contexto: caber más en la ventana sin perder señal',
   ],
