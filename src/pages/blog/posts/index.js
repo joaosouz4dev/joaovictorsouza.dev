@@ -48,8 +48,10 @@ import rerankingRag from './reranking-rag-melhorar-retrieval-sem-trocar-modelo.j
 import idempotenciaToolUse from './idempotencia-tool-use-evitar-acao-duplicada-agente.js';
 import promptInjectionRag from './prompt-injection-rag-defender-contexto-recuperado.js';
 import fallbackProvedoresLlm from './fallback-provedores-llm-sem-parar-atendimento.js';
+import compressaoContexto from './compressao-contexto-caber-mais-janela-sem-perder-sinal.js';
 
 const postContentBySlug = {
+  'compressao-contexto-caber-mais-janela-sem-perder-sinal': compressaoContexto,
   'fallback-provedores-llm-sem-parar-atendimento': fallbackProvedoresLlm,
   'prompt-injection-rag-defender-contexto-recuperado': promptInjectionRag,
   'idempotencia-tool-use-evitar-acao-duplicada-agente': idempotenciaToolUse,

@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'compressao-contexto-caber-mais-janela-sem-perder-sinal',
+    date: '2026-07-21',
+    readTime: '13 min',
+    keywords: {
+      pt: 'compressao de contexto, janela de contexto, janela deslizante, resumo de conversa, orcamento de tokens, ancora de fato, alucinacao em resumo, retencao de sinal, memoria de conversa, anthropic',
+      en: 'context compression, context window, sliding window, conversation summary, token budget, fact anchor, summary hallucination, signal retention, conversation memory, anthropic',
+      es: 'compresion de contexto, ventana de contexto, ventana deslizante, resumen de conversacion, presupuesto de tokens, ancla de hecho, alucinacion en resumen, retencion de senal, memoria de conversacion, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Compressão de contexto: caber mais na janela sem perder sinal',
+        excerpt:
+          'A conversa cresce a cada turno e cedo ou tarde não cabe mais na janela. Cortar as mensagens mais antigas parece resolver, até o bot esquecer o número do pedido que estava justamente ali. Como caber sem perder sinal: por que idade não mede importância, orçar a janela em tokens, o que nunca se comprime, resumir os turnos antigos em bloco, o freio contra o resumo que inventa fato e como medir se a compressão preservou o que importa.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Context compression: fitting more in the window without losing signal',
+        excerpt:
+          'The conversation grows every turn and sooner or later no longer fits the window. Cutting the oldest messages seems to solve it, until the bot forgets the order number that was right there. How to fit without losing signal: why age does not measure importance, budgeting the window in tokens, what should never be compressed, summarizing the old turns in a block, the brake against the summary that invents facts and how to measure whether the compression preserved what matters.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Compresión de contexto: caber más en la ventana sin perder señal',
+        excerpt:
+          'La conversación crece en cada turno y tarde o temprano ya no entra en la ventana. Cortar los mensajes más viejos parece resolverlo, hasta que el bot olvida el número de pedido que estaba justo ahí. Cómo entrar sin perder señal: por qué la edad no mide importancia, presupuestar la ventana en tokens, qué nunca se comprime, resumir los turnos viejos en bloque, el freno contra el resumen que inventa un hecho y cómo medir si la compresión preservó lo que importa.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'fallback-provedores-llm-sem-parar-atendimento',
     date: '2026-07-20',
     readTime: '13 min',
@@ -1087,19 +1117,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Compressão de contexto: caber mais na janela sem perder sinal',
     'Timeout e cancelamento em cadeia de chamadas de LLM',
     'Versionar prompt como código: rollout, rollback e teste',
     'Deduplicação de contexto em RAG: cortar o trecho repetido',
   ],
   en: [
-    'Context compression: fitting more in the window without losing signal',
     'Timeout and cancellation across a chain of LLM calls',
     'Versioning the prompt as code: rollout, rollback and testing',
     'Context deduplication in RAG: cutting the repeated passage',
   ],
   es: [
-    'Compresión de contexto: caber más en la ventana sin perder señal',
     'Timeout y cancelación en una cadena de llamadas de LLM',
     'Versionar el prompt como código: rollout, rollback y prueba',
     'Deduplicación de contexto en RAG: cortar el fragmento repetido',
