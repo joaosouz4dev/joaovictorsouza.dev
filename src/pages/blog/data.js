@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'timeout-cancelamento-cadeia-chamadas-llm',
+    date: '2026-07-22',
+    readTime: '13 min',
+    keywords: {
+      pt: 'timeout em cadeia de llm, cancelamento propagado, abortsignal, deadline absoluto, orcamento de tempo, degradacao por etapa, tempo ate o primeiro token, chamada zumbi, pipeline de ia, anthropic',
+      en: 'timeout in llm chain, propagated cancellation, abortsignal, absolute deadline, time budget, per-step degradation, time to first token, zombie call, ai pipeline, anthropic',
+      es: 'timeout en cadena de llm, cancelacion propagada, abortsignal, deadline absoluto, presupuesto de tiempo, degradacion por etapa, tiempo hasta el primer token, llamada zombi, pipeline de ia, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Timeout e cancelamento em cadeia de chamadas de LLM',
+        excerpt:
+          'Cada etapa do pipeline tem um timeout razoável, mas a soma estoura a paciência do cliente, e quando ele desiste as chamadas continuam rodando para ninguém. Como tratar o tempo como orçamento único: o deadline absoluto que viaja pela cadeia, o AbortSignal que cancela de verdade o trabalho vencido, as fases de timeout de conexão, primeiro token e stream, o retry que só vale quando cabe, a degradação declarada por etapa e como testar que a cadeia responde algo útil dentro do prazo.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Timeout and cancellation across a chain of LLM calls',
+        excerpt:
+          'Each pipeline step has a reasonable timeout, but the sum blows the customer patience, and when they give up the calls keep running for nobody. How to treat time as a single budget: the absolute deadline that travels through the chain, the AbortSignal that truly cancels the expired work, the timeout phases for connection, first token and stream, the retry that is only worth it when it fits, the declared per-step degradation and how to test that the chain answers something useful within the deadline.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Timeout y cancelación en una cadena de llamadas de LLM',
+        excerpt:
+          'Cada etapa del pipeline tiene un timeout razonable, pero la suma revienta la paciencia del cliente, y cuando desiste las llamadas siguen corriendo para nadie. Cómo tratar el tiempo como presupuesto único: el deadline absoluto que viaja por la cadena, el AbortSignal que cancela de verdad el trabajo vencido, las fases de timeout de conexión, primer token y stream, el retry que solo vale cuando cabe, la degradación declarada por etapa y cómo probar que la cadena responde algo útil dentro del plazo.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'compressao-contexto-caber-mais-janela-sem-perder-sinal',
     date: '2026-07-21',
     readTime: '13 min',
@@ -1117,19 +1147,19 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Timeout e cancelamento em cadeia de chamadas de LLM',
     'Versionar prompt como código: rollout, rollback e teste',
     'Deduplicação de contexto em RAG: cortar o trecho repetido',
+    'Backpressure em pipeline de IA: quando o consumidor não acompanha',
   ],
   en: [
-    'Timeout and cancellation across a chain of LLM calls',
     'Versioning the prompt as code: rollout, rollback and testing',
     'Context deduplication in RAG: cutting the repeated passage',
+    'Backpressure in an AI pipeline: when the consumer cannot keep up',
   ],
   es: [
-    'Timeout y cancelación en una cadena de llamadas de LLM',
     'Versionar el prompt como código: rollout, rollback y prueba',
     'Deduplicación de contexto en RAG: cortar el fragmento repetido',
+    'Backpressure en un pipeline de IA: cuando el consumidor no da abasto',
   ],
 };
 

@@ -49,8 +49,10 @@ import idempotenciaToolUse from './idempotencia-tool-use-evitar-acao-duplicada-a
 import promptInjectionRag from './prompt-injection-rag-defender-contexto-recuperado.js';
 import fallbackProvedoresLlm from './fallback-provedores-llm-sem-parar-atendimento.js';
 import compressaoContexto from './compressao-contexto-caber-mais-janela-sem-perder-sinal.js';
+import timeoutCancelamentoCadeia from './timeout-cancelamento-cadeia-chamadas-llm.js';
 
 const postContentBySlug = {
+  'timeout-cancelamento-cadeia-chamadas-llm': timeoutCancelamentoCadeia,
   'compressao-contexto-caber-mais-janela-sem-perder-sinal': compressaoContexto,
   'fallback-provedores-llm-sem-parar-atendimento': fallbackProvedoresLlm,
   'prompt-injection-rag-defender-contexto-recuperado': promptInjectionRag,
