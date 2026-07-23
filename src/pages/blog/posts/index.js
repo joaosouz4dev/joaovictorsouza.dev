@@ -50,8 +50,10 @@ import promptInjectionRag from './prompt-injection-rag-defender-contexto-recuper
 import fallbackProvedoresLlm from './fallback-provedores-llm-sem-parar-atendimento.js';
 import compressaoContexto from './compressao-contexto-caber-mais-janela-sem-perder-sinal.js';
 import timeoutCancelamentoCadeia from './timeout-cancelamento-cadeia-chamadas-llm.js';
+import versionarPromptComoCodigo from './versionar-prompt-como-codigo-rollout-rollback-teste.js';
 
 const postContentBySlug = {
+  'versionar-prompt-como-codigo-rollout-rollback-teste': versionarPromptComoCodigo,
   'timeout-cancelamento-cadeia-chamadas-llm': timeoutCancelamentoCadeia,
   'compressao-contexto-caber-mais-janela-sem-perder-sinal': compressaoContexto,
   'fallback-provedores-llm-sem-parar-atendimento': fallbackProvedoresLlm,
