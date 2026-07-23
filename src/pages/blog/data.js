@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'versionar-prompt-como-codigo-rollout-rollback-teste',
+    date: '2026-07-23',
+    readTime: '13 min',
+    keywords: {
+      pt: 'versionar prompt como codigo, rollout de prompt, rollback de prompt, versao imutavel, registro de prompt, manifesto de trafego, gate de eval, ci, teste de prompt, anthropic',
+      en: 'version prompt as code, prompt rollout, prompt rollback, immutable version, prompt registry, traffic manifest, eval gate, ci, prompt testing, anthropic',
+      es: 'versionar prompt como codigo, rollout de prompt, rollback de prompt, version inmutable, registro de prompt, manifiesto de trafico, gate de eval, ci, prueba de prompt, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Versionar prompt como código: rollout, rollback e teste',
+        excerpt:
+          'O prompt é o código mais crítico de um sistema com LLM e costuma ser o menos versionado: editado direto em produção porque parece só texto, sobrescrito sem histórico nem volta. Como tratar o prompt como código de verdade: a versão imutável com id derivado do conteúdo, o manifesto de tráfego que separa qual versão de quem a recebe, o rollout gradual comparado na mesma janela, o rollback que troca um ponteiro sem redeploy e o gate de eval que barra a regressão no CI antes de chegar ao cliente.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Versioning the prompt as code: rollout, rollback and testing',
+        excerpt:
+          'The prompt is the most critical code in an LLM system and tends to be the least versioned: edited straight in production because it looks like just text, overwritten with no history and no way back. How to treat the prompt as real code: the immutable version with a content-derived id, the traffic manifest that separates which version from who gets it, the gradual rollout compared in the same window, the rollback that flips a pointer without a redeploy and the eval gate that blocks the regression in CI before it reaches the customer.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Versionar el prompt como código: rollout, rollback y prueba',
+        excerpt:
+          'El prompt es el código más crítico de un sistema con LLM y suele ser el menos versionado: editado directo en producción porque parece solo texto, sobrescrito sin historial ni vuelta atrás. Cómo tratar el prompt como código de verdad: la versión inmutable con id derivado del contenido, el manifiesto de tráfico que separa qué versión de quién la recibe, el rollout gradual comparado en la misma ventana, el rollback que cambia un puntero sin redeploy y el gate de eval que bloquea la regresión en el CI antes de llegar al cliente.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'timeout-cancelamento-cadeia-chamadas-llm',
     date: '2026-07-22',
     readTime: '13 min',
@@ -1147,17 +1177,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Versionar prompt como código: rollout, rollback e teste',
     'Deduplicação de contexto em RAG: cortar o trecho repetido',
     'Backpressure em pipeline de IA: quando o consumidor não acompanha',
   ],
   en: [
-    'Versioning the prompt as code: rollout, rollback and testing',
     'Context deduplication in RAG: cutting the repeated passage',
     'Backpressure in an AI pipeline: when the consumer cannot keep up',
   ],
   es: [
-    'Versionar el prompt como código: rollout, rollback y prueba',
     'Deduplicación de contexto en RAG: cortar el fragmento repetido',
     'Backpressure en un pipeline de IA: cuando el consumidor no da abasto',
   ],
