@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'deduplicacao-contexto-rag-cortar-trecho-repetido',
+    date: '2026-07-24',
+    readTime: '13 min',
+    keywords: {
+      pt: 'deduplicacao de contexto, rag, trecho repetido, top-k, jaccard, shingles, minhash, sobreposicao de chunk, diversidade de contexto, densidade de informacao, anthropic',
+      en: 'context deduplication, rag, repeated passage, top-k, jaccard, shingles, minhash, chunk overlap, context diversity, information density, anthropic',
+      es: 'deduplicacion de contexto, rag, fragmento repetido, top-k, jaccard, shingles, minhash, solapamiento de chunk, diversidad de contexto, densidad de informacion, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Deduplicação de contexto em RAG: cortar o trecho repetido',
+        excerpt:
+          'Você aumenta o top-k para garantir que a resposta está lá, e a qualidade não sobe: dos oito trechos recuperados, cinco dizem a mesma coisa. Repetição não é só token desperdiçado, é viés, porque um fato copiado cinco vezes parece mais confirmado do que o correto que aparece uma. Os três níveis de duplicata, a cascata que detecta barato antes de caro, por que fundir vence descartar, o freio que protege a exceção que parece cópia e por que medir densidade em vez de economia.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Context deduplication in RAG: cutting the repeated passage',
+        excerpt:
+          'You raise the top-k to make sure the answer is in there, and quality does not go up: of the eight retrieved passages, five say the same thing. Repetition is not only wasted tokens, it is bias, because a fact copied five times looks more confirmed than the correct one that appears once. The three levels of duplicate, the cascade that detects cheap before expensive, why merging beats discarding, the brake that protects the exception that looks like a copy and why to measure density instead of savings.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Deduplicación de contexto en RAG: cortar el fragmento repetido',
+        excerpt:
+          'Subes el top-k para asegurar que la respuesta está ahí, y la calidad no sube: de los ocho fragmentos recuperados, cinco dicen lo mismo. La repetición no es solo token desperdiciado, es sesgo, porque un hecho copiado cinco veces parece más confirmado que el correcto que aparece una vez. Los tres niveles de duplicado, la cascada que detecta barato antes que caro, por qué fusionar vence a descartar, el freno que protege la excepción que parece copia y por qué medir densidad en vez de ahorro.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'versionar-prompt-como-codigo-rollout-rollback-teste',
     date: '2026-07-23',
     readTime: '13 min',
@@ -1177,16 +1207,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Deduplicação de contexto em RAG: cortar o trecho repetido',
     'Backpressure em pipeline de IA: quando o consumidor não acompanha',
+    'Migração de modelo sem quebrar o prompt em produção',
+    'Anonimização de dados antes de mandar para o LLM',
+    'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
   ],
   en: [
-    'Context deduplication in RAG: cutting the repeated passage',
     'Backpressure in an AI pipeline: when the consumer cannot keep up',
+    'Model migration without breaking the prompt in production',
+    'Data anonymization before sending it to the LLM',
+    'Cost per conversation: attributing the AI bill to what created value',
   ],
   es: [
-    'Deduplicación de contexto en RAG: cortar el fragmento repetido',
     'Backpressure en un pipeline de IA: cuando el consumidor no da abasto',
+    'Migración de modelo sin romper el prompt en producción',
+    'Anonimización de datos antes de mandarlos al LLM',
+    'Costo por conversación: atribuir la factura de IA a lo que generó valor',
   ],
 };
 

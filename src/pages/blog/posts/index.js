@@ -51,8 +51,10 @@ import fallbackProvedoresLlm from './fallback-provedores-llm-sem-parar-atendimen
 import compressaoContexto from './compressao-contexto-caber-mais-janela-sem-perder-sinal.js';
 import timeoutCancelamentoCadeia from './timeout-cancelamento-cadeia-chamadas-llm.js';
 import versionarPromptComoCodigo from './versionar-prompt-como-codigo-rollout-rollback-teste.js';
+import deduplicacaoContextoRag from './deduplicacao-contexto-rag-cortar-trecho-repetido.js';
 
 const postContentBySlug = {
+  'deduplicacao-contexto-rag-cortar-trecho-repetido': deduplicacaoContextoRag,
   'versionar-prompt-como-codigo-rollout-rollback-teste': versionarPromptComoCodigo,
   'timeout-cancelamento-cadeia-chamadas-llm': timeoutCancelamentoCadeia,
   'compressao-contexto-caber-mais-janela-sem-perder-sinal': compressaoContexto,
