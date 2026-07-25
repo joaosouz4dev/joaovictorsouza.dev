@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'backpressure-pipeline-ia-consumidor-nao-acompanha',
+    date: '2026-07-25',
+    readTime: '13 min',
+    keywords: {
+      pt: 'backpressure, pipeline de ia, fila limitada, consumidor lento, descarte de carga, histerese, retry-after, prioridade de fila, sobrecarga, anthropic',
+      en: 'backpressure, ai pipeline, bounded queue, slow consumer, load shedding, hysteresis, retry-after, queue priority, overload, anthropic',
+      es: 'backpressure, pipeline de ia, cola limitada, consumidor lento, descarte de carga, histeresis, retry-after, prioridad de cola, sobrecarga, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Backpressure em pipeline de IA: quando o consumidor não acompanha',
+        excerpt:
+          'O webhook aceita mil mensagens por minuto porque aceitar é barato, e a etapa que chama o modelo processa cem. A fila ilimitada não absorve essa diferença, ela só escolhe um momento pior para falhar: quando a memória acabou e o trabalho já aceito se perde junto. Por que a fila sem teto é adiamento e não solução, como medir pressão com histerese para o sinal não oscilar, quais políticas de descarte existem e quando cada uma está certa, como propagar o sinal até a borda e o que medir para saber se o freio funciona ou só esconde.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Backpressure in an AI pipeline: when the consumer cannot keep up',
+        excerpt:
+          'The webhook accepts a thousand messages per minute because accepting is cheap, and the stage that calls the model processes a hundred. The unbounded queue does not absorb that gap, it only picks a worse moment to fail: when memory has run out and the already accepted work is lost with it. Why a ceiling-free queue is postponement and not a solution, how to measure pressure with hysteresis so the signal does not oscillate, which shedding policies exist and when each one is right, how to propagate the signal up to the edge and what to measure to know whether the brake works or merely hides.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Backpressure en un pipeline de IA: cuando el consumidor no da abasto',
+        excerpt:
+          'El webhook acepta mil mensajes por minuto porque aceptar es barato, y la etapa que llama al modelo procesa cien. La cola ilimitada no absorbe esa diferencia, solo elige un momento peor para fallar: cuando la memoria se acabó y el trabajo ya aceptado se pierde junto. Por qué la cola sin techo es aplazamiento y no solución, cómo medir presión con histéresis para que la señal no oscile, qué políticas de descarte existen y cuándo cada una es la correcta, cómo propagar la señal hasta el borde y qué medir para saber si el freno funciona o solo esconde.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'deduplicacao-contexto-rag-cortar-trecho-repetido',
     date: '2026-07-24',
     readTime: '13 min',
@@ -1207,19 +1237,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Backpressure em pipeline de IA: quando o consumidor não acompanha',
     'Migração de modelo sem quebrar o prompt em produção',
     'Anonimização de dados antes de mandar para o LLM',
     'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
   ],
   en: [
-    'Backpressure in an AI pipeline: when the consumer cannot keep up',
     'Model migration without breaking the prompt in production',
     'Data anonymization before sending it to the LLM',
     'Cost per conversation: attributing the AI bill to what created value',
   ],
   es: [
-    'Backpressure en un pipeline de IA: cuando el consumidor no da abasto',
     'Migración de modelo sin romper el prompt en producción',
     'Anonimización de datos antes de mandarlos al LLM',
     'Costo por conversación: atribuir la factura de IA a lo que generó valor',
