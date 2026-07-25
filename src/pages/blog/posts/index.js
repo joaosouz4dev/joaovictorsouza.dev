@@ -52,8 +52,10 @@ import compressaoContexto from './compressao-contexto-caber-mais-janela-sem-perd
 import timeoutCancelamentoCadeia from './timeout-cancelamento-cadeia-chamadas-llm.js';
 import versionarPromptComoCodigo from './versionar-prompt-como-codigo-rollout-rollback-teste.js';
 import deduplicacaoContextoRag from './deduplicacao-contexto-rag-cortar-trecho-repetido.js';
+import backpressurePipelineIa from './backpressure-pipeline-ia-consumidor-nao-acompanha.js';
 
 const postContentBySlug = {
+  'backpressure-pipeline-ia-consumidor-nao-acompanha': backpressurePipelineIa,
   'deduplicacao-contexto-rag-cortar-trecho-repetido': deduplicacaoContextoRag,
   'versionar-prompt-como-codigo-rollout-rollback-teste': versionarPromptComoCodigo,
   'timeout-cancelamento-cadeia-chamadas-llm': timeoutCancelamentoCadeia,
