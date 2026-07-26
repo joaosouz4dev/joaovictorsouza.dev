@@ -53,8 +53,10 @@ import timeoutCancelamentoCadeia from './timeout-cancelamento-cadeia-chamadas-ll
 import versionarPromptComoCodigo from './versionar-prompt-como-codigo-rollout-rollback-teste.js';
 import deduplicacaoContextoRag from './deduplicacao-contexto-rag-cortar-trecho-repetido.js';
 import backpressurePipelineIa from './backpressure-pipeline-ia-consumidor-nao-acompanha.js';
+import migracaoModeloPrompt from './migracao-modelo-sem-quebrar-prompt-producao.js';
 
 const postContentBySlug = {
+  'migracao-modelo-sem-quebrar-prompt-producao': migracaoModeloPrompt,
   'backpressure-pipeline-ia-consumidor-nao-acompanha': backpressurePipelineIa,
   'deduplicacao-contexto-rag-cortar-trecho-repetido': deduplicacaoContextoRag,
   'versionar-prompt-como-codigo-rollout-rollback-teste': versionarPromptComoCodigo,

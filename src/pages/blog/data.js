@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-modelo-sem-quebrar-prompt-producao',
+    date: '2026-07-26',
+    readTime: '14 min',
+    keywords: {
+      pt: 'migracao de modelo, trocar de llm, prompt em producao, trafego sombra, shadow traffic, gate de paridade, regressao de formato, tool call, rollback de modelo, anthropic',
+      en: 'model migration, switching llm, prompt in production, shadow traffic, parity gate, format regression, tool call, model rollback, anthropic',
+      es: 'migracion de modelo, cambiar de llm, prompt en produccion, trafico sombra, gate de paridad, regresion de formato, tool call, rollback de modelo, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Migração de modelo sem quebrar o prompt em produção',
+        excerpt:
+          'Trocar o modelo parece uma linha de configuração, mas o prompt em produção foi lapidado contra um modelo específico e carrega meses de suposições que nunca viraram instrução escrita. A troca testa todas de uma vez nas bordas: o JSON que agora vem embrulhado em markdown, a resposta que dobrou de tamanho, a tool call que virou texto. Como listar as suposições tácitas, rodar o candidato em tráfego sombra sem risco ao cliente, comparar por contrato antes de comparar por qualidade, adaptar o prompt com mudanças cirúrgicas e cortar por trás de um gate de paridade por caso de uso.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Model migration without breaking the prompt in production',
+        excerpt:
+          'Swapping the model looks like one configuration line, but the prompt in production was polished against one specific model and carries months of assumptions that never became written instructions. The swap tests all of them at once at the edges: the JSON that now comes wrapped in markdown, the answer that doubled in size, the tool call that became text. How to list the tacit assumptions, run the candidate on shadow traffic with no risk to the customer, compare by contract before comparing by quality, adapt the prompt with surgical changes and cut over behind a per-use-case parity gate.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Migración de modelo sin romper el prompt en producción',
+        excerpt:
+          'Cambiar el modelo parece una línea de configuración, pero el prompt en producción fue pulido contra un modelo específico y carga meses de suposiciones que nunca se volvieron instrucción escrita. El cambio las prueba todas de una vez en los bordes: el JSON que ahora viene envuelto en markdown, la respuesta que duplicó su tamaño, la tool call que se volvió texto. Cómo listar las suposiciones tácitas, correr el candidato en tráfico sombra sin riesgo para el cliente, comparar por contrato antes de comparar por calidad, adaptar el prompt con cambios quirúrgicos y cortar detrás de un gate de paridad por caso de uso.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'backpressure-pipeline-ia-consumidor-nao-acompanha',
     date: '2026-07-25',
     readTime: '13 min',
@@ -1237,19 +1267,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de modelo sem quebrar o prompt em produção',
     'Anonimização de dados antes de mandar para o LLM',
     'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
+    'Detectar deriva de qualidade em bot de atendimento antes do cliente reclamar',
+    'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
+    'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
   ],
   en: [
-    'Model migration without breaking the prompt in production',
     'Data anonymization before sending it to the LLM',
     'Cost per conversation: attributing the AI bill to what created value',
+    'Detecting quality drift in a support bot before the customer complains',
+    'Degraded mode: keeping support standing when the AI is unavailable',
+    'Audit trail in an AI agent: proving what was decided and why',
   ],
   es: [
-    'Migración de modelo sin romper el prompt en producción',
     'Anonimización de datos antes de mandarlos al LLM',
     'Costo por conversación: atribuir la factura de IA a lo que generó valor',
+    'Detectar deriva de calidad en un bot de atención antes de que el cliente reclame',
+    'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
+    'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',
   ],
 };
 
