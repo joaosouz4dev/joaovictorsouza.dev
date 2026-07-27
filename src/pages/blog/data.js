@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'anonimizacao-dados-antes-de-mandar-para-llm',
+    date: '2026-07-27',
+    readTime: '14 min',
+    keywords: {
+      pt: 'anonimizacao de dados, pii em llm, redacao de dado pessoal, marcador reversivel, lgpd, minimizacao de contexto, validador de cpf, luhn, vazamento de dado, anthropic',
+      en: 'data anonymization, pii in llm, personal data redaction, reversible placeholder, gdpr, context minimization, tax id validator, luhn, data leakage, anthropic',
+      es: 'anonimizacion de datos, pii en llm, redaccion de dato personal, marcador reversible, rgpd, minimizacion de contexto, validador de documento, luhn, filtracion de dato, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Anonimização de dados antes de mandar para o LLM',
+        excerpt:
+          'O prompt que sai do seu servidor carrega mais do que a mensagem atual: histórico inteiro, retorno de tool, trecho de RAG, e tudo isso vai parar em log de erro, cache de prompt e amostra de monitoramento que ninguém projetou como cofre. Por que regex sozinha erra dos dois lados e o validador do tipo corrige, por que o marcador precisa ser tipado e estável dentro da requisição sem virar pseudônimo permanente, como reidratar a resposta sem virar oráculo, por que minimizar vem antes de anonimizar e o teste que falha quando o dado real aparece no payload.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Data anonymization before sending it to the LLM',
+        excerpt:
+          'The prompt that leaves your server carries more than the current message: the whole history, tool results, RAG passages, and all of it ends up in error logs, prompt caches and monitoring samples nobody designed as a vault. Why regex alone gets it wrong on both sides and the type validator fixes it, why the placeholder must be typed and stable within the request without becoming a permanent pseudonym, how to rehydrate the answer without becoming an oracle, why minimizing comes before anonymizing and the test that fails when the real value appears in the payload.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Anonimización de datos antes de mandarlos al LLM',
+        excerpt:
+          'El prompt que sale de tu servidor lleva más que el mensaje actual: historial completo, retorno de tool, fragmento de RAG, y todo eso termina en log de error, cache de prompt y muestra de monitoreo que nadie diseñó como caja fuerte. Por qué la regex sola se equivoca de los dos lados y el validador del tipo lo corrige, por qué el marcador debe ser tipado y estable dentro de la petición sin volverse seudónimo permanente, cómo rehidratar la respuesta sin volverse oráculo, por qué minimizar viene antes de anonimizar y el test que falla cuando el valor real aparece en el payload.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'migracao-modelo-sem-quebrar-prompt-producao',
     date: '2026-07-26',
     readTime: '14 min',
@@ -1267,21 +1297,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Anonimização de dados antes de mandar para o LLM',
     'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
     'Detectar deriva de qualidade em bot de atendimento antes do cliente reclamar',
     'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
     'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
   ],
   en: [
-    'Data anonymization before sending it to the LLM',
     'Cost per conversation: attributing the AI bill to what created value',
     'Detecting quality drift in a support bot before the customer complains',
     'Degraded mode: keeping support standing when the AI is unavailable',
     'Audit trail in an AI agent: proving what was decided and why',
   ],
   es: [
-    'Anonimización de datos antes de mandarlos al LLM',
     'Costo por conversación: atribuir la factura de IA a lo que generó valor',
     'Detectar deriva de calidad en un bot de atención antes de que el cliente reclame',
     'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
