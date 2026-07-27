@@ -54,8 +54,10 @@ import versionarPromptComoCodigo from './versionar-prompt-como-codigo-rollout-ro
 import deduplicacaoContextoRag from './deduplicacao-contexto-rag-cortar-trecho-repetido.js';
 import backpressurePipelineIa from './backpressure-pipeline-ia-consumidor-nao-acompanha.js';
 import migracaoModeloPrompt from './migracao-modelo-sem-quebrar-prompt-producao.js';
+import anonimizacaoDadosLlm from './anonimizacao-dados-antes-de-mandar-para-llm.js';
 
 const postContentBySlug = {
+  'anonimizacao-dados-antes-de-mandar-para-llm': anonimizacaoDadosLlm,
   'migracao-modelo-sem-quebrar-prompt-producao': migracaoModeloPrompt,
   'backpressure-pipeline-ia-consumidor-nao-acompanha': backpressurePipelineIa,
   'deduplicacao-contexto-rag-cortar-trecho-repetido': deduplicacaoContextoRag,
