@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'custo-por-conversa-atribuir-fatura-ia-ao-valor',
+    date: '2026-07-28',
+    readTime: '14 min',
+    keywords: {
+      pt: 'custo por conversa, atribuicao de custo de ia, finops de llm, custo por resolucao, tokens por conversa, rateio de cache de prompt, custo nao atribuido, reconciliacao de fatura, asynclocalstorage, anthropic',
+      en: 'cost per conversation, ai cost attribution, llm finops, cost per resolution, tokens per conversation, prompt cache allocation, unattributed cost, invoice reconciliation, asynclocalstorage, anthropic',
+      es: 'costo por conversacion, atribucion de costo de ia, finops de llm, costo por resolucion, tokens por conversacion, prorrateo de cache de prompt, costo no atribuido, reconciliacion de factura, asynclocalstorage, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
+        excerpt:
+          'A fatura do provedor chega como um número só: diz quanto você gastou e não diz em quê, qual cliente, qual jornada, qual etapa, qual resposta resolveu e qual só queimou tokens antes do transbordo. Sem atribuição, toda economia vira aposta, e a mais comum delas economiza na etapa que já era barata. Qual unidade de custo faz sentido em atendimento, como propagar o escopo pelo contexto assíncrono sem poluir assinatura nenhuma, onde encaixar o custo de eval e reindexação que não pertence a cliente algum, como tratar cache e retentativa sem inventar precisão e como fechar o mês reconciliando o contabilizado com o cobrado.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Cost per conversation: attributing the AI bill to what created value',
+        excerpt:
+          'The provider invoice arrives as a single number: it says how much you spent and not what on, which customer, which journey, which step, which answer resolved the case and which merely burned tokens before the handoff. Without attribution, every saving is a bet, and the most common one saves on the step that was already cheap. Which cost unit makes sense in support, how to propagate the scope through async context without polluting a single signature, where to fit the eval and reindexing cost that belongs to no customer, how to handle cache and retries without inventing precision and how to close the month reconciling the accounted against the charged.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Costo por conversación: atribuir la factura de IA a lo que generó valor',
+        excerpt:
+          'La factura del proveedor llega como un número solo: dice cuánto gastaste y no dice en qué, qué cliente, qué recorrido, qué etapa, qué respuesta resolvió y cuál solo quemó tokens antes del traspaso. Sin atribución, todo ahorro es una apuesta, y el más común ahorra en la etapa que ya era barata. Qué unidad de costo tiene sentido en atención, cómo propagar el ámbito por el contexto asíncrono sin ensuciar ninguna firma, dónde encajar el costo de eval y reindexación que no pertenece a ningún cliente, cómo tratar cache y reintentos sin inventar precisión y cómo cerrar el mes reconciliando lo contabilizado con lo cobrado.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'anonimizacao-dados-antes-de-mandar-para-llm',
     date: '2026-07-27',
     readTime: '14 min',
@@ -1297,19 +1327,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Custo por conversa: atribuir a fatura de IA ao que gerou valor',
     'Detectar deriva de qualidade em bot de atendimento antes do cliente reclamar',
     'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
     'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
   ],
   en: [
-    'Cost per conversation: attributing the AI bill to what created value',
     'Detecting quality drift in a support bot before the customer complains',
     'Degraded mode: keeping support standing when the AI is unavailable',
     'Audit trail in an AI agent: proving what was decided and why',
   ],
   es: [
-    'Costo por conversación: atribuir la factura de IA a lo que generó valor',
     'Detectar deriva de calidad en un bot de atención antes de que el cliente reclame',
     'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
     'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',

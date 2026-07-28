@@ -55,8 +55,10 @@ import deduplicacaoContextoRag from './deduplicacao-contexto-rag-cortar-trecho-r
 import backpressurePipelineIa from './backpressure-pipeline-ia-consumidor-nao-acompanha.js';
 import migracaoModeloPrompt from './migracao-modelo-sem-quebrar-prompt-producao.js';
 import anonimizacaoDadosLlm from './anonimizacao-dados-antes-de-mandar-para-llm.js';
+import custoPorConversa from './custo-por-conversa-atribuir-fatura-ia-ao-valor.js';
 
 const postContentBySlug = {
+  'custo-por-conversa-atribuir-fatura-ia-ao-valor': custoPorConversa,
   'anonimizacao-dados-antes-de-mandar-para-llm': anonimizacaoDadosLlm,
   'migracao-modelo-sem-quebrar-prompt-producao': migracaoModeloPrompt,
   'backpressure-pipeline-ia-consumidor-nao-acompanha': backpressurePipelineIa,
