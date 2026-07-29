@@ -56,8 +56,10 @@ import backpressurePipelineIa from './backpressure-pipeline-ia-consumidor-nao-ac
 import migracaoModeloPrompt from './migracao-modelo-sem-quebrar-prompt-producao.js';
 import anonimizacaoDadosLlm from './anonimizacao-dados-antes-de-mandar-para-llm.js';
 import custoPorConversa from './custo-por-conversa-atribuir-fatura-ia-ao-valor.js';
+import derivaQualidadeBot from './detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar.js';
 
 const postContentBySlug = {
+  'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar': derivaQualidadeBot,
   'custo-por-conversa-atribuir-fatura-ia-ao-valor': custoPorConversa,
   'anonimizacao-dados-antes-de-mandar-para-llm': anonimizacaoDadosLlm,
   'migracao-modelo-sem-quebrar-prompt-producao': migracaoModeloPrompt,
