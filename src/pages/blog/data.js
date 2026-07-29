@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar',
+    date: '2026-07-29',
+    readTime: '14 min',
+    keywords: {
+      pt: 'deriva de qualidade, drift em bot de atendimento, degradacao silenciosa de llm, conjunto de referencia congelado, taxa de reformulacao, eval de regressao, deteccao de deriva, falso positivo em alerta, causa raiz de regressao, anthropic',
+      en: 'quality drift, support bot drift, silent llm degradation, frozen reference set, reformulation rate, regression eval, drift detection, alert false positive, regression root cause, anthropic',
+      es: 'deriva de calidad, drift en bot de atencion, degradacion silenciosa de llm, conjunto de referencia congelado, tasa de reformulacion, eval de regresion, deteccion de deriva, falso positivo en alerta, causa raiz de regresion, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Detectar deriva de qualidade em bot de atendimento antes do cliente reclamar',
+        excerpt:
+          'O bot não cai, a latência não sobe e a taxa de erro é zero, mas a resposta de hoje é pior que a de três semanas atrás e ninguém percebeu porque nada quebrou. Por que os quatro sinais clássicos de observabilidade não se movem, quais sinais comportamentais sobem antes da reclamação chegar, por que usar a média do próprio tráfego como referência garante nunca detectar a queda lenta, como separar deriva real de flutuação com volume mínimo e persistência, e como fazer o alerta chegar com o caso concreto em vez de só uma nota que caiu.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Detecting quality drift in a support bot before the customer complains',
+        excerpt:
+          'The bot does not go down, latency does not rise and the error rate is zero, but today answer is worse than the one from three weeks ago and nobody noticed because nothing broke. Why the four classic observability signals do not move, which behavioral signals rise before the complaint arrives, why using your own traffic average as a reference guarantees you never detect the slow decline, how to separate real drift from fluctuation with minimum volume and persistence, and how to make the alert arrive with the concrete case instead of just a score that dropped.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Detectar deriva de calidad en un bot de atención antes de que el cliente reclame',
+        excerpt:
+          'El bot no se cae, la latencia no sube y la tasa de error es cero, pero la respuesta de hoy es peor que la de hace tres semanas y nadie lo notó porque nada se rompió. Por qué las cuatro señales clásicas de observabilidad no se mueven, qué señales conductuales suben antes de que llegue el reclamo, por qué usar el promedio del propio tráfico como referencia garantiza no detectar nunca la caída lenta, cómo separar deriva real de fluctuación con volumen mínimo y persistencia, y cómo lograr que la alerta llegue con el caso concreto en vez de solo una nota que cayó.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'custo-por-conversa-atribuir-fatura-ia-ao-valor',
     date: '2026-07-28',
     readTime: '14 min',
@@ -1327,17 +1357,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Detectar deriva de qualidade em bot de atendimento antes do cliente reclamar',
     'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
     'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
   ],
   en: [
-    'Detecting quality drift in a support bot before the customer complains',
     'Degraded mode: keeping support standing when the AI is unavailable',
     'Audit trail in an AI agent: proving what was decided and why',
   ],
   es: [
-    'Detectar deriva de calidad en un bot de atención antes de que el cliente reclame',
     'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
     'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',
   ],
