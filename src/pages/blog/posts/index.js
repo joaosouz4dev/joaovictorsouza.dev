@@ -57,8 +57,10 @@ import migracaoModeloPrompt from './migracao-modelo-sem-quebrar-prompt-producao.
 import anonimizacaoDadosLlm from './anonimizacao-dados-antes-de-mandar-para-llm.js';
 import custoPorConversa from './custo-por-conversa-atribuir-fatura-ia-ao-valor.js';
 import derivaQualidadeBot from './detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar.js';
+import modoDegradado from './modo-degradado-manter-atendimento-quando-ia-indisponivel.js';
 
 const postContentBySlug = {
+  'modo-degradado-manter-atendimento-quando-ia-indisponivel': modoDegradado,
   'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar': derivaQualidadeBot,
   'custo-por-conversa-atribuir-fatura-ia-ao-valor': custoPorConversa,
   'anonimizacao-dados-antes-de-mandar-para-llm': anonimizacaoDadosLlm,
