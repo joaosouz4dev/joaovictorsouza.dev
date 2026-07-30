@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'modo-degradado-manter-atendimento-quando-ia-indisponivel',
+    date: '2026-07-30',
+    readTime: '14 min',
+    keywords: {
+      pt: 'modo degradado, atendimento sem ia, falhar aberto ou fechado, disjuntor, nivel de degradacao, histerese, sonda de recuperacao, resposta pronta por intencao, orcamento de tempo, anthropic',
+      en: 'degraded mode, support without ai, fail open or closed, circuit breaker, degradation level, hysteresis, recovery probe, canned answer per intent, time budget, anthropic',
+      es: 'modo degradado, atencion sin ia, fallar abierto o cerrado, disyuntor, nivel de degradacion, histeresis, sonda de recuperacion, respuesta prearmada por intencion, presupuesto de tiempo, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
+        excerpt:
+          'Quando o provedor cai, a pergunta que decide a qualidade do atendimento não é técnica, é de produto: o que o cliente vê. Quase tudo que o bot faz de útil não depende do modelo, e a base, o histórico, a fila de humanos e o formulário continuam lá. Por que falhar aberto é diferente de falhar fechado e por que isso se decide por capacidade, como classificar a falha antes de reagir, quais níveis de degradação valem a pena, como descer rápido e subir devagar sem ficar oscilando, o que dizer ao cliente em cada nível e como exercitar tudo isso antes da queda real.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Degraded mode: keeping support standing when the AI is unavailable',
+        excerpt:
+          'When the provider goes down, the question that decides support quality is not technical, it is a product question: what does the customer see. Almost everything useful the bot does does not depend on the model, and the knowledge base, the history, the human queue and the intake form are all still there. Why failing open differs from failing closed and why that is decided per capability, how to classify the failure before reacting, which degradation levels are worth it, how to step down fast and up slowly without oscillating, what to tell the customer at each level and how to exercise all of it before the real outage.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
+        excerpt:
+          'Cuando el proveedor se cae, la pregunta que decide la calidad de la atención no es técnica, es de producto: qué ve el cliente. Casi todo lo útil que hace el bot no depende del modelo, y la base, el historial, la fila de humanos y el formulario siguen ahí. Por qué fallar abierto es distinto de fallar cerrado y por qué eso se decide por capacidad, cómo clasificar el fallo antes de reaccionar, qué niveles de degradación valen la pena, cómo bajar rápido y subir despacio sin quedar oscilando, qué decirle al cliente en cada nivel y cómo ejercitar todo eso antes de la caída real.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar',
     date: '2026-07-29',
     readTime: '14 min',
@@ -1357,16 +1387,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Modo degradado: manter o atendimento de pé quando a IA está indisponível',
     'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
+    'Limite de gasto por cliente: cortar o abuso sem punir o uso legítimo',
+    'Janela de contexto compartilhada entre canais: WhatsApp, web e telefone',
+    'Migrar de embeddings sem reindexar tudo de uma vez',
   ],
   en: [
-    'Degraded mode: keeping support standing when the AI is unavailable',
     'Audit trail in an AI agent: proving what was decided and why',
+    'Spend caps per customer: cutting abuse without punishing legitimate use',
+    'A context window shared across channels: WhatsApp, web and phone',
+    'Migrating embeddings without reindexing everything at once',
   ],
   es: [
-    'Modo degradado: mantener la atención en pie cuando la IA no está disponible',
     'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',
+    'Límite de gasto por cliente: cortar el abuso sin castigar el uso legítimo',
+    'Ventana de contexto compartida entre canales: WhatsApp, web y teléfono',
+    'Migrar de embeddings sin reindexar todo de una vez',
   ],
 };
 

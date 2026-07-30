@@ -9,6 +9,7 @@ import {
   getUpcomingPosts,
 } from '../src/pages/blog/data.js';
 import { getCases } from '../src/pages/cases/data.js';
+import { getProjects } from '../src/pages/projetos/data.js';
 import { getServices } from '../src/pages/servicos/data.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -368,7 +369,9 @@ const writePage = async (baseHtml, page) => {
   await writeFile(path.join(buildDir, `${routeName}.html`), html, 'utf8');
 };
 
-// Rotas estaticas conhecidas do site (fora do blog dinamico).
+// Rotas estaticas publicas do site (fora das listagens dinamicas).
+// Fora daqui de proposito: /zap (redirect para /whatsapp), a rota coringa de
+// 404 e /politica-de-privacidade/:title, que nao tem listagem de itens.
 const staticSitemapEntries = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/sobre', changefreq: 'monthly', priority: '0.8' },
@@ -377,6 +380,9 @@ const staticSitemapEntries = [
   { path: '/blog', changefreq: 'weekly', priority: '0.8' },
   { path: '/projetos', changefreq: 'monthly', priority: '0.7' },
   { path: '/contato', changefreq: 'monthly', priority: '0.8' },
+  { path: '/whatsapp', changefreq: 'monthly', priority: '0.7' },
+  { path: '/wpp', changefreq: 'monthly', priority: '0.7' },
+  { path: '/matrix', changefreq: 'yearly', priority: '0.3' },
 ];
 
 const buildSitemap = (posts) => {
@@ -403,6 +409,13 @@ const buildSitemap = (posts) => {
     priority: '0.8',
   }));
 
+  const projectUrls = getProjects('pt').map((project) => ({
+    loc: `${siteUrl}/projetos/${project.slug}`,
+    lastmod: today,
+    changefreq: 'monthly',
+    priority: '0.6',
+  }));
+
   const postUrls = posts.map((post) => ({
     loc: `${siteUrl}/blog/${post.slug}`,
     lastmod: post.date || today,
@@ -410,7 +423,7 @@ const buildSitemap = (posts) => {
     priority: '0.8',
   }));
 
-  const urls = [...staticUrls, ...serviceUrls, ...caseUrls, ...postUrls];
+  const urls = [...staticUrls, ...serviceUrls, ...caseUrls, ...projectUrls, ...postUrls];
 
   const body = urls
     .map(
@@ -419,7 +432,10 @@ const buildSitemap = (posts) => {
     )
     .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+  return {
+    xml: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`,
+    routeCount: urls.length,
+  };
 };
 
 const baseHtml = await readFile(path.join(buildDir, 'index.html'), 'utf8');
@@ -434,7 +450,7 @@ const pages = [
 await Promise.all(pages.map((page) => writePage(baseHtml, page)));
 
 const sitemap = buildSitemap(posts);
-await writeFile(path.join(buildDir, 'sitemap.xml'), sitemap, 'utf8');
-await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap, 'utf8');
+await writeFile(path.join(buildDir, 'sitemap.xml'), sitemap.xml, 'utf8');
+await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap.xml, 'utf8');
 
-console.log(`Prerendered ${pages.length} pages (${posts.length} blog posts) and generated sitemap with ${pages.length + getServices('pt').length + getCases('pt').length} routes.`);
+console.log(`Prerendered ${pages.length} pages (${posts.length} blog posts) and generated sitemap with ${sitemap.routeCount} routes.`);
