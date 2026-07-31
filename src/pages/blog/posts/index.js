@@ -58,8 +58,10 @@ import anonimizacaoDadosLlm from './anonimizacao-dados-antes-de-mandar-para-llm.
 import custoPorConversa from './custo-por-conversa-atribuir-fatura-ia-ao-valor.js';
 import derivaQualidadeBot from './detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar.js';
 import modoDegradado from './modo-degradado-manter-atendimento-quando-ia-indisponivel.js';
+import trilhaAuditoriaAgente from './trilha-auditoria-agente-ia-provar-o-que-foi-decidido.js';
 
 const postContentBySlug = {
+  'trilha-auditoria-agente-ia-provar-o-que-foi-decidido': trilhaAuditoriaAgente,
   'modo-degradado-manter-atendimento-quando-ia-indisponivel': modoDegradado,
   'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar': derivaQualidadeBot,
   'custo-por-conversa-atribuir-fatura-ia-ao-valor': custoPorConversa,
