@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'trilha-auditoria-agente-ia-provar-o-que-foi-decidido',
+    date: '2026-07-31',
+    readTime: '14 min',
+    keywords: {
+      pt: 'trilha de auditoria, agente de ia, log append-only, encadeamento por hash, integridade de registro, decisao auditavel, cripto-exclusao, versao de politica, lgpd, anthropic',
+      en: 'audit trail, ai agent, append-only log, hash chaining, record integrity, auditable decision, crypto-erasure, policy version, gdpr, anthropic',
+      es: 'traza de auditoria, agente de ia, log append-only, encadenamiento por hash, integridad de registro, decision auditable, cripto-eliminacion, version de politica, rgpd, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
+        excerpt:
+          'O cliente reclama que o bot negou o reembolso dele, e o log tem a duração da chamada, a contagem de tokens e o status duzentos, mas não tem a regra aplicada nem os documentos que o agente leu. Por que log de aplicação e trilha de auditoria respondem perguntas diferentes, por que a unidade certa de registro é a decisão e não a chamada ao modelo, quais campos tornam a decisão reconstituível sem o banco de produção, como encadear os eventos por hash para que a edição posterior apareça, como registrar sem virar depósito de dado pessoal e como sair da reclamação até o evento concreto em minutos.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Audit trail in an AI agent: proving what was decided and why',
+        excerpt:
+          'The customer complains that the bot denied their refund, and the log has the call duration, the token count and the two hundred status, but not the rule applied nor the documents the agent read. Why an application log and an audit trail answer different questions, why the right unit of record is the decision and not the model call, which fields make the decision reconstructible without the production database, how to chain events by hash so a later edit shows up, how to record without becoming a personal data warehouse and how to go from the complaint to the concrete event in minutes.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',
+        excerpt:
+          'El cliente reclama que el bot le negó el reembolso, y el log tiene la duración de la llamada, el conteo de tokens y el estado doscientos, pero no la regla aplicada ni los documentos que el agente leyó. Por qué un log de aplicación y una traza de auditoría responden preguntas distintas, por qué la unidad correcta de registro es la decisión y no la llamada al modelo, qué campos vuelven la decisión reconstruible sin la base de producción, cómo encadenar los eventos por hash para que la edición posterior aparezca, cómo registrar sin volverse depósito de dato personal y cómo ir del reclamo al evento concreto en minutos.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'modo-degradado-manter-atendimento-quando-ia-indisponivel',
     date: '2026-07-30',
     readTime: '14 min',
@@ -1387,19 +1417,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Trilha de auditoria em agente de IA: provar o que foi decidido e por quê',
     'Limite de gasto por cliente: cortar o abuso sem punir o uso legítimo',
     'Janela de contexto compartilhada entre canais: WhatsApp, web e telefone',
     'Migrar de embeddings sem reindexar tudo de uma vez',
   ],
   en: [
-    'Audit trail in an AI agent: proving what was decided and why',
     'Spend caps per customer: cutting abuse without punishing legitimate use',
     'A context window shared across channels: WhatsApp, web and phone',
     'Migrating embeddings without reindexing everything at once',
   ],
   es: [
-    'Traza de auditoría en un agente de IA: probar qué se decidió y por qué',
     'Límite de gasto por cliente: cortar el abuso sin castigar el uso legítimo',
     'Ventana de contexto compartida entre canales: WhatsApp, web y teléfono',
     'Migrar de embeddings sin reindexar todo de una vez',
