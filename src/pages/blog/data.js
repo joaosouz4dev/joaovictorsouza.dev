@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo',
+    date: '2026-08-01',
+    readTime: '14 min',
+    keywords: {
+      pt: 'limite de gasto por cliente, teto de custo de ia, rate limit vs orcamento, reserva de custo, deteccao de abuso, degradacao por orcamento, projecao de estouro, multi-tenant, finops de llm, anthropic',
+      en: 'spend cap per customer, ai cost ceiling, rate limit vs budget, cost reservation, abuse detection, budget degradation, overrun forecast, multi-tenant, llm finops, anthropic',
+      es: 'limite de gasto por cliente, techo de costo de ia, rate limit vs presupuesto, reserva de costo, deteccion de abuso, degradacion por presupuesto, proyeccion de exceso, multi-tenant, finops de llm, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Limite de gasto por cliente: cortar o abuso sem punir o uso legítimo',
+        excerpt:
+          'Um cliente de plano básico gastou em três dias o equivalente a onze meses da mensalidade dele, e o sistema aceitou tudo porque nunca lhe foi ensinado a dizer não. Por que rate limit protege capacidade e teto de gasto protege margem, por que contar requisições nunca vai aproximar dinheiro, como reservar o custo estimado antes da chamada e acertar pelo real depois, quanto estouro vale a pena trocar por latência quando o contador é distribuído, quais sinais separam abuso automatizado de crescimento legítimo e por que o aviso precisa vir da projeção e não do percentual.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Spend caps per customer: cutting abuse without punishing legitimate use',
+        excerpt:
+          'A basic-plan customer spent in three days the equivalent of eleven months of their subscription, and the system accepted all of it because it was never taught to say no. Why rate limiting protects capacity and spend caps protect margin, why counting requests will never approximate money, how to reserve the estimated cost before the call and settle by the real one after, how much overshoot is worth trading for latency when the counter is distributed, which signals separate automated abuse from legitimate growth and why the warning has to come from the projection and not the percentage.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Límite de gasto por cliente: cortar el abuso sin castigar el uso legítimo',
+        excerpt:
+          'Un cliente de plan básico gastó en tres días el equivalente a once meses de su mensualidad, y el sistema aceptó todo porque nunca se le enseñó a decir que no. Por qué el rate limit protege capacidad y el techo de gasto protege margen, por qué contar peticiones nunca va a aproximar dinero, cómo reservar el costo estimado antes de la llamada y liquidar por el real después, cuánto exceso vale la pena cambiar por latencia cuando el contador es distribuido, qué señales separan abuso automatizado de crecimiento legítimo y por qué el aviso tiene que venir de la proyección y no del porcentaje.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'trilha-auditoria-agente-ia-provar-o-que-foi-decidido',
     date: '2026-07-31',
     readTime: '14 min',
@@ -1417,19 +1447,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Limite de gasto por cliente: cortar o abuso sem punir o uso legítimo',
     'Janela de contexto compartilhada entre canais: WhatsApp, web e telefone',
     'Migrar de embeddings sem reindexar tudo de uma vez',
+    'Testes de carga em sistema com LLM: simular o provedor sem pagar por ele',
+    'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
+    'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
   ],
   en: [
-    'Spend caps per customer: cutting abuse without punishing legitimate use',
     'A context window shared across channels: WhatsApp, web and phone',
     'Migrating embeddings without reindexing everything at once',
+    'Load testing an LLM system: simulating the provider without paying for it',
+    'Feature flags in an agent flow: turning new behavior on for a few',
+    'Tool sandboxing: bounding what the agent can actually execute',
   ],
   es: [
-    'Límite de gasto por cliente: cortar el abuso sin castigar el uso legítimo',
     'Ventana de contexto compartida entre canales: WhatsApp, web y teléfono',
     'Migrar de embeddings sin reindexar todo de una vez',
+    'Pruebas de carga en un sistema con LLM: simular el proveedor sin pagarlo',
+    'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',
+    'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
   ],
 };
 
