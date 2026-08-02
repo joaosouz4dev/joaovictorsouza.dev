@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone',
+    date: '2026-08-02',
+    readTime: '14 min',
+    keywords: {
+      pt: 'janela de contexto compartilhada, atendimento multicanal, whatsapp web e telefone, continuidade entre canais, vinculo de identidade, numero reciclado, orcamento de contexto, fato duravel, resumo de episodio, anthropic',
+      en: 'shared context window, multichannel support, whatsapp web and phone, cross-channel continuity, identity linking, recycled phone number, context budget, durable fact, episode summary, anthropic',
+      es: 'ventana de contexto compartida, atencion multicanal, whatsapp web y telefono, continuidad entre canales, vinculo de identidad, numero reciclado, presupuesto de contexto, hecho durable, resumen de episodio, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Janela de contexto compartilhada entre canais: WhatsApp, web e telefone',
+        excerpt:
+          'O cliente explicou o problema no WhatsApp, mandou o comprovante pelo chat do site e ligou no dia seguinte: para ele é uma conversa só, para o seu sistema são três que nunca se encontraram. Por que continuidade é estado compartilhado e não histórico empilhado, como separar fato durável de resumo de episódio e de transcrição descartável, como vincular identidades sem juntar duas pessoas quando o número foi reciclado pela operadora, como montar a janela por orçamento com fatias reservadas, como escrever concorrente entre canais sem perder mensagem e quando compartilhar contexto é a decisão errada.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'A context window shared across channels: WhatsApp, web and phone',
+        excerpt:
+          'The customer explained the problem on WhatsApp, sent the receipt through the website chat and called the next day: to them it is one conversation, to your system it is three that never met. Why continuity is shared state and not stacked history, how to separate a durable fact from an episode summary and a disposable transcript, how to link identities without merging two people when the number was recycled by the carrier, how to assemble the window by budget with reserved slices, how to write concurrently across channels without losing anything and when sharing context is the wrong call.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Ventana de contexto compartida entre canales: WhatsApp, web y teléfono',
+        excerpt:
+          'El cliente explicó el problema por WhatsApp, mandó el comprobante por el chat del sitio y llamó al día siguiente: para él es una sola conversación, para tu sistema son tres que nunca se encontraron. Por qué la continuidad es estado compartido y no historial apilado, cómo separar hecho durable de resumen de episodio y de transcripción descartable, cómo vincular identidades sin juntar a dos personas cuando el número fue reciclado por la operadora, cómo armar la ventana por presupuesto con porciones reservadas, cómo escribir de forma concurrente entre canales sin perder nada y cuándo compartir contexto es la decisión equivocada.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo',
     date: '2026-08-01',
     readTime: '14 min',
@@ -1447,21 +1477,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Janela de contexto compartilhada entre canais: WhatsApp, web e telefone',
     'Migrar de embeddings sem reindexar tudo de uma vez',
     'Testes de carga em sistema com LLM: simular o provedor sem pagar por ele',
     'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
     'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
   ],
   en: [
-    'A context window shared across channels: WhatsApp, web and phone',
     'Migrating embeddings without reindexing everything at once',
     'Load testing an LLM system: simulating the provider without paying for it',
     'Feature flags in an agent flow: turning new behavior on for a few',
     'Tool sandboxing: bounding what the agent can actually execute',
   ],
   es: [
-    'Ventana de contexto compartida entre canales: WhatsApp, web y teléfono',
     'Migrar de embeddings sin reindexar todo de una vez',
     'Pruebas de carga en un sistema con LLM: simular el proveedor sin pagarlo',
     'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',

@@ -60,8 +60,10 @@ import derivaQualidadeBot from './detectar-deriva-qualidade-bot-atendimento-ante
 import modoDegradado from './modo-degradado-manter-atendimento-quando-ia-indisponivel.js';
 import trilhaAuditoriaAgente from './trilha-auditoria-agente-ia-provar-o-que-foi-decidido.js';
 import limiteGastoPorCliente from './limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo.js';
+import janelaContextoCompartilhada from './janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone.js';
 
 const postContentBySlug = {
+  'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone': janelaContextoCompartilhada,
   'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo': limiteGastoPorCliente,
   'trilha-auditoria-agente-ia-provar-o-que-foi-decidido': trilhaAuditoriaAgente,
   'modo-degradado-manter-atendimento-quando-ia-indisponivel': modoDegradado,
