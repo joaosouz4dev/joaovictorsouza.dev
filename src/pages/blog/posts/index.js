@@ -59,8 +59,10 @@ import custoPorConversa from './custo-por-conversa-atribuir-fatura-ia-ao-valor.j
 import derivaQualidadeBot from './detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar.js';
 import modoDegradado from './modo-degradado-manter-atendimento-quando-ia-indisponivel.js';
 import trilhaAuditoriaAgente from './trilha-auditoria-agente-ia-provar-o-que-foi-decidido.js';
+import limiteGastoPorCliente from './limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo.js';
 
 const postContentBySlug = {
+  'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo': limiteGastoPorCliente,
   'trilha-auditoria-agente-ia-provar-o-que-foi-decidido': trilhaAuditoriaAgente,
   'modo-degradado-manter-atendimento-quando-ia-indisponivel': modoDegradado,
   'detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar': derivaQualidadeBot,
