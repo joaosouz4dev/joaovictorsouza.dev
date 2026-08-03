@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migrar-embeddings-sem-reindexar-tudo-de-uma-vez',
+    date: '2026-08-03',
+    readTime: '14 min',
+    keywords: {
+      pt: 'migrar embeddings, reindexacao incremental, versao de embedding, backfill retomavel, escrita dupla, espaco vetorial, paridade de retrieval, rollback de indice, rag, anthropic',
+      en: 'migrate embeddings, incremental reindexing, embedding version, resumable backfill, dual write, vector space, retrieval parity, index rollback, rag, anthropic',
+      es: 'migrar embeddings, reindexacion incremental, version de embedding, backfill reanudable, escritura doble, espacio vectorial, paridad de retrieval, rollback de indice, rag, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Migrar de embeddings sem reindexar tudo de uma vez',
+        excerpt:
+          'O modelo novo é mais barato e pontua melhor, e trocar parece uma linha de configuração: só que vetor gerado por um modelo não é comparável com vetor gerado por outro, e no instante da troca o retrieval não degrada aos poucos, ele vira ruído sem levantar um erro sequer. Por que dois espaços vetoriais não se misturam nem com a mesma dimensão, como versionar o vetor para os dois conviverem, como fazer o backfill retomável priorizando o que o tráfego realmente consulta, por que a escrita dupla é o que impede a fronteira de se renovar sozinha, como decidir a virada por paridade medida em sombra e por que o índice antigo é o seu rollback.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Migrating embeddings without reindexing everything at once',
+        excerpt:
+          'The new model is cheaper and scores better, and switching looks like one configuration line: except a vector produced by one model is not comparable with a vector produced by another, and at the moment of the switch retrieval does not degrade gradually, it turns into noise without raising a single error. Why two vector spaces do not mix even at the same dimension, how to version the vector so both can coexist, how to run a resumable backfill prioritizing what traffic actually queries, why dual write is what stops the frontier from renewing itself, how to decide the cutover by parity measured in shadow and why the old index is your rollback.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Migrar de embeddings sin reindexar todo de una vez',
+        excerpt:
+          'El modelo nuevo es más barato y puntúa mejor, y cambiar parece una línea de configuración: solo que un vector generado por un modelo no es comparable con uno generado por otro, y en el instante del cambio el retrieval no se degrada de a poco, se vuelve ruido sin levantar un solo error. Por qué dos espacios vectoriales no se mezclan ni con la misma dimensión, cómo versionar el vector para que ambos convivan, cómo hacer el backfill reanudable priorizando lo que el tráfico realmente consulta, por qué la escritura doble es lo que impide que la frontera se renueve sola, cómo decidir el cambio por paridad medida en sombra y por qué el índice viejo es tu rollback.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone',
     date: '2026-08-02',
     readTime: '14 min',
@@ -1477,19 +1507,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migrar de embeddings sem reindexar tudo de uma vez',
     'Testes de carga em sistema com LLM: simular o provedor sem pagar por ele',
     'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
     'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
   ],
   en: [
-    'Migrating embeddings without reindexing everything at once',
     'Load testing an LLM system: simulating the provider without paying for it',
     'Feature flags in an agent flow: turning new behavior on for a few',
     'Tool sandboxing: bounding what the agent can actually execute',
   ],
   es: [
-    'Migrar de embeddings sin reindexar todo de una vez',
     'Pruebas de carga en un sistema con LLM: simular el proveedor sin pagarlo',
     'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',
     'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
