@@ -61,8 +61,10 @@ import modoDegradado from './modo-degradado-manter-atendimento-quando-ia-indispo
 import trilhaAuditoriaAgente from './trilha-auditoria-agente-ia-provar-o-que-foi-decidido.js';
 import limiteGastoPorCliente from './limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo.js';
 import janelaContextoCompartilhada from './janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone.js';
+import migrarEmbeddings from './migrar-embeddings-sem-reindexar-tudo-de-uma-vez.js';
 
 const postContentBySlug = {
+  'migrar-embeddings-sem-reindexar-tudo-de-uma-vez': migrarEmbeddings,
   'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone': janelaContextoCompartilhada,
   'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo': limiteGastoPorCliente,
   'trilha-auditoria-agente-ia-provar-o-que-foi-decidido': trilhaAuditoriaAgente,
