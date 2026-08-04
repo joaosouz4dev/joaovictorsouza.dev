@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'testes-carga-sistema-llm-simular-provedor-sem-pagar',
+    date: '2026-08-04',
+    readTime: '14 min',
+    keywords: {
+      pt: 'teste de carga com llm, simular provedor de llm, dublê de api, perfil de latencia, cauda longa, tempo ate o primeiro token, injecao de falha deterministica, streaming em teste de carga, backpressure, capacidade',
+      en: 'llm load testing, simulate llm provider, api stand-in, latency profile, long tail, time to first token, deterministic failure injection, streaming in load tests, backpressure, capacity',
+      es: 'prueba de carga con llm, simular proveedor de llm, doble de api, perfil de latencia, cola larga, tiempo hasta el primer token, inyeccion de fallo determinista, streaming en prueba de carga, backpressure, capacidad',
+    },
+    content: {
+      pt: {
+        title: 'Testes de carga em sistema com LLM: simular o provedor sem pagar por ele',
+        excerpt:
+          'Testar dez mil conversas contra a API real custa o preço de dez mil conversas, e mesmo assim você mede o rate limit da sua conta em vez do limite do seu sistema. Por que chamar o provedor de verdade destrói a atribuição e a reprodutibilidade do teste, por que o dublê de latência constante invalida tudo que vem depois, como modelar as duas fases do tempo de resposta e a cauda longa que realmente quebra a fila, como reproduzir streaming evento a evento e injetar falha determinística por semente, o que medir do lado certo da fronteira e onde o dublê deixa de servir e você precisa da API real.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Load testing an LLM system: simulating the provider without paying for it',
+        excerpt:
+          'Testing ten thousand conversations against the real API costs the price of ten thousand conversations, and even then you measure your account rate limit instead of your system limit. Why calling the real provider destroys the attribution and the reproducibility of the test, why the constant-latency stand-in invalidates everything downstream, how to model both phases of response time and the long tail that actually breaks the queue, how to reproduce streaming event by event and inject deterministic failures by seed, what to measure on the right side of the boundary and where the stand-in stops serving and you need the real API.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Pruebas de carga en un sistema con LLM: simular el proveedor sin pagarlo',
+        excerpt:
+          'Probar diez mil conversaciones contra la API real cuesta el precio de diez mil conversaciones, y aun así mides el rate limit de tu cuenta en vez del límite de tu sistema. Por qué llamar al proveedor de verdad destruye la atribución y la reproducibilidad de la prueba, por qué el doble de latencia constante invalida todo lo que viene después, cómo modelar las dos fases del tiempo de respuesta y la cola larga que de verdad rompe la fila, cómo reproducir streaming evento a evento e inyectar fallo determinista por semilla, qué medir del lado correcto de la frontera y dónde el doble deja de servir y necesitas la API real.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'migrar-embeddings-sem-reindexar-tudo-de-uma-vez',
     date: '2026-08-03',
     readTime: '14 min',
@@ -1507,19 +1537,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Testes de carga em sistema com LLM: simular o provedor sem pagar por ele',
     'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
     'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
+    'Multi-idioma em bot de atendimento: detectar, responder e escalar sem misturar',
+    'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
+    'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
   ],
   en: [
-    'Load testing an LLM system: simulating the provider without paying for it',
     'Feature flags in an agent flow: turning new behavior on for a few',
     'Tool sandboxing: bounding what the agent can actually execute',
+    'Multilingual support bots: detecting, answering and escalating without mixing',
+    'Prompt cache warming: paying for the prefix once and reusing it',
+    'Freezing the evaluation set: why your eval ages and how to renew it',
   ],
   es: [
-    'Pruebas de carga en un sistema con LLM: simular el proveedor sin pagarlo',
     'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',
     'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
+    'Bot de atención multiidioma: detectar, responder y escalar sin mezclar',
+    'Calentamiento de cache de prompt: pagar el prefijo una vez y reaprovecharlo',
+    'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
   ],
 };
 
