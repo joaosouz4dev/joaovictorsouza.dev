@@ -62,8 +62,10 @@ import trilhaAuditoriaAgente from './trilha-auditoria-agente-ia-provar-o-que-foi
 import limiteGastoPorCliente from './limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo.js';
 import janelaContextoCompartilhada from './janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone.js';
 import migrarEmbeddings from './migrar-embeddings-sem-reindexar-tudo-de-uma-vez.js';
+import testesCargaSistemaLlm from './testes-carga-sistema-llm-simular-provedor-sem-pagar.js';
 
 const postContentBySlug = {
+  'testes-carga-sistema-llm-simular-provedor-sem-pagar': testesCargaSistemaLlm,
   'migrar-embeddings-sem-reindexar-tudo-de-uma-vez': migrarEmbeddings,
   'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone': janelaContextoCompartilhada,
   'limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo': limiteGastoPorCliente,
