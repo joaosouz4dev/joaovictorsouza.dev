@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos',
+    date: '2026-08-05',
+    readTime: '14 min',
+    keywords: {
+      pt: 'feature flag em agente de ia, rollout gradual, flag congelada na conversa, kill switch de ferramenta, ancora deterministica, conversao em ponto seguro, atribuicao por conversa, experimento em agente, estado do agente, anthropic',
+      en: 'feature flag in ai agent, gradual rollout, flag frozen per conversation, tool kill switch, deterministic anchor, conversion at a safe point, per-conversation attribution, agent experiment, agent state, anthropic',
+      es: 'feature flag en agente de ia, rollout gradual, flag congelada en la conversacion, kill switch de herramienta, ancla determinista, conversion en punto seguro, atribucion por conversacion, experimento en agente, estado del agente, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
+        excerpt:
+          'Num endpoint a flag é barata porque a decisão nasce e morre dentro da requisição; num fluxo de agente a unidade é a conversa, que dura dias, guarda estado entre os turnos e às vezes já executou uma ferramenta com efeito no mundo real. Por que avaliar a flag a cada turno produz um agente que troca de personalidade no meio, como congelar a decisão na criação da conversa e ancorá-la no identificador certo, quais flags podem virar no meio e quais não, como matar a variante ruim com conversão em ponto seguro em vez de quebrar quem está dentro, e por que a comparação entre variantes só significa algo com atribuição por desfecho.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Feature flags in an agent flow: turning new behavior on for a few',
+        excerpt:
+          'On an endpoint a flag is cheap because the decision is born and dies inside the request; in an agent flow the unit is the conversation, which lasts days, keeps state across turns and sometimes has already executed a tool with an effect in the real world. Why evaluating the flag on every turn produces an agent that changes personality midway, how to freeze the decision at conversation creation and anchor it on the right identifier, which flags may flip midway and which may not, how to kill the bad variant with conversion at a safe point instead of breaking whoever is inside, and why comparing variants only means something with per-outcome attribution.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',
+        excerpt:
+          'En un endpoint la flag es barata porque la decisión nace y muere dentro de la petición; en un flujo de agente la unidad es la conversación, que dura días, guarda estado entre los turnos y a veces ya ejecutó una herramienta con efecto en el mundo real. Por qué evaluar la flag en cada turno produce un agente que cambia de personalidad a mitad, cómo congelar la decisión al crear la conversación y anclarla en el identificador correcto, qué flags pueden cambiar a mitad y cuáles no, cómo matar la variante mala con conversión en punto seguro en vez de romper a quien está dentro, y por qué la comparación entre variantes solo significa algo con atribución por desenlace.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'testes-carga-sistema-llm-simular-provedor-sem-pagar',
     date: '2026-08-04',
     readTime: '14 min',
@@ -1537,21 +1567,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Feature flag em fluxo de agente: ligar comportamento novo para poucos',
     'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
     'Multi-idioma em bot de atendimento: detectar, responder e escalar sem misturar',
     'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
     'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
   ],
   en: [
-    'Feature flags in an agent flow: turning new behavior on for a few',
     'Tool sandboxing: bounding what the agent can actually execute',
     'Multilingual support bots: detecting, answering and escalating without mixing',
     'Prompt cache warming: paying for the prefix once and reusing it',
     'Freezing the evaluation set: why your eval ages and how to renew it',
   ],
   es: [
-    'Feature flag en flujo de agente: activar comportamiento nuevo para pocos',
     'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
     'Bot de atención multiidioma: detectar, responder y escalar sin mezclar',
     'Calentamiento de cache de prompt: pagar el prefijo una vez y reaprovecharlo',
