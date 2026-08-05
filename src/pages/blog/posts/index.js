@@ -63,8 +63,10 @@ import limiteGastoPorCliente from './limite-gasto-por-cliente-cortar-abuso-sem-p
 import janelaContextoCompartilhada from './janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone.js';
 import migrarEmbeddings from './migrar-embeddings-sem-reindexar-tudo-de-uma-vez.js';
 import testesCargaSistemaLlm from './testes-carga-sistema-llm-simular-provedor-sem-pagar.js';
+import featureFlagFluxoAgente from './feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos.js';
 
 const postContentBySlug = {
+  'feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos': featureFlagFluxoAgente,
   'testes-carga-sistema-llm-simular-provedor-sem-pagar': testesCargaSistemaLlm,
   'migrar-embeddings-sem-reindexar-tudo-de-uma-vez': migrarEmbeddings,
   'janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone': janelaContextoCompartilhada,
