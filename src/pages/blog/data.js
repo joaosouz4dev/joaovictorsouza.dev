@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'sandbox-ferramentas-limitar-o-que-agente-pode-executar',
+    date: '2026-08-06',
+    readTime: '14 min',
+    keywords: {
+      pt: 'sandbox de ferramentas, tool use seguro, agente de ia, autorizacao no ponto de execucao, validacao de argumento, isolamento de processo, teto de consumo por conversa, teste adversarial, prompt injection, anthropic',
+      en: 'tool sandboxing, safe tool use, ai agent, authorization at execution point, argument validation, process isolation, per-conversation consumption cap, adversarial test, prompt injection, anthropic',
+      es: 'sandbox de herramientas, tool use seguro, agente de ia, autorizacion en el punto de ejecucion, validacion de argumento, aislamiento de proceso, techo de consumo por conversacion, prueba adversarial, prompt injection, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
+        excerpt:
+          'A ferramenta que você entregou ao agente executa, e nenhuma linha do prompt muda isso: o texto é uma sugestão estatística, o código que roda depois dela é uma execução real. Por que o prompt não é mecanismo de segurança e a entrada hostil nem precisa vir do cliente, como classificar ferramenta por efeito e não por nome, por que o identificador de quem pede nunca pode vir do argumento e a autorização precisa ser reavaliada no ponto de execução, como validar contra o esquema e depois contra o domínio, como isolar código gerado em processo com ambiente vazio e teto de tempo, memória e saída, e como testar a fuga em vez de torcer para o prompt segurar.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Tool sandboxing: bounding what the agent can actually execute',
+        excerpt:
+          'The tool you handed the agent executes, and no prompt line changes that: the text is a statistical suggestion, the code that runs after it is a real execution. Why the prompt is not a security mechanism and the hostile input does not even have to come from the customer, how to classify tools by effect and not by name, why the identifier of whoever is asking can never come from the argument and authorization has to be re-evaluated at the execution point, how to validate against the schema and then against the domain, how to isolate generated code in a process with an empty environment and ceilings on time, memory and output, and how to test the escape instead of hoping the prompt holds.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
+        excerpt:
+          'La herramienta que le entregaste al agente ejecuta, y ninguna línea del prompt cambia eso: el texto es una sugerencia estadística, el código que corre después es una ejecución real. Por qué el prompt no es mecanismo de seguridad y la entrada hostil ni siquiera necesita venir del cliente, cómo clasificar herramientas por efecto y no por nombre, por qué el identificador de quien pide nunca puede venir del argumento y la autorización debe reevaluarse en el punto de ejecución, cómo validar contra el esquema y después contra el dominio, cómo aislar código generado en un proceso con entorno vacío y techos de tiempo, memoria y salida, y cómo probar la fuga en vez de confiar en que el prompt aguante.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos',
     date: '2026-08-05',
     readTime: '14 min',
@@ -1567,19 +1597,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Sandbox de ferramentas: limitar o que o agente pode executar de verdade',
     'Multi-idioma em bot de atendimento: detectar, responder e escalar sem misturar',
     'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
     'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
   ],
   en: [
-    'Tool sandboxing: bounding what the agent can actually execute',
     'Multilingual support bots: detecting, answering and escalating without mixing',
     'Prompt cache warming: paying for the prefix once and reusing it',
     'Freezing the evaluation set: why your eval ages and how to renew it',
   ],
   es: [
-    'Sandbox de herramientas: acotar lo que el agente puede ejecutar de verdad',
     'Bot de atención multiidioma: detectar, responder y escalar sin mezclar',
     'Calentamiento de cache de prompt: pagar el prefijo una vez y reaprovecharlo',
     'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
