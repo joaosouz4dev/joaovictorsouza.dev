@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'multi-idioma-bot-atendimento-detectar-responder-escalar',
+    date: '2026-08-07',
+    readTime: '14 min',
+    keywords: {
+      pt: 'bot de atendimento multi-idioma, deteccao de idioma, idioma como estado da conversa, detector com abstencao, rag multilingue, template por idioma, transbordo por idioma, metricas segmentadas por idioma, whatsapp cloud api, anthropic',
+      en: 'multilingual support bot, language detection, language as conversation state, detector with abstention, multilingual rag, template per language, handoff per language, metrics segmented by language, whatsapp cloud api, anthropic',
+      es: 'bot de atencion multiidioma, deteccion de idioma, idioma como estado de la conversacion, detector con abstencion, rag multilingue, plantilla por idioma, traspaso por idioma, metricas segmentadas por idioma, whatsapp cloud api, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Multi-idioma em bot de atendimento: detectar, responder e escalar sem misturar',
+        excerpt:
+          'O modelo já responde em qualquer idioma sem que você peça, e é justamente por isso que o projeto parece pronto no primeiro teste e quebra em produção. Por que o idioma é estado da conversa e não atributo da mensagem, por que o detector precisa poder dizer que não sabe em vez de chutar num "ok" de duas letras, por que a base de conhecimento é o gargalo real e quando índice separado por idioma deixa de ser preferência, como instruir a geração sem deixar o modelo espelhar o idioma do contexto, o que fazer quando o template não existe aprovado naquele idioma ou não há atendente na fila, e por que a média das métricas esconde exatamente o mercado que está quebrado.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Multilingual support bots: detecting, answering and escalating without mixing',
+        excerpt:
+          'The model already answers in any language without being asked, and that is precisely why the project looks finished on the first test and breaks in production. Why language is conversation state and not a message attribute, why the detector must be able to say it does not know instead of guessing on a two-letter "ok", why the knowledge base is the real bottleneck and when a separate index per language stops being a preference, how to instruct generation without letting the model mirror the context language, what to do when the template is not approved in that language or no agent is on the queue, and why the metric average hides exactly the market that is broken.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Bot de atención multiidioma: detectar, responder y escalar sin mezclar',
+        excerpt:
+          'El modelo ya responde en cualquier idioma sin que se lo pidas, y justamente por eso el proyecto parece listo en la primera prueba y se rompe en producción. Por qué el idioma es estado de la conversación y no atributo del mensaje, por qué el detector debe poder decir que no sabe en vez de adivinar en un "ok" de dos letras, por qué la base de conocimiento es el cuello de botella real y cuándo el índice separado por idioma deja de ser preferencia, cómo instruir la generación sin dejar que el modelo refleje el idioma del contexto, qué hacer cuando la plantilla no está aprobada en ese idioma o no hay agente en la fila, y por qué el promedio de las métricas esconde justamente el mercado que está roto.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'sandbox-ferramentas-limitar-o-que-agente-pode-executar',
     date: '2026-08-06',
     readTime: '14 min',
@@ -1597,19 +1627,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Multi-idioma em bot de atendimento: detectar, responder e escalar sem misturar',
     'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
     'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
+    'Retenção de dados em sistema com IA: o que guardar, por quanto tempo e como apagar',
+    'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
+    'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
   ],
   en: [
-    'Multilingual support bots: detecting, answering and escalating without mixing',
     'Prompt cache warming: paying for the prefix once and reusing it',
     'Freezing the evaluation set: why your eval ages and how to renew it',
+    'Data retention in an AI system: what to keep, for how long and how to delete it',
+    'Vector index warm-up: why the first query of the day is slow',
+    'Human review queue: choosing which agent answers deserve an audit',
   ],
   es: [
-    'Bot de atención multiidioma: detectar, responder y escalar sin mezclar',
     'Calentamiento de cache de prompt: pagar el prefijo una vez y reaprovecharlo',
     'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
+    'Retención de datos en un sistema con IA: qué guardar, por cuánto tiempo y cómo borrarlo',
+    'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
+    'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
   ],
 };
 
