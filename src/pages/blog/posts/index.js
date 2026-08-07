@@ -65,8 +65,10 @@ import migrarEmbeddings from './migrar-embeddings-sem-reindexar-tudo-de-uma-vez.
 import testesCargaSistemaLlm from './testes-carga-sistema-llm-simular-provedor-sem-pagar.js';
 import featureFlagFluxoAgente from './feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos.js';
 import sandboxFerramentasAgente from './sandbox-ferramentas-limitar-o-que-agente-pode-executar.js';
+import multiIdiomaBotAtendimento from './multi-idioma-bot-atendimento-detectar-responder-escalar.js';
 
 const postContentBySlug = {
+  'multi-idioma-bot-atendimento-detectar-responder-escalar': multiIdiomaBotAtendimento,
   'sandbox-ferramentas-limitar-o-que-agente-pode-executar': sandboxFerramentasAgente,
   'feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos': featureFlagFluxoAgente,
   'testes-carga-sistema-llm-simular-provedor-sem-pagar': testesCargaSistemaLlm,
