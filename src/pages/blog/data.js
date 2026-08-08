@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'aquecimento-cache-prompt-pagar-prefixo-uma-vez',
+    date: '2026-08-08',
+    readTime: '14 min',
+    keywords: {
+      pt: 'cache de prompt, aquecimento de cache, prefixo estavel, ordenacao do prompt, taxa de acerto de cache, custo de llm, tempo de vida do cache, fragmentacao de prefixo, latencia ate o primeiro token, anthropic',
+      en: 'prompt cache, cache warming, stable prefix, prompt ordering, cache hit rate, llm cost, cache lifetime, prefix fragmentation, time to first token, anthropic',
+      es: 'cache de prompt, calentamiento de cache, prefijo estable, ordenacion del prompt, tasa de acierto de cache, costo de llm, tiempo de vida de la cache, fragmentacion de prefijo, tiempo hasta el primer token, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
+        excerpt:
+          'O cache de prompt é a otimização com melhor relação entre esforço e retorno em sistemas com LLM, e também a que mais gente liga errado: ele casa por prefixo exato de tokens desde a posição zero, então uma data com hora no topo do prompt do sistema já invalida tudo que vem depois. Por que ordenar o prompt por frequência de mudança é a única regra que importa, o que invalida o cache sem ninguém perceber e como travar isso com um teste de hash, por que o aquecimento com ping periódico só se paga acima de um volume por prefixo, como fatorar o bloco comum quando o sistema tem vinte e quatro prefixos concorrendo, e por que avaliar cache pela queda da fatura mistura tudo.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Prompt cache warming: paying for the prefix once and reusing it',
+        excerpt:
+          'Prompt caching is the best effort-to-return optimization in LLM systems, and also the one most people turn on incorrectly: it matches by exact token prefix from position zero, so a date with a time at the top of the system prompt already invalidates everything after it. Why ordering the prompt by frequency of change is the only rule that matters, what invalidates the cache without anyone noticing and how to lock it down with a hash test, why periodic-ping warming only pays off above a certain per-prefix volume, how to factor out the common block when the system has twenty-four prefixes competing, and why evaluating the cache by the drop in the bill mixes everything together.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Calentamiento de caché de prompt: pagar el prefijo una vez y reaprovecharlo',
+        excerpt:
+          'La caché de prompt es la optimización con mejor relación entre esfuerzo y retorno en sistemas con LLM, y también la que más gente activa mal: casa por prefijo exacto de tokens desde la posición cero, así que una fecha con hora arriba del prompt del sistema ya invalida todo lo que viene después. Por qué ordenar el prompt por frecuencia de cambio es la única regla que importa, qué invalida la caché sin que nadie lo note y cómo fijarlo con una prueba de hash, por qué el calentamiento con ping periódico solo se paga por encima de cierto volumen por prefijo, cómo factorizar el bloque común cuando el sistema tiene veinticuatro prefijos compitiendo, y por qué evaluar la caché por la caída de la factura lo mezcla todo.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'multi-idioma-bot-atendimento-detectar-responder-escalar',
     date: '2026-08-07',
     readTime: '14 min',
@@ -1627,21 +1657,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Aquecimento de cache de prompt: pagar o prefixo uma vez e reaproveitar',
     'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
     'Retenção de dados em sistema com IA: o que guardar, por quanto tempo e como apagar',
     'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
     'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
   ],
   en: [
-    'Prompt cache warming: paying for the prefix once and reusing it',
     'Freezing the evaluation set: why your eval ages and how to renew it',
     'Data retention in an AI system: what to keep, for how long and how to delete it',
     'Vector index warm-up: why the first query of the day is slow',
     'Human review queue: choosing which agent answers deserve an audit',
   ],
   es: [
-    'Calentamiento de cache de prompt: pagar el prefijo una vez y reaprovecharlo',
     'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
     'Retención de datos en un sistema con IA: qué guardar, por cuánto tiempo y cómo borrarlo',
     'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
