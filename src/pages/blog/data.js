@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'congelar-conjunto-avaliacao-eval-envelhece-como-renovar',
+    date: '2026-08-09',
+    readTime: '15 min',
+    keywords: {
+      pt: 'conjunto de avaliacao, eval de llm, nucleo congelado, janela rotativa, holdout selado, vazamento de caso de teste, otimizacao contra a regua, versionamento de eval, saturacao de metrica, anthropic',
+      en: 'evaluation set, llm eval, frozen core, rotating window, sealed holdout, test case leakage, optimizing against the ruler, eval versioning, metric saturation, anthropic',
+      es: 'conjunto de evaluacion, eval de llm, nucleo congelado, ventana rotativa, holdout sellado, filtracion de caso de prueba, optimizacion contra la regla, versionado de eval, saturacion de metrica, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
+        excerpt:
+          'O eval passou de 78% para 94% em seis meses, e a explicação provável não é que o sistema melhorou: é que o conjunto envelheceu. Por que ele fica velho por deriva de tráfego, por vazamento de casos já corrigidos, por otimização contra a régua e por rótulo preso a uma política que mudou, como dividir o conjunto em núcleo congelado, janela rotativa e holdout selado com contratos de mudança diferentes, por que trocar a janela sem rodar o sistema atual nas duas versões destrói a série histórica, quais gatilhos dizem que chegou a hora, e por que reportar um índice único esconde exatamente a regressão que você menos pode deixar passar.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Freezing the evaluation set: why your eval ages and how to renew it',
+        excerpt:
+          'The eval went from 78% to 94% in six months, and the likely explanation is not that the system improved: it is that the set aged. Why it gets old through traffic drift, leakage of already fixed cases, optimizing against the ruler and labels tied to a policy that changed, how to split the set into a frozen core, a rotating window and a sealed holdout with different change contracts, why swapping the window without running the current system against both versions destroys the historical series, which triggers say it is time, and why reporting a single index hides exactly the regression you can least afford to miss.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
+        excerpt:
+          'El eval pasó de 78% a 94% en seis meses, y la explicación probable no es que el sistema mejoró: es que el conjunto envejeció. Por qué se pone viejo por deriva de tráfico, por filtración de casos ya corregidos, por optimización contra la regla y por etiquetas atadas a una política que cambió, cómo dividir el conjunto en núcleo congelado, ventana rotativa y holdout sellado con contratos de cambio distintos, por qué cambiar la ventana sin correr el sistema actual en las dos versiones destruye la serie histórica, qué disparadores dicen que llegó el momento, y por qué reportar un índice único esconde justamente la regresión que menos podés dejar pasar.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'aquecimento-cache-prompt-pagar-prefixo-uma-vez',
     date: '2026-08-08',
     readTime: '14 min',
@@ -1657,19 +1687,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Congelar o conjunto de avaliação: por que o seu eval envelhece e como renovar',
     'Retenção de dados em sistema com IA: o que guardar, por quanto tempo e como apagar',
     'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
     'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
   ],
   en: [
-    'Freezing the evaluation set: why your eval ages and how to renew it',
     'Data retention in an AI system: what to keep, for how long and how to delete it',
     'Vector index warm-up: why the first query of the day is slow',
     'Human review queue: choosing which agent answers deserve an audit',
   ],
   es: [
-    'Congelar el conjunto de evaluación: por qué tu eval envejece y cómo renovarlo',
     'Retención de datos en un sistema con IA: qué guardar, por cuánto tiempo y cómo borrarlo',
     'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
     'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
