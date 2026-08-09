@@ -67,8 +67,10 @@ import featureFlagFluxoAgente from './feature-flag-fluxo-agente-ligar-comportame
 import sandboxFerramentasAgente from './sandbox-ferramentas-limitar-o-que-agente-pode-executar.js';
 import multiIdiomaBotAtendimento from './multi-idioma-bot-atendimento-detectar-responder-escalar.js';
 import aquecimentoCachePrompt from './aquecimento-cache-prompt-pagar-prefixo-uma-vez.js';
+import congelarConjuntoAvaliacao from './congelar-conjunto-avaliacao-eval-envelhece-como-renovar.js';
 
 const postContentBySlug = {
+  'congelar-conjunto-avaliacao-eval-envelhece-como-renovar': congelarConjuntoAvaliacao,
   'aquecimento-cache-prompt-pagar-prefixo-uma-vez': aquecimentoCachePrompt,
   'multi-idioma-bot-atendimento-detectar-responder-escalar': multiIdiomaBotAtendimento,
   'sandbox-ferramentas-limitar-o-que-agente-pode-executar': sandboxFerramentasAgente,
