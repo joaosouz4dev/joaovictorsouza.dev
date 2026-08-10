@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar',
+    date: '2026-08-10',
+    readTime: '15 min',
+    keywords: {
+      pt: 'retencao de dados, lgpd em sistema de ia, exclusao de dado pessoal, prazo de retencao, expurgo automatico, indice vetorial e privacidade, anonimizacao de eval, trace com conteudo redigido, backup e direito ao esquecimento, anthropic',
+      en: 'data retention, privacy in ai systems, personal data deletion, retention period, automated purge, vector index and privacy, eval anonymization, redacted trace content, backup and right to erasure, anthropic',
+      es: 'retencion de datos, privacidad en sistemas de ia, eliminacion de dato personal, plazo de retencion, purga automatica, indice vectorial y privacidad, anonimizacion de eval, trace con contenido redactado, backup y derecho al olvido, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Retenção de dados em sistema com IA: o que guardar, por quanto tempo e como apagar',
+        excerpt:
+          'A mesma frase do cliente está na conversa, no payload do webhook, no trace, no índice vetorial, na memória do agente, no cache, no eval e num log que alguém deixou verboso em março, e o time apaga só a primeira. Como inventariar as oito cópias com dono, propósito e prazo, por que derivar o prazo do propósito em vez do padrão da ferramenta de log, por que separar conteúdo de metadado resolve a tensão entre apagar e continuar operando, por que apagar de índice vetorial e de conjunto de avaliação é tecnicamente diferente de apagar de tabela, como rodar expurgo em lotes sem travar o banco, e por que a métrica certa é a idade do registro mais velho vivo em vez do número de linhas apagadas.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Data retention in an AI system: what to keep, for how long and how to delete it',
+        excerpt:
+          'The same customer sentence lives in the conversation, the webhook payload, the trace, the vector index, the agent memory, the cache, the eval and a log someone left verbose back in March, and the team deletes only the first one. How to inventory the eight copies with owner, purpose and deadline, why deadlines should come from purpose instead of the log tool default, why separating content from metadata resolves the tension between deleting and staying operational, why deleting from a vector index and an evaluation set is technically different from deleting from a table, how to run batched purges without locking the database, and why the right metric is the age of the oldest surviving record rather than the number of rows deleted.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Retención de datos en un sistema con IA: qué guardar, por cuánto tiempo y cómo borrarlo',
+        excerpt:
+          'La misma frase del cliente está en la conversación, en el payload del webhook, en el trace, en el índice vectorial, en la memoria del agente, en la caché, en el eval y en un log que alguien dejó verboso en marzo, y el equipo borra solo la primera. Cómo inventariar las ocho copias con dueño, propósito y plazo, por qué derivar el plazo del propósito en vez del valor por defecto de la herramienta de logs, por qué separar contenido de metadato resuelve la tensión entre borrar y seguir operando, por qué borrar de un índice vectorial y de un conjunto de evaluación es técnicamente distinto de borrar de una tabla, cómo correr purgas en lotes sin trabar la base, y por qué la métrica correcta es la edad del registro más viejo vivo y no la cantidad de filas borradas.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'congelar-conjunto-avaliacao-eval-envelhece-como-renovar',
     date: '2026-08-09',
     readTime: '15 min',
@@ -1687,17 +1717,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Retenção de dados em sistema com IA: o que guardar, por quanto tempo e como apagar',
     'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
     'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
   ],
   en: [
-    'Data retention in an AI system: what to keep, for how long and how to delete it',
     'Vector index warm-up: why the first query of the day is slow',
     'Human review queue: choosing which agent answers deserve an audit',
   ],
   es: [
-    'Retención de datos en un sistema con IA: qué guardar, por cuánto tiempo y cómo borrarlo',
     'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
     'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
   ],

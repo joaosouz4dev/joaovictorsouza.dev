@@ -68,8 +68,10 @@ import sandboxFerramentasAgente from './sandbox-ferramentas-limitar-o-que-agente
 import multiIdiomaBotAtendimento from './multi-idioma-bot-atendimento-detectar-responder-escalar.js';
 import aquecimentoCachePrompt from './aquecimento-cache-prompt-pagar-prefixo-uma-vez.js';
 import congelarConjuntoAvaliacao from './congelar-conjunto-avaliacao-eval-envelhece-como-renovar.js';
+import retencaoDadosSistemaIa from './retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar.js';
 
 const postContentBySlug = {
+  'retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar': retencaoDadosSistemaIa,
   'congelar-conjunto-avaliacao-eval-envelhece-como-renovar': congelarConjuntoAvaliacao,
   'aquecimento-cache-prompt-pagar-prefixo-uma-vez': aquecimentoCachePrompt,
   'multi-idioma-bot-atendimento-detectar-responder-escalar': multiIdiomaBotAtendimento,
