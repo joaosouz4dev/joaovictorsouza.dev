@@ -3,6 +3,36 @@ import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta',
+    date: '2026-08-11',
+    readTime: '14 min',
+    keywords: {
+      pt: 'aquecimento de indice vetorial, partida fria em rag, latencia da primeira consulta, cache frio, prontidao e vivacidade, arquivo mapeado em memoria, indice quente parcial, percentil por estado, busca por vizinho aproximado, anthropic',
+      en: 'vector index warm-up, rag cold start, first query latency, cold cache, readiness and liveness, memory mapped index file, partial hot index, percentile per state, approximate nearest neighbor search, anthropic',
+      es: 'calentamiento de indice vectorial, arranque frio en rag, latencia de la primera consulta, cache fria, preparacion y vitalidad, archivo mapeado en memoria, indice caliente parcial, percentil por estado, busqueda por vecino aproximado, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
+        excerpt:
+          'A primeira consulta da manhã leva oito segundos, a segunda leva quatrocentos milissegundos, e a média do dia esconde as duas. Por que o tempo não está só no modelo de embedding, mas em quatro caches frios independentes, por que uma consulta sintética no boot aquece a vizinhança de um único ponto do grafo e deixa o resto gelado, por que o teste de prontidão que responde pronto antes de aquecer joga o custo direto no primeiro cliente, quando pré-carregar tudo na memória perde para um índice quente parcial, e por que a única métrica que enxerga o problema é o percentil rotulado por estado do processo em vez do percentil agregado.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Vector index warm-up: why the first query of the day is slow',
+        excerpt:
+          'The first query of the morning takes eight seconds, the second takes four hundred milliseconds, and the daily average hides both. Why the time is not only in the embedding model but in four independent cold caches, why a synthetic query at boot warms the neighborhood of a single point in the graph and leaves the rest frozen, why a readiness probe that answers ready before warming throws the cost straight at the first customer, when preloading everything into memory loses to a partial hot index, and why the only metric that sees the problem is a percentile labeled by process state rather than the aggregate percentile.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
+        excerpt:
+          'La primera consulta de la mañana tarda ocho segundos, la segunda tarda cuatrocientos milisegundos, y el promedio del día esconde las dos. Por qué el tiempo no está solo en el modelo de embedding sino en cuatro cachés frías independientes, por qué una consulta sintética en el arranque calienta la vecindad de un único punto del grafo y deja el resto helado, por qué la prueba de preparación que responde listo antes de calentar tira el costo directo al primer cliente, cuándo precargar todo en memoria pierde contra un índice caliente parcial, y por qué la única métrica que ve el problema es el percentil etiquetado por estado del proceso en vez del percentil agregado.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar',
     date: '2026-08-10',
     readTime: '15 min',
@@ -1717,16 +1747,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Aquecimento de índice vetorial: por que a primeira consulta do dia é lenta',
     'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
+    'Orçamento de latência por etapa: onde cortar quando a resposta demora demais',
+    'Rollback de base de conhecimento: voltar o índice sem derrubar o atendimento',
+    'Testes de regressão para ferramentas do agente: contrato antes do prompt',
   ],
   en: [
-    'Vector index warm-up: why the first query of the day is slow',
     'Human review queue: choosing which agent answers deserve an audit',
+    'Latency budget per stage: where to cut when the answer takes too long',
+    'Knowledge base rollback: reverting the index without taking support down',
+    'Regression tests for agent tools: contract before prompt',
   ],
   es: [
-    'Calentamiento de índice vectorial: por qué la primera consulta del día es lenta',
     'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
+    'Presupuesto de latencia por etapa: dónde cortar cuando la respuesta tarda demasiado',
+    'Rollback de base de conocimiento: volver el índice sin tirar la atención',
+    'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
   ],
 };
 
