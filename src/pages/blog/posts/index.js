@@ -71,8 +71,10 @@ import congelarConjuntoAvaliacao from './congelar-conjunto-avaliacao-eval-envelh
 import retencaoDadosSistemaIa from './retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar.js';
 import aquecimentoIndiceVetorial from './aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta.js';
 import filaRevisaoHumana from './fila-revisao-humana-quais-respostas-agente-merecem-auditoria.js';
+import orcamentoLatenciaPorEtapa from './orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora.js';
 
 const postContentBySlug = {
+  'orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora': orcamentoLatenciaPorEtapa,
   'fila-revisao-humana-quais-respostas-agente-merecem-auditoria': filaRevisaoHumana,
   'aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta': aquecimentoIndiceVetorial,
   'retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar': retencaoDadosSistemaIa,
