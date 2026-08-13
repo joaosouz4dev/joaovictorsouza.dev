@@ -1,5 +1,4 @@
 import { toBaseLanguage } from '../../utils/i18n.js';
-import { getPostContentBySlug } from './posts/index.js';
 
 const publishedPostDefinitions = [
   {
@@ -1805,6 +1804,3 @@ export const getUpcomingPosts = (language = 'pt') =>
 
 export const getPostBySlug = (slug, language = 'pt') =>
   getPublishedPosts(language).find((post) => post.slug === slug);
-
-export const getPostContent = (slug, language = 'pt') =>
-  getPostContentBySlug(slug, toBaseLanguage(language));

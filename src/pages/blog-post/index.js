@@ -10,7 +10,8 @@ import Section from '../../components/ui/Section';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
-import { getPostBySlug, getPostContent } from '../blog/data';
+import { getPostBySlug } from '../blog/data';
+import { getPostContent } from '../blog/content';
 
 const Paragraph = ({ value }) => (
   <p className="text-foreground/90 leading-relaxed">{value}</p>
