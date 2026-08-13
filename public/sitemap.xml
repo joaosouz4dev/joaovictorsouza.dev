@@ -229,6 +229,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>

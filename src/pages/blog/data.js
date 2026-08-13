@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora',
+    date: '2026-08-13',
+    readTime: '15 min',
+    keywords: {
+      pt: 'orcamento de latencia, latencia por etapa, caminho critico de agente, tempo ate o primeiro token, streaming de resposta, paralelizar etapas, adiar trabalho para fora do caminho critico, fila duravel, teto por rota, anthropic',
+      en: 'latency budget, per stage latency, agent critical path, time to first token, response streaming, parallelizing stages, deferring work off the critical path, durable queue, per route ceiling, anthropic',
+      es: 'presupuesto de latencia, latencia por etapa, camino critico del agente, tiempo hasta el primer token, streaming de respuesta, paralelizar etapas, diferir trabajo fuera del camino critico, cola durable, techo por ruta, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Orçamento de latência por etapa: onde cortar quando a resposta demora demais',
+        excerpt:
+          'O time otimiza duas semanas, a latência cai de nove segundos para oito e meio, e ninguém sabe explicar por que rendeu tão pouco. Por que um número agregado não é diagnosticável e um orçamento com teto por etapa é, por que a soma das etapas quase nunca fecha com o total e o que esse buraco revela sobre a sua infraestrutura, por que paralelizar o que é independente vem antes de cortar qualquer coisa, qual é a fronteira exata entre o que pode sair do caminho crítico e o que precisa ser verificado antes da resposta, e por que depois de tudo isso a decisão que sobra deixa de ser técnica e vira produto.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Latency budget per stage: where to cut when the answer takes too long',
+        excerpt:
+          'The team optimizes for two weeks, latency drops from nine seconds to eight and a half, and nobody can explain why it paid so little. Why an aggregate number is not diagnosable and a budget with a ceiling per stage is, why the sum of the stages almost never matches the total and what that gap reveals about your infrastructure, why parallelizing what is independent comes before cutting anything, where exactly the boundary sits between what can leave the critical path and what must be verified before the answer, and why after all of that the remaining decision stops being technical and becomes product.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Presupuesto de latencia por etapa: dónde cortar cuando la respuesta tarda demasiado',
+        excerpt:
+          'El equipo optimiza dos semanas, la latencia baja de nueve segundos a ocho y medio, y nadie sabe explicar por qué rindió tan poco. Por qué un número agregado no es diagnosticable y un presupuesto con techo por etapa sí lo es, por qué la suma de las etapas casi nunca cierra con el total y qué revela ese hueco sobre tu infraestructura, por qué paralelizar lo independiente viene antes de cortar cualquier cosa, dónde está exactamente la frontera entre lo que puede salir del camino crítico y lo que debe verificarse antes de la respuesta, y por qué después de todo eso la decisión que queda deja de ser técnica y se vuelve producto.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'fila-revisao-humana-quais-respostas-agente-merecem-auditoria',
     date: '2026-08-13',
     readTime: '15 min',
@@ -1776,17 +1806,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Orçamento de latência por etapa: onde cortar quando a resposta demora demais',
     'Rollback de base de conhecimento: voltar o índice sem derrubar o atendimento',
     'Testes de regressão para ferramentas do agente: contrato antes do prompt',
   ],
   en: [
-    'Latency budget per stage: where to cut when the answer takes too long',
     'Knowledge base rollback: reverting the index without taking support down',
     'Regression tests for agent tools: contract before prompt',
   ],
   es: [
-    'Presupuesto de latencia por etapa: dónde cortar cuando la respuesta tarda demasiado',
     'Rollback de base de conocimiento: volver el índice sin tirar la atención',
     'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
   ],
