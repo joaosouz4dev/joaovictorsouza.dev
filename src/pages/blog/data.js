@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'fila-revisao-humana-quais-respostas-agente-merecem-auditoria',
+    date: '2026-08-13',
+    readTime: '15 min',
+    keywords: {
+      pt: 'fila de revisao humana, auditoria de respostas de agente, amostragem por prioridade, elevacao sobre aleatoria, orcamento de atencao, sinais preditivos de erro, conjunto de avaliacao a partir da revisao, concordancia entre revisores, cobertura de revisao, anthropic',
+      en: 'human review queue, agent answer auditing, priority sampling, lift over random, attention budget, error predictive signals, evaluation set from review, inter reviewer agreement, review coverage, anthropic',
+      es: 'fila de revision humana, auditoria de respuestas del agente, muestreo por prioridad, elevacion sobre aleatoria, presupuesto de atencion, senales predictivas de error, conjunto de evaluacion desde la revision, concordancia entre revisores, cobertura de revision, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
+        excerpt:
+          'Duas pessoas conseguem revisar seiscentas respostas por mês num sistema que responde quarenta mil vezes, e a escolha padrão de sortear ao acaso faz o revisor passar o turno confirmando que respostas certas estão certas. Por que estimar a taxa de erro e encontrar erro são objetivos opostos que exigem fatias separadas do mesmo orçamento, quais três sinais já existem nos seus dados e rendem mais que a confiança do modelo, por que a fila precisa ser dimensionada pela capacidade do turno e o excedente descartado todo dia em vez de acumulado, como fazer cada veredito negativo já nascer como caso candidato do conjunto de avaliação, e por que a elevação sobre a aleatória é a única métrica que justifica a máquina inteira.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Human review queue: choosing which agent answers deserve an audit',
+        excerpt:
+          'Two people can review six hundred answers a month in a system that answers forty thousand times, and the default choice of drawing at random makes the reviewer spend the shift confirming that correct answers are correct. Why estimating the error rate and finding errors are opposite goals requiring separate slices of the same budget, which three signals already exist in your data and outperform model confidence, why the queue must be sized by shift capacity with the overflow discarded daily rather than accumulated, how to make every negative verdict be born as a candidate evaluation set case, and why lift over random is the only metric that justifies the whole machine.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
+        excerpt:
+          'Dos personas pueden revisar seiscientas respuestas por mes en un sistema que responde cuarenta mil veces, y la elección por defecto de sortear al azar hace que el revisor pase el turno confirmando que respuestas correctas están correctas. Por qué estimar la tasa de error y encontrar errores son objetivos opuestos que exigen porciones separadas del mismo presupuesto, qué tres señales ya existen en tus datos y rinden más que la confianza del modelo, por qué la fila debe dimensionarse por la capacidad del turno y el excedente descartarse todos los días en vez de acumularse, cómo hacer que cada veredicto negativo nazca ya como caso candidato del conjunto de evaluación, y por qué la elevación sobre la aleatoria es la única métrica que justifica toda la maquinaria.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta',
     date: '2026-08-11',
     readTime: '14 min',
@@ -1746,19 +1776,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Fila de revisão humana: escolher quais respostas do agente merecem auditoria',
     'Orçamento de latência por etapa: onde cortar quando a resposta demora demais',
     'Rollback de base de conhecimento: voltar o índice sem derrubar o atendimento',
     'Testes de regressão para ferramentas do agente: contrato antes do prompt',
   ],
   en: [
-    'Human review queue: choosing which agent answers deserve an audit',
     'Latency budget per stage: where to cut when the answer takes too long',
     'Knowledge base rollback: reverting the index without taking support down',
     'Regression tests for agent tools: contract before prompt',
   ],
   es: [
-    'Fila de revisión humana: elegir qué respuestas del agente merecen auditoría',
     'Presupuesto de latencia por etapa: dónde cortar cuando la respuesta tarda demasiado',
     'Rollback de base de conocimiento: volver el índice sin tirar la atención',
     'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
