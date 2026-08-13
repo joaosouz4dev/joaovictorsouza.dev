@@ -70,8 +70,10 @@ import aquecimentoCachePrompt from './aquecimento-cache-prompt-pagar-prefixo-uma
 import congelarConjuntoAvaliacao from './congelar-conjunto-avaliacao-eval-envelhece-como-renovar.js';
 import retencaoDadosSistemaIa from './retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar.js';
 import aquecimentoIndiceVetorial from './aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta.js';
+import filaRevisaoHumana from './fila-revisao-humana-quais-respostas-agente-merecem-auditoria.js';
 
 const postContentBySlug = {
+  'fila-revisao-humana-quais-respostas-agente-merecem-auditoria': filaRevisaoHumana,
   'aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta': aquecimentoIndiceVetorial,
   'retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar': retencaoDadosSistemaIa,
   'congelar-conjunto-avaliacao-eval-envelhece-como-renovar': congelarConjuntoAvaliacao,
