@@ -121,7 +121,6 @@ function Hero() {
                 <GlitchText
                   text="JOÃO VICTOR SOUZA"
                   pixel
-                  trigger="hover"
                   className="block leading-none text-[clamp(2.25rem,6vw,4.5rem)] text-foreground"
                 />
               </h1>
