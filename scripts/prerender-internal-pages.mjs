@@ -4,10 +4,10 @@ import { fileURLToPath } from 'node:url';
 
 import translatePt from '../src/config/translate/pt.js';
 import {
-  getPostContent,
   getPublishedPosts,
   getUpcomingPosts,
 } from '../src/pages/blog/data.js';
+import { getPostContent } from '../src/pages/blog/content.js';
 import { getCases } from '../src/pages/cases/data.js';
 import { getProjects } from '../src/pages/projetos/data.js';
 import { getServices } from '../src/pages/servicos/data.js';

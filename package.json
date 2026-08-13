@@ -40,7 +40,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node scripts/prerender-internal-pages.mjs",
+    "postbuild": "node scripts/prerender-internal-pages.mjs && node scripts/check-build-performance.mjs",
     "preview": "vite preview"
   },
   "browserslist": {

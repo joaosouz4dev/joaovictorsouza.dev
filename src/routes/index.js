@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 
 // Fontes importadas via JS (nao via @import no CSS) para que o Vite resolva os
 // url() relativos e hasheie os woff2. Com o pipeline do Tailwind v4, o @import
@@ -41,45 +41,28 @@ const PageLoader = () => (
 );
 
 const AppRoutes = () => {
-  const location = useLocation();
-  const [isPageLoading, setIsPageLoading] = useState(true);
-
-  useEffect(() => {
-    setIsPageLoading(true);
-    const timeout = setTimeout(() => {
-      setIsPageLoading(false);
-    }, 300);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [location.pathname]);
-
   return (
-    <>
-      {isPageLoading && <PageLoader />}
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/sobre" element={<Sobre />} />
-          <Route exact path="/servicos" element={<Servicos />} />
-          <Route exact path="/servicos/:slug" element={<Servico />} />
-          <Route exact path="/cases" element={<Cases />} />
-          <Route exact path="/cases/:slug" element={<Case />} />
-          <Route exact path="/blog" element={<Blog />} />
-          <Route exact path="/blog/:slug" element={<BlogPost />} />
-          <Route exact path="/projetos" element={<Projetos />} />
-          <Route exact path="/projetos/:slug" element={<Projeto />} />
-          <Route exact path="/contato" element={<Contato />} />
-          <Route exact path="/zap" element={<Navigate to="/whatsapp" replace />} />
-          <Route exact path="/whatsapp" element={<Wpp />} />
-          <Route exact path="/wpp" element={<WhatsAppPage />} />
-          <Route exact path="/matrix" element={<Matrix />} />
-          <Route exact path="/politica-de-privacidade/:title" element={<Privacidade />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/sobre" element={<Sobre />} />
+        <Route exact path="/servicos" element={<Servicos />} />
+        <Route exact path="/servicos/:slug" element={<Servico />} />
+        <Route exact path="/cases" element={<Cases />} />
+        <Route exact path="/cases/:slug" element={<Case />} />
+        <Route exact path="/blog" element={<Blog />} />
+        <Route exact path="/blog/:slug" element={<BlogPost />} />
+        <Route exact path="/projetos" element={<Projetos />} />
+        <Route exact path="/projetos/:slug" element={<Projeto />} />
+        <Route exact path="/contato" element={<Contato />} />
+        <Route exact path="/zap" element={<Navigate to="/whatsapp" replace />} />
+        <Route exact path="/whatsapp" element={<Wpp />} />
+        <Route exact path="/wpp" element={<WhatsAppPage />} />
+        <Route exact path="/matrix" element={<Matrix />} />
+        <Route exact path="/politica-de-privacidade/:title" element={<Privacidade />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
