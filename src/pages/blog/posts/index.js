@@ -72,8 +72,10 @@ import retencaoDadosSistemaIa from './retencao-dados-sistema-ia-o-que-guardar-qu
 import aquecimentoIndiceVetorial from './aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta.js';
 import filaRevisaoHumana from './fila-revisao-humana-quais-respostas-agente-merecem-auditoria.js';
 import orcamentoLatenciaPorEtapa from './orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora.js';
+import rollbackBaseConhecimento from './rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento.js';
 
 const postContentBySlug = {
+  'rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento': rollbackBaseConhecimento,
   'orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora': orcamentoLatenciaPorEtapa,
   'fila-revisao-humana-quais-respostas-agente-merecem-auditoria': filaRevisaoHumana,
   'aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta': aquecimentoIndiceVetorial,
