@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento',
+    date: '2026-08-14',
+    readTime: '15 min',
+    keywords: {
+      pt: 'rollback de base de conhecimento, versionar indice vetorial, indice imutavel, ponteiro de producao, rollback de embedding, reindexacao parcial, portao de qualidade de recuperacao, retencao de indice, versao de indice na interacao, anthropic',
+      en: 'knowledge base rollback, vector index versioning, immutable index, production pointer, embedding rollback, partial reindexing, retrieval quality gate, index retention, index version on interaction, anthropic',
+      es: 'rollback de base de conocimiento, versionado de indice vectorial, indice inmutable, puntero de produccion, rollback de embedding, reindexacion parcial, compuerta de calidad de recuperacion, retencion de indice, version de indice en la interaccion, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Rollback de base de conhecimento: voltar o índice sem derrubar o atendimento',
+        excerpt:
+          'A reindexação da terça trocou o parser, na quarta o agente cita a política antiga e a pergunta "dá para voltar o índice de ontem?" recebe um "não exatamente". Por que um índice escrito por upsert sobre coleção de nome fixo simplesmente não tem rollback, como um índice imutável identificado por hash de conteúdo, modelo, dimensão e chunking transforma três horas de reprocessamento numa troca de ponteiro em segundos, por que reindexar parcialmente ao trocar o modelo de embedding é a decisão que mais prolonga incidente, qual portão de recuperação pega a build ruim antes do cliente, e por que gravar a versão do índice em cada interação é o item mais barato hoje e impossível de reconstruir depois.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Knowledge base rollback: reverting the index without taking support down',
+        excerpt:
+          'Tuesday\'s reindex swapped the parser, on Wednesday the agent cites the old policy, and the question "can we roll back to yesterday\'s index?" gets a "not exactly". Why an index written by upsert over a fixed-name collection simply has no rollback, how an immutable index identified by a hash of content, model, dimensionality and chunking turns three hours of reprocessing into a seconds-long pointer swap, why partial reindexing when the embedding model changes is the decision that most prolongs an incident, which retrieval gate catches the bad build before the customer does, and why recording the index version on every interaction is the cheapest item today and impossible to reconstruct later.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Rollback de base de conocimiento: volver el índice sin tirar la atención',
+        excerpt:
+          'La reindexación del martes cambió el parser, el miércoles el agente cita la política vieja y la pregunta "¿se puede volver al índice de ayer?" recibe un "no exactamente". Por qué un índice escrito por upsert sobre una colección de nombre fijo simplemente no tiene rollback, cómo un índice inmutable identificado por hash de contenido, modelo, dimensión y chunking convierte tres horas de reprocesamiento en un cambio de puntero de segundos, por qué reindexar parcialmente al cambiar el modelo de embedding es la decisión que más prolonga el incidente, qué compuerta de recuperación atrapa la build mala antes que el cliente, y por qué grabar la versión del índice en cada interacción es lo más barato hoy e imposible de reconstruir después.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora',
     date: '2026-08-13',
     readTime: '15 min',
@@ -1806,16 +1836,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Rollback de base de conhecimento: voltar o índice sem derrubar o atendimento',
     'Testes de regressão para ferramentas do agente: contrato antes do prompt',
+    'Roteamento de conversa entre agentes especializados sem perder o contexto',
+    'Quota de contexto por cliente: quando a conversa longa vira prejuízo',
+    'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
   ],
   en: [
-    'Knowledge base rollback: reverting the index without taking support down',
     'Regression tests for agent tools: contract before prompt',
+    'Routing conversations between specialized agents without losing context',
+    'Per customer context quota: when a long conversation becomes a loss',
+    'Chat abandonment signal: detecting the drop-off before the customer leaves',
   ],
   es: [
-    'Rollback de base de conocimiento: volver el índice sin tirar la atención',
     'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
+    'Enrutamiento de conversación entre agentes especializados sin perder el contexto',
+    'Cuota de contexto por cliente: cuándo la conversación larga se vuelve pérdida',
+    'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
   ],
 };
 
