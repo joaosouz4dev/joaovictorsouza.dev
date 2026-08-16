@@ -27,8 +27,8 @@ const Wpp = () => {
   return (
     <>
       <Seo
-        title="Redirecionando para WhatsApp | João Victor Souza"
-        description="Página utilitária de redirecionamento para WhatsApp."
+        title={t('seo.whatsappRedirectTitle')}
+        description={t('seo.whatsappRedirectDescription')}
         canonical="/whatsapp"
         robots="noindex,follow"
       />
@@ -45,9 +45,9 @@ const Wpp = () => {
             <MessageCircle size={36} />
           </motion.div>
           <h1 className="font-display text-h1 font-medium tracking-tight">
-            <GradientText animate>{t('whatsapp.redirecting', 'Abrindo WhatsApp...')}</GradientText>
+            <GradientText animate>{t('whatsapp.redirecting')}</GradientText>
           </h1>
-          <p className="mt-4 text-muted-foreground">Você será redirecionado em instantes.</p>
+          <p className="mt-4 text-muted-foreground">{t('whatsapp.redirectingHint')}</p>
         </div>
       </section>
     </>

@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import * as datGui from "dat.gui";
 import Seo from "../../components/seo";
 
 const Matrix = () => {
+  const { t } = useTranslation();
   React.useEffect(() => {
     const state = {
       fps: 60,
@@ -72,8 +74,8 @@ const Matrix = () => {
   return (
     <>
       <Seo
-        title="Matrix Demo | Joao Victor Souza"
-        description="Pagina utilitaria visual."
+        title={t('seo.matrixTitle')}
+        description={t('seo.matrixDescription')}
         canonical="/matrix"
         robots="noindex,follow"
       />

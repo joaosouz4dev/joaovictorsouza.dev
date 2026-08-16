@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../lib/cn';
 
@@ -14,6 +15,7 @@ const getInitialTheme = () => {
 
 export function ThemeToggle({ className }) {
   const [theme, setTheme] = useState(getInitialTheme);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const root = document.documentElement;
@@ -28,7 +30,7 @@ export function ThemeToggle({ className }) {
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
+      aria-label={theme === 'dark' ? t('a11y.lightMode') : t('a11y.darkMode')}
       className={cn(
         'relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-surface/60 backdrop-blur-xl text-foreground/80 transition-colors hover:text-foreground hover:border-foreground/30',
         className,

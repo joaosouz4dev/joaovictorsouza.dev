@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Home, ArrowLeft } from 'lucide-react';
 import Seo from '../../components/seo';
@@ -45,11 +46,12 @@ function GlitchDigit({ char, delay }) {
 }
 
 export default function NotFound() {
+  const { t } = useTranslation();
   return (
     <SiteLayout>
       <Seo
-        title="404 | Página não encontrada"
-        description="Página não encontrada."
+        title={t('notFound.seoTitle')}
+        description={t('notFound.seoDescription')}
         canonical="/404"
         robots="noindex,follow"
       />
@@ -58,7 +60,7 @@ export default function NotFound() {
         <NoiseTexture />
         <Container size="default" className="relative text-center">
           <p className="font-mono text-eyebrow uppercase text-muted-foreground mb-6">
-            Erro 404
+            {t('notFound.eyebrow')}
           </p>
           <h1 className="font-display font-medium leading-[0.9] tracking-tight text-[clamp(7rem,22vw,18rem)]">
             <GradientText animate>
@@ -73,7 +75,7 @@ export default function NotFound() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground text-balance max-w-xl mx-auto"
           >
-            Esta página não existe. Talvez tenha sido movida, ou o link esteja desatualizado.
+            {t('notFound.description')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -82,10 +84,10 @@ export default function NotFound() {
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
             <Button to="/" size="lg" leftIcon={<Home size={18} />}>
-              Voltar para a Home
+              {t('notFound.backHome')}
             </Button>
             <Button to="/contato" variant="outline" size="lg" leftIcon={<ArrowLeft size={18} />}>
-              Falar comigo
+              {t('notFound.contact')}
             </Button>
           </motion.div>
         </Container>

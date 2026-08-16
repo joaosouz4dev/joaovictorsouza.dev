@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -9,21 +10,22 @@ import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 
 const Privacidade = () => {
   const { title } = useParams();
+  const { t } = useTranslation();
   const displayTitle = title ? ` · ${title}` : '';
 
   return (
     <SiteLayout>
       <Seo
-        title={`Política de Privacidade${displayTitle}`}
-        description="Política de privacidade."
+        title={`${t('privacy.seoTitle')}${displayTitle}`}
+        description={t('privacy.seoDescription')}
         canonical={`/politica-de-privacidade/${title || ''}`}
         robots="noindex,follow"
       />
 
       <PageHero
-        eyebrow="Privacidade"
-        title={`Política de Privacidade${displayTitle}`}
-        description="Como tratamos seus dados pessoais e de localização."
+        eyebrow={t('privacy.eyebrow')}
+        title={`${t('privacy.title')}${displayTitle}`}
+        description={t('privacy.description')}
       />
 
       <Section bordered>
@@ -31,33 +33,22 @@ const Privacidade = () => {
           <RevealOnScroll>
             <article className="prose prose-invert max-w-none">
               <p>
-                A sua privacidade é importante para nós. É política do <strong>{title || 'serviço'}</strong> respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no aplicativo.
+                {t('privacy.p1Start')} <strong>{title || t('privacy.serviceFallback')}</strong>{' '}
+                {t('privacy.p1End')}
               </p>
-              <p>
-                Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.
-              </p>
-              <p>
-                Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado.
-              </p>
-              <p>
-                Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
-              </p>
-              <p>
-                Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
-              </p>
+              <p>{t('privacy.p2')}</p>
+              <p>{t('privacy.p3')}</p>
+              <p>{t('privacy.p4')}</p>
+              <p>{t('privacy.p5')}</p>
 
-              <h2>Localização</h2>
-              <p>
-                Pegamos sua localização para preencher em nosso sistema o endereço no qual você se encontra. Com o intuito de agilizar a utilização do nosso serviço.
-              </p>
+              <h2>{t('privacy.locationTitle')}</h2>
+              <p>{t('privacy.locationText')}</p>
 
-              <h2>Mais informações</h2>
-              <p>
-                Sua localização é usada somente quando se abre a tela do aplicativo. Não armazenamos esses dados em nossos servidores.
-              </p>
+              <h2>{t('privacy.moreTitle')}</h2>
+              <p>{t('privacy.moreText')}</p>
 
               <p>
-                Esta política é efetiva a partir de <strong>Maio/2021</strong>.
+                {t('privacy.effective')} <strong>{t('privacy.effectiveDate')}</strong>.
               </p>
             </article>
           </RevealOnScroll>

@@ -106,7 +106,7 @@ function Hero() {
           <div className="lg:col-span-7">
             <RevealOnScroll preset="fade">
               <Badge variant="gradient" withDot>
-                Builder · WhatsApp API · IA
+                {t('homeExtra.heroBadge')}
               </Badge>
             </RevealOnScroll>
 
@@ -126,8 +126,7 @@ function Hero() {
               </h1>
               <RevealOnScroll delay={0.6} className="mt-8 max-w-xl">
                 <p className="text-lg text-muted-foreground text-balance">
-                  {t('banner.profession')}. Engenharia de integrações WhatsApp Cloud API, Meta CAPI e
-                  chatbots com IA.{' '}
+                  {t('banner.profession')}. {t('homeExtra.heroProfessionSuffix')}{' '}
                   <span className="text-foreground">{t('banner.location')}.</span>
                 </p>
               </RevealOnScroll>
@@ -185,7 +184,7 @@ function Hero() {
                       <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-60" />
                       <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     </span>
-                    Disponível
+                    {t('homeExtra.available')}
                   </div>
                 </div>
               </div>
@@ -205,7 +204,7 @@ function Hero() {
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               className="flex flex-col items-center gap-2 text-muted-foreground"
             >
-              <span className="font-mono text-eyebrow uppercase">Scroll</span>
+              <span className="font-mono text-eyebrow uppercase">{t('homeExtra.scroll')}</span>
               <ChevronDown size={16} />
             </motion.div>
           </motion.div>
@@ -221,9 +220,9 @@ function AboutSection() {
   const year = new Date().getFullYear();
   const anos = year - ANO_INICIAL;
   const stats = [
-    { value: `${anos}+`, label: 'anos programando' },
-    { value: '9', label: 'projetos entregues' },
-    { value: '3', label: 'idiomas' },
+    { value: `${anos}+`, label: t('homeExtra.statYears') },
+    { value: '9', label: t('homeExtra.statProjects') },
+    { value: '3', label: t('homeExtra.statLanguages') },
   ];
   return (
     <Section id="about" bordered>
@@ -253,8 +252,8 @@ function AboutSection() {
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
             <h2 className="font-display text-h1 font-medium tracking-tight text-balance">
-              Engenharia de integrações para{' '}
-              <GradientText>operação e crescimento.</GradientText>
+              {t('homeExtra.aboutTitleStart')}{' '}
+              <GradientText>{t('homeExtra.aboutTitleHighlight')}</GradientText>
             </h2>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
@@ -289,7 +288,7 @@ function SkillsSection() {
       eyebrow={t('skills.title')}
       title={
         <>
-          O que eu construo<GradientText>.</GradientText>
+          {t('homeExtra.skillsTitle')}<GradientText>.</GradientText>
         </>
       }
       bordered
@@ -351,23 +350,23 @@ function ExperienceSection() {
   const timeline = [
     {
       year: '2015',
-      title: 'Início na programação',
-      description: 'Primeiros projetos com PHP, WordPress e front-end.',
+      title: t('timeline.start.title'),
+      description: t('timeline.start.description'),
     },
     {
       year: '2018',
-      title: 'Stack JavaScript moderna',
-      description: 'React, Node.js, integração de APIs e arquitetura backend.',
+      title: t('timeline.javascript.title'),
+      description: t('timeline.javascript.description'),
     },
     {
       year: '2021',
-      title: 'WppConnect e WhatsApp',
-      description: 'Contribuição open source que impulsionou expertise em WhatsApp.',
+      title: t('timeline.wppconnect.title'),
+      description: t('timeline.wppconnect.description'),
     },
     {
       year: '2024',
-      title: 'Cloud API + Meta CAPI + IA',
-      description: 'Foco em integrações premium, chatbots com IA e Meta Conversions API.',
+      title: t('timeline.cloudApi.title'),
+      description: t('timeline.cloudApi.description'),
     },
   ];
 
@@ -383,7 +382,10 @@ function ExperienceSection() {
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
               <h2 className="font-display text-h1 font-medium tracking-tight text-balance">
-                <GradientText>{anos}+ anos</GradientText> {t('experiences.title')}
+                <GradientText>
+                  {anos}+ {t('homeExtra.yearsSuffix')}
+                </GradientText>{' '}
+                {t('experiences.title')}
               </h2>
             </RevealOnScroll>
             <RevealOnScroll delay={0.2}>
@@ -436,7 +438,7 @@ function CtaSection() {
       <Container size="default" className="relative text-center">
         <RevealOnScroll>
           <Badge variant="gradient" withDot>
-            Disponível para projetos
+            {t('quates.badge')}
           </Badge>
         </RevealOnScroll>
         <RevealOnScroll delay={0.1}>
@@ -459,11 +461,11 @@ function CtaSection() {
                 leftIcon={<MessagesSquare size={18} />}
                 rightIcon={<ArrowUpRight size={18} />}
               >
-                WhatsApp direto
+                {t('quates.whatsapp')}
               </Button>
             </MagneticCursor>
             <Button to="/contato" variant="outline" size="lg">
-              Ver todos os canais
+              {t('quates.channels')}
             </Button>
           </div>
         </RevealOnScroll>
@@ -525,7 +527,7 @@ function ContactSection() {
   return (
     <Section
       eyebrow={t('menu.contact')}
-      title="Vamos conversar."
+      title={t('homeExtra.contactTitle')}
       align="center"
       bordered
     >
@@ -542,7 +544,7 @@ function ContactSection() {
                 <Icon size={24} className="mx-auto text-foreground" />
                 <p className="mt-5 font-display text-base font-medium tracking-tight">{label}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground">
-                  Abrir <ArrowUpRight size={12} />
+                  {t('homeExtra.open')} <ArrowUpRight size={12} />
                 </span>
               </Card>
             </a>
@@ -554,11 +556,12 @@ function ContactSection() {
 }
 
 const Home = () => {
+  const { t } = useTranslation();
   return (
     <SiteLayout>
       <Seo
-        title="Especialista em WhatsApp Cloud API, Meta CAPI e IA | João Victor Souza"
-        description="Desenvolvedor especialista em integração WhatsApp Cloud API, Meta Pixel/CAPI, chatbots com IA e automações para atendimento e vendas."
+        title={t('seo.homeTitle')}
+        description={t('seo.homeDescription')}
         canonical="/"
         schema={homeSchema}
       />

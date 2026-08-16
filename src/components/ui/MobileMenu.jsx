@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../../lib/cn';
@@ -7,6 +8,7 @@ import { cn } from '../../lib/cn';
 export function MobileMenu({ items, ctaLabel, ctaHref, className }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setOpen(false);
@@ -24,7 +26,7 @@ export function MobileMenu({ items, ctaLabel, ctaHref, className }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Abrir menu"
+        aria-label={t('a11y.openMenu')}
         className={cn(
           'inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-surface/60 text-foreground/80 backdrop-blur-xl transition-colors hover:text-foreground',
           className,
@@ -53,7 +55,7 @@ export function MobileMenu({ items, ctaLabel, ctaHref, className }) {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  aria-label="Fechar menu"
+                  aria-label={t('a11y.closeMenu')}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-surface/60 text-foreground/80"
                 >
                   <X size={18} />

@@ -95,6 +95,9 @@ const en = {
     title: `Let's work together?`,
     description:
       'Developer, designer and proactive. With {{anos}} years coding, João Victor Souza makes programming both profession and passion.',
+    badge: 'Available for projects',
+    whatsapp: 'Direct WhatsApp',
+    channels: 'See all channels',
   },
   homeSeo: {
     title: 'Specialties and Technical Content',
@@ -169,6 +172,7 @@ const en = {
       'Integration services for WhatsApp Cloud API, Meta Pixel/CAPI, AI chatbots and process automation focused on results.',
     seoKeywords:
       'whatsapp cloud api services, meta capi, ai chatbot, integration automation',
+    whatsappInterest: 'Hello! I am interested in {{service}}.',
     heroTitle: 'Technical solutions for growth and digital operations',
     heroDescription:
       'I implement integrations and automations focused on operational performance, data reliability and conversion growth.',
@@ -193,6 +197,7 @@ const en = {
     seoTitle: 'WhatsApp, Meta CAPI and AI Cases | Joao Victor Souza',
     seoDescription:
       'Case studies with architecture, stack and lessons learned in integration, measurement and AI chatbot projects.',
+    schemaName: 'Integration and AI Cases',
     heroTitle: 'Technical cases focused on operational outcomes',
     heroDescription:
       'Each case describes context, technical solution and lessons that can be reused in new projects.',
@@ -314,6 +319,130 @@ const en = {
     messagePlaceholder: 'Type your message here...',
     sendButton: 'Send Message',
     redirecting: 'Redirecting...',
+    formIntroStart: 'Generate a',
+    formIntroEnd: 'link to start a conversation without saving the contact.',
+    phoneLabel: 'Phone',
+    messageLabel: 'Message',
+    redirectingHint: 'You will be redirected shortly.',
+    pageEyebrow: 'Tool',
+    pageTitle: 'wa.me link generator',
+    pageDescription:
+      'Paste the number with country and area code and write an initial message. We generate a ready-to-open WhatsApp link.',
+  },
+  homeExtra: {
+    heroBadge: 'Builder · WhatsApp API · AI',
+    heroProfessionSuffix:
+      'Engineering WhatsApp Cloud API, Meta CAPI and AI chatbot integrations.',
+    available: 'Available',
+    scroll: 'Scroll',
+    statYears: 'years coding',
+    statProjects: 'projects delivered',
+    statLanguages: 'languages',
+    aboutTitleStart: 'Integration engineering for',
+    aboutTitleHighlight: 'operations and growth.',
+    skillsTitle: 'What I build',
+    yearsSuffix: 'years',
+    contactTitle: "Let's talk.",
+    open: 'Open',
+  },
+  timeline: {
+    start: {
+      title: 'Getting started in programming',
+      description: 'First projects with PHP, WordPress and front-end.',
+    },
+    javascript: {
+      title: 'Modern JavaScript stack',
+      description: 'React, Node.js, API integration and backend architecture.',
+    },
+    wppconnect: {
+      title: 'WppConnect and WhatsApp',
+      description: 'Open source contribution that drove WhatsApp expertise.',
+    },
+    cloudApi: {
+      title: 'Cloud API + Meta CAPI + AI',
+      description: 'Focus on premium integrations, AI chatbots and Meta Conversions API.',
+    },
+  },
+  notFound: {
+    seoTitle: '404 | Page not found',
+    seoDescription: 'Page not found.',
+    eyebrow: 'Error 404',
+    description: 'This page does not exist. It may have been moved, or the link is outdated.',
+    backHome: 'Back to Home',
+    contact: 'Get in touch',
+  },
+  privacy: {
+    seoTitle: 'Privacy Policy',
+    seoDescription: 'Privacy policy.',
+    eyebrow: 'Privacy',
+    title: 'Privacy Policy',
+    description: 'How we handle your personal and location data.',
+    serviceFallback: 'service',
+    p1Start: 'Your privacy is important to us. It is the policy of',
+    p1End: 'to respect your privacy regarding any information we may collect in the application.',
+    p2: 'We only request personal information when we truly need it to provide you with a service. We do so by fair and lawful means, with your knowledge and consent. We also let you know why we are collecting it and how it will be used.',
+    p3: 'We only retain collected information for as long as necessary to provide the requested service.',
+    p4: 'We do not share personally identifying information publicly or with third parties, except when required by law.',
+    p5: 'You are free to refuse our request for personal information, understanding that we may not be able to provide some of the desired services.',
+    locationTitle: 'Location',
+    locationText:
+      'We collect your location to fill in our system the address where you are, in order to speed up the use of our service.',
+    moreTitle: 'More information',
+    moreText:
+      'Your location is only used when the application screen is opened. We do not store this data on our servers.',
+    effective: 'This policy is effective as of',
+    effectiveDate: 'May/2021',
+  },
+  portfolioCards: {
+    sendeasy: {
+      headline: '24/7 customer service that sells on its own',
+      pitch: 'Platform with WhatsApp Cloud API, AI chatbot and human handoff.',
+      description:
+        'Automated WhatsApp messaging platform with Cloud API integration, flows, templates and AI chatbot.',
+    },
+    creditoSemanal: {
+      headline: 'Instant credit straight to PIX',
+      pitch: 'Instant approval, up to 4 installments and no credit card.',
+      description:
+        'App for requesting and managing weekly credit with digital onboarding and financial integration.',
+    },
+    wppconnect: {
+      headline: 'Open source adopted by the dev community',
+      pitch: 'Node.js library for WhatsApp automation with 10k+ stars on GitHub.',
+    },
+    mapp: {
+      headline: 'Real-time delivery operations',
+      pitch: 'Platform used by 300+ companies for routing and fleet management.',
+    },
+    dujuca: {
+      headline: 'E-commerce that scales campaigns',
+      pitch: 'Online store and app with 12-installment checkout and automated promotions.',
+    },
+    folhetos: {
+      headline: 'Digital menu with WhatsApp ordering',
+      pitch: 'Ordering system integrated with WhatsApp for restaurants and markets.',
+    },
+  },
+  seo: {
+    homeTitle: 'WhatsApp Cloud API, Meta CAPI and AI Specialist | João Victor Souza',
+    homeDescription:
+      'Developer specialized in WhatsApp Cloud API integration, Meta Pixel/CAPI, AI chatbots and automations for customer service and sales.',
+    whatsappToolTitle: 'WhatsApp link generator | João Victor Souza',
+    whatsappToolDescription: 'Utility tool to start a conversation on WhatsApp.',
+    whatsappRedirectTitle: 'Redirecting to WhatsApp | João Victor Souza',
+    whatsappRedirectDescription: 'Utility page redirecting to WhatsApp.',
+    projectSuffix: 'Technical project',
+    matrixTitle: 'Matrix Demo | João Victor Souza',
+    matrixDescription: 'Visual utility page.',
+  },
+  a11y: {
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    close: 'Close',
+    mainNav: 'Main navigation',
+    selectLanguage: 'Select language',
+    lightMode: 'Switch to light mode',
+    darkMode: 'Switch to dark mode',
   },
 };
 

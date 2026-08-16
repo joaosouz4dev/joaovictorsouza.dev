@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import WhatsAppForm from '../../components/WhatsAppForm';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
@@ -6,19 +7,20 @@ import PageHero from '../../components/ui/PageHero';
 import Section from '../../components/ui/Section';
 
 const WhatsAppPage = () => {
+  const { t } = useTranslation();
   return (
     <SiteLayout>
       <Seo
-        title="Gerador de link WhatsApp | João Victor Souza"
-        description="Ferramenta utilitária para iniciar conversa no WhatsApp."
+        title={t('seo.whatsappToolTitle')}
+        description={t('seo.whatsappToolDescription')}
         canonical="/wpp"
         robots="noindex,follow"
       />
 
       <PageHero
-        eyebrow="Ferramenta"
-        title="Gerador de link wa.me"
-        description="Cole o número com DDI/DDD e escreva uma mensagem inicial. Geramos um link de WhatsApp pronto para abrir."
+        eyebrow={t('whatsapp.pageEyebrow')}
+        title={t('whatsapp.pageTitle')}
+        description={t('whatsapp.pageDescription')}
       />
 
       <Section bordered>

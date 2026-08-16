@@ -29,7 +29,7 @@ const Cases = () => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Cases de Integrações e IA',
+    name: t('casesPage.schemaName'),
     url: 'https://joaovictorsouza.dev/cases',
   };
 
