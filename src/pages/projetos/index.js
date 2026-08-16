@@ -9,9 +9,11 @@ import Section from '../../components/ui/Section';
 import Card from '../../components/ui/Card';
 import { RevealGroup, RevealItem } from '../../components/ui/RevealOnScroll';
 import { getProjects } from './data';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Projetos = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const projects = getProjects(i18n.resolvedLanguage);
 
   const schema = {
@@ -40,7 +42,7 @@ const Projetos = () => {
         <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
           {projects.map((p) => (
             <RevealItem key={p.slug}>
-              <Link to={`/projetos/${p.slug}`} className="block h-full">
+              <Link to={path('project', p.slug)} className="block h-full">
                 <Card spotlight interactive className="group h-full p-7">
                   <div className="flex items-start justify-between gap-4">
                     <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border/80 bg-surface/60 text-foreground">

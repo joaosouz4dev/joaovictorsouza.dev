@@ -12,6 +12,7 @@ import Button from '../../components/ui/Button';
 import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import { getPostBySlug } from '../blog/data';
 import { getPostContent } from '../blog/content';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Paragraph = ({ value }) => (
   <p className="text-foreground/90 leading-relaxed">{value}</p>
@@ -140,6 +141,7 @@ const RepoCallout = ({ repo, label }) => (
 
 const BlogPost = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const { slug } = useParams();
   const post = getPostBySlug(slug, i18n.resolvedLanguage);
   const content = getPostContent(slug, i18n.resolvedLanguage);
@@ -158,7 +160,7 @@ const BlogPost = () => {
           title={t('blogPostPage.notFoundTitle')}
           description={`${t('blogPostPage.notFoundDescription')} /blog ${t('blogPostPage.notFoundDescriptionEnd')}`}
         >
-          <Button to="/blog" variant="outline">{t('menu.blog')}</Button>
+          <Button to={path('blog')} variant="outline">{t('menu.blog')}</Button>
         </PageHero>
       </SiteLayout>
     );
@@ -260,7 +262,7 @@ const BlogPost = () => {
                   {conclusion.title}
                 </h2>
                 <p className="mt-5 text-foreground/90 leading-relaxed">{conclusion.description}</p>
-                <Button to="/contato" rightIcon={<ArrowUpRight size={16} />} className="mt-8">
+                <Button to={path('contact')} rightIcon={<ArrowUpRight size={16} />} className="mt-8">
                   {conclusion.cta}
                 </Button>
               </Card>

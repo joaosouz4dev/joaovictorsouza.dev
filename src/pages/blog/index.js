@@ -9,9 +9,11 @@ import Section from '../../components/ui/Section';
 import Card from '../../components/ui/Card';
 import { RevealGroup, RevealItem } from '../../components/ui/RevealOnScroll';
 import { getPublishedPosts, getUpcomingPosts } from './data';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Blog = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const published = getPublishedPosts(i18n.resolvedLanguage);
   const upcoming = getUpcomingPosts(i18n.resolvedLanguage);
 
@@ -44,7 +46,7 @@ const Blog = () => {
             <RevealGroup className="space-y-5" stagger={0.06}>
               {published.map((post) => (
                 <RevealItem key={post.slug}>
-                  <Link to={`/blog/${post.slug}`} className="block group">
+                  <Link to={path('post', post.slug)} className="block group">
                     <Card spotlight className="p-8 transition-transform group-hover:-translate-y-1">
                       <div className="flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground">
                         <span className="inline-flex items-center gap-1.5">

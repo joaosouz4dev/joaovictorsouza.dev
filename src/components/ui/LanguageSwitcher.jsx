@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Languages, Check } from 'lucide-react';
 import { cn } from '../../lib/cn';
+import { translatePath } from '../../config/routes';
 
 const LANGS = [
   { code: 'pt', label: 'Português', short: 'PT' },
@@ -12,6 +14,8 @@ const LANGS = [
 
 export function LanguageSwitcher({ className, align = 'right' }) {
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const current = LANGS.find((l) => i18n.resolvedLanguage?.startsWith(l.code)) ?? LANGS[0];
@@ -58,8 +62,14 @@ export function LanguageSwitcher({ className, align = 'right' }) {
                     role="option"
                     aria-selected={active}
                     onClick={() => {
+                      // Trocar o idioma tambem troca a URL: quem esta em
+                      // /servicos e escolhe ingles vai para /services.
+                      const nextPath = translatePath(location.pathname, lang.code);
                       i18n.changeLanguage(lang.code);
                       setOpen(false);
+                      if (nextPath !== location.pathname) {
+                        navigate(`${nextPath}${location.search}${location.hash}`);
+                      }
                     }}
                     className={cn(
                       'flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm transition-colors',

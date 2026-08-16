@@ -14,7 +14,6 @@ const WhatsAppPage = () => {
         title={t('seo.whatsappToolTitle')}
         description={t('seo.whatsappToolDescription')}
         canonical="/wpp"
-        robots="noindex,follow"
       />
 
       <PageHero

@@ -10,6 +10,7 @@ import Button from '../../components/ui/Button';
 import GradientText from '../../components/ui/GradientText';
 import Spotlight from '../../components/ui/Spotlight';
 import NoiseTexture from '../../components/ui/NoiseTexture';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 function GlitchDigit({ char, delay }) {
   const reduce = useReducedMotion();
@@ -47,6 +48,7 @@ function GlitchDigit({ char, delay }) {
 
 export default function NotFound() {
   const { t } = useTranslation();
+  const path = useLocalizedPath();
   return (
     <SiteLayout>
       <Seo
@@ -86,7 +88,7 @@ export default function NotFound() {
             <Button to="/" size="lg" leftIcon={<Home size={18} />}>
               {t('notFound.backHome')}
             </Button>
-            <Button to="/contato" variant="outline" size="lg" leftIcon={<ArrowLeft size={18} />}>
+            <Button to={path('contact')} variant="outline" size="lg" leftIcon={<ArrowLeft size={18} />}>
               {t('notFound.contact')}
             </Button>
           </motion.div>

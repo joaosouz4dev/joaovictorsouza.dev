@@ -10,9 +10,11 @@ import Card from '../../components/ui/Card';
 import { RevealGroup, RevealItem } from '../../components/ui/RevealOnScroll';
 import { cn } from '../../lib/cn';
 import { getCases } from './data';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Cases = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const cases = getCases(i18n.resolvedLanguage);
   const allLabel = t('casesPage.allFilter');
   const [active, setActive] = useState(allLabel);
@@ -80,7 +82,7 @@ const Cases = () => {
         <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-2" stagger={0.06}>
           {visible.map((c) => (
             <RevealItem key={c.slug}>
-              <Link to={`/cases/${c.slug}`} className="block h-full">
+              <Link to={path('case', c.slug)} className="block h-full">
                 <Card spotlight interactive className="h-full p-6 md:p-8">
                   <div className="flex items-start justify-between gap-3">
                     <span className="rounded-full border border-border/80 bg-surface/60 px-3 py-1 text-[10px] md:text-xs font-mono uppercase tracking-[0.16em] text-foreground/80 break-words">

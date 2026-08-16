@@ -3,6 +3,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import translatePt from '../src/config/translate/pt.js';
+import translateEn from '../src/config/translate/en.js';
+import translateEs from '../src/config/translate/es.js';
+import {
+  SUPPORTED_LANGUAGES,
+  alternatePathsFor,
+  localizedPath,
+} from '../src/config/routes.js';
 import {
   getPublishedPosts,
   getUpcomingPosts,
@@ -36,15 +43,37 @@ const escapeXml = (value) =>
 
 const normalizePath = (routePath) => (routePath === '/' ? '/' : routePath.replace(/\/+$/, ''));
 
+const translations = { pt: translatePt, en: translateEn, es: translateEs };
+const htmlLangOf = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
+const faqHeadingOf = {
+  pt: 'Perguntas frequentes',
+  en: 'Frequently asked questions',
+  es: 'Preguntas frecuentes',
+};
+
+const hreflangOf = { pt: 'pt-BR', en: 'en', es: 'es' };
+
+const renderAlternateTags = (alternates) =>
+  [
+    ...alternates.map(
+      ({ language, path: routePath }) =>
+        `    <link rel="alternate" hreflang="${hreflangOf[language]}" href="${escapeHtml(`${siteUrl}${routePath}`)}" />`,
+    ),
+    `    <link rel="alternate" hreflang="x-default" href="${escapeHtml(`${siteUrl}${alternates[0].path}`)}" />`,
+  ].join('\n');
+
 const updateHead = (html, page) => {
   const absoluteUrl = `${siteUrl}${normalizePath(page.path)}`;
   const ogType = page.ogType || 'website';
+  const language = page.language || 'pt';
   const schemaTag = page.schema
     ? `    <script type="application/ld+json" id="seo-schema">${JSON.stringify(page.schema)}</script>\n`
     : '';
   const canonicalTag = `    <link rel="canonical" href="${escapeHtml(absoluteUrl)}" />\n`;
+  const alternateTags = page.alternates ? `${renderAlternateTags(page.alternates)}\n` : '';
 
   return html
+    .replace(/<html([^>]*)\slang="[^"]*"([^>]*)>/, `<html$1 lang="${htmlLangOf[language]}"$2>`)
     .replace(/<html([^>]*)>/, `<html$1 data-prerendered-route="${escapeHtml(page.path)}">`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(page.title)}</title>`)
     .replace(
@@ -71,7 +100,7 @@ const updateHead = (html, page) => {
       /<meta name="twitter:description" content="[^"]*" \/>/,
       `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
     )
-    .replace('</head>', `${canonicalTag}${schemaTag}  </head>`);
+    .replace('</head>', `${canonicalTag}${alternateTags}${schemaTag}  </head>`);
 };
 
 const renderShell = ({ eyebrow, title, description, content }) => `
@@ -161,8 +190,9 @@ const renderBlock = (block) => {
   }
 };
 
-const renderBlogPost = (post) => {
-  const content = getPostContent(post.slug, 'pt') || {};
+const renderBlogPost = (post, language) => {
+  const t = translations[language];
+  const content = getPostContent(post.slug, language) || {};
   const intro = content.intro || post.excerpt;
   const sections = content.sections || [];
   const faq = content.faq || [];
@@ -177,7 +207,8 @@ const renderBlogPost = (post) => {
       author: { '@type': 'Person', name: 'João Victor Souza' },
       datePublished: post.date,
       dateModified: post.date,
-      mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+      inLanguage: htmlLangOf[language],
+      mainEntityOfPage: `${siteUrl}${localizedPath('post', language, post.slug)}`,
     },
   ];
   if (faq.length) {
@@ -207,7 +238,7 @@ const renderBlogPost = (post) => {
     ? `
               <article class="mt-5 rounded-[2rem] border border-border/70 bg-card/80 p-6 shadow-card md:p-8">
                 <p class="mb-3 font-mono text-eyebrow uppercase text-muted-foreground">FAQ</p>
-                <h2 class="font-display text-2xl font-medium tracking-tight">Perguntas frequentes</h2>
+                <h2 class="font-display text-2xl font-medium tracking-tight">${escapeHtml(faqHeadingOf[language])}</h2>
                 <div class="mt-5">${renderFaqBlock(faq)}</div>
               </article>`
     : '';
@@ -221,13 +252,15 @@ const renderBlogPost = (post) => {
     : '';
 
   return {
-    path: `/blog/${post.slug}`,
+    path: localizedPath('post', language, post.slug),
+    language,
+    alternates: alternatePathsFor('post', post.slug),
     title: `${post.title} | João Victor Souza`,
     description: post.excerpt,
     ogType: 'article',
     schema,
     body: renderShell({
-      eyebrow: translatePt.menu.blog,
+      eyebrow: t.menu.blog,
       title: post.title,
       description: intro,
       content: `
@@ -244,17 +277,20 @@ const renderBlogPost = (post) => {
   };
 };
 
-const renderBlogPage = () => {
-  const page = translatePt.blogPage;
-  const posts = getPublishedPosts('pt');
-  const upcoming = getUpcomingPosts('pt');
+const renderBlogPage = (language) => {
+  const t = translations[language];
+  const page = t.blogPage;
+  const posts = getPublishedPosts(language);
+  const upcoming = getUpcomingPosts(language);
 
   return {
-    path: '/blog',
+    path: localizedPath('blog', language),
+    language,
+    alternates: alternatePathsFor('blog'),
     title: page.seoTitle,
     description: page.seoDescription,
     body: renderShell({
-      eyebrow: translatePt.menu.blog,
+      eyebrow: t.menu.blog,
       title: page.heroTitle,
       description: page.heroDescription,
       content: `
@@ -264,7 +300,7 @@ const renderBlogPage = () => {
                 ${posts
                   .map((post) =>
                     renderCard({
-                      href: `/blog/${post.slug}`,
+                      href: localizedPath('post', language, post.slug),
                       meta: [post.date, post.category, post.readTime],
                       title: post.title,
                       description: post.excerpt,
@@ -288,16 +324,19 @@ const renderBlogPage = () => {
   };
 };
 
-const renderServicesPage = () => {
-  const page = translatePt.servicesPage;
-  const services = getServices('pt');
+const renderServicesPage = (language) => {
+  const t = translations[language];
+  const page = t.servicesPage;
+  const services = getServices(language);
 
   return {
-    path: '/servicos',
+    path: localizedPath('services', language),
+    language,
+    alternates: alternatePathsFor('services'),
     title: page.seoTitle,
     description: page.seoDescription,
     body: renderShell({
-      eyebrow: translatePt.menu.services,
+      eyebrow: t.menu.services,
       title: page.heroTitle,
       description: page.heroDescription,
       content: `
@@ -306,7 +345,7 @@ const renderServicesPage = () => {
               ${services
                 .map((service) =>
                   renderCard({
-                    href: `/servicos/${service.slug}`,
+                    href: localizedPath('service', language, service.slug),
                     title: service.title,
                     description: service.summary,
                     cta: page.viewDetails,
@@ -320,16 +359,19 @@ const renderServicesPage = () => {
   };
 };
 
-const renderCasesPage = () => {
-  const page = translatePt.casesPage;
-  const cases = getCases('pt');
+const renderCasesPage = (language) => {
+  const t = translations[language];
+  const page = t.casesPage;
+  const cases = getCases(language);
 
   return {
-    path: '/cases',
+    path: localizedPath('cases', language),
+    language,
+    alternates: alternatePathsFor('cases'),
     title: page.seoTitle,
     description: page.seoDescription,
     body: renderShell({
-      eyebrow: translatePt.menu.cases,
+      eyebrow: t.menu.cases,
       title: page.heroTitle,
       description: page.heroDescription,
       content: `
@@ -340,7 +382,7 @@ const renderCasesPage = () => {
                 ${cases
                   .map((caseItem) =>
                     renderCard({
-                      href: `/cases/${caseItem.slug}`,
+                      href: localizedPath('case', language, caseItem.slug),
                       meta: [caseItem.category],
                       title: caseItem.title,
                       description: caseItem.summary,
@@ -369,83 +411,137 @@ const writePage = async (baseHtml, page) => {
   await writeFile(path.join(buildDir, `${routeName}.html`), html, 'utf8');
 };
 
-// Rotas estaticas publicas do site (fora das listagens dinamicas).
-// Fora daqui de proposito: /zap (redirect para /whatsapp), a rota coringa de
-// 404 e /politica-de-privacidade/:title, que nao tem listagem de itens.
+// Rotas estaticas publicas do site (fora das listagens dinamicas), por chave
+// logica: cada uma entra no sitemap nas tres variantes de idioma.
+//
+// So entra aqui o que e indexavel. Ficam de fora de proposito: /zap (redirect
+// sem HTML proprio), /matrix e /whatsapp (marcadas noindex na pagina), a rota
+// coringa de 404 e a politica de privacidade, que nao tem listagem de itens.
+// Submeter no sitemap uma URL noindex e pedir indexacao do que a propria
+// pagina recusa, e o Search Console reporta isso como conflito.
 const staticSitemapEntries = [
-  { path: '/', changefreq: 'weekly', priority: '1.0' },
-  { path: '/sobre', changefreq: 'monthly', priority: '0.8' },
-  { path: '/servicos', changefreq: 'weekly', priority: '0.9' },
-  { path: '/cases', changefreq: 'weekly', priority: '0.8' },
-  { path: '/blog', changefreq: 'weekly', priority: '0.8' },
-  { path: '/projetos', changefreq: 'monthly', priority: '0.7' },
-  { path: '/contato', changefreq: 'monthly', priority: '0.8' },
-  { path: '/whatsapp', changefreq: 'monthly', priority: '0.7' },
-  { path: '/wpp', changefreq: 'monthly', priority: '0.7' },
-  { path: '/matrix', changefreq: 'yearly', priority: '0.3' },
+  { routeKey: 'home', changefreq: 'weekly', priority: '1.0' },
+  { routeKey: 'about', changefreq: 'monthly', priority: '0.8' },
+  { routeKey: 'services', changefreq: 'weekly', priority: '0.9' },
+  { routeKey: 'cases', changefreq: 'weekly', priority: '0.8' },
+  { routeKey: 'blog', changefreq: 'weekly', priority: '0.8' },
+  { routeKey: 'projects', changefreq: 'monthly', priority: '0.7' },
+  { routeKey: 'contact', changefreq: 'monthly', priority: '0.8' },
+  { routeKey: 'wpp', changefreq: 'monthly', priority: '0.7' },
 ];
+
+// Uma entrada de sitemap por idioma, cada uma declarando as outras como
+// alternates. Rotas com o mesmo caminho nos tres idiomas (/blog, /matrix)
+// aparecem uma vez so, ainda com os alternates apontando para si mesmas.
+const localizedSitemapEntries = ({ routeKey, slug, changefreq, priority, lastmod }) => {
+  const alternates = alternatePathsFor(routeKey, slug);
+  const seen = new Set();
+
+  return alternates.reduce((entries, { path: routePath }) => {
+    if (seen.has(routePath)) return entries;
+    seen.add(routePath);
+
+    return [
+      ...entries,
+      {
+        loc: `${siteUrl}${routePath}`,
+        lastmod,
+        changefreq,
+        priority,
+        alternates,
+      },
+    ];
+  }, []);
+};
 
 const buildSitemap = (posts) => {
   const today = new Date().toISOString().slice(0, 10);
 
-  const staticUrls = staticSitemapEntries.map((entry) => ({
-    loc: `${siteUrl}${entry.path === '/' ? '/' : entry.path}`,
-    lastmod: today,
-    changefreq: entry.changefreq,
-    priority: entry.priority,
-  }));
+  const staticUrls = staticSitemapEntries.flatMap((entry) =>
+    localizedSitemapEntries({ ...entry, lastmod: today }),
+  );
 
-  const serviceUrls = getServices('pt').map((service) => ({
-    loc: `${siteUrl}/servicos/${service.slug}`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: '0.9',
-  }));
+  const serviceUrls = getServices('pt').flatMap((service) =>
+    localizedSitemapEntries({
+      routeKey: 'service',
+      slug: service.slug,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.9',
+    }),
+  );
 
-  const caseUrls = getCases('pt').map((caseItem) => ({
-    loc: `${siteUrl}/cases/${caseItem.slug}`,
-    lastmod: today,
-    changefreq: 'monthly',
-    priority: '0.8',
-  }));
+  const caseUrls = getCases('pt').flatMap((caseItem) =>
+    localizedSitemapEntries({
+      routeKey: 'case',
+      slug: caseItem.slug,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: '0.8',
+    }),
+  );
 
-  const projectUrls = getProjects('pt').map((project) => ({
-    loc: `${siteUrl}/projetos/${project.slug}`,
-    lastmod: today,
-    changefreq: 'monthly',
-    priority: '0.6',
-  }));
+  const projectUrls = getProjects('pt').flatMap((project) =>
+    localizedSitemapEntries({
+      routeKey: 'project',
+      slug: project.slug,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: '0.6',
+    }),
+  );
 
-  const postUrls = posts.map((post) => ({
-    loc: `${siteUrl}/blog/${post.slug}`,
-    lastmod: post.date || today,
-    changefreq: 'monthly',
-    priority: '0.8',
-  }));
+  const postUrls = posts.flatMap((post) =>
+    localizedSitemapEntries({
+      routeKey: 'post',
+      slug: post.slug,
+      lastmod: post.date || today,
+      changefreq: 'monthly',
+      priority: '0.8',
+    }),
+  );
 
   const urls = [...staticUrls, ...serviceUrls, ...caseUrls, ...projectUrls, ...postUrls];
+
+  const renderAlternates = (alternates) =>
+    [
+      ...alternates.map(
+        ({ language, path: routePath }) =>
+          `    <xhtml:link rel="alternate" hreflang="${hreflangOf[language]}" href="${escapeXml(`${siteUrl}${routePath}`)}" />`,
+      ),
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${siteUrl}${alternates[0].path}`)}" />`,
+    ].join('\n');
 
   const body = urls
     .map(
       (url) =>
-        `  <url>\n    <loc>${escapeXml(url.loc)}</loc>\n    <lastmod>${url.lastmod}</lastmod>\n    <changefreq>${url.changefreq}</changefreq>\n    <priority>${url.priority}</priority>\n  </url>`,
+        `  <url>\n    <loc>${escapeXml(url.loc)}</loc>\n${renderAlternates(url.alternates)}\n    <lastmod>${url.lastmod}</lastmod>\n    <changefreq>${url.changefreq}</changefreq>\n    <priority>${url.priority}</priority>\n  </url>`,
     )
     .join('\n');
 
   return {
-    xml: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`,
+    xml: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${body}\n</urlset>\n`,
     routeCount: urls.length,
   };
 };
 
 const baseHtml = await readFile(path.join(buildDir, 'index.html'), 'utf8');
 const posts = getPublishedPosts('pt');
-const pages = [
-  renderBlogPage(),
-  renderServicesPage(),
-  renderCasesPage(),
-  ...posts.map((post) => renderBlogPost(post)),
-];
+
+// Uma versao prerenderizada por idioma, cada uma no seu proprio caminho
+// (/servicos, /services, /servicios). Caminhos identicos entre idiomas
+// (/blog) ficam com a versao do primeiro idioma que os gera.
+const seenPaths = new Set();
+const pages = SUPPORTED_LANGUAGES.flatMap((language) => [
+  renderBlogPage(language),
+  renderServicesPage(language),
+  renderCasesPage(language),
+  ...getPublishedPosts(language).map((post) => renderBlogPost(post, language)),
+]).filter((page) => {
+  if (seenPaths.has(page.path)) return false;
+  seenPaths.add(page.path);
+  return true;
+});
 
 await Promise.all(pages.map((page) => writePage(baseHtml, page)));
 
@@ -453,4 +549,6 @@ const sitemap = buildSitemap(posts);
 await writeFile(path.join(buildDir, 'sitemap.xml'), sitemap.xml, 'utf8');
 await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap.xml, 'utf8');
 
-console.log(`Prerendered ${pages.length} pages (${posts.length} blog posts) and generated sitemap with ${sitemap.routeCount} routes.`);
+console.log(
+  `Prerendered ${pages.length} pages across ${SUPPORTED_LANGUAGES.length} languages (${posts.length} blog posts) and generated sitemap with ${sitemap.routeCount} routes.`,
+);

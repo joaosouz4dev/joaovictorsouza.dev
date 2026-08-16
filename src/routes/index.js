@@ -1,5 +1,14 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { languageFromPath, uniquePathsFor } from '../config/routes';
 
 // Fontes importadas via JS (nao via @import no CSS) para que o Vite resolva os
 // url() relativos e hasheie os woff2. Com o pipeline do Tailwind v4, o @import
@@ -40,26 +49,51 @@ const PageLoader = () => (
   </div>
 );
 
+// Registra a mesma pagina nas variantes de idioma do caminho (/sobre, /about,
+// /acerca-de). Rotas com segmento identico nos tres idiomas geram uma entrada so.
+const localizedRoutes = (routeKey, element, slugPattern) =>
+  uniquePathsFor(routeKey, slugPattern).map((path) => (
+    <Route key={path} path={path} element={element} />
+  ));
+
+// O idioma vem do proprio caminho: quem abre /about espera o site em ingles,
+// mesmo que o localStorage tenha outro idioma salvo. Caminhos que nao
+// identificam idioma (home, /blog, /matrix) mantem o idioma detectado.
+const LanguageFromRoute = () => {
+  const { pathname } = useLocation();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const language = languageFromPath(pathname);
+    if (language && i18n.resolvedLanguage !== language) {
+      i18n.changeLanguage(language);
+    }
+  }, [i18n, pathname]);
+
+  return null;
+};
+
 const AppRoutes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
+      <LanguageFromRoute />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/sobre" element={<Sobre />} />
-        <Route exact path="/servicos" element={<Servicos />} />
-        <Route exact path="/servicos/:slug" element={<Servico />} />
-        <Route exact path="/cases" element={<Cases />} />
-        <Route exact path="/cases/:slug" element={<Case />} />
-        <Route exact path="/blog" element={<Blog />} />
-        <Route exact path="/blog/:slug" element={<BlogPost />} />
-        <Route exact path="/projetos" element={<Projetos />} />
-        <Route exact path="/projetos/:slug" element={<Projeto />} />
-        <Route exact path="/contato" element={<Contato />} />
-        <Route exact path="/zap" element={<Navigate to="/whatsapp" replace />} />
-        <Route exact path="/whatsapp" element={<Wpp />} />
-        <Route exact path="/wpp" element={<WhatsAppPage />} />
-        <Route exact path="/matrix" element={<Matrix />} />
-        <Route exact path="/politica-de-privacidade/:title" element={<Privacidade />} />
+        <Route path="/" element={<Home />} />
+        {localizedRoutes('about', <Sobre />)}
+        {localizedRoutes('services', <Servicos />)}
+        {localizedRoutes('service', <Servico />, ':slug')}
+        {localizedRoutes('cases', <Cases />)}
+        {localizedRoutes('case', <Case />, ':slug')}
+        {localizedRoutes('blog', <Blog />)}
+        {localizedRoutes('post', <BlogPost />, ':slug')}
+        {localizedRoutes('projects', <Projetos />)}
+        {localizedRoutes('project', <Projeto />, ':slug')}
+        {localizedRoutes('contact', <Contato />)}
+        {localizedRoutes('privacy', <Privacidade />, ':title')}
+        <Route path="/zap" element={<Navigate to="/whatsapp" replace />} />
+        {localizedRoutes('whatsapp', <Wpp />)}
+        {localizedRoutes('wpp', <WhatsAppPage />)}
+        {localizedRoutes('matrix', <Matrix />)}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
