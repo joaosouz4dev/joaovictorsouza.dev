@@ -11,12 +11,21 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
   return (
     <header
       className={cn(
-        'relative isolate overflow-hidden pt-28 pb-12 md:pt-40 md:pb-24',
+        'relative pt-28 pb-12 md:pt-40 md:pb-24',
         className,
       )}
     >
-      <Spotlight />
-      <GlowEffect intensity="xl" color="primary" className="left-1/2 top-0 -translate-x-1/2 opacity-50" />
+      {/* O breadcrumb do SiteLayout fica acima deste header. O bloco decorativo se
+          estende para tras dele ate o topo da tela, mas o Spotlight mantem seu centro
+          na altura do titulo (top-44/48 compensa o offset negativo do wrapper). */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -top-44 md:-top-48 -z-10 overflow-hidden">
+        <Spotlight className="z-0 top-44 md:top-48" glowClassName="h-[130%]" />
+        <GlowEffect
+          intensity="xl"
+          color="primary"
+          className="left-1/2 top-44 md:top-48 -translate-x-1/2 opacity-50"
+        />
+      </div>
       <Container size="lg">
         <div className="max-w-3xl">
           {eyebrow && (
