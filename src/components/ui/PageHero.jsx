@@ -15,15 +15,16 @@ export function PageHero({ eyebrow, title, gradient, description, children, clas
         className,
       )}
     >
-      {/* O breadcrumb do SiteLayout fica acima deste header. O bloco decorativo se
-          estende para tras dele ate o topo da tela, mas o Spotlight mantem seu centro
-          na altura do titulo (top-44/48 compensa o offset negativo do wrapper). */}
+      {/* O breadcrumb do SiteLayout fica acima deste header, entao o bloco decorativo
+          se estende para tras dele ate o topo da tela. O elipse do Spotlight e alargado
+          e sobe junto, de modo que a parte cheia do gradiente (nao a borda transparente)
+          cubra a faixa do breadcrumb. */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -top-44 md:-top-48 -z-10 overflow-hidden">
-        <Spotlight className="z-0 top-44 md:top-48" glowClassName="h-[130%]" />
+        <Spotlight className="z-0" glowClassName="h-[150%] w-[200%]" fill="rgba(168,85,247,0.38)" />
         <GlowEffect
           intensity="xl"
           color="primary"
-          className="left-1/2 top-44 md:top-48 -translate-x-1/2 opacity-50"
+          className="left-1/2 top-32 md:top-40 -translate-x-1/2 opacity-50"
         />
       </div>
       <Container size="lg">
