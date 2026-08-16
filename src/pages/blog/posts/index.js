@@ -74,8 +74,10 @@ import filaRevisaoHumana from './fila-revisao-humana-quais-respostas-agente-mere
 import orcamentoLatenciaPorEtapa from './orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora.js';
 import rollbackBaseConhecimento from './rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento.js';
 import testesRegressaoFerramentas from './testes-regressao-ferramentas-agente-contrato-antes-do-prompt.js';
+import roteamentoEntreAgentes from './roteamento-conversa-entre-agentes-especializados-sem-perder-contexto.js';
 
 const postContentBySlug = {
+  'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto': roteamentoEntreAgentes,
   'testes-regressao-ferramentas-agente-contrato-antes-do-prompt': testesRegressaoFerramentas,
   'rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento': rollbackBaseConhecimento,
   'orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora': orcamentoLatenciaPorEtapa,
