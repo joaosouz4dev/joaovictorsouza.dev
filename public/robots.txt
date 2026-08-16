@@ -1,10 +1,10 @@
 User-agent: *
 Allow: /
 
-Disallow: /matrix
+# Paginas fora do indice usam <meta name="robots" content="noindex"> no HTML,
+# nao Disallow: bloquear o rastreio aqui impediria o Google de ler o proprio
+# noindex, que e o que mantem a URL aparecendo como "rastreada mas nao
+# indexada". So entra Disallow o que nao deve nem ser buscado.
 Disallow: /zap
-Disallow: /whatsapp
-Disallow: /wpp
-Disallow: /404
 
 Sitemap: https://joaovictorsouza.dev/sitemap.xml

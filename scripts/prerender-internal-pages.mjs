@@ -413,8 +413,12 @@ const writePage = async (baseHtml, page) => {
 
 // Rotas estaticas publicas do site (fora das listagens dinamicas), por chave
 // logica: cada uma entra no sitemap nas tres variantes de idioma.
-// Fora daqui de proposito: /zap (redirect para /whatsapp), a rota coringa de
-// 404 e a politica de privacidade, que nao tem listagem de itens.
+//
+// So entra aqui o que e indexavel. Ficam de fora de proposito: /zap (redirect
+// sem HTML proprio), /matrix e /whatsapp (marcadas noindex na pagina), a rota
+// coringa de 404 e a politica de privacidade, que nao tem listagem de itens.
+// Submeter no sitemap uma URL noindex e pedir indexacao do que a propria
+// pagina recusa, e o Search Console reporta isso como conflito.
 const staticSitemapEntries = [
   { routeKey: 'home', changefreq: 'weekly', priority: '1.0' },
   { routeKey: 'about', changefreq: 'monthly', priority: '0.8' },
@@ -423,9 +427,7 @@ const staticSitemapEntries = [
   { routeKey: 'blog', changefreq: 'weekly', priority: '0.8' },
   { routeKey: 'projects', changefreq: 'monthly', priority: '0.7' },
   { routeKey: 'contact', changefreq: 'monthly', priority: '0.8' },
-  { routeKey: 'whatsapp', changefreq: 'monthly', priority: '0.7' },
   { routeKey: 'wpp', changefreq: 'monthly', priority: '0.7' },
-  { routeKey: 'matrix', changefreq: 'yearly', priority: '0.3' },
 ];
 
 // Uma entrada de sitemap por idioma, cada uma declarando as outras como

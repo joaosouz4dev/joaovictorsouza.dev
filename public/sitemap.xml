@@ -171,16 +171,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://joaovictorsouza.dev/whatsapp</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/whatsapp" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/whatsapp" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/whatsapp" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/whatsapp" />
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://joaovictorsouza.dev/wpp</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/wpp" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/wpp" />
@@ -189,16 +179,6 @@
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://joaovictorsouza.dev/matrix</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/matrix" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/matrix" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/matrix" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/matrix" />
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes</loc>
