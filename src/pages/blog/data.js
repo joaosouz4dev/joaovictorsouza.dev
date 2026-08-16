@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto',
+    date: '2026-08-16',
+    readTime: '15 min',
+    keywords: {
+      pt: 'roteamento entre agentes, agentes especializados, pacote de transferencia, handoff de conversa, perda de contexto, laco de transferencia, autoridade do agente, classificador de intencao, eval de roteamento, anthropic',
+      en: 'agent routing, specialized agents, handoff package, conversation handoff, context loss, handoff loop, agent authority, intent classifier, routing eval, anthropic',
+      es: 'enrutamiento entre agentes, agentes especializados, paquete de transferencia, handoff de conversacion, perdida de contexto, bucle de transferencia, autoridad del agente, clasificador de intencion, eval de enrutamiento, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Roteamento de conversa entre agentes especializados sem perder o contexto',
+        excerpt:
+          'O cliente explica o problema em quatro mensagens, o agente transfere e o próximo abre com "em que posso ajudar?". Por que trocar de agente não é trocar de prompt e quais três coisas se perdem de forma independente na fronteira, qual é a estrutura mínima de um pacote de transferência que separa fato de hipótese e de compromisso, por que autoridade nunca deve viajar junto com o contexto, como garantir terminação no roteador para o cliente não circular entre filas, por que cada transferência invalida o cache de prefixo e faz o custo crescer com o tamanho da conversa, e por que o roteador precisa de conjunto de avaliação próprio, separado dos especialistas que ele orquestra.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Routing conversations between specialized agents without losing context',
+        excerpt:
+          'The customer explains the problem across four messages, the agent transfers, and the next one opens with "how can I help you?". Why switching agents is not switching prompts and which three things are lost independently at the boundary, what the minimum structure of a handoff package that separates fact from hypothesis and commitment looks like, why authority must never travel with the context, how to guarantee termination in the router so the customer does not circle between queues, why every handoff invalidates the prefix cache and makes cost grow with conversation length, and why the router needs its own evaluation set, separate from the specialists it orchestrates.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Enrutamiento de conversación entre agentes especializados sin perder el contexto',
+        excerpt:
+          'El cliente explica el problema en cuatro mensajes, el agente transfiere y el siguiente abre con "¿en qué puedo ayudarte?". Por qué cambiar de agente no es cambiar de prompt y qué tres cosas se pierden de forma independiente en la frontera, cuál es la estructura mínima de un paquete de transferencia que separa hecho de hipótesis y de compromiso, por qué la autoridad nunca debe viajar junto con el contexto, cómo garantizar la terminación en el enrutador para que el cliente no circule entre filas, por qué cada transferencia invalida la caché de prefijo y hace crecer el costo con el tamaño de la conversación, y por qué el enrutador necesita su propio conjunto de evaluación, separado de los especialistas que orquesta.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'testes-regressao-ferramentas-agente-contrato-antes-do-prompt',
     date: '2026-08-15',
     readTime: '15 min',
@@ -1866,17 +1896,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Roteamento de conversa entre agentes especializados sem perder o contexto',
     'Quota de contexto por cliente: quando a conversa longa vira prejuízo',
     'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
   ],
   en: [
-    'Routing conversations between specialized agents without losing context',
     'Per customer context quota: when a long conversation becomes a loss',
     'Chat abandonment signal: detecting the drop-off before the customer leaves',
   ],
   es: [
-    'Enrutamiento de conversación entre agentes especializados sin perder el contexto',
     'Cuota de contexto por cliente: cuándo la conversación larga se vuelve pérdida',
     'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
   ],
