@@ -11,9 +11,11 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import { getProjectBySlug } from '../projetos/data';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Projeto = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const { slug } = useParams();
   const project = getProjectBySlug(slug, i18n.resolvedLanguage);
 
@@ -31,7 +33,7 @@ const Projeto = () => {
           title={t('projectPage.notFoundTitle')}
           description={t('projectPage.notFoundDescription')}
         >
-          <Button to="/projetos" variant="outline">{t('menu.projects')}</Button>
+          <Button to={path('projects')} variant="outline">{t('menu.projects')}</Button>
         </PageHero>
       </SiteLayout>
     );
@@ -93,7 +95,7 @@ const Projeto = () => {
                 <GitHub size={16} />
                 {project.repository}
               </a>
-              <Button to="/contato" className="mt-6 w-full" rightIcon={<ArrowUpRight size={16} />}>
+              <Button to={path('contact')} className="mt-6 w-full" rightIcon={<ArrowUpRight size={16} />}>
                 {t('projectPage.cta')}
               </Button>
             </Card>

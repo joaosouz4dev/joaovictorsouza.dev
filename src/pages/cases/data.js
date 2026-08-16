@@ -1,4 +1,5 @@
 import { toBaseLanguage } from '../../utils/i18n.js';
+import { translatePath } from '../../config/routes.js';
 
 const caseDefinitions = [
   {
@@ -514,7 +515,10 @@ const localizeCase = (caseItem, language = 'pt') => {
     category: localized.category || fallback.category,
     stack: caseItem.stack,
     coverImage: caseItem.coverImage,
-    demoUrl: caseItem.demoUrl,
+    // Demos internas seguem o idioma do visitante (/servicos -> /services).
+    demoUrl: caseItem.demoUrl?.startsWith('/')
+      ? translatePath(caseItem.demoUrl, locale)
+      : caseItem.demoUrl,
     repoUrl: caseItem.repoUrl,
   };
 };

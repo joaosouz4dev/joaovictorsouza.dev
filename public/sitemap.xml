@@ -1,601 +1,1661 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://joaovictorsouza.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/sobre</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/sobre" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/acerca-de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/sobre" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/about</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/sobre" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/acerca-de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/sobre" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/acerca-de</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/sobre" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/acerca-de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/sobre" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/contato</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/contato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/contato" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/contact</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/contato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/contato" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/contato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/contato" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/whatsapp" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/wpp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/wpp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/wpp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/wpp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/wpp" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/matrix</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/matrix" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/matrix" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/matrix" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/matrix" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/meta-ads-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/meta-ads-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/meta-ads-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/meta-ads-e-integracoes" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/whatsapp-cloud-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/whatsapp-cloud-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/whatsapp-cloud-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/whatsapp-cloud-api" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/chatbots-e-ia</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/chatbots-e-ia</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/chatbots-e-ia</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/chatbots-e-ia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/chatbots-e-ia" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/automacao-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/automacao-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/automacao-e-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/automacao-e-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/automacao-e-integracoes" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/crm-e-revenue-operations</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/crm-e-revenue-operations</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/crm-e-revenue-operations</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/crm-e-revenue-operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/crm-e-revenue-operations" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/integracao-erp-e-backoffice</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/integracao-erp-e-backoffice</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/integracao-erp-e-backoffice" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/integracao-erp-e-backoffice" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/observabilidade-e-confiabilidade</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/observabilidade-e-confiabilidade</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/observabilidade-e-confiabilidade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/observabilidade-e-confiabilidade" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/services/arquitetura-e-modernizacao-backend</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/servicios/arquitetura-e-modernizacao-backend</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/services/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/servicios/arquitetura-e-modernizacao-backend" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/servicos/arquitetura-e-modernizacao-backend" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/whatsapp-ia-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/whatsapp-ia-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/whatsapp-ia-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/whatsapp-ia-atendimento" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/meta-capi-mensuracao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/meta-capi-mensuracao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/meta-capi-mensuracao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/meta-capi-mensuracao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/meta-capi-mensuracao" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/automacao-crm-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/automacao-crm-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/automacao-crm-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/automacao-crm-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/automacao-crm-whatsapp" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/wpp-new-gerador-link-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/wpp-new-gerador-link-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-new-gerador-link-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-new-gerador-link-whatsapp" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/wpp-redirect-zap-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/wpp-redirect-zap-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/wpp-redirect-zap-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/wpp-redirect-zap-whatsapp" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/matrix-canvas-experience</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/matrix-canvas-experience</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/matrix-canvas-experience</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-canvas-experience" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-canvas-experience" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/seo-rebuild-portfolio-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/seo-rebuild-portfolio-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-rebuild-portfolio-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-rebuild-portfolio-vite" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/i18n-portfolio-multilingue</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/i18n-portfolio-multilingue</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/i18n-portfolio-multilingue" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/i18n-portfolio-multilingue" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/portfolio-react-sem-jquery</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/portfolio-react-sem-jquery</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/portfolio-react-sem-jquery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/portfolio-react-sem-jquery" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/matrix-leak-fix</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/matrix-leak-fix</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/matrix-leak-fix</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/matrix-leak-fix" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/matrix-leak-fix" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/lazy-routes-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/lazy-routes-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/lazy-routes-vite</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/lazy-routes-vite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/lazy-routes-vite" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/seo-head-otimizado</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/seo-head-otimizado</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/seo-head-otimizado</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/seo-head-otimizado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/seo-head-otimizado" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/sitemap-robots-gestao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/sitemap-robots-gestao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/sitemap-robots-gestao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/sitemap-robots-gestao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/sitemap-robots-gestao" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/cases/design-system-internal-pages</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/case-studies/design-system-internal-pages</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/casos/design-system-internal-pages</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/case-studies/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/casos/design-system-internal-pages" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/cases/design-system-internal-pages" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/wppconnect</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/wppconnect</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/wppconnect</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/wppconnect-server</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/wppconnect-server</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/wppconnect-server</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-server" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-server" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/wppconnect-mobile</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/wppconnect-mobile</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/wppconnect-mobile</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/wppconnect-mobile" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/wppconnect-mobile" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/api-prices-webscraping</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/api-prices-webscraping</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/api-prices-webscraping</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/api-prices-webscraping" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/api-prices-webscraping" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/zap-rest-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/zap-rest-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/zap-rest-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-rest-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-rest-api" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/projetos/zap-bot</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-bot" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/projects/zap-bot</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-bot" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://joaovictorsouza.dev/proyectos/zap-bot</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/projetos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/projects/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/proyectos/zap-bot" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/projetos/zap-bot" />
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/testes-regressao-ferramentas-agente-contrato-antes-do-prompt</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/testes-regressao-ferramentas-agente-contrato-antes-do-prompt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/testes-regressao-ferramentas-agente-contrato-antes-do-prompt" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/testes-regressao-ferramentas-agente-contrato-antes-do-prompt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/testes-regressao-ferramentas-agente-contrato-antes-do-prompt" />
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento" />
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/orcamento-latencia-por-etapa-onde-cortar-quando-resposta-demora" />
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/fila-revisao-humana-quais-respostas-agente-merecem-auditoria" />
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/aquecimento-indice-vetorial-primeira-consulta-do-dia-lenta" />
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/retencao-dados-sistema-ia-o-que-guardar-quanto-tempo-como-apagar" />
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/congelar-conjunto-avaliacao-eval-envelhece-como-renovar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/congelar-conjunto-avaliacao-eval-envelhece-como-renovar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/congelar-conjunto-avaliacao-eval-envelhece-como-renovar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/congelar-conjunto-avaliacao-eval-envelhece-como-renovar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/congelar-conjunto-avaliacao-eval-envelhece-como-renovar" />
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/aquecimento-cache-prompt-pagar-prefixo-uma-vez</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/aquecimento-cache-prompt-pagar-prefixo-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/aquecimento-cache-prompt-pagar-prefixo-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/aquecimento-cache-prompt-pagar-prefixo-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/aquecimento-cache-prompt-pagar-prefixo-uma-vez" />
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/multi-idioma-bot-atendimento-detectar-responder-escalar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/multi-idioma-bot-atendimento-detectar-responder-escalar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/multi-idioma-bot-atendimento-detectar-responder-escalar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/multi-idioma-bot-atendimento-detectar-responder-escalar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/multi-idioma-bot-atendimento-detectar-responder-escalar" />
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/sandbox-ferramentas-limitar-o-que-agente-pode-executar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/sandbox-ferramentas-limitar-o-que-agente-pode-executar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/sandbox-ferramentas-limitar-o-que-agente-pode-executar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/sandbox-ferramentas-limitar-o-que-agente-pode-executar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/sandbox-ferramentas-limitar-o-que-agente-pode-executar" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/feature-flag-fluxo-agente-ligar-comportamento-novo-para-poucos" />
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/testes-carga-sistema-llm-simular-provedor-sem-pagar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/testes-carga-sistema-llm-simular-provedor-sem-pagar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/testes-carga-sistema-llm-simular-provedor-sem-pagar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/testes-carga-sistema-llm-simular-provedor-sem-pagar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/testes-carga-sistema-llm-simular-provedor-sem-pagar" />
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/migrar-embeddings-sem-reindexar-tudo-de-uma-vez</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/migrar-embeddings-sem-reindexar-tudo-de-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/migrar-embeddings-sem-reindexar-tudo-de-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/migrar-embeddings-sem-reindexar-tudo-de-uma-vez" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/migrar-embeddings-sem-reindexar-tudo-de-uma-vez" />
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/janela-contexto-compartilhada-entre-canais-whatsapp-web-telefone" />
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/limite-gasto-por-cliente-cortar-abuso-sem-punir-uso-legitimo" />
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/trilha-auditoria-agente-ia-provar-o-que-foi-decidido</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/trilha-auditoria-agente-ia-provar-o-que-foi-decidido" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/trilha-auditoria-agente-ia-provar-o-que-foi-decidido" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/trilha-auditoria-agente-ia-provar-o-que-foi-decidido" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/trilha-auditoria-agente-ia-provar-o-que-foi-decidido" />
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/modo-degradado-manter-atendimento-quando-ia-indisponivel</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/modo-degradado-manter-atendimento-quando-ia-indisponivel" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/modo-degradado-manter-atendimento-quando-ia-indisponivel" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/modo-degradado-manter-atendimento-quando-ia-indisponivel" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/modo-degradado-manter-atendimento-quando-ia-indisponivel" />
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/detectar-deriva-qualidade-bot-atendimento-antes-do-cliente-reclamar" />
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/custo-por-conversa-atribuir-fatura-ia-ao-valor</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/custo-por-conversa-atribuir-fatura-ia-ao-valor" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/custo-por-conversa-atribuir-fatura-ia-ao-valor" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/custo-por-conversa-atribuir-fatura-ia-ao-valor" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/custo-por-conversa-atribuir-fatura-ia-ao-valor" />
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/anonimizacao-dados-antes-de-mandar-para-llm</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/anonimizacao-dados-antes-de-mandar-para-llm" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/anonimizacao-dados-antes-de-mandar-para-llm" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/anonimizacao-dados-antes-de-mandar-para-llm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/anonimizacao-dados-antes-de-mandar-para-llm" />
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/migracao-modelo-sem-quebrar-prompt-producao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/migracao-modelo-sem-quebrar-prompt-producao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/migracao-modelo-sem-quebrar-prompt-producao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/migracao-modelo-sem-quebrar-prompt-producao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/migracao-modelo-sem-quebrar-prompt-producao" />
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/backpressure-pipeline-ia-consumidor-nao-acompanha</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/backpressure-pipeline-ia-consumidor-nao-acompanha" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/backpressure-pipeline-ia-consumidor-nao-acompanha" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/backpressure-pipeline-ia-consumidor-nao-acompanha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/backpressure-pipeline-ia-consumidor-nao-acompanha" />
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/deduplicacao-contexto-rag-cortar-trecho-repetido</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/deduplicacao-contexto-rag-cortar-trecho-repetido" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/deduplicacao-contexto-rag-cortar-trecho-repetido" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/deduplicacao-contexto-rag-cortar-trecho-repetido" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/deduplicacao-contexto-rag-cortar-trecho-repetido" />
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/versionar-prompt-como-codigo-rollout-rollback-teste</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/versionar-prompt-como-codigo-rollout-rollback-teste" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/versionar-prompt-como-codigo-rollout-rollback-teste" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/versionar-prompt-como-codigo-rollout-rollback-teste" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/versionar-prompt-como-codigo-rollout-rollback-teste" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/timeout-cancelamento-cadeia-chamadas-llm</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/timeout-cancelamento-cadeia-chamadas-llm" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/timeout-cancelamento-cadeia-chamadas-llm" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/timeout-cancelamento-cadeia-chamadas-llm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/timeout-cancelamento-cadeia-chamadas-llm" />
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/compressao-contexto-caber-mais-janela-sem-perder-sinal</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/compressao-contexto-caber-mais-janela-sem-perder-sinal" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/compressao-contexto-caber-mais-janela-sem-perder-sinal" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/compressao-contexto-caber-mais-janela-sem-perder-sinal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/compressao-contexto-caber-mais-janela-sem-perder-sinal" />
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/fallback-provedores-llm-sem-parar-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/fallback-provedores-llm-sem-parar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/fallback-provedores-llm-sem-parar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/fallback-provedores-llm-sem-parar-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/fallback-provedores-llm-sem-parar-atendimento" />
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/prompt-injection-rag-defender-contexto-recuperado</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/prompt-injection-rag-defender-contexto-recuperado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/prompt-injection-rag-defender-contexto-recuperado" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/prompt-injection-rag-defender-contexto-recuperado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/prompt-injection-rag-defender-contexto-recuperado" />
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/idempotencia-tool-use-evitar-acao-duplicada-agente</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/idempotencia-tool-use-evitar-acao-duplicada-agente" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/idempotencia-tool-use-evitar-acao-duplicada-agente" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/idempotencia-tool-use-evitar-acao-duplicada-agente" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/idempotencia-tool-use-evitar-acao-duplicada-agente" />
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo" />
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/chunking-documento-rag-sem-perder-contexto</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/chunking-documento-rag-sem-perder-contexto" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/chunking-documento-rag-sem-perder-contexto" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/chunking-documento-rag-sem-perder-contexto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/chunking-documento-rag-sem-perder-contexto" />
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/rate-limit-fila-prioridade-apis-llm</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/rate-limit-fila-prioridade-apis-llm" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/rate-limit-fila-prioridade-apis-llm" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/rate-limit-fila-prioridade-apis-llm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/rate-limit-fila-prioridade-apis-llm" />
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/streaming-resposta-llm-sem-quebrar-ux</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/streaming-resposta-llm-sem-quebrar-ux" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/streaming-resposta-llm-sem-quebrar-ux" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/streaming-resposta-llm-sem-quebrar-ux" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/streaming-resposta-llm-sem-quebrar-ux" />
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/roteamento-modelos-modelo-certo-cada-tarefa</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/roteamento-modelos-modelo-certo-cada-tarefa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/roteamento-modelos-modelo-certo-cada-tarefa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/roteamento-modelos-modelo-certo-cada-tarefa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/roteamento-modelos-modelo-certo-cada-tarefa" />
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/cache-semantico-reduzir-custo-llm</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/cache-semantico-reduzir-custo-llm" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/cache-semantico-reduzir-custo-llm" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/cache-semantico-reduzir-custo-llm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/cache-semantico-reduzir-custo-llm" />
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/memoria-longo-prazo-agentes-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/memoria-longo-prazo-agentes-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/memoria-longo-prazo-agentes-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/memoria-longo-prazo-agentes-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/memoria-longo-prazo-agentes-atendimento" />
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/guardrails-saida-llm-validacao-recusa-segura</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/guardrails-saida-llm-validacao-recusa-segura" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/guardrails-saida-llm-validacao-recusa-segura" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/guardrails-saida-llm-validacao-recusa-segura" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/guardrails-saida-llm-validacao-recusa-segura" />
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/observabilidade-llm-tracing-custo-qualidade</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/observabilidade-llm-tracing-custo-qualidade" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/observabilidade-llm-tracing-custo-qualidade" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/observabilidade-llm-tracing-custo-qualidade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/observabilidade-llm-tracing-custo-qualidade" />
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/function-calling-vs-rag-dados-tempo-real</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/function-calling-vs-rag-dados-tempo-real" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/function-calling-vs-rag-dados-tempo-real" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/function-calling-vs-rag-dados-tempo-real" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/function-calling-vs-rag-dados-tempo-real" />
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/orquestracao-agentes-ia-producao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/orquestracao-agentes-ia-producao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/orquestracao-agentes-ia-producao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/orquestracao-agentes-ia-producao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/orquestracao-agentes-ia-producao" />
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/feature-store-personalizacao-atendimento</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/feature-store-personalizacao-atendimento" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/feature-store-personalizacao-atendimento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/feature-store-personalizacao-atendimento" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/feature-store-personalizacao-atendimento" />
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/avaliacao-continua-bots-eval-automatico</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/avaliacao-continua-bots-eval-automatico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/avaliacao-continua-bots-eval-automatico" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/avaliacao-continua-bots-eval-automatico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/avaliacao-continua-bots-eval-automatico" />
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/camera-virtual-blur-auto-framing-mediapipe</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/camera-virtual-blur-auto-framing-mediapipe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/camera-virtual-blur-auto-framing-mediapipe" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/camera-virtual-blur-auto-framing-mediapipe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/camera-virtual-blur-auto-framing-mediapipe" />
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/cag-vs-rag-cache-contexto</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/cag-vs-rag-cache-contexto" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/cag-vs-rag-cache-contexto" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/cag-vs-rag-cache-contexto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/cag-vs-rag-cache-contexto" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/chamadas-voz-whatsapp-baileys-caller</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/chamadas-voz-whatsapp-baileys-caller" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/chamadas-voz-whatsapp-baileys-caller" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/chamadas-voz-whatsapp-baileys-caller" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/chamadas-voz-whatsapp-baileys-caller" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/fila-picos-campanha-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/fila-picos-campanha-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/fila-picos-campanha-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/fila-picos-campanha-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/fila-picos-campanha-whatsapp" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/slas-atendimento-bot-humano</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/slas-atendimento-bot-humano" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/slas-atendimento-bot-humano" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/slas-atendimento-bot-humano" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/slas-atendimento-bot-humano" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/governanca-templates-times-grandes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/governanca-templates-times-grandes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/governanca-templates-times-grandes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/governanca-templates-times-grandes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/governanca-templates-times-grandes" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/integracao-erp-crm-sem-retrabalho</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/integracao-erp-crm-sem-retrabalho" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/integracao-erp-crm-sem-retrabalho" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/integracao-erp-crm-sem-retrabalho" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/integracao-erp-crm-sem-retrabalho" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/roi-real-automacao-ia</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/roi-real-automacao-ia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/roi-real-automacao-ia" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/roi-real-automacao-ia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/roi-real-automacao-ia" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/guia-whatsapp-cloud-api</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/guia-whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/guia-whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/guia-whatsapp-cloud-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/guia-whatsapp-cloud-api" />
     <lastmod>2026-03-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/meta-pixel-vs-capi-arquitetura</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/meta-pixel-vs-capi-arquitetura" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/meta-pixel-vs-capi-arquitetura" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/meta-pixel-vs-capi-arquitetura" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/meta-pixel-vs-capi-arquitetura" />
     <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/webhook-whatsapp-idempotencia-filas</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/webhook-whatsapp-idempotencia-filas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/webhook-whatsapp-idempotencia-filas" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/webhook-whatsapp-idempotencia-filas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/webhook-whatsapp-idempotencia-filas" />
     <lastmod>2026-02-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/handoff-humano-whatsapp-ia</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/handoff-humano-whatsapp-ia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/handoff-humano-whatsapp-ia" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/handoff-humano-whatsapp-ia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/handoff-humano-whatsapp-ia" />
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/rag-atendimento-whatsapp-producao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/rag-atendimento-whatsapp-producao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/rag-atendimento-whatsapp-producao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/rag-atendimento-whatsapp-producao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/rag-atendimento-whatsapp-producao" />
     <lastmod>2026-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/monitoramento-alertas-integracoes</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/monitoramento-alertas-integracoes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/monitoramento-alertas-integracoes" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/monitoramento-alertas-integracoes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/monitoramento-alertas-integracoes" />
     <lastmod>2026-02-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/crm-whatsapp-playbook-vendas</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/crm-whatsapp-playbook-vendas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/crm-whatsapp-playbook-vendas" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/crm-whatsapp-playbook-vendas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/crm-whatsapp-playbook-vendas" />
     <lastmod>2026-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/seguranca-integracoes-meta-whatsapp</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/seguranca-integracoes-meta-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/seguranca-integracoes-meta-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/seguranca-integracoes-meta-whatsapp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/seguranca-integracoes-meta-whatsapp" />
     <lastmod>2026-02-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/custos-whatsapp-cloud-api-otimizacao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/custos-whatsapp-cloud-api-otimizacao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/custos-whatsapp-cloud-api-otimizacao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/custos-whatsapp-cloud-api-otimizacao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/custos-whatsapp-cloud-api-otimizacao" />
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/testes-contrato-webhooks-apis</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/testes-contrato-webhooks-apis" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/testes-contrato-webhooks-apis" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/testes-contrato-webhooks-apis" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/testes-contrato-webhooks-apis" />
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/arquitetura-multi-tenant-whatsapp-saas</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/arquitetura-multi-tenant-whatsapp-saas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/arquitetura-multi-tenant-whatsapp-saas" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/arquitetura-multi-tenant-whatsapp-saas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/arquitetura-multi-tenant-whatsapp-saas" />
     <lastmod>2026-01-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://joaovictorsouza.dev/blog/roadmap-automacao-suporte-ia-90-dias</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/roadmap-automacao-suporte-ia-90-dias" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/roadmap-automacao-suporte-ia-90-dias" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/roadmap-automacao-suporte-ia-90-dias" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/roadmap-automacao-suporte-ia-90-dias" />
     <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

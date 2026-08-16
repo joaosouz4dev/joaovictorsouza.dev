@@ -38,6 +38,7 @@ import MarqueeRow from '../../components/ui/MarqueeRow';
 import MagneticCursor from '../../components/ui/MagneticCursor';
 import GlitchText from '../../components/ui/GlitchText';
 import PortfolioGrid from '../../components/sections/PortfolioGrid';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const ANO_INICIAL = 2015;
 
@@ -62,6 +63,7 @@ const homeSchema = [
 // ----------------- Hero -----------------
 function Hero() {
   const { t } = useTranslation();
+  const path = useLocalizedPath();
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const mouseX = useMotionValue(0);
@@ -133,11 +135,11 @@ function Hero() {
 
               <RevealOnScroll delay={0.75} className="mt-10 flex flex-wrap items-center gap-3">
                 <MagneticCursor>
-                  <Button to="/contato" size="lg" rightIcon={<ArrowUpRight size={18} />}>
+                  <Button to={path('contact')} size="lg" rightIcon={<ArrowUpRight size={18} />}>
                     {t('quates.title')}
                   </Button>
                 </MagneticCursor>
-                <Button to="/projetos" variant="outline" size="lg">
+                <Button to={path('projects')} variant="outline" size="lg">
                   {t('menu.projects')}
                 </Button>
               </RevealOnScroll>
@@ -429,6 +431,7 @@ function ExperienceSection() {
 // ----------------- CTA / Quote -----------------
 function CtaSection() {
   const { t } = useTranslation();
+  const path = useLocalizedPath();
   const year = new Date().getFullYear();
   const anos = year - ANO_INICIAL;
   return (
@@ -464,7 +467,7 @@ function CtaSection() {
                 {t('quates.whatsapp')}
               </Button>
             </MagneticCursor>
-            <Button to="/contato" variant="outline" size="lg">
+            <Button to={path('contact')} variant="outline" size="lg">
               {t('quates.channels')}
             </Button>
           </div>
@@ -477,11 +480,12 @@ function CtaSection() {
 // ----------------- Home Seo cards -----------------
 function HomeSeoCards() {
   const { t } = useTranslation();
+  const path = useLocalizedPath();
   const cards = [
-    { key: 'whatsapp', to: '/servicos/whatsapp-cloud-api', icon: <MessageSquare size={20} /> },
-    { key: 'meta', to: '/servicos/meta-ads-e-integracoes', icon: <Sparkles size={20} /> },
-    { key: 'blog', to: '/blog', icon: <BrainCircuit size={20} /> },
-    { key: 'cases', to: '/cases', icon: <Network size={20} /> },
+    { key: 'whatsapp', to: path('service', 'whatsapp-cloud-api'), icon: <MessageSquare size={20} /> },
+    { key: 'meta', to: path('service', 'meta-ads-e-integracoes'), icon: <Sparkles size={20} /> },
+    { key: 'blog', to: path('blog'), icon: <BrainCircuit size={20} /> },
+    { key: 'cases', to: path('cases'), icon: <Network size={20} /> },
   ];
   return (
     <Section

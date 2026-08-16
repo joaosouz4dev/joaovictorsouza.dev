@@ -8,6 +8,7 @@ import GradientText from '../ui/GradientText';
 import GlowEffect from '../ui/GlowEffect';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { getPublishedPosts } from '../../pages/blog/data.js';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const SOCIAL = [
   { href: 'https://github.com/joaosouz4dev', icon: GitHub, key: 'layout.social.github' },
@@ -17,6 +18,7 @@ const SOCIAL = [
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const latestPosts = [...getPublishedPosts(i18n.language)]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 4);
@@ -43,7 +45,7 @@ const Footer = () => {
               {t('layout.footer.description')}
             </p>
             <Link
-              to="/contato"
+              to={path('contact')}
               className="group mt-8 inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-5 py-3 text-sm font-medium text-foreground backdrop-blur-xl transition-colors hover:border-foreground/30"
             >
               <GradientText>{t('layout.footer.cta')}</GradientText>
@@ -57,22 +59,22 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/servicos/whatsapp-cloud-api" className="text-foreground/80 hover:text-foreground transition-colors">
+                <Link to={path('service', 'whatsapp-cloud-api')} className="text-foreground/80 hover:text-foreground transition-colors">
                   WhatsApp Cloud API
                 </Link>
               </li>
               <li>
-                <Link to="/servicos/meta-ads-e-integracoes" className="text-foreground/80 hover:text-foreground transition-colors">
+                <Link to={path('service', 'meta-ads-e-integracoes')} className="text-foreground/80 hover:text-foreground transition-colors">
                   Meta Pixel + CAPI
                 </Link>
               </li>
               <li>
-                <Link to="/blog/guia-whatsapp-cloud-api" className="text-foreground/80 hover:text-foreground transition-colors">
+                <Link to={path('post', 'guia-whatsapp-cloud-api')} className="text-foreground/80 hover:text-foreground transition-colors">
                   {t('layout.footer.mainGuide')}
                 </Link>
               </li>
               <li>
-                <Link to="/cases" className="text-foreground/80 hover:text-foreground transition-colors">
+                <Link to={path('cases')} className="text-foreground/80 hover:text-foreground transition-colors">
                   {t('layout.footer.viewAllCases')}
                 </Link>
               </li>
@@ -87,7 +89,7 @@ const Footer = () => {
               {latestPosts.map((post) => (
                 <li key={post.slug}>
                   <Link
-                    to={`/blog/${post.slug}`}
+                    to={path('post', post.slug)}
                     className="text-foreground/80 hover:text-foreground transition-colors line-clamp-2"
                   >
                     {post.title}
@@ -139,11 +141,11 @@ const Footer = () => {
           <p className="flex flex-wrap items-center gap-3">
             <Link to="/" className="hover:text-foreground transition-colors">{t('menu.home')}</Link>
             <span className="text-foreground/20">/</span>
-            <Link to="/servicos" className="hover:text-foreground transition-colors">{t('menu.services')}</Link>
+            <Link to={path('services')} className="hover:text-foreground transition-colors">{t('menu.services')}</Link>
             <span className="text-foreground/20">/</span>
-            <Link to="/blog" className="hover:text-foreground transition-colors">{t('menu.blog')}</Link>
+            <Link to={path('blog')} className="hover:text-foreground transition-colors">{t('menu.blog')}</Link>
             <span className="text-foreground/20">/</span>
-            <Link to="/projetos" className="hover:text-foreground transition-colors">{t('menu.projects')}</Link>
+            <Link to={path('projects')} className="hover:text-foreground transition-colors">{t('menu.projects')}</Link>
           </p>
         </div>
       </Container>

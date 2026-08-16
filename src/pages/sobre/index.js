@@ -12,6 +12,7 @@ import TiltCard from '../../components/ui/TiltCard';
 import { RevealGroup, RevealItem, RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import GradientText from '../../components/ui/GradientText';
 import Spotlight from '../../components/ui/Spotlight';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const blocks = (t) => [
   {
@@ -42,6 +43,7 @@ const blocks = (t) => [
 
 const Sobre = () => {
   const { t } = useTranslation();
+  const path = useLocalizedPath();
 
   const schema = {
     '@context': 'https://schema.org',
@@ -121,7 +123,7 @@ const Sobre = () => {
             </p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <Button to="/contato" size="lg" rightIcon={<ArrowUpRight size={18} />} className="mt-10">
+            <Button to={path('contact')} size="lg" rightIcon={<ArrowUpRight size={18} />} className="mt-10">
               {t('aboutPage.ctaButton')}
             </Button>
           </RevealOnScroll>

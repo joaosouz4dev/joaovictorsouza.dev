@@ -1,5 +1,13 @@
 import { useEffect } from 'react';
 
+import {
+  DEFAULT_LANGUAGE,
+  SUPPORTED_LANGUAGES,
+  languageFromPath,
+  toRouteLanguage,
+  translatePath,
+} from '../../config/routes';
+
 const SITE_URL = 'https://joaovictorsouza.dev';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/new/hero-2-300x300.webp`;
 const LANGUAGE_CONFIG = {
@@ -7,7 +15,6 @@ const LANGUAGE_CONFIG = {
   en: { html: 'en-US', og: 'en_US', hreflang: 'en', description: 'Software Developer' },
   es: { html: 'es-ES', og: 'es_ES', hreflang: 'es', description: 'Desarrollador de Software' },
 };
-const SUPPORTED_LANGUAGES = Object.keys(LANGUAGE_CONFIG);
 
 const normalizePathname = (path) => {
   if (!path || path === '/') return '/';
@@ -40,22 +47,20 @@ const ensureAbsoluteUrl = (value) => {
   return `${SITE_URL}${value.startsWith('/') ? '' : '/'}${value}`;
 };
 
-const toBaseLanguage = (language) => {
-  const normalized = String(language || '').toLowerCase();
-  if (normalized.startsWith('pt')) return 'pt';
-  if (normalized.startsWith('en')) return 'en';
-  if (normalized.startsWith('es')) return 'es';
-  return 'pt';
-};
-
+// O caminho manda no idioma: quem esta em /about esta lendo em ingles,
+// independente do que o localStorage guardou. So caminhos sem marca de idioma
+// (home, /blog) caem na deteccao normal.
 const getCurrentLanguage = () => {
-  if (typeof window === 'undefined') return 'pt';
+  if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
+
+  const pathLanguage = languageFromPath(window.location.pathname);
+  if (pathLanguage) return pathLanguage;
 
   const queryLanguage = new URLSearchParams(window.location.search).get('lng');
   const storedLanguage = window.localStorage.getItem('i18nextLng');
   const browserLanguage = window.navigator.language;
 
-  return toBaseLanguage(queryLanguage || storedLanguage || browserLanguage);
+  return toRouteLanguage(queryLanguage || storedLanguage || browserLanguage);
 };
 
 const upsertMeta = (selector, attributes) => {
@@ -93,6 +98,8 @@ const upsertSchema = (schema) => {
   document.head.appendChild(script);
 };
 
+// Cada idioma tem a sua propria URL (/sobre, /about, /acerca-de), entao os
+// alternates apontam para os caminhos traduzidos, nao para ?lng=.
 const upsertAlternateLanguageLinks = (absoluteUrl) => {
   document.head
     .querySelectorAll('link[data-seo-hreflang="true"]')
@@ -101,22 +108,24 @@ const upsertAlternateLanguageLinks = (absoluteUrl) => {
   const url = new URL(absoluteUrl);
   const path = url.pathname || '/';
 
-  SUPPORTED_LANGUAGES.forEach((language) => {
-    const href = `${SITE_URL}${path}?lng=${language}`;
+  const appendAlternate = (hreflang, href) => {
     const link = document.createElement('link');
     link.setAttribute('rel', 'alternate');
-    link.setAttribute('hreflang', LANGUAGE_CONFIG[language].hreflang);
+    link.setAttribute('hreflang', hreflang);
     link.setAttribute('href', href);
     link.setAttribute('data-seo-hreflang', 'true');
     document.head.appendChild(link);
+  };
+
+  SUPPORTED_LANGUAGES.forEach((language) => {
+    appendAlternate(
+      LANGUAGE_CONFIG[language].hreflang,
+      `${SITE_URL}${translatePath(path, language)}`,
+    );
   });
 
-  const xDefault = document.createElement('link');
-  xDefault.setAttribute('rel', 'alternate');
-  xDefault.setAttribute('hreflang', 'x-default');
-  xDefault.setAttribute('href', absoluteUrl);
-  xDefault.setAttribute('data-seo-hreflang', 'true');
-  document.head.appendChild(xDefault);
+  // Portugues e a versao sem marca de idioma, entao serve de x-default.
+  appendAlternate('x-default', `${SITE_URL}${translatePath(path, 'pt')}`);
 };
 
 const upsertOpenGraphLocaleAlternates = (currentLanguage) => {
@@ -147,9 +156,12 @@ const Seo = ({
   useEffect(() => {
     const language = getCurrentLanguage();
     const locale = LANGUAGE_CONFIG[language] || LANGUAGE_CONFIG.pt;
-    const canonicalPath =
+    // As paginas passam o canonical em portugues (/sobre). Traduzir aqui deixa
+    // o canonical na mesma URL que o visitante esta lendo (/about em ingles).
+    const rawCanonicalPath =
       canonical ||
       (typeof window !== 'undefined' ? window.location.pathname : '/');
+    const canonicalPath = translatePath(rawCanonicalPath, language);
     const absoluteUrl = ensureCanonicalUrl(canonicalPath);
     const absoluteImage = ensureAbsoluteUrl(image);
     const robotsContent = robots.includes('max-image-preview')

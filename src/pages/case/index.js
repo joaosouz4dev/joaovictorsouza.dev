@@ -13,9 +13,11 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import { getCaseBySlug } from '../cases/data';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const Case = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const { slug } = useParams();
   const caseItem = getCaseBySlug(slug, i18n.resolvedLanguage);
 
@@ -38,7 +40,7 @@ const Case = () => {
           title={t('casePage.notFoundTitle')}
           description={`${t('casePage.notFoundDescription')} /cases ${t('casePage.notFoundDescriptionEnd')}`}
         >
-          <Button to="/cases" variant="outline">
+          <Button to={path('cases')} variant="outline">
             {t('menu.cases')}
           </Button>
         </PageHero>
@@ -174,7 +176,7 @@ const Case = () => {
                   )}
                 </div>
                 <Button
-                  to="/contato"
+                  to={path('contact')}
                   variant="primary"
                   size="md"
                   rightIcon={<ArrowUpRight size={16} />}

@@ -15,6 +15,7 @@ import Spotlight from '../../components/ui/Spotlight';
 import { RevealGroup, RevealItem, RevealOnScroll } from '../../components/ui/RevealOnScroll';
 import { getServiceBySlug } from '../servicos/data';
 import { cn } from '../../lib/cn';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 function FaqItem({ item, index }) {
   const [open, setOpen] = useState(index === 0);
@@ -56,6 +57,7 @@ function FaqItem({ item, index }) {
 
 const Servico = () => {
   const { t, i18n } = useTranslation();
+  const path = useLocalizedPath();
   const { slug } = useParams();
   const service = getServiceBySlug(slug, i18n.resolvedLanguage);
 
@@ -73,7 +75,7 @@ const Servico = () => {
           title={t('servicePage.notFoundTitle')}
           description={t('servicePage.notFoundDescription')}
         >
-          <Button to="/servicos" variant="outline">
+          <Button to={path('services')} variant="outline">
             {t('menu.services')}
           </Button>
         </PageHero>
@@ -181,7 +183,7 @@ const Servico = () => {
             </p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <Button to="/contato" size="lg" rightIcon={<ArrowUpRight size={18} />} className="mt-10">
+            <Button to={path('contact')} size="lg" rightIcon={<ArrowUpRight size={18} />} className="mt-10">
               {t('servicePage.requestDiagnosis')}
             </Button>
           </RevealOnScroll>

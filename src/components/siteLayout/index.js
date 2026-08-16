@@ -10,41 +10,49 @@ import MobileMenu from '../ui/MobileMenu';
 import ThemeToggle from '../ui/ThemeToggle';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import Footer from '../footer/Footer';
+import { routeKeyFromPath } from '../../config/routes';
+import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
+// A rotulagem do breadcrumb usa a chave logica da rota, entao funciona igual
+// para /servicos, /services e /servicios.
 const BREADCRUMB_LABEL_KEYS = {
-  sobre: 'menu.about',
-  servicos: 'menu.services',
+  about: 'menu.about',
+  services: 'menu.services',
   cases: 'menu.cases',
   blog: 'menu.blog',
-  projetos: 'menu.projects',
-  contato: 'menu.contact',
+  projects: 'menu.projects',
+  contact: 'menu.contact',
 };
 
-const NAV_ITEMS = (t) => [
+const NAV_ITEMS = (t, path) => [
   { to: '/', label: t('menu.home'), icon: <Home size={16} /> },
-  { to: '/sobre', label: t('menu.about'), icon: <User size={16} /> },
-  { to: '/servicos', label: t('menu.services'), icon: <Briefcase size={16} /> },
-  { to: '/cases', label: t('menu.cases'), icon: <Sparkles size={16} /> },
-  { to: '/blog', label: t('menu.blog'), icon: <BookOpen size={16} /> },
-  { to: '/projetos', label: t('menu.projects'), icon: <FolderKanban size={16} /> },
-  { to: '/contato', label: t('menu.contact'), icon: <Mail size={16} /> },
+  { to: path('about'), label: t('menu.about'), icon: <User size={16} /> },
+  { to: path('services'), label: t('menu.services'), icon: <Briefcase size={16} /> },
+  { to: path('cases'), label: t('menu.cases'), icon: <Sparkles size={16} /> },
+  { to: path('blog'), label: t('menu.blog'), icon: <BookOpen size={16} /> },
+  { to: path('projects'), label: t('menu.projects'), icon: <FolderKanban size={16} /> },
+  { to: path('contact'), label: t('menu.contact'), icon: <Mail size={16} /> },
 ];
 
 const SiteLayout = ({ children }) => {
   const { t } = useTranslation();
   const location = useLocation();
+  const path = useLocalizedPath();
   const pathname = location.pathname || '/';
-  const navItems = useMemo(() => NAV_ITEMS(t), [t]);
+  const navItems = useMemo(() => NAV_ITEMS(t, path), [path, t]);
 
   const breadcrumbItems = pathname
     .split('/')
     .filter(Boolean)
     .map((segment, index, array) => {
       const href = `/${array.slice(0, index + 1).join('/')}`;
+      const routeKey = index === 0 ? routeKeyFromPath(href) : null;
+      const labelKey = routeKey && BREADCRUMB_LABEL_KEYS[routeKey];
+
       return {
         href,
         label:
-          (BREADCRUMB_LABEL_KEYS[segment] && t(BREADCRUMB_LABEL_KEYS[segment])) ||
+          (labelKey && t(labelKey)) ||
           decodeURIComponent(segment)
             .replace(/-/g, ' ')
             .replace(/^\w/, (c) => c.toUpperCase()),
@@ -82,7 +90,7 @@ const SiteLayout = ({ children }) => {
             <div className="flex items-center gap-2">
               <LanguageSwitcher className="hidden md:block" />
               <ThemeToggle />
-              <MobileMenu items={navItems} className="md:hidden" ctaLabel={t('layout.footer.cta')} ctaHref="/contato" />
+              <MobileMenu items={navItems} className="md:hidden" ctaLabel={t('layout.footer.cta')} ctaHref={path('contact')} />
             </div>
           </div>
         </header>
