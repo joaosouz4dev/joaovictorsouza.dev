@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'testes-regressao-ferramentas-agente-contrato-antes-do-prompt',
+    date: '2026-08-15',
+    readTime: '15 min',
+    keywords: {
+      pt: 'teste de regressao de ferramenta, contrato de tool use, snapshot de esquema de ferramenta, selecao de ferramenta do agente, caso negativo de ferramenta, contrato de retorno, portao de pipeline para agente, mineracao de casos de teste, versao do modelo e selecao, anthropic',
+      en: 'tool regression testing, tool use contract, tool schema snapshot, agent tool selection, negative tool case, return contract, agent pipeline gate, test case mining, model version and selection, anthropic',
+      es: 'prueba de regresion de herramienta, contrato de tool use, snapshot de esquema de herramienta, seleccion de herramienta del agente, caso negativo de herramienta, contrato de retorno, compuerta de pipeline para agente, mineria de casos de prueba, version del modelo y seleccion, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Testes de regressão para ferramentas do agente: contrato antes do prompt',
+        excerpt:
+          'O agente parou de consultar o rastreamento de pedido, ninguém mexeu no prompt e nenhum teste falhou, porque o que quebrou fica exatamente entre o teste de API e o eval de prompt. Por que uma ferramenta tem três contratos que envelhecem em ritmos diferentes e o time testa só um, como um snapshot de esquema com hashes separados para invocação e descoberta pega a quebra em milissegundos sem chamar o provedor, por que o caso negativo que quase ninguém escreve é o que impede o agente de consultar estoque para responder bom dia, por que o retorno da ferramenta também é contrato e o dublê que envelhece é pior que não ter teste, e por que trocar a versão do modelo precisa disparar a suíte completa mesmo sem uma linha de código alterada.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Regression tests for agent tools: contract before prompt',
+        excerpt:
+          'The agent stopped looking up order tracking, nobody touched the prompt and no test failed, because what broke sits exactly between the API test and the prompt eval. Why a tool has three contracts that age at different rates and the team tests only one, how a schema snapshot with separate hashes for invocation and discovery catches the break in milliseconds with no provider call, why the negative case almost nobody writes is what stops the agent from querying inventory to answer good morning, why the tool return is a contract too and an aging double is worse than no test, and why changing the model version must trigger the full suite even with no line of code altered.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
+        excerpt:
+          'El agente dejó de consultar el seguimiento de pedidos, nadie tocó el prompt y ninguna prueba falló, porque lo que se rompió está exactamente entre la prueba de API y el eval de prompt. Por qué una herramienta tiene tres contratos que envejecen a ritmos distintos y el equipo prueba solo uno, cómo un snapshot de esquema con hashes separados para invocación y descubrimiento atrapa la ruptura en milisegundos sin llamar al proveedor, por qué el caso negativo que casi nadie escribe es lo que impide que el agente consulte el inventario para responder buenos días, por qué el retorno de la herramienta también es contrato y un doble que envejece es peor que no tener prueba, y por qué cambiar la versión del modelo debe disparar la suite completa aunque no se haya alterado una línea de código.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento',
     date: '2026-08-14',
     readTime: '15 min',
@@ -1836,19 +1866,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Testes de regressão para ferramentas do agente: contrato antes do prompt',
     'Roteamento de conversa entre agentes especializados sem perder o contexto',
     'Quota de contexto por cliente: quando a conversa longa vira prejuízo',
     'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
   ],
   en: [
-    'Regression tests for agent tools: contract before prompt',
     'Routing conversations between specialized agents without losing context',
     'Per customer context quota: when a long conversation becomes a loss',
     'Chat abandonment signal: detecting the drop-off before the customer leaves',
   ],
   es: [
-    'Pruebas de regresión para herramientas del agente: contrato antes del prompt',
     'Enrutamiento de conversación entre agentes especializados sin perder el contexto',
     'Cuota de contexto por cliente: cuándo la conversación larga se vuelve pérdida',
     'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
