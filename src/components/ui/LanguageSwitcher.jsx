@@ -11,7 +11,7 @@ const LANGS = [
 ];
 
 export function LanguageSwitcher({ className, align = 'right' }) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const current = LANGS.find((l) => i18n.resolvedLanguage?.startsWith(l.code)) ?? LANGS[0];
@@ -31,7 +31,7 @@ export function LanguageSwitcher({ className, align = 'right' }) {
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label="Selecionar idioma"
+        aria-label={t('a11y.selectLanguage')}
         className="inline-flex h-10 items-center gap-2 rounded-full border border-border/60 bg-surface/60 px-3 text-xs font-mono uppercase tracking-[0.16em] text-foreground/80 backdrop-blur-xl transition-colors hover:text-foreground hover:border-foreground/30"
       >
         <Languages size={14} />

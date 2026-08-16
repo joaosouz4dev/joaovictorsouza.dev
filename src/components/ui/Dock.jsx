@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { cn } from '../../lib/cn';
 
@@ -44,11 +45,12 @@ function DockItem({ to, label, icon, mouseX, isActive }) {
 export function Dock({ items, className }) {
   const mouseX = useMotionValue(Infinity);
   const location = useLocation();
+  const { t } = useTranslation();
 
   return (
     <motion.nav
       role="navigation"
-      aria-label="Navegação principal"
+      aria-label={t('a11y.mainNav')}
       onMouseMove={(e) => mouseX.set(e.clientX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(

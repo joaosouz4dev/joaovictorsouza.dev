@@ -70,7 +70,7 @@ const Servicos = () => {
             const Icon = SERVICE_ICONS[service.slug] || Sparkles;
             const detailsHref = `/servicos/${service.slug}`;
             const waHref = `${WHATSAPP_URL}?text=${encodeURIComponent(
-              `Olá! Tenho interesse em ${service.title}.`,
+              t('servicesPage.whatsappInterest', { service: service.title }),
             )}`;
 
             return (

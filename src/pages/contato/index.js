@@ -40,7 +40,7 @@ const Contato = () => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contato - João Victor Souza',
+    name: `${t('menu.contact')} - João Victor Souza`,
     url: 'https://joaovictorsouza.dev/contato',
   };
 
@@ -78,7 +78,7 @@ const Contato = () => {
                   </h2>
                   <p className="font-display text-lg font-medium tracking-tight break-all">{value}</p>
                   <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.16em] text-foreground/80 transition-transform group-hover:translate-x-0.5">
-                    Abrir <ArrowUpRight size={12} />
+                    {t('homeExtra.open')} <ArrowUpRight size={12} />
                   </span>
                 </Card>
               </a>

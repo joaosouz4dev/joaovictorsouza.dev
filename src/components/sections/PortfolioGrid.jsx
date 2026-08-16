@@ -12,11 +12,10 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/sendeasy.svg',
     title: 'Sendeasy',
     subTitle: `${t('portfolio.words.system')}, ${t('portfolio.words.app')}`,
-    headline: 'Atendimento 24/7 que vende sozinho',
-    pitch: 'Plataforma com WhatsApp Cloud API, chatbot com IA e handoff humano.',
+    headline: t('portfolioCards.sendeasy.headline'),
+    pitch: t('portfolioCards.sendeasy.pitch'),
     link: 'https://sendeasy.app/',
-    descricao:
-      'Plataforma de envio automatizado de mensagens via WhatsApp com integração Cloud API, fluxos, templates e chatbot com IA.',
+    descricao: t('portfolioCards.sendeasy.description'),
     tecnologias: ['React', 'Node.js', 'WhatsApp Cloud API', 'TypeScript'],
   },
   {
@@ -24,11 +23,10 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/credito-semanal.svg',
     title: 'Crédito Semanal',
     subTitle: `${t('portfolio.words.app')}, ${t('portfolio.words.system')}`,
-    headline: 'Crédito instantâneo direto no PIX',
-    pitch: 'Aprovação na hora, parcelado em até 4x e sem cartão.',
+    headline: t('portfolioCards.creditoSemanal.headline'),
+    pitch: t('portfolioCards.creditoSemanal.pitch'),
     link: 'https://app.creditosemanal.com.br/',
-    descricao:
-      'Aplicativo para solicitação e gestão de crédito semanal com onboarding digital e integração financeira.',
+    descricao: t('portfolioCards.creditoSemanal.description'),
     tecnologias: ['React Native', 'Node.js', 'TypeScript'],
   },
   {
@@ -36,8 +34,8 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/wppconnect.svg',
     title: 'WppConnect',
     subTitle: t('portfolio.words.system'),
-    headline: 'Open source adotado pela comunidade dev',
-    pitch: 'Biblioteca Node.js para automação WhatsApp com 10k+ stars no GitHub.',
+    headline: t('portfolioCards.wppconnect.headline'),
+    pitch: t('portfolioCards.wppconnect.pitch'),
     link: 'https://wppconnect.io/',
     descricao: t('portfolio.descriptions.desc7'),
     tecnologias: ['React', 'Node.js', 'JavaScript'],
@@ -47,8 +45,8 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/mapp.svg',
     title: 'Mapp Sistemas',
     subTitle: `${t('portfolio.words.site')}, ${t('portfolio.words.app')}`,
-    headline: 'Operação de entregas em tempo real',
-    pitch: 'Plataforma usada por +300 empresas para roteirização e gestão de frota.',
+    headline: t('portfolioCards.mapp.headline'),
+    pitch: t('portfolioCards.mapp.pitch'),
     link: 'https://mappsistemas.com.br/',
     descricao: t('portfolio.descriptions.desc4'),
     tecnologias: ['React Native', 'WordPress', 'PHP', 'JavaScript'],
@@ -58,8 +56,8 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/dujuca.svg',
     title: 'Dujuca',
     subTitle: `${t('portfolio.words.ecommerce')}, ${t('portfolio.words.app')}`,
-    headline: 'E-commerce que escala campanha',
-    pitch: 'Loja online e app com checkout em 12x e promoções automáticas integradas.',
+    headline: t('portfolioCards.dujuca.headline'),
+    pitch: t('portfolioCards.dujuca.pitch'),
     link: 'https://dujuca.com/',
     descricao: t('portfolio.descriptions.desc6'),
     tecnologias: ['React', 'React Native', 'WordPress'],
@@ -69,8 +67,8 @@ const PROJECTS = (t) => [
     img: '/assets/images/portfolio/folhetos.svg',
     title: 'Folhetos.app',
     subTitle: t('portfolio.words.system'),
-    headline: 'Cardápio digital com pedidos no WhatsApp',
-    pitch: 'Sistema de pedidos integrado ao WhatsApp para restaurantes e mercados.',
+    headline: t('portfolioCards.folhetos.headline'),
+    pitch: t('portfolioCards.folhetos.pitch'),
     link: 'https://folhetos.app/',
     descricao: t('portfolio.descriptions.desc5'),
     tecnologias: ['PHP', 'JavaScript', 'HTML', 'CSS'],
@@ -202,7 +200,7 @@ export function PortfolioGrid() {
             >
               <button
                 onClick={() => setSelected(null)}
-                aria-label="Fechar"
+                aria-label={t('a11y.close')}
                 className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/80 bg-surface/80 text-foreground backdrop-blur-xl transition-colors hover:border-foreground/30"
               >
                 <X size={16} />

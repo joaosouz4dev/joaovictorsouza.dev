@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 const SITE_URL = 'https://joaovictorsouza.dev';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/new/hero-2-300x300.webp`;
 const LANGUAGE_CONFIG = {
-  pt: { html: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR' },
-  en: { html: 'en-US', og: 'en_US', hreflang: 'en' },
-  es: { html: 'es-ES', og: 'es_ES', hreflang: 'es' },
+  pt: { html: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR', description: 'Desenvolvedor de Software' },
+  en: { html: 'en-US', og: 'en_US', hreflang: 'en', description: 'Software Developer' },
+  es: { html: 'es-ES', og: 'es_ES', hreflang: 'es', description: 'Desarrollador de Software' },
 };
 const SUPPORTED_LANGUAGES = Object.keys(LANGUAGE_CONFIG);
 
@@ -159,7 +159,7 @@ const Seo = ({
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: title || 'Joao Victor Souza',
-      description: description || 'Desenvolvedor de Software',
+      description: description || locale.description,
       url: absoluteUrl,
       inLanguage: locale.html,
     };
@@ -193,7 +193,7 @@ const Seo = ({
     });
     upsertMeta('meta[property="og:description"]', {
       property: 'og:description',
-      content: description || 'Desenvolvedor de Software',
+      content: description || locale.description,
     });
     upsertMeta('meta[property="og:url"]', {
       property: 'og:url',
@@ -218,7 +218,7 @@ const Seo = ({
     });
     upsertMeta('meta[name="twitter:description"]', {
       name: 'twitter:description',
-      content: description || 'Desenvolvedor de Software',
+      content: description || locale.description,
     });
     upsertMeta('meta[name="twitter:image"]', {
       name: 'twitter:image',

@@ -51,7 +51,7 @@ const Projeto = () => {
   return (
     <SiteLayout>
       <Seo
-        title={`${project.title} | Projeto técnico`}
+        title={`${project.title} | ${t('seo.projectSuffix')}`}
         description={project.summary}
         canonical={`/projetos/${project.slug}`}
         schema={schema}
