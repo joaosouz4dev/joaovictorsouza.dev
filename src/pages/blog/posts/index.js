@@ -75,8 +75,10 @@ import orcamentoLatenciaPorEtapa from './orcamento-latencia-por-etapa-onde-corta
 import rollbackBaseConhecimento from './rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento.js';
 import testesRegressaoFerramentas from './testes-regressao-ferramentas-agente-contrato-antes-do-prompt.js';
 import roteamentoEntreAgentes from './roteamento-conversa-entre-agentes-especializados-sem-perder-contexto.js';
+import quotaContextoPorCliente from './quota-contexto-por-cliente-conversa-longa-vira-prejuizo.js';
 
 const postContentBySlug = {
+  'quota-contexto-por-cliente-conversa-longa-vira-prejuizo': quotaContextoPorCliente,
   'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto': roteamentoEntreAgentes,
   'testes-regressao-ferramentas-agente-contrato-antes-do-prompt': testesRegressaoFerramentas,
   'rollback-base-conhecimento-voltar-indice-sem-derrubar-atendimento': rollbackBaseConhecimento,

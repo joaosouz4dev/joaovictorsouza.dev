@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'quota-contexto-por-cliente-conversa-longa-vira-prejuizo',
+    date: '2026-08-17',
+    readTime: '15 min',
+    keywords: {
+      pt: 'quota de contexto, custo por conversa, conversa longa, custo quadratico de llm, janela de contexto, compressao de historico, fato duravel, conversa em laco, teto de gasto, anthropic',
+      en: 'context quota, cost per conversation, long conversation, quadratic llm cost, context window, history compression, durable fact, looping conversation, spend cap, anthropic',
+      es: 'cuota de contexto, costo por conversacion, conversacion larga, costo cuadratico de llm, ventana de contexto, compresion de historial, hecho durable, conversacion en bucle, techo de gasto, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Quota de contexto por cliente: quando a conversa longa vira prejuízo',
+        excerpt:
+          'A fatura subiu trinta por cento, o número de conversas ficou igual, e ninguém sabe explicar a diferença. Por que o custo de uma conversa cresce com o quadrado do número de turnos e não de forma linear, por que a média por conversa é inútil e a métrica que decide a política é a concentração na cauda, qual é a diferença entre quota de contexto, teto de gasto e limite de janela, como alocar o histórico em camadas onde a transcrição cede primeiro e os fatos duráveis nunca saem, por que resumir precisa acontecer antes do descarte e nunca depois, e por que a conversa em laço exige gatilho de saída em vez de mais compressão.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Per-customer context quota: when a long conversation becomes a loss',
+        excerpt:
+          'The bill went up thirty percent, the number of conversations stayed flat, and nobody can explain the difference. Why the cost of a conversation grows with the square of the number of turns rather than linearly, why the per-conversation average is useless and the metric that decides the policy is tail concentration, what separates a context quota from a spend cap and a window limit, how to allocate history in layers where the transcript gives way first and durable facts never leave, why summarizing must happen before the discard and never after, and why a looping conversation needs an exit trigger instead of more compression.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Cuota de contexto por cliente: cuándo la conversación larga se vuelve pérdida',
+        excerpt:
+          'La factura subió treinta por ciento, la cantidad de conversaciones quedó igual, y nadie sabe explicar la diferencia. Por qué el costo de una conversación crece con el cuadrado de la cantidad de turnos y no de forma lineal, por qué el promedio por conversación es inútil y la métrica que decide la política es la concentración en la cola, cuál es la diferencia entre cuota de contexto, techo de gasto y límite de ventana, cómo asignar el historial en capas donde la transcripción cede primero y los hechos durables nunca salen, por qué resumir tiene que ocurrir antes del descarte y nunca después, y por qué la conversación en bucle exige un disparador de salida en vez de más compresión.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto',
     date: '2026-08-16',
     readTime: '15 min',
@@ -1896,16 +1926,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Quota de contexto por cliente: quando a conversa longa vira prejuízo',
     'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
+    'Chave de idempotência em webhook de pagamento: cobrar uma vez só',
+    'Amostragem de trace em produção: guardar o que explica o incidente',
+    'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
   ],
   en: [
-    'Per customer context quota: when a long conversation becomes a loss',
     'Chat abandonment signal: detecting the drop-off before the customer leaves',
+    'Idempotency key in payment webhooks: charging exactly once',
+    'Trace sampling in production: keeping what explains the incident',
+    'Structured output contract: when the model schema changes on its own',
   ],
   es: [
-    'Cuota de contexto por cliente: cuándo la conversación larga se vuelve pérdida',
     'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
+    'Clave de idempotencia en webhook de pago: cobrar una sola vez',
+    'Muestreo de trace en producción: guardar lo que explica el incidente',
+    'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
   ],
 };
 
