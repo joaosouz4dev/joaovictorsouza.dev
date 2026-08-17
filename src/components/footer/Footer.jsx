@@ -7,7 +7,7 @@ import Container from '../ui/Container';
 import GradientText from '../ui/GradientText';
 import GlowEffect from '../ui/GlowEffect';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
-import { getPublishedPosts } from '../../pages/blog/data.js';
+import { getLatestPosts } from '../../pages/blog/latest.js';
 import { useLocalizedPath } from '../../utils/useLocalizedPath';
 
 const SOCIAL = [
@@ -19,9 +19,7 @@ const SOCIAL = [
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const path = useLocalizedPath();
-  const latestPosts = [...getPublishedPosts(i18n.language)]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 4);
+  const latestPosts = getLatestPosts(i18n.language);
   return (
     <footer className="relative isolate overflow-hidden border-t border-border/40 mt-20 md:mt-32">
       <GlowEffect intensity="xl" color="primary" className="-bottom-40 left-1/2 -translate-x-1/2 opacity-40" />
