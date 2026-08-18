@@ -76,8 +76,10 @@ import rollbackBaseConhecimento from './rollback-base-conhecimento-voltar-indice
 import testesRegressaoFerramentas from './testes-regressao-ferramentas-agente-contrato-antes-do-prompt.js';
 import roteamentoEntreAgentes from './roteamento-conversa-entre-agentes-especializados-sem-perder-contexto.js';
 import quotaContextoPorCliente from './quota-contexto-por-cliente-conversa-longa-vira-prejuizo.js';
+import sinalAbandonoChat from './sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir.js';
 
 const postContentBySlug = {
+  'sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir': sinalAbandonoChat,
   'quota-contexto-por-cliente-conversa-longa-vira-prejuizo': quotaContextoPorCliente,
   'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto': roteamentoEntreAgentes,
   'testes-regressao-ferramentas-agente-contrato-antes-do-prompt': testesRegressaoFerramentas,
