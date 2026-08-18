@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir',
+    date: '2026-08-18',
+    readTime: '15 min',
+    keywords: {
+      pt: 'sinal de abandono no chat, abandono silencioso, desistencia do cliente, limiar de silencio, escore de risco de abandono, intervencao proativa, grupo de controle, taxa de recuperacao, atendimento automatizado, anthropic',
+      en: 'chat abandonment signal, silent abandonment, customer drop-off, silence threshold, abandonment risk score, proactive intervention, control group, recovery rate, automated support, anthropic',
+      es: 'senal de abandono en el chat, abandono silencioso, desercion del cliente, umbral de silencio, score de riesgo de abandono, intervencion proactiva, grupo de control, tasa de recuperacion, atencion automatizada, anthropic',
+    },
+    content: {
+      pt: {
+        title: 'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
+        excerpt:
+          'O cliente que reclama é o barato de tratar; o caro é o que simplesmente para de responder e nunca aparece em métrica nenhuma. Por que o abandono não é um evento e sim a ausência de um, e o que isso exige da arquitetura do fluxo, por que um limiar único de silêncio quebra em canal assíncrono e como derivá-lo da distribuição real por canal e etapa, quais sinais aparecem antes do silêncio e por que um escore aditivo com componentes visíveis vence um modelo na primeira versão, por que a ação certa vem do componente dominante e não do total, e por que sem grupo de controle permanente a taxa de recuperação não significa nada.',
+        category: 'IA Aplicada',
+      },
+      en: {
+        title: 'Chat abandonment signal: detecting the drop-off before the customer leaves',
+        excerpt:
+          'The customer who complains is the cheap one to handle; the expensive one simply stops replying and never shows up in any metric. Why abandonment is not an event but the absence of one, and what that demands from the architecture of the flow, why a single silence threshold breaks on asynchronous channels and how to derive it from the real distribution per channel and stage, which signals appear before the silence and why an additive score with visible components beats a model in the first version, why the right action comes from the dominant component and not from the total, and why without a permanent control group the recovery rate means nothing.',
+        category: 'Applied AI',
+      },
+      es: {
+        title: 'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
+        excerpt:
+          'El cliente que reclama es el barato de atender; el caro es el que simplemente deja de responder y nunca aparece en ninguna métrica. Por qué el abandono no es un evento sino la ausencia de uno, y qué exige eso de la arquitectura del flujo, por qué un umbral único de silencio se rompe en canal asíncrono y cómo derivarlo de la distribución real por canal y etapa, qué señales aparecen antes del silencio y por qué un score aditivo con componentes visibles le gana a un modelo en la primera versión, por qué la acción correcta viene del componente dominante y no del total, y por qué sin grupo de control permanente la tasa de recuperación no significa nada.',
+        category: 'IA Aplicada',
+      },
+    },
+  },
+  {
     slug: 'quota-contexto-por-cliente-conversa-longa-vira-prejuizo',
     date: '2026-08-17',
     readTime: '15 min',
@@ -1926,19 +1956,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Sinal de abandono no chat: detectar a desistência antes do cliente sumir',
     'Chave de idempotência em webhook de pagamento: cobrar uma vez só',
     'Amostragem de trace em produção: guardar o que explica o incidente',
     'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
   ],
   en: [
-    'Chat abandonment signal: detecting the drop-off before the customer leaves',
     'Idempotency key in payment webhooks: charging exactly once',
     'Trace sampling in production: keeping what explains the incident',
     'Structured output contract: when the model schema changes on its own',
   ],
   es: [
-    'Señal de abandono en el chat: detectar la deserción antes de que el cliente se vaya',
     'Clave de idempotencia en webhook de pago: cobrar una sola vez',
     'Muestreo de trace en producción: guardar lo que explica el incidente',
     'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
