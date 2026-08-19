@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so',
+    date: '2026-08-19',
+    readTime: '16 min',
+    keywords: {
+      pt: 'chave de idempotencia, webhook de pagamento, entrega pelo menos uma vez, cobranca duplicada, restricao de unicidade, evento fora de ordem, tabela de saida, outbox transacional, teste de reentrega, integracao de pagamento',
+      en: 'idempotency key, payment webhook, at-least-once delivery, duplicate charge, uniqueness constraint, out of order event, outbox table, transactional outbox, redelivery test, payment integration',
+      es: 'clave de idempotencia, webhook de pago, entrega al menos una vez, cobro duplicado, restriccion de unicidad, evento fuera de orden, tabla de salida, outbox transaccional, prueba de reentrega, integracion de pago',
+    },
+    content: {
+      pt: {
+        title: 'Chave de idempotência em webhook de pagamento: cobrar uma vez só',
+        excerpt:
+          'O provedor entrega o mesmo evento três vezes e o cliente recebe três créditos, sem que ninguém tenha escrito um bug. Por que a reentrega é o contrato do provedor e não uma falha dele, por que deduplicar pelo identificador do evento falha quando dois eventos distintos descrevem o mesmo efeito e como derivar a chave de recurso, transição e referência externa, por que a checagem precisa ser uma restrição de unicidade dentro da mesma transação e não um SELECT antes do INSERT, por que idempotência não impede regressão de estado e qual guarda de ordem resolve isso, como tirar e-mail e chamada externa de dentro da transação com uma tabela de saída, e quais três testes provam que a duplicata não passa.',
+        category: 'Integrações',
+      },
+      en: {
+        title: 'Idempotency key in payment webhooks: charging exactly once',
+        excerpt:
+          'The provider delivers the same event three times and the customer gets three credits, without anyone having written a bug. Why redelivery is the provider contract and not a failure of it, why deduplicating by event identifier fails when two distinct events describe the same effect and how to derive the key from resource, transition and external reference, why the check must be a uniqueness constraint inside the same transaction rather than a SELECT before the INSERT, why idempotency does not prevent state regression and which ordering guard solves it, how to move email and external calls out of the transaction with an outbox table, and which three tests prove the duplicate does not get through.',
+        category: 'Integrations',
+      },
+      es: {
+        title: 'Clave de idempotencia en webhook de pago: cobrar una sola vez',
+        excerpt:
+          'El proveedor entrega el mismo evento tres veces y el cliente recibe tres créditos, sin que nadie haya escrito un bug. Por qué la reentrega es el contrato del proveedor y no una falla suya, por qué deduplicar por el identificador del evento falla cuando dos eventos distintos describen el mismo efecto y cómo derivar la clave de recurso, transición y referencia externa, por qué la verificación tiene que ser una restricción de unicidad dentro de la misma transacción y no un SELECT antes del INSERT, por qué la idempotencia no impide la regresión de estado y qué guarda de orden lo resuelve, cómo sacar el correo y la llamada externa de dentro de la transacción con una tabla de salida, y qué tres pruebas demuestran que el duplicado no pasa.',
+        category: 'Integraciones',
+      },
+    },
+  },
+  {
     slug: 'sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir',
     date: '2026-08-18',
     readTime: '15 min',
@@ -1956,17 +1986,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chave de idempotência em webhook de pagamento: cobrar uma vez só',
     'Amostragem de trace em produção: guardar o que explica o incidente',
     'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
   ],
   en: [
-    'Idempotency key in payment webhooks: charging exactly once',
     'Trace sampling in production: keeping what explains the incident',
     'Structured output contract: when the model schema changes on its own',
   ],
   es: [
-    'Clave de idempotencia en webhook de pago: cobrar una sola vez',
     'Muestreo de trace en producción: guardar lo que explica el incidente',
     'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
   ],
