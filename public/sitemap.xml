@@ -1501,6 +1501,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so" />
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir" />

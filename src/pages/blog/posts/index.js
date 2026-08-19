@@ -77,8 +77,10 @@ import testesRegressaoFerramentas from './testes-regressao-ferramentas-agente-co
 import roteamentoEntreAgentes from './roteamento-conversa-entre-agentes-especializados-sem-perder-contexto.js';
 import quotaContextoPorCliente from './quota-contexto-por-cliente-conversa-longa-vira-prejuizo.js';
 import sinalAbandonoChat from './sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir.js';
+import chaveIdempotenciaWebhookPagamento from './chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so.js';
 
 const postContentBySlug = {
+  'chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so': chaveIdempotenciaWebhookPagamento,
   'sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir': sinalAbandonoChat,
   'quota-contexto-por-cliente-conversa-longa-vira-prejuizo': quotaContextoPorCliente,
   'roteamento-conversa-entre-agentes-especializados-sem-perder-contexto': roteamentoEntreAgentes,
