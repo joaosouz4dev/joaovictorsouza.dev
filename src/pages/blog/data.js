@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'amostragem-trace-producao-guardar-o-que-explica-o-incidente',
+    date: '2026-08-20',
+    readTime: '16 min',
+    keywords: {
+      pt: 'amostragem de trace, tail-based sampling, head-based sampling, observabilidade, opentelemetry, w3c trace context, traceparent, cota de retencao, cauda de latencia, investigacao de incidente',
+      en: 'trace sampling, tail-based sampling, head-based sampling, observability, opentelemetry, w3c trace context, traceparent, retention quota, latency tail, incident investigation',
+      es: 'muestreo de trace, tail-based sampling, head-based sampling, observabilidad, opentelemetry, w3c trace context, traceparent, cuota de retencion, cola de latencia, investigacion de incidente',
+    },
+    content: {
+      pt: {
+        title: 'Amostragem de trace em produção: guardar o que explica o incidente',
+        excerpt:
+          'O incidente durou onze minutos e o painel só tem traces de requisições que funcionaram. Por que a amostragem uniforme preserva a distribuição do tráfego e por isso descarta justamente a classe rara que explica a falha, por que aumentar a taxa não resolve e a raiz do problema é decidir antes de saber o resultado, como escrever uma política que força retenção para erro e cauda de latência e limita o tráfego comum com cota por segundo em vez de porcentagem, por que a decisão precisa viajar no traceparent para o trace não sair pela metade entre serviços, o que quebra quando você calcula taxa de erro e percentil em cima de amostra enviesada, e quais testes e alertas provam que a política ainda guarda o raro.',
+        category: 'Observabilidade',
+      },
+      en: {
+        title: 'Trace sampling in production: keeping what explains the incident',
+        excerpt:
+          'The incident lasted eleven minutes and the explorer only has traces of requests that worked. Why uniform sampling preserves the traffic distribution and therefore discards exactly the rare class that explains the failure, why raising the rate does not fix it and the root problem is deciding before knowing the outcome, how to write a policy that forces retention for errors and the latency tail and caps ordinary traffic with a per-second quota instead of a percentage, why the decision has to travel in the traceparent so the trace does not come out half missing across services, what breaks when you compute error rate and percentiles on top of a biased sample, and which tests and alerts prove the policy still keeps the rare.',
+        category: 'Observability',
+      },
+      es: {
+        title: 'Muestreo de trace en producción: guardar lo que explica el incidente',
+        excerpt:
+          'El incidente duró once minutos y el panel solo tiene traces de peticiones que funcionaron. Por qué el muestreo uniforme preserva la distribución del tráfico y por eso descarta justamente la clase rara que explica la falla, por qué subir la tasa no lo resuelve y la raíz del problema es decidir antes de conocer el resultado, cómo escribir una política que fuerza la retención para el error y la cola de latencia y limita el tráfico común con una cuota por segundo en vez de un porcentaje, por qué la decisión tiene que viajar en el traceparent para que el trace no salga a medias entre servicios, qué se rompe cuando calculas tasa de error y percentiles sobre una muestra sesgada, y qué pruebas y alertas demuestran que la política sigue guardando lo raro.',
+        category: 'Observabilidad',
+      },
+    },
+  },
+  {
     slug: 'chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so',
     date: '2026-08-19',
     readTime: '16 min',
@@ -1986,16 +2016,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Amostragem de trace em produção: guardar o que explica o incidente',
     'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
+    'Timeout em cascata: por que o retry do cliente derruba o serviço que ia se recuperar',
+    'Orçamento de erro em atendimento automatizado: quando parar de lançar',
+    'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
   ],
   en: [
-    'Trace sampling in production: keeping what explains the incident',
     'Structured output contract: when the model schema changes on its own',
+    'Cascading timeouts: why the client retry takes down the service that was recovering',
+    'Error budget in automated support: when to stop shipping',
+    'Wrong partition key: the queue that stalls because one customer takes it all',
   ],
   es: [
-    'Muestreo de trace en producción: guardar lo que explica el incidente',
     'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
+    'Timeout en cascada: por qué el retry del cliente tumba el servicio que iba a recuperarse',
+    'Presupuesto de error en atención automatizada: cuándo dejar de desplegar',
+    'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',
   ],
 };
 
