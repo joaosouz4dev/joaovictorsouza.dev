@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho',
+    date: '2026-08-21',
+    readTime: '16 min',
+    keywords: {
+      pt: 'contrato de saida estruturada, structured output, json schema, deriva de esquema, camada de adaptacao, coercao de tipo, enum desconhecido, teste de contrato, versao de modelo fixada, compatibilidade de schema',
+      en: 'structured output contract, structured output, json schema, schema drift, adaptation layer, type coercion, unknown enum, contract testing, pinned model version, schema compatibility',
+      es: 'contrato de salida estructurada, structured output, json schema, deriva de esquema, capa de adaptacion, coercion de tipo, enum desconocido, prueba de contrato, version de modelo fijada, compatibilidad de schema',
+    },
+    content: {
+      pt: {
+        title: 'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
+        excerpt:
+          'O parser quebrou às três da manhã e ninguém tinha feito deploy. Por que o schema declarado garante a sintaxe mas não a semântica, e qual camada de falha passa direto pelo seu alerta, por que o formato do provedor nunca pode ser o contrato que atravessa o sistema e o que muda quando existe um adaptador único, por que enum desconhecido precisa virar bucket contado em vez de exceção que derruba tráfego, qual assimetria separa campo opcional novo de campo obrigatório novo, como detectar deriva com métrica por campo contra linha de base congelada em vez de com try/catch, e qual suíte de contrato roda contra o provedor real fora do pipeline de deploy.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Structured output contract: when the model schema changes on its own',
+        excerpt:
+          'The parser broke at three in the morning and nobody had deployed anything. Why a declared schema guarantees syntax but not semantics, and which failure layer walks straight past your alert, why the provider format can never be the contract that crosses the system and what changes when a single adapter exists, why an unknown enum has to become a counted bucket instead of an exception that takes down traffic, which asymmetry separates a new optional field from a new required one, how to detect drift with per-field metrics against a frozen baseline instead of with try/catch, and which contract suite runs against the real provider outside the deploy pipeline.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
+        excerpt:
+          'El parser se rompió a las tres de la mañana y nadie había hecho deploy. Por qué el schema declarado garantiza la sintaxis pero no la semántica, y qué capa de falla pasa de largo frente a tu alerta, por qué el formato del proveedor nunca puede ser el contrato que atraviesa el sistema y qué cambia cuando existe un adaptador único, por qué un enum desconocido tiene que volverse bucket contado en vez de excepción que tumba tráfico, qué asimetría separa un campo opcional nuevo de uno obligatorio nuevo, cómo detectar deriva con métrica por campo contra una línea de base congelada en vez de con try/catch, y qué suite de contrato corre contra el proveedor real fuera del pipeline de deploy.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'amostragem-trace-producao-guardar-o-que-explica-o-incidente',
     date: '2026-08-20',
     readTime: '16 min',
@@ -2016,19 +2046,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Contrato de saída estruturada: quando o esquema do modelo muda sozinho',
     'Timeout em cascata: por que o retry do cliente derruba o serviço que ia se recuperar',
     'Orçamento de erro em atendimento automatizado: quando parar de lançar',
     'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
   ],
   en: [
-    'Structured output contract: when the model schema changes on its own',
     'Cascading timeouts: why the client retry takes down the service that was recovering',
     'Error budget in automated support: when to stop shipping',
     'Wrong partition key: the queue that stalls because one customer takes it all',
   ],
   es: [
-    'Contrato de salida estructurada: cuándo el esquema del modelo cambia solo',
     'Timeout en cascada: por qué el retry del cliente tumba el servicio que iba a recuperarse',
     'Presupuesto de error en atención automatizada: cuándo dejar de desplegar',
     'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',

@@ -79,8 +79,10 @@ import quotaContextoPorCliente from './quota-contexto-por-cliente-conversa-longa
 import sinalAbandonoChat from './sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir.js';
 import chaveIdempotenciaWebhookPagamento from './chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so.js';
 import amostragemTraceProducao from './amostragem-trace-producao-guardar-o-que-explica-o-incidente.js';
+import contratoSaidaEstruturada from './contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho.js';
 
 const postContentBySlug = {
+  'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho': contratoSaidaEstruturada,
   'amostragem-trace-producao-guardar-o-que-explica-o-incidente': amostragemTraceProducao,
   'chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so': chaveIdempotenciaWebhookPagamento,
   'sinal-abandono-chat-detectar-desistencia-antes-do-cliente-sumir': sinalAbandonoChat,
