@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar',
+    date: '2026-08-22',
+    readTime: '16 min',
+    keywords: {
+      pt: 'timeout em cascata, falha em cascata, retry, amplificacao de retry, prazo propagado, deadline, cancelamento, trabalho orfao, backoff com jitter, orcamento de tentativas',
+      en: 'cascading timeout, cascading failure, retry, retry amplification, deadline propagation, deadline, cancellation, orphaned work, jittered backoff, retry budget',
+      es: 'timeout en cascada, falla en cascada, retry, amplificacion de retry, plazo propagado, deadline, cancelacion, trabajo huerfano, backoff con jitter, presupuesto de reintentos',
+    },
+    content: {
+      pt: {
+        title: 'Timeout em cascata: por que o retry do cliente derruba o serviço que ia se recuperar',
+        excerpt:
+          'O banco ficou lento por quarenta segundos e o incidente durou vinte e dois minutos. Por que o timeout é uma decisão de quem espera e não interrompe o trabalho de quem executa, e por que esse trabalho órfão é a matéria-prima da cascata, por que timeouts configurados isoladamente em cada camada se compõem num pior caso que ninguém escreveu e o que muda quando o prazo entra pela borda como instante de expiração, por que retry em mais de uma camada multiplica a carga na dependência já degradada e qual orçamento substitui o contador local, por que o cancelamento precisa chegar até o banco e não só até o driver, por que rejeitar cedo vale mais que enfileirar mais, e qual teste de latência injetada prova que a cascata não volta.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Cascading timeouts: why the client retry takes down the service that was recovering',
+        excerpt:
+          'The database was slow for forty seconds and the incident lasted twenty-two minutes. Why a timeout is a decision made by the side that waits and does not interrupt the work on the side that executes, and why that orphaned work is the raw material of the cascade, why timeouts configured in isolation at each layer compose into a worst case nobody wrote and what changes when the deadline enters at the edge as an expiry instant, why retries in more than one layer multiply the load on the already degraded dependency and which budget replaces the local counter, why cancellation has to reach the database and not only the driver, why rejecting early beats queueing more, and which injected latency test proves the cascade does not come back.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Timeout en cascada: por qué el retry del cliente tumba el servicio que iba a recuperarse',
+        excerpt:
+          'La base estuvo lenta durante cuarenta segundos y el incidente duró veintidós minutos. Por qué el timeout es una decisión de quien espera y no interrumpe el trabajo de quien ejecuta, y por qué ese trabajo huérfano es la materia prima de la cascada, por qué los timeouts configurados de forma aislada en cada capa se componen en un peor caso que nadie escribió y qué cambia cuando el plazo entra por el borde como instante de expiración, por qué el retry en más de una capa multiplica la carga en la dependencia ya degradada y qué presupuesto reemplaza al contador local, por qué la cancelación tiene que llegar hasta la base y no solo hasta el driver, por qué rechazar temprano vale más que encolar más, y qué prueba de latencia inyectada demuestra que la cascada no vuelve.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho',
     date: '2026-08-21',
     readTime: '16 min',
@@ -2046,17 +2076,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Timeout em cascata: por que o retry do cliente derruba o serviço que ia se recuperar',
     'Orçamento de erro em atendimento automatizado: quando parar de lançar',
     'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
   ],
   en: [
-    'Cascading timeouts: why the client retry takes down the service that was recovering',
     'Error budget in automated support: when to stop shipping',
     'Wrong partition key: the queue that stalls because one customer takes it all',
   ],
   es: [
-    'Timeout en cascada: por qué el retry del cliente tumba el servicio que iba a recuperarse',
     'Presupuesto de error en atención automatizada: cuándo dejar de desplegar',
     'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',
   ],
