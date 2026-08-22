@@ -80,8 +80,10 @@ import sinalAbandonoChat from './sinal-abandono-chat-detectar-desistencia-antes-
 import chaveIdempotenciaWebhookPagamento from './chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so.js';
 import amostragemTraceProducao from './amostragem-trace-producao-guardar-o-que-explica-o-incidente.js';
 import contratoSaidaEstruturada from './contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho.js';
+import timeoutCascataRetry from './timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar.js';
 
 const postContentBySlug = {
+  'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar': timeoutCascataRetry,
   'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho': contratoSaidaEstruturada,
   'amostragem-trace-producao-guardar-o-que-explica-o-incidente': amostragemTraceProducao,
   'chave-idempotencia-webhook-pagamento-cobrar-uma-vez-so': chaveIdempotenciaWebhookPagamento,
