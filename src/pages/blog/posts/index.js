@@ -82,8 +82,10 @@ import amostragemTraceProducao from './amostragem-trace-producao-guardar-o-que-e
 import contratoSaidaEstruturada from './contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho.js';
 import timeoutCascataRetry from './timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar.js';
 import orcamentoErroAtendimento from './orcamento-erro-atendimento-automatizado-quando-parar-de-lancar.js';
+import chaveParticionamentoErrada from './chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo.js';
 
 const postContentBySlug = {
+  'chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo': chaveParticionamentoErrada,
   'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar': orcamentoErroAtendimento,
   'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar': timeoutCascataRetry,
   'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho': contratoSaidaEstruturada,
