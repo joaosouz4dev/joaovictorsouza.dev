@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar',
+    date: '2026-08-24',
+    readTime: '15 min',
+    keywords: {
+      pt: 'orcamento de erro, error budget, sli de atendimento, slo, taxa de queima, burn rate, politica de congelamento, janela deslizante, elegibilidade de conversa, confiabilidade de bot',
+      en: 'error budget, support sli, slo, burn rate, freeze policy, sliding window, conversation eligibility, release policy, bot reliability, automated support',
+      es: 'presupuesto de error, error budget, sli de atencion, slo, tasa de quema, burn rate, politica de congelamiento, ventana deslizante, elegibilidad de conversacion, confiabilidad de bot',
+    },
+    content: {
+      pt: {
+        title: 'Orçamento de erro em atendimento automatizado: quando parar de lançar',
+        excerpt:
+          'A decisão de pausar o roadmap sempre acaba sendo tomada por quem grita mais alto. Por que o SLI de atendimento não pode ser uptime e qual condição precisa de qualificador para o bot não aprender a nunca escalar, por que a lista de exclusões do denominador é a porta dos fundos mais fácil para maquiar o número, por que 99,9% em atendimento transforma o congelamento em permanente e como escolher o menor alvo que ainda mantém o cliente satisfeito, qual a diferença entre consumo e taxa de queima e por que cada um falha sozinho, de onde saem os patamares de 14,4x e 3x, e por que a política de três faixas precisa estar assinada antes do primeiro incidente.',
+        category: 'Confiabilidade',
+      },
+      en: {
+        title: 'Error budget in automated support: when to stop shipping',
+        excerpt:
+          'The decision to pause the roadmap always ends up being made by whoever shouts loudest. Why a support SLI cannot be uptime and which condition needs a qualifier so the bot does not learn to never escalate, why the denominator exclusion list is the easiest back door for faking the number, why 99.9% in support turns the freeze into a permanent one and how to pick the lowest target that still keeps the customer satisfied, what separates consumption from burn rate and why each fails on its own, where the 14.4x and 3x thresholds come from, and why the three band policy has to be signed before the first incident.',
+        category: 'Reliability',
+      },
+      es: {
+        title: 'Presupuesto de error en atención automatizada: cuándo dejar de desplegar',
+        excerpt:
+          'La decisión de pausar el roadmap siempre termina tomándola quien grita más fuerte. Por qué el SLI de atención no puede ser uptime y qué condición necesita un calificador para que el bot no aprenda a nunca escalar, por qué la lista de exclusiones del denominador es la puerta trasera más fácil para maquillar el número, por qué 99,9% en atención vuelve permanente el congelamiento y cómo elegir el objetivo más bajo que todavía mantiene al cliente satisfecho, qué separa el consumo de la tasa de quema y por qué cada uno falla por separado, de dónde salen los umbrales de 14,4x y 3x, y por qué la política de tres franjas tiene que estar firmada antes del primer incidente.',
+        category: 'Confiabilidad',
+      },
+    },
+  },
+  {
     slug: 'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar',
     date: '2026-08-22',
     readTime: '16 min',
@@ -2076,16 +2106,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Orçamento de erro em atendimento automatizado: quando parar de lançar',
     'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
+    'Migração de banco sem janela: expandir, migrar e contrair sem derrubar escrita',
+    'Cache invalidado errado: quando o dado velho custa mais caro que a consulta',
+    'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
   ],
   en: [
-    'Error budget in automated support: when to stop shipping',
     'Wrong partition key: the queue that stalls because one customer takes it all',
+    'Zero downtime database migration: expand, migrate and contract without stopping writes',
+    'Wrongly invalidated cache: when stale data costs more than the query',
+    'The feature flag that became debt: removing the flag without breaking production',
   ],
   es: [
-    'Presupuesto de error en atención automatizada: cuándo dejar de desplegar',
     'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',
+    'Migración de base de datos sin ventana: expandir, migrar y contraer sin detener la escritura',
+    'Caché invalidada mal: cuándo el dato viejo cuesta más caro que la consulta',
+    'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
   ],
 };
 

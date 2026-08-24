@@ -81,8 +81,10 @@ import chaveIdempotenciaWebhookPagamento from './chave-idempotencia-webhook-paga
 import amostragemTraceProducao from './amostragem-trace-producao-guardar-o-que-explica-o-incidente.js';
 import contratoSaidaEstruturada from './contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho.js';
 import timeoutCascataRetry from './timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar.js';
+import orcamentoErroAtendimento from './orcamento-erro-atendimento-automatizado-quando-parar-de-lancar.js';
 
 const postContentBySlug = {
+  'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar': orcamentoErroAtendimento,
   'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar': timeoutCascataRetry,
   'contrato-saida-estruturada-quando-esquema-do-modelo-muda-sozinho': contratoSaidaEstruturada,
   'amostragem-trace-producao-guardar-o-que-explica-o-incidente': amostragemTraceProducao,
