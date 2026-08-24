@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo',
+    date: '2026-08-24',
+    readTime: '16 min',
+    keywords: {
+      pt: 'chave de particionamento, particao, kafka, desequilibrio de particao, partition skew, bloqueio de cabeca de fila, head-of-line blocking, vizinho barulhento, lag por particao, chave composta, fila multi-tenant',
+      en: 'partition key, partition, kafka, partition skew, head-of-line blocking, noisy neighbor, per partition lag, composite key, multi-tenant queue, consumer lag',
+      es: 'clave de particionamiento, particion, kafka, desequilibrio de particion, partition skew, bloqueo de cabeza de fila, vecino ruidoso, lag por particion, clave compuesta, cola multi-tenant',
+    },
+    content: {
+      pt: {
+        title: 'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
+        excerpt:
+          'Trinta e dois consumidores, doze por cento de CPU e dezoito minutos de atraso ao mesmo tempo. Por que a chave de particionamento decide quem espera por quem e não apenas o que fica ordenado, por que ordenar por cliente serializa conversas que nunca tiveram relação causal entre si, por que o lag total do grupo de consumidores esconde exatamente o caso que importa e quais três medidas o revelam, qual composição de chave espalha o volume sem quebrar a ordem que o negócio exige e por que a migração precisa drenar antes de cortar, por que subir o número de partições não muda nada para a chave concentrada e ainda introduz uma janela de reordenação, o que fazer com a entidade única que não cabe numa partição, e qual teste de vizinho barulhento roda em milissegundos sem broker.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The wrong partition key: the queue that stalls because one customer takes it all',
+        excerpt:
+          'Thirty-two consumers, twelve percent CPU and eighteen minutes of delay at the same time. Why the partition key decides who waits for whom and not only what stays ordered, why keying by customer serializes conversations that never had any causal relationship, why total consumer group lag hides exactly the case that matters and which three measures expose it, which key composition spreads the volume without breaking the ordering the business requires and why the migration has to drain before cutting over, why raising the partition count changes nothing for the concentrated key and still introduces a reordering window, what to do with the single entity that does not fit in one partition, and which noisy neighbor test runs in milliseconds with no broker.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',
+        excerpt:
+          'Treinta y dos consumidores, doce por ciento de CPU y dieciocho minutos de atraso al mismo tiempo. Por qué la clave de particionamiento decide quién espera a quién y no solo qué queda ordenado, por qué ordenar por cliente serializa conversaciones que nunca tuvieron relación causal entre sí, por qué el lag total del grupo de consumidores esconde justamente el caso que importa y qué tres medidas lo revelan, qué composición de clave reparte el volumen sin romper el orden que el negocio exige y por qué la migración tiene que drenar antes de cortar, por qué subir el número de particiones no cambia nada para la clave concentrada y además introduce una ventana de reordenamiento, qué hacer con la entidad única que no cabe en una partición, y qué prueba de vecino ruidoso corre en milisegundos sin broker.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar',
     date: '2026-08-24',
     readTime: '15 min',
@@ -2106,19 +2136,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chave de particionamento errada: a fila que trava porque um cliente sozinho ocupa tudo',
     'Migração de banco sem janela: expandir, migrar e contrair sem derrubar escrita',
     'Cache invalidado errado: quando o dado velho custa mais caro que a consulta',
     'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
   ],
   en: [
-    'Wrong partition key: the queue that stalls because one customer takes it all',
     'Zero downtime database migration: expand, migrate and contract without stopping writes',
     'Wrongly invalidated cache: when stale data costs more than the query',
     'The feature flag that became debt: removing the flag without breaking production',
   ],
   es: [
-    'Clave de particionamiento equivocada: la cola que se traba porque un cliente lo ocupa todo',
     'Migración de base de datos sin ventana: expandir, migrar y contraer sin detener la escritura',
     'Caché invalidada mal: cuándo el dato viejo cuesta más caro que la consulta',
     'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
