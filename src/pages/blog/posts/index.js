@@ -83,8 +83,10 @@ import contratoSaidaEstruturada from './contrato-saida-estruturada-quando-esquem
 import timeoutCascataRetry from './timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar.js';
 import orcamentoErroAtendimento from './orcamento-erro-atendimento-automatizado-quando-parar-de-lancar.js';
 import chaveParticionamentoErrada from './chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo.js';
+import migracaoBancoSemJanela from './migracao-banco-sem-janela-expandir-migrar-contrair.js';
 
 const postContentBySlug = {
+  'migracao-banco-sem-janela-expandir-migrar-contrair': migracaoBancoSemJanela,
   'chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo': chaveParticionamentoErrada,
   'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar': orcamentoErroAtendimento,
   'timeout-cascata-retry-cliente-derruba-servico-que-ia-se-recuperar': timeoutCascataRetry,

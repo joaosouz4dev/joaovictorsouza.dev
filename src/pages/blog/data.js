@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-banco-sem-janela-expandir-migrar-contrair',
+    date: '2026-08-25',
+    readTime: '16 min',
+    keywords: {
+      pt: 'migracao de banco sem janela, zero downtime, expandir migrar contrair, expand and contract, backfill em lotes, escrita dupla, leitura em sombra, create index concurrently, constraint not valid, atraso de replicacao',
+      en: 'zero downtime database migration, expand migrate contract, expand and contract, batched backfill, dual write, shadow read, create index concurrently, not valid constraint, replication lag, online schema change',
+      es: 'migracion de base sin ventana, zero downtime, expandir migrar contraer, expand and contract, backfill por lotes, escritura doble, lectura en sombra, create index concurrently, constraint not valid, atraso de replicacion',
+    },
+    content: {
+      pt: {
+        title: 'Migração de banco sem janela: expandir, migrar e contrair sem derrubar escrita',
+        excerpt:
+          'A janela pedida era de quarenta minutos de madrugada e o sistema atende três fusos horários. Por que tirar a janela não elimina o problema e sim troca exclusividade por compatibilidade entre deploys vizinhos, por que adicionar uma coluna NOT NULL reescreve a tabela inteira sob lock enquanto a mesma coluna anulável termina em milissegundos, por que o lock exclusivo bloqueia o tráfego mesmo enquanto ainda está esperando na fila, o que separa uma escrita dupla verificável de uma esperançosa e qual contador autoriza a virada da leitura, por que o checkpoint do backfill precisa ser gravado depois do commit e nunca antes, e qual é o único passo da sequência que não tem rollback além de restaurar backup.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Zero downtime database migration: expand, migrate and contract without stopping writes',
+        excerpt:
+          'The window requested was forty minutes at dawn and the system serves three time zones. Why removing the window does not eliminate the problem but trades exclusivity for compatibility between neighboring deploys, why adding a NOT NULL column rewrites the entire table under a lock while the same nullable column finishes in milliseconds, why the exclusive lock blocks traffic even while it is still waiting in the queue, what separates a verifiable dual write from a hopeful one and which counter authorizes the read switch, why the backfill checkpoint has to be written after the commit and never before, and which is the only step in the sequence with no rollback beyond restoring a backup.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Migración de base de datos sin ventana: expandir, migrar y contraer sin detener la escritura',
+        excerpt:
+          'La ventana pedida era de cuarenta minutos de madrugada y el sistema atiende tres husos horarios. Por qué quitar la ventana no elimina el problema sino que cambia exclusividad por compatibilidad entre despliegues vecinos, por qué agregar una columna NOT NULL reescribe la tabla entera bajo lock mientras la misma columna anulable termina en milisegundos, por qué el lock exclusivo bloquea el tráfico incluso mientras sigue esperando en la cola, qué separa una escritura doble verificable de una esperanzada y qué contador autoriza el cambio de lectura, por qué el checkpoint del backfill tiene que grabarse después del commit y nunca antes, y cuál es el único paso de la secuencia que no tiene rollback más allá de restaurar un backup.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo',
     date: '2026-08-24',
     readTime: '16 min',
@@ -2136,17 +2166,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de banco sem janela: expandir, migrar e contrair sem derrubar escrita',
     'Cache invalidado errado: quando o dado velho custa mais caro que a consulta',
     'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
   ],
   en: [
-    'Zero downtime database migration: expand, migrate and contract without stopping writes',
     'Wrongly invalidated cache: when stale data costs more than the query',
     'The feature flag that became debt: removing the flag without breaking production',
   ],
   es: [
-    'Migración de base de datos sin ventana: expandir, migrar y contraer sin detener la escritura',
     'Caché invalidada mal: cuándo el dato viejo cuesta más caro que la consulta',
     'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
   ],
