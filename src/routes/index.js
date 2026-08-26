@@ -25,6 +25,7 @@ import Home from '../pages/home';
 import { Analytics } from '@vercel/analytics/react';
 
 const Matrix = lazy(() => import('../pages/matrix'));
+const AvatarLab = lazy(() => import('../pages/avatar-lab'));
 const NotFound = lazy(() => import('../pages/404'));
 const Wpp = lazy(() => import('../pages/wpp'));
 const Privacidade = lazy(() => import('../pages/privacidade'));
@@ -94,6 +95,7 @@ const AppRoutes = () => {
         {localizedRoutes('whatsapp', <Wpp />)}
         {localizedRoutes('wpp', <WhatsAppPage />)}
         {localizedRoutes('matrix', <Matrix />)}
+        <Route path="/avatar-lab" element={<AvatarLab />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
