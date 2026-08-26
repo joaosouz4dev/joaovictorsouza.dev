@@ -40,6 +40,7 @@ import observabilidadeLlm from './observabilidade-llm-tracing-custo-qualidade.js
 import guardrailsSaidaLlm from './guardrails-saida-llm-validacao-recusa-segura.js';
 import memoriaLongoPrazo from './memoria-longo-prazo-agentes-atendimento.js';
 import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
+import cacheInvalidadoErrado from './cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta.js';
 import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js';
 import streamingRespostaLlm from './streaming-resposta-llm-sem-quebrar-ux.js';
 import rateLimitFilaPrioridade from './rate-limit-fila-prioridade-apis-llm.js';
@@ -158,6 +159,7 @@ const postContentBySlug = {
   'guardrails-saida-llm-validacao-recusa-segura': guardrailsSaidaLlm,
   'memoria-longo-prazo-agentes-atendimento': memoriaLongoPrazo,
   'cache-semantico-reduzir-custo-llm': cacheSemantico,
+  'cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta': cacheInvalidadoErrado,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
