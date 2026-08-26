@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta',
+    date: '2026-08-26',
+    readTime: '16 min',
+    keywords: {
+      pt: 'invalidacao de cache, cache invalidado errado, dado velho, ttl, estampida de cache, cache stampede, revalidacao em segundo plano, outbox de invalidacao, cache local l1 l2, taxa de divergencia, leitura da propria escrita',
+      en: 'cache invalidation, stale data, ttl, cache stampede, background revalidation, invalidation outbox, local cache l1 l2, divergence rate, read your writes, caching strategy',
+      es: 'invalidacion de cache, cache invalidada mal, dato viejo, ttl, estampida de cache, revalidacion en segundo plano, outbox de invalidacion, cache local l1 l2, tasa de divergencia, lectura de la propia escritura',
+    },
+    content: {
+      pt: {
+        title: 'Cache invalidado errado: quando o dado velho custa mais caro que a consulta',
+        excerpt:
+          'O cache resolveu a latencia e criou uma segunda fonte de verdade que envelhece sozinha. Por que TTL e uma aposta sobre uma frequencia de escrita que voce nao controla e por que o pior caso e sempre o TTL inteiro, por que invalidar antes do commit envenena a entrada com o valor antigo carimbado como recente, por que a invalidacao precisa da mesma durabilidade do commit e como o outbox entrega isso, por que sobrescrever no lugar de invalidar quebra com escritas concorrentes fora de ordem, quais tres pecas diferentes resolvem estampida e por que implementar so o jitter nao basta, por que a taxa de acerto sobe justamente quando a invalidacao quebra e qual metrica revela o problema antes do suporte, e qual recorte de trafego precisa ignorar o cache por completo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Wrongly invalidated cache: when stale data costs more than the query',
+        excerpt:
+          'The cache solved latency and created a second source of truth that ages on its own. Why TTL is a bet on a write frequency you do not control and why the worst case is always the full TTL, why invalidating before the commit poisons the entry with the old value stamped as fresh, why invalidation needs the same durability as the commit and how the outbox delivers it, why overwriting instead of invalidating breaks under concurrent out of order writes, which three distinct pieces solve stampede and why jitter alone is not enough, why the hit rate goes up exactly when invalidation breaks and which metric exposes the problem before support does, and which slice of traffic has to bypass the cache entirely.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Cache invalidada mal: cuando el dato viejo cuesta mas caro que la consulta',
+        excerpt:
+          'La cache resolvio la latencia y creo una segunda fuente de verdad que envejece sola. Por que el TTL es una apuesta sobre una frecuencia de escritura que no controlas y por que el peor caso es siempre el TTL entero, por que invalidar antes del commit envenena la entrada con el valor antiguo sellado como reciente, por que la invalidacion necesita la misma durabilidad del commit y como el outbox lo entrega, por que sobrescribir en vez de invalidar se rompe con escrituras concurrentes fuera de orden, que tres piezas distintas resuelven la estampida y por que implementar solo el jitter no alcanza, por que la tasa de acierto sube justamente cuando la invalidacion se rompe y que metrica revela el problema antes que soporte, y que recorte de trafico tiene que ignorar la cache por completo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'migracao-banco-sem-janela-expandir-migrar-contrair',
     date: '2026-08-25',
     readTime: '16 min',
@@ -2166,16 +2196,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Cache invalidado errado: quando o dado velho custa mais caro que a consulta',
     'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
+    'Timeout mal calibrado: quando tentar de novo piora o incidente',
+    'Chave idempotente em pagamento: garantir cobrança única sem travar o checkout',
+    'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
   ],
   en: [
-    'Wrongly invalidated cache: when stale data costs more than the query',
     'The feature flag that became debt: removing the flag without breaking production',
+    'Badly calibrated timeouts: when retrying makes the incident worse',
+    'Idempotency key in payments: guaranteeing a single charge without stalling checkout',
+    'Multi-region with a single writer: what changes when latency becomes a product decision',
   ],
   es: [
-    'Caché invalidada mal: cuándo el dato viejo cuesta más caro que la consulta',
     'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
+    'Timeout mal calibrado: cuándo reintentar empeora el incidente',
+    'Clave idempotente en pagos: garantizar un cobro único sin trabar el checkout',
+    'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
   ],
 };
 
