@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao',
+    date: '2026-08-27',
+    readTime: '16 min',
+    keywords: {
+      pt: 'feature flag, divida tecnica, remocao de feature flag, flag esquecida, kill switch, telemetria de avaliacao, motivo da decisao, flag orfa, limpeza de codigo, rollout',
+      en: 'feature flag, technical debt, feature flag removal, stale flag, kill switch, evaluation telemetry, decision reason, orphaned flag, code cleanup, rollout',
+      es: 'feature flag, deuda tecnica, remocion de feature flag, bandera olvidada, kill switch, telemetria de evaluacion, motivo de la decision, bandera huerfana, limpieza de codigo, rollout',
+    },
+    content: {
+      pt: {
+        title: 'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
+        excerpt:
+          'A busca retornou setenta e quatro ocorrências e o commit que criou a flag tinha vinte e dois meses. Por que a flag esquecida não é um if morto e sim um multiplicador de estados que ninguém testa, por que decidir pela memória do time não funciona e qual campo da telemetria de avaliação é o que realmente autoriza a remoção, por que kill switch e permissão precisam sair do relatório antes da análise e não depois, qual ordem de três passos impede que a requisição em voo caia no valor de fallback, o que fazer quando a mesma flag aparece em setenta e quatro pontos do código, e qual teste prova que apagar o condicional não apagou junto uma métrica do painel.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The feature flag that became debt: removing the flag without breaking production',
+        excerpt:
+          'The search returned seventy-four occurrences and the commit that created the flag was twenty-two months old. Why a forgotten flag is not a dead if but a state multiplier nobody tests, why deciding from team memory does not work and which evaluation telemetry field actually authorizes removal, why kill switches and entitlements have to leave the report before the analysis and not after, which three-step order stops the in-flight request from falling into the fallback value, what to do when the same flag appears in seventy-four places in the code, and which test proves that deleting the conditional did not delete a dashboard metric along with it.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
+        excerpt:
+          'La búsqueda devolvió setenta y cuatro ocurrencias y el commit que creó la bandera tenía veintidós meses. Por qué la bandera olvidada no es un if muerto sino un multiplicador de estados que nadie prueba, por qué decidir por la memoria del equipo no funciona y qué campo de la telemetría de evaluación es el que realmente autoriza la remoción, por qué el kill switch y el permiso tienen que salir del reporte antes del análisis y no después, qué orden de tres pasos impide que la petición en vuelo caiga en el valor de fallback, qué hacer cuando la misma bandera aparece en setenta y cuatro puntos del código, y qué prueba demuestra que borrar el condicional no borró junto una métrica del panel.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta',
     date: '2026-08-26',
     readTime: '16 min',
@@ -2196,19 +2226,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Feature flag que virou dívida: como remover a bandeira sem quebrar produção',
     'Timeout mal calibrado: quando tentar de novo piora o incidente',
     'Chave idempotente em pagamento: garantir cobrança única sem travar o checkout',
     'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
   ],
   en: [
-    'The feature flag that became debt: removing the flag without breaking production',
     'Badly calibrated timeouts: when retrying makes the incident worse',
     'Idempotency key in payments: guaranteeing a single charge without stalling checkout',
     'Multi-region with a single writer: what changes when latency becomes a product decision',
   ],
   es: [
-    'El feature flag que se volvió deuda: quitar la bandera sin romper producción',
     'Timeout mal calibrado: cuándo reintentar empeora el incidente',
     'Clave idempotente en pagos: garantizar un cobro único sin trabar el checkout',
     'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
