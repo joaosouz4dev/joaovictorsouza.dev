@@ -85,8 +85,11 @@ import timeoutCascataRetry from './timeout-cascata-retry-cliente-derruba-servico
 import orcamentoErroAtendimento from './orcamento-erro-atendimento-automatizado-quando-parar-de-lancar.js';
 import chaveParticionamentoErrada from './chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo.js';
 import migracaoBancoSemJanela from './migracao-banco-sem-janela-expandir-migrar-contrair.js';
+import featureFlagQueVirouDivida from './feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao.js';
 
 const postContentBySlug = {
+  'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao':
+    featureFlagQueVirouDivida,
   'migracao-banco-sem-janela-expandir-migrar-contrair': migracaoBancoSemJanela,
   'chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo': chaveParticionamentoErrada,
   'orcamento-erro-atendimento-automatizado-quando-parar-de-lancar': orcamentoErroAtendimento,
