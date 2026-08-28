@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente',
+    date: '2026-08-28',
+    readTime: '16 min',
+    keywords: {
+      pt: 'timeout mal calibrado, calibracao de timeout, orcamento de retry, retry budget, p99 de latencia, prazo propagado, deadline propagation, requisicao paralela antecipada, hedged request, pool de conexoes, circuit breaker',
+      en: 'badly calibrated timeout, timeout calibration, retry budget, latency p99, deadline propagation, hedged request, connection pool, circuit breaker, retry amplification, fail fast',
+      es: 'timeout mal calibrado, calibracion de timeout, presupuesto de reintentos, retry budget, p99 de latencia, plazo propagado, peticion paralela anticipada, pool de conexiones, circuit breaker',
+    },
+    content: {
+      pt: {
+        title: 'Timeout mal calibrado: quando tentar de novo piora o incidente',
+        excerpt:
+          'O timeout era de trinta segundos e a mediana da chamada era de oitenta milissegundos, e ninguém escolheu esse número. Por que o timeout protege o recurso compartilhado e não a requisição individual, qual conta do pool de conexões mostra que trinta segundos derrubam o serviço inteiro por causa de uma dependência lenta, por que calibrar sobre a média produz um timeout que corta tráfego saudável e qual percentil usar no lugar, por que três tentativas por requisição multiplicam a carga justamente quando a dependência tem menos capacidade e o que o orçamento de retry faz diferente, qual verificação antes da chamada transforma trabalho garantidamente inútil em erro instantâneo, e qual métrica do painel se move um minuto antes da taxa de erro.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Badly calibrated timeouts: when retrying makes the incident worse',
+        excerpt:
+          'The timeout was thirty seconds and the median call took eighty milliseconds, and nobody chose that number. Why the timeout protects the shared resource and not the individual request, which connection pool calculation shows that thirty seconds take the whole service down because of one slow dependency, why calibrating on the average produces a timeout that cuts healthy traffic and which percentile to use instead, why three attempts per request multiply load exactly when the dependency has the least capacity and what the retry budget does differently, which check before the call turns guaranteed useless work into an instant error, and which dashboard metric moves a minute before the error rate.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Timeout mal calibrado: cuándo reintentar empeora el incidente',
+        excerpt:
+          'El timeout era de treinta segundos y la mediana de la llamada era de ochenta milisegundos, y nadie eligió ese número. Por qué el timeout protege al recurso compartido y no a la petición individual, qué cuenta del pool de conexiones muestra que treinta segundos tumban el servicio entero por una sola dependencia lenta, por qué calibrar sobre el promedio produce un timeout que corta tráfico saludable y qué percentil usar en su lugar, por qué tres intentos por petición multiplican la carga justo cuando la dependencia tiene menos capacidad y qué hace distinto el presupuesto de reintentos, qué verificación antes de la llamada convierte trabajo garantizadamente inútil en un error instantáneo, y qué métrica del panel se mueve un minuto antes que la tasa de error.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao',
     date: '2026-08-27',
     readTime: '16 min',
@@ -2226,19 +2256,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Timeout mal calibrado: quando tentar de novo piora o incidente',
     'Chave idempotente em pagamento: garantir cobrança única sem travar o checkout',
     'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
+    'Fila morta que ninguém lê: transformar mensagem descartada em correção de verdade',
+    'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
+    'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
   ],
   en: [
-    'Badly calibrated timeouts: when retrying makes the incident worse',
     'Idempotency key in payments: guaranteeing a single charge without stalling checkout',
     'Multi-region with a single writer: what changes when latency becomes a product decision',
+    'The dead letter queue nobody reads: turning discarded messages into real fixes',
+    'Clock skew between services: when event ordering stops existing',
+    'Unversioned API contracts: evolving the payload without breaking the old client',
   ],
   es: [
-    'Timeout mal calibrado: cuándo reintentar empeora el incidente',
     'Clave idempotente en pagos: garantizar un cobro único sin trabar el checkout',
     'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
+    'La cola muerta que nadie lee: convertir el mensaje descartado en una corrección real',
+    'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
+    'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
   ],
 };
 

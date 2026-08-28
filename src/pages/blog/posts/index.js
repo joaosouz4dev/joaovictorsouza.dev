@@ -86,8 +86,10 @@ import orcamentoErroAtendimento from './orcamento-erro-atendimento-automatizado-
 import chaveParticionamentoErrada from './chave-particionamento-errada-fila-trava-cliente-sozinho-ocupa-tudo.js';
 import migracaoBancoSemJanela from './migracao-banco-sem-janela-expandir-migrar-contrair.js';
 import featureFlagQueVirouDivida from './feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao.js';
+import timeoutMalCalibrado from './timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente.js';
 
 const postContentBySlug = {
+  'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente': timeoutMalCalibrado,
   'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao':
     featureFlagQueVirouDivida,
   'migracao-banco-sem-janela-expandir-migrar-contrair': migracaoBancoSemJanela,
