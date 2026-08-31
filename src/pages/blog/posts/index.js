@@ -87,8 +87,10 @@ import chaveParticionamentoErrada from './chave-particionamento-errada-fila-trav
 import migracaoBancoSemJanela from './migracao-banco-sem-janela-expandir-migrar-contrair.js';
 import featureFlagQueVirouDivida from './feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao.js';
 import timeoutMalCalibrado from './timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente.js';
+import chaveIdempotenciaCheckout from './chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo.js';
 
 const postContentBySlug = {
+  'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo': chaveIdempotenciaCheckout,
   'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente': timeoutMalCalibrado,
   'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao':
     featureFlagQueVirouDivida,
