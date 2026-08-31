@@ -88,8 +88,10 @@ import migracaoBancoSemJanela from './migracao-banco-sem-janela-expandir-migrar-
 import featureFlagQueVirouDivida from './feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao.js';
 import timeoutMalCalibrado from './timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente.js';
 import chaveIdempotenciaCheckout from './chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo.js';
+import multiRegiaoEscritaUnica from './multi-regiao-escrita-unica-latencia-vira-decisao-de-produto.js';
 
 const postContentBySlug = {
+  'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto': multiRegiaoEscritaUnica,
   'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo': chaveIdempotenciaCheckout,
   'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente': timeoutMalCalibrado,
   'feature-flag-que-virou-divida-remover-bandeira-sem-quebrar-producao':

@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto',
+    date: '2026-08-31',
+    readTime: '17 min',
+    keywords: {
+      pt: 'multi-regiao, escrita unica, single writer, replica de leitura, atraso de replicacao, leitura da propria escrita, read your writes, failover de escrita, cercamento por epoca, quorum, residencia de dados',
+      en: 'multi-region, single writer, read replica, replication lag, read your writes, write failover, epoch fencing, quorum, data residency, latency budget',
+      es: 'multirregion, escritura unica, replica de lectura, retraso de replicacion, lectura de la propia escritura, failover de escritura, cercado por epoca, quorum, residencia de datos',
+    },
+    content: {
+      pt: {
+        title: 'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
+        excerpt:
+          'A leitura caiu de duzentos e trinta para dezoito milissegundos e três semanas depois o cliente passou a ver o valor antigo na tela seguinte ao salvar. Por que a escrita única é um contrato de consistência e não uma etapa provisória a caminho do multi-master, qual critério separa a operação que pode ler da réplica local da que precisa atravessar o oceano, por que fixar o usuário no primário por trinta segundos erra nas duas direções e como o token de posição do log se autoajusta no lugar disso, por que a promoção automática de réplica é indistinguível de uma partição de rede e o que o cercamento por época resolve, quantas idas e voltas ao primário uma jornada pode ter antes de a rede dominar a latência percebida, e por que o atraso de replicação em segundos reporta zero justamente na condição que precede a perda de dados.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Multi-region with a single writer: what changes when latency becomes a product decision',
+        excerpt:
+          'Reads dropped from two hundred and thirty to eighteen milliseconds, and three weeks later customers started seeing the old value on the screen right after saving. Why a single writer is a consistency contract and not a temporary stage on the way to multi-master, which criterion separates the operation that can read from the local replica from the one that has to cross the ocean, why pinning the user to the primary for thirty seconds is wrong in both directions and how the log position token self-adjusts instead, why automatic replica promotion is indistinguishable from a network partition and what epoch fencing solves, how many round trips to the primary a journey can afford before the network dominates perceived latency, and why replication lag in seconds reports zero in exactly the condition that precedes data loss.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
+        excerpt:
+          'La lectura bajó de doscientos treinta a dieciocho milisegundos y tres semanas después el cliente empezó a ver el valor antiguo en la pantalla siguiente al guardar. Por qué la escritura única es un contrato de consistencia y no una etapa provisional camino al multi-master, qué criterio separa la operación que puede leer de la réplica local de la que tiene que cruzar el océano, por qué fijar al usuario en el primario durante treinta segundos falla en las dos direcciones y cómo el token de posición del log se autoajusta en su lugar, por qué la promoción automática de réplica es indistinguible de una partición de red y qué resuelve el cercado por época, cuántas idas y vueltas al primario puede permitirse un recorrido antes de que la red domine la latencia percibida, y por qué el retraso de replicación en segundos reporta cero justo en la condición que precede a la pérdida de datos.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo',
     date: '2026-08-31',
     readTime: '16 min',
@@ -2286,19 +2316,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
     'Fila morta que ninguém lê: transformar mensagem descartada em correção de verdade',
     'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
     'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
   ],
   en: [
-    'Multi-region with a single writer: what changes when latency becomes a product decision',
     'The dead letter queue nobody reads: turning discarded messages into real fixes',
     'Clock skew between services: when event ordering stops existing',
     'Unversioned API contracts: evolving the payload without breaking the old client',
   ],
   es: [
-    'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
     'La cola muerta que nadie lee: convertir el mensaje descartado en una corrección real',
     'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
     'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
