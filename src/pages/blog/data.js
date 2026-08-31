@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo',
+    date: '2026-08-31',
+    readTime: '16 min',
+    keywords: {
+      pt: 'chave de idempotencia, checkout, cobranca duplicada, duplo clique, restricao de unicidade, resposta armazenada, impressao digital do corpo, gateway de pagamento, retentativa apos timeout, teste de concorrencia',
+      en: 'idempotency key, checkout, double charge, double click, uniqueness constraint, stored response, request fingerprint, payment gateway, retry after timeout, concurrency test',
+      es: 'clave de idempotencia, checkout, cobro duplicado, doble clic, restriccion de unicidad, respuesta almacenada, huella del cuerpo, gateway de pago, reintento tras timeout, prueba de concurrencia',
+    },
+    content: {
+      pt: {
+        title: 'Chave de idempotência no checkout: cobrar uma vez sem travar o fluxo',
+        excerpt:
+          'A chave resolveu a cobrança dupla e criou uma tela travada por quarenta segundos no lugar dela. Por que a chave precisa nascer no cliente antes do primeiro envio e por que derivá-la do carrinho engole a compra repetida legítima, o que responder quando duas requisições com a mesma chave chegam ao mesmo tempo e por que esperar pelo bloqueio troca duplicidade por latência, por que o registro da chave tem que ser confirmado fora da transação que cria a cobrança, qual campo impede que o cliente receba a confirmação de um pedido que não fez, como derivar de forma determinística a chave que atravessa a borda até o gateway, e qual asserção do teste concorrente é a única que mede o efeito real em vez do formato da resposta.',
+        category: 'Integrações',
+      },
+      en: {
+        title: 'Idempotency key at checkout: charging once without freezing the flow',
+        excerpt:
+          'The key solved the double charge and created a screen frozen for forty seconds in its place. Why the key has to be born on the client before the first send and why deriving it from the cart swallows the legitimate repeat purchase, what to answer when two requests with the same key arrive at the same time and why waiting on the lock trades duplication for latency, why the key record has to be committed outside the transaction that creates the charge, which field stops the customer from receiving the confirmation of an order they never placed, how to deterministically derive the key that crosses the boundary to the gateway, and which assertion in the concurrent test is the only one measuring the real effect rather than the response shape.',
+        category: 'Integrations',
+      },
+      es: {
+        title: 'Clave de idempotencia en el checkout: cobrar una vez sin trabar el flujo',
+        excerpt:
+          'La clave resolvió el cobro duplicado y creó una pantalla congelada de cuarenta segundos en su lugar. Por qué la clave tiene que nacer en el cliente antes del primer envío y por qué derivarla del carrito absorbe la compra repetida legítima, qué responder cuando dos peticiones con la misma clave llegan al mismo tiempo y por qué esperar el bloqueo cambia duplicidad por latencia, por qué el registro de la clave tiene que confirmarse fuera de la transacción que crea el cobro, qué campo impide que el cliente reciba la confirmación de un pedido que no hizo, cómo derivar de forma determinista la clave que cruza el borde hacia el gateway, y qué aserción de la prueba concurrente es la única que mide el efecto real en vez de la forma de la respuesta.',
+        category: 'Integraciones',
+      },
+    },
+  },
+  {
     slug: 'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente',
     date: '2026-08-28',
     readTime: '16 min',
@@ -2256,21 +2286,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chave idempotente em pagamento: garantir cobrança única sem travar o checkout',
     'Multi-região com escrita única: o que muda quando a latência vira decisão de produto',
     'Fila morta que ninguém lê: transformar mensagem descartada em correção de verdade',
     'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
     'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
   ],
   en: [
-    'Idempotency key in payments: guaranteeing a single charge without stalling checkout',
     'Multi-region with a single writer: what changes when latency becomes a product decision',
     'The dead letter queue nobody reads: turning discarded messages into real fixes',
     'Clock skew between services: when event ordering stops existing',
     'Unversioned API contracts: evolving the payload without breaking the old client',
   ],
   es: [
-    'Clave idempotente en pagos: garantizar un cobro único sin trabar el checkout',
     'Multirregión con escritura única: qué cambia cuando la latencia se vuelve decisión de producto',
     'La cola muerta que nadie lee: convertir el mensaje descartado en una corrección real',
     'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
