@@ -89,8 +89,10 @@ import featureFlagQueVirouDivida from './feature-flag-que-virou-divida-remover-b
 import timeoutMalCalibrado from './timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente.js';
 import chaveIdempotenciaCheckout from './chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo.js';
 import multiRegiaoEscritaUnica from './multi-regiao-escrita-unica-latencia-vira-decisao-de-produto.js';
+import filaMortaQueNinguemLe from './fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao.js';
 
 const postContentBySlug = {
+  'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao': filaMortaQueNinguemLe,
   'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto': multiRegiaoEscritaUnica,
   'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo': chaveIdempotenciaCheckout,
   'timeout-mal-calibrado-quando-tentar-de-novo-piora-o-incidente': timeoutMalCalibrado,

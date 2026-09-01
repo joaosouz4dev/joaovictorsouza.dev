@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao',
+    date: '2026-09-01',
+    readTime: '17 min',
+    keywords: {
+      pt: 'fila morta, dead letter queue, mensagem descartada, reprocessamento, triagem de erros, taxa de erro, envelope de descarte, alerta de fila, politica de tentativas, encerramento registrado',
+      en: 'dead letter queue, DLQ, discarded message, replay, error triage, error rate, discard envelope, queue alert, retry policy, recorded disposition',
+      es: 'cola muerta, dead letter queue, mensaje descartado, reprocesamiento, clasificacion de errores, tasa de error, envoltorio de descarte, alerta de cola, politica de intentos, cierre registrado',
+    },
+    content: {
+      pt: {
+        title: 'Fila morta que ninguém lê: transformar mensagem descartada em correção de verdade',
+        excerpt:
+          'A fila morta tinha quarenta e um mil mensagens, a mais antiga de catorze meses atrás, e o painel mostrava zero vírgula três por cento de erro. Por que a mensagem roteada para a fila morta sai do cálculo de sucesso e faz um sistema com dois por cento de falha real parecer saudável, quais cinco campos precisam envelopar o descarte para que ele seja diagnosticável meses depois, por que agrupar só por classe de erro junta um incidente de duas horas com um defeito de onze meses, qual campo do relatório decide entre reprocessar e corrigir o código primeiro, por que reprocessar tudo de uma vez derruba o serviço que acabou de se recuperar, e quais três alertas pegam tanto o incidente quanto o vazamento lento de dez mensagens por dia.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The dead letter queue nobody reads: turning discarded messages into real fixes',
+        excerpt:
+          'The dead letter queue held forty-one thousand messages, the oldest fourteen months old, and the dashboard showed a zero point three percent error rate. Why a message routed to the dead letter queue leaves the success calculation and makes a system with two percent real failure look healthy, which five fields have to envelope the discard so it stays diagnosable months later, why grouping by error class alone lumps a two-hour incident together with an eleven-month defect, which report field decides between replaying and fixing the code first, why replaying everything at once takes down the service that had just recovered, and which three alerts catch both the incident and the slow leak of ten messages a day.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La cola muerta que nadie lee: convertir el mensaje descartado en una corrección real',
+        excerpt:
+          'La cola muerta tenía cuarenta y un mil mensajes, el más antiguo de hace catorce meses, y el panel mostraba cero coma tres por ciento de error. Por qué el mensaje enrutado a la cola muerta sale del cálculo de éxito y hace que un sistema con dos por ciento de falla real parezca saludable, qué cinco campos tienen que envolver el descarte para que siga siendo diagnosticable meses después, por qué agrupar solo por clase de error junta un incidente de dos horas con un defecto de once meses, qué campo del informe decide entre reprocesar y corregir el código primero, por qué reprocesar todo de golpe tumba el servicio que acababa de recuperarse, y qué tres alertas capturan tanto el incidente como la fuga lenta de diez mensajes por día.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto',
     date: '2026-08-31',
     readTime: '17 min',
@@ -2316,19 +2346,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Fila morta que ninguém lê: transformar mensagem descartada em correção de verdade',
     'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
     'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
+    'Índice que o banco decidiu ignorar: quando o plano de consulta muda sozinho',
+    'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
+    'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
   ],
   en: [
-    'The dead letter queue nobody reads: turning discarded messages into real fixes',
     'Clock skew between services: when event ordering stops existing',
     'Unversioned API contracts: evolving the payload without breaking the old client',
+    'The index the database decided to ignore: when the query plan changes on its own',
+    'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
+    'Migrating a queue without losing messages: swapping the broker with traffic on',
   ],
   es: [
-    'La cola muerta que nadie lee: convertir el mensaje descartado en una corrección real',
     'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
     'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
+    'El índice que la base decidió ignorar: cuándo el plan de consulta cambia solo',
+    'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',
+    'Migrar una cola sin perder mensajes: cambiar el broker con el tráfico encendido',
   ],
 };
 
