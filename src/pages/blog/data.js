@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'relogio-dessincronizado-entre-servicos-ordem-dos-eventos',
+    date: '2026-09-02',
+    readTime: '17 min',
+    keywords: {
+      pt: 'relogio dessincronizado, desvio de relogio, clock skew, salto de relogio, relogio monotonico, ordem de eventos, contador logico, ultima escrita vence, versionamento otimista, sincronizacao ntp',
+      en: 'clock skew, clock drift, clock jump, monotonic clock, event ordering, logical counter, last write wins, optimistic versioning, NTP synchronization, causal order',
+      es: 'reloj desincronizado, desvio de reloj, clock skew, salto de reloj, reloj monotonico, orden de eventos, contador logico, ultima escritura gana, versionado optimista, sincronizacion ntp',
+    },
+    content: {
+      pt: {
+        title: 'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
+        excerpt:
+          'O cliente respondeu à mensagem trinta e quatro milissegundos antes de ela ter sido enviada, e os dois carimbos de tempo estavam corretos. Por que o carimbo de parede não é um mecanismo de ordenação e qual é o único parâmetro que decide se dois eventos são comparáveis, qual a diferença prática entre desvio e salto de relógio e por que só o segundo destrói dados, como um contador lógico por entidade resolve a ordenação e entrega detecção de lacuna que nenhum carimbo entrega, por que a regra de última escrita vence descarta a alteração correta sem gerar erro para ninguém, qual carimbo usar para ordenar e qual usar para auditar, e quais três alertas medem o desvio pela ordem causal em vez de confiar no que o NTP reporta.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Clock skew between services: when event ordering stops existing',
+        excerpt:
+          'The customer replied to the message thirty-four milliseconds before it was sent, and both timestamps were correct. Why a wall clock timestamp is not an ordering mechanism and what the single parameter is that decides whether two events are comparable, what the practical difference is between drift and a clock jump and why only the second destroys data, how a logical counter per entity solves ordering and delivers the gap detection no timestamp delivers, why last write wins discards the correct change without producing an error for anyone, which timestamp to use for ordering and which for auditing, and which three alerts measure drift through causal order instead of trusting what NTP reports.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
+        excerpt:
+          'El cliente respondió al mensaje treinta y cuatro milisegundos antes de que fuera enviado, y las dos marcas de tiempo eran correctas. Por qué la marca de pared no es un mecanismo de ordenación y cuál es el único parámetro que decide si dos eventos son comparables, cuál es la diferencia práctica entre desvío y salto de reloj y por qué solo el segundo destruye datos, cómo un contador lógico por entidad resuelve la ordenación y entrega la detección de huecos que ninguna marca entrega, por qué la regla de última escritura gana descarta el cambio correcto sin generar error para nadie, qué marca usar para ordenar y cuál para auditar, y qué tres alertas miden el desvío por el orden causal en vez de confiar en lo que reporta NTP.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao',
     date: '2026-09-01',
     readTime: '17 min',
@@ -2346,21 +2376,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Relógio dessincronizado entre serviços: quando a ordem dos eventos deixa de existir',
     'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
     'Índice que o banco decidiu ignorar: quando o plano de consulta muda sozinho',
     'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
     'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
   ],
   en: [
-    'Clock skew between services: when event ordering stops existing',
     'Unversioned API contracts: evolving the payload without breaking the old client',
     'The index the database decided to ignore: when the query plan changes on its own',
     'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
     'Migrating a queue without losing messages: swapping the broker with traffic on',
   ],
   es: [
-    'Relojes desincronizados entre servicios: cuándo el orden de los eventos deja de existir',
     'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
     'El índice que la base decidió ignorar: cuándo el plan de consulta cambia solo',
     'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',

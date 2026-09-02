@@ -90,8 +90,10 @@ import timeoutMalCalibrado from './timeout-mal-calibrado-quando-tentar-de-novo-p
 import chaveIdempotenciaCheckout from './chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo.js';
 import multiRegiaoEscritaUnica from './multi-regiao-escrita-unica-latencia-vira-decisao-de-produto.js';
 import filaMortaQueNinguemLe from './fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao.js';
+import relogioDessincronizado from './relogio-dessincronizado-entre-servicos-ordem-dos-eventos.js';
 
 const postContentBySlug = {
+  'relogio-dessincronizado-entre-servicos-ordem-dos-eventos': relogioDessincronizado,
   'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao': filaMortaQueNinguemLe,
   'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto': multiRegiaoEscritaUnica,
   'chave-idempotencia-checkout-cobrar-uma-vez-sem-travar-o-fluxo': chaveIdempotenciaCheckout,
