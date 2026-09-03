@@ -91,8 +91,10 @@ import chaveIdempotenciaCheckout from './chave-idempotencia-checkout-cobrar-uma-
 import multiRegiaoEscritaUnica from './multi-regiao-escrita-unica-latencia-vira-decisao-de-produto.js';
 import filaMortaQueNinguemLe from './fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao.js';
 import relogioDessincronizado from './relogio-dessincronizado-entre-servicos-ordem-dos-eventos.js';
+import contratoApiSemVersao from './contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo.js';
 
 const postContentBySlug = {
+  'contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo': contratoApiSemVersao,
   'relogio-dessincronizado-entre-servicos-ordem-dos-eventos': relogioDessincronizado,
   'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao': filaMortaQueNinguemLe,
   'multi-regiao-escrita-unica-latencia-vira-decisao-de-produto': multiRegiaoEscritaUnica,

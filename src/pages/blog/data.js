@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo',
+    date: '2026-09-03',
+    readTime: '17 min',
+    keywords: {
+      pt: 'contrato de api, versionamento de api, compatibilidade retroativa, evoluir payload, expandir migrar contrair, cabecalho deprecation, cabecalho sunset, descontinuacao de campo, teste de contrato, quebra de integracao',
+      en: 'api contract, api versioning, backward compatibility, payload evolution, expand migrate contract, deprecation header, sunset header, field deprecation, contract testing, integration breakage',
+      es: 'contrato de api, versionado de api, compatibilidad retroactiva, evolucionar payload, expandir migrar contraer, cabecera deprecation, cabecera sunset, descontinuacion de campo, prueba de contrato, rotura de integracion',
+    },
+    content: {
+      pt: {
+        title: 'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
+        excerpt:
+          'O campo foi renomeado numa terça-feira, o teste passou, e na quinta o parceiro que integra desde 2021 avisou que o valor do pedido chegava zerado. Por que colocar um número na URL não versiona o contrato e qual é o conjunto real de suposições que o cliente faz, quais sete mudanças de payload são compatíveis de verdade e por que o campo enumerado e o relaxamento de validação enganam, como a adição de um campo derruba o cliente estrito sem gerar um único erro do seu lado, quais três formas descobrem quem usa cada campo sem depender de formulário de integração, por que o relatório de uso zerado não autoriza a remoção sem a medida de cobertura da janela, e quais três alertas transformam a data de remoção em decisão por cliente em vez de por prazo anunciado.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Unversioned API contracts: evolving the payload without breaking the old client',
+        excerpt:
+          'The field was renamed on a Tuesday, the test passed, and on Thursday the partner integrating since 2021 reported the order amount arriving as zero. Why putting a number in the URL does not version the contract and what the real set of assumptions the client makes is, which seven payload changes are genuinely compatible and why the enumerated field and the relaxed validation are deceiving, how adding a field takes down the strict client without producing a single error on your side, which three methods reveal who uses each field without relying on an integration survey, why a zero-usage report does not authorize removal without the window coverage measure, and which three alerts turn the removal date into a per-client decision instead of an announced deadline.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
+        excerpt:
+          'El campo se renombró un martes, la prueba pasó, y el jueves el socio que integra desde 2021 avisó que el importe del pedido llegaba en cero. Por qué poner un número en la URL no versiona el contrato y cuál es el conjunto real de supuestos que hace el cliente, qué siete cambios de payload son compatibles de verdad y por qué el campo enumerado y el relajamiento de validación engañan, cómo agregar un campo tumba al cliente estricto sin generar un solo error de tu lado, qué tres formas descubren quién usa cada campo sin depender de un formulario de integración, por qué el informe de uso en cero no autoriza la eliminación sin la medida de cobertura de la ventana, y qué tres alertas convierten la fecha de eliminación en una decisión por cliente en vez de por plazo anunciado.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'relogio-dessincronizado-entre-servicos-ordem-dos-eventos',
     date: '2026-09-02',
     readTime: '17 min',
@@ -2376,19 +2406,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Contrato de API sem versão: evoluir o payload sem quebrar o cliente antigo',
     'Índice que o banco decidiu ignorar: quando o plano de consulta muda sozinho',
     'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
     'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
   ],
   en: [
-    'Unversioned API contracts: evolving the payload without breaking the old client',
     'The index the database decided to ignore: when the query plan changes on its own',
     'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
     'Migrating a queue without losing messages: swapping the broker with traffic on',
   ],
   es: [
-    'Contrato de API sin versión: evolucionar el payload sin romper al cliente antiguo',
     'El índice que la base decidió ignorar: cuándo el plan de consulta cambia solo',
     'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',
     'Migrar una cola sin perder mensajes: cambiar el broker con el tráfico encendido',
