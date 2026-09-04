@@ -92,8 +92,10 @@ import multiRegiaoEscritaUnica from './multi-regiao-escrita-unica-latencia-vira-
 import filaMortaQueNinguemLe from './fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao.js';
 import relogioDessincronizado from './relogio-dessincronizado-entre-servicos-ordem-dos-eventos.js';
 import contratoApiSemVersao from './contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo.js';
+import indiceQueOBancoIgnorou from './indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho.js';
 
 const postContentBySlug = {
+  'indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho': indiceQueOBancoIgnorou,
   'contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo': contratoApiSemVersao,
   'relogio-dessincronizado-entre-servicos-ordem-dos-eventos': relogioDessincronizado,
   'fila-morta-que-ninguem-le-mensagem-descartada-vira-correcao': filaMortaQueNinguemLe,
