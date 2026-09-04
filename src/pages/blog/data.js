@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho',
+    date: '2026-09-04',
+    readTime: '17 min',
+    keywords: {
+      pt: 'plano de consulta, otimizador baseado em custo, estatistica desatualizada, indice ignorado, erro de estimativa, parametro capturado, estatistica estendida, correlacao entre colunas, explain analyze, desempenho de banco',
+      en: 'query plan, cost based optimizer, stale statistics, ignored index, estimation error, parameter sniffing, extended statistics, column correlation, explain analyze, database performance',
+      es: 'plan de consulta, optimizador basado en costo, estadistica desactualizada, indice ignorado, error de estimacion, parametro capturado, estadistica extendida, correlacion entre columnas, explain analyze, rendimiento de base de datos',
+    },
+    content: {
+      pt: {
+        title: 'Índice que o banco decidiu ignorar: quando o plano de consulta muda sozinho',
+        excerpt:
+          'A consulta rodava em quatro milissegundos havia dois anos, ninguém alterou o código, e numa quarta-feira ela passou a levar onze segundos com o índice intacto no lugar. Por que o plano é uma decisão recalculada e não uma propriedade da consulta, quais quatro entradas do otimizador mudam sozinhas em produção, por que a razão entre linhas estimadas e reais no plano executado diagnostica em segundos o que o plano estimado esconde, como o parâmetro capturado na primeira execução condena todas as seguintes e por que reiniciar o serviço inverte o sintoma, por que a estatística da coluna de data em tabela que só cresce mata justamente as consultas dos últimos sete dias, qual a ordem correta entre corrigir estatística, criar índice, reescrever a consulta e fixar o plano, e quais três alertas mostram a mudança de plano no dia em que ela acontece.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The index the database decided to ignore: when the query plan changes on its own',
+        excerpt:
+          'The query had been running in four milliseconds for two years, nobody changed the code, and on a Wednesday it started taking eleven seconds with the index intact and in place. Why the plan is a recomputed decision and not a property of the query, which four optimizer inputs change on their own in production, why the ratio between estimated and real rows in the executed plan diagnoses in seconds what the estimated plan hides, how the parameter captured on the first execution condemns every one after it and why restarting the service inverts the symptom, why statistics on the date column of an append-only table kill exactly the last seven days queries, what the correct order is between fixing statistics, creating an index, rewriting the query and pinning the plan, and which three alerts surface a plan change on the day it happens.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El índice que la base decidió ignorar: cuándo el plan de consulta cambia solo',
+        excerpt:
+          'La consulta corría en cuatro milisegundos desde hacía dos años, nadie cambió el código, y un miércoles pasó a tardar once segundos con el índice intacto en su lugar. Por qué el plan es una decisión recalculada y no una propiedad de la consulta, qué cuatro entradas del optimizador cambian solas en producción, por qué la razón entre filas estimadas y reales en el plan ejecutado diagnostica en segundos lo que el plan estimado esconde, cómo el parámetro capturado en la primera ejecución condena a todas las siguientes y por qué reiniciar el servicio invierte el síntoma, por qué la estadística de la columna de fecha en una tabla que solo crece mata justamente las consultas de los últimos siete días, cuál es el orden correcto entre corregir estadística, crear índice, reescribir la consulta y fijar el plan, y qué tres alertas muestran el cambio de plan el día en que ocurre.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo',
     date: '2026-09-03',
     readTime: '17 min',
@@ -2406,17 +2436,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Índice que o banco decidiu ignorar: quando o plano de consulta muda sozinho',
     'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
     'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
   ],
   en: [
-    'The index the database decided to ignore: when the query plan changes on its own',
     'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
     'Migrating a queue without losing messages: swapping the broker with traffic on',
   ],
   es: [
-    'El índice que la base decidió ignorar: cuándo el plan de consulta cambia solo',
     'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',
     'Migrar una cola sin perder mensajes: cambiar el broker con el tráfico encendido',
   ],
