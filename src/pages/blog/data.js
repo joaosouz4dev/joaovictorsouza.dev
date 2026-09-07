@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia',
+    date: '2026-09-07',
+    readTime: '17 min',
+    keywords: {
+      pt: 'sessao pegajosa, afinidade de sessao, balanceador de carga, estado em memoria, sessao distribuida, hash consistente, escala automatica, distribuicao de carga, aplicacao sem estado, dispersao entre instancias',
+      en: 'sticky session, session affinity, load balancer, in memory state, distributed session, consistent hashing, autoscaling, load distribution, stateless application, instance load spread',
+      es: 'sesion pegajosa, afinidad de sesion, balanceador de carga, estado en memoria, sesion distribuida, hash consistente, escalado automatico, distribucion de carga, aplicacion sin estado, dispersion entre instancias',
+    },
+    content: {
+      pt: {
+        title: 'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
+        excerpt:
+          'O time subiu quatro instâncias novas às nove da manhã de uma segunda-feira de campanha, e vinte minutos depois três delas estavam com dois por cento de CPU enquanto a antiga atendia noventa por cento do tráfego e devolvia erro. Por que a afinidade de sessão transforma capacidade em número enganoso e a média de CPU esconde exatamente o problema, quais quatro custos ela cobra e qual gatilho dispara cada um, por que o problema real nunca é o balanceador e sim o estado que ficou no processo, quais cinco categorias de estado em memória existem e para onde cada uma vai, qual sequência de cinco etapas migra para estado externo sem derrubar quem está logado, por que renovar a expiração é diferente de reescrever a sessão quando duas instâncias atendem o mesmo usuário, e quais três alertas mostram o desbalanceamento antes do cliente.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
+        excerpt:
+          'The team brought up four new instances at nine in the morning on a campaign Monday, and twenty minutes later three of them sat at two percent CPU while the old one served ninety percent of the traffic and returned errors. Why session affinity turns capacity into a misleading number and average CPU hides exactly the problem, which four costs it charges and what triggers each one, why the real problem is never the balancer but the state left inside the process, which five categories of in memory state exist and where each one belongs, which five stage sequence migrates to external state without dropping logged in users, why renewing the expiry differs from rewriting the session when two instances serve the same user, and which three alerts surface the imbalance before the customer.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',
+        excerpt:
+          'El equipo levantó cuatro instancias nuevas a las nueve de la mañana de un lunes de campaña, y veinte minutos después tres de ellas estaban al dos por ciento de CPU mientras la antigua atendía el noventa por ciento del tráfico y devolvía error. Por qué la afinidad de sesión convierte la capacidad en un número engañoso y la media de CPU esconde justamente el problema, qué cuatro costos cobra y qué disparador activa cada uno, por qué el problema real nunca es el balanceador sino el estado que quedó en el proceso, qué cinco categorías de estado en memoria existen y a dónde va cada una, qué secuencia de cinco etapas migra a estado externo sin tumbar a quien está conectado, por qué renovar la expiración es distinto de reescribir la sesión cuando dos instancias atienden al mismo usuario, y qué tres alertas muestran el desbalanceo antes que el cliente.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho',
     date: '2026-09-04',
     readTime: '17 min',
@@ -2436,16 +2466,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Sessão pegajosa no balanceador: o custo escondido de amarrar o usuário a uma instância',
     'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
+    'Limite de conexões do banco esgotado: quando o pool vira o gargalo do serviço',
+    'Rotação de segredo sem indisponibilidade: trocar chave em produção sem derrubar integração',
+    'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
   ],
   en: [
-    'Sticky sessions at the load balancer: the hidden cost of pinning a user to one instance',
     'Migrating a queue without losing messages: swapping the broker with traffic on',
+    'Exhausted database connection limits: when the pool becomes the service bottleneck',
+    'Secret rotation without downtime: replacing a key in production without breaking integrations',
+    'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
   ],
   es: [
-    'Sesión pegajosa en el balanceador: el costo oculto de atar al usuario a una instancia',
     'Migrar una cola sin perder mensajes: cambiar el broker con el tráfico encendido',
+    'Límite de conexiones de la base agotado: cuándo el pool se vuelve el cuello de botella del servicio',
+    'Rotación de secretos sin indisponibilidad: cambiar una clave en producción sin tumbar integraciones',
+    'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',
   ],
 };
 
