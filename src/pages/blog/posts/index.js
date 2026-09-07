@@ -94,8 +94,10 @@ import relogioDessincronizado from './relogio-dessincronizado-entre-servicos-ord
 import contratoApiSemVersao from './contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo.js';
 import indiceQueOBancoIgnorou from './indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho.js';
 import sessaoPegajosaBalanceador from './sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia.js';
+import migracaoFilaSemPerderMensagem from './migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado.js';
 
 const postContentBySlug = {
+  'migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado': migracaoFilaSemPerderMensagem,
   'sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia': sessaoPegajosaBalanceador,
   'indice-que-o-banco-decidiu-ignorar-plano-de-consulta-muda-sozinho': indiceQueOBancoIgnorou,
   'contrato-api-sem-versao-evoluir-payload-sem-quebrar-cliente-antigo': contratoApiSemVersao,
