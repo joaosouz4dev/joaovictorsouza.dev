@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado',
+    date: '2026-09-07',
+    readTime: '18 min',
+    keywords: {
+      pt: 'migracao de fila, trocar broker, mensageria, consumo duplo, ponte entre filas, idempotencia, ordem de mensagens, drenagem de fila, fila morta, migracao sem downtime',
+      en: 'queue migration, broker swap, messaging, dual consumption, queue bridge, idempotency, message ordering, queue drain, dead letter queue, zero downtime migration',
+      es: 'migracion de cola, cambiar broker, mensajeria, consumo doble, puente entre colas, idempotencia, orden de mensajes, drenaje de cola, cola muerta, migracion sin downtime',
+    },
+    content: {
+      pt: {
+        title: 'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
+        excerpt:
+          'A janela era de trinta minutos às duas da manhã, a fila antiga não drenou a tempo, alguém apontou o produtor mesmo assim, e na segunda-feira o financeiro encontrou dezenove cobranças duplicadas e sete pedidos parados. Por que a janela de manutenção é a estratégia mais arriscada disponível e por que a fila nunca drena em tempo previsível, quais quatro garantias precisam ser inventariadas antes de escolher o método e por que a de entrega é a que produz cobrança duplicada, por que a chave de idempotência tem que vir do payload e não do identificador do broker, como a fase de consumo duplo elimina a perda antes de mover qualquer tráfego, por que o roteamento por fatia estável de chave preserva a ordem que o percentual aleatório quebra, qual sequência de sete etapas migra com o tráfego ligado avançando por indicador e não por horário, e quais três indicadores autorizam desligar a fila antiga de verdade.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Queue migration without losing messages: swapping the broker with traffic on',
+        excerpt:
+          'The window was thirty minutes at two in the morning, the old queue did not drain in time, somebody pointed the producer anyway, and on Monday finance found nineteen duplicate charges and seven stalled orders. Why the maintenance window is the riskiest strategy available and why a queue never drains in predictable time, which four guarantees must be inventoried before choosing a method and why delivery is the one that produces duplicate charges, why the idempotency key must come from the payload and not from the broker identifier, how the dual consumption phase eliminates loss before moving any traffic, why stable key slice routing preserves the ordering that random percentage breaks, which seven stage sequence migrates with traffic on advancing by indicator instead of by the clock, and which three indicators genuinely authorize shutting down the old queue.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Migración de cola sin perder mensajes: cambiar el broker con el tráfico encendido',
+        excerpt:
+          'La ventana era de treinta minutos a las dos de la madrugada, la cola antigua no drenó a tiempo, alguien apuntó el productor de todos modos, y el lunes finanzas encontró diecinueve cobros duplicados y siete pedidos detenidos. Por qué la ventana de mantenimiento es la estrategia más arriesgada disponible y por qué la cola nunca drena en tiempo previsible, qué cuatro garantías hay que inventariar antes de elegir el método y por qué la de entrega es la que produce cobros duplicados, por qué la clave de idempotencia tiene que venir del payload y no del identificador del broker, cómo la fase de consumo doble elimina la pérdida antes de mover tráfico alguno, por qué el enrutamiento por porción estable de clave preserva el orden que el porcentaje aleatorio rompe, qué secuencia de siete etapas migra con el tráfico encendido avanzando por indicador y no por horario, y qué tres indicadores autorizan apagar la cola antigua de verdad.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia',
     date: '2026-09-07',
     readTime: '17 min',
@@ -2466,19 +2496,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de fila sem perder mensagem: trocar o broker com o tráfego ligado',
     'Limite de conexões do banco esgotado: quando o pool vira o gargalo do serviço',
     'Rotação de segredo sem indisponibilidade: trocar chave em produção sem derrubar integração',
     'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
   ],
   en: [
-    'Migrating a queue without losing messages: swapping the broker with traffic on',
     'Exhausted database connection limits: when the pool becomes the service bottleneck',
     'Secret rotation without downtime: replacing a key in production without breaking integrations',
     'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
   ],
   es: [
-    'Migrar una cola sin perder mensajes: cambiar el broker con el tráfico encendido',
     'Límite de conexiones de la base agotado: cuándo el pool se vuelve el cuello de botella del servicio',
     'Rotación de secretos sin indisponibilidad: cambiar una clave en producción sin tumbar integraciones',
     'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',

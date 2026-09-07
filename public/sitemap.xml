@@ -1501,6 +1501,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado" />
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia" />
