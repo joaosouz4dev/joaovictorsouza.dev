@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico',
+    date: '2026-09-09',
+    readTime: '18 min',
+    keywords: {
+      pt: 'limite de conexoes, pool de conexoes, esgotamento de pool, too many clients, dimensionamento de pool, transacao longa, idle in transaction, pool centralizado, pgbouncer, tempo de espera do pool',
+      en: 'connection limit, connection pool, pool exhaustion, too many clients, pool sizing, long transaction, idle in transaction, centralized pool, pgbouncer, pool wait time',
+      es: 'limite de conexiones, pool de conexiones, agotamiento del pool, too many clients, dimensionamiento del pool, transaccion larga, idle in transaction, pool centralizado, pgbouncer, tiempo de espera del pool',
+    },
+    content: {
+      pt: {
+        title: 'Limite de conexões do banco esgotado: quando o pool vira o gargalo do serviço',
+        excerpt:
+          'O banco recusou a conexão às onze da manhã, o time aumentou o limite máximo, funcionou por quarenta minutos e depois voltou a recusar com a CPU em noventa por cento e consultas de dois milissegundos levando quatrocentos. Por que aumentar o limite é a única resposta que piora o problema de forma garantida e o que o erro realmente significa, qual conta dimensiona o pool a partir da capacidade do banco e por que o número correto é surpreendentemente pequeno, por que o tempo de espera do pool enxerga a saturação minutos antes da taxa de erro, como uma transação que espera resposta de HTTP esgota o pool sem que o tráfego mude e sem que o painel do banco mostre nada, qual é a diferença prática entre pool por processo e pool centralizado e o que quebra no modo por transação, qual sequência de seis passos separa demanda real de conexão retida e de conexão abandonada, e quais três alertas dão antecedência suficiente para agir.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Exhausted database connection limits: when the pool becomes the service bottleneck',
+        excerpt:
+          'The database refused the connection at eleven in the morning, the team raised the maximum limit, it worked for forty minutes and then it refused again with CPU at ninety percent and two millisecond queries taking four hundred. Why raising the limit is the one answer that reliably makes things worse and what the error actually means, which calculation sizes the pool from database capacity and why the correct number is surprisingly small, why pool wait time sees saturation minutes before the error rate does, how a transaction waiting on an HTTP response exhausts the pool without traffic changing and without the database dashboard showing anything, what the practical difference is between a per process pool and a centralized pool and what breaks in transaction mode, which six step sequence separates real demand from held connections and abandoned ones, and which three alerts give enough warning to act.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Límite de conexiones de la base agotado: cuándo el pool se vuelve el cuello de botella del servicio',
+        excerpt:
+          'La base rechazó la conexión a las once de la mañana, el equipo aumentó el límite máximo, funcionó durante cuarenta minutos y después volvió a rechazar con la CPU al noventa por ciento y consultas de dos milisegundos tardando cuatrocientos. Por qué aumentar el límite es la única respuesta que empeora el problema de forma garantizada y qué significa realmente el error, qué cuenta dimensiona el pool a partir de la capacidad de la base y por qué el número correcto es sorprendentemente pequeño, por qué el tiempo de espera del pool ve la saturación minutos antes que la tasa de error, cómo una transacción que espera respuesta de HTTP agota el pool sin que el tráfico cambie y sin que el panel de la base muestre nada, cuál es la diferencia práctica entre pool por proceso y pool centralizado y qué se rompe en el modo por transacción, qué secuencia de seis pasos separa demanda real de conexión retenida y de conexión abandonada, y qué tres alertas dan anticipación suficiente para actuar.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado',
     date: '2026-09-07',
     readTime: '18 min',
@@ -2496,19 +2526,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Limite de conexões do banco esgotado: quando o pool vira o gargalo do serviço',
     'Rotação de segredo sem indisponibilidade: trocar chave em produção sem derrubar integração',
     'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
+    'Relógio dessincronizado entre serviços: quando o timestamp deixa de ordenar evento',
+    'Migração de esquema em tabela grande: alterar coluna sem travar escrita',
+    'Limite de taxa por cliente na borda: proteger o serviço sem punir o parceiro certo',
   ],
   en: [
-    'Exhausted database connection limits: when the pool becomes the service bottleneck',
     'Secret rotation without downtime: replacing a key in production without breaking integrations',
     'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
+    'Clock skew between services: when the timestamp stops ordering events',
+    'Schema migration on a large table: changing a column without blocking writes',
+    'Per client rate limiting at the edge: protecting the service without punishing the right partner',
   ],
   es: [
-    'Límite de conexiones de la base agotado: cuándo el pool se vuelve el cuello de botella del servicio',
     'Rotación de secretos sin indisponibilidad: cambiar una clave en producción sin tumbar integraciones',
     'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',
+    'Reloj desincronizado entre servicios: cuándo el timestamp deja de ordenar eventos',
+    'Migración de esquema en tabla grande: alterar una columna sin bloquear la escritura',
+    'Límite de tasa por cliente en el borde: proteger el servicio sin castigar al socio correcto',
   ],
 };
 
