@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao',
+    date: '2026-09-10',
+    readTime: '18 min',
+    keywords: {
+      pt: 'rotacao de segredo, troca de chave, rotacao sem downtime, chaveiro de chaves, identificador de chave, kid, assinatura hmac, revogacao de chave, vazamento de credencial, gerenciador de segredos',
+      en: 'secret rotation, key rollover, zero downtime rotation, keyring, key identifier, kid, hmac signature, key revocation, credential leak, secret manager',
+      es: 'rotacion de secretos, cambio de clave, rotacion sin downtime, llavero de claves, identificador de clave, kid, firma hmac, revocacion de clave, filtracion de credencial, gestor de secretos',
+    },
+    content: {
+      pt: {
+        title: 'Rotação de segredo sem indisponibilidade: trocar chave em produção sem derrubar integração',
+        excerpt:
+          'A chave foi trocada às vinte e duas horas dentro da janela combinada, o novo valor entrou em produção em quarenta segundos, e três minutos depois quarenta por cento dos webhooks passaram a ser rejeitados por assinatura inválida. Por que a troca atômica é a origem da indisponibilidade e não a solução dela, por que a janela de propagação nunca tem duração zero e do que ela é feita, por que verificar precisa aceitar um conjunto de chaves enquanto emitir escolhe apenas uma e por que o identificador de chave é o que torna a rotação observável, quais são as quatro fases e por que só a retirada é irreversível, o que segura a chave antiga viva depois que todo mundo migrou e por que dado em repouso muda completamente o cálculo, como medir uso por identificador de chave e por origem transforma a retirada numa decisão de evidência, e como sobreviver ao parceiro externo que só aceita uma chave por vez.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Secret rotation without downtime: replacing a key in production without breaking integrations',
+        excerpt:
+          'The key was replaced at ten in the evening inside the agreed window, the new value reached production in forty seconds, and three minutes later forty percent of webhooks started being rejected for invalid signatures. Why the atomic swap is the cause of the outage rather than the cure, why the propagation window never has zero duration and what it is made of, why verification has to accept a set of keys while signing picks exactly one and why the key identifier is what makes rotation observable, what the four phases are and why only retirement is irreversible, what keeps the old key alive after everyone migrated and why data at rest changes the calculation completely, how measuring usage per key identifier and source turns retirement into an evidence based decision, and how to survive the external partner that accepts only one key at a time.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Rotación de secretos sin indisponibilidad: cambiar una clave en producción sin tumbar integraciones',
+        excerpt:
+          'La clave se cambió a las veintidós horas dentro de la ventana acordada, el nuevo valor llegó a producción en cuarenta segundos, y tres minutos después el cuarenta por ciento de los webhooks empezó a ser rechazado por firma inválida. Por qué el cambio atómico es el origen de la indisponibilidad y no su solución, por qué la ventana de propagación nunca dura cero y de qué está compuesta, por qué verificar necesita aceptar un conjunto de claves mientras firmar elige solo una y por qué el identificador de clave es lo que vuelve observable la rotación, cuáles son las cuatro fases y por qué solo el retiro es irreversible, qué mantiene viva la clave antigua después de que todos migraron y por qué el dato en reposo cambia por completo el cálculo, cómo medir el uso por identificador de clave y por origen convierte el retiro en una decisión basada en evidencia, y cómo sobrevivir al socio externo que solo acepta una clave a la vez.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico',
     date: '2026-09-09',
     readTime: '18 min',
@@ -2526,21 +2556,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Rotação de segredo sem indisponibilidade: trocar chave em produção sem derrubar integração',
     'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
     'Relógio dessincronizado entre serviços: quando o timestamp deixa de ordenar evento',
     'Migração de esquema em tabela grande: alterar coluna sem travar escrita',
     'Limite de taxa por cliente na borda: proteger o serviço sem punir o parceiro certo',
   ],
   en: [
-    'Secret rotation without downtime: replacing a key in production without breaking integrations',
     'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
     'Clock skew between services: when the timestamp stops ordering events',
     'Schema migration on a large table: changing a column without blocking writes',
     'Per client rate limiting at the edge: protecting the service without punishing the right partner',
   ],
   es: [
-    'Rotación de secretos sin indisponibilidad: cambiar una clave en producción sin tumbar integraciones',
     'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',
     'Reloj desincronizado entre servicios: cuándo el timestamp deja de ordenar eventos',
     'Migración de esquema en tabla grande: alterar una columna sin bloquear la escritura',
