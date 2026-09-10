@@ -96,8 +96,11 @@ import indiceQueOBancoIgnorou from './indice-que-o-banco-decidiu-ignorar-plano-d
 import sessaoPegajosaBalanceador from './sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia.js';
 import migracaoFilaSemPerderMensagem from './migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado.js';
 import limiteConexoesBanco from './limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico.js';
+import rotacaoSegredoSemIndisponibilidade from './rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao.js';
 
 const postContentBySlug = {
+  'rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao':
+    rotacaoSegredoSemIndisponibilidade,
   'limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico': limiteConexoesBanco,
   'migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado': migracaoFilaSemPerderMensagem,
   'sessao-pegajosa-balanceador-custo-de-amarrar-usuario-a-uma-instancia': sessaoPegajosaBalanceador,
