@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao',
+    date: '2026-09-11',
+    readTime: '18 min',
+    keywords: {
+      pt: 'teste de restauracao, backup e recuperacao, ensaio de restauracao, objetivo de ponto de recuperacao, objetivo de tempo de recuperacao, rpo, rto, replica nao e backup, bloqueio de objeto, plano de recuperacao de desastre',
+      en: 'restore testing, backup and recovery, restore drill, recovery point objective, recovery time objective, rpo, rto, replica is not a backup, object lock, disaster recovery plan',
+      es: 'prueba de restauracion, backup y recuperacion, ensayo de restauracion, objetivo de punto de recuperacion, objetivo de tiempo de recuperacion, rpo, rto, replica no es backup, bloqueo de objeto, plan de recuperacion ante desastres',
+    },
+    content: {
+      pt: {
+        title: 'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
+        excerpt:
+          'O painel mostrava setecentas e vinte execuções consecutivas com sucesso quando o disco falhou, e a restauração prevista para quarenta minutos terminou doze horas depois, com quatro horas de pedidos perdidos. Por que um backup nunca restaurado é uma hipótese e não uma garantia e por que a taxa de sucesso do job fica em cem por cento justamente enquanto a cópia está inútil, quais são as quatro propriedades que separam cópia de recuperação e por que quatro das cinco falhas só aparecem durante o incidente, como os objetivos de perda e de retorno deixam de ser números de slide e viram restrição de arquitetura, por que réplica não é backup e o que isso custa no dia do UPDATE sem WHERE, como montar o ensaio automatizado que verifica completude, consistência e atualidade em vez de apenas subir o banco, qual é a dependência circular entre a recuperação e o sistema caído que ninguém desenha, e quais quatro indicadores substituem a fé no painel verde.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
+        excerpt:
+          'The dashboard showed seven hundred and twenty consecutive successful runs when the disk failed, and a restore expected to take forty minutes finished twelve hours later, with four hours of orders lost. Why a backup that was never restored is a hypothesis rather than a guarantee and why job success rate sits at one hundred percent precisely while the copy is useless, which four properties separate a copy from a recovery and why four of the five failures only show up during the incident, how loss and return objectives stop being slide numbers and become architectural constraints, why a replica is not a backup and what that costs on the day of the UPDATE with no WHERE, how to build the automated drill that verifies completeness, consistency and freshness instead of merely starting the database, what the circular dependency between the recovery and the downed system is that nobody draws, and which four indicators replace faith in a green dashboard.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',
+        excerpt:
+          'El panel mostraba setecientas veinte ejecuciones consecutivas con éxito cuando el disco falló, y la restauración prevista para cuarenta minutos terminó doce horas después, con cuatro horas de pedidos perdidos. Por qué un backup nunca restaurado es una hipótesis y no una garantía y por qué la tasa de éxito del job se mantiene en el cien por ciento justamente mientras la copia está inservible, cuáles son las cuatro propiedades que separan una copia de una recuperación y por qué cuatro de los cinco fallos solo aparecen durante el incidente, cómo los objetivos de pérdida y de retorno dejan de ser números de presentación y se vuelven restricción de arquitectura, por qué una réplica no es un backup y qué cuesta eso el día del UPDATE sin WHERE, cómo montar el ensayo automatizado que verifica completitud, consistencia y actualidad en lugar de apenas arrancar la base, cuál es la dependencia circular entre la recuperación y el sistema caído que nadie dibuja, y qué cuatro indicadores sustituyen la fe en el panel verde.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao',
     date: '2026-09-10',
     readTime: '18 min',
@@ -2556,19 +2586,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Backup que nunca foi restaurado: transformar cópia em garantia de recuperação',
     'Relógio dessincronizado entre serviços: quando o timestamp deixa de ordenar evento',
     'Migração de esquema em tabela grande: alterar coluna sem travar escrita',
     'Limite de taxa por cliente na borda: proteger o serviço sem punir o parceiro certo',
   ],
   en: [
-    'The backup nobody ever restored: turning a copy into an actual recovery guarantee',
     'Clock skew between services: when the timestamp stops ordering events',
     'Schema migration on a large table: changing a column without blocking writes',
     'Per client rate limiting at the edge: protecting the service without punishing the right partner',
   ],
   es: [
-    'El backup que nunca se restauró: convertir la copia en una garantía real de recuperación',
     'Reloj desincronizado entre servicios: cuándo el timestamp deja de ordenar eventos',
     'Migración de esquema en tabla grande: alterar una columna sin bloquear la escritura',
     'Límite de tasa por cliente en el borde: proteger el servicio sin castigar al socio correcto',

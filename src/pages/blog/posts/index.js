@@ -97,8 +97,11 @@ import sessaoPegajosaBalanceador from './sessao-pegajosa-balanceador-custo-de-am
 import migracaoFilaSemPerderMensagem from './migracao-fila-sem-perder-mensagem-trocar-broker-com-trafego-ligado.js';
 import limiteConexoesBanco from './limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico.js';
 import rotacaoSegredoSemIndisponibilidade from './rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao.js';
+import backupQueNuncaFoiRestaurado from './backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao.js';
 
 const postContentBySlug = {
+  'backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao':
+    backupQueNuncaFoiRestaurado,
   'rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao':
     rotacaoSegredoSemIndisponibilidade,
   'limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico': limiteConexoesBanco,
