@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowUpRight, Code2 } from 'lucide-react';
+import { ArrowUpRight, Code2, Music2 } from 'lucide-react';
 import Seo from '../../components/seo';
 import SiteLayout from '../../components/siteLayout';
 import PageHero from '../../components/ui/PageHero';
@@ -42,11 +42,11 @@ const Projetos = () => {
         <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
           {projects.map((p) => (
             <RevealItem key={p.slug}>
-              <Link to={path('project', p.slug)} className="block h-full">
+              <Link to={p.liveUrl || path('project', p.slug)} className="block h-full">
                 <Card spotlight interactive className="group h-full p-7">
                   <div className="flex items-start justify-between gap-4">
                     <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border/80 bg-surface/60 text-foreground">
-                      <Code2 size={18} />
+                      {p.liveUrl === '/piano' ? <Music2 size={18} /> : <Code2 size={18} />}
                     </div>
                     <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/80 bg-surface/40 text-foreground/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                       <ArrowUpRight size={14} />

@@ -2,6 +2,17 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const projectDefinitions = [
   {
+    slug: 'lume-piano',
+    liveUrl: '/piano',
+    stack: ['React', 'Web Audio', 'Piano', 'MediaRecorder'],
+    repository: 'https://github.com/joaosouz4dev/joaovictorsouza.dev',
+    content: {
+      pt: { title: 'Lume Piano', summary: 'Um espaço para fazer música, sem anúncios. Piano virtual com três timbres, sustain, metrônomo, melodias para acompanhar e gravação local. Toque pelo teclado, mouse ou celular.', launchLabel: 'Tocar no Lume Piano' },
+      en: { title: 'Lume Piano', summary: 'An ad-free space to make music. A virtual piano with three tones, sustain, a metronome, melodies to follow and local recording. Play with your keyboard, mouse or touchscreen.', launchLabel: 'Play Lume Piano' },
+      es: { title: 'Lume Piano', summary: 'Un espacio para hacer música, sin anuncios. Piano virtual con tres timbres, sustain, metrónomo, melodías para acompañar y grabación local. Toca con el teclado, ratón o pantalla táctil.', launchLabel: 'Tocar en Lume Piano' },
+    },
+  },
+  {
     slug: 'wppconnect',
     stack: ['TypeScript', 'Node.js', 'Puppeteer', 'WhatsApp Web'],
     repository: 'https://github.com/wppconnect-team/wppconnect',
@@ -498,6 +509,8 @@ const localizeProject = (project, language = 'pt') => {
     summary: localized.summary || fallback.summary,
     stack: project.stack,
     repository: project.repository,
+    liveUrl: project.liveUrl,
+    launchLabel: localized.launchLabel || fallback.launchLabel,
   };
 };
 

@@ -24,6 +24,7 @@ export const ROUTE_SEGMENTS = {
   whatsapp: { pt: 'whatsapp', en: 'whatsapp', es: 'whatsapp' },
   wpp: { pt: 'wpp', en: 'wpp', es: 'wpp' },
   matrix: { pt: 'matrix', en: 'matrix', es: 'matrix' },
+  piano: { pt: 'piano', en: 'piano', es: 'piano' },
   privacy: {
     pt: 'politica-de-privacidade',
     en: 'privacy-policy',

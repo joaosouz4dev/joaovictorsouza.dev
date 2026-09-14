@@ -1,0 +1,152 @@
+.lume {
+  --lume-bg: #f7f6f2; --lume-ink: #30382c; --lume-muted: #72756c; --lume-line: #e1e2d9;
+  --lume-green: #506345; --lume-accent: #dbe6bb; --lume-panel: #fffefa;
+  min-height: 100vh; background: var(--lume-bg); color: var(--lume-ink); font-family: 'Geist Variable', sans-serif; font-size: 14px; color-scheme: light;
+}
+.lume *, .lume *::before, .lume *::after { box-sizing: border-box; }
+.lume button, .lume a, .lume input, .lume select { -webkit-tap-highlight-color: transparent; }
+.lume button, .lume a, .lume input[type=range], .lume select { cursor: pointer; }
+.lume button { font: inherit; }
+.lume a { color: inherit; text-decoration: none; }
+.lume button:disabled { opacity: .35; cursor: not-allowed; }
+.lume :focus-visible { outline: 2px solid #768a4f; outline-offset: 4px; box-shadow: none; }
+.lume svg { flex-shrink: 0; }
+.lume-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.lume-skip { position: fixed; top: -100px; left: 20px; z-index: 20; padding: 12px; background: white; }
+.lume-skip:focus { top: 12px; }
+.lume-header { max-width: 1440px; margin: auto; min-height: 96px; padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--lume-line); }
+.lume-brand { display: flex; align-items: center; gap: 12px; font-size: 35px; font-weight: 600; letter-spacing: -2px; line-height: 1; }
+.lume-brand-caption { display: block; margin-top: 7px; font-size: 8px; font-weight: 500; letter-spacing: 4px; }
+.lume-mark { display: flex; gap: 4px; align-items: center; width: 40px; height: 42px; }
+.lume-mark i { width: 7px; height: 28px; background: var(--lume-green); border-radius: 2px; transform: rotate(12deg); }
+.lume-mark i:nth-child(2) { height: 39px; }.lume-mark i:nth-child(3) { height: 32px; }.lume-mark i:nth-child(4) { height: 20px; background: #99ad76; }
+.lume-header-right { display: flex; align-items: center; gap: 28px; }
+.lume-free { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #62695c; }
+.lume-free > span { height: 5px; width: 5px; border-radius: 50%; background: #7d9264; }
+.lume-sponsor { display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 10px 17px; border: 1px solid #d3d8c9; border-radius: 7px; font-size: 12px; font-weight: 500; background: #eeeee6; transition: background .15s; }
+.lume-sponsor:hover { background: #e0e6d4; }
+.lume-main { max-width: 1320px; margin: auto; padding: 0 36px; }
+.lume-intro { display: flex; align-items: center; justify-content: space-between; padding: 43px 0 35px; }
+.lume-back { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; letter-spacing: 1.7px; color: var(--lume-muted) !important; }
+.lume-back:hover { color: var(--lume-ink) !important; }
+.lume-intro h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(35px, 3.7vw, 53px); font-weight: 400; letter-spacing: -2px; line-height: 1.2; margin: 16px 0 12px; }
+.lume-intro h1 em { font-weight: 400; color: #738653; }
+.lume-intro p { color: var(--lume-muted); font-size: 13px; margin: 0; line-height: 1.7; }
+.lume-intro-note { display: flex; align-items: center; gap: 17px; padding-right: 20px; transform: rotate(-5deg); }
+.lume-intro-note > span { font-family: Georgia, serif; font-size: 46px; color: #91a077; }
+.lume-intro-note p { font-family: Georgia, serif; font-style: italic; font-size: 17px; }
+.lume-studio { background: var(--lume-panel); border: 1px solid #d9ddd1; border-radius: 13px; box-shadow: 0 12px 35px -18px #3e493c40; overflow: hidden; }
+.lume-studio:fullscreen { background: var(--lume-bg); overflow-y: auto; padding: 24px; border-radius: 0; display: flex; flex-direction: column; justify-content: center; }
+.lume-instrument-bar { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 22px 28px; background: #303b2f; color: #f3f4e9; }
+.lume-instrument-name { display: flex; align-items: center; gap: 12px; min-width: 180px; }
+.lume-instrument-icon { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid #69715d; border-radius: 7px; color: #d7e3b3; }
+.lume-overline { display: block; font-size: 9px; font-weight: 500; letter-spacing: 1.65px; }
+.lume-instrument-name .lume-overline { color: #b7c0ab; margin-bottom: 4px; font-size: 8px; }
+.lume-instrument-name strong { font-size: 14px; font-weight: 500; }
+.lume-timbres { display: flex; gap: 4px; padding: 4px; background: #263124; border-radius: 7px; }
+.lume-timbres button { display: flex; align-items: center; gap: 8px; padding: 9px 13px; min-height: 36px; text-transform: capitalize; font-size: 11px; border-radius: 4px; color: #c0c7b7; border: 1px solid transparent; }
+.lume-timbres button > span { font: 9px 'Geist Mono Variable', monospace; opacity: .6; }
+.lume-timbres button[aria-pressed=true] { background: #e2e9cb; color: #36452c; box-shadow: 0 1px 4px #0002; }
+.lume-timbres button:hover { border-color: #91a177; }
+.lume-volume { display: flex; align-items: center; gap: 10px; color: #d0d7c4; }
+.lume-volume input { width: 90px; accent-color: #c9d8a5; height: 3px; }
+.lume-volume output { font: 9px 'Geist Mono Variable', monospace; width: 30px; }
+.lume-soundscape { position: relative; height: 170px; overflow: hidden; background: radial-gradient(ellipse at 50% 130%, #e3e8d27a, transparent 70%), #f4f5ed; }
+.lume-session { position: absolute; top: 19px; left: 26px; display: flex; align-items: center; gap: 7px; font: 8px 'Geist Mono Variable', monospace; letter-spacing: 1.2px; color: #6b735f; z-index: 1; }
+.lume-status-dot { width: 5px; height: 5px; background: #9ca98b; border-radius: 50%; }
+.lume-status-dot.is-playing { background: #50652d; box-shadow: 0 0 0 4px #a1b57f30; }
+.lume-staff { position: absolute; inset: 40px 0 20px; display: flex; flex-direction: column; justify-content: space-evenly; transform: rotate(-4deg) scale(1.05); opacity: .5; mask-image: linear-gradient(to right, transparent, black 28%, black 72%, transparent); }
+.lume-staff i { border-top: 1px solid #cdd2bd; }
+.lume-current-note { position: relative; width: fit-content; margin: 24px auto 0; text-align: center; padding: 0 25px; background: radial-gradient(ellipse, #f4f5ed 40%, transparent 72%); }
+.lume-current-note > span { display: block; height: 64px; font: italic 52px Georgia, serif; color: #6a7c52; }
+.lume-current-note > p { font-size: 10px; letter-spacing: .4px; margin: 9px 0 0; color: #6d7662; }
+.lume-bars { position: absolute; bottom: 19px; left: 27px; height: 42px; display: flex; align-items: center; gap: 3px; opacity: .5; }
+.lume-bars i { width: 2px; height: 3px; border-radius: 3px; background: #7e9166; transition: height .2s; }
+.lume-bars.is-playing i { height: var(--bar-height); animation: lume-vibrate .5s var(--bar-delay) ease-in-out infinite alternate; }
+.lume-soundscape-signature { position: absolute; right: 25px; bottom: 22px; color: #78816c; font: 8px 'Geist Mono Variable', monospace; letter-spacing: 2px; }
+@keyframes lume-vibrate { to { transform: scaleY(.45); } }
+.lume-toolbar { min-height: 58px; padding: 9px 20px; display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--lume-line); }
+.lume-toolbar-group { display: flex; align-items: center; gap: 9px; }
+.lume-tool { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 10px; min-height: 36px; font-size: 11px !important; border-radius: 5px; color: #656c5d; white-space: nowrap; }
+.lume-tool:hover, .lume-icon-button:hover { background: #f0f2e7; }
+.lume-tool[aria-pressed=true] { color: #435334; }
+.lume-toggle { width: 23px; height: 13px; border-radius: 10px; background: #d6d9d0; position: relative; margin-left: 3px; }
+.lume-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 7px; height: 7px; border-radius: 50%; background: white; }
+.lume-toggle.is-on { background: #647b48; }.lume-toggle.is-on::after { left: 13px; }
+.lume-octave { display: flex; align-items: center; gap: 7px; margin-right: 8px; }
+.lume-octave > span { font-size: 8px; letter-spacing: 1px; color: var(--lume-muted); margin-right: 7px; }
+.lume-octave output { font: 11px 'Geist Mono Variable', monospace; }
+.lume-octave button, .lume-icon-button { width: 33px; height: 36px; display: inline-grid; place-items: center; border: 1px solid var(--lume-line); border-radius: 5px; background: var(--lume-panel); }
+.lume-icon-button { border: 0; }
+.lume-settings { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 15px 28px; background: #f3f4eb; border-top: 1px solid var(--lume-line); }
+.lume-settings label { display: flex; align-items: center; gap: 10px; font-size: 11px; }
+.lume-settings select { padding: 8px; border: 1px solid #d0d6c6; background: #fffefa; border-radius: 4px; font-size: 12px; }
+.lume-keyboard-scroll { overflow-x: auto; overscroll-behavior-x: contain; padding: 0 12px 7px; background: #323b2e; scrollbar-width: thin; scrollbar-color: #b3bba5 #323b2e; }
+.lume-keyboard { height: 216px; position: relative; min-width: 820px; border-top: 5px solid #92a66c; touch-action: pan-x; }
+.lume-key { position: absolute; top: 0; border: 0; padding: 0; user-select: none; touch-action: pan-x; transition: background .065s, box-shadow .065s; }
+.lume-key:focus-visible { outline-offset: -5px; z-index: 4; }
+.lume-white { height: 100%; z-index: 1; border-radius: 0 0 5px 5px; background: linear-gradient(90deg, #f3f1e9, #fffef7 15%, #fffef9 80%, #ecece3); border-right: 1px solid #a6a99b; border-bottom: 6px solid #dfded3; box-shadow: inset 0 5px 8px #0000000d; color: #7b8071; }
+.lume-white:hover { background: #f1f3e5; }
+.lume-white.is-active { background: linear-gradient(#d9e7b7, #c4d595); border-bottom-width: 2px; box-shadow: inset 0 3px 10px #53653830; }
+.lume-black { height: 62%; z-index: 2; border-radius: 0 0 4px 4px; background: linear-gradient(90deg, #292e26, #3d4436 20%, #353b2e 75%, #242a21); border: 1px solid #22291e; border-bottom: 6px solid #242c20; box-shadow: 2px 4px 3px #0004, inset 0 -1px #ffffff24; color: #bfc6b3; }
+.lume-black:hover { background: #444f36; }
+.lume-black.is-active { background: linear-gradient(#7f965c, #506835); border-bottom-width: 2px; box-shadow: 1px 2px 2px #0003; }
+.lume-key-labels { position: absolute; bottom: 22px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 11px; }
+.lume-black .lume-key-labels { bottom: 12px; gap: 7px; }
+.lume-note-label { font-size: 9px; line-height: 1; white-space: nowrap; }
+.lume-key kbd { font: 10px 'Geist Mono Variable', monospace; }
+.lume-black .lume-note-label { font-size: 8px; color: #d8decd; }
+.lume-c-marker { position: absolute; bottom: 8px; left: calc(50% - 2px); width: 4px; height: 4px; border-radius: 50%; background: #91a572; }
+.lume-keyboard-footer { display: flex; justify-content: space-between; align-items: center; padding: 13px 27px; gap: 12px; font-size: 10px; color: #767c6d; border-bottom: 1px solid var(--lume-line); }
+.lume-keyboard-footer > span { display: flex; align-items: center; gap: 8px; }
+.lume-keyboard-footer kbd { font-size: 9px; border: 1px solid var(--lume-line); border-radius: 3px; padding: 1px 5px; }
+.lume-keyboard-footer .lume-mobile-hint { display: none; }
+.lume-mobile-hint button { display: inline-grid; place-items: center; width: 36px; height: 40px; border: 1px solid var(--lume-line); border-radius: 5px; }
+.lume-keyboard-footer .lume-mobile-hint svg { display: block; }
+.lume-keyboard-footer .lume-mobile-hint { gap: 6px; }
+.lume-practice-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 27px; }
+.lume-metronome { display: flex; align-items: center; gap: 13px; }
+.lume-round-button { display: grid; place-items: center; width: 35px; height: 35px; border: 1px solid #dce0d3; border-radius: 50%; }
+.lume-round-button.is-on { background: #dce6c4; }
+.lume-metronome strong { font-size: 11px; font-weight: 500; }
+.lume-beats { display: flex; gap: 5px; margin-top: 6px; }
+.lume-beats i { width: 4px; height: 4px; border-radius: 50%; background: #d4d9cc; }.lume-beats i.is-active { background: #6c8248; }
+.lume-bpm { display: flex; align-items: baseline; gap: 3px; margin-left: 12px; }
+.lume-bpm input { width: 46px; font: 17px 'Geist Mono Variable', monospace; appearance: textfield; background: transparent; text-align: center; }
+.lume-bpm input::-webkit-inner-spin-button { appearance: none; }.lume-bpm > span { font-size: 8px; color: var(--lume-muted); }
+.lume-tempo-slider { width: 100px; height: 3px; accent-color: #6f8350; }
+.lume-recorder { display: flex; align-items: center; gap: 15px; }.lume-record-time { font: 11px 'Geist Mono Variable', monospace; color: #878b80; }
+.lume-record-button { display: flex; align-items: center; gap: 8px; border: 1px solid #daddd3; border-radius: 5px; padding: 8px 15px; min-height: 36px; font-size: 11px !important; }
+.lume-record-button svg { color: #b16952; fill: #b16952; }.lume-record-button:hover { background: #f5eee6; }.lume-record-button.is-recording { background: #f5e4dd; color: #9b4028; }
+.lume-take { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 15px 27px; border-top: 1px solid var(--lume-line); background: #f1f3e9; font-size: 12px; }
+.lume-take audio { height: 36px; max-width: 100%; }.lume-take a { display: flex; gap: 7px; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+.lume-error { padding: 12px 27px; margin: 0; background: #fff0e4; color: #98452b; font-size: 12px; }
+.lume-below { display: grid; grid-template-columns: 1.15fr 1fr; gap: 55px; margin: 37px 0 44px; }
+.lume-section-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 14px; }
+.lume-below .lume-overline { color: #7b826f; font-size: 8px; letter-spacing: 1.7px; }
+.lume-below h2 { font: 24px Georgia, serif; letter-spacing: -.5px; margin: 9px 0 0; }
+.lume-small-tag { padding: 5px 7px; border: 1px solid #dfe2d4; border-radius: 4px; font-size: 7px; letter-spacing: .7px; color: #7d826f; white-space: nowrap; }
+.lume-song { display: flex; align-items: center; width: 100%; text-align: left; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--lume-line); }
+.lume-song-number { font: 11px 'Geist Mono Variable', monospace; color: #969c89; }.lume-song-title { display: flex; flex-direction: column; flex: 1; gap: 4px; }
+.lume-song-title strong { font-size: 12px; font-weight: 500; }.lume-song-title > span { font-size: 10px; color: #7b8071; }
+.lume-song-level { font-size: 8px; color: #73845a; }.lume-song-play { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #dbe0d1; display: grid; place-items: center; }
+.lume-song:hover .lume-song-play, .lume-song.is-playing .lume-song-play { background: #dfe7ce; border-color: #abbf85; }
+.lume-guide { padding: 1px 0 0 36px; border-left: 1px solid var(--lume-line); }.lume-guide > p { margin: 13px 0 16px; color: #74796b; font-size: 11px; line-height: 1.8; max-width: 360px; }
+.lume-guide-tip { display: flex; align-items: center; gap: 15px; font-size: 10px; color: #707860; }.lume-guide-tip > span:first-child { display: flex; gap: 4px; }
+.lume-guide-tip kbd { display: grid; place-items: center; width: 25px; height: 26px; border: 1px solid #d8ddcd; border-bottom-width: 3px; border-radius: 4px; background: #fffef9; font-size: 10px; }
+.lume-guide .lume-privacy-note { font-size: 9px; margin-bottom: 0; }
+.lume-footer { display: flex; justify-content: space-between; gap: 20px; max-width: 1320px; padding: 22px 36px; margin: auto; border-top: 1px solid var(--lume-line); font-size: 9px; color: #7b8171; }.lume-footer a { display: inline-flex; align-items: center; gap: 8px; }.lume-footer a:hover { text-decoration: underline; }
+@media (min-width: 1600px) { .lume-main { padding-top: 12px; }.lume-soundscape { height: 200px; }.lume-current-note { margin-top: 40px; }.lume-keyboard { height: 260px; } }
+@media (max-width: 1000px) { .lume-main { padding: 0 24px; }.lume-instrument-bar { gap: 15px; padding: 19px; }.lume-volume input { width: 65px; }.lume-instrument-name { min-width: 160px; }.lume-timbres button { padding: 8px; }.lume-timbres button > span { display: none; }.lume-below { gap: 28px; }.lume-guide { padding-left: 25px; }.lume-toolbar { padding: 8px 12px; }.lume-toolbar-group { gap: 3px; }.lume-keyboard-footer > span:nth-child(2) { display: none; }.lume-keyboard-footer .lume-mobile-hint { display: flex; } }
+@media (max-width: 700px) {
+  .lume-header { min-height: 78px; padding: 15px 20px; }.lume-brand { font-size: 29px; }.lume-mark { transform: scale(.85); width: 34px; }.lume-free { display: none; }.lume-sponsor { padding: 8px 11px; font-size: 11px; gap: 7px; }
+  .lume-main { padding: 0 16px; }.lume-intro { padding: 30px 3px 25px; }.lume-back { font-size: 7px; letter-spacing: 1px; }.lume-intro h1 { font-size: 36px; letter-spacing: -1.6px; }.lume-intro p { font-size: 11px; max-width: 290px; }.lume-intro-note { display: none; }
+  .lume-instrument-bar { flex-wrap: wrap; padding: 16px; gap: 16px 8px; }.lume-instrument-name { flex: 1; min-width: 160px; }.lume-instrument-name strong { font-size: 13px; }.lume-timbres { order: 3; width: 100%; }.lume-timbres button { flex: 1; justify-content: center; min-height: 36px; }.lume-timbres button > span { display: inline; }.lume-volume { gap: 7px; }.lume-volume input { width: 50px; }.lume-volume output { font-size: 8px; width: 25px; }
+  .lume-soundscape { height: 145px; }.lume-current-note { margin-top: 18px; }.lume-current-note > span { font-size: 44px; height: 59px; }.lume-current-note > p { font-size: 9px; }.lume-session { top: 13px; left: 16px; font-size: 6px; }.lume-bars { left: 16px; bottom: 9px; transform: scale(.7); transform-origin: left; }.lume-soundscape-signature { font-size: 6px; bottom: 16px; right: 16px; }
+  .lume-toolbar { flex-wrap: wrap; gap: 2px; padding: 7px 9px; }.lume-toolbar-group { justify-content: space-between; flex: 1; }.lume-toolbar-group:last-child { justify-content: flex-end; }.lume-tool { padding: 8px 6px; font-size: 10px !important; min-height: 40px; }.lume-shortcuts-control { display: none; }.lume-octave { margin: 0; gap: 4px; }.lume-octave > span { font-size: 6px; margin: 0; }.lume-octave button { width: 28px; min-height: 40px; }.lume-icon-button { width: 30px; min-height: 40px; }.lume-toolbar-group { gap: 1px; }
+  .lume-keyboard-scroll { padding-inline: 6px; }.lume-keyboard { min-width: 900px; height: 230px; }.lume-key-labels { bottom: 30px; gap: 14px; }.lume-note-label { font-size: 10px; }.lume-keyboard-footer { padding: 12px 14px; font-size: 8px; gap: 8px; }.lume-keyboard-footer svg { display: none; }.lume-keyboard-footer > span { gap: 0; }
+  .lume-settings { padding: 12px; gap: 10px; }.lume-settings label { font-size: 10px; gap: 6px; }.lume-settings select { max-width: 120px; font-size: 10px; }
+  .lume-practice-bar { padding: 13px; gap: 12px; flex-wrap: wrap; }.lume-metronome { gap: 8px; }.lume-tempo-slider { display: none; }.lume-bpm { margin: 0; }.lume-bpm input { width: 40px; font-size: 15px; }.lume-metronome strong { font-size: 10px; }.lume-round-button { width: 35px; height: 40px; border-radius: 7px; }.lume-recorder { gap: 7px; margin-left: auto; }.lume-record-time { font-size: 9px; }.lume-record-button { padding: 8px; min-height: 40px; font-size: 10px !important; }
+  .lume-below { grid-template-columns: 1fr; gap: 30px; margin: 30px 4px; }.lume-guide { padding: 0; border: 0; }.lume-below h2 { font-size: 23px; }.lume-guide > p { max-width: none; }.lume-song { min-height: 72px; }.lume-song-level { font-size: 7px; }.lume-footer { padding: 18px 20px; flex-wrap: wrap; gap: 13px; font-size: 8px; }.lume-footer > span:nth-child(2) { display: none; }.lume-take { padding: 14px; gap: 12px; }.lume-studio:fullscreen { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .lume-bars.is-playing i { animation: none; }.lume * { transition: none !important; } }

@@ -63,7 +63,9 @@ const Projeto = () => {
         eyebrow={t('projectPage.kicker')}
         title={project.title}
         description={project.summary}
-      />
+      >
+        {project.liveUrl && <Button to={project.liveUrl} rightIcon={<ArrowUpRight size={16} />}>{project.launchLabel}</Button>}
+      </PageHero>
 
       <Section bordered>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

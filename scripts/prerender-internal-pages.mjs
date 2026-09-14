@@ -428,6 +428,7 @@ const staticSitemapEntries = [
   { routeKey: 'projects', changefreq: 'monthly', priority: '0.7' },
   { routeKey: 'contact', changefreq: 'monthly', priority: '0.8' },
   { routeKey: 'wpp', changefreq: 'monthly', priority: '0.7' },
+  { routeKey: 'piano', changefreq: 'monthly', priority: '0.7' },
 ];
 
 // Uma entrada de sitemap por idioma, cada uma declarando as outras como
@@ -541,6 +542,17 @@ const pages = SUPPORTED_LANGUAGES.flatMap((language) => [
   if (seenPaths.has(page.path)) return false;
   seenPaths.add(page.path);
   return true;
+});
+
+pages.push({
+  path: '/piano', language: 'pt',
+  title: 'Lume Piano — piano virtual gratuito e sem anúncios',
+  description: 'Toque piano pelo teclado, mouse ou celular. Três timbres, sustain, metrônomo e gravação local, sem anúncios.',
+  body: renderShell({
+    eyebrow: 'Lume Piano', title: 'Dê espaço ao seu som.',
+    description: 'Piano virtual gratuito com três timbres, sustain, metrônomo, melodias para acompanhar e gravação local.',
+    content: '<section class="mx-auto max-w-6xl px-6 pb-12"><p>Use o teclado, mouse ou tela sensível ao toque. Ative o JavaScript para tocar o instrumento.</p><p><a href="https://github.com/sponsors/joaosouz4dev" rel="noopener noreferrer" target="_blank">Apoiar o projeto no GitHub Sponsors</a></p><p><a href="/projetos">Ver todos os projetos de João Victor Souza</a></p></section>',
+  }),
 });
 
 await Promise.all(pages.map((page) => writePage(baseHtml, page)));
