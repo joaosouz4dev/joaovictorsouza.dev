@@ -2,7 +2,13 @@ export const SPONSOR_URL = 'https://github.com/sponsors/joaosouz4dev';
 
 const NOTE_NAMES = ['Dó', 'Dó♯', 'Ré', 'Ré♯', 'Mi', 'Fá', 'Fá♯', 'Sol', 'Sol♯', 'Lá', 'Lá♯', 'Si'];
 const LETTER_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-const CODES = ['KeyQ', 'Digit2', 'KeyW', 'Digit3', 'KeyE', 'KeyR', 'Digit5', 'KeyT', 'Digit6', 'KeyY', 'Digit7', 'KeyU', 'KeyI', 'Digit9', 'KeyO', 'Digit0', 'KeyP', 'KeyZ', 'KeyS', 'KeyX', 'KeyD', 'KeyC', 'KeyV', 'KeyG', 'KeyB', 'KeyH', 'KeyN', 'KeyJ', 'KeyM', 'Comma', 'KeyL', 'Period', 'Semicolon', 'Slash', 'BracketRight', 'Backslash', 'Equal'];
+// Chromatic order, matching the reference's white and black key shortcuts.
+const CODES = [
+  'KeyQ', 'Digit2', 'KeyW', 'Digit3', 'KeyE', 'KeyR', 'Digit5', 'KeyT', 'Digit6', 'KeyY', 'Digit7', 'KeyU',
+  'KeyI', 'Digit9', 'KeyO', 'Digit0', 'KeyP', 'KeyZ', 'KeyS', 'KeyX', 'KeyD', 'KeyC', 'KeyF', 'KeyV',
+  'KeyB', 'KeyH', 'KeyN', 'KeyJ', 'KeyM', 'Comma', 'KeyL', 'Period', 'Semicolon', 'Slash', 'BracketRight', 'Backslash',
+  'Equal',
+];
 const PUNCTUATION = { Comma: ',', Period: '.', Semicolon: ';', Slash: '/', BracketRight: ']', Backslash: '\\', Equal: '=' };
 
 export const noteName = (midi, letters = false) => `${(letters ? LETTER_NAMES : NOTE_NAMES)[midi % 12]}${Math.floor(midi / 12) - 1}`;
@@ -14,7 +20,7 @@ export const keyboardNotes = (octave) => {
     const black = [1, 3, 6, 8, 10].includes(midi % 12);
     if (!black) whiteIndex += 1;
     const code = CODES[offset];
-    return { midi, black, whiteIndex, code, shortcut: PUNCTUATION[code] || code.replace(/Key|Digit/g, '') };
+    return { midi, black, whiteIndex, code, shortcut: PUNCTUATION[code] || code.replace(/Key|Digit/g, '').toLowerCase() };
   });
 };
 
