@@ -24,10 +24,12 @@ export const keyboardNotes = (octave) => {
   });
 };
 
-// Short arrangements of public-domain melodies. Each pair is [MIDI note, beats].
+// Short melody excerpts. Each pair is [MIDI note, beats].
 export const SONGS = [
   { id: 'joy', title: 'Ode à Alegria', composer: 'L. van Beethoven', level: 'Primeiras notas', bpm: 100,
     notes: [[64,1],[64,1],[65,1],[67,1],[67,1],[65,1],[64,1],[62,1],[60,1],[60,1],[62,1],[64,1],[64,1.5],[62,.5],[62,2],[64,1],[64,1],[65,1],[67,1],[67,1],[65,1],[64,1],[62,1],[60,1],[60,1],[62,1],[64,1],[62,1.5],[60,.5],[60,2]] },
   { id: 'star', title: 'Brilha, Brilha, Estrelinha', composer: 'Melodia tradicional', level: 'Para começar', bpm: 110,
     notes: [[60,1],[60,1],[67,1],[67,1],[69,1],[69,1],[67,2],[65,1],[65,1],[64,1],[64,1],[62,1],[62,1],[60,2],[67,1],[67,1],[65,1],[65,1],[64,1],[64,1],[62,2],[67,1],[67,1],[65,1],[65,1],[64,1],[64,1],[62,2]] },
+  { id: 'hedwig', title: 'Harry Potter — Hedwig’s Theme', composer: 'John Williams · abertura', level: 'Trecho curto', bpm: 100,
+    notes: [[59,1],[64,1.5],[67,.5],[66,1],[64,2],[71,1],[69,3]] },
 ];
