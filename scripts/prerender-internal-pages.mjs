@@ -546,7 +546,7 @@ const pages = SUPPORTED_LANGUAGES.flatMap((language) => [
 
 pages.push({
   path: '/piano', language: 'pt',
-  title: 'Lume Piano — piano virtual gratuito e sem anúncios',
+  title: 'Lume Piano - piano virtual gratuito e sem anúncios',
   description: 'Toque piano pelo teclado, mouse ou celular. Três timbres, sustain, metrônomo e gravação local, sem anúncios.',
   body: renderShell({
     eyebrow: 'Lume Piano', title: 'Dê espaço ao seu som.',

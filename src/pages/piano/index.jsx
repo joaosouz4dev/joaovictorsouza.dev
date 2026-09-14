@@ -41,10 +41,10 @@ export default function Piano() {
 
   return (
     <div className="lume" lang="pt-BR">
-      <Seo title="Lume Piano — piano virtual gratuito e sem anúncios" description="Um espaço para tocar. Piano virtual com três timbres, sustain, metrônomo e gravação. Toque pelo teclado, mouse ou celular, sem anúncios." canonical="/piano" />
+      <Seo title="Lume Piano - piano virtual gratuito e sem anúncios" description="Um espaço para tocar. Piano virtual com três timbres, sustain, metrônomo e gravação. Toque pelo teclado, mouse ou celular, sem anúncios." canonical="/piano" />
       <a className="lume-skip" href="#lume-keyboard">Ir para o piano</a>
       <header className="lume-header">
-        <Link to="/" className="lume-brand" aria-label="Lume Piano — voltar ao site de João Victor Souza">
+        <Link to="/" className="lume-brand" aria-label="Lume Piano - voltar ao site de João Victor Souza">
           <span className="lume-mark" aria-hidden="true"><i /><i /><i /><i /></span>
           <span>lume<span className="lume-brand-caption">PIANO</span></span>
         </Link>
