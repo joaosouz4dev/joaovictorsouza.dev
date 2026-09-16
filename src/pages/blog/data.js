@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida',
+    date: '2026-09-16',
+    readTime: '18 min',
+    keywords: {
+      pt: 'esgotamento de porta efemera, porta efemera, time wait, conexao de saida, cannot assign requested address, tupla de quatro elementos, keep alive, reuso de conexao, tcp tw reuse, faixa de portas locais',
+      en: 'ephemeral port exhaustion, ephemeral ports, time wait, outbound connection, cannot assign requested address, four tuple, keep alive, connection reuse, tcp tw reuse, local port range',
+      es: 'agotamiento de puertos efimeros, puerto efimero, time wait, conexion de salida, cannot assign requested address, tupla de cuatro elementos, keep alive, reutilizacion de conexion, tcp tw reuse, rango de puertos locales',
+    },
+    content: {
+      pt: {
+        title: 'Esgotamento de porta efêmera: quando o servidor para de abrir conexão de saída',
+        excerpt:
+          'O serviço parou de abrir conexão às onze e vinte de uma terça comum, sem pico de tráfego, sem deploy e com o banco respondendo em dois milissegundos. O reinício resolveu por quarenta minutos e o erro voltou no mesmo formato. Por que o esgotamento de porta de saída não move nenhum dos quatro indicadores do painel e por que a mensagem fala em endereço quando a causa é taxa de reciclagem, por que o intervalo estável entre falhas é a assinatura de um recurso finito e não de um vazamento, qual é a tupla de quatro elementos que realmente define a capacidade e por que o número de portas é só um dos fatores, por que a espera final existe e o que a redução dela quebra de verdade, por que o cliente HTTP criado por requisição é a causa em oito de cada dez casos e o que o reuso parcial esconde do diagnóstico, o que muda quando existe tradução de endereço no caminho e quem passa a ser o dono do problema, e qual sequência de seis passos produz contenção e evidência no mesmo incidente.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Ephemeral port exhaustion: when the server stops opening outbound connections',
+        excerpt:
+          'The service stopped opening connections at eleven twenty on an ordinary Tuesday, with no traffic spike, no deploy and the database answering in two milliseconds. A restart fixed it for forty minutes and the error came back in the same shape. Why outbound port exhaustion moves none of the four indicators on the dashboard and why the message talks about an address when the cause is a recycling rate, why a stable interval between failures is the signature of a finite resource rather than a leak, which four element tuple actually defines capacity and why the port count is only one of the factors, why the final wait state exists and what reducing it really breaks, why an HTTP client created per request is the cause in eight out of ten cases and what partial reuse hides from the diagnosis, what changes when address translation sits in the path and who then owns the problem, and which six step sequence produces containment and evidence within the same incident.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Agotamiento de puertos efímeros: cuándo el servidor deja de abrir conexiones salientes',
+        excerpt:
+          'El servicio dejó de abrir conexiones a las once y veinte de un martes cualquiera, sin pico de tráfico, sin despliegue y con la base respondiendo en dos milisegundos. El reinicio lo resolvió durante cuarenta minutos y el error volvió con la misma forma. Por qué el agotamiento de puertos de salida no mueve ninguno de los cuatro indicadores del panel y por qué el mensaje habla de dirección cuando la causa es la tasa de reciclaje, por qué el intervalo estable entre fallos es la firma de un recurso finito y no de una fuga, cuál es la tupla de cuatro elementos que realmente define la capacidad y por qué el número de puertos es solo uno de los factores, por qué existe el estado de espera final y qué rompe de verdad reducirlo, por qué el cliente HTTP creado por petición es la causa en ocho de cada diez casos y qué esconde la reutilización parcial del diagnóstico, qué cambia cuando hay traducción de direcciones en el camino y quién pasa a ser el dueño del problema, y qué secuencia de seis pasos produce contención y evidencia dentro del mismo incidente.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro',
     date: '2026-09-16',
     readTime: '18 min',
@@ -2616,17 +2646,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Esgotamento de porta efêmera: quando o servidor para de abrir conexão de saída',
     'Compactação de log de eventos: reduzir armazenamento sem perder a capacidade de reprocessar',
     'Teste de carga que mente: por que o ensaio passa e a produção cai no mesmo volume',
   ],
   en: [
-    'Ephemeral port exhaustion: when the server stops opening outbound connections',
     'Event log compaction: shrinking storage without losing the ability to reprocess',
     'The load test that lies: why the rehearsal passes and production falls at the same volume',
   ],
   es: [
-    'Agotamiento de puertos efímeros: cuándo el servidor deja de abrir conexiones salientes',
     'Compactación del log de eventos: reducir almacenamiento sin perder la capacidad de reprocesar',
     'La prueba de carga que miente: por qué el ensayo pasa y la producción cae con el mismo volumen',
   ],
