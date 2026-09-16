@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro',
+    date: '2026-09-16',
+    readTime: '18 min',
+    keywords: {
+      pt: 'limite de taxa, rate limit por cliente, balde de fichas, janela deslizante, 429, retry-after, cabecalhos ratelimit, multi-tenant, limitador distribuido, protecao de api',
+      en: 'rate limiting, per customer rate limit, token bucket, sliding window, 429, retry-after, ratelimit headers, multi-tenant, distributed limiter, api protection',
+      es: 'limite de tasa, rate limit por cliente, cubeta de fichas, ventana deslizante, 429, retry-after, cabeceras ratelimit, multi-tenant, limitador distribuido, proteccion de api',
+    },
+    content: {
+      pt: {
+        title: 'Limite de taxa por cliente na borda: proteger o serviço sem punir o parceiro certo',
+        excerpt:
+          'O teto global entrou numa sexta para conter um parceiro que disparava sessenta chamadas por segundo, a latência voltou ao normal, e na segunda o maior cliente da empresa abriu chamado porque a integração dele parou no mesmo horário. O limite funcionou: derrubou os dois. Por que o teto global é mecanismo de dano colateral e não de proteção e por que ele torna a qualidade de serviço impossível de documentar, por que a identidade do chamador precisa ser resolvida depois de validar a credencial e o que quebra quando ela é o endereço de rede, por que a janela fixa entrega o dobro do pico contratado e qual algoritmo escolher pelo formato de rajada que ele permite, como o contador atômico compartilhado sobrevive a várias instâncias de borda e o que fazer quando ele fica indisponível, por que rejeitar é só uma das cinco respostas possíveis ao excedente, quais cabeçalhos transformam a recusa em contrato que o integrador respeita sozinho, e quais quatro indicadores separam um limite que protege de um que apenas empurra o problema.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Per customer rate limiting at the edge: protecting the service without punishing the right partner',
+        excerpt:
+          'The global ceiling shipped on a Friday to contain a partner firing sixty calls per second, latency went back to normal, and on Monday the largest customer in the company filed a ticket because their integration stopped at the same hour. The limit worked: it took both down. Why a global ceiling is a collateral damage mechanism rather than a protection one and why it makes service quality impossible to document, why caller identity must be resolved after validating the credential and what breaks when that identity is the network address, why a fixed window delivers twice the contracted peak and which algorithm to pick based on the burst shape it permits, how a shared atomic counter survives multiple edge instances and what to do when it becomes unavailable, why rejecting is only one of five possible answers to overflow, which headers turn a refusal into a contract the integrator honors on their own, and which four indicators separate a limit that protects from one that merely displaces the problem.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Límite de tasa por cliente en el borde: proteger el servicio sin castigar al socio correcto',
+        excerpt:
+          'El techo global entró un viernes para contener a un socio que disparaba sesenta llamadas por segundo, la latencia volvió a la normalidad, y el lunes el mayor cliente de la empresa abrió un ticket porque su integración se detuvo a la misma hora. El límite funcionó: tumbó a los dos. Por qué el techo global es un mecanismo de daño colateral y no de protección y por qué vuelve imposible documentar la calidad de servicio, por qué la identidad del llamador debe resolverse después de validar la credencial y qué se rompe cuando esa identidad es la dirección de red, por qué la ventana fija entrega el doble del pico contratado y qué algoritmo elegir según la forma de ráfaga que permite, cómo el contador atómico compartido sobrevive a varias instancias de borde y qué hacer cuando queda indisponible, por qué rechazar es solo una de las cinco respuestas posibles al excedente, qué cabeceras convierten la negativa en un contrato que el integrador respeta por su cuenta, y qué cuatro indicadores separan un límite que protege de uno que solo empuja el problema.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao',
     date: '2026-09-11',
     readTime: '18 min',
@@ -2586,19 +2616,19 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Relógio dessincronizado entre serviços: quando o timestamp deixa de ordenar evento',
-    'Migração de esquema em tabela grande: alterar coluna sem travar escrita',
-    'Limite de taxa por cliente na borda: proteger o serviço sem punir o parceiro certo',
+    'Esgotamento de porta efêmera: quando o servidor para de abrir conexão de saída',
+    'Compactação de log de eventos: reduzir armazenamento sem perder a capacidade de reprocessar',
+    'Teste de carga que mente: por que o ensaio passa e a produção cai no mesmo volume',
   ],
   en: [
-    'Clock skew between services: when the timestamp stops ordering events',
-    'Schema migration on a large table: changing a column without blocking writes',
-    'Per client rate limiting at the edge: protecting the service without punishing the right partner',
+    'Ephemeral port exhaustion: when the server stops opening outbound connections',
+    'Event log compaction: shrinking storage without losing the ability to reprocess',
+    'The load test that lies: why the rehearsal passes and production falls at the same volume',
   ],
   es: [
-    'Reloj desincronizado entre servicios: cuándo el timestamp deja de ordenar eventos',
-    'Migración de esquema en tabla grande: alterar una columna sin bloquear la escritura',
-    'Límite de tasa por cliente en el borde: proteger el servicio sin castigar al socio correcto',
+    'Agotamiento de puertos efímeros: cuándo el servidor deja de abrir conexiones salientes',
+    'Compactación del log de eventos: reducir almacenamiento sin perder la capacidad de reprocesar',
+    'La prueba de carga que miente: por qué el ensayo pasa y la producción cae con el mismo volumen',
   ],
 };
 

@@ -98,8 +98,11 @@ import migracaoFilaSemPerderMensagem from './migracao-fila-sem-perder-mensagem-t
 import limiteConexoesBanco from './limite-conexoes-banco-esgotado-pool-vira-gargalo-do-servico.js';
 import rotacaoSegredoSemIndisponibilidade from './rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao.js';
 import backupQueNuncaFoiRestaurado from './backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao.js';
+import limiteTaxaPorClienteNaBorda from './limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro.js';
 
 const postContentBySlug = {
+  'limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro':
+    limiteTaxaPorClienteNaBorda,
   'backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao':
     backupQueNuncaFoiRestaurado,
   'rotacao-segredo-sem-indisponibilidade-trocar-chave-em-producao':
