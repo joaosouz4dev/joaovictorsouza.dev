@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento',
+    date: '2026-09-17',
+    readTime: '18 min',
+    keywords: {
+      pt: 'compactacao de log, log compaction, retencao por tempo, lapide, tombstone, topico compactado, reprocessamento de eventos, chave do evento, arquivamento frio, event sourcing',
+      en: 'log compaction, time based retention, tombstone, compacted topic, event reprocessing, event key, cold archive, event sourcing, retention policy, kafka compaction',
+      es: 'compactacion de log, log compaction, retencion por tiempo, lapida, tombstone, topico compactado, reprocesamiento de eventos, clave del evento, archivado frio, event sourcing',
+    },
+    content: {
+      pt: {
+        title: 'Compactação de log de eventos: reduzir armazenamento sem perder a capacidade de reprocessar',
+        excerpt:
+          'O tópico saiu de quatrocentos gigabytes para dois terabytes em sete meses, alguém reduziu a retenção de trinta dias para sete numa sexta-feira, e na terça o serviço de recomendação não conseguiu mais reconstruir o próprio estado porque os eventos que precisava tinham vinte e dois dias. Por que retenção por tempo e compactação por chave resolvem problemas opostos e por que trocar uma pela outra é o erro mais caro dessa área, o que a compactação realmente garante e por que o resultado de um reprocessamento deixa de ser determinístico entre execuções, por que a lápide é o único jeito de apagar uma chave e por que ela tem prazo de validade que transforma exclusão registrada em exclusão não comprovada, como calcular a economia real antes de ligar qualquer coisa e por que abaixo de três eventos por chave a compactação custa mais do que devolve, por que a escolha da chave deixa de ser detalhe de particionamento e vira decisão irreversível de granularidade, qual é a topologia de dois tópicos mais arquivamento frio que preserva auditoria e reprocessamento ao mesmo tempo, e quais cinco indicadores mostram que a compactação parou de funcionar antes de o disco encher.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Event log compaction: shrinking storage without losing the ability to reprocess',
+        excerpt:
+          'The topic went from four hundred gigabytes to two terabytes in seven months, someone cut retention from thirty days to seven on a Friday, and by Tuesday the recommendation service could no longer rebuild its own state because the events it needed were twenty two days old. Why time based retention and key based compaction solve opposite problems and why swapping one for the other is the most expensive mistake in this area, what compaction actually guarantees and why the result of a reprocessing run stops being deterministic across executions, why the tombstone is the only way to erase a key and why its expiry turns a recorded deletion into an unproven one, how to compute the real saving before turning anything on and why below three events per key compaction costs more than it returns, why the key choice stops being a partitioning detail and becomes an irreversible granularity decision, what the two topic plus cold archive topology that preserves audit and reprocessing at the same time looks like, and which five indicators show that compaction stopped working before the disk fills up.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Compactación del log de eventos: reducir almacenamiento sin perder la capacidad de reprocesar',
+        excerpt:
+          'El tópico pasó de cuatrocientos gigabytes a dos terabytes en siete meses, alguien redujo la retención de treinta días a siete un viernes, y el martes el servicio de recomendación ya no logró reconstruir su propio estado porque los eventos que necesitaba tenían veintidós días. Por qué la retención por tiempo y la compactación por clave resuelven problemas opuestos y por qué cambiar una por la otra es el error más caro de esta área, qué garantiza realmente la compactación y por qué el resultado de un reprocesamiento deja de ser determinista entre ejecuciones, por qué la lápida es la única forma de borrar una clave y por qué su caducidad convierte un borrado registrado en uno no comprobado, cómo calcular el ahorro real antes de activar nada y por qué por debajo de tres eventos por clave la compactación cuesta más de lo que devuelve, por qué la elección de la clave deja de ser un detalle de particionado y se vuelve una decisión irreversible de granularidad, cuál es la topología de dos tópicos más archivado frío que preserva auditoría y reprocesamiento al mismo tiempo, y qué cinco indicadores muestran que la compactación dejó de funcionar antes de que el disco se llene.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida',
     date: '2026-09-16',
     readTime: '18 min',
@@ -2646,16 +2676,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Compactação de log de eventos: reduzir armazenamento sem perder a capacidade de reprocessar',
     'Teste de carga que mente: por que o ensaio passa e a produção cai no mesmo volume',
+    'Migração de índice de busca sem janela: trocar o motor com consulta ligada',
+    'Fuso horário que corrompe relatório: por que o fechamento do mês não bate entre regiões',
+    'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
   ],
   en: [
-    'Event log compaction: shrinking storage without losing the ability to reprocess',
     'The load test that lies: why the rehearsal passes and production falls at the same volume',
+    'Search index migration with no window: swapping the engine with queries running',
+    'The time zone that corrupts the report: why month end does not reconcile across regions',
+    'Payload size limits: when the legitimate request starts getting refused',
   ],
   es: [
-    'Compactación del log de eventos: reducir almacenamiento sin perder la capacidad de reprocesar',
     'La prueba de carga que miente: por qué el ensayo pasa y la producción cae con el mismo volumen',
+    'Migración del índice de búsqueda sin ventana: cambiar el motor con consultas activas',
+    'La zona horaria que corrompe el informe: por qué el cierre de mes no cuadra entre regiones',
+    'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
   ],
 };
 

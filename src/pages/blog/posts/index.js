@@ -100,8 +100,11 @@ import rotacaoSegredoSemIndisponibilidade from './rotacao-segredo-sem-indisponib
 import backupQueNuncaFoiRestaurado from './backup-que-nunca-foi-restaurado-transformar-copia-em-garantia-de-recuperacao.js';
 import limiteTaxaPorClienteNaBorda from './limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro.js';
 import esgotamentoPortaEfemera from './esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida.js';
+import compactacaoLogEventos from './compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento.js';
 
 const postContentBySlug = {
+  'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento':
+    compactacaoLogEventos,
   'esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida':
     esgotamentoPortaEfemera,
   'limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro':
