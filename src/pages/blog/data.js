@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume',
+    date: '2026-09-18',
+    readTime: '18 min',
+    keywords: {
+      pt: 'teste de carga, omissao coordenada, laco aberto, laco fechado, ponto de saturacao, chegada de poisson, ensaio de resistencia, ensaio de rajada, percentil de latencia, vazao util',
+      en: 'load testing, coordinated omission, open loop, closed loop, saturation point, poisson arrival, soak test, burst test, latency percentile, useful throughput',
+      es: 'prueba de carga, omision coordinada, lazo abierto, lazo cerrado, punto de saturacion, llegada de poisson, ensayo de resistencia, ensayo de rafaga, percentil de latencia, rendimiento util',
+    },
+    content: {
+      pt: {
+        title: 'Teste de carga que mente: por que o ensaio passa e a produção cai no mesmo volume',
+        excerpt:
+          'O relatório aprovou mil requisições por segundo com mediana de quarenta e dois milissegundos e nenhum erro, e três dias depois o serviço quebrou com novecentas. Ninguém mentiu: o ensaio realmente passou naquele volume, e volume é a variável menos importante de um teste de carga. Por que o gerador de laço fechado reduz a pressão exatamente quando o serviço degrada e por isso nunca encontra o ponto de ruptura, o que é omissão coordenada e por que ela apaga do relatório justamente as piores medições, quais seis diferenças entre ensaio e produção transformam o mesmo número em resultados opostos, por que o intervalo constante remove a formação de fila que se quer medir e como o intervalo exponencial a devolve em três linhas, por que cinco minutos de duração são curtos demais para qualquer vazamento e quais quatro formatos de ensaio respondem a perguntas diferentes, qual critério de aprovação substitui o limiar de latência que todo mundo usa, e qual é a sequência de seis passos que transforma um relatório decorativo em evidência utilizável.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The load test that lies: why the rehearsal passes and production falls at the same volume',
+        excerpt:
+          'The report approved one thousand requests per second with a median of forty two milliseconds and no errors, and three days later the service broke at nine hundred. Nobody lied: the rehearsal really did pass at that volume, and volume is the least important variable in a load test. Why a closed loop generator lowers pressure exactly when the service degrades and therefore never finds the breaking point, what coordinated omission is and why it erases precisely the worst measurements from the report, which six differences between rehearsal and production turn the same number into opposite outcomes, why a constant interval removes the very queue formation you want to measure and how an exponential interval restores it in three lines, why five minutes of duration is far too short for any leak and which four rehearsal shapes answer different questions, which approval criterion replaces the latency threshold everyone uses, and what the six step sequence is that turns a decorative report into usable evidence.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La prueba de carga que miente: por qué el ensayo pasa y la producción cae con el mismo volumen',
+        excerpt:
+          'El informe aprobó mil peticiones por segundo con mediana de cuarenta y dos milisegundos y ningún error, y tres días después el servicio se rompió con novecientas. Nadie mintió: el ensayo realmente pasó con ese volumen, y el volumen es la variable menos importante de una prueba de carga. Por qué el generador de lazo cerrado reduce la presión justo cuando el servicio se degrada y por eso nunca encuentra el punto de ruptura, qué es la omisión coordinada y por qué borra del informe precisamente las peores mediciones, qué seis diferencias entre ensayo y producción convierten el mismo número en resultados opuestos, por qué el intervalo constante elimina la formación de cola que se quiere medir y cómo el intervalo exponencial la devuelve en tres líneas, por qué cinco minutos de duración son demasiado poco para cualquier fuga y qué cuatro formatos de ensayo responden preguntas distintas, qué criterio de aprobación sustituye al umbral de latencia que todo el mundo usa, y cuál es la secuencia de seis pasos que convierte un informe decorativo en evidencia utilizable.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento',
     date: '2026-09-17',
     readTime: '18 min',
@@ -2676,19 +2706,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Teste de carga que mente: por que o ensaio passa e a produção cai no mesmo volume',
     'Migração de índice de busca sem janela: trocar o motor com consulta ligada',
     'Fuso horário que corrompe relatório: por que o fechamento do mês não bate entre regiões',
     'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
   ],
   en: [
-    'The load test that lies: why the rehearsal passes and production falls at the same volume',
     'Search index migration with no window: swapping the engine with queries running',
     'The time zone that corrupts the report: why month end does not reconcile across regions',
     'Payload size limits: when the legitimate request starts getting refused',
   ],
   es: [
-    'La prueba de carga que miente: por qué el ensayo pasa y la producción cae con el mismo volumen',
     'Migración del índice de búsqueda sin ventana: cambiar el motor con consultas activas',
     'La zona horaria que corrompe el informe: por qué el cierre de mes no cuadra entre regiones',
     'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
