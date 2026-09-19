@@ -42,6 +42,7 @@ import memoriaLongoPrazo from './memoria-longo-prazo-agentes-atendimento.js';
 import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
 import cacheInvalidadoErrado from './cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta.js';
 import testeDeCargaQueMente from './teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume.js';
+import migracaoIndiceBusca from './migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada.js';
 import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js';
 import streamingRespostaLlm from './streaming-resposta-llm-sem-quebrar-ux.js';
 import rateLimitFilaPrioridade from './rate-limit-fila-prioridade-apis-llm.js';
@@ -200,6 +201,7 @@ const postContentBySlug = {
   'cache-semantico-reduzir-custo-llm': cacheSemantico,
   'cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta': cacheInvalidadoErrado,
   'teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume': testeDeCargaQueMente,
+  'migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada': migracaoIndiceBusca,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {

@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada',
+    date: '2026-09-19',
+    readTime: '18 min',
+    keywords: {
+      pt: 'migracao de indice de busca, reindexacao sem janela, escrita dupla, leitura sombra, relevancia de busca, analisador de texto, carga historica, fila de reparo, sobreposicao no topo, troca de motor de busca',
+      en: 'search index migration, zero downtime reindex, dual write, shadow read, search relevance, text analyzer, historical backfill, repair queue, top overlap, search engine swap',
+      es: 'migracion de indice de busqueda, reindexacion sin ventana, escritura doble, lectura en sombra, relevancia de busqueda, analizador de texto, carga historica, cola de reparacion, solapamiento en el tope, cambio de motor de busqueda',
+    },
+    content: {
+      pt: {
+        title: 'Migração de índice de busca sem janela: trocar o motor com consulta ligada',
+        excerpt:
+          'A reindexação começou às nove da noite com promessa de duas horas e às seis da manhã ainda faltavam quarenta por cento do catálogo. Apontaram a busca para o índice novo mesmo assim, a busca por tênis branco devolveu trezentos resultados em vez de onze mil, e ninguém percebeu por três horas porque a página não deu erro nenhum. Por que a troca de motor de busca falha em silêncio de um jeito que a troca de banco não tem e por que o painel de erros fica verde durante o incidente inteiro, como o índice paralelo mais a repetição de escrita eliminam a janela de manutenção e por que ligar a escrita antes da carga histórica é a inversão que resolve, por que a verificação por contagem de documentos aprova índice quebrado em cinco dos seis defeitos possíveis e qual comparação a substitui, por que a leitura sombra mede concordância e não qualidade e o que isso significa quando o objetivo era justamente mudar a relevância, qual sequência de sete etapas troca o motor com a consulta ligada e reverte em qualquer ponto, e quais cinco indicadores autorizam desligar o índice antigo sem quebrar a importação mensal que ninguém inventariou.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Search index migration with no window: swapping the engine with queries running',
+        excerpt:
+          'The reindex started at nine in the evening promising two hours, and by six in the morning forty percent of the catalog was still missing. They pointed search at the new index anyway, a search for white sneakers returned three hundred results instead of eleven thousand, and nobody noticed for three hours because the page threw no error at all. Why swapping a search engine fails silently in a way a database swap does not and why the error dashboard stays green through the entire incident, how a parallel index plus write replication remove the maintenance window and why turning writes on before the historical load is the inversion that solves it, why document count validation approves a broken index in five of the six possible defects and which comparison replaces it, why shadow reads measure agreement rather than quality and what that means when changing relevance was the whole point, which seven stage sequence swaps the engine with queries running and reverts at any point, and which five indicators authorize switching the old index off without breaking the monthly import nobody inventoried.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Migración del índice de búsqueda sin ventana: cambiar el motor con consultas activas',
+        excerpt:
+          'La reindexación empezó a las nueve de la noche con la promesa de dos horas y a las seis de la mañana todavía faltaba el cuarenta por ciento del catálogo. Apuntaron la búsqueda al índice nuevo de todos modos, la búsqueda de zapatillas blancas devolvió trescientos resultados en lugar de once mil, y nadie lo notó durante tres horas porque la página no dio ningún error. Por qué el cambio de motor de búsqueda falla en silencio de una forma que el cambio de base de datos no tiene y por qué el panel de errores sigue en verde durante el incidente entero, cómo el índice paralelo más la replicación de escritura eliminan la ventana de mantenimiento y por qué activar la escritura antes de la carga histórica es la inversión que lo resuelve, por qué la validación por conteo de documentos aprueba un índice roto en cinco de los seis defectos posibles y qué comparación la sustituye, por qué la lectura en sombra mide concordancia y no calidad y qué significa eso cuando el objetivo era justamente cambiar la relevancia, qué secuencia de siete etapas cambia el motor con las consultas activas y revierte en cualquier punto, y qué cinco indicadores autorizan apagar el índice antiguo sin romper la importación mensual que nadie inventarió.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume',
     date: '2026-09-18',
     readTime: '18 min',
@@ -2706,19 +2736,25 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de índice de busca sem janela: trocar o motor com consulta ligada',
     'Fuso horário que corrompe relatório: por que o fechamento do mês não bate entre regiões',
     'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
+    'Chave estrangeira sem índice: a exclusão que trava a tabela inteira',
+    'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
+    'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
   ],
   en: [
-    'Search index migration with no window: swapping the engine with queries running',
     'The time zone that corrupts the report: why month end does not reconcile across regions',
     'Payload size limits: when the legitimate request starts getting refused',
+    'Foreign key without an index: the delete that locks the whole table',
+    'Retries with no ceiling: when the insistent client becomes the attack',
+    'Auth migration without logging everyone out: swapping the token scheme in production',
   ],
   es: [
-    'Migración del índice de búsqueda sin ventana: cambiar el motor con consultas activas',
     'La zona horaria que corrompe el informe: por qué el cierre de mes no cuadra entre regiones',
     'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
+    'Clave foránea sin índice: el borrado que bloquea la tabla entera',
+    'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',
+    'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
   ],
 };
 
