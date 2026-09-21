@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes',
+    date: '2026-09-21',
+    readTime: '18 min',
+    keywords: {
+      pt: 'fuso horario em relatorio, fechamento mensal, competencia contabil, data civil, instante absoluto, horario de verao, timestamptz, intervalo meio aberto, agregacao por periodo, base de fusos',
+      en: 'time zone in reports, monthly close, accounting period, civil date, absolute instant, daylight saving, timestamptz, half open interval, period aggregation, time zone database',
+      es: 'zona horaria en informes, cierre mensual, periodo contable, fecha civil, instante absoluto, horario de verano, timestamptz, intervalo semiabierto, agregacion por periodo, base de zonas horarias',
+    },
+    content: {
+      pt: {
+        title: 'Fuso horário que corrompe relatório: por que o fechamento do mês não bate entre regiões',
+        excerpt:
+          'O financeiro fechou setembro com quatro milhões e duzentos, o time de dados reportou quatro milhões e cento e oitenta e sete, e a diferença de treze mil voltou em outubro com outro valor. Ninguém errou conta: os dois somaram as mesmas linhas com duas definições diferentes do que é setembro. Por que o problema de fuso não é conversão de exibição e sim definição de intervalo e por que trocar o fuso do recorte muda o total enquanto trocar o de exibição não muda nada, por que guardar tudo em UTC resolve a metade do armazenamento e cria a metade do relatório, o que é a janela de ambiguidade em que a mesma venda pertence a dois meses ao mesmo tempo e por que ela explode justamente no mês da campanha, qual é a diferença entre instante e data civil e por que misturar os dois tipos na mesma coluna é a causa raiz que nenhuma correção de consulta resolve, por que o horário de verão faz um dia ter vinte e três ou vinte e cinco horas mesmo em país que suspendeu a prática, como escrever a consulta de fechamento com fuso explícito e intervalo meio aberto sem derrubar o índice, e quais cinco verificações detectam a corrupção antes de o número chegar ao financeiro.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The time zone that corrupts the report: why month end does not reconcile across regions',
+        excerpt:
+          'Finance closed September at four million two hundred thousand, the data team reported four million one hundred eighty-seven thousand, and the thirteen thousand gap came back in October with a different value. Nobody miscalculated: both summed the same rows under two different definitions of what September is. Why a time zone problem is not display conversion but interval definition and why changing the boundary zone changes the total while changing the display zone changes nothing, why storing everything in UTC solves the storage half and creates the reporting half, what the ambiguity window is in which one sale belongs to two months at once and why it explodes precisely in the campaign month, what the difference is between an instant and a civil date and why mixing both types in one column is the root cause no query fix resolves, why daylight saving makes a day twenty-three or twenty-five hours long even in a country that suspended the practice, how to write the closing query with an explicit zone and a half open interval without disabling the index, and which five checks catch the corruption before the number reaches finance.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La zona horaria que corrompe el informe: por qué el cierre de mes no cuadra entre regiones',
+        excerpt:
+          'Finanzas cerró septiembre con cuatro millones doscientos mil, el equipo de datos reportó cuatro millones ciento ochenta y siete mil, y la diferencia de trece mil volvió en octubre con otro valor. Nadie se equivocó en la cuenta: los dos sumaron las mismas filas con dos definiciones distintas de qué es septiembre. Por qué el problema de zona horaria no es conversión de visualización sino definición de intervalo y por qué cambiar la zona del recorte cambia el total mientras cambiar la de visualización no cambia nada, por qué guardar todo en UTC resuelve la mitad del almacenamiento y crea la mitad del informe, qué es la ventana de ambigüedad en la que la misma venta pertenece a dos meses a la vez y por qué explota justo en el mes de la campaña, cuál es la diferencia entre instante y fecha civil y por qué mezclar los dos tipos en la misma columna es la causa raíz que ninguna corrección de consulta resuelve, por qué el horario de verano hace que un día tenga veintitrés o veinticinco horas incluso en un país que suspendió la práctica, cómo escribir la consulta de cierre con zona explícita e intervalo semiabierto sin deshabilitar el índice, y qué cinco verificaciones detectan la corrupción antes de que el número llegue a finanzas.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada',
     date: '2026-09-19',
     readTime: '18 min',
@@ -2736,21 +2766,18 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Fuso horário que corrompe relatório: por que o fechamento do mês não bate entre regiões',
     'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
     'Chave estrangeira sem índice: a exclusão que trava a tabela inteira',
     'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
     'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
   ],
   en: [
-    'The time zone that corrupts the report: why month end does not reconcile across regions',
     'Payload size limits: when the legitimate request starts getting refused',
     'Foreign key without an index: the delete that locks the whole table',
     'Retries with no ceiling: when the insistent client becomes the attack',
     'Auth migration without logging everyone out: swapping the token scheme in production',
   ],
   es: [
-    'La zona horaria que corrompe el informe: por qué el cierre de mes no cuadra entre regiones',
     'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
     'Clave foránea sin índice: el borrado que bloquea la tabla entera',
     'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',

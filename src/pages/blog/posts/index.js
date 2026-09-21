@@ -43,6 +43,7 @@ import cacheSemantico from './cache-semantico-reduzir-custo-llm.js';
 import cacheInvalidadoErrado from './cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta.js';
 import testeDeCargaQueMente from './teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume.js';
 import migracaoIndiceBusca from './migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada.js';
+import fusoHorarioRelatorio from './fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes.js';
 import roteamentoModelos from './roteamento-modelos-modelo-certo-cada-tarefa.js';
 import streamingRespostaLlm from './streaming-resposta-llm-sem-quebrar-ux.js';
 import rateLimitFilaPrioridade from './rate-limit-fila-prioridade-apis-llm.js';
@@ -202,6 +203,8 @@ const postContentBySlug = {
   'cache-invalidado-errado-dado-velho-custa-mais-caro-que-consulta': cacheInvalidadoErrado,
   'teste-de-carga-que-mente-ensaio-passa-e-producao-cai-no-mesmo-volume': testeDeCargaQueMente,
   'migracao-indice-busca-sem-janela-trocar-motor-com-consulta-ligada': migracaoIndiceBusca,
+  'fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes':
+    fusoHorarioRelatorio,
 };
 
 export const getPostContentBySlug = (slug, language = 'pt') => {
