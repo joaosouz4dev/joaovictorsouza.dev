@@ -1541,6 +1541,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada" />
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes" />

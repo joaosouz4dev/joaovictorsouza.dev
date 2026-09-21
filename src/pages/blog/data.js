@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada',
+    date: '2026-09-21',
+    readTime: '18 min',
+    keywords: {
+      pt: 'limite de tamanho de payload, erro 413, corpo da requisicao, limite efetivo, proxy reverso, bomba de descompressao, teto de memoria, envio em duas etapas, contrato de api, descoberta de limites',
+      en: 'payload size limit, 413 error, request body, effective limit, reverse proxy, decompression bomb, memory ceiling, two step upload, api contract, limits discovery',
+      es: 'limite de tamano de payload, error 413, cuerpo de la peticion, limite efectivo, proxy inverso, bomba de descompresion, techo de memoria, envio en dos pasos, contrato de api, descubrimiento de limites',
+    },
+    content: {
+      pt: {
+        title: 'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
+        excerpt:
+          'O parceiro integrou em janeiro, rodou nove meses sem um único erro e na terça-feira passou a receber recusa em uma requisição a cada cem, sem que o cliente ou o servidor tivessem mudado. Por que o limite efetivo é o menor de uma cadeia de quatro ou cinco camadas e por que o valor que está no seu código quase nunca é o que decide, por que a recusa por tamanho é o erro mais pobre em informação de toda a família e por que ela some do log da aplicação justo quando o suporte mais precisa dela, qual é a diferença entre o limite que protege memória e o que protege tempo de ocupação e por que confundir os dois deixa uma brecha aberta, por que aumentar o número é a correção errada na maioria dos casos e como derivar da memória da instância o teto que ela realmente sustenta, como transformar um teto invisível em contrato publicado que o cliente consulta antes de enviar e anuncia proximidade antes da primeira falha, e quais cinco verificações separam crescimento legítimo de defeito de montagem em poucos minutos.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Payload size limits: when the legitimate request starts getting refused',
+        excerpt:
+          'The partner integrated in January, ran nine months without a single error and last Tuesday started getting refusals on one request out of a hundred, with neither the client nor the server having changed. Why the effective limit is the smallest of a chain of four or five layers and why the value in your code is almost never the one that decides, why size refusal is the least informative error of the whole family and why it disappears from the application log exactly when support needs it most, what the difference is between the limit that protects memory and the one that protects occupancy time and why confusing the two leaves a gap open, why raising the number is the wrong fix in most cases and how to derive from instance memory the ceiling it actually sustains, how to turn an invisible ceiling into a published contract the client queries before sending and that announces proximity before the first failure, and which five checks separate legitimate growth from an assembly defect in a few minutes.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
+        excerpt:
+          'El socio integró en enero, funcionó nueve meses sin un solo error y el martes pasado empezó a recibir rechazos en una petición de cada cien, sin que el cliente ni el servidor hubieran cambiado. Por qué el límite efectivo es el menor de una cadena de cuatro o cinco capas y por qué el valor que está en tu código casi nunca es el que decide, por qué el rechazo por tamaño es el error más pobre en información de toda la familia y por qué desaparece del registro de la aplicación justo cuando el soporte más lo necesita, cuál es la diferencia entre el límite que protege memoria y el que protege tiempo de ocupación y por qué confundirlos deja una brecha abierta, por qué subir el número es la corrección equivocada en la mayoría de los casos y cómo derivar de la memoria de la instancia el techo que realmente sostiene, cómo convertir un techo invisible en un contrato publicado que el cliente consulta antes de enviar y que anuncia proximidad antes del primer fallo, y qué cinco verificaciones separan crecimiento legítimo de defecto de montaje en pocos minutos.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'fuso-horario-que-corrompe-relatorio-fechamento-do-mes-nao-bate-entre-regioes',
     date: '2026-09-21',
     readTime: '18 min',
@@ -2766,19 +2796,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Limite de tamanho de payload: quando a requisição legítima passa a ser recusada',
     'Chave estrangeira sem índice: a exclusão que trava a tabela inteira',
     'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
     'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
   ],
   en: [
-    'Payload size limits: when the legitimate request starts getting refused',
     'Foreign key without an index: the delete that locks the whole table',
     'Retries with no ceiling: when the insistent client becomes the attack',
     'Auth migration without logging everyone out: swapping the token scheme in production',
   ],
   es: [
-    'Límite de tamaño del payload: cuándo la petición legítima empieza a ser rechazada',
     'Clave foránea sin índice: el borrado que bloquea la tabla entera',
     'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',
     'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
