@@ -104,8 +104,10 @@ import backupQueNuncaFoiRestaurado from './backup-que-nunca-foi-restaurado-trans
 import limiteTaxaPorClienteNaBorda from './limite-taxa-por-cliente-na-borda-proteger-servico-sem-punir-parceiro.js';
 import esgotamentoPortaEfemera from './esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida.js';
 import compactacaoLogEventos from './compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento.js';
+import limiteTamanhoPayload from './limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada.js';
 
 const postContentBySlug = {
+  'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada': limiteTamanhoPayload,
   'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento':
     compactacaoLogEventos,
   'esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida':
