@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira',
+    date: '2026-09-22',
+    readTime: '17 min',
+    keywords: {
+      pt: 'chave estrangeira sem indice, exclusao lenta, bloqueio de tabela, varredura sequencial, on delete cascade, create index concurrently, indice invalido, fila de bloqueios, expurgo em lotes, postgresql',
+      en: 'foreign key without index, slow delete, table lock, sequential scan, on delete cascade, create index concurrently, invalid index, lock queue, batched purge, postgresql',
+      es: 'clave foranea sin indice, borrado lento, bloqueo de tabla, escaneo secuencial, on delete cascade, create index concurrently, indice invalido, cola de bloqueos, purga por lotes, postgresql',
+    },
+    content: {
+      pt: {
+        title: 'Chave estrangeira sem índice: a exclusão que trava a tabela inteira',
+        excerpt:
+          'O expurgo diário de pedidos cancelados sempre levou três minutos e numa terça-feira levou cinquenta e três, e um deploy rotineiro que adicionava uma coluna derrubou o checkout por dezoito minutos sem que o job ou a consulta tivessem mudado. Por que excluir uma linha no pai obriga o banco a varrer a tabela filha inteira quando a coluna da chave estrangeira não tem índice, por que o custo é o produto do volume de exclusões pelo tamanho da filha e nunca aparece em homologação, por que até excluir um pai sem nenhum filho custa a varredura completa, como uma transação longa somada a um comando de esquema na fila de bloqueios congela todo acesso à tabela, como ler as linhas de gatilho do EXPLAIN ANALYZE e a cadeia de bloqueios para fechar o diagnóstico, qual consulta de catálogo lista todas as chaves estrangeiras sem índice útil, como criar o índice de forma concorrente sem cair na armadilha do índice inválido, e quando dispensar o índice é legítimo desde que a exceção fique registrada e verificada no CI.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Foreign key without an index: the delete that locks the whole table',
+        excerpt:
+          'The daily purge of cancelled orders always took three minutes and one Tuesday it took fifty-three, and a routine deploy that added a column took checkout down for eighteen minutes with neither the job nor the query having changed. Why deleting one row in the parent forces the database to scan the entire child table when the foreign key column has no index, why the cost is the product of the delete volume and the child size and never shows up in staging, why even deleting a parent with no children costs the full scan, how a long transaction plus a schema change in the lock queue freezes all access to the table, how to read the EXPLAIN ANALYZE trigger lines and the blocking chain to close the diagnosis, which catalog query lists every foreign key without a usable index, how to build the index concurrently without falling into the invalid index trap, and when skipping the index is legitimate as long as the exception is recorded and checked in CI.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Clave foránea sin índice: el borrado que bloquea la tabla entera',
+        excerpt:
+          'La purga diaria de pedidos cancelados siempre tardaba tres minutos y un martes tardó cincuenta y tres, y un despliegue rutinario que añadía una columna tumbó el checkout durante dieciocho minutos sin que el job ni la consulta hubieran cambiado. Por qué borrar una fila en el padre obliga a la base a recorrer la tabla hija entera cuando la columna de la clave foránea no tiene índice, por qué el costo es el producto del volumen de borrados por el tamaño de la hija y nunca aparece en preproducción, por qué incluso borrar un padre sin ningún hijo cuesta el escaneo completo, cómo una transacción larga sumada a un cambio de esquema en la cola de bloqueos congela todo acceso a la tabla, cómo leer las líneas de disparador del EXPLAIN ANALYZE y la cadena de bloqueos para cerrar el diagnóstico, qué consulta de catálogo lista todas las claves foráneas sin índice útil, cómo crear el índice de forma concurrente sin caer en la trampa del índice inválido, y cuándo omitir el índice es legítimo siempre que la excepción quede registrada y verificada en el CI.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada',
     date: '2026-09-21',
     readTime: '18 min',
@@ -2796,17 +2826,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chave estrangeira sem índice: a exclusão que trava a tabela inteira',
     'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
     'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
   ],
   en: [
-    'Foreign key without an index: the delete that locks the whole table',
     'Retries with no ceiling: when the insistent client becomes the attack',
     'Auth migration without logging everyone out: swapping the token scheme in production',
   ],
   es: [
-    'Clave foránea sin índice: el borrado que bloquea la tabla entera',
     'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',
     'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
   ],
