@@ -105,8 +105,10 @@ import limiteTaxaPorClienteNaBorda from './limite-taxa-por-cliente-na-borda-prot
 import esgotamentoPortaEfemera from './esgotamento-porta-efemera-servidor-para-de-abrir-conexao-de-saida.js';
 import compactacaoLogEventos from './compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento.js';
 import limiteTamanhoPayload from './limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada.js';
+import chaveEstrangeiraSemIndice from './chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira.js';
 
 const postContentBySlug = {
+  'chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira': chaveEstrangeiraSemIndice,
   'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada': limiteTamanhoPayload,
   'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento':
     compactacaoLogEventos,
