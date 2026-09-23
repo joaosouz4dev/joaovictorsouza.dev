@@ -106,8 +106,10 @@ import esgotamentoPortaEfemera from './esgotamento-porta-efemera-servidor-para-d
 import compactacaoLogEventos from './compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento.js';
 import limiteTamanhoPayload from './limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada.js';
 import chaveEstrangeiraSemIndice from './chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira.js';
+import retentativaSemTeto from './retentativa-sem-teto-cliente-insistente-vira-proprio-ataque.js';
 
 const postContentBySlug = {
+  'retentativa-sem-teto-cliente-insistente-vira-proprio-ataque': retentativaSemTeto,
   'chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira': chaveEstrangeiraSemIndice,
   'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada': limiteTamanhoPayload,
   'compactacao-log-eventos-reduzir-armazenamento-sem-perder-reprocessamento':

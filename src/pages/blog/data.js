@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'retentativa-sem-teto-cliente-insistente-vira-proprio-ataque',
+    date: '2026-09-23',
+    readTime: '17 min',
+    keywords: {
+      pt: 'retentativa sem teto, tempestade de retry, retry-after, controle de admissao, descarte de carga, impressao digital de requisicao, espera exponencial com variacao, fila offline, sdk de cliente, recuperacao de incidente',
+      en: 'unbounded retries, retry storm, retry-after, admission control, load shedding, request fingerprint, exponential backoff with jitter, offline queue, client sdk, incident recovery',
+      es: 'reintentos sin techo, tormenta de reintentos, retry-after, control de admision, descarte de carga, huella de peticion, espera exponencial con variacion, cola offline, sdk de cliente, recuperacion de incidentes',
+    },
+    content: {
+      pt: {
+        title: 'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
+        excerpt:
+          'A dependência ficou fora doze minutos e o serviço levou três horas para voltar, recebendo nove vezes o tráfego normal sem nenhum atacante: oitenta e cinco por cento eram clientes legítimos repetindo pedidos que tinham falhado. Por que a retentativa sem teto de clientes que você não controla transforma uma queda curta em uma longa e mantém o serviço caído com a carga produzida pela própria queda, de onde vem a insistência que ninguém escolheu e por que camadas que repetem se multiplicam em vez de se somar, como enxergar a repetição do lado do servidor com impressão digital da requisição quando o cliente não avisa, qual contrato de resposta com Retry-After espalhado por cliente e campo explícito de repetível ensina o cliente a parar, como reservar capacidade para pedidos originais e descartar tentativas primeiro quando a capacidade acaba, e o que corrigir na origem quando o cliente insistente é o seu próprio aplicativo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Retries with no ceiling: when the insistent client becomes the attack',
+        excerpt:
+          'The dependency was down for twelve minutes and the service took three hours to come back, receiving nine times its normal traffic with no attacker at all: eighty-five percent was legitimate clients repeating requests that had failed. Why unbounded retries from clients you do not control turn a short outage into a long one and keep the service down with load produced by the outage itself, where the insistence nobody chose comes from and why layers that retry multiply instead of adding up, how to see repetition on the server side with a request fingerprint when the client does not say it is retrying, which response contract with a per client spread Retry-After and an explicit retryable field teaches the client to stop, how to reserve capacity for original requests and shed retries first when capacity runs out, and what to fix at the source when the insistent client is your own app.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',
+        excerpt:
+          'La dependencia estuvo caída doce minutos y el servicio tardó tres horas en volver, recibiendo nueve veces el tráfico normal sin ningún atacante: el ochenta y cinco por ciento eran clientes legítimos repitiendo peticiones que habían fallado. Por qué el reintento sin techo de clientes que no controlas convierte una caída corta en una larga y mantiene el servicio caído con la carga que produce la propia caída, de dónde viene la insistencia que nadie eligió y por qué las capas que reintentan se multiplican en lugar de sumarse, cómo ver la repetición del lado del servidor con una huella de la petición cuando el cliente no avisa, qué contrato de respuesta con Retry-After repartido por cliente y un campo explícito de reintentable le enseña al cliente a detenerse, cómo reservar capacidad para las peticiones originales y descartar primero los reintentos cuando se acaba la capacidad, y qué corregir en el origen cuando el cliente insistente es tu propia aplicación.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira',
     date: '2026-09-22',
     readTime: '17 min',
@@ -2826,16 +2856,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Retentativa sem teto: quando o cliente insistente vira o próprio ataque',
     'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
+    'Paginação por offset em tabela grande: quando a página 500 derruba o banco',
+    'Job agendado que roda duas vezes: exclusão mútua distribuída sem trava eterna',
+    'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
   ],
   en: [
-    'Retries with no ceiling: when the insistent client becomes the attack',
     'Auth migration without logging everyone out: swapping the token scheme in production',
+    'Offset pagination on a large table: when page 500 takes down the database',
+    'The scheduled job that runs twice: distributed mutual exclusion without a lock held forever',
+    'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
   ],
   es: [
-    'Reintentos sin techo: cuándo el cliente insistente se convierte en el ataque',
     'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
+    'Paginación por offset en una tabla grande: cuándo la página 500 tumba la base de datos',
+    'El job programado que corre dos veces: exclusión mutua distribuida sin un bloqueo eterno',
+    'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
   ],
 };
 
