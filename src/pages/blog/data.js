@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao',
+    date: '2026-09-24',
+    readTime: '19 min',
+    keywords: {
+      pt: 'migracao de autenticacao, troca de esquema de token, jwt, token de renovacao, confusao de algoritmo, validador duplo, expandir e contrair, deslogamento em massa, rotacao de chave, kid',
+      en: 'authentication migration, token scheme swap, jwt, refresh token, algorithm confusion, dual validator, expand and contract, mass logout, key rotation, kid',
+      es: 'migracion de autenticacion, cambio de esquema de token, jwt, token de renovacion, confusion de algoritmo, validador doble, expandir y contraer, desconexion masiva, rotacion de claves, kid',
+    },
+    content: {
+      pt: {
+        title: 'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
+        excerpt:
+          'O deploy trocou o token de trinta dias assinado com segredo compartilhado por um par moderno de acesso curto e renovação rotativa, e em quarenta minutos um milhão e quatrocentas mil sessões viraram 401, o login subiu trinta vezes e o serviço de autenticação caiu sob o custo do hash de senha, sem que o rollback resolvesse. Por que trocar o esquema de token é migrar estado que mora em navegadores, aplicativos e integrações que você não controla, qual ordem de deploy entre validação e emissão permite voltar atrás sem deslogar ninguém, como escrever um validador que aceita os dois formatos sem abrir a brecha de confusão de algoritmo, como converter o token antigo no próximo contato sem que abas concorrentes derrubem a sessão uma da outra, quais dependências escondidas no cliente quebram com um token maior ou diferente, e quais indicadores dizem quando é seguro desligar o caminho legado.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Auth migration without logging everyone out: swapping the token scheme in production',
+        excerpt:
+          'The deploy replaced the thirty day token signed with a shared secret with a modern pair of short access and rotating refresh tokens, and within forty minutes one million four hundred thousand sessions turned into 401s, logins rose thirtyfold and the authentication service went down under the cost of password hashing, with a rollback that did not help. Why swapping the token scheme means migrating state that lives in browsers, apps and integrations you do not control, which deploy order between validation and issuance lets you roll back without logging anyone out, how to write a validator that accepts both formats without opening the algorithm confusion hole, how to convert the old token on next contact without concurrent tabs killing each other\'s session, which hidden client dependencies break with a larger or different token, and which indicators tell you when it is safe to turn the legacy path off.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
+        excerpt:
+          'El despliegue reemplazó el token de treinta días firmado con secreto compartido por un par moderno de acceso corto y renovación rotativa, y en cuarenta minutos un millón cuatrocientas mil sesiones se convirtieron en 401, los inicios de sesión se multiplicaron por treinta y el servicio de autenticación cayó bajo el costo del hash de contraseñas, sin que el rollback lo resolviera. Por qué cambiar el esquema de token es migrar estado que vive en navegadores, aplicaciones e integraciones que no controlas, qué orden de despliegue entre validación y emisión permite volver atrás sin desconectar a nadie, cómo escribir un validador que acepte los dos formatos sin abrir la brecha de confusión de algoritmo, cómo convertir el token antiguo en el siguiente contacto sin que pestañas concurrentes se tiren la sesión entre sí, qué dependencias ocultas en el cliente se rompen con un token más grande o distinto, y qué indicadores dicen cuándo es seguro apagar el camino heredado.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'retentativa-sem-teto-cliente-insistente-vira-proprio-ataque',
     date: '2026-09-23',
     readTime: '17 min',
@@ -2856,19 +2886,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de autenticação sem deslogar todo mundo: trocar o esquema de token em produção',
     'Paginação por offset em tabela grande: quando a página 500 derruba o banco',
     'Job agendado que roda duas vezes: exclusão mútua distribuída sem trava eterna',
     'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
   ],
   en: [
-    'Auth migration without logging everyone out: swapping the token scheme in production',
     'Offset pagination on a large table: when page 500 takes down the database',
     'The scheduled job that runs twice: distributed mutual exclusion without a lock held forever',
     'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
   ],
   es: [
-    'Migración de autenticación sin desconectar a nadie: cambiar el esquema de token en producción',
     'Paginación por offset en una tabla grande: cuándo la página 500 tumba la base de datos',
     'El job programado que corre dos veces: exclusión mutua distribuida sin un bloqueo eterno',
     'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
