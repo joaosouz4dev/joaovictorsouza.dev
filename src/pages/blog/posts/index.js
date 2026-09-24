@@ -107,8 +107,11 @@ import compactacaoLogEventos from './compactacao-log-eventos-reduzir-armazenamen
 import limiteTamanhoPayload from './limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada.js';
 import chaveEstrangeiraSemIndice from './chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira.js';
 import retentativaSemTeto from './retentativa-sem-teto-cliente-insistente-vira-proprio-ataque.js';
+import migracaoAutenticacaoSemDeslogar from './migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao.js';
 
 const postContentBySlug = {
+  'migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao':
+    migracaoAutenticacaoSemDeslogar,
   'retentativa-sem-teto-cliente-insistente-vira-proprio-ataque': retentativaSemTeto,
   'chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira': chaveEstrangeiraSemIndice,
   'limite-tamanho-payload-quando-requisicao-legitima-passa-a-ser-recusada': limiteTamanhoPayload,
