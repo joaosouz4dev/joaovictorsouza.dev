@@ -108,8 +108,10 @@ import limiteTamanhoPayload from './limite-tamanho-payload-quando-requisicao-leg
 import chaveEstrangeiraSemIndice from './chave-estrangeira-sem-indice-exclusao-que-trava-tabela-inteira.js';
 import retentativaSemTeto from './retentativa-sem-teto-cliente-insistente-vira-proprio-ataque.js';
 import migracaoAutenticacaoSemDeslogar from './migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao.js';
+import paginacaoOffsetTabelaGrande from './paginacao-offset-tabela-grande-pagina-500-derruba-banco.js';
 
 const postContentBySlug = {
+  'paginacao-offset-tabela-grande-pagina-500-derruba-banco': paginacaoOffsetTabelaGrande,
   'migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao':
     migracaoAutenticacaoSemDeslogar,
   'retentativa-sem-teto-cliente-insistente-vira-proprio-ataque': retentativaSemTeto,
