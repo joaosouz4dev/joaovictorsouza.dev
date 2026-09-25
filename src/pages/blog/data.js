@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'paginacao-offset-tabela-grande-pagina-500-derruba-banco',
+    date: '2026-09-25',
+    readTime: '16 min',
+    keywords: {
+      pt: 'paginacao por offset, paginacao por chave, keyset pagination, cursor opaco, limit offset lento, postgresql, comparacao de linha, indice composto, contagem total cara, exportacao assincrona',
+      en: 'offset pagination, keyset pagination, seek method, opaque cursor, slow limit offset, postgresql, row comparison, composite index, expensive total count, asynchronous export',
+      es: 'paginacion por offset, paginacion por clave, keyset pagination, cursor opaco, limit offset lento, postgresql, comparacion de fila, indice compuesto, conteo total caro, exportacion asincrona',
+    },
+    content: {
+      pt: {
+        title: 'Paginação por offset em tabela grande: quando a página 500 derruba o banco',
+        excerpt:
+          'A listagem que respondia em quarenta milissegundos levou o banco a noventa e cinco por cento de CPU quando um script de exportação chegou à página quatro mil, lendo e descartando duzentas mil linhas para devolver cinquenta. Por que o custo do OFFSET cresce com a profundidade e nenhum índice resolve isso, quais defeitos ele esconde além da lentidão, como itens pulados e duplicados e cache contaminado, como funciona a paginação por chave com desempate único, comparação de linha e índice na mesma ordem, como expor um cursor opaco e assinado que não perde microssegundos entre PostgreSQL e JavaScript, como migrar clientes e telas que dependem de número de página com um teto de profundidade, e quando o OFFSET ainda é a escolha certa.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Offset pagination on a large table: when page 500 takes down the database',
+        excerpt:
+          'The listing that answered in forty milliseconds pushed the database to ninety-five percent CPU when an export script reached page four thousand, reading and discarding two hundred thousand rows to return fifty. Why OFFSET cost grows with depth and no index fixes it, which defects it hides besides slowness, such as skipped and duplicated items and a polluted cache, how keyset pagination works with a unique tiebreaker, a row comparison and an index in the same order, how to expose an opaque, signed cursor that does not lose microseconds between PostgreSQL and JavaScript, how to migrate clients and screens that depend on page numbers with a depth ceiling, and when OFFSET is still the right choice.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Paginación por offset en una tabla grande: cuándo la página 500 tumba la base de datos',
+        excerpt:
+          'El listado que respondía en cuarenta milisegundos llevó la base al noventa y cinco por ciento de CPU cuando un script de exportación llegó a la página cuatro mil, leyendo y descartando doscientas mil filas para devolver cincuenta. Por qué el costo del OFFSET crece con la profundidad y ningún índice lo resuelve, qué defectos esconde además de la lentitud, como elementos saltados y duplicados y caché contaminada, cómo funciona la paginación por clave con desempate único, comparación de fila e índice en el mismo orden, cómo exponer un cursor opaco y firmado que no pierde microsegundos entre PostgreSQL y JavaScript, cómo migrar clientes y pantallas que dependen del número de página con un techo de profundidad, y cuándo el OFFSET sigue siendo la opción correcta.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao',
     date: '2026-09-24',
     readTime: '19 min',
@@ -2886,17 +2916,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Paginação por offset em tabela grande: quando a página 500 derruba o banco',
     'Job agendado que roda duas vezes: exclusão mútua distribuída sem trava eterna',
     'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
   ],
   en: [
-    'Offset pagination on a large table: when page 500 takes down the database',
     'The scheduled job that runs twice: distributed mutual exclusion without a lock held forever',
     'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
   ],
   es: [
-    'Paginación por offset en una tabla grande: cuándo la página 500 tumba la base de datos',
     'El job programado que corre dos veces: exclusión mutua distribuida sin un bloqueo eterno',
     'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
   ],
