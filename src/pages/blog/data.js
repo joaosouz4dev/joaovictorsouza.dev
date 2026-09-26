@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna',
+    date: '2026-09-26',
+    readTime: '18 min',
+    keywords: {
+      pt: 'job agendado duplicado, exclusao mutua distribuida, trava distribuida, lease, fencing token, numero de geracao, cron com varias replicas, postgresql, advisory lock, redis set nx, idempotencia de job',
+      en: 'duplicate scheduled job, distributed mutual exclusion, distributed lock, lease, fencing token, generation number, cron with multiple replicas, postgresql, advisory lock, redis set nx, job idempotency',
+      es: 'job programado duplicado, exclusion mutua distribuida, bloqueo distribuido, lease, fencing token, numero de generacion, cron con varias replicas, postgresql, advisory lock, redis set nx, idempotencia de job',
+    },
+    content: {
+      pt: {
+        title: 'Job agendado que roda duas vezes: exclusão mútua distribuída sem trava eterna',
+        excerpt:
+          'O fechamento de comissões passou a rodar três vezes quando o serviço ganhou três réplicas, e a trava no Redis criada às pressas prendeu o job por nove dias quando um pod morreu no meio da execução. De onde vêm as execuções duplicadas, entre réplicas, deploys, reentregas e recuperação de disparos perdidos, por que a trava sem prazo e a trava com prazo ingênuo falham de formas opostas, como implementar um lease no PostgreSQL com dono, renovação e número de geração, como usar a geração como cerca dentro da transação da escrita para barrar o dono que ficou parado, por que a trava impede concorrência mas não repetição e exige registro de execução por janela, e quais métricas por ausência avisam antes do cliente.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The scheduled job that runs twice: distributed mutual exclusion without a lock held forever',
+        excerpt:
+          'The commission close started running three times when the service got three replicas, and the Redis lock added in a hurry blocked the job for nine days when a pod died mid-run. Where duplicate runs come from, across replicas, deploys, redeliveries and missed-run recovery, why a lock with no deadline and a lock with a naive deadline fail in opposite ways, how to implement a PostgreSQL lease with owner, renewal and a generation number, how to use the generation as a fence inside the write transaction to stop an owner that stalled, why a lock prevents concurrency but not repetition and needs a run record per window, and which absence metrics warn you before the customer does.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El job programado que corre dos veces: exclusión mutua distribuida sin un bloqueo eterno',
+        excerpt:
+          'El cierre de comisiones empezó a correr tres veces cuando el servicio pasó a tres réplicas, y el bloqueo en Redis creado a las apuradas trabó el job durante nueve días cuando un pod murió en medio de la ejecución. De dónde vienen las ejecuciones duplicadas, entre réplicas, despliegues, reentregas y recuperación de disparos perdidos, por qué el bloqueo sin plazo y el bloqueo con plazo ingenuo fallan de formas opuestas, cómo implementar un lease en PostgreSQL con dueño, renovación y número de generación, cómo usar la generación como barrera dentro de la transacción de la escritura para frenar al dueño que quedó detenido, por qué el bloqueo impide la concurrencia pero no la repetición y exige un registro de ejecución por ventana, y qué métricas por ausencia avisan antes que el cliente.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'paginacao-offset-tabela-grande-pagina-500-derruba-banco',
     date: '2026-09-25',
     readTime: '16 min',
@@ -2916,16 +2946,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Job agendado que roda duas vezes: exclusão mútua distribuída sem trava eterna',
     'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
+    'Réplica de leitura atrasada: quando o usuário salva e não vê o que acabou de salvar',
+    'Webhook de saída que ninguém confirma: entregar evento a cliente lento sem acumular fila infinita',
+    'Estoque negativo: a condição de corrida entre duas compras do último item',
   ],
   en: [
-    'The scheduled job that runs twice: distributed mutual exclusion without a lock held forever',
     'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
+    'The lagging read replica: when users save and do not see what they just saved',
+    'Outbound webhooks nobody acknowledges: delivering events to slow clients without an endless queue',
+    'Negative stock: the race condition between two purchases of the last item',
   ],
   es: [
-    'El job programado que corre dos veces: exclusión mutua distribuida sin un bloqueo eterno',
     'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
+    'Réplica de lectura atrasada: cuándo el usuario guarda y no ve lo que acaba de guardar',
+    'Webhook saliente que nadie confirma: entregar eventos a clientes lentos sin acumular una cola infinita',
+    'Stock negativo: la condición de carrera entre dos compras del último artículo',
   ],
 };
 

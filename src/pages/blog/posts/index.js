@@ -109,8 +109,11 @@ import chaveEstrangeiraSemIndice from './chave-estrangeira-sem-indice-exclusao-q
 import retentativaSemTeto from './retentativa-sem-teto-cliente-insistente-vira-proprio-ataque.js';
 import migracaoAutenticacaoSemDeslogar from './migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao.js';
 import paginacaoOffsetTabelaGrande from './paginacao-offset-tabela-grande-pagina-500-derruba-banco.js';
+import jobAgendadoRodaDuasVezes from './job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna.js';
 
 const postContentBySlug = {
+  'job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna':
+    jobAgendadoRodaDuasVezes,
   'paginacao-offset-tabela-grande-pagina-500-derruba-banco': paginacaoOffsetTabelaGrande,
   'migracao-autenticacao-sem-deslogar-todo-mundo-trocar-esquema-token-producao':
     migracaoAutenticacaoSemDeslogar,
