@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada',
+    date: '2026-09-27',
+    readTime: '17 min',
+    keywords: {
+      pt: 'autovacuum, tabela inchada, bloat, tuplas mortas, mvcc, horizonte de xmin, idle in transaction, slot de replicacao, pg_repack, postgresql',
+      en: 'autovacuum, table bloat, dead tuples, mvcc, xmin horizon, idle in transaction, replication slot, pg_repack, hot update, postgresql',
+      es: 'autovacuum, tabla hinchada, bloat, tuplas muertas, mvcc, horizonte de xmin, idle in transaction, slot de replicacion, pg_repack, postgresql',
+    },
+    content: {
+      pt: {
+        title: 'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
+        excerpt:
+          'A consulta de entregas pendentes passou de quinze milissegundos para dois segundos e trezentos em três semanas, e a tabela foi de vinte e dois para cento e setenta gigabytes, sem deploy, sem mudança de índice e com o mesmo número de linhas vivas, enquanto o autovacuum rodava cento e quarenta vezes sem remover nada. Por que todo UPDATE e todo DELETE deixam versões mortas no PostgreSQL e por que tabelas de status sem atualização HOT são as mais afetadas, por que o gatilho padrão do autovacuum chega tarde em tabelas grandes e por que o orçamento de I/O dividido entre workers o faz perder a corrida, como identificar a sessão ociosa em transação, o slot abandonado, a réplica ou a transação preparada que segura o horizonte de xmin, como ajustar o autovacuum por tabela com gatilho absoluto e fillfactor, como recuperar o espaço com pg_repack sem janela de manutenção, e quais sinais avisam semanas antes de a consulta ficar lenta.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
+        excerpt:
+          'The pending deliveries query went from fifteen milliseconds to two point three seconds in three weeks, and the table went from twenty-two to one hundred and seventy gigabytes, with no deploy, no index change and the same number of live rows, while autovacuum ran one hundred and forty times without removing anything. Why every UPDATE and every DELETE leaves dead versions behind in PostgreSQL and why status tables without HOT updates are the most affected, why the default autovacuum trigger arrives late on large tables and why the I/O budget split among workers makes it lose the race, how to identify the session idle in transaction, the abandoned slot, the replica or the prepared transaction holding back the xmin horizon, how to tune autovacuum per table with an absolute trigger and fillfactor, how to reclaim the space with pg_repack without a maintenance window, and which signals warn you weeks before the query gets slow.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
+        excerpt:
+          'La consulta de entregas pendientes pasó de quince milisegundos a dos segundos y trescientos en tres semanas, y la tabla pasó de veintidós a ciento setenta gigabytes, sin despliegue, sin cambios de índice y con el mismo número de filas vivas, mientras el autovacuum se ejecutaba ciento cuarenta veces sin eliminar nada. Por qué cada UPDATE y cada DELETE dejan versiones muertas en PostgreSQL y por qué las tablas de estado sin actualización HOT son las más afectadas, por qué el umbral por defecto del autovacuum llega tarde en tablas grandes y por qué el presupuesto de I/O repartido entre workers le hace perder la carrera, cómo identificar la sesión inactiva en transacción, el slot abandonado, la réplica o la transacción preparada que retiene el horizonte de xmin, cómo ajustar el autovacuum por tabla con umbral absoluto y fillfactor, cómo recuperar el espacio con pg_repack sin ventana de mantenimiento, y qué señales avisan semanas antes de que la consulta se vuelva lenta.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna',
     date: '2026-09-26',
     readTime: '18 min',
@@ -2946,19 +2976,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Autovacuum que não acompanha: quando a tabela incha e a consulta fica lenta sem mudar nada',
     'Réplica de leitura atrasada: quando o usuário salva e não vê o que acabou de salvar',
     'Webhook de saída que ninguém confirma: entregar evento a cliente lento sem acumular fila infinita',
     'Estoque negativo: a condição de corrida entre duas compras do último item',
   ],
   en: [
-    'Autovacuum that cannot keep up: when the table bloats and queries slow down with nothing changed',
     'The lagging read replica: when users save and do not see what they just saved',
     'Outbound webhooks nobody acknowledges: delivering events to slow clients without an endless queue',
     'Negative stock: the race condition between two purchases of the last item',
   ],
   es: [
-    'Autovacuum que no da abasto: cuándo la tabla se hincha y la consulta se vuelve lenta sin que nada cambie',
     'Réplica de lectura atrasada: cuándo el usuario guarda y no ve lo que acaba de guardar',
     'Webhook saliente que nadie confirma: entregar eventos a clientes lentos sin acumular una cola infinita',
     'Stock negativo: la condición de carrera entre dos compras del último artículo',
