@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou',
+    date: '2026-09-28',
+    readTime: '17 min',
+    keywords: {
+      pt: 'replica de leitura atrasada, atraso de replicacao, ler o que escreveu, read your writes, leituras monotonicas, lsn, pg_last_wal_replay_lsn, replicacao assincrona, postgresql, heartbeat de replicacao',
+      en: 'read replica lag, replication lag, read your writes, monotonic reads, lsn, pg_last_wal_replay_lsn, asynchronous replication, postgresql, replication heartbeat, stale reads',
+      es: 'replica de lectura atrasada, retraso de replicacion, leer lo que escribiste, read your writes, lecturas monotonicas, lsn, pg_last_wal_replay_lsn, replicacion asincrona, postgresql, heartbeat de replicacion',
+    },
+    content: {
+      pt: {
+        title: 'Réplica de leitura atrasada: quando o usuário salva e não vê o que acabou de salvar',
+        excerpt:
+          'Na semana em que as leituras passaram para duas réplicas do PostgreSQL, o suporte recebeu trezentos e quarenta chamados de endereço que não salva, pedidos recém-criados abriram em 404 e clientes compraram duas vezes porque o pedido não apareceu, sem que nenhum dado tivesse sido perdido. De onde vem o atraso da réplica e por que rajadas de escrita e consultas longas criam picos de oito a trinta segundos, quais sintomas ele produz que parecem bug de interface, de cache ou de regra de negócio, por que sleep, janela fixa no primário e remote_apply falham ou custam caro, como garantir a leitura da própria escrita com a posição do WAL como token, levado por cookie, sessão ou mensagem de fila, quais leituras precisam ir ao primário e como manter leituras monotônicas entre réplicas, e como medir o atraso real com heartbeat em vez de métricas que mentem com o primário ocioso.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The lagging read replica: when users save and do not see what they just saved',
+        excerpt:
+          'In the week reads moved to two PostgreSQL replicas, support received three hundred and forty tickets about addresses that would not save, newly created orders opened as a 404 and customers bought twice because the order did not show up, without any data being lost. Where replica lag comes from and why write bursts and long queries create spikes of eight to thirty seconds, which symptoms it produces that look like interface, cache or business rule bugs, why sleeps, a fixed primary window and remote_apply fail or cost too much, how to guarantee reading your own writes with the WAL position as a token, carried by cookie, session or queue message, which reads must go to the primary and how to keep monotonic reads across replicas, and how to measure real lag with a heartbeat instead of metrics that lie when the primary is idle.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Réplica de lectura atrasada: cuándo el usuario guarda y no ve lo que acaba de guardar',
+        excerpt:
+          'En la semana en que las lecturas pasaron a dos réplicas de PostgreSQL, soporte recibió trescientos cuarenta tickets de direcciones que no se guardaban, pedidos recién creados abrieron con 404 y clientes compraron dos veces porque el pedido no apareció, sin que se perdiera ningún dato. De dónde viene el retraso de la réplica y por qué las ráfagas de escritura y las consultas largas crean picos de ocho a treinta segundos, qué síntomas produce que parecen bugs de interfaz, de caché o de regla de negocio, por qué el sleep, la ventana fija en el primario y remote_apply fallan o cuestan caro, cómo garantizar la lectura de la propia escritura con la posición del WAL como token, llevado por cookie, sesión o mensaje de cola, qué lecturas deben ir al primario y cómo mantener lecturas monotónicas entre réplicas, y cómo medir el retraso real con un heartbeat en lugar de métricas que mienten cuando el primario está inactivo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada',
     date: '2026-09-27',
     readTime: '17 min',
@@ -2976,17 +3006,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Réplica de leitura atrasada: quando o usuário salva e não vê o que acabou de salvar',
     'Webhook de saída que ninguém confirma: entregar evento a cliente lento sem acumular fila infinita',
     'Estoque negativo: a condição de corrida entre duas compras do último item',
   ],
   en: [
-    'The lagging read replica: when users save and do not see what they just saved',
     'Outbound webhooks nobody acknowledges: delivering events to slow clients without an endless queue',
     'Negative stock: the race condition between two purchases of the last item',
   ],
   es: [
-    'Réplica de lectura atrasada: cuándo el usuario guarda y no ve lo que acaba de guardar',
     'Webhook saliente que nadie confirma: entregar eventos a clientes lentos sin acumular una cola infinita',
     'Stock negativo: la condición de carrera entre dos compras del último artículo',
   ],

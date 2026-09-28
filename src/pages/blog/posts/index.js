@@ -111,8 +111,10 @@ import migracaoAutenticacaoSemDeslogar from './migracao-autenticacao-sem-desloga
 import paginacaoOffsetTabelaGrande from './paginacao-offset-tabela-grande-pagina-500-derruba-banco.js';
 import jobAgendadoRodaDuasVezes from './job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna.js';
 import autovacuumQueNaoAcompanha from './autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada.js';
+import replicaLeituraAtrasada from './replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou.js';
 
 const postContentBySlug = {
+  'replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou': replicaLeituraAtrasada,
   'autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada':
     autovacuumQueNaoAcompanha,
   'job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna':
