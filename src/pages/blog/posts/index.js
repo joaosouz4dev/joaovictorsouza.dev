@@ -112,8 +112,11 @@ import paginacaoOffsetTabelaGrande from './paginacao-offset-tabela-grande-pagina
 import jobAgendadoRodaDuasVezes from './job-agendado-que-roda-duas-vezes-exclusao-mutua-distribuida-sem-trava-eterna.js';
 import autovacuumQueNaoAcompanha from './autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada.js';
 import replicaLeituraAtrasada from './replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou.js';
+import webhookDeSaidaClienteLento from './webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita.js';
 
 const postContentBySlug = {
+  'webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita':
+    webhookDeSaidaClienteLento,
   'replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou': replicaLeituraAtrasada,
   'autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada':
     autovacuumQueNaoAcompanha,
