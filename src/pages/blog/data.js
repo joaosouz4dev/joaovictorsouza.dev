@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita',
+    date: '2026-09-29',
+    readTime: '18 min',
+    keywords: {
+      pt: 'webhook de saida, entrega de webhook, cliente lento, fila por destino, limite de concorrencia, retentativa com backoff, jitter, circuit breaker, fusao de eventos, postgresql skip locked, idade da fila',
+      en: 'outbound webhooks, webhook delivery, slow consumer, per-destination queue, concurrency limit, retry with backoff, jitter, circuit breaker, event coalescing, postgresql skip locked, queue age',
+      es: 'webhook saliente, entrega de webhooks, cliente lento, cola por destino, limite de concurrencia, reintento con backoff, jitter, circuit breaker, fusion de eventos, postgresql skip locked, antiguedad de la cola',
+    },
+    content: {
+      pt: {
+        title: 'Webhook de saída que ninguém confirma: entregar evento a cliente lento sem acumular fila infinita',
+        excerpt:
+          'O ERP de um único varejista passou a responder em vinte e oito segundos, os dezesseis workers de entrega ficaram presos nele, a fila passou de dois milhões de entregas e mil setecentos e noventa e nove outros clientes começaram a receber eventos com três horas de atraso, sem nenhuma chamada falhar. Por que a lei de Little explica como um destino lento captura a capacidade de todos, qual contrato de confirmação em cinco segundos um webhook de saída precisa publicar e como classificar cada resposta, como montar no PostgreSQL uma fila por destino com limite de concorrência e reserva intercalada, como retentar com recuo exponencial, jitter, Retry-After e prazo de validade, como pausar com sondagem, fundir eventos de estado e desativar destinos abandonados, e por que a idade da entrega pendente mais antiga por destino avisa antes do cliente.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Outbound webhooks nobody acknowledges: delivering events to slow clients without an endless queue',
+        excerpt:
+          'The ERP of a single retailer started responding in twenty-eight seconds, all sixteen delivery workers got stuck on it, the queue passed two million deliveries and one thousand seven hundred and ninety-nine other customers started receiving events three hours late, without a single call failing. Why Little\'s law explains how one slow destination captures everyone\'s capacity, what five second acknowledgement contract an outbound webhook needs to publish and how to classify each response, how to build a per-destination queue in PostgreSQL with a concurrency limit and interleaved claiming, how to retry with exponential backoff, jitter, Retry-After and an expiry, how to pause with probes, merge state events and disable abandoned destinations, and why the age of the oldest pending delivery per destination warns you before the customer does.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Webhook saliente que nadie confirma: entregar eventos a clientes lentos sin acumular una cola infinita',
+        excerpt:
+          'El ERP de un solo minorista empezó a responder en veintiocho segundos, los dieciséis workers de entrega quedaron atrapados en él, la cola superó los dos millones de entregas y otros mil setecientos noventa y nueve clientes empezaron a recibir eventos con tres horas de retraso, sin que fallara ninguna llamada. Por qué la ley de Little explica cómo un destino lento captura la capacidad de todos, qué contrato de confirmación en cinco segundos debe publicar un webhook saliente y cómo clasificar cada respuesta, cómo montar en PostgreSQL una cola por destino con límite de concurrencia y reserva intercalada, cómo reintentar con backoff exponencial, jitter, Retry-After y caducidad, cómo pausar con sondeo, fusionar eventos de estado y desactivar destinos abandonados, y por qué la antigüedad de la entrega pendiente más vieja por destino avisa antes que el cliente.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou',
     date: '2026-09-28',
     readTime: '17 min',
@@ -3006,16 +3036,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Webhook de saída que ninguém confirma: entregar evento a cliente lento sem acumular fila infinita',
     'Estoque negativo: a condição de corrida entre duas compras do último item',
+    'Exportação de relatório que derruba o servidor: gerar arquivo grande em streaming sem estourar memória',
+    'Upload grande que falha nos 99%: envio retomável em partes com URL pré-assinada',
+    'Deadlock em produção: quando duas transações corretas se travam uma na outra',
   ],
   en: [
-    'Outbound webhooks nobody acknowledges: delivering events to slow clients without an endless queue',
     'Negative stock: the race condition between two purchases of the last item',
+    'The report export that takes the server down: streaming large files without running out of memory',
+    'Large uploads that fail at 99%: resumable multipart uploads with presigned URLs',
+    'Deadlocks in production: when two correct transactions lock each other up',
   ],
   es: [
-    'Webhook saliente que nadie confirma: entregar eventos a clientes lentos sin acumular una cola infinita',
     'Stock negativo: la condición de carrera entre dos compras del último artículo',
+    'Exportación de informes que tumba el servidor: generar archivos grandes en streaming sin agotar la memoria',
+    'Subidas grandes que fallan al 99%: carga reanudable por partes con URL prefirmada',
+    'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',
   ],
 };
 
