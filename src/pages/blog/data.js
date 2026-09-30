@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item',
+    date: '2026-09-30',
+    readTime: '17 min',
+    keywords: {
+      pt: 'estoque negativo, condicao de corrida, venda duplicada, atualizacao perdida, update condicional, select for update, reserva de estoque, expiracao de reserva, deadlock, linha quente, postgresql',
+      en: 'negative stock, race condition, overselling, lost update, conditional update, select for update, stock reservation, reservation expiry, deadlock, hot row, postgresql',
+      es: 'stock negativo, condicion de carrera, sobreventa, actualizacion perdida, update condicional, select for update, reserva de stock, caducidad de reserva, deadlock, fila caliente, postgresql',
+    },
+    content: {
+      pt: {
+        title: 'Estoque negativo: a condição de corrida entre duas compras do último item',
+        excerpt:
+          'Uma cafeteira em promoção tinha trinta unidades, a campanha saiu para quatrocentos mil clientes e a loja registrou trinta e quatro pedidos pagos em onze minutos, com o saldo em menos quatro e a verificação de estoque exatamente no lugar certo. Por que ler o saldo, decidir na aplicação e gravar depois vende a mesma unidade duas vezes, e por que a variante com ORM esconde a venda a mais com saldo zero, por que nem a transação no isolamento padrão nem o SELECT comum protegem, como fazer a baixa atômica com um UPDATE condicional e restrições CHECK como última linha de defesa, como reservar estoque durante o pagamento com expiração e confirmação idempotente, como evitar deadlock em pedidos com vários itens e quando a linha quente pede fragmentação ou fila, e como provar com um teste de compras simultâneas que a corrida sumiu.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Negative stock: the race condition between two purchases of the last item',
+        excerpt:
+          'A coffee maker on sale had thirty units, the campaign went out to four hundred thousand customers and the store recorded thirty-four paid orders in eleven minutes, with a balance of minus four and the stock check exactly where it should be. Why reading the balance, deciding in the application and writing later sells the same unit twice, and why the ORM variant hides the oversale behind a zero balance, why neither a transaction at the default isolation level nor a plain SELECT protects you, how to make the decrement atomic with a conditional UPDATE and CHECK constraints as the last line of defense, how to reserve stock during payment with expiry and idempotent confirmation, how to avoid deadlocks in multi-item orders and when a hot row calls for sharding or a queue, and how to prove with a simultaneous purchase test that the race is gone.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Stock negativo: la condición de carrera entre dos compras del último artículo',
+        excerpt:
+          'Una cafetera en promoción tenía treinta unidades, la campaña salió a cuatrocientos mil clientes y la tienda registró treinta y cuatro pedidos pagados en once minutos, con el saldo en menos cuatro y la verificación de stock exactamente en el lugar correcto. Por qué leer el saldo, decidir en la aplicación y grabar después vende la misma unidad dos veces, y por qué la variante con ORM esconde la sobreventa detrás de un saldo cero, por qué ni la transacción en el aislamiento por defecto ni el SELECT común te protegen, cómo hacer el descuento atómico con un UPDATE condicional y restricciones CHECK como última línea de defensa, cómo reservar stock durante el pago con caducidad y confirmación idempotente, cómo evitar deadlocks en pedidos con varios artículos y cuándo la fila caliente pide fragmentación o una cola, y cómo demostrar con una prueba de compras simultáneas que la carrera desapareció.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita',
     date: '2026-09-29',
     readTime: '18 min',
@@ -3036,19 +3066,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Estoque negativo: a condição de corrida entre duas compras do último item',
     'Exportação de relatório que derruba o servidor: gerar arquivo grande em streaming sem estourar memória',
     'Upload grande que falha nos 99%: envio retomável em partes com URL pré-assinada',
     'Deadlock em produção: quando duas transações corretas se travam uma na outra',
   ],
   en: [
-    'Negative stock: the race condition between two purchases of the last item',
     'The report export that takes the server down: streaming large files without running out of memory',
     'Large uploads that fail at 99%: resumable multipart uploads with presigned URLs',
     'Deadlocks in production: when two correct transactions lock each other up',
   ],
   es: [
-    'Stock negativo: la condición de carrera entre dos compras del último artículo',
     'Exportación de informes que tumba el servidor: generar archivos grandes en streaming sin agotar la memoria',
     'Subidas grandes que fallan al 99%: carga reanudable por partes con URL prefirmada',
     'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',

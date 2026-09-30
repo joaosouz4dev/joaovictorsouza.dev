@@ -113,8 +113,10 @@ import jobAgendadoRodaDuasVezes from './job-agendado-que-roda-duas-vezes-exclusa
 import autovacuumQueNaoAcompanha from './autovacuum-que-nao-acompanha-tabela-incha-consulta-lenta-sem-mudar-nada.js';
 import replicaLeituraAtrasada from './replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou.js';
 import webhookDeSaidaClienteLento from './webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita.js';
+import estoqueNegativoCorrida from './estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item.js';
 
 const postContentBySlug = {
+  'estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item': estoqueNegativoCorrida,
   'webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita':
     webhookDeSaidaClienteLento,
   'replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou': replicaLeituraAtrasada,
