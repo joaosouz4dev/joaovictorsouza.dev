@@ -114,8 +114,11 @@ import autovacuumQueNaoAcompanha from './autovacuum-que-nao-acompanha-tabela-inc
 import replicaLeituraAtrasada from './replica-leitura-atrasada-usuario-salva-e-nao-ve-o-que-salvou.js';
 import webhookDeSaidaClienteLento from './webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita.js';
 import estoqueNegativoCorrida from './estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item.js';
+import exportacaoRelatorioStreaming from './exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria.js';
 
 const postContentBySlug = {
+  'exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria':
+    exportacaoRelatorioStreaming,
   'estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item': estoqueNegativoCorrida,
   'webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita':
     webhookDeSaidaClienteLento,
