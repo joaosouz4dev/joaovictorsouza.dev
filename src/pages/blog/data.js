@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria',
+    date: '2026-10-01',
+    readTime: '16 min',
+    keywords: {
+      pt: 'exportacao de relatorio, streaming, memoria, oom, cursor postgresql, pg-query-stream, backpressure, node.js stream pipeline, csv grande, xlsx streaming, exportacao assincrona, upload multipart s3, url pre-assinada',
+      en: 'report export, streaming, memory, oom, postgresql cursor, pg-query-stream, backpressure, node.js stream pipeline, large csv, streaming xlsx, asynchronous export, s3 multipart upload, presigned url',
+      es: 'exportacion de informes, streaming, memoria, oom, cursor postgresql, pg-query-stream, backpressure, node.js stream pipeline, csv grande, xlsx en streaming, exportacion asincrona, subida multipart s3, url prefirmada',
+    },
+    content: {
+      pt: {
+        title: 'Exportação de relatório que derruba o servidor: gerar arquivo grande em streaming sem estourar memória',
+        excerpt:
+          'A analista do financeiro exportou os pedidos do trimestre, um milhão e oitocentas mil linhas, clicou três vezes porque a tela não respondia e derrubou os três pods da API com OOMKilled, deixando o checkout em 502 por quase quatro minutos. Por que montar o relatório inteiro na memória antes do primeiro byte derruba o processo todo e não só a exportação, como gerar o arquivo em streaming do cursor do banco até o socket do cliente com backpressure e memória constante, como lidar com o cliente que desiste, o erro no meio do download, o CSV que o Excel abre errado, a injeção de fórmula e a transação longa no primário, como escrever XLSX de forma incremental, quando mover a exportação para um job assíncrono com upload multipart e link pré-assinado, e como provar com um teste que a memória não cresce mais com o tamanho do arquivo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The report export that takes the server down: streaming large files without running out of memory',
+        excerpt:
+          'A finance analyst exported the quarter\'s orders, one million eight hundred thousand rows, clicked three times because the screen did not respond and took down all three API pods with OOMKilled, leaving checkout returning 502 for almost four minutes. Why building the whole report in memory before the first byte takes down the entire process and not just the export, how to stream the file from the database cursor to the client socket with backpressure and constant memory, how to handle the client that gives up, the error in the middle of the download, the CSV that Excel opens incorrectly, formula injection and the long transaction on the primary, how to write XLSX incrementally, when to move the export to an asynchronous job with multipart upload and a presigned link, and how to prove with a test that memory no longer grows with file size.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Exportación de informes que tumba el servidor: generar archivos grandes en streaming sin agotar la memoria',
+        excerpt:
+          'Una analista de finanzas exportó los pedidos del trimestre, un millón ochocientas mil filas, hizo clic tres veces porque la pantalla no respondía y tumbó los tres pods de la API con OOMKilled, dejando el checkout en 502 durante casi cuatro minutos. Por qué armar el informe entero en memoria antes del primer byte tumba el proceso completo y no solo la exportación, cómo generar el archivo en streaming desde el cursor de la base de datos hasta el socket del cliente con backpressure y memoria constante, cómo manejar al cliente que se rinde, el error en medio de la descarga, el CSV que Excel abre mal, la inyección de fórmulas y la transacción larga en el primario, cómo escribir XLSX de forma incremental, cuándo mover la exportación a un job asíncrono con subida multipart y enlace prefirmado, y cómo demostrar con una prueba que la memoria ya no crece con el tamaño del archivo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item',
     date: '2026-09-30',
     readTime: '17 min',
@@ -3066,17 +3096,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Exportação de relatório que derruba o servidor: gerar arquivo grande em streaming sem estourar memória',
     'Upload grande que falha nos 99%: envio retomável em partes com URL pré-assinada',
     'Deadlock em produção: quando duas transações corretas se travam uma na outra',
   ],
   en: [
-    'The report export that takes the server down: streaming large files without running out of memory',
     'Large uploads that fail at 99%: resumable multipart uploads with presigned URLs',
     'Deadlocks in production: when two correct transactions lock each other up',
   ],
   es: [
-    'Exportación de informes que tumba el servidor: generar archivos grandes en streaming sin agotar la memoria',
     'Subidas grandes que fallan al 99%: carga reanudable por partes con URL prefirmada',
     'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',
   ],
