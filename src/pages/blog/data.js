@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada',
+    date: '2026-10-02',
+    readTime: '17 min',
+    keywords: {
+      pt: 'upload grande, upload retomavel, url pre-assinada, multipart upload, s3, envio em partes, retomar upload, listparts, cors s3, ciclo de vida s3, abort incomplete multipart upload, backoff com jitter, playwright, minio',
+      en: 'large upload, resumable upload, presigned url, multipart upload, s3, chunked upload, resume upload, listparts, s3 cors, s3 lifecycle, abort incomplete multipart upload, backoff with jitter, playwright, minio',
+      es: 'subida grande, subida reanudable, url prefirmada, multipart upload, s3, subida por partes, reanudar subida, listparts, cors s3, ciclo de vida s3, abort incomplete multipart upload, backoff con jitter, playwright, minio',
+    },
+    content: {
+      pt: {
+        title: 'Upload grande que falha nos 99%: envio retomável em partes com URL pré-assinada',
+        excerpt:
+          'Instrutores de uma plataforma de cursos enviavam videoaulas de 2 a 6 GB e 31% das tentativas acima de 2 GB falhavam com a barra parada em 99%, cada nova tentativa recomeçando do zero. Por que a barra chega ao fim antes de o servidor responder e por que a chance de terminar um envio único despenca com a duração, como tirar a API do caminho dos bytes com URLs pré-assinadas, como dividir o arquivo com o multipart upload do S3, como montar no servidor uma sessão de upload com assinatura por parte e conclusão conferida no próprio S3, como o cliente envia em paralelo, tenta de novo com backoff e retoma depois de uma queda de rede ou de uma aba fechada, quais detalhes de CORS, partes órfãs, relógio, credenciais temporárias e validação quebram o fluxo em produção, e como provar com um teste que a retomada funciona.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Large uploads that fail at 99%: resumable multipart uploads with presigned URLs',
+        excerpt:
+          'Instructors on a course platform uploaded 2 to 6 GB video lessons and 31% of attempts above 2 GB failed with the bar stuck at 99%, every new attempt starting from zero. Why the bar reaches the end before the server answers and why the chance of finishing a single upload collapses with duration, how to take the API out of the byte path with presigned URLs, how to split the file with S3 multipart upload, how to build an upload session on the server with per-part signing and completion verified against S3 itself, how the client uploads in parallel, retries with backoff and resumes after a network drop or a closed tab, which CORS, orphan part, clock, temporary credential and validation details break the flow in production, and how to prove with a test that resuming works.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Subidas grandes que fallan al 99%: carga reanudable por partes con URL prefirmada',
+        excerpt:
+          'Los instructores de una plataforma de cursos subían videoclases de 2 a 6 GB y el 31% de los intentos por encima de 2 GB fallaba con la barra detenida en el 99%, y cada nuevo intento empezaba de cero. Por qué la barra llega al final antes de que el servidor responda y por qué la probabilidad de terminar una subida única se desploma con la duración, cómo sacar la API del camino de los bytes con URL prefirmadas, cómo dividir el archivo con el multipart upload de S3, cómo montar en el servidor una sesión de subida con firma por parte y finalización verificada en el propio S3, cómo el cliente sube en paralelo, reintenta con backoff y reanuda después de un corte de red o de una pestaña cerrada, qué detalles de CORS, partes huérfanas, reloj, credenciales temporales y validación rompen el flujo en producción, y cómo demostrar con una prueba que la reanudación funciona.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria',
     date: '2026-10-01',
     readTime: '16 min',
@@ -3096,16 +3126,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Upload grande que falha nos 99%: envio retomável em partes com URL pré-assinada',
     'Deadlock em produção: quando duas transações corretas se travam uma na outra',
+    'Soft delete que vaza: registro apagado que volta a aparecer em consulta, relatório e índice único',
+    'Processar arquivo enviado pelo usuário sem travar a API: fila, limite de recurso e arquivo malicioso',
+    'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
   ],
   en: [
-    'Large uploads that fail at 99%: resumable multipart uploads with presigned URLs',
     'Deadlocks in production: when two correct transactions lock each other up',
+    'Soft delete that leaks: deleted records that show up again in queries, reports and unique indexes',
+    'Processing user-uploaded files without stalling the API: queues, resource limits and malicious files',
+    'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
   ],
   es: [
-    'Subidas grandes que fallan al 99%: carga reanudable por partes con URL prefirmada',
     'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',
+    'Soft delete que se filtra: registros borrados que reaparecen en consultas, informes e índices únicos',
+    'Procesar archivos subidos por el usuario sin bloquear la API: colas, límites de recursos y archivos maliciosos',
+    'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
   ],
 };
 
