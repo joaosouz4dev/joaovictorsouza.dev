@@ -115,8 +115,11 @@ import replicaLeituraAtrasada from './replica-leitura-atrasada-usuario-salva-e-n
 import webhookDeSaidaClienteLento from './webhook-de-saida-que-ninguem-confirma-cliente-lento-sem-fila-infinita.js';
 import estoqueNegativoCorrida from './estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item.js';
 import exportacaoRelatorioStreaming from './exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria.js';
+import uploadGrandeRetomavel from './upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada.js';
 
 const postContentBySlug = {
+  'upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada':
+    uploadGrandeRetomavel,
   'exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria':
     exportacaoRelatorioStreaming,
   'estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item': estoqueNegativoCorrida,
