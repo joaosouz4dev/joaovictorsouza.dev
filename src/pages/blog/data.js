@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra',
+    date: '2026-10-04',
+    readTime: '15 min',
+    keywords: {
+      pt: 'deadlock, deadlock em producao, transacoes, postgresql, 40P01, ordem de locks, select for update, retry de transacao, deadlock_timeout, log_lock_waits, pg_stat_database, concorrencia',
+      en: 'deadlock, production deadlock, transactions, postgresql, 40P01, lock ordering, select for update, transaction retry, deadlock_timeout, log_lock_waits, pg_stat_database, concurrency',
+      es: 'deadlock, deadlock en produccion, transacciones, postgresql, 40P01, orden de locks, select for update, retry de transacciones, deadlock_timeout, log_lock_waits, pg_stat_database, concurrencia',
+    },
+    content: {
+      pt: {
+        title: 'Deadlock em produção: quando duas transações corretas se travam uma na outra',
+        excerpt:
+          'Uma carteira digital recebia um chamado intermitente de transferência que falhava, e os logs mostravam deadlock detected em 3% das operações no pico e 11% no fechamento do mês, embora cada transferência, testada sozinha, estivesse correta. Por que duas transações corretas formam uma espera circular, o que o Postgres faz ao detectá-la e por que a vítima espera pelo menos um segundo, como reproduzir o problema, por que travar sempre as mesmas linhas na mesma ordem o elimina na raiz, quais construções escondem o ciclo (lotes sem ordem, upsert em lote, chave estrangeira, transação longa com chamada externa), como repetir a transação inteira com limite, backoff e jitter sem duplicar efeitos externos, e como enxergar e provar com log de esperas, contador de deadlocks e um teste de concorrência.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Deadlocks in production: when two correct transactions lock each other up',
+        excerpt:
+          'A digital wallet got an intermittent ticket about transfers that failed, and the logs showed deadlock detected on 3% of operations at peak and 11% at month end, even though each transfer, tested alone, was correct. Why two correct transactions form a circular wait, what Postgres does when it detects one and why the victim waits at least a second, how to reproduce the problem, why always locking the same rows in the same order removes it at the root, which constructs hide the cycle (unordered batches, bulk upserts, foreign keys, long transactions with an external call), how to retry the whole transaction with a limit, backoff and jitter without duplicating external effects, and how to see and prove it with a lock wait log, a deadlock counter and a concurrency test.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',
+        excerpt:
+          'Una billetera digital recibía un ticket intermitente de transferencias que fallaban, y los logs mostraban deadlock detected en el 3% de las operaciones en el pico y el 11% en el cierre de mes, aunque cada transferencia, probada sola, era correcta. Por qué dos transacciones correctas forman una espera circular, qué hace Postgres al detectarla y por qué la víctima espera al menos un segundo, cómo reproducir el problema, por qué bloquear siempre las mismas filas en el mismo orden lo elimina de raíz, qué construcciones esconden el ciclo (lotes sin orden, upsert en lote, clave foránea, transacción larga con llamada externa), cómo repetir la transacción entera con límite, backoff y jitter sin duplicar efectos externos, y cómo verlo y demostrarlo con un log de esperas, un contador de deadlocks y una prueba de concurrencia.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada',
     date: '2026-10-02',
     readTime: '17 min',
@@ -3126,19 +3156,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Deadlock em produção: quando duas transações corretas se travam uma na outra',
     'Soft delete que vaza: registro apagado que volta a aparecer em consulta, relatório e índice único',
     'Processar arquivo enviado pelo usuário sem travar a API: fila, limite de recurso e arquivo malicioso',
     'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
   ],
   en: [
-    'Deadlocks in production: when two correct transactions lock each other up',
     'Soft delete that leaks: deleted records that show up again in queries, reports and unique indexes',
     'Processing user-uploaded files without stalling the API: queues, resource limits and malicious files',
     'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
   ],
   es: [
-    'Deadlock en producción: cuando dos transacciones correctas se bloquean entre sí',
     'Soft delete que se filtra: registros borrados que reaparecen en consultas, informes e índices únicos',
     'Procesar archivos subidos por el usuario sin bloquear la API: colas, límites de recursos y archivos maliciosos',
     'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
