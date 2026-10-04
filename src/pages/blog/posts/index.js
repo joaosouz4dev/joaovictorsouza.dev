@@ -116,8 +116,11 @@ import webhookDeSaidaClienteLento from './webhook-de-saida-que-ninguem-confirma-
 import estoqueNegativoCorrida from './estoque-negativo-condicao-de-corrida-entre-duas-compras-do-ultimo-item.js';
 import exportacaoRelatorioStreaming from './exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria.js';
 import uploadGrandeRetomavel from './upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada.js';
+import deadlockProducao from './deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra.js';
 
 const postContentBySlug = {
+  'deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra':
+    deadlockProducao,
   'upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada':
     uploadGrandeRetomavel,
   'exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria':
