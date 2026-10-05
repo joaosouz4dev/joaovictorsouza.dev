@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico',
+    date: '2026-10-05',
+    readTime: '16 min',
+    keywords: {
+      pt: 'soft delete, exclusao logica, deleted_at, indice unico parcial, postgresql, visao atualizavel, row-level security, tabela de arquivo, expurgo de dados, retencao de dados, lgpd, default scope, orm, relatorio de periodo',
+      en: 'soft delete, logical deletion, deleted_at, partial unique index, postgresql, updatable view, row-level security, archive table, data purge, data retention, gdpr, default scope, orm, period report',
+      es: 'soft delete, borrado logico, deleted_at, indice unico parcial, postgresql, vista actualizable, row-level security, tabla de archivo, purga de datos, retencion de datos, rgpd, default scope, orm, informe de periodo',
+    },
+    content: {
+      pt: {
+        title: 'Soft delete que vaza: registro apagado que volta a aparecer em consulta, relatório e índice único',
+        excerpt:
+          'Uma plataforma de gestão de escalas que cobra por usuário ativo recebeu três chamados no mesmo mês: uma fatura com 212 assentos para 187 usuários ativos, um e-mail já cadastrado ao reconvidar uma funcionária que voltou e um ex-funcionário ainda no autocompletar e no resumo semanal. Por que o soft delete troca uma garantia do banco por uma regra que cada consulta precisa lembrar, como reproduzir o vazamento no relatório, no JOIN e na restrição de unicidade, como devolver a unicidade aos vivos com um índice único parcial, como tirar o filtro da mão de quem escreve a consulta com uma visão e privilégios, o que fazer com filhos, credenciais, busca e relatórios de período, e como expurgar de verdade e provar com um teste que o apagado continua apagado.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Soft delete that leaks: deleted records that show up again in queries, reports and unique indexes',
+        excerpt:
+          'A shift scheduling platform that bills per active user got three tickets in the same month: an invoice with 212 seats for 187 active users, an email already registered when inviting back an employee who returned, and a former employee still in the autocomplete and the weekly summary. Why soft delete trades a database guarantee for a rule every query has to remember, how to reproduce the leak in the report, the JOIN and the uniqueness constraint, how to give uniqueness back to live rows with a partial unique index, how to take the filter out of the hands of whoever writes the query with a view and privileges, what to do with child rows, credentials, search and period reports, and how to purge for real and prove with a test that deleted stays deleted.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Soft delete que se filtra: registros borrados que reaparecen en consultas, informes e índices únicos',
+        excerpt:
+          'Una plataforma de gestión de turnos que cobra por usuario activo recibió tres tickets en el mismo mes: una factura con 212 licencias para 187 usuarios activos, un correo ya registrado al volver a invitar a una empleada que regresó y un exempleado todavía en el autocompletado y en el resumen semanal. Por qué el soft delete cambia una garantía de la base de datos por una regla que cada consulta tiene que recordar, cómo reproducir la fuga en el informe, en el JOIN y en la restricción de unicidad, cómo devolver la unicidad a los vivos con un índice único parcial, cómo quitar el filtro de las manos de quien escribe la consulta con una vista y privilegios, qué hacer con los hijos, las credenciales, la búsqueda y los informes de período, y cómo purgar de verdad y demostrar con una prueba que lo borrado sigue borrado.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra',
     date: '2026-10-04',
     readTime: '15 min',
@@ -3156,17 +3186,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Soft delete que vaza: registro apagado que volta a aparecer em consulta, relatório e índice único',
     'Processar arquivo enviado pelo usuário sem travar a API: fila, limite de recurso e arquivo malicioso',
     'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
   ],
   en: [
-    'Soft delete that leaks: deleted records that show up again in queries, reports and unique indexes',
     'Processing user-uploaded files without stalling the API: queues, resource limits and malicious files',
     'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
   ],
   es: [
-    'Soft delete que se filtra: registros borrados que reaparecen en consultas, informes e índices únicos',
     'Procesar archivos subidos por el usuario sin bloquear la API: colas, límites de recursos y archivos maliciosos',
     'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
   ],

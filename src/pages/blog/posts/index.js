@@ -117,8 +117,11 @@ import estoqueNegativoCorrida from './estoque-negativo-condicao-de-corrida-entre
 import exportacaoRelatorioStreaming from './exportacao-relatorio-que-derruba-servidor-arquivo-grande-em-streaming-sem-estourar-memoria.js';
 import uploadGrandeRetomavel from './upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada.js';
 import deadlockProducao from './deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra.js';
+import softDeleteQueVaza from './soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico.js';
 
 const postContentBySlug = {
+  'soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico':
+    softDeleteQueVaza,
   'deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra':
     deadlockProducao,
   'upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada':
