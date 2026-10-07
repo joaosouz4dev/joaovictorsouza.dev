@@ -118,8 +118,11 @@ import exportacaoRelatorioStreaming from './exportacao-relatorio-que-derruba-ser
 import uploadGrandeRetomavel from './upload-grande-que-falha-nos-99-envio-retomavel-em-partes-com-url-pre-assinada.js';
 import deadlockProducao from './deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra.js';
 import softDeleteQueVaza from './soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico.js';
+import processarArquivoEnviado from './processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso.js';
 
 const postContentBySlug = {
+  'processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso':
+    processarArquivoEnviado,
   'soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico':
     softDeleteQueVaza,
   'deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra':

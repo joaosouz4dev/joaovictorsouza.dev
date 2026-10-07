@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso',
+    date: '2026-10-07',
+    readTime: '17 min',
+    keywords: {
+      pt: 'processamento de arquivo, upload de arquivo, importacao de planilha, fila, worker, resposta 202, bullmq, limite de memoria, processo filho, bomba de descompressao, zip bomb, zip slip, arquivo malicioso, clamav, quarentena, justica entre clientes, multi-tenant',
+      en: 'file processing, file upload, spreadsheet import, queue, worker, 202 accepted, bullmq, memory limit, child process, decompression bomb, zip bomb, zip slip, malicious file, clamav, quarantine, tenant fairness, multi-tenant',
+      es: 'procesamiento de archivos, subida de archivos, importacion de hojas de calculo, cola, worker, respuesta 202, bullmq, limite de memoria, proceso hijo, bomba de descompresion, zip bomb, zip slip, archivo malicioso, clamav, cuarentena, equidad entre clientes, multi-tenant',
+    },
+    content: {
+      pt: {
+        title: 'Processar arquivo enviado pelo usuário sem travar a API: fila, limite de recurso e arquivo malicioso',
+        excerpt:
+          'Um sistema contábil viu o p95 de toda a API subir de 180 milissegundos para 14 segundos quando um cliente importou uma planilha de 38 MB, e depois descobriu que um XLSX de 220 KB derrubava qualquer instância. Por que processar o arquivo dentro da requisição entrega ao usuário o controle sobre CPU, memória e tempo do processo que atende todo o sistema, como separar receber de processar com quarentena, fila e resposta 202, como dar ao worker um teto de heap e de tempo em um processo filho e não repetir falhas determinísticas, o que inspecionar antes de abrir um arquivo hostil, como impedir que um cliente ocupe a fila de todos e como provar com testes que esses limites seguram.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Processing user-uploaded files without stalling the API: queues, resource limits and malicious files',
+        excerpt:
+          'An accounting system watched the p95 of its entire API go from 180 milliseconds to 14 seconds when a customer imported a 38 MB spreadsheet, and later found out that a 220 KB XLSX took down any instance. Why processing the file inside the request hands the user control over the CPU, memory and time of the process that serves the whole system, how to separate receiving from processing with quarantine, a queue and a 202 response, how to give the worker heap and time ceilings in a child process and stop retrying deterministic failures, what to inspect before opening a hostile file, how to stop one customer from taking over everyone\'s queue and how to prove with tests that those limits hold.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Procesar archivos subidos por el usuario sin bloquear la API: colas, límites de recursos y archivos maliciosos',
+        excerpt:
+          'Un sistema contable vio cómo el p95 de toda su API pasaba de 180 milisegundos a 14 segundos cuando un cliente importó una hoja de cálculo de 38 MB, y después descubrió que un XLSX de 220 KB tumbaba cualquier instancia. Por qué procesar el archivo dentro de la petición le entrega al usuario el control sobre la CPU, la memoria y el tiempo del proceso que atiende todo el sistema, cómo separar recibir de procesar con cuarentena, cola y respuesta 202, cómo darle al worker un techo de heap y de tiempo en un proceso hijo y no reintentar fallos deterministas, qué inspeccionar antes de abrir un archivo hostil, cómo impedir que un cliente ocupe la cola de todos y cómo demostrar con pruebas que esos límites aguantan.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico',
     date: '2026-10-05',
     readTime: '16 min',
@@ -3186,16 +3216,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Processar arquivo enviado pelo usuário sem travar a API: fila, limite de recurso e arquivo malicioso',
     'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
+    'Outbox transacional: gravar no banco e publicar o evento sem perder nenhum dos dois',
+    'Graceful shutdown que ninguém testou: deploy que corta requisição no meio e derruba job em andamento',
+    'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
   ],
   en: [
-    'Processing user-uploaded files without stalling the API: queues, resource limits and malicious files',
     'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
+    'Transactional outbox: writing to the database and publishing the event without losing either one',
+    'The graceful shutdown nobody tested: deploys that cut requests mid-flight and kill running jobs',
+    'The health check that lies: the service returns 200 while it cannot serve anyone',
   ],
   es: [
-    'Procesar archivos subidos por el usuario sin bloquear la API: colas, límites de recursos y archivos maliciosos',
     'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
+    'Outbox transaccional: guardar en la base de datos y publicar el evento sin perder ninguno de los dos',
+    'El graceful shutdown que nadie probó: despliegues que cortan peticiones a medias y matan jobs en curso',
+    'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',
   ],
 };
 
