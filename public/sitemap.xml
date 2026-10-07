@@ -1541,6 +1541,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais" />
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso" />

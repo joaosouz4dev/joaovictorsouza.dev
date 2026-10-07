@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais',
+    date: '2026-10-07',
+    readTime: '16 min',
+    keywords: {
+      pt: 'n+1, problema n+1, consultas por requisicao, orm, lazy loading, eager loading, carregamento em lote, dataloader, where id = any, distinct on, pg_stat_statements, asynclocalstorage, teste de contagem de consultas, seed realista, pool de conexoes, postgresql, node.js',
+      en: 'n+1, n+1 problem, queries per request, orm, lazy loading, eager loading, batch loading, dataloader, where id = any, distinct on, pg_stat_statements, asynclocalstorage, query count test, realistic seed, connection pool, postgresql, node.js',
+      es: 'n+1, problema n+1, consultas por peticion, orm, lazy loading, eager loading, carga por lotes, dataloader, where id = any, distinct on, pg_stat_statements, asynclocalstorage, prueba de recuento de consultas, seed realista, pool de conexiones, postgresql, node.js',
+    },
+    content: {
+      pt: {
+        title: 'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
+        excerpt:
+          'Uma distribuidora lançou a tela de pedidos do dia: 40 milissegundos em teste, 6 segundos em produção para o maior cliente, e o pool de conexões esgotado derrubando as outras telas junto. Por que o N+1 é função dos dados e da latência até o banco e não do código, por isso invisível em teste e em staging, como contar consultas por requisição com AsyncLocalStorage e ler a assinatura dele em pg_stat_statements, como trocar o laço por carregamento em lote com WHERE id = ANY e DISTINCT ON, como resolver o N+1 que nasce em serializadores e resolvers com um carregador por requisição, e como travar a correção com um teste que falha quando a contagem de consultas cresce com o número de linhas.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
+        excerpt:
+          'A distributor shipped a daily orders screen: 40 milliseconds in tests, 6 seconds in production for the biggest customer, and an exhausted connection pool taking the other screens down with it. Why N+1 is a function of the data and of the latency to the database rather than of the code, which is why it is invisible in tests and staging, how to count queries per request with AsyncLocalStorage and read its signature in pg_stat_statements, how to replace the loop with batch loading using WHERE id = ANY and DISTINCT ON, how to solve the N+1 born in serializers and resolvers with a request-scoped loader, and how to lock the fix in with a test that fails when the query count grows with the number of rows.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
+        excerpt:
+          'Una distribuidora lanzó la pantalla de pedidos del día: 40 milisegundos en pruebas, 6 segundos en producción para el cliente más grande, y el pool de conexiones agotado tumbando las demás pantallas con ella. Por qué el N+1 depende de los datos y de la latencia hasta la base de datos y no del código, y por eso es invisible en pruebas y en staging, cómo contar consultas por petición con AsyncLocalStorage y leer su firma en pg_stat_statements, cómo cambiar el bucle por carga por lotes con WHERE id = ANY y DISTINCT ON, cómo resolver el N+1 que nace en serializadores y resolvers con un cargador por petición, y cómo fijar la corrección con una prueba que falla cuando el recuento de consultas crece con el número de filas.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso',
     date: '2026-10-07',
     readTime: '17 min',
@@ -3216,19 +3246,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'O N+1 que só aparece em produção: a tela rápida em teste que faz mil consultas com dados reais',
     'Outbox transacional: gravar no banco e publicar o evento sem perder nenhum dos dois',
     'Graceful shutdown que ninguém testou: deploy que corta requisição no meio e derruba job em andamento',
     'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
   ],
   en: [
-    'The N+1 that only shows up in production: the screen that is fast in tests and runs a thousand queries with real data',
     'Transactional outbox: writing to the database and publishing the event without losing either one',
     'The graceful shutdown nobody tested: deploys that cut requests mid-flight and kill running jobs',
     'The health check that lies: the service returns 200 while it cannot serve anyone',
   ],
   es: [
-    'El N+1 que solo aparece en producción: la pantalla rápida en pruebas que hace mil consultas con datos reales',
     'Outbox transaccional: guardar en la base de datos y publicar el evento sin perder ninguno de los dos',
     'El graceful shutdown que nadie probó: despliegues que cortan peticiones a medias y matan jobs en curso',
     'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',

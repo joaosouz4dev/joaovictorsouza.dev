@@ -119,8 +119,11 @@ import uploadGrandeRetomavel from './upload-grande-que-falha-nos-99-envio-retoma
 import deadlockProducao from './deadlock-em-producao-quando-duas-transacoes-corretas-se-travam-uma-na-outra.js';
 import softDeleteQueVaza from './soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico.js';
 import processarArquivoEnviado from './processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso.js';
+import nMais1SoEmProducao from './n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais.js';
 
 const postContentBySlug = {
+  'n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais':
+    nMais1SoEmProducao,
   'processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso':
     processarArquivoEnviado,
   'soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico':
