@@ -120,8 +120,11 @@ import deadlockProducao from './deadlock-em-producao-quando-duas-transacoes-corr
 import softDeleteQueVaza from './soft-delete-que-vaza-registro-apagado-que-volta-a-aparecer-em-consulta-relatorio-e-indice-unico.js';
 import processarArquivoEnviado from './processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso.js';
 import nMais1SoEmProducao from './n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais.js';
+import outboxTransacional from './outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois.js';
 
 const postContentBySlug = {
+  'outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois':
+    outboxTransacional,
   'n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais':
     nMais1SoEmProducao,
   'processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso':

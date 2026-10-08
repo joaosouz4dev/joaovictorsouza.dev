@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois',
+    date: '2026-10-08',
+    readTime: '17 min',
+    keywords: {
+      pt: 'outbox transacional, padrao outbox, escrita dupla, dual write, evento de dominio, entrega ao menos uma vez, relay, for update skip locked, consumidor idempotente, inbox, cdc, debezium, kafka, rabbitmq, postgresql, node.js',
+      en: 'transactional outbox, outbox pattern, dual write, domain event, at-least-once delivery, relay, for update skip locked, idempotent consumer, inbox, cdc, debezium, kafka, rabbitmq, postgresql, node.js',
+      es: 'outbox transaccional, patron outbox, escritura doble, dual write, evento de dominio, entrega al menos una vez, relay, for update skip locked, consumidor idempotente, inbox, cdc, debezium, kafka, rabbitmq, postgresql, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Outbox transacional: gravar no banco e publicar o evento sem perder nenhum dos dois',
+        excerpt:
+          'Um marketplace confirmou 37 pedidos durante uma manutenção de 4 minutos do broker e nunca os faturou, sem nenhum erro visível até a conciliação, três dias depois. Por que gravar no banco e publicar um evento são duas escritas que nunca serão atômicas, como o padrão outbox move o evento para a mesma transação do dado, como um relay com FOR UPDATE SKIP LOCKED publica com entrega ao menos uma vez e preserva a ordem por agregado, como o consumidor idempotente com inbox absorve a duplicata, como operar a tabela com alerta de idade e limpeza em lotes, quando preferir CDC, e como provar com falhas injetadas que nenhum evento se perde.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Transactional outbox: writing to the database and publishing the event without losing either one',
+        excerpt:
+          'A marketplace confirmed 37 orders during a 4-minute broker maintenance window and never invoiced them, with no visible error until reconciliation three days later. Why writing to the database and publishing an event are two writes that will never be atomic, how the outbox pattern moves the event into the same transaction as the data, how a relay using FOR UPDATE SKIP LOCKED publishes with at-least-once delivery and preserves per-aggregate order, how an idempotent consumer with an inbox absorbs the duplicate, how to operate the table with an age alert and batched cleanup, when to prefer CDC, and how to prove with injected failures that no event is lost.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Outbox transaccional: guardar en la base de datos y publicar el evento sin perder ninguno de los dos',
+        excerpt:
+          'Un marketplace confirmó 37 pedidos durante un mantenimiento de 4 minutos del broker y nunca los facturó, sin ningún error visible hasta la conciliación, tres días después. Por qué guardar en la base de datos y publicar un evento son dos escrituras que nunca serán atómicas, cómo el patrón outbox mueve el evento a la misma transacción del dato, cómo un relay con FOR UPDATE SKIP LOCKED publica con entrega al menos una vez y preserva el orden por agregado, cómo el consumidor idempotente con inbox absorbe el duplicado, cómo operar la tabla con alerta de edad y limpieza por lotes, cuándo preferir CDC, y cómo demostrar con fallos inyectados que ningún evento se pierde.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais',
     date: '2026-10-07',
     readTime: '16 min',
@@ -3246,17 +3276,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Outbox transacional: gravar no banco e publicar o evento sem perder nenhum dos dois',
     'Graceful shutdown que ninguém testou: deploy que corta requisição no meio e derruba job em andamento',
     'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
   ],
   en: [
-    'Transactional outbox: writing to the database and publishing the event without losing either one',
     'The graceful shutdown nobody tested: deploys that cut requests mid-flight and kill running jobs',
     'The health check that lies: the service returns 200 while it cannot serve anyone',
   ],
   es: [
-    'Outbox transaccional: guardar en la base de datos y publicar el evento sin perder ninguno de los dos',
     'El graceful shutdown que nadie probó: despliegues que cortan peticiones a medias y matan jobs en curso',
     'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',
   ],
