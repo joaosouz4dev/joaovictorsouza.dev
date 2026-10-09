@@ -121,8 +121,11 @@ import softDeleteQueVaza from './soft-delete-que-vaza-registro-apagado-que-volta
 import processarArquivoEnviado from './processar-arquivo-enviado-pelo-usuario-sem-travar-a-api-fila-limite-de-recurso-e-arquivo-malicioso.js';
 import nMais1SoEmProducao from './n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais.js';
 import outboxTransacional from './outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois.js';
+import gracefulShutdownNinguemTestou from './graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento.js';
 
 const postContentBySlug = {
+  'graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento':
+    gracefulShutdownNinguemTestou,
   'outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois':
     outboxTransacional,
   'n-mais-1-que-so-aparece-em-producao-tela-rapida-em-teste-que-faz-mil-consultas-com-dados-reais':
