@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento',
+    date: '2026-10-09',
+    readTime: '16 min',
+    keywords: {
+      pt: 'graceful shutdown, encerramento gracioso, sigterm, sigkill, terminationgraceperiodseconds, prestop, readiness probe, liveness probe, drenagem de conexoes, keep-alive, closeidleconnections, deploy sem downtime, rolling update, worker, checkpoint, lease, pid 1, kubernetes, node.js',
+      en: 'graceful shutdown, sigterm, sigkill, terminationgraceperiodseconds, prestop, readiness probe, liveness probe, connection draining, keep-alive, closeidleconnections, zero downtime deploy, rolling update, worker, checkpoint, lease, pid 1, kubernetes, node.js',
+      es: 'graceful shutdown, apagado ordenado, sigterm, sigkill, terminationgraceperiodseconds, prestop, readiness probe, liveness probe, drenaje de conexiones, keep-alive, closeidleconnections, despliegue sin downtime, rolling update, worker, checkpoint, lease, pid 1, kubernetes, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Graceful shutdown que ninguém testou: deploy que corta requisição no meio e derruba job em andamento',
+        excerpt:
+          'Uma plataforma de cobrança convivia com dezenas de 502 a cada deploy, chamados de ruído, até um SIGKILL derrubar a conciliação no meio e deixar 800 boletos presos em processando por dois dias. O que realmente acontece entre o SIGTERM e o SIGKILL, os três jeitos comuns de morrer errado, como drenar HTTP com readiness em 503, atraso de propagação, keep-alive e prazo, como parar um worker que interrompe no checkpoint e devolve o job para a fila, como encaixar tudo no terminationGracePeriodSeconds e como testar o caminho que só roda em produção.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The graceful shutdown nobody tested: deploys that cut requests mid-flight and kill running jobs',
+        excerpt:
+          'A billing platform lived with dozens of 502s on every deploy, called noise, until a SIGKILL killed reconciliation mid-run and left 800 invoices stuck in processing for two days. What actually happens between SIGTERM and SIGKILL, the three common ways to die wrong, how to drain HTTP with readiness at 503, a propagation delay, keep-alive handling and a deadline, how to stop a worker that interrupts at a checkpoint and returns the job to the queue, how to fit everything into terminationGracePeriodSeconds, and how to test the path that only runs in production.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El graceful shutdown que nadie probó: despliegues que cortan peticiones a medias y matan jobs en curso',
+        excerpt:
+          'Una plataforma de cobros convivía con decenas de 502 en cada despliegue, llamados ruido, hasta que un SIGKILL tumbó la conciliación a mitad de camino y dejó 800 boletas atascadas en procesando durante dos días. Lo que realmente ocurre entre el SIGTERM y el SIGKILL, las tres formas comunes de morir mal, cómo drenar HTTP con readiness en 503, retraso de propagación, keep-alive y plazo, cómo detener un worker que se interrumpe en el checkpoint y devuelve el job a la cola, cómo encajar todo en terminationGracePeriodSeconds y cómo probar el camino que solo se ejecuta en producción.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois',
     date: '2026-10-08',
     readTime: '17 min',
@@ -3276,16 +3306,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Graceful shutdown que ninguém testou: deploy que corta requisição no meio e derruba job em andamento',
     'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
+    'Timeout em cascata entre serviços: quando o tempo de espera de um vira a fila do outro',
+    'Circuit breaker que nunca abre: proteger o serviço de uma dependência lenta, não só da que caiu',
+    'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
   ],
   en: [
-    'The graceful shutdown nobody tested: deploys that cut requests mid-flight and kill running jobs',
     'The health check that lies: the service returns 200 while it cannot serve anyone',
+    'Cascading timeouts between services: when the wait of one service becomes the queue of another',
+    'The circuit breaker that never opens: protecting a service from a slow dependency, not only from a dead one',
+    'Changing configuration in production without a deploy: reloading parameters without restarting and without inconsistent state',
   ],
   es: [
-    'El graceful shutdown que nadie probó: despliegues que cortan peticiones a medias y matan jobs en curso',
     'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',
+    'Timeouts en cascada entre servicios: cuando la espera de uno se convierte en la cola del otro',
+    'El circuit breaker que nunca se abre: proteger el servicio de una dependencia lenta, no solo de la que se cayó',
+    'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
   ],
 };
 
