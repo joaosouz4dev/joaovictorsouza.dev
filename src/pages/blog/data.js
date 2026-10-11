@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem',
+    date: '2026-10-11',
+    readTime: '14 min',
+    keywords: {
+      pt: 'health check, endpoint de saude, liveness probe, readiness probe, dependencia compartilhada, degradacao, circuit breaker, pool de conexoes, event loop, monitorEventLoopDelay, kubernetes, balanceador, node.js',
+      en: 'health check, health endpoint, liveness probe, readiness probe, shared dependency, degradation, connection pool, event loop, monitorEventLoopDelay, kubernetes, load balancer, node.js',
+      es: 'health check, endpoint de salud, liveness probe, readiness probe, dependencia compartida, degradacion, pool de conexiones, event loop, monitorEventLoopDelay, kubernetes, balanceador, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
+        excerpt:
+          'Um endpoint de saúde devolvia 200 havia meses enquanto o pool do banco estava esgotado e as requisições esperavam quarenta segundos antes de falhar. Por que um 200 só prova que o processo está vivo, como separar liveness, readiness e alerta, o que medir sem tirar a frota inteira de circulação quando uma dependência compartilhada tropeça, um avaliador com prazo e cache em Node.js e os testes que simulam a falha real.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The health check that lies: the service returns 200 while it cannot serve anyone',
+        excerpt:
+          'A health endpoint kept returning 200 for months while the database pool was exhausted and requests waited forty seconds before failing. Why a 200 only proves the process is alive, how to separate liveness, readiness and alerting, what to measure without pulling the whole fleet out of rotation when a shared dependency stumbles, an evaluator with deadlines and cache in Node.js, and the tests that simulate the real failure.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',
+        excerpt:
+          'Un endpoint de salud devolvía 200 desde hacía meses mientras el pool de la base de datos estaba agotado y las peticiones esperaban cuarenta segundos antes de fallar. Por qué un 200 solo prueba que el proceso está vivo, cómo separar liveness, readiness y alerta, qué medir sin sacar toda la flota de la rotación cuando una dependencia compartida tropieza, un evaluador con plazo y caché en Node.js y las pruebas que simulan la falla real.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento',
     date: '2026-10-09',
     readTime: '16 min',
@@ -3306,19 +3336,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Health check que mente: o serviço responde 200 enquanto não consegue atender ninguém',
     'Timeout em cascata entre serviços: quando o tempo de espera de um vira a fila do outro',
     'Circuit breaker que nunca abre: proteger o serviço de uma dependência lenta, não só da que caiu',
     'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
   ],
   en: [
-    'The health check that lies: the service returns 200 while it cannot serve anyone',
     'Cascading timeouts between services: when the wait of one service becomes the queue of another',
     'The circuit breaker that never opens: protecting a service from a slow dependency, not only from a dead one',
     'Changing configuration in production without a deploy: reloading parameters without restarting and without inconsistent state',
   ],
   es: [
-    'El health check que miente: el servicio responde 200 mientras no puede atender a nadie',
     'Timeouts en cascada entre servicios: cuando la espera de uno se convierte en la cola del otro',
     'El circuit breaker que nunca se abre: proteger el servicio de una dependencia lenta, no solo de la que se cayó',
     'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
