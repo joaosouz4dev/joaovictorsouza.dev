@@ -123,8 +123,11 @@ import nMais1SoEmProducao from './n-mais-1-que-so-aparece-em-producao-tela-rapid
 import outboxTransacional from './outbox-transacional-gravar-no-banco-e-publicar-o-evento-sem-perder-nenhum-dos-dois.js';
 import gracefulShutdownNinguemTestou from './graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento.js';
 import healthCheckQueMente from './health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem.js';
+import timeoutEmCascata from './timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro.js';
 
 const postContentBySlug = {
+  'timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro':
+    timeoutEmCascata,
   'health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem':
     healthCheckQueMente,
   'graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento':
