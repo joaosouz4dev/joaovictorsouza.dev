@@ -30,3 +30,7 @@ yarn-error.log*
 # locks files
 package-lock.json
 yarn.lock
+
+# Propostas comerciais de clientes (repo público: só o modelo é versionado)
+/propostas/clientes/
+/propostas/modelo/*.pdf

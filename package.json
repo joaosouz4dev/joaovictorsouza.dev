@@ -43,7 +43,8 @@
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/prerender-internal-pages.mjs && node scripts/check-build-performance.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "proposta": "node scripts/gerar-proposta.mjs"
   },
   "browserslist": {
     "production": [
