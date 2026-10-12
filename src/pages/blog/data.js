@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro',
+    date: '2026-10-12',
+    readTime: '12 min',
+    keywords: {
+      pt: 'timeout em cascata, timeout por salto, propagacao de prazo, orcamento de tempo, deadline, fila com prazo, backpressure, load shedding, lei de little, abortsignal, rejeicao precoce, teste de carga, node.js',
+      en: 'cascading timeouts, per-hop timeout, deadline propagation, time budget, deadline, queue with deadline, backpressure, load shedding, little law, abortsignal, early rejection, load test, node.js',
+      es: 'timeouts en cascada, timeout por salto, propagacion de plazo, presupuesto de tiempo, deadline, cola con plazo, backpressure, load shedding, ley de little, abortsignal, rechazo temprano, prueba de carga, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Timeout em cascata entre serviços: quando o tempo de espera de um vira a fila do outro',
+        excerpt:
+          'Um serviço espera dois segundos por outro, que satura e enfileira as requisições. Quando o cliente desiste, o trabalho continua na fila sem que ninguém o espere. Como o prazo viaja pela cadeia como orçamento restante, por que a fila precisa descartar o que já venceu e rejeitar cedo quando está cheia, e como provar com carga acima da capacidade que nenhum item começa depois do prazo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Cascading timeouts between services: when the wait of one service becomes the queue of another',
+        excerpt:
+          'One service waits two seconds for another, which saturates and queues the requests. When the client gives up, the work stays in the queue with nobody waiting for it. How the deadline travels down the chain as a remaining budget, why the queue must discard what has already expired and reject early when full, and how to prove with load above capacity that no item starts after its deadline.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Timeouts en cascada entre servicios: cuando la espera de uno se convierte en la cola del otro',
+        excerpt:
+          'Un servicio espera dos segundos por otro, que se satura y encola las peticiones. Cuando el cliente se rinde, el trabajo sigue en la cola sin que nadie lo espere. Cómo el plazo viaja por la cadena como presupuesto restante, por qué la cola debe descartar lo que ya venció y rechazar pronto cuando está llena, y cómo demostrar con carga por encima de la capacidad que ningún elemento empieza después de su plazo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem',
     date: '2026-10-11',
     readTime: '14 min',
@@ -3336,17 +3366,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Timeout em cascata entre serviços: quando o tempo de espera de um vira a fila do outro',
     'Circuit breaker que nunca abre: proteger o serviço de uma dependência lenta, não só da que caiu',
     'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
   ],
   en: [
-    'Cascading timeouts between services: when the wait of one service becomes the queue of another',
     'The circuit breaker that never opens: protecting a service from a slow dependency, not only from a dead one',
     'Changing configuration in production without a deploy: reloading parameters without restarting and without inconsistent state',
   ],
   es: [
-    'Timeouts en cascada entre servicios: cuando la espera de uno se convierte en la cola del otro',
     'El circuit breaker que nunca se abre: proteger el servicio de una dependencia lenta, no solo de la que se cayó',
     'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
   ],
