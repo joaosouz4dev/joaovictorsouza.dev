@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu',
+    date: '2026-10-13',
+    readTime: '13 min',
+    keywords: {
+      pt: 'circuit breaker, disjuntor, dependencia lenta, taxa de chamadas lentas, slow call rate, janela deslizante, bulkhead, meio-aberto, half-open, sonda, timeout, abortsignal, lei de little, pool de conexoes, resiliencia, resilience4j, node.js',
+      en: 'circuit breaker, slow dependency, slow call rate, sliding window, bulkhead, half-open, probe, timeout, abortsignal, little law, connection pool, resilience, resilience4j, node.js',
+      es: 'circuit breaker, dependencia lenta, tasa de llamadas lentas, slow call rate, ventana deslizante, bulkhead, semiabierto, half-open, sonda, timeout, abortsignal, ley de little, pool de conexiones, resiliencia, resilience4j, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Circuit breaker que nunca abre: proteger o serviço de uma dependência lenta, não só da que caiu',
+        excerpt:
+          'Um breaker configurado por taxa de erro nunca abre quando a dependência responde 200 em oito segundos, e o chamador morre com o pool esgotado e zero erros no gráfico. Por que latência precisa contar como falha, como uma janela deslizante com taxa de chamadas lentas abre o circuito a tempo, como um bulkhead limita o que está em voo enquanto a janela enche, como sondar no meio-aberto sem soltar a onda represada e como provar em teste, com relógio injetado, que o circuito abre com uma dependência que só demora.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The circuit breaker that never opens: protecting a service from a slow dependency, not only from a dead one',
+        excerpt:
+          'A breaker configured on error rate never opens when the dependency answers 200 in eight seconds, and the caller dies with an exhausted pool and zero errors on the graph. Why latency has to count as failure, how a sliding window with a slow call rate opens the circuit in time, how a bulkhead caps what is in flight while the window fills, how to probe in the half-open state without releasing the pent-up wave, and how to prove in a test, with an injected clock, that the circuit opens against a dependency that merely takes too long.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El circuit breaker que nunca se abre: proteger el servicio de una dependencia lenta, no solo de la que se cayó',
+        excerpt:
+          'Un breaker configurado por tasa de error nunca se abre cuando la dependencia responde 200 en ocho segundos, y el llamador muere con el pool agotado y cero errores en la gráfica. Por qué la latencia tiene que contar como fallo, cómo una ventana deslizante con tasa de llamadas lentas abre el circuito a tiempo, cómo un bulkhead limita lo que está en vuelo mientras la ventana se llena, cómo sondear en el estado semiabierto sin soltar la ola represada y cómo demostrar en una prueba, con reloj inyectado, que el circuito se abre ante una dependencia que solo tarda.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro',
     date: '2026-10-12',
     readTime: '12 min',
@@ -3366,16 +3396,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Circuit breaker que nunca abre: proteger o serviço de uma dependência lenta, não só da que caiu',
     'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
+    'Cache stampede: quando a chave mais quente expira e mil requisições vão ao banco ao mesmo tempo',
+    'Reprocessamento de eventos em massa: reexecutar um dia inteiro de mensagens sem duplicar efeito colateral',
+    'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
   ],
   en: [
-    'The circuit breaker that never opens: protecting a service from a slow dependency, not only from a dead one',
     'Changing configuration in production without a deploy: reloading parameters without restarting and without inconsistent state',
+    'Cache stampede: when the hottest key expires and a thousand requests hit the database at the same time',
+    'Mass event reprocessing: replaying a whole day of messages without duplicating side effects',
+    'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
   ],
   es: [
-    'El circuit breaker que nunca se abre: proteger el servicio de una dependencia lenta, no solo de la que se cayó',
     'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
+    'Cache stampede: cuando la clave más caliente expira y mil peticiones van a la base de datos al mismo tiempo',
+    'Reprocesamiento masivo de eventos: reejecutar un día entero de mensajes sin duplicar efectos secundarios',
+    'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
   ],
 };
 
