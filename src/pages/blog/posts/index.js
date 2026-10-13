@@ -124,8 +124,11 @@ import outboxTransacional from './outbox-transacional-gravar-no-banco-e-publicar
 import gracefulShutdownNinguemTestou from './graceful-shutdown-que-ninguem-testou-deploy-que-corta-requisicao-no-meio-e-derruba-job-em-andamento.js';
 import healthCheckQueMente from './health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem.js';
 import timeoutEmCascata from './timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro.js';
+import circuitBreakerQueNuncaAbre from './circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu.js';
 
 const postContentBySlug = {
+  'circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu':
+    circuitBreakerQueNuncaAbre,
   'timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro':
     timeoutEmCascata,
   'health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem':
