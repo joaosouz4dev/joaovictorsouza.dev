@@ -125,8 +125,11 @@ import gracefulShutdownNinguemTestou from './graceful-shutdown-que-ninguem-testo
 import healthCheckQueMente from './health-check-que-mente-o-servico-responde-200-enquanto-nao-consegue-atender-ninguem.js';
 import timeoutEmCascata from './timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro.js';
 import circuitBreakerQueNuncaAbre from './circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu.js';
+import configuracaoQueMudaSemDeploy from './configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente.js';
 
 const postContentBySlug = {
+  'configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente':
+    configuracaoQueMudaSemDeploy,
   'circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu':
     circuitBreakerQueNuncaAbre,
   'timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro':
