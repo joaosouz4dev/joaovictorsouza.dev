@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente',
+    date: '2026-10-14',
+    readTime: '14 min',
+    keywords: {
+      pt: 'configuracao dinamica, recarregar configuracao, hot reload, sem deploy, sem reiniciar, snapshot imutavel, troca atomica, asynclocalstorage, estado inconsistente, ultima versao boa conhecida, validacao de configuracao, parameter store, consul, configmap, feature flag, pool de conexoes, node.js',
+      en: 'dynamic configuration, configuration reload, hot reload, no deploy, no restart, immutable snapshot, atomic swap, asynclocalstorage, inconsistent state, last known good, configuration validation, parameter store, consul, configmap, feature flag, connection pool, node.js',
+      es: 'configuracion dinamica, recargar configuracion, hot reload, sin despliegue, sin reiniciar, snapshot inmutable, intercambio atomico, asynclocalstorage, estado inconsistente, ultima version buena conocida, validacion de configuracion, parameter store, consul, configmap, feature flag, pool de conexiones, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
+        excerpt:
+          'Um limite de revisão baixou de R$ 1.000 para R$ 50 no meio de uma requisição, e a auditoria gravou que um pedido cobrado sem revisão tinha sido revisado. Por que ler a configuração campo a campo mistura versões, como um snapshot imutável com troca atômica e fixação por requisição via AsyncLocalStorage garante uma versão só do início ao fim, como recarregar da fonte com validação completa e última versão boa conhecida, como reconstruir pool e clientes sem derrubar o que está em voo e como provar em teste que nenhuma requisição vê duas versões.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Configuration that changes in production without a deploy: reloading parameters without restarting and without inconsistent state',
+        excerpt:
+          'A review threshold dropped from 1,000 to 50 in the middle of a request, and the audit log recorded that an order charged without review had been reviewed. Why reading configuration field by field mixes versions, how an immutable snapshot with an atomic swap and per-request pinning via AsyncLocalStorage guarantees a single version from start to finish, how to reload from the source with full validation and a last known good version, how to rebuild pools and clients without dropping what is in flight, and how to prove in a test that no request ever sees two versions.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
+        excerpt:
+          'Un umbral de revisión bajó de 1.000 a 50 en medio de una petición, y la auditoría registró que un pedido cobrado sin revisión había sido revisado. Por qué leer la configuración campo a campo mezcla versiones, cómo un snapshot inmutable con intercambio atómico y fijación por petición vía AsyncLocalStorage garantiza una sola versión de principio a fin, cómo recargar desde la fuente con validación completa y última versión buena conocida, cómo reconstruir pools y clientes sin tumbar lo que está en vuelo y cómo demostrar en una prueba que ninguna petición ve dos versiones.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu',
     date: '2026-10-13',
     readTime: '13 min',
@@ -3396,19 +3426,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Configuração que muda em produção sem deploy: recarregar parâmetros sem reiniciar e sem estado inconsistente',
     'Cache stampede: quando a chave mais quente expira e mil requisições vão ao banco ao mesmo tempo',
     'Reprocessamento de eventos em massa: reexecutar um dia inteiro de mensagens sem duplicar efeito colateral',
     'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
   ],
   en: [
-    'Changing configuration in production without a deploy: reloading parameters without restarting and without inconsistent state',
     'Cache stampede: when the hottest key expires and a thousand requests hit the database at the same time',
     'Mass event reprocessing: replaying a whole day of messages without duplicating side effects',
     'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
   ],
   es: [
-    'Configuración que cambia en producción sin despliegue: recargar parámetros sin reiniciar y sin estado inconsistente',
     'Cache stampede: cuando la clave más caliente expira y mil peticiones van a la base de datos al mismo tiempo',
     'Reprocesamiento masivo de eventos: reejecutar un día entero de mensajes sin duplicar efectos secundarios',
     'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
