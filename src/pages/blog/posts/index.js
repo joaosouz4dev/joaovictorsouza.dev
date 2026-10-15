@@ -126,8 +126,11 @@ import healthCheckQueMente from './health-check-que-mente-o-servico-responde-200
 import timeoutEmCascata from './timeout-em-cascata-entre-servicos-quando-o-tempo-de-espera-de-um-vira-a-fila-do-outro.js';
 import circuitBreakerQueNuncaAbre from './circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu.js';
 import configuracaoQueMudaSemDeploy from './configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente.js';
+import cacheStampedeChaveQuente from './cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo.js';
 
 const postContentBySlug = {
+  'cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo':
+    cacheStampedeChaveQuente,
   'configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente':
     configuracaoQueMudaSemDeploy,
   'circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu':
