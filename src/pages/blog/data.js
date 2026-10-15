@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo',
+    date: '2026-10-15',
+    readTime: '14 min',
+    keywords: {
+      pt: 'cache stampede, estampida de cache, thundering herd, dogpile, chave quente, expiracao de cache, single-flight, lock distribuido, redis, set nx px, ttl logico, stale-while-revalidate, expiracao antecipada probabilistica, xfetch, jitter, cache frio, aquecimento de cache, node.js',
+      en: 'cache stampede, thundering herd, dogpile effect, hot key, cache expiration, single-flight, distributed lock, redis, set nx px, logical ttl, stale-while-revalidate, probabilistic early expiration, xfetch, jitter, cold cache, cache warm-up, node.js',
+      es: 'cache stampede, estampida de cache, thundering herd, efecto dogpile, clave caliente, expiracion de cache, single-flight, lock distribuido, redis, set nx px, ttl logico, stale-while-revalidate, expiracion anticipada probabilistica, xfetch, jitter, cache fria, precalentamiento de cache, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Cache stampede: quando a chave mais quente expira e mil requisições vão ao banco ao mesmo tempo',
+        excerpt:
+          'Com 2.000 requisições por segundo e uma consulta de 400 ms, a expiração de uma única chave dispara 800 consultas idênticas ao banco em meio segundo. Por que o jitter não resolve uma chave quente, como single-flight no processo e lock no Redis reduzem tudo a uma recomputação, como TTL lógico com folga física serve o valor velho sem ninguém esperar, como a expiração antecipada probabilística renova a chave antes de vencer, como sobreviver ao cache frio e como provar em teste que mil leituras viram uma consulta.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Cache stampede: when the hottest key expires and a thousand requests hit the database at the same time',
+        excerpt:
+          'With 2,000 requests per second and a 400 ms query, the expiration of a single key fires 800 identical queries at the database in half a second. Why jitter does not fix a hot key, how in-process single-flight and a Redis lock reduce everything to one recomputation, how a logical TTL with physical slack serves the stale value with nobody waiting, how probabilistic early expiration renews the key before it expires, how to survive a cold cache, and how to prove in a test that a thousand reads become one query.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Cache stampede: cuando la clave más caliente expira y mil peticiones van a la base de datos al mismo tiempo',
+        excerpt:
+          'Con 2.000 peticiones por segundo y una consulta de 400 ms, la expiración de una sola clave dispara 800 consultas idénticas a la base en medio segundo. Por qué el jitter no resuelve una clave caliente, cómo el single-flight en el proceso y un lock en Redis lo reducen todo a un recálculo, cómo un TTL lógico con holgura física sirve el valor viejo sin que nadie espere, cómo la expiración anticipada probabilística renueva la clave antes de vencer, cómo sobrevivir a la caché fría y cómo demostrar en una prueba que mil lecturas se convierten en una consulta.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente',
     date: '2026-10-14',
     readTime: '14 min',
@@ -3426,17 +3456,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Cache stampede: quando a chave mais quente expira e mil requisições vão ao banco ao mesmo tempo',
     'Reprocessamento de eventos em massa: reexecutar um dia inteiro de mensagens sem duplicar efeito colateral',
     'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
   ],
   en: [
-    'Cache stampede: when the hottest key expires and a thousand requests hit the database at the same time',
     'Mass event reprocessing: replaying a whole day of messages without duplicating side effects',
     'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
   ],
   es: [
-    'Cache stampede: cuando la clave más caliente expira y mil peticiones van a la base de datos al mismo tiempo',
     'Reprocesamiento masivo de eventos: reejecutar un día entero de mensajes sin duplicar efectos secundarios',
     'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
   ],
