@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral',
+    date: '2026-10-16',
+    readTime: '15 min',
+    keywords: {
+      pt: 'reprocessamento de eventos, replay de eventos, reexecutar eventos, efeito colateral, idempotencia, ledger de efeitos, chave de idempotencia, consumer group, offset, kafka, guarda de versao, upsert, checkpoint, teto de vazao, simulacao, diff, outbox, postgres, node.js',
+      en: 'event reprocessing, event replay, rerunning events, side effects, idempotency, effect ledger, idempotency key, consumer group, offset, kafka, version guard, upsert, checkpoint, throughput cap, dry run, diff, outbox, postgres, node.js',
+      es: 'reprocesamiento de eventos, replay de eventos, reejecutar eventos, efectos secundarios, idempotencia, ledger de efectos, clave de idempotencia, consumer group, offset, kafka, guarda de version, upsert, checkpoint, techo de caudal, simulacion, diff, outbox, postgres, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Reprocessamento de eventos em massa: reexecutar um dia inteiro de mensagens sem duplicar efeito colateral',
+        excerpt:
+          'Um bug de comissão errou 38 mil pedidos em um dia, e voltar o offset do consumidor reenviaria 210 mil mensagens, somaria o total vendido duas vezes e duplicaria os repasses do financeiro. Como classificar cada efeito antes de reexecutar, como um ledger com chave determinística faz o replay aplicar só o que falta, como rodar o replay ao lado do tráfego ao vivo com guarda de versão, checkpoint e teto de vazão, como simular e revisar o diff antes de aplicar e como provar em teste que o segundo replay não faz nada.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Mass event reprocessing: replaying a whole day of messages without duplicating side effects',
+        excerpt:
+          'A commission bug got 38,000 orders wrong in one day, and rewinding the consumer offset would resend 210,000 messages, add the sales total twice and duplicate finance payouts. How to classify every effect before rerunning, how a ledger with a deterministic key makes the replay apply only what is missing, how to run the replay next to live traffic with a version guard, checkpoint and throughput cap, how to simulate and review the diff before applying, and how to prove in a test that the second replay does nothing.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Reprocesamiento masivo de eventos: reejecutar un día entero de mensajes sin duplicar efectos secundarios',
+        excerpt:
+          'Un bug de comisión erró 38.000 pedidos en un día, y retroceder el offset del consumidor reenviaría 210.000 mensajes, sumaría dos veces el total vendido y duplicaría los pagos de finanzas. Cómo clasificar cada efecto antes de reejecutar, cómo un ledger con clave determinista hace que el replay aplique solo lo que falta, cómo ejecutar el replay junto al tráfico en vivo con guarda de versión, checkpoint y techo de caudal, cómo simular y revisar el diff antes de aplicar y cómo demostrar en una prueba que el segundo replay no hace nada.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo',
     date: '2026-10-15',
     readTime: '14 min',
@@ -3456,16 +3486,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Reprocessamento de eventos em massa: reexecutar um dia inteiro de mensagens sem duplicar efeito colateral',
     'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
+    'Coluna JSON que virou esquema escondido: quando o campo flexível passa a precisar de índice, validação e migração',
+    'Saga sem compensação: desfazer um fluxo distribuído que falhou no terceiro de cinco passos',
+    'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
   ],
   en: [
-    'Mass event reprocessing: replaying a whole day of messages without duplicating side effects',
     'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
+    'The JSON column that became a hidden schema: when the flexible field starts needing indexes, validation and migrations',
+    'Sagas without compensation: undoing a distributed flow that failed at step three of five',
+    'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
   ],
   es: [
-    'Reprocesamiento masivo de eventos: reejecutar un día entero de mensajes sin duplicar efectos secundarios',
     'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
+    'La columna JSON que se convirtió en un esquema oculto: cuando el campo flexible empieza a necesitar índices, validación y migraciones',
+    'Sagas sin compensación: deshacer un flujo distribuido que falló en el tercer paso de cinco',
+    'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
   ],
 };
 

@@ -127,8 +127,11 @@ import timeoutEmCascata from './timeout-em-cascata-entre-servicos-quando-o-tempo
 import circuitBreakerQueNuncaAbre from './circuit-breaker-que-nunca-abre-proteger-o-servico-de-uma-dependencia-lenta-nao-so-da-que-caiu.js';
 import configuracaoQueMudaSemDeploy from './configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente.js';
 import cacheStampedeChaveQuente from './cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo.js';
+import reprocessamentoEventosEmMassa from './reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral.js';
 
 const postContentBySlug = {
+  'reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral':
+    reprocessamentoEventosEmMassa,
   'cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo':
     cacheStampedeChaveQuente,
   'configuracao-que-muda-em-producao-sem-deploy-recarregar-parametros-sem-reiniciar-e-sem-estado-inconsistente':
