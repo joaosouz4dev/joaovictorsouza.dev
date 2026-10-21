@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria',
+    date: '2026-10-21',
+    readTime: '14 min',
+    keywords: {
+      pt: 'limite de memoria, conteiner, oom, oomkilled, exit code 137, cgroup, memory.max, node.js, v8, heap, max-old-space-size, max-semi-space-size, rss, heapused, memoria fora do heap, buffers, worker_threads, kubernetes, docker, vazamento de memoria',
+      en: 'memory limit, container, oom, oomkilled, exit code 137, cgroup, memory.max, node.js, v8, heap, max-old-space-size, max-semi-space-size, rss, heapused, off-heap memory, buffers, worker_threads, kubernetes, docker, memory leak',
+      es: 'limite de memoria, contenedor, oom, oomkilled, exit code 137, cgroup, memory.max, node.js, v8, heap, max-old-space-size, max-semi-space-size, rss, heapused, memoria fuera del heap, buffers, worker_threads, kubernetes, docker, fuga de memoria',
+    },
+    content: {
+      pt: {
+        title: 'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
+        excerpt:
+          'O pod reinicia com OOMKilled e exit code 137, e o heap snapshot não mostra nenhum array crescendo: o V8 dimensiona o heap pela memória que acredita existir e deixa o lixo acumular até um teto maior do que o cgroup permite. Como diferenciar essa morte de um vazamento real, como o V8 decide o tamanho do heap e por que pode olhar para a máquina errada, o que entra na conta do cgroup além do heap, como derivar as flags do limite do contêiner no entrypoint, como dar orçamento ao que vive fora do heap e como provar em um contêiner com o mesmo limite da produção que o processo sobrevive.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
+        excerpt:
+          'The pod restarts with OOMKilled and exit code 137, and the heap snapshot shows no growing array: V8 sizes the heap by the memory it believes exists and lets garbage pile up to a ceiling larger than the cgroup allows. How to tell that death apart from a real leak, how V8 decides the heap size and why it may look at the wrong machine, what counts against the cgroup besides the heap, how to derive the flags from the container limit in the entrypoint, how to budget what lives outside the heap, and how to prove in a container with the same limit as production that the process survives.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
+        excerpt:
+          'El pod se reinicia con OOMKilled y exit code 137, y el heap snapshot no muestra ningún array creciendo: V8 dimensiona el heap con la memoria que cree que existe y deja que la basura se acumule hasta un techo mayor del que permite el cgroup. Cómo distinguir esa muerte de una fuga real, cómo V8 decide el tamaño del heap y por qué puede mirar a la máquina equivocada, qué entra en la cuenta del cgroup además del heap, cómo derivar las flags del límite del contenedor en el entrypoint, cómo dar presupuesto a lo que vive fuera del heap y cómo demostrar en un contenedor con el mismo límite que producción que el proceso sobrevive.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral',
     date: '2026-10-16',
     readTime: '15 min',
@@ -3486,19 +3516,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Limite de memória em contêiner: o processo Node.js que morre por OOM sem nunca ter vazado memória',
     'Coluna JSON que virou esquema escondido: quando o campo flexível passa a precisar de índice, validação e migração',
     'Saga sem compensação: desfazer um fluxo distribuído que falhou no terceiro de cinco passos',
     'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
   ],
   en: [
-    'Container memory limits: the Node.js process killed by OOM without ever leaking memory',
     'The JSON column that became a hidden schema: when the flexible field starts needing indexes, validation and migrations',
     'Sagas without compensation: undoing a distributed flow that failed at step three of five',
     'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
   ],
   es: [
-    'Límite de memoria en contenedor: el proceso Node.js que muere por OOM sin haber tenido nunca una fuga de memoria',
     'La columna JSON que se convirtió en un esquema oculto: cuando el campo flexible empieza a necesitar índices, validación y migraciones',
     'Sagas sin compensación: deshacer un flujo distribuido que falló en el tercer paso de cinco',
     'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
