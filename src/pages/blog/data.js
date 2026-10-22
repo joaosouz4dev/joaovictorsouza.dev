@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao',
+    date: '2026-10-22',
+    readTime: '15 min',
+    keywords: {
+      pt: 'coluna json, jsonb, esquema escondido, campo flexivel, postgres, jsonb_object_keys, jsonb_typeof, tablesample, indice gin, jsonb_path_ops, indice de expressao, check constraint, not valid, validate constraint, coluna gerada, expandir migrar contrair, backfill em lotes, gatilho de sincronizacao, toast, node.js',
+      en: 'json column, jsonb, hidden schema, flexible field, postgres, jsonb_object_keys, jsonb_typeof, tablesample, gin index, jsonb_path_ops, expression index, check constraint, not valid, validate constraint, generated column, expand migrate contract, batched backfill, sync trigger, toast, node.js',
+      es: 'columna json, jsonb, esquema oculto, campo flexible, postgres, jsonb_object_keys, jsonb_typeof, tablesample, indice gin, jsonb_path_ops, indice de expresion, check constraint, not valid, validate constraint, columna generada, expandir migrar contraer, backfill por lotes, trigger de sincronizacion, toast, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Coluna JSON que virou esquema escondido: quando o campo flexível passa a precisar de índice, validação e migração',
+        excerpt:
+          'Um campo atributos jsonb criado "para o que aparecer depois" chega a 40 milhões de linhas com um relatório que leva 38 segundos em varredura sequencial, 3% dos CPFs gravados como número e o endereço em três formatos diferentes. Como inventariar as chaves e os tipos que já existem dentro do JSON, qual índice responde a qual consulta e o que nenhum índice resolve, como impor validação com CHECK NOT VALID sem travar escrita, como promover uma chave a coluna com expandir, migrar e contrair enquanto o tráfego continua, qual critério decide o que sai do JSON e como provar em teste que a migração não divergiu uma linha.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The JSON column that became a hidden schema: when the flexible field starts needing indexes, validation and migrations',
+        excerpt:
+          'An atributos jsonb field created "for whatever comes later" reaches 40 million rows with a report that takes 38 seconds in a sequential scan, 3% of tax IDs stored as numbers and the address in three different shapes. How to inventory the keys and types that already exist inside the JSON, which index answers which query and what no index can fix, how to enforce validation with CHECK NOT VALID without blocking writes, how to promote a key to a column with expand, migrate and contract while traffic keeps flowing, which criterion decides what leaves the JSON, and how to prove in a test that the migration did not diverge a single row.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La columna JSON que se convirtió en un esquema oculto: cuando el campo flexible empieza a necesitar índices, validación y migraciones',
+        excerpt:
+          'Un campo atributos jsonb creado "para lo que aparezca después" llega a 40 millones de filas con un informe que tarda 38 segundos en un recorrido secuencial, el 3% de los documentos guardados como número y la dirección en tres formatos distintos. Cómo inventariar las claves y los tipos que ya existen dentro del JSON, qué índice responde a qué consulta y qué no resuelve ningún índice, cómo imponer validación con CHECK NOT VALID sin bloquear la escritura, cómo promover una clave a columna con expandir, migrar y contraer mientras el tráfico sigue, qué criterio decide qué sale del JSON y cómo demostrar en una prueba que la migración no desvió una sola fila.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria',
     date: '2026-10-21',
     readTime: '14 min',
@@ -3516,17 +3546,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Coluna JSON que virou esquema escondido: quando o campo flexível passa a precisar de índice, validação e migração',
     'Saga sem compensação: desfazer um fluxo distribuído que falhou no terceiro de cinco passos',
     'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
   ],
   en: [
-    'The JSON column that became a hidden schema: when the flexible field starts needing indexes, validation and migrations',
     'Sagas without compensation: undoing a distributed flow that failed at step three of five',
     'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
   ],
   es: [
-    'La columna JSON que se convirtió en un esquema oculto: cuando el campo flexible empieza a necesitar índices, validación y migraciones',
     'Sagas sin compensación: deshacer un flujo distribuido que falló en el tercer paso de cinco',
     'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
   ],
