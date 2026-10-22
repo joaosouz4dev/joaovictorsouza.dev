@@ -129,8 +129,11 @@ import configuracaoQueMudaSemDeploy from './configuracao-que-muda-em-producao-se
 import cacheStampedeChaveQuente from './cache-stampede-quando-a-chave-mais-quente-expira-e-mil-requisicoes-vao-ao-banco-ao-mesmo-tempo.js';
 import reprocessamentoEventosEmMassa from './reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral.js';
 import limiteDeMemoriaEmConteiner from './limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria.js';
+import colunaJsonEsquemaEscondido from './coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao.js';
 
 const postContentBySlug = {
+  'coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao':
+    colunaJsonEsquemaEscondido,
   'limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria':
     limiteDeMemoriaEmConteiner,
   'reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral':
