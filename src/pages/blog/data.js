@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos',
+    date: '2026-10-23',
+    readTime: '16 min',
+    keywords: {
+      pt: 'saga, compensacao, transacao distribuida, orquestracao, coreografia, transacao pivo, passo compensavel, passo re-tentavel, chave de idempotencia, timeout incerto, lapide, bloqueio semantico, isolamento, two-phase commit, for update skip locked, arrendamento, pre-autorizacao, estorno, postgres, node.js',
+      en: 'saga, compensation, distributed transaction, orchestration, choreography, pivot transaction, compensable step, retriable step, idempotency key, uncertain timeout, tombstone, semantic lock, isolation, two-phase commit, for update skip locked, lease, pre-authorization, refund, postgres, node.js',
+      es: 'saga, compensacion, transaccion distribuida, orquestacion, coreografia, transaccion pivote, paso compensable, paso reintentable, clave de idempotencia, timeout incierto, lapida, bloqueo semantico, aislamiento, two-phase commit, for update skip locked, arrendamiento, preautorizacion, reembolso, postgres, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Saga sem compensação: desfazer um fluxo distribuído que falhou no terceiro de cinco passos',
+        excerpt:
+          'Um checkout com cinco passos em quatro sistemas falha no terceiro e, uma semana depois, sobram 312 cartões cobrados sem pedido, 1.140 unidades reservadas para ninguém e 27 coletas agendadas por um timeout que escondeu o sucesso. Por que compensação não é rollback, como ordenar os passos em compensáveis, pivô e re-tentáveis, como persistir o estado da saga para sobreviver à queda do orquestrador, como compensar o que talvez tenha acontecido, o isolamento que a saga não tem e como provar em teste que nenhuma falha deixa efeito órfão.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Sagas without compensation: undoing a distributed flow that failed at step three of five',
+        excerpt:
+          'A checkout with five steps across four systems fails at step three and, a week later, there are 312 cards charged without an order, 1,140 units reserved for nobody and 27 pickups scheduled behind a timeout that hid the success. Why compensation is not rollback, how to order steps into compensable, pivot and retriable, how to persist saga state so it survives the orchestrator going down, how to compensate what may have happened, the isolation a saga does not have and how to prove in a test that no failure leaves an orphaned effect.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Sagas sin compensación: deshacer un flujo distribuido que falló en el tercer paso de cinco',
+        excerpt:
+          'Un checkout con cinco pasos en cuatro sistemas falla en el tercero y, una semana después, quedan 312 tarjetas cobradas sin pedido, 1.140 unidades reservadas para nadie y 27 recogidas programadas tras un timeout que ocultó el éxito. Por qué compensar no es hacer rollback, cómo ordenar los pasos en compensables, pivote y reintentables, cómo persistir el estado de la saga para sobrevivir a la caída del orquestador, cómo compensar lo que quizá ocurrió, el aislamiento que la saga no tiene y cómo demostrar en una prueba que ningún fallo deja un efecto huérfano.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao',
     date: '2026-10-22',
     readTime: '15 min',
@@ -3546,16 +3576,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Saga sem compensação: desfazer um fluxo distribuído que falhou no terceiro de cinco passos',
     'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
+    'Vizinho barulhento no SaaS multi-tenant: isolar o cliente que consome o banco de todos sem criar um banco por cliente',
+    'Busca com LIKE que parou de escalar: full-text search no Postgres antes de adicionar um motor de busca',
+    'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
   ],
   en: [
-    'Sagas without compensation: undoing a distributed flow that failed at step three of five',
     'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
+    'The noisy neighbor in a multi-tenant SaaS: isolating the customer who eats everyone\'s database without one database per customer',
+    'LIKE search that stopped scaling: full-text search in Postgres before adding a search engine',
+    'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
   ],
   es: [
-    'Sagas sin compensación: deshacer un flujo distribuido que falló en el tercer paso de cinco',
     'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
+    'El vecino ruidoso en un SaaS multi-tenant: aislar al cliente que consume la base de datos de todos sin una base por cliente',
+    'Búsqueda con LIKE que dejó de escalar: full-text search en Postgres antes de añadir un motor de búsqueda',
+    'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',
   ],
 };
 
