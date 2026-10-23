@@ -130,8 +130,11 @@ import cacheStampedeChaveQuente from './cache-stampede-quando-a-chave-mais-quent
 import reprocessamentoEventosEmMassa from './reprocessamento-de-eventos-em-massa-reexecutar-um-dia-inteiro-de-mensagens-sem-duplicar-efeito-colateral.js';
 import limiteDeMemoriaEmConteiner from './limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria.js';
 import colunaJsonEsquemaEscondido from './coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao.js';
+import sagaSemCompensacao from './saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos.js';
 
 const postContentBySlug = {
+  'saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos':
+    sagaSemCompensacao,
   'coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao':
     colunaJsonEsquemaEscondido,
   'limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria':
