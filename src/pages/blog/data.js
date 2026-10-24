@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga',
+    date: '2026-10-24',
+    readTime: '14 min',
+    keywords: {
+      pt: 'log sincrono, gargalo de log, event loop, node.js, writesync, process.stdout, backpressure, highwatermark, drain, fila limitada, descarte de log, nivel de log, amostragem de log, pino, pino.transport, worker thread, pipe, kubernetes, fluent bit, rotacao de log, oomkilled',
+      en: 'synchronous logging, logging bottleneck, event loop, node.js, writesync, process.stdout, backpressure, highwatermark, drain, bounded queue, log dropping, log level, log sampling, pino, pino.transport, worker thread, pipe, kubernetes, fluent bit, log rotation, oomkilled',
+      es: 'log sincrono, cuello de botella de log, event loop, node.js, writesync, process.stdout, backpressure, highwatermark, drain, cola limitada, descarte de log, nivel de log, muestreo de log, pino, pino.transport, worker thread, pipe, kubernetes, fluent bit, rotacion de log, oomkilled',
+    },
+    content: {
+      pt: {
+        title: 'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
+        excerpt:
+          'Na Black Friday, a API de pedidos vai de 45 ms para 2,8 s de p99 com CPU a 35% e banco folgado: 61% da thread principal está em writeSync, por um debug esquecido escrevendo o carrinho inteiro em um disco dividido com 30 pods. A troca para escrita assíncrona devolve a latência e, 40 minutos depois, derruba os pods por OOM. Por onde a linha de log passa até o disco, como medir o custo do log antes de trocar de biblioteca, como cortar volume na origem, como tirar a escrita do caminho da requisição com fila limitada e descarte contado e como provar em teste que um destino lento não derruba o serviço.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
+        excerpt:
+          'On Black Friday, the orders API goes from 45 ms to 2.8 s at p99 with CPU at 35% and an idle database: 61% of the main thread is in writeSync, because of a forgotten debug level writing the whole cart to a disk shared with 30 pods. Switching to asynchronous writes brings latency back and, 40 minutes later, kills the pods with OOM. The path a log line takes to the disk, how to measure what logging costs before switching libraries, how to cut volume at the source, how to take writes off the request path with a bounded queue and counted dropping, and how to prove in a test that a slow destination does not take the service down.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
+        excerpt:
+          'En Black Friday, la API de pedidos pasa de 45 ms a 2,8 s de p99 con la CPU al 35% y la base de datos holgada: el 61% del hilo principal está en writeSync, por un debug olvidado que escribe el carrito completo en un disco compartido con 30 pods. Pasar a escritura asíncrona devuelve la latencia y, 40 minutos después, tumba los pods por OOM. Por dónde pasa una línea de log hasta el disco, cómo medir lo que cuesta el log antes de cambiar de librería, cómo recortar volumen en el origen, cómo sacar la escritura del camino de la petición con una cola limitada y descarte contado y cómo demostrar en una prueba que un destino lento no tumba el servicio.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos',
     date: '2026-10-23',
     readTime: '16 min',
@@ -3576,19 +3606,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Log que derruba o serviço: quando a escrita de log síncrona vira o gargalo sob carga',
     'Vizinho barulhento no SaaS multi-tenant: isolar o cliente que consome o banco de todos sem criar um banco por cliente',
     'Busca com LIKE que parou de escalar: full-text search no Postgres antes de adicionar um motor de busca',
     'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
   ],
   en: [
-    'Logging that takes the service down: when synchronous log writes become the bottleneck under load',
     'The noisy neighbor in a multi-tenant SaaS: isolating the customer who eats everyone\'s database without one database per customer',
     'LIKE search that stopped scaling: full-text search in Postgres before adding a search engine',
     'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
   ],
   es: [
-    'El log que tumba el servicio: cuando la escritura síncrona de logs se vuelve el cuello de botella bajo carga',
     'El vecino ruidoso en un SaaS multi-tenant: aislar al cliente que consume la base de datos de todos sin una base por cliente',
     'Búsqueda con LIKE que dejó de escalar: full-text search en Postgres antes de añadir un motor de búsqueda',
     'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',

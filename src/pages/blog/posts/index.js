@@ -131,8 +131,11 @@ import reprocessamentoEventosEmMassa from './reprocessamento-de-eventos-em-massa
 import limiteDeMemoriaEmConteiner from './limite-de-memoria-em-conteiner-o-processo-node-js-que-morre-por-oom-sem-nunca-ter-vazado-memoria.js';
 import colunaJsonEsquemaEscondido from './coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao.js';
 import sagaSemCompensacao from './saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos.js';
+import logQueDerrubaOServico from './log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga.js';
 
 const postContentBySlug = {
+  'log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga':
+    logQueDerrubaOServico,
   'saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos':
     sagaSemCompensacao,
   'coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao':
