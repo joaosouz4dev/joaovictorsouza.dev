@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'vizinho-barulhento-no-saas-multi-tenant-isolar-o-cliente-que-consome-o-banco-de-todos-sem-criar-um-banco-por-cliente',
+    date: '2026-10-25',
+    readTime: '15 min',
+    keywords: {
+      pt: 'vizinho barulhento, noisy neighbor, saas multi-tenant, postgres, pool de conexoes, limite de concorrencia por tenant, statement_timeout, pg_stat_activity, application_name, replica de leitura, banco dedicado, isolamento de recursos, row-level security, 429, retry-after, node.js',
+      en: 'noisy neighbor, multi-tenant saas, postgres, connection pool, per-tenant concurrency limit, statement_timeout, pg_stat_activity, application_name, read replica, dedicated database, resource isolation, row-level security, 429, retry-after, node.js',
+      es: 'vecino ruidoso, noisy neighbor, saas multi-tenant, postgres, pool de conexiones, limite de concurrencia por tenant, statement_timeout, pg_stat_activity, application_name, replica de lectura, base dedicada, aislamiento de recursos, row-level security, 429, retry-after, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Vizinho barulhento no SaaS multi-tenant: isolar o cliente que consome o banco de todos sem criar um banco por cliente',
+        excerpt:
+          'Um cliente pede o relatório mensal, seis consultas varrem 38 milhões de linhas, a CPU do banco vai a 92% e os outros 399 clientes veem telas de 4 segundos. Como achar quem consome o banco com application_name e tempo de banco por tenant, como isolar com limite de concorrência por tenant, pools e papéis separados por classe de carga, quando promover um cliente para banco dedicado e como provar em teste que o isolamento funciona.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The noisy neighbor in a multi-tenant SaaS: isolating the customer who eats everyone\'s database without one database per customer',
+        excerpt:
+          'One customer requests the monthly report, six queries scan 38 million rows, database CPU hits 92% and the other 399 customers see 4-second screens. How to find who is consuming the database with application_name and per-tenant database time, how to isolate with a per-tenant concurrency limit and separate pools and roles per workload class, when to promote a customer to a dedicated database and how to prove in a test that the isolation works.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El vecino ruidoso en un SaaS multi-tenant: aislar al cliente que consume la base de datos de todos sin una base por cliente',
+        excerpt:
+          'Un cliente pide el reporte mensual, seis consultas recorren 38 millones de filas, la CPU de la base llega al 92% y los otros 399 clientes ven pantallas de 4 segundos. Cómo encontrar quién consume la base con application_name y tiempo de base por tenant, cómo aislar con límite de concurrencia por tenant y pools y roles separados por clase de carga, cuándo promover un cliente a base dedicada y cómo demostrar en una prueba que el aislamiento funciona.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga',
     date: '2026-10-24',
     readTime: '14 min',
@@ -3606,17 +3636,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Vizinho barulhento no SaaS multi-tenant: isolar o cliente que consome o banco de todos sem criar um banco por cliente',
     'Busca com LIKE que parou de escalar: full-text search no Postgres antes de adicionar um motor de busca',
     'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
   ],
   en: [
-    'The noisy neighbor in a multi-tenant SaaS: isolating the customer who eats everyone\'s database without one database per customer',
     'LIKE search that stopped scaling: full-text search in Postgres before adding a search engine',
     'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
   ],
   es: [
-    'El vecino ruidoso en un SaaS multi-tenant: aislar al cliente que consume la base de datos de todos sin una base por cliente',
     'Búsqueda con LIKE que dejó de escalar: full-text search en Postgres antes de añadir un motor de búsqueda',
     'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',
   ],
