@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'busca-com-like-que-parou-de-escalar-full-text-search-no-postgres-antes-de-adicionar-um-motor-de-busca',
+    date: '2026-10-26',
+    readTime: '15 min',
+    keywords: {
+      pt: 'busca com like, like lento, full-text search, postgres, tsvector, tsquery, websearch_to_tsquery, ts_rank_cd, indice gin, pg_trgm, trigrama, unaccent, busca sem acento, autocomplete, erro de digitacao, create index concurrently, elasticsearch, motor de busca',
+      en: 'like search, slow like query, full-text search, postgres, tsvector, tsquery, websearch_to_tsquery, ts_rank_cd, gin index, pg_trgm, trigram, unaccent, accent-insensitive search, autocomplete, typo tolerance, create index concurrently, elasticsearch, search engine',
+      es: 'busqueda con like, like lento, full-text search, postgres, tsvector, tsquery, websearch_to_tsquery, ts_rank_cd, indice gin, pg_trgm, trigrama, unaccent, busqueda sin acentos, autocompletado, errores de tipeo, create index concurrently, elasticsearch, motor de busqueda',
+    },
+    content: {
+      pt: {
+        title: 'Busca com LIKE que parou de escalar: full-text search no Postgres antes de adicionar um motor de busca',
+        excerpt:
+          'Um catálogo cresceu de 300 mil para 4,2 milhões de produtos e a busca com ILIKE \'%termo%\' foi de 90 ms para 1,8 segundo, sem achar plural, acento ou erro de digitação. Por que o coringa à esquerda ignora o índice B-tree, como o pg_trgm resolve trecho, SKU e autocomplete, como montar full-text search com configuração sem acento, pesos por campo e índice GIN sem travar a tabela, como consultar com semelhança como plano B e teto de tempo, e quando um motor de busca dedicado passa a valer o custo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'LIKE search that stopped scaling: full-text search in Postgres before adding a search engine',
+        excerpt:
+          'A catalog grew from 300 thousand to 4.2 million products and the ILIKE \'%term%\' search went from 90 ms to 1.8 seconds, without handling plurals, accents or typos. Why a leading wildcard ignores the B-tree index, how pg_trgm handles fragments, SKUs and autocomplete, how to build full-text search with an accent-free configuration, per-field weights and a GIN index without locking the table, how to query with similarity as plan B and a time ceiling, and when a dedicated search engine becomes worth the cost.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Búsqueda con LIKE que dejó de escalar: full-text search en Postgres antes de añadir un motor de búsqueda',
+        excerpt:
+          'Un catálogo creció de 300 mil a 4,2 millones de productos y la búsqueda con ILIKE \'%término%\' pasó de 90 ms a 1,8 segundos, sin encontrar plurales, acentos ni errores de tipeo. Por qué el comodín a la izquierda ignora el índice B-tree, cómo pg_trgm resuelve fragmentos, SKU y autocompletado, cómo montar full-text search con configuración sin acentos, pesos por campo e índice GIN sin bloquear la tabla, cómo consultar con similitud como plan B y techo de tiempo, y cuándo un motor de búsqueda dedicado empieza a valer su costo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'vizinho-barulhento-no-saas-multi-tenant-isolar-o-cliente-que-consome-o-banco-de-todos-sem-criar-um-banco-por-cliente',
     date: '2026-10-25',
     readTime: '15 min',
@@ -3636,16 +3666,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Busca com LIKE que parou de escalar: full-text search no Postgres antes de adicionar um motor de busca',
     'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
+    'Chave primária int que vai estourar: migrar para bigint com a tabela em uso',
+    'Tabela que cresceu demais: particionar por data no Postgres sem reescrever a aplicação',
+    'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
   ],
   en: [
-    'LIKE search that stopped scaling: full-text search in Postgres before adding a search engine',
     'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
+    'The int primary key about to overflow: migrating to bigint while the table is in use',
+    'The table that grew too large: partitioning by date in Postgres without rewriting the application',
+    'The audit table that became the largest in the database: keeping change history without slowing down writes',
   ],
   es: [
-    'Búsqueda con LIKE que dejó de escalar: full-text search en Postgres antes de añadir un motor de búsqueda',
     'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',
+    'La clave primaria int que va a desbordarse: migrar a bigint con la tabla en uso',
+    'La tabla que creció demasiado: particionar por fecha en Postgres sin reescribir la aplicación',
+    'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
   ],
 };
 
