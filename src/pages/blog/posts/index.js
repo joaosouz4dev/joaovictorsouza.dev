@@ -132,9 +132,12 @@ import limiteDeMemoriaEmConteiner from './limite-de-memoria-em-conteiner-o-proce
 import colunaJsonEsquemaEscondido from './coluna-json-que-virou-esquema-escondido-quando-o-campo-flexivel-passa-a-precisar-de-indice-validacao-e-migracao.js';
 import sagaSemCompensacao from './saga-sem-compensacao-desfazer-um-fluxo-distribuido-que-falhou-no-terceiro-de-cinco-passos.js';
 import logQueDerrubaOServico from './log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga.js';
+import buscaComLikeFullText from './busca-com-like-que-parou-de-escalar-full-text-search-no-postgres-antes-de-adicionar-um-motor-de-busca.js';
 import vizinhoBarulhento from './vizinho-barulhento-no-saas-multi-tenant-isolar-o-cliente-que-consome-o-banco-de-todos-sem-criar-um-banco-por-cliente.js';
 
 const postContentBySlug = {
+  'busca-com-like-que-parou-de-escalar-full-text-search-no-postgres-antes-de-adicionar-um-motor-de-busca':
+    buscaComLikeFullText,
   'vizinho-barulhento-no-saas-multi-tenant-isolar-o-cliente-que-consome-o-banco-de-todos-sem-criar-um-banco-por-cliente':
     vizinhoBarulhento,
   'log-que-derruba-o-servico-quando-a-escrita-de-log-sincrona-vira-o-gargalo-sob-carga':
