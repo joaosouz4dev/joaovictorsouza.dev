@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'upgrade-de-versao-major-do-postgres-sem-janela-replicacao-logica-para-trocar-de-versao-com-trafego-ligado',
+    date: '2026-10-27',
+    readTime: '16 min',
+    keywords: {
+      pt: 'upgrade postgres, versao major, pg_upgrade, replicacao logica, publication, subscription, copy_data, replica identity, wal_level logical, slot de replicacao, wal retido, sequencias, setval, pgbouncer pause resume, corte sem janela, replicacao de volta, rollback, analyze em estagios, zero downtime, node.js',
+      en: 'postgres upgrade, major version, pg_upgrade, logical replication, publication, subscription, copy_data, replica identity, wal_level logical, replication slot, retained wal, sequences, setval, pgbouncer pause resume, zero downtime cutover, reverse replication, rollback, analyze in stages, node.js',
+      es: 'actualizacion postgres, version mayor, pg_upgrade, replicacion logica, publication, subscription, copy_data, replica identity, wal_level logical, slot de replicacion, wal retenido, secuencias, setval, pgbouncer pause resume, corte sin ventana, replicacion de vuelta, rollback, analyze por etapas, zero downtime, node.js',
+    },
+    content: {
+      pt: {
+        title: 'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
+        excerpt:
+          'Um SaaS de clínicas com 1,4 TB em um Postgres 12 sem suporte não aceita os 40 minutos do upgrade gerenciado nem a hora de banco lento depois do pg_upgrade. Como trocar da 12 para a 17 com replicação lógica: os pré-requisitos que derrubam o plano quando descobertos tarde, a cópia inicial de 1,4 TB sem derrubar a origem, o corte de 9 segundos por script com pgbouncer, marcador, sequências e replicação de volta, o que a replicação não leva e como provar que os dados batem.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
+        excerpt:
+          'A clinic SaaS with 1.4 TB on an unsupported Postgres 12 accepts neither the 40 minutes of the managed upgrade nor the hour of a slow database after pg_upgrade. How to move from 12 to 17 with logical replication: the prerequisites that sink the plan when discovered late, the initial copy of 1.4 TB without hurting the source, the 9-second scripted cutover with pgbouncer, a marker, sequences and reverse replication, what replication does not carry and how to prove the data matches.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',
+        excerpt:
+          'Un SaaS de clínicas con 1,4 TB en un Postgres 12 sin soporte no acepta los 40 minutos de la actualización gestionada ni la hora de base lenta después del pg_upgrade. Cómo pasar de la 12 a la 17 con replicación lógica: los prerrequisitos que hunden el plan cuando se descubren tarde, la copia inicial de 1,4 TB sin castigar el origen, el corte de 9 segundos por script con pgbouncer, marcador, secuencias y replicación de vuelta, qué no transporta la replicación y cómo demostrar que los datos coinciden.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'busca-com-like-que-parou-de-escalar-full-text-search-no-postgres-antes-de-adicionar-um-motor-de-busca',
     date: '2026-10-26',
     readTime: '15 min',
@@ -3666,19 +3696,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Upgrade de versão major do Postgres sem janela: replicação lógica para trocar de versão com tráfego ligado',
     'Chave primária int que vai estourar: migrar para bigint com a tabela em uso',
     'Tabela que cresceu demais: particionar por data no Postgres sem reescrever a aplicação',
     'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
   ],
   en: [
-    'Major Postgres version upgrade without downtime: logical replication to switch versions with traffic on',
     'The int primary key about to overflow: migrating to bigint while the table is in use',
     'The table that grew too large: partitioning by date in Postgres without rewriting the application',
     'The audit table that became the largest in the database: keeping change history without slowing down writes',
   ],
   es: [
-    'Actualización de versión mayor de Postgres sin ventana: replicación lógica para cambiar de versión con el tráfico activo',
     'La clave primaria int que va a desbordarse: migrar a bigint con la tabla en uso',
     'La tabla que creció demasiado: particionar por fecha en Postgres sin reescribir la aplicación',
     'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
