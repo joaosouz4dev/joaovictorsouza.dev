@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso',
+    date: '2026-10-28',
+    readTime: '15 min',
+    keywords: {
+      pt: 'chave primaria int, estouro de sequencia, integer overflow, migrar para bigint, alter column type, postgres, serial, identity, nextval, reached maximum value of sequence, coluna nova, gatilho, backfill em lotes, create index concurrently, not null not valid, validate constraint, primary key using index, lock_timeout, node-postgres int8, zero downtime',
+      en: 'int primary key, sequence overflow, integer overflow, migrate to bigint, alter column type, postgres, serial, identity, nextval, reached maximum value of sequence, new column, trigger, batched backfill, create index concurrently, not null not valid, validate constraint, primary key using index, lock_timeout, node-postgres int8, zero downtime',
+      es: 'clave primaria int, desbordamiento de secuencia, integer overflow, migrar a bigint, alter column type, postgres, serial, identity, nextval, reached maximum value of sequence, columna nueva, trigger, backfill por lotes, create index concurrently, not null not valid, validate constraint, primary key using index, lock_timeout, node-postgres int8, zero downtime',
+    },
+    content: {
+      pt: {
+        title: 'Chave primária int que vai estourar: migrar para bigint com a tabela em uso',
+        excerpt:
+          'Uma tabela de eventos de rastreamento com 410 GB tem a sequência do id em 87% do limite do integer e 31 dias até todo INSERT falhar, e o ALTER COLUMN TYPE bigint ensaiado travou a tabela por 6 horas. Por que o limite chega antes do que o count(*) sugere, quais caminhos existem e quanto custam, o que muda na aplicação antes do banco, como trocar com coluna nova, gatilho, backfill em lotes, índice concorrente e NOT NULL sem varredura em uma troca de 380 ms, e como impedir que a próxima tabela chegue lá.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The int primary key about to overflow: migrating to bigint while the table is in use',
+        excerpt:
+          'A 410 GB tracking events table has its id sequence at 87% of the integer limit and 31 days before every INSERT fails, and the rehearsed ALTER COLUMN TYPE bigint locked the table for 6 hours. Why the limit arrives sooner than count(*) suggests, which paths exist and what they cost, what changes in the application before the database, how to swap with a new column, a trigger, batched backfill, a concurrent index and NOT NULL without a scan in a 380 ms swap, and how to keep the next table from getting there.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La clave primaria int que va a desbordarse: migrar a bigint con la tabla en uso',
+        excerpt:
+          'Una tabla de eventos de rastreo con 410 GB tiene la secuencia del id al 87% del límite del integer y 31 días antes de que todo INSERT falle, y el ALTER COLUMN TYPE bigint ensayado bloqueó la tabla durante 6 horas. Por qué el límite llega antes de lo que sugiere el count(*), qué caminos existen y cuánto cuestan, qué cambia en la aplicación antes de la base, cómo hacer el cambio con columna nueva, trigger, backfill por lotes, índice concurrente y NOT NULL sin recorrido en un cambio de 380 ms, y cómo evitar que la próxima tabla llegue ahí.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'upgrade-de-versao-major-do-postgres-sem-janela-replicacao-logica-para-trocar-de-versao-com-trafego-ligado',
     date: '2026-10-27',
     readTime: '16 min',
@@ -3696,17 +3726,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Chave primária int que vai estourar: migrar para bigint com a tabela em uso',
     'Tabela que cresceu demais: particionar por data no Postgres sem reescrever a aplicação',
     'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
   ],
   en: [
-    'The int primary key about to overflow: migrating to bigint while the table is in use',
     'The table that grew too large: partitioning by date in Postgres without rewriting the application',
     'The audit table that became the largest in the database: keeping change history without slowing down writes',
   ],
   es: [
-    'La clave primaria int que va a desbordarse: migrar a bigint con la tabla en uso',
     'La tabla que creció demasiado: particionar por fecha en Postgres sin reescribir la aplicación',
     'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
   ],
