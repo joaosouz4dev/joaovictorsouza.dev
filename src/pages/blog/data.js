@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao',
+    date: '2026-10-29',
+    readTime: '16 min',
+    keywords: {
+      pt: 'particionamento postgres, particionar por data, partition by range, attach partition, tabela grande, retenção de dados, drop table partição, poda de partições, partition pruning, partição padrão, create index concurrently, check not valid, lock_timeout, pg_partman, zero downtime',
+      en: 'postgres partitioning, partition by date, partition by range, attach partition, large table, data retention, drop partition, partition pruning, default partition, create index concurrently, check not valid, lock_timeout, pg_partman, zero downtime',
+      es: 'particionamiento postgres, particionar por fecha, partition by range, attach partition, tabla grande, retención de datos, drop partición, poda de particiones, partition pruning, partición predeterminada, create index concurrently, check not valid, lock_timeout, pg_partman, zero downtime',
+    },
+    content: {
+      pt: {
+        title: 'Tabela que cresceu demais: particionar por data no Postgres sem reescrever a aplicação',
+        excerpt:
+          'Uma tabela de eventos de 1,2 TB com retenção de 12 meses tem um DELETE diário que foi de 20 minutos para 9 horas e um índice de 310 GB que só cresce. Por que a tabela única sufoca, o que o particionamento resolve e o que não resolve, como usar a própria tabela como primeira partição sem copiar nada, a troca em uma transação de 410 ms, a rotina que cria partições à frente e vigia a partição padrão, e as armadilhas que desligam a poda.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The table that grew too large: partitioning by date in Postgres without rewriting the application',
+        excerpt:
+          'A 1.2 TB events table with 12 months of retention has a daily DELETE that went from 20 minutes to 9 hours and a 310 GB index that only grows. Why the single table chokes, what partitioning solves and what it does not, how to use the table itself as the first partition without copying anything, the swap in a 410 ms transaction, the routine that creates partitions ahead and watches the default partition, and the pitfalls that turn pruning off.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La tabla que creció demasiado: particionar por fecha en Postgres sin reescribir la aplicación',
+        excerpt:
+          'Una tabla de eventos de 1,2 TB con retención de 12 meses tiene un DELETE diario que pasó de 20 minutos a 9 horas y un índice de 310 GB que solo crece. Por qué la tabla única se ahoga, qué resuelve el particionamiento y qué no, cómo usar la propia tabla como primera partición sin copiar nada, el cambio en una transacción de 410 ms, la rutina que crea particiones por adelantado y vigila la partición predeterminada, y las trampas que desactivan la poda.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso',
     date: '2026-10-28',
     readTime: '15 min',
@@ -3726,16 +3756,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Tabela que cresceu demais: particionar por data no Postgres sem reescrever a aplicação',
     'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
+    'Migração de monólito em partes: extrair um módulo para serviço com strangler fig sem reescrever tudo',
+    'Relatório pesado que derruba a API: mover a consulta para execução assíncrona com resultado em cache',
+    'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
   ],
   en: [
-    'The table that grew too large: partitioning by date in Postgres without rewriting the application',
     'The audit table that became the largest in the database: keeping change history without slowing down writes',
+    'Breaking up a monolith in pieces: extracting a module into a service with the strangler fig pattern without rewriting everything',
+    'The heavy report that takes down the API: moving the query to asynchronous execution with a cached result',
+    'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
   ],
   es: [
-    'La tabla que creció demasiado: particionar por fecha en Postgres sin reescribir la aplicación',
     'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
+    'Romper un monolito por partes: extraer un módulo a un servicio con strangler fig sin reescribirlo todo',
+    'El reporte pesado que tumba la API: mover la consulta a ejecución asíncrona con resultado en caché',
+    'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
   ],
 };
 

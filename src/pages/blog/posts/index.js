@@ -136,8 +136,11 @@ import buscaComLikeFullText from './busca-com-like-que-parou-de-escalar-full-tex
 import vizinhoBarulhento from './vizinho-barulhento-no-saas-multi-tenant-isolar-o-cliente-que-consome-o-banco-de-todos-sem-criar-um-banco-por-cliente.js';
 import upgradePostgresSemJanela from './upgrade-de-versao-major-do-postgres-sem-janela-replicacao-logica-para-trocar-de-versao-com-trafego-ligado.js';
 import chavePrimariaIntBigint from './chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso.js';
+import tabelaParticionar from './tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao.js';
 
 const postContentBySlug = {
+  'tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao':
+    tabelaParticionar,
   'chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso':
     chavePrimariaIntBigint,
   'upgrade-de-versao-major-do-postgres-sem-janela-replicacao-logica-para-trocar-de-versao-com-trafego-ligado':
