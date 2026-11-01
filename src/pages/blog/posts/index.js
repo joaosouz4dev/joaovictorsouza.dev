@@ -137,8 +137,11 @@ import vizinhoBarulhento from './vizinho-barulhento-no-saas-multi-tenant-isolar-
 import upgradePostgresSemJanela from './upgrade-de-versao-major-do-postgres-sem-janela-replicacao-logica-para-trocar-de-versao-com-trafego-ligado.js';
 import chavePrimariaIntBigint from './chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso.js';
 import tabelaParticionar from './tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao.js';
+import tabelaAuditoria from './tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita.js';
 
 const postContentBySlug = {
+  'tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita':
+    tabelaAuditoria,
   'tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao':
     tabelaParticionar,
   'chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso':
