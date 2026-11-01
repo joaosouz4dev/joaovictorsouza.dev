@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita',
+    date: '2026-11-01',
+    readTime: '16 min',
+    keywords: {
+      pt: 'tabela de auditoria, trilha de auditoria, gatilho de auditoria, postgres, trigger, jsonb diff, histórico de alterações, particionamento por mês, índice brin, retenção de dados, decodificação lógica, replica identity full, pg_logical_emit_message, security definer, set_config, pgbouncer, pgaudit, zstd',
+      en: 'audit table, audit trail, audit trigger, postgres, trigger, jsonb diff, change history, monthly partitioning, brin index, data retention, logical decoding, replica identity full, pg_logical_emit_message, security definer, set_config, pgbouncer, pgaudit, zstd',
+      es: 'tabla de auditoría, trazabilidad de auditoría, trigger de auditoría, postgres, trigger, jsonb diff, historial de cambios, particionamiento por mes, índice brin, retención de datos, decodificación lógica, replica identity full, pg_logical_emit_message, security definer, set_config, pgbouncer, pgaudit, zstd',
+    },
+    content: {
+      pt: {
+        title: 'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
+        excerpt:
+          'Uma tabela de auditoria de 2,1 TB e 6,4 bilhões de linhas, 58% do banco, grava a linha inteira antes e depois de cada alteração e acrescenta 5 ms a cada UPDATE. Onde está o custo e como medir, gravar só o que mudou e ignorar colunas ruidosas, informar o ator pela transação, partição mensal com índice BRIN, retenção em camadas com arquivo frio, decodificação lógica para tirar a gravação do caminho crítico e a migração sem janela.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The audit table that became the largest in the database: keeping change history without slowing down writes',
+        excerpt:
+          'A 2.1 TB audit table with 6.4 billion rows, 58% of the database, stores the whole row before and after every change and adds 5 ms to every UPDATE. Where the cost is and how to measure it, storing only what changed and ignoring noisy columns, passing the actor through the transaction, monthly partitions with a BRIN index, tiered retention with cold archive, logical decoding to take the write off the critical path and the migration with no window.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
+        excerpt:
+          'Una tabla de auditoría de 2,1 TB y 6,4 mil millones de filas, el 58% de la base, guarda la fila completa antes y después de cada cambio y agrega 5 ms a cada UPDATE. Dónde está el costo y cómo medirlo, guardar solo lo que cambió e ignorar columnas ruidosas, informar el actor por la transacción, partición mensual con índice BRIN, retención en capas con archivo frío, decodificación lógica para sacar la grabación del camino crítico y la migración sin ventana.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao',
     date: '2026-10-29',
     readTime: '16 min',
@@ -3756,19 +3786,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Tabela de auditoria que virou a maior do banco: guardar histórico de alterações sem pesar na escrita',
     'Migração de monólito em partes: extrair um módulo para serviço com strangler fig sem reescrever tudo',
     'Relatório pesado que derruba a API: mover a consulta para execução assíncrona com resultado em cache',
     'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
   ],
   en: [
-    'The audit table that became the largest in the database: keeping change history without slowing down writes',
     'Breaking up a monolith in pieces: extracting a module into a service with the strangler fig pattern without rewriting everything',
     'The heavy report that takes down the API: moving the query to asynchronous execution with a cached result',
     'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
   ],
   es: [
-    'La tabla de auditoría que se volvió la más grande de la base: guardar el historial de cambios sin penalizar la escritura',
     'Romper un monolito por partes: extraer un módulo a un servicio con strangler fig sin reescribirlo todo',
     'El reporte pesado que tumba la API: mover la consulta a ejecución asíncrona con resultado en caché',
     'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
