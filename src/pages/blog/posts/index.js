@@ -138,8 +138,11 @@ import upgradePostgresSemJanela from './upgrade-de-versao-major-do-postgres-sem-
 import chavePrimariaIntBigint from './chave-primaria-int-que-vai-estourar-migrar-para-bigint-com-a-tabela-em-uso.js';
 import tabelaParticionar from './tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao.js';
 import tabelaAuditoria from './tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita.js';
+import migracaoMonolitoStranglerFig from './migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo.js';
 
 const postContentBySlug = {
+  'migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo':
+    migracaoMonolitoStranglerFig,
   'tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita':
     tabelaAuditoria,
   'tabela-que-cresceu-demais-particionar-por-data-no-postgres-sem-reescrever-a-aplicacao':
