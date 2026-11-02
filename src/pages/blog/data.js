@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo',
+    date: '2026-11-02',
+    readTime: '15 min',
+    keywords: {
+      pt: 'strangler fig, migração de monólito, extrair microsserviço, monólito para serviços, branch by abstraction, costura, leitura em sombra, shadow traffic, feature flag por tenant, posse de dados, schema por serviço, alter table set schema, view somente leitura, outbox transacional, monólito distribuído, modernização backend, node.js, postgres',
+      en: 'strangler fig, monolith migration, extract microservice, monolith to services, branch by abstraction, seam, shadow reads, shadow traffic, per tenant feature flag, data ownership, schema per service, alter table set schema, read-only view, transactional outbox, distributed monolith, backend modernization, node.js, postgres',
+      es: 'strangler fig, migración de monolito, extraer microservicio, monolito a servicios, branch by abstraction, costura, lectura en sombra, shadow traffic, feature flag por tenant, propiedad de los datos, schema por servicio, alter table set schema, vista de solo lectura, outbox transaccional, monolito distribuido, modernización backend, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Migração de monólito em partes: extrair um módulo para serviço com strangler fig sem reescrever tudo',
+        excerpt:
+          'Um monólito Node.js de 410 mil linhas com deploy de 45 minutos e uma reescrita do faturamento abandonada depois de nove meses. Como escolher o primeiro módulo pelos dados, criar uma costura única dentro do monólito, comparar o serviço novo em sombra até a divergência zerar, cortar o tráfego por tenant com recuo de uma flag, transferir a posse das tabelas para um schema próprio sem copiar nada e apagar o código antigo sem criar um monólito distribuído.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Breaking up a monolith in pieces: extracting a module into a service with the strangler fig pattern without rewriting everything',
+        excerpt:
+          'A 410 thousand line Node.js monolith with a 45 minute deploy and a billing rewrite abandoned after nine months. How to choose the first module by its data, create a single seam inside the monolith, compare the new service in shadow mode until divergence reaches zero, cut traffic over per tenant with a one-flag rollback, transfer table ownership to a dedicated schema without copying anything and delete the old code without creating a distributed monolith.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Romper un monolito por partes: extraer un módulo a un servicio con strangler fig sin reescribirlo todo',
+        excerpt:
+          'Un monolito Node.js de 410 mil líneas con un deploy de 45 minutos y una reescritura de facturación abandonada después de nueve meses. Cómo elegir el primer módulo por sus datos, crear una costura única dentro del monolito, comparar el servicio nuevo en sombra hasta que la divergencia llegue a cero, migrar el tráfico por tenant con retroceso de una flag, transferir la propiedad de las tablas a un schema propio sin copiar nada y eliminar el código antiguo sin crear un monolito distribuido.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita',
     date: '2026-11-01',
     readTime: '16 min',
@@ -3786,17 +3816,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Migração de monólito em partes: extrair um módulo para serviço com strangler fig sem reescrever tudo',
     'Relatório pesado que derruba a API: mover a consulta para execução assíncrona com resultado em cache',
     'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
   ],
   en: [
-    'Breaking up a monolith in pieces: extracting a module into a service with the strangler fig pattern without rewriting everything',
     'The heavy report that takes down the API: moving the query to asynchronous execution with a cached result',
     'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
   ],
   es: [
-    'Romper un monolito por partes: extraer un módulo a un servicio con strangler fig sin reescribirlo todo',
     'El reporte pesado que tumba la API: mover la consulta a ejecución asíncrona con resultado en caché',
     'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
   ],
