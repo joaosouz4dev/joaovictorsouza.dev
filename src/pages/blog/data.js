@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'relatorio-pesado-que-derruba-a-api-mover-a-consulta-para-execucao-assincrona-com-resultado-em-cache',
+    date: '2026-11-03',
+    readTime: '15 min',
+    keywords: {
+      pt: 'relatório pesado, relatório assíncrono, api lenta, 202 accepted, job assíncrono, fila no postgres, skip locked, deduplicação de pedidos, chave de idempotência, pool de conexões, statement_timeout, réplica de leitura, cache de resultado, expiração de cache, polling, retry-after, node.js, postgres',
+      en: 'heavy report, asynchronous report, slow api, 202 accepted, async job, postgres queue, skip locked, request deduplication, idempotency key, connection pool, statement_timeout, read replica, result cache, cache expiration, polling, retry-after, node.js, postgres',
+      es: 'reporte pesado, reporte asíncrono, api lenta, 202 accepted, job asíncrono, cola en postgres, skip locked, deduplicación de pedidos, clave de idempotencia, pool de conexiones, statement_timeout, réplica de lectura, caché de resultado, expiración de caché, polling, retry-after, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Relatório pesado que derruba a API: mover a consulta para execução assíncrona com resultado em cache',
+        excerpt:
+          'Um relatório de vendas de 38 segundos ocupa 14 das 20 conexões do pool toda segunda-feira e faz login e emissão de pedido responderem 504. Por que a consulta síncrona sobrevive ao timeout do cliente e se multiplica a cada clique, como trocar o endpoint por um contrato 202 com id de job, deduplicar pedidos iguais pela chave dos parâmetros e do tenant, executar em um worker com fila no Postgres, SKIP LOCKED, réplica e limite por tenant, guardar o resultado com validade pelo período consultado e migrar quem consome o endpoint antigo sem quebrar ninguém.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The heavy report that takes down the API: moving the query to asynchronous execution with a cached result',
+        excerpt:
+          'A 38 second sales report holds 14 of the 20 pool connections every Monday and makes login and order creation return 504. Why the synchronous query outlives the client timeout and multiplies with every click, how to replace the endpoint with a 202 contract and a job id, deduplicate identical requests by a key built from parameters and tenant, run it in a worker with a Postgres queue, SKIP LOCKED, a replica and a per tenant limit, store the result with a validity based on the queried period and migrate consumers of the old endpoint without breaking anyone.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El reporte pesado que tumba la API: mover la consulta a ejecución asíncrona con resultado en caché',
+        excerpt:
+          'Un reporte de ventas de 38 segundos ocupa 14 de las 20 conexiones del pool todos los lunes y hace que el login y la emisión de pedidos respondan 504. Por qué la consulta síncrona sobrevive al timeout del cliente y se multiplica con cada clic, cómo reemplazar el endpoint por un contrato 202 con id de job, deduplicar pedidos iguales por una clave de parámetros y tenant, ejecutarlo en un worker con cola en Postgres, SKIP LOCKED, réplica y límite por tenant, guardar el resultado con una validez según el período consultado y migrar a quienes consumen el endpoint antiguo sin romper a nadie.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo',
     date: '2026-11-02',
     readTime: '15 min',
@@ -3816,16 +3846,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Relatório pesado que derruba a API: mover a consulta para execução assíncrona com resultado em cache',
     'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
+    'COUNT(*) que trava a listagem: mostrar o total de registros sem varrer a tabela inteira',
+    'Linha quente que serializa a aplicação: contador e saldo disputados por todas as transações',
+    'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
   ],
   en: [
-    'The heavy report that takes down the API: moving the query to asynchronous execution with a cached result',
     'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
+    'The COUNT(*) that stalls the listing: showing the total number of records without scanning the whole table',
+    'The hot row that serializes the application: counters and balances contended by every transaction',
+    'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
   ],
   es: [
-    'El reporte pesado que tumba la API: mover la consulta a ejecución asíncrona con resultado en caché',
     'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
+    'El COUNT(*) que traba el listado: mostrar el total de registros sin recorrer toda la tabla',
+    'La fila caliente que serializa la aplicación: contadores y saldos disputados por todas las transacciones',
+    'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
   ],
 };
 
