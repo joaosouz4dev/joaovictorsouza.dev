@@ -140,8 +140,11 @@ import tabelaParticionar from './tabela-que-cresceu-demais-particionar-por-data-
 import tabelaAuditoria from './tabela-de-auditoria-que-virou-a-maior-do-banco-guardar-historico-de-alteracoes-sem-pesar-na-escrita.js';
 import migracaoMonolitoStranglerFig from './migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo.js';
 import relatorioPesadoAssincrono from './relatorio-pesado-que-derruba-a-api-mover-a-consulta-para-execucao-assincrona-com-resultado-em-cache.js';
+import webhookForaDeOrdem from './webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao.js';
 
 const postContentBySlug = {
+  'webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao':
+    webhookForaDeOrdem,
   'relatorio-pesado-que-derruba-a-api-mover-a-consulta-para-execucao-assincrona-com-resultado-em-cache':
     relatorioPesadoAssincrono,
   'migracao-de-monolito-em-partes-extrair-um-modulo-para-servico-com-strangler-fig-sem-reescrever-tudo':

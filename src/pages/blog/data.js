@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao',
+    date: '2026-11-04',
+    readTime: '15 min',
+    keywords: {
+      pt: 'webhook fora de ordem, ordem de entrega de webhook, evento fora de ordem, cancelamento antes da criação, reconciliação de estado, reentrega de webhook, backoff, idempotência, caixa de entrada, inbox pattern, outbox transacional, versão do evento, máquina de estados, estado terminal, advisory lock, pg_advisory_xact_lock, reconciliação periódica, integração e-commerce, node.js, postgres',
+      en: 'out of order webhook, webhook delivery order, out of order events, cancellation before creation, state reconciliation, webhook redelivery, backoff, idempotency, inbox pattern, transactional outbox, event version, state machine, terminal state, advisory lock, pg_advisory_xact_lock, periodic reconciliation, e-commerce integration, node.js, postgres',
+      es: 'webhook fuera de orden, orden de entrega de webhooks, eventos fuera de orden, cancelación antes de la creación, reconciliación de estado, reentrega de webhook, backoff, idempotencia, bandeja de entrada, inbox pattern, outbox transaccional, versión del evento, máquina de estados, estado terminal, advisory lock, pg_advisory_xact_lock, reconciliación periódica, integración e-commerce, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
+        excerpt:
+          'Uma integração de e-commerce com 1,4 milhão de webhooks por mês despachou 37 pedidos cancelados em outubro sem nenhum erro no log: o cancelamento chegou antes da criação e do pagamento. Por que a ordem de entrega não é garantida e como medir isso, por que tratar evento como comando perde o cancelamento, como trocar por fatos versionados, gravar antes de aplicar com advisory lock por pedido, disparar efeitos pela transição de estado via outbox e fechar as lacunas com reconciliação periódica na fonte.',
+        category: 'Integrações',
+      },
+      en: {
+        title: 'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
+        excerpt:
+          'An e-commerce integration handling 1.4 million webhooks a month shipped 37 canceled orders in October without a single error in the log: the cancellation arrived before the creation and the payment. Why delivery order is not guaranteed and how to measure it, why treating events as commands loses the cancellation, how to switch to versioned facts, store before applying with a per order advisory lock, trigger side effects from state transitions through an outbox and close the gaps with periodic reconciliation against the source.',
+        category: 'Integrations',
+      },
+      es: {
+        title: 'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
+        excerpt:
+          'Una integración de e-commerce con 1,4 millones de webhooks al mes despachó 37 pedidos cancelados en octubre sin ningún error en el log: la cancelación llegó antes que la creación y el pago. Por qué el orden de entrega no está garantizado y cómo medirlo, por qué tratar eventos como comandos pierde la cancelación, cómo pasar a hechos versionados, guardar antes de aplicar con advisory lock por pedido, disparar efectos desde la transición de estado mediante outbox y cerrar las brechas con reconciliación periódica contra la fuente.',
+        category: 'Integraciones',
+      },
+    },
+  },
+  {
     slug: 'relatorio-pesado-que-derruba-a-api-mover-a-consulta-para-execucao-assincrona-com-resultado-em-cache',
     date: '2026-11-03',
     readTime: '15 min',
@@ -3846,19 +3876,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Webhook recebido fora de ordem: reconciliar o estado quando o evento de cancelamento chega antes do de criação',
     'COUNT(*) que trava a listagem: mostrar o total de registros sem varrer a tabela inteira',
     'Linha quente que serializa a aplicação: contador e saldo disputados por todas as transações',
     'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
   ],
   en: [
-    'Webhooks received out of order: reconciling state when the cancellation event arrives before the creation one',
     'The COUNT(*) that stalls the listing: showing the total number of records without scanning the whole table',
     'The hot row that serializes the application: counters and balances contended by every transaction',
     'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
   ],
   es: [
-    'Webhooks recibidos fuera de orden: reconciliar el estado cuando el evento de cancelación llega antes que el de creación',
     'El COUNT(*) que traba el listado: mostrar el total de registros sin recorrer toda la tabla',
     'La fila caliente que serializa la aplicación: contadores y saldos disputados por todas las transacciones',
     'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
