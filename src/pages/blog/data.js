@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira',
+    date: '2026-11-05',
+    readTime: '14 min',
+    keywords: {
+      pt: 'count lento, count(*) postgres, total de registros, contagem de linhas, listagem lenta, paginação, contagem com teto, contagem estimada, reltuples, explain, plan rows, estatísticas estendidas, create statistics, index-only scan, visibility map, mvcc, contador por delta, trigger, skip locked, linha quente, node.js, postgres',
+      en: 'slow count, postgres count(*), total records, row count, slow listing, pagination, capped count, estimated count, reltuples, explain, plan rows, extended statistics, create statistics, index-only scan, visibility map, mvcc, delta counter, trigger, skip locked, hot row, node.js, postgres',
+      es: 'count lento, count(*) postgres, total de registros, conteo de filas, listado lento, paginación, conteo con tope, conteo estimado, reltuples, explain, plan rows, estadísticas extendidas, create statistics, index-only scan, visibility map, mvcc, contador por delta, trigger, skip locked, fila caliente, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'COUNT(*) que trava a listagem: mostrar o total de registros sem varrer a tabela inteira',
+        excerpt:
+          'A tela de pedidos de um marketplace traz 50 linhas em 9 ms e leva 4,2 segundos para dizer que são 12.384.917, recalculando o total a cada filtro e consumindo 41% do tempo do banco. Por que o COUNT(*) do Postgres precisa visitar cada linha visível, como medir o peso das contagens, decidir com o produto qual total a tela precisa e trocar a varredura por contagem com teto, navegação sem total, estimativa do planejador e contador mantido por deltas.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The COUNT(*) that stalls the listing: showing the total number of records without scanning the whole table',
+        excerpt:
+          'A marketplace orders screen fetches 50 rows in 9 ms and takes 4.2 seconds to say there are 12,384,917, recomputing the total on every filter and eating 41% of the database time. Why Postgres COUNT(*) has to visit every visible row, how to measure the weight of counts, decide with the product team which total the screen needs and replace the scan with capped counts, navigation without a total, planner estimates and a counter maintained through deltas.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El COUNT(*) que traba el listado: mostrar el total de registros sin recorrer toda la tabla',
+        excerpt:
+          'La pantalla de pedidos de un marketplace trae 50 filas en 9 ms y tarda 4,2 segundos en decir que son 12.384.917, recalculando el total en cada filtro y consumiendo el 41% del tiempo de la base. Por qué el COUNT(*) de Postgres tiene que visitar cada fila visible, cómo medir el peso de los conteos, decidir con producto qué total necesita la pantalla y reemplazar el recorrido por conteo con tope, navegación sin total, estimación del planificador y contador mantenido por deltas.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao',
     date: '2026-11-04',
     readTime: '15 min',
@@ -3876,17 +3906,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'COUNT(*) que trava a listagem: mostrar o total de registros sem varrer a tabela inteira',
     'Linha quente que serializa a aplicação: contador e saldo disputados por todas as transações',
     'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
   ],
   en: [
-    'The COUNT(*) that stalls the listing: showing the total number of records without scanning the whole table',
     'The hot row that serializes the application: counters and balances contended by every transaction',
     'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
   ],
   es: [
-    'El COUNT(*) que traba el listado: mostrar el total de registros sin recorrer toda la tabla',
     'La fila caliente que serializa la aplicación: contadores y saldos disputados por todas las transacciones',
     'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
   ],
