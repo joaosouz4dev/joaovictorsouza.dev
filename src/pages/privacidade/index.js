@@ -8,10 +8,25 @@ import Section from '../../components/ui/Section';
 import Container from '../../components/ui/Container';
 import { RevealOnScroll } from '../../components/ui/RevealOnScroll';
 
+const CONTACT_EMAIL = 'web@joaovictorsouza.dev';
+
+// O segmento opcional da URL nomeia o app (/politica-de-privacidade/Nubi).
+// A politica e a mesma para todos os apps; o nome so personaliza o texto.
+const appNameFrom = (param) => {
+  if (!param) return '';
+  try {
+    return decodeURIComponent(param).replace(/[-_]+/g, ' ').trim();
+  } catch {
+    return param;
+  }
+};
+
 const Privacidade = () => {
   const { title } = useParams();
   const { t } = useTranslation();
-  const displayTitle = title ? ` · ${title}` : '';
+  const appName = appNameFrom(title);
+  const displayTitle = appName ? ` · ${appName}` : '';
+  const list = (key) => t(key, { returnObjects: true });
 
   return (
     <SiteLayout>
@@ -33,22 +48,40 @@ const Privacidade = () => {
           <RevealOnScroll>
             <article className="prose prose-invert max-w-none">
               <p>
-                {t('privacy.p1Start')} <strong>{title || t('privacy.serviceFallback')}</strong>{' '}
-                {t('privacy.p1End')}
+                {t('privacy.updatedLabel')} <strong>{t('privacy.updatedDate')}</strong>
               </p>
-              <p>{t('privacy.p2')}</p>
-              <p>{t('privacy.p3')}</p>
-              <p>{t('privacy.p4')}</p>
-              <p>{t('privacy.p5')}</p>
+              <p>{t('privacy.intro', { app: appName || t('privacy.appFallback') })}</p>
 
-              <h2>{t('privacy.locationTitle')}</h2>
-              <p>{t('privacy.locationText')}</p>
+              <h2>{t('privacy.collectTitle')}</h2>
+              <p>{t('privacy.collectText')}</p>
 
-              <h2>{t('privacy.moreTitle')}</h2>
-              <p>{t('privacy.moreText')}</p>
+              <h2>{t('privacy.deviceTitle')}</h2>
+              <p>{t('privacy.deviceText')}</p>
+              <ul>
+                {list('privacy.deviceItems').map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
 
+              <h2>{t('privacy.networkTitle')}</h2>
+              <ul>
+                {list('privacy.networkItems').map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>{t('privacy.permissionsTitle')}</h2>
+              <p>{t('privacy.permissionsText')}</p>
+
+              <h2>{t('privacy.childrenTitle')}</h2>
+              <p>{t('privacy.childrenText')}</p>
+
+              <h2>{t('privacy.changesTitle')}</h2>
+              <p>{t('privacy.changesText')}</p>
+
+              <h2>{t('privacy.contactTitle')}</h2>
               <p>
-                {t('privacy.effective')} <strong>{t('privacy.effectiveDate')}</strong>.
+                {t('privacy.contactText')} <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
               </p>
             </article>
           </RevealOnScroll>

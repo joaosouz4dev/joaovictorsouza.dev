@@ -373,25 +373,46 @@ const en = {
   },
   privacy: {
     seoTitle: 'Privacy Policy',
-    seoDescription: 'Privacy policy.',
+    seoDescription:
+      'Privacy policy for the apps and games by João Victor Souza: no personal data is collected, sent or shared.',
     eyebrow: 'Privacy',
     title: 'Privacy Policy',
-    description: 'How we handle your personal and location data.',
-    serviceFallback: 'service',
-    p1Start: 'Your privacy is important to us. It is the policy of',
-    p1End: 'to respect your privacy regarding any information we may collect in the application.',
-    p2: 'We only request personal information when we truly need it to provide you with a service. We do so by fair and lawful means, with your knowledge and consent. We also let you know why we are collecting it and how it will be used.',
-    p3: 'We only retain collected information for as long as necessary to provide the requested service.',
-    p4: 'We do not share personally identifying information publicly or with third parties, except when required by law.',
-    p5: 'You are free to refuse our request for personal information, understanding that we may not be able to provide some of the desired services.',
-    locationTitle: 'Location',
-    locationText:
-      'We collect your location to fill in our system the address where you are, in order to speed up the use of our service.',
-    moreTitle: 'More information',
-    moreText:
-      'Your location is only used when the application screen is opened. We do not store this data on our servers.',
-    effective: 'This policy is effective as of',
-    effectiveDate: 'May/2021',
+    description: 'What the apps collect (nothing) and what stays only on your device.',
+    appFallback: 'this app',
+    updatedLabel: 'Last updated:',
+    updatedDate: 'November 6, 2026',
+    intro:
+      'This policy applies to {{app}}, published by João Victor Souza. The app was built to work without collecting any information from the people who use it.',
+    collectTitle: 'What the app collects',
+    collectText:
+      'Nothing. The app does not collect, send or share personal data or usage data. It does not ask for a name, age, email, photo, location or any other information.',
+    deviceTitle: 'What is stored on the device',
+    deviceText:
+      'So you can pick up where you left off, the app may store progress and preferences on the device itself (for example, progress, achievements and sound settings). This information:',
+    deviceItems: [
+      'never leaves the device;',
+      'is not linked to any person or account;',
+      'is deleted when the app is uninstalled or when the app data is cleared in the device settings.',
+    ],
+    networkTitle: 'Internet, ads and purchases',
+    networkItems: [
+      'The app works offline and does not connect to any server.',
+      'It has no ads.',
+      'It has no in-app purchases.',
+      'It has no chat, social networks or links outside the app.',
+      'It does not use third-party analytics, tracking or advertising tools.',
+    ],
+    permissionsTitle: 'Permissions',
+    permissionsText:
+      'The app does not request any special device permission (camera, microphone, location, contacts or files).',
+    childrenTitle: 'Children',
+    childrenText:
+      'Since no data is collected, the app can be used by children without any of their information being processed. When there is a settings area for parents, it is protected by a short adult challenge so a child does not change anything by accident.',
+    changesTitle: 'Changes to this policy',
+    changesText:
+      'If this policy changes, the new version will be published at this same address with the updated date.',
+    contactTitle: 'Contact',
+    contactText: 'Questions about this policy can be sent to',
   },
   portfolioCards: {
     sendeasy: {

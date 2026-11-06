@@ -374,25 +374,46 @@ const pt = {
   },
   privacy: {
     seoTitle: 'Política de Privacidade',
-    seoDescription: 'Política de privacidade.',
+    seoDescription:
+      'Política de privacidade dos apps e jogos de João Victor Souza: nenhum dado pessoal é coletado, enviado ou compartilhado.',
     eyebrow: 'Privacidade',
     title: 'Política de Privacidade',
-    description: 'Como tratamos seus dados pessoais e de localização.',
-    serviceFallback: 'serviço',
-    p1Start: 'A sua privacidade é importante para nós. É política do',
-    p1End: 'respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no aplicativo.',
-    p2: 'Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.',
-    p3: 'Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado.',
-    p4: 'Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.',
-    p5: 'Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.',
-    locationTitle: 'Localização',
-    locationText:
-      'Pegamos sua localização para preencher em nosso sistema o endereço no qual você se encontra. Com o intuito de agilizar a utilização do nosso serviço.',
-    moreTitle: 'Mais informações',
-    moreText:
-      'Sua localização é usada somente quando se abre a tela do aplicativo. Não armazenamos esses dados em nossos servidores.',
-    effective: 'Esta política é efetiva a partir de',
-    effectiveDate: 'Maio/2021',
+    description: 'O que os apps coletam (nada) e o que fica guardado só no seu aparelho.',
+    appFallback: 'este app',
+    updatedLabel: 'Última atualização:',
+    updatedDate: '6 de novembro de 2026',
+    intro:
+      'Esta política vale para {{app}}, publicado por João Victor Souza. O app foi feito para funcionar sem coletar nenhuma informação de quem usa.',
+    collectTitle: 'O que o app coleta',
+    collectText:
+      'Nada. O app não coleta, não envia e não compartilha dados pessoais nem dados de uso. Ele não pede nome, idade, e-mail, foto, localização ou qualquer outra informação.',
+    deviceTitle: 'O que fica guardado no aparelho',
+    deviceText:
+      'Para você continuar de onde parou, o app pode guardar no próprio aparelho o andamento e as preferências (por exemplo, progresso, conquistas e ajustes de som). Essas informações:',
+    deviceItems: [
+      'nunca saem do aparelho;',
+      'não ficam ligadas a nenhuma pessoa ou conta;',
+      'são apagadas quando o app é desinstalado ou quando os dados do app são limpos nas configurações do aparelho.',
+    ],
+    networkTitle: 'Internet, anúncios e compras',
+    networkItems: [
+      'O app funciona sem internet e não se conecta a servidores.',
+      'Não tem anúncios.',
+      'Não tem compras dentro do app.',
+      'Não tem chat, redes sociais nem links para fora do app.',
+      'Não usa ferramentas de análise, de rastreamento ou de publicidade de terceiros.',
+    ],
+    permissionsTitle: 'Permissões',
+    permissionsText:
+      'O app não pede nenhuma permissão especial do aparelho (câmera, microfone, localização, contatos ou arquivos).',
+    childrenTitle: 'Crianças',
+    childrenText:
+      'Como nenhum dado é coletado, o app pode ser usado por crianças sem que informação alguma delas seja tratada. Quando houver uma área de ajustes para responsáveis, ela fica protegida por um pequeno desafio para adultos, para que a criança não mude nada sem querer.',
+    changesTitle: 'Mudanças nesta política',
+    changesText:
+      'Se esta política mudar, a nova versão será publicada neste mesmo endereço, com a data atualizada.',
+    contactTitle: 'Contato',
+    contactText: 'Dúvidas sobre esta política podem ser enviadas para',
   },
   portfolioCards: {
     sendeasy: {
