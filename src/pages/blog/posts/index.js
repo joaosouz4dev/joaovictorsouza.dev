@@ -142,8 +142,11 @@ import migracaoMonolitoStranglerFig from './migracao-de-monolito-em-partes-extra
 import relatorioPesadoAssincrono from './relatorio-pesado-que-derruba-a-api-mover-a-consulta-para-execucao-assincrona-com-resultado-em-cache.js';
 import webhookForaDeOrdem from './webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao.js';
 import countTravaListagem from './count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira.js';
+import linhaQuenteSerializa from './linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes.js';
 
 const postContentBySlug = {
+  'linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes':
+    linhaQuenteSerializa,
   'count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira':
     countTravaListagem,
   'webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao':
