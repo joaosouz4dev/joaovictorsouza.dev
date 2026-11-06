@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes',
+    date: '2026-11-06',
+    readTime: '15 min',
+    keywords: {
+      pt: 'linha quente, hot row, contenção de lock, disputa de lock, update concorrente, saldo disputado, contador concorrente, fila de lock, pg_stat_activity, pg_blocking_pids, log_lock_waits, pg_stat_statements, contador fatiado, livro-razão, ledger, consolidação de saldo, skip locked, read committed, vazão do checkout, node.js, postgres',
+      en: 'hot row, lock contention, row lock, concurrent update, contended balance, concurrent counter, lock queue, pg_stat_activity, pg_blocking_pids, log_lock_waits, pg_stat_statements, sliced counter, ledger, balance consolidation, skip locked, read committed, checkout throughput, node.js, postgres',
+      es: 'fila caliente, hot row, contención de locks, disputa de locks, update concurrente, saldo disputado, contador concurrente, cola de locks, pg_stat_activity, pg_blocking_pids, log_lock_waits, pg_stat_statements, contador por porciones, libro mayor, ledger, consolidación de saldo, skip locked, read committed, rendimiento del checkout, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Linha quente que serializa a aplicação: contador e saldo disputados por todas as transações',
+        excerpt:
+          'O checkout de um marketplace travou em 380 pedidos por segundo na Black Friday com a CPU do banco em 34%: toda venda atualizava a mesma conta da plataforma e o mesmo contador do dia. Por que uma linha quente limita a vazão ao inverso do tempo de lock, como provar a disputa com pg_stat_activity, pg_stat_statements e log_lock_waits, encurtar a posse do lock, dividir contadores em fatias e trocar o saldo disputado por livro-razão com consolidação.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The hot row that serializes the application: counters and balances contended by every transaction',
+        excerpt:
+          'A marketplace checkout stalled at 380 orders per second on Black Friday with database CPU at 34%: every sale updated the same platform account and the same daily counter. Why a hot row caps throughput at the inverse of lock time, how to prove the contention with pg_stat_activity, pg_stat_statements and log_lock_waits, shorten how long the lock is held, split counters into slices and replace the contended balance with a ledger and consolidation.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La fila caliente que serializa la aplicación: contadores y saldos disputados por todas las transacciones',
+        excerpt:
+          'El checkout de un marketplace se estancó en 380 pedidos por segundo en Black Friday con la CPU de la base en 34%: cada venta actualizaba la misma cuenta de la plataforma y el mismo contador del día. Por qué una fila caliente limita el rendimiento al inverso del tiempo de lock, cómo probar la disputa con pg_stat_activity, pg_stat_statements y log_lock_waits, acortar la tenencia del lock, dividir contadores en porciones y reemplazar el saldo disputado por un libro mayor con consolidación.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira',
     date: '2026-11-05',
     readTime: '14 min',
@@ -3906,16 +3936,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Linha quente que serializa a aplicação: contador e saldo disputados por todas as transações',
     'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
+    'Transação longa que ninguém fecha: idle in transaction que segura vacuum, lock e conexão',
+    'ALTER TABLE que para a produção: a fila de locks atrás de uma migração inocente',
+    'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
   ],
   en: [
-    'The hot row that serializes the application: counters and balances contended by every transaction',
     'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
+    'The long transaction nobody closes: idle in transaction holding back vacuum, locks and connections',
+    'The ALTER TABLE that halts production: the lock queue behind an innocent migration',
+    'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
   ],
   es: [
-    'La fila caliente que serializa la aplicación: contadores y saldos disputados por todas las transacciones',
     'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
+    'La transacción larga que nadie cierra: idle in transaction que retiene vacuum, locks y conexiones',
+    'El ALTER TABLE que detiene producción: la cola de locks detrás de una migración inocente',
+    'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
   ],
 };
 
