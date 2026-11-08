@@ -143,8 +143,11 @@ import relatorioPesadoAssincrono from './relatorio-pesado-que-derruba-a-api-move
 import webhookForaDeOrdem from './webhook-recebido-fora-de-ordem-reconciliar-o-estado-quando-o-evento-de-cancelamento-chega-antes-do-de-criacao.js';
 import countTravaListagem from './count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira.js';
 import linhaQuenteSerializa from './linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes.js';
+import indiceQueNinguemUsa from './indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara.js';
 
 const postContentBySlug = {
+  'indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara':
+    indiceQueNinguemUsa,
   'linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes':
     linhaQuenteSerializa,
   'count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira':
