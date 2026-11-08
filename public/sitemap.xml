@@ -1541,6 +1541,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao" />
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara" />

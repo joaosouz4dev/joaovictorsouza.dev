@@ -144,8 +144,11 @@ import webhookForaDeOrdem from './webhook-recebido-fora-de-ordem-reconciliar-o-e
 import countTravaListagem from './count-que-trava-a-listagem-mostrar-o-total-de-registros-sem-varrer-a-tabela-inteira.js';
 import linhaQuenteSerializa from './linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes.js';
 import indiceQueNinguemUsa from './indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara.js';
+import transacaoLongaQueNinguemFecha from './transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao.js';
 
 const postContentBySlug = {
+  'transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao':
+    transacaoLongaQueNinguemFecha,
   'indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara':
     indiceQueNinguemUsa,
   'linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes':

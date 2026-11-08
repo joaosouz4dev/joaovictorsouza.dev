@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao',
+    date: '2026-11-08',
+    readTime: '15 min',
+    keywords: {
+      pt: 'transação longa, idle in transaction, transação aberta, pg_stat_activity, xact_start, backend_xmin, horizonte de xmin, vacuum impedido, tuplas mortas, bloat, fila de locks, access share, access exclusive, pg_locks, pg_blocking_pids, pg_terminate_backend, idle_in_transaction_session_timeout, statement_timeout, lock_timeout, transaction_timeout, application_name, pool de conexões, node-postgres, outbox, node.js, postgres',
+      en: 'long transaction, idle in transaction, open transaction, pg_stat_activity, xact_start, backend_xmin, xmin horizon, blocked vacuum, dead tuples, bloat, lock queue, access share, access exclusive, pg_locks, pg_blocking_pids, pg_terminate_backend, idle_in_transaction_session_timeout, statement_timeout, lock_timeout, transaction_timeout, application_name, connection pool, node-postgres, outbox, node.js, postgres',
+      es: 'transacción larga, idle in transaction, transacción abierta, pg_stat_activity, xact_start, backend_xmin, horizonte de xmin, vacuum impedido, tuplas muertas, bloat, cola de locks, access share, access exclusive, pg_locks, pg_blocking_pids, pg_terminate_backend, idle_in_transaction_session_timeout, statement_timeout, lock_timeout, transaction_timeout, application_name, pool de conexiones, node-postgres, outbox, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Transação longa que ninguém fecha: idle in transaction que segura vacuum, lock e conexão',
+        excerpt:
+          'Um SaaS de logística teve três incidentes no mesmo mês que pareciam sem relação: API travando por minutos, migração de 2 segundos presa por 35 minutos e tabela de pedidos crescendo 3 GB por semana sem ganhar linhas. A causa era uma transação aberta por um worker que chamava o ERP com um lock na mão. O que uma transação parada segura mesmo sem executar nada, como encontrar a sessão e o que ela trava com pg_stat_activity e pg_locks, de onde essas transações nascem no código Node.js, como garantir o fim pelo código com helper e efeito pendente e pelo servidor com limites por papel, e qual alerta chega antes de a API travar.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The long transaction nobody closes: idle in transaction holding back vacuum, locks and connections',
+        excerpt:
+          'A logistics SaaS had three incidents in the same month that looked unrelated: the API freezing for minutes, a 2 second migration stuck for 35 minutes and the orders table growing 3 GB a week without gaining rows. The cause was a transaction left open by a worker that called the ERP while holding a lock. What an idle transaction holds even while doing nothing, how to find the session and what it blocks with pg_stat_activity and pg_locks, where these transactions are born in Node.js code, how to guarantee the end from the code with a helper and pending effects and from the server with per role limits, and which alert arrives before the API freezes.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La transacción larga que nadie cierra: idle in transaction que retiene vacuum, locks y conexiones',
+        excerpt:
+          'Un SaaS de logística tuvo tres incidentes en el mismo mes que parecían sin relación: la API congelada por minutos, una migración de 2 segundos atascada 35 minutos y la tabla de pedidos creciendo 3 GB por semana sin ganar filas. La causa era una transacción abierta por un worker que llamaba al ERP con un lock en la mano. Qué retiene una transacción detenida aunque no ejecute nada, cómo encontrar la sesión y qué bloquea con pg_stat_activity y pg_locks, de dónde nacen esas transacciones en el código Node.js, cómo garantizar el final desde el código con un helper y efectos pendientes y desde el servidor con límites por rol, y qué alerta llega antes de que la API se congele.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara',
     date: '2026-11-08',
     readTime: '14 min',
@@ -3966,17 +3996,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Transação longa que ninguém fecha: idle in transaction que segura vacuum, lock e conexão',
     'ALTER TABLE que para a produção: a fila de locks atrás de uma migração inocente',
     'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
   ],
   en: [
-    'The long transaction nobody closes: idle in transaction holding back vacuum, locks and connections',
     'The ALTER TABLE that halts production: the lock queue behind an innocent migration',
     'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
   ],
   es: [
-    'La transacción larga que nadie cierra: idle in transaction que retiene vacuum, locks y conexiones',
     'El ALTER TABLE que detiene producción: la cola de locks detrás de una migración inocente',
     'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
   ],
