@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara',
+    date: '2026-11-08',
+    readTime: '14 min',
+    keywords: {
+      pt: 'índice sem uso, remover índice, índice não utilizado, custo de escrita, pg_stat_user_indexes, idx_scan, last_idx_scan, stats_reset, índice redundante, índice duplicado, update hot, wal, autovacuum, réplica de leitura, hypopg, hypopg_hide_index, drop index concurrently, create index concurrently, pg_get_indexdef, lock_timeout, consulta rara, node.js, postgres',
+      en: 'unused index, drop index, unused postgres index, write cost, pg_stat_user_indexes, idx_scan, last_idx_scan, stats_reset, redundant index, duplicate index, hot update, wal, autovacuum, read replica, hypopg, hypopg_hide_index, drop index concurrently, create index concurrently, pg_get_indexdef, lock_timeout, rare query, node.js, postgres',
+      es: 'índice sin uso, eliminar índice, índice no utilizado, costo de escritura, pg_stat_user_indexes, idx_scan, last_idx_scan, stats_reset, índice redundante, índice duplicado, update hot, wal, autovacuum, réplica de lectura, hypopg, hypopg_hide_index, drop index concurrently, create index concurrently, pg_get_indexdef, lock_timeout, consulta poco frecuente, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
+        excerpt:
+          'A tabela de pedidos de um ERP tinha 22 índices somando 91 GB, p99 do INSERT em 19 ms e 2,3 TB de WAL por dia, e ninguém mexia nos índices desde que uma remoção baseada em idx_scan = 0 quebrou o fechamento fiscal na réplica. Quanto cada índice custa em toda escrita e no HOT, por que o contador do primário engana, como medir o uso em todos os nós durante um ciclo inteiro, achar redundantes por prefixo e remover com hypopg, DROP INDEX CONCURRENTLY e volta ensaiada.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
+        excerpt:
+          'The orders table of an ERP had 22 indexes adding up to 91 GB, an INSERT p99 of 19 ms and 2.3 TB of WAL per day, and nobody had touched the indexes since a removal based on idx_scan = 0 broke the tax closing on the replica. How much each index costs every write and HOT, why the primary counter is misleading, how to measure usage on every node over a full cycle, find redundant indexes by prefix and drop them with hypopg, DROP INDEX CONCURRENTLY and a rehearsed way back.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
+        excerpt:
+          'La tabla de pedidos de un ERP tenía 22 índices que sumaban 91 GB, un p99 del INSERT de 19 ms y 2,3 TB de WAL por día, y nadie tocaba los índices desde que una eliminación basada en idx_scan = 0 rompió el cierre fiscal en la réplica. Cuánto cuesta cada índice en cada escritura y en el HOT, por qué el contador del primario engaña, cómo medir el uso en todos los nodos durante un ciclo completo, encontrar redundantes por prefijo y eliminarlos con hypopg, DROP INDEX CONCURRENTLY y una vuelta ensayada.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes',
     date: '2026-11-06',
     readTime: '15 min',
@@ -3936,19 +3966,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Índice que ninguém usa e toda escrita paga: encontrar e remover índices sem arriscar a consulta rara',
     'Transação longa que ninguém fecha: idle in transaction que segura vacuum, lock e conexão',
     'ALTER TABLE que para a produção: a fila de locks atrás de uma migração inocente',
     'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
   ],
   en: [
-    'The index nobody uses and every write pays for: finding and dropping indexes without risking the rare query',
     'The long transaction nobody closes: idle in transaction holding back vacuum, locks and connections',
     'The ALTER TABLE that halts production: the lock queue behind an innocent migration',
     'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
   ],
   es: [
-    'El índice que nadie usa y toda escritura paga: encontrar y eliminar índices sin arriesgar la consulta poco frecuente',
     'La transacción larga que nadie cierra: idle in transaction que retiene vacuum, locks y conexiones',
     'El ALTER TABLE que detiene producción: la cola de locks detrás de una migración inocente',
     'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
