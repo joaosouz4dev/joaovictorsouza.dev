@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente',
+    date: '2026-11-09',
+    readTime: '13 min',
+    keywords: {
+      pt: 'alter table, migração sem downtime, fila de locks, access exclusive, access share, lock_timeout, statement_timeout, 55P03, pg_blocking_pids, pg_locks, pg_stat_activity, not valid, validate constraint, create index concurrently, set not null, backfill em lotes, migração segura, deploy, node.js, postgres',
+      en: 'alter table, zero downtime migration, lock queue, access exclusive, access share, lock_timeout, statement_timeout, 55P03, pg_blocking_pids, pg_locks, pg_stat_activity, not valid, validate constraint, create index concurrently, set not null, batch backfill, safe migration, deploy, node.js, postgres',
+      es: 'alter table, migración sin downtime, cola de locks, access exclusive, access share, lock_timeout, statement_timeout, 55P03, pg_blocking_pids, pg_locks, pg_stat_activity, not valid, validate constraint, create index concurrently, set not null, relleno en lotes, migración segura, deploy, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'ALTER TABLE que para a produção: a fila de locks atrás de uma migração inocente',
+        excerpt:
+          'Uma migração de 40 ms em testes deixou a API 5 minutos e 40 segundos sem responder, com o health check em 200. Como a fila de locks do Postgres transforma um ACCESS EXCLUSIVE em espera para todo mundo, como enxergar a fila com pg_stat_activity e pg_locks, como fazer a migração desistir rápido e tentar de novo com lock_timeout e backoff, e os padrões de DDL (NOT VALID, CONCURRENTLY, backfill em lotes) que evitam o lock longo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The ALTER TABLE that halts production: the lock queue behind an innocent migration',
+        excerpt:
+          'A migration that took 40 ms in testing left the API unresponsive for 5 minutes and 40 seconds, with the health check answering 200. How the Postgres lock queue turns one ACCESS EXCLUSIVE into a wait for everyone, how to see the queue with pg_stat_activity and pg_locks, how to make the migration give up fast and retry with lock_timeout and backoff, and the DDL patterns (NOT VALID, CONCURRENTLY, batch backfill) that avoid the long lock.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El ALTER TABLE que detiene producción: la cola de locks detrás de una migración inocente',
+        excerpt:
+          'Una migración que tardó 40 ms en pruebas dejó la API 5 minutos y 40 segundos sin responder, con el health check en 200. Cómo la cola de locks de Postgres convierte un ACCESS EXCLUSIVE en espera para todos, cómo ver la cola con pg_stat_activity y pg_locks, cómo hacer que la migración desista rápido y reintente con lock_timeout y backoff, y los patrones de DDL (NOT VALID, CONCURRENTLY, relleno en lotes) que evitan el lock largo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao',
     date: '2026-11-08',
     readTime: '15 min',
@@ -3996,16 +4026,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'ALTER TABLE que para a produção: a fila de locks atrás de uma migração inocente',
     'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
+    'Slot de replicação esquecido que enche o disco: WAL retido por um consumidor que morreu',
+    'Sequência que dá saltos e colide: nextval, rollback e IDs que não são contínuos',
+    'Tabela temporária e consulta pesada que estouram o disco: work_mem, spill e temp_file_limit',
   ],
   en: [
-    'The ALTER TABLE that halts production: the lock queue behind an innocent migration',
     'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
+    'The forgotten replication slot that fills the disk: WAL retained by a consumer that died',
+    'The sequence that jumps and collides: nextval, rollback and IDs that are not contiguous',
+    'The heavy query that overflows the disk: work_mem, spill and temp_file_limit',
   ],
   es: [
-    'El ALTER TABLE que detiene producción: la cola de locks detrás de una migración inocente',
     'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
+    'El slot de replicación olvidado que llena el disco: WAL retenido por un consumidor que murió',
+    'La secuencia que da saltos y colisiona: nextval, rollback e IDs que no son contiguos',
+    'La consulta pesada que desborda el disco: work_mem, spill y temp_file_limit',
   ],
 };
 
