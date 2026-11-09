@@ -145,8 +145,11 @@ import countTravaListagem from './count-que-trava-a-listagem-mostrar-o-total-de-
 import linhaQuenteSerializa from './linha-quente-que-serializa-a-aplicacao-contador-e-saldo-disputados-por-todas-as-transacoes.js';
 import indiceQueNinguemUsa from './indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara.js';
 import transacaoLongaQueNinguemFecha from './transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao.js';
+import alterTableQueParaProducao from './alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente.js';
 
 const postContentBySlug = {
+  'alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente':
+    alterTableQueParaProducao,
   'transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao':
     transacaoLongaQueNinguemFecha,
   'indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara':
