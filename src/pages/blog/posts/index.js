@@ -146,8 +146,11 @@ import linhaQuenteSerializa from './linha-quente-que-serializa-a-aplicacao-conta
 import indiceQueNinguemUsa from './indice-que-ninguem-usa-e-toda-escrita-paga-encontrar-e-remover-indices-sem-arriscar-a-consulta-rara.js';
 import transacaoLongaQueNinguemFecha from './transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao.js';
 import alterTableQueParaProducao from './alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente.js';
+import consultaReplicaQueCancela from './consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback.js';
 
 const postContentBySlug = {
+  'consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback':
+    consultaReplicaQueCancela,
   'alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente':
     alterTableQueParaProducao,
   'transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao':
