@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback',
+    date: '2026-11-10',
+    readTime: '14 min',
+    keywords: {
+      pt: 'conflito de recuperação, canceling statement due to conflict with recovery, hot standby, hot_standby_feedback, max_standby_streaming_delay, max_standby_archive_delay, réplica de leitura, réplica de relatório, replay do wal, pg_stat_database_conflicts, confl_snapshot, confl_lock, vacuum_truncate, log_recovery_conflict_waits, pg_stat_replication, backend_xmin, slot de replicação, bloat, 40001, repeatable read, statement_timeout, node.js, postgres',
+      en: 'recovery conflict, canceling statement due to conflict with recovery, hot standby, hot_standby_feedback, max_standby_streaming_delay, max_standby_archive_delay, read replica, reporting replica, wal replay, pg_stat_database_conflicts, confl_snapshot, confl_lock, vacuum_truncate, log_recovery_conflict_waits, pg_stat_replication, backend_xmin, replication slot, bloat, 40001, repeatable read, statement_timeout, node.js, postgres',
+      es: 'conflicto de recuperación, canceling statement due to conflict with recovery, hot standby, hot_standby_feedback, max_standby_streaming_delay, max_standby_archive_delay, réplica de lectura, réplica de reportes, replay del wal, pg_stat_database_conflicts, confl_snapshot, confl_lock, vacuum_truncate, log_recovery_conflict_waits, pg_stat_replication, backend_xmin, slot de replicación, bloat, 40001, repeatable read, statement_timeout, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
+        excerpt:
+          'Um relatório de fechamento de 11 minutos, movido para a réplica de leitura, passou a falhar em 7 de cada 10 execuções com "canceling statement due to conflict with recovery". Por que o replay do WAL cancela consultas longas no hot standby, como medir o tipo de conflito com pg_stat_database_conflicts, o que hot_standby_feedback e max_standby_streaming_delay trocam de lugar (bloat na primária ou atraso na réplica), como separar a réplica de relatório da réplica da aplicação e como o código Node.js trata o 40001 com snapshot único e retentativa.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
+        excerpt:
+          'An 11 minute closing report, moved to the read replica, started failing in 7 out of 10 runs with "canceling statement due to conflict with recovery". Why WAL replay cancels long queries on a hot standby, how to measure the conflict type with pg_stat_database_conflicts, what hot_standby_feedback and max_standby_streaming_delay trade (bloat on the primary or lag on the replica), how to separate the reporting replica from the application replica and how Node.js code handles 40001 with a single snapshot and retry.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
+        excerpt:
+          'Un reporte de cierre de 11 minutos, movido a la réplica de lectura, empezó a fallar en 7 de cada 10 ejecuciones con "canceling statement due to conflict with recovery". Por qué el replay del WAL cancela consultas largas en el hot standby, cómo medir el tipo de conflicto con pg_stat_database_conflicts, qué intercambian hot_standby_feedback y max_standby_streaming_delay (bloat en la primaria o atraso en la réplica), cómo separar la réplica de reportes de la réplica de la aplicación y cómo el código Node.js trata el 40001 con snapshot único y reintento.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente',
     date: '2026-11-09',
     readTime: '13 min',
@@ -4026,19 +4056,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Consulta de relatório na réplica que cancela sozinha: conflito de recuperação e hot_standby_feedback',
     'Slot de replicação esquecido que enche o disco: WAL retido por um consumidor que morreu',
     'Sequência que dá saltos e colide: nextval, rollback e IDs que não são contínuos',
     'Tabela temporária e consulta pesada que estouram o disco: work_mem, spill e temp_file_limit',
   ],
   en: [
-    'The report query on the replica that cancels itself: recovery conflicts and hot_standby_feedback',
     'The forgotten replication slot that fills the disk: WAL retained by a consumer that died',
     'The sequence that jumps and collides: nextval, rollback and IDs that are not contiguous',
     'The heavy query that overflows the disk: work_mem, spill and temp_file_limit',
   ],
   es: [
-    'La consulta de reporte en la réplica que se cancela sola: conflictos de recuperación y hot_standby_feedback',
     'El slot de replicación olvidado que llena el disco: WAL retenido por un consumidor que murió',
     'La secuencia que da saltos y colisiona: nextval, rollback e IDs que no son contiguos',
     'La consulta pesada que desborda el disco: work_mem, spill y temp_file_limit',
