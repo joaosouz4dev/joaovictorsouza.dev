@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu',
+    date: '2026-11-11',
+    readTime: '14 min',
+    keywords: {
+      pt: 'slot de replicação, replication slot, wal retido, pg_wal cheio, disco cheio, no space left on device, pg_replication_slots, restart_lsn, confirmed_flush_lsn, catalog_xmin, wal_status, safe_wal_size, max_slot_wal_keep_size, idle_replication_slot_timeout, pg_drop_replication_slot, pg_ls_waldir, pg_stat_archiver, wal_keep_size, replicação lógica, debezium, heartbeat, cdc, réplica física, monitoramento, node.js, postgres',
+      en: 'replication slot, retained wal, full pg_wal, full disk, no space left on device, pg_replication_slots, restart_lsn, confirmed_flush_lsn, catalog_xmin, wal_status, safe_wal_size, max_slot_wal_keep_size, idle_replication_slot_timeout, pg_drop_replication_slot, pg_ls_waldir, pg_stat_archiver, wal_keep_size, logical replication, debezium, heartbeat, cdc, physical replica, monitoring, node.js, postgres',
+      es: 'slot de replicación, replication slot, wal retenido, pg_wal lleno, disco lleno, no space left on device, pg_replication_slots, restart_lsn, confirmed_flush_lsn, catalog_xmin, wal_status, safe_wal_size, max_slot_wal_keep_size, idle_replication_slot_timeout, pg_drop_replication_slot, pg_ls_waldir, pg_stat_archiver, wal_keep_size, replicación lógica, debezium, heartbeat, cdc, réplica física, monitoreo, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Slot de replicação esquecido que enche o disco: WAL retido por um consumidor que morreu',
+        excerpt:
+          'Uma primária com 150 GB de dados parou às 3h42 com "No space left on device" porque o pg_wal tinha 320 GB, retidos por um slot lógico de um conector Debezium desligado nove dias antes. Como o slot segura WAL, xmin e catalog_xmin, como descobrir em minutos quem enche o pg_wal com pg_replication_slots e pg_stat_archiver, como remover o slot sem piorar o incidente, os tetos max_slot_wal_keep_size e idle_replication_slot_timeout e um monitor Node.js que alerta pelo nome do slot.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The forgotten replication slot that fills the disk: WAL retained by a consumer that died',
+        excerpt:
+          'A primary with 150 GB of data went down at 3:42 with "No space left on device" because pg_wal held 320 GB, retained by the logical slot of a Debezium connector turned off nine days earlier. How a slot holds WAL, xmin and catalog_xmin, how to find within minutes who is filling pg_wal with pg_replication_slots and pg_stat_archiver, how to drop the slot without making the incident worse, the max_slot_wal_keep_size and idle_replication_slot_timeout ceilings and a Node.js monitor that alerts by slot name.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El slot de replicación olvidado que llena el disco: WAL retenido por un consumidor que murió',
+        excerpt:
+          'Una primaria con 150 GB de datos cayó a las 3:42 con "No space left on device" porque pg_wal tenía 320 GB, retenidos por el slot lógico de un conector Debezium apagado nueve días antes. Cómo el slot retiene WAL, xmin y catalog_xmin, cómo descubrir en minutos quién llena pg_wal con pg_replication_slots y pg_stat_archiver, cómo eliminar el slot sin empeorar el incidente, los techos max_slot_wal_keep_size e idle_replication_slot_timeout y un monitor Node.js que alerta por el nombre del slot.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback',
     date: '2026-11-10',
     readTime: '14 min',
@@ -4056,17 +4086,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Slot de replicação esquecido que enche o disco: WAL retido por um consumidor que morreu',
     'Sequência que dá saltos e colide: nextval, rollback e IDs que não são contínuos',
     'Tabela temporária e consulta pesada que estouram o disco: work_mem, spill e temp_file_limit',
   ],
   en: [
-    'The forgotten replication slot that fills the disk: WAL retained by a consumer that died',
     'The sequence that jumps and collides: nextval, rollback and IDs that are not contiguous',
     'The heavy query that overflows the disk: work_mem, spill and temp_file_limit',
   ],
   es: [
-    'El slot de replicación olvidado que llena el disco: WAL retenido por un consumidor que murió',
     'La secuencia que da saltos y colisiona: nextval, rollback e IDs que no son contiguos',
     'La consulta pesada que desborda el disco: work_mem, spill y temp_file_limit',
   ],

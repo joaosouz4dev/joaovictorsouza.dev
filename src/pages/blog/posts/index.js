@@ -147,8 +147,11 @@ import indiceQueNinguemUsa from './indice-que-ninguem-usa-e-toda-escrita-paga-en
 import transacaoLongaQueNinguemFecha from './transacao-longa-que-ninguem-fecha-idle-in-transaction-que-segura-vacuum-lock-e-conexao.js';
 import alterTableQueParaProducao from './alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente.js';
 import consultaReplicaQueCancela from './consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback.js';
+import slotReplicacaoEsquecido from './slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu.js';
 
 const postContentBySlug = {
+  'slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu':
+    slotReplicacaoEsquecido,
   'consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback':
     consultaReplicaQueCancela,
   'alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente':
