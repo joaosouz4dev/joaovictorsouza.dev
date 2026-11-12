@@ -148,8 +148,11 @@ import transacaoLongaQueNinguemFecha from './transacao-longa-que-ninguem-fecha-i
 import alterTableQueParaProducao from './alter-table-que-para-a-producao-a-fila-de-locks-atras-de-uma-migracao-inocente.js';
 import consultaReplicaQueCancela from './consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback.js';
 import slotReplicacaoEsquecido from './slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu.js';
+import sequenciaSaltosColide from './sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos.js';
 
 const postContentBySlug = {
+  'sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos':
+    sequenciaSaltosColide,
   'slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu':
     slotReplicacaoEsquecido,
   'consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback':
