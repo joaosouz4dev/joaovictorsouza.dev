@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit',
+    date: '2026-11-13',
+    readTime: '14 min',
+    keywords: {
+      pt: 'work_mem, arquivo temporário, temp file, spill, disco cheio, no space left on device, pgsql_tmp, temp_file_limit, log_temp_files, temp_tablespaces, tabela temporária, create temp table, on commit drop, temp_buffers, hash_mem_multiplier, external merge, hash join batches, hashaggregate, explain analyze buffers, pg_ls_tmpdir, pg_stat_database temp_bytes, pg_stat_statements temp_blks_written, pg_cancel_backend, remove_temp_files_after_crash, panic pg_wal, metabase, node.js, postgres',
+      en: 'work_mem, temporary file, temp file, spill, full disk, no space left on device, pgsql_tmp, temp_file_limit, log_temp_files, temp_tablespaces, temporary table, create temp table, on commit drop, temp_buffers, hash_mem_multiplier, external merge, hash join batches, hashaggregate, explain analyze buffers, pg_ls_tmpdir, pg_stat_database temp_bytes, pg_stat_statements temp_blks_written, pg_cancel_backend, remove_temp_files_after_crash, panic pg_wal, metabase, node.js, postgres',
+      es: 'work_mem, archivo temporal, temp file, spill, disco lleno, no space left on device, pgsql_tmp, temp_file_limit, log_temp_files, temp_tablespaces, tabla temporal, create temp table, on commit drop, temp_buffers, hash_mem_multiplier, external merge, hash join batches, hashaggregate, explain analyze buffers, pg_ls_tmpdir, pg_stat_database temp_bytes, pg_stat_statements temp_blks_written, pg_cancel_backend, remove_temp_files_after_crash, panic pg_wal, metabase, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Tabela temporária e consulta pesada que estouram o disco: work_mem, spill e temp_file_limit',
+        excerpt:
+          'Uma primária caiu em PANIC com "No space left on device" depois que um relatório do BI com join sem condição de data escreveu 380 GB de arquivos temporários em 29 minutos, e o restart apagou a evidência. Como work_mem vira disco em sort, hash join e hash aggregate, por que tabela temporária não conta para temp_file_limit, como achar em minutos quem enche o pgsql_tmp com pg_ls_tmpdir, os limites por papel e o tablespace separado do pg_wal e um monitor Node.js que alerta e cancela antes de o disco encher.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The heavy query that overflows the disk: work_mem, spill and temp_file_limit',
+        excerpt:
+          'A primary went down in PANIC with "No space left on device" after a BI report with a join missing its date condition wrote 380 GB of temporary files in 29 minutes, and the restart erased the evidence. How work_mem turns into disk in sort, hash join and hash aggregate, why temporary tables do not count toward temp_file_limit, how to find within minutes who is filling pgsql_tmp with pg_ls_tmpdir, per role limits and a tablespace away from pg_wal, and a Node.js monitor that alerts and cancels before the disk fills.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La consulta pesada que desborda el disco: work_mem, spill y temp_file_limit',
+        excerpt:
+          'Una primaria cayó en PANIC con "No space left on device" después de que un reporte de BI con un join sin condición de fecha escribiera 380 GB de archivos temporales en 29 minutos, y el reinicio borró la evidencia. Cómo work_mem se convierte en disco en sort, hash join y hash aggregate, por qué las tablas temporales no cuentan para temp_file_limit, cómo encontrar en minutos quién llena pgsql_tmp con pg_ls_tmpdir, los límites por rol y el tablespace separado de pg_wal, y un monitor Node.js que alerta y cancela antes de que se llene el disco.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos',
     date: '2026-11-12',
     readTime: '13 min',
@@ -4116,19 +4146,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Tabela temporária e consulta pesada que estouram o disco: work_mem, spill e temp_file_limit',
     'Dinheiro em float que não fecha o caixa: numeric, centavos inteiros e arredondamento no lugar certo',
     'Estatísticas desatualizadas depois da carga em massa: ANALYZE, default_statistics_target e a estimativa que erra por mil vezes',
     'Coluna grande que deixa o SELECT * lento: TOAST, jsonb e text gigantes lidos sem necessidade',
   ],
   en: [
-    'The heavy query that overflows the disk: work_mem, spill and temp_file_limit',
     'Money in float that does not balance the books: numeric, integer cents and rounding in the right place',
     'Stale statistics after a bulk load: ANALYZE, default_statistics_target and the estimate that is off by a thousand times',
     'The large column that makes SELECT * slow: TOAST, jsonb and huge text read for no reason',
   ],
   es: [
-    'La consulta pesada que desborda el disco: work_mem, spill y temp_file_limit',
     'Dinero en float que no cuadra la caja: numeric, centavos enteros y redondeo en el lugar correcto',
     'Estadísticas desactualizadas después de una carga masiva: ANALYZE, default_statistics_target y la estimación que falla por mil veces',
     'La columna grande que vuelve lento el SELECT *: TOAST, jsonb y text gigantes leídos sin necesidad',
