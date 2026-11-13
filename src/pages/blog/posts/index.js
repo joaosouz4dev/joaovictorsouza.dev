@@ -149,8 +149,11 @@ import alterTableQueParaProducao from './alter-table-que-para-a-producao-a-fila-
 import consultaReplicaQueCancela from './consulta-de-relatorio-na-replica-que-cancela-sozinha-conflito-de-recuperacao-e-hot-standby-feedback.js';
 import slotReplicacaoEsquecido from './slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu.js';
 import sequenciaSaltosColide from './sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos.js';
+import tabelaTemporariaDisco from './tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit.js';
 
 const postContentBySlug = {
+  'tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit':
+    tabelaTemporariaDisco,
   'sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos':
     sequenciaSaltosColide,
   'slot-de-replicacao-esquecido-que-enche-o-disco-wal-retido-por-um-consumidor-que-morreu':
