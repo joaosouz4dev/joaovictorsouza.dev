@@ -23,7 +23,7 @@
     "lucide-react": "^1.20.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-i18next": "^17.0.8",
+    "react-i18next": "^18.0.0",
     "react-router-dom": "^7.16.0",
     "tailwind-merge": "^3.6.0",
     "three": "^0.185.1",
