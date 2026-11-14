@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo',
+    date: '2026-11-14',
+    readTime: '13 min',
+    keywords: {
+      pt: 'dinheiro em float, valor monetário, double precision, ponto flutuante, ieee 754, 0.1 + 0.2, numeric, decimal, centavos inteiros, bigint, tipo money, lc_monetary, arredondamento, half-up, half-even, arredondamento bancário, round numeric, toFixed, Math.round, parseFloat, rateio, maior resto, parcelamento, conciliação financeira, fechamento de caixa, gateway de pagamento, nota fiscal, setTypeParser, BigInt, Intl.NumberFormat, node.js, postgres',
+      en: 'money in float, monetary value, double precision, floating point, ieee 754, 0.1 + 0.2, numeric, decimal, integer cents, bigint, money type, lc_monetary, rounding, half-up, half-even, bankers rounding, round numeric, toFixed, Math.round, parseFloat, allocation, largest remainder, installments, financial reconciliation, month end close, payment gateway, invoice, setTypeParser, BigInt, Intl.NumberFormat, node.js, postgres',
+      es: 'dinero en float, valor monetario, double precision, punto flotante, ieee 754, 0.1 + 0.2, numeric, decimal, centavos enteros, bigint, tipo money, lc_monetary, redondeo, half-up, half-even, redondeo bancario, round numeric, toFixed, Math.round, parseFloat, prorrateo, mayor resto, cuotas, conciliación financiera, cierre de caja, gateway de pago, factura, setTypeParser, BigInt, Intl.NumberFormat, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Dinheiro em float que não fecha o caixa: numeric, centavos inteiros e arredondamento no lugar certo',
+        excerpt:
+          'O fechamento de outubro de um e-commerce não bateu por R$ 20,69 em 41.380 pedidos: coluna double precision, soma com Number no Node, arredondamento só no total enquanto o gateway arredondava item a item e um parcelamento que cobrava R$ 99,99 de R$ 100,00. Por que float não representa centavo, quando usar numeric ou centavos inteiros, como arredondar uma vez e no lugar certo, um módulo em BigInt com rateio pelo maior resto e como migrar a coluna sem esconder a diferença.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Money in float that does not balance the books: numeric, integer cents and rounding in the right place',
+        excerpt:
+          'An e-commerce October close was off by R$ 20.69 across 41,380 orders: a double precision column, sums with Number in Node, rounding only on the total while the gateway rounded item by item, and installments that charged 99.99 for 100.00. Why float cannot represent a cent, when to use numeric or integer cents, how to round once and in the right place, a BigInt module with largest remainder allocation and how to migrate the column without hiding the difference.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Dinero en float que no cuadra la caja: numeric, centavos enteros y redondeo en el lugar correcto',
+        excerpt:
+          'El cierre de octubre de un e-commerce no cuadró por R$ 20,69 en 41.380 pedidos: columna double precision, sumas con Number en Node, redondeo solo sobre el total mientras el gateway redondeaba ítem por ítem y cuotas que cobraban 99,99 de 100,00. Por qué float no representa un centavo, cuándo usar numeric o centavos enteros, cómo redondear una vez y en el lugar correcto, un módulo en BigInt con prorrateo por mayor resto y cómo migrar la columna sin esconder la diferencia.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit',
     date: '2026-11-13',
     readTime: '14 min',
@@ -4146,17 +4176,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Dinheiro em float que não fecha o caixa: numeric, centavos inteiros e arredondamento no lugar certo',
     'Estatísticas desatualizadas depois da carga em massa: ANALYZE, default_statistics_target e a estimativa que erra por mil vezes',
     'Coluna grande que deixa o SELECT * lento: TOAST, jsonb e text gigantes lidos sem necessidade',
   ],
   en: [
-    'Money in float that does not balance the books: numeric, integer cents and rounding in the right place',
     'Stale statistics after a bulk load: ANALYZE, default_statistics_target and the estimate that is off by a thousand times',
     'The large column that makes SELECT * slow: TOAST, jsonb and huge text read for no reason',
   ],
   es: [
-    'Dinero en float que no cuadra la caja: numeric, centavos enteros y redondeo en el lugar correcto',
     'Estadísticas desactualizadas después de una carga masiva: ANALYZE, default_statistics_target y la estimación que falla por mil veces',
     'La columna grande que vuelve lento el SELECT *: TOAST, jsonb y text gigantes leídos sin necesidad',
   ],
