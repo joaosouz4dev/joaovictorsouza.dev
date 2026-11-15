@@ -151,8 +151,11 @@ import slotReplicacaoEsquecido from './slot-de-replicacao-esquecido-que-enche-o-
 import sequenciaSaltosColide from './sequencia-que-da-saltos-e-colide-nextval-rollback-e-ids-que-nao-sao-continuos.js';
 import tabelaTemporariaDisco from './tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit.js';
 import dinheiroEmFloat from './dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo.js';
+import estatisticasDesatualizadasCarga from './estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes.js';
 
 const postContentBySlug = {
+  'estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes':
+    estatisticasDesatualizadasCarga,
   'dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo':
     dinheiroEmFloat,
   'tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit':
