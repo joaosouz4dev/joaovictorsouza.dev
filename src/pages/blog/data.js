@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes',
+    date: '2026-11-15',
+    readTime: '13 min',
+    keywords: {
+      pt: 'estatísticas desatualizadas, carga em massa, importação, analyze, autoanalyze, autovacuum_analyze_scale_factor, autovacuum_analyze_threshold, n_mod_since_analyze, default_statistics_target, set statistics, create statistics, estatísticas estendidas, pg_stats, most_common_vals, mcv, histograma, n_distinct, reltuples, estimativa de linhas, rows estimado, plano de consulta, nested loop, hash join, explain analyze, tabela temporária, tabela particionada, copy, pg-copy-streams, pg_upgrade, vacuumdb analyze-in-stages, auto_explain, node.js, postgres',
+      en: 'stale statistics, bulk load, import, analyze, autoanalyze, autovacuum_analyze_scale_factor, autovacuum_analyze_threshold, n_mod_since_analyze, default_statistics_target, set statistics, create statistics, extended statistics, pg_stats, most_common_vals, mcv, histogram, n_distinct, reltuples, row estimate, estimated rows, query plan, nested loop, hash join, explain analyze, temporary table, partitioned table, copy, pg-copy-streams, pg_upgrade, vacuumdb analyze-in-stages, auto_explain, node.js, postgres',
+      es: 'estadísticas desactualizadas, carga masiva, importación, analyze, autoanalyze, autovacuum_analyze_scale_factor, autovacuum_analyze_threshold, n_mod_since_analyze, default_statistics_target, set statistics, create statistics, estadísticas extendidas, pg_stats, most_common_vals, mcv, histograma, n_distinct, reltuples, estimación de filas, filas estimadas, plan de consulta, nested loop, hash join, explain analyze, tabla temporal, tabla particionada, copy, pg-copy-streams, pg_upgrade, vacuumdb analyze-in-stages, auto_explain, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Estatísticas desatualizadas depois da carga em massa: ANALYZE, default_statistics_target e a estimativa que erra por mil vezes',
+        excerpt:
+          'Uma importação de 3,9 milhões de pedidos numa tabela de 40 milhões terminou sem erro, e o relatório do cliente novo passou a levar 41 minutos: o planejador estimava 2.304 linhas e escolheu um nested loop. Como a estimativa nasce de reltuples, MCV, histograma e n_distinct, por que o autoanalyze não roda abaixo de 10% da tabela, quais tabelas ele nunca analisa, um job Node.js com COPY e ANALYZE na mesma transação e quando ajustar SET STATISTICS e estatísticas estendidas.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Stale statistics after a bulk load: ANALYZE, default_statistics_target and the estimate that is off by a thousand times',
+        excerpt:
+          'An import of 3.9 million orders into a 40 million row table finished without errors, and the new customer report started taking 41 minutes: the planner estimated 2,304 rows and picked a nested loop. How the estimate comes from reltuples, MCV, histogram and n_distinct, why autoanalyze does not run below 10% of the table, which tables it never analyzes, a Node.js job with COPY and ANALYZE in the same transaction and when to tune SET STATISTICS and extended statistics.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Estadísticas desactualizadas después de una carga masiva: ANALYZE, default_statistics_target y la estimación que falla por mil veces',
+        excerpt:
+          'Una importación de 3,9 millones de pedidos en una tabla de 40 millones terminó sin errores, y el reporte del cliente nuevo pasó a tardar 41 minutos: el planificador estimaba 2.304 filas y eligió un nested loop. Cómo nace la estimación de reltuples, MCV, histograma y n_distinct, por qué el autoanalyze no se ejecuta por debajo del 10% de la tabla, qué tablas nunca analiza, un job Node.js con COPY y ANALYZE en la misma transacción y cuándo ajustar SET STATISTICS y estadísticas extendidas.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo',
     date: '2026-11-14',
     readTime: '13 min',
@@ -4176,16 +4206,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Estatísticas desatualizadas depois da carga em massa: ANALYZE, default_statistics_target e a estimativa que erra por mil vezes',
     'Coluna grande que deixa o SELECT * lento: TOAST, jsonb e text gigantes lidos sem necessidade',
+    'Prepared statement que fica lento na sexta execução: plano genérico, plan_cache_mode e parâmetros desiguais',
+    'Índice parcial e índice de expressão que o banco não usa: predicado, tipo do parâmetro e a consulta que não casa',
+    'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
   ],
   en: [
-    'Stale statistics after a bulk load: ANALYZE, default_statistics_target and the estimate that is off by a thousand times',
     'The large column that makes SELECT * slow: TOAST, jsonb and huge text read for no reason',
+    'The prepared statement that gets slow on the sixth execution: generic plan, plan_cache_mode and skewed parameters',
+    'Partial and expression indexes the database does not use: predicate, parameter type and the query that does not match',
+    'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
   ],
   es: [
-    'Estadísticas desactualizadas después de una carga masiva: ANALYZE, default_statistics_target y la estimación que falla por mil veces',
     'La columna grande que vuelve lento el SELECT *: TOAST, jsonb y text gigantes leídos sin necesidad',
+    'El prepared statement que se vuelve lento en la sexta ejecución: plan genérico, plan_cache_mode y parámetros desiguales',
+    'Índice parcial e índice de expresión que la base no usa: predicado, tipo del parámetro y la consulta que no coincide',
+    'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
   ],
 };
 
