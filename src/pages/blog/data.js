@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade',
+    date: '2026-11-16',
+    readTime: '13 min',
+    keywords: {
+      pt: 'select *, coluna grande, toast, pg_toast, jsonb, text, bytea, detoast, compressão, pglz, lz4, default_toast_compression, set compression, set storage external, toast_tuple_target, pg_column_size, pg_column_compression, octet_length, reltoastrelid, pg_relation_size, explain analyze, explain serialize, postgresql 17, node-postgres, json.parse, event loop, orm, prisma omit, colunas explícitas, coluna derivada, coluna gerada, tabela de mensagens, backfill, wal, bloat, vacuum full, pg_repack, node.js, postgres',
+      en: 'select *, large column, toast, pg_toast, jsonb, text, bytea, detoast, compression, pglz, lz4, default_toast_compression, set compression, set storage external, toast_tuple_target, pg_column_size, pg_column_compression, octet_length, reltoastrelid, pg_relation_size, explain analyze, explain serialize, postgresql 17, node-postgres, json.parse, event loop, orm, prisma omit, explicit columns, derived column, generated column, messages table, backfill, wal, bloat, vacuum full, pg_repack, node.js, postgres',
+      es: 'select *, columna grande, toast, pg_toast, jsonb, text, bytea, detoast, compresión, pglz, lz4, default_toast_compression, set compression, set storage external, toast_tuple_target, pg_column_size, pg_column_compression, octet_length, reltoastrelid, pg_relation_size, explain analyze, explain serialize, postgresql 17, node-postgres, json.parse, event loop, orm, prisma omit, columnas explícitas, columna derivada, columna generada, tabla de mensajes, backfill, wal, bloat, vacuum full, pg_repack, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Coluna grande que deixa o SELECT * lento: TOAST, jsonb e text gigantes lidos sem necessidade',
+        excerpt:
+          'A listagem de conversas de uma plataforma de atendimento saiu de 40 ms para 2,8 s de p95 sem mudar a consulta: o SELECT * passou a trazer 380 KB de histórico jsonb por linha, guardados no TOAST e descomprimidos a cada requisição, enquanto o EXPLAIN ANALYZE dizia 3,1 ms. Como o TOAST funciona, por que o detoast só aparece com EXPLAIN SERIALIZE no PostgreSQL 17, como medir o peso de cada coluna e como corrigir leitura e escrita com colunas explícitas, tabela de mensagens e colunas derivadas.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The large column that makes SELECT * slow: TOAST, jsonb and huge text read for no reason',
+        excerpt:
+          'The conversation listing of a customer service platform went from 40 ms to a 2.8 s p95 without any query change: SELECT * started bringing 380 KB of jsonb history per row, stored in TOAST and decompressed on every request, while EXPLAIN ANALYZE reported 3.1 ms. How TOAST works, why detoasting only shows up with EXPLAIN SERIALIZE on PostgreSQL 17, how to measure the weight of each column and how to fix reads and writes with explicit columns, a messages table and derived columns.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La columna grande que vuelve lento el SELECT *: TOAST, jsonb y text gigantes leídos sin necesidad',
+        excerpt:
+          'El listado de conversaciones de una plataforma de atención pasó de 40 ms a 2,8 s de p95 sin cambiar la consulta: el SELECT * empezó a traer 380 KB de historial jsonb por fila, guardados en el TOAST y descomprimidos en cada request, mientras el EXPLAIN ANALYZE decía 3,1 ms. Cómo funciona el TOAST, por qué el detoast solo aparece con EXPLAIN SERIALIZE en PostgreSQL 17, cómo medir el peso de cada columna y cómo corregir lectura y escritura con columnas explícitas, tabla de mensajes y columnas derivadas.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes',
     date: '2026-11-15',
     readTime: '13 min',
@@ -4206,19 +4236,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Coluna grande que deixa o SELECT * lento: TOAST, jsonb e text gigantes lidos sem necessidade',
     'Prepared statement que fica lento na sexta execução: plano genérico, plan_cache_mode e parâmetros desiguais',
     'Índice parcial e índice de expressão que o banco não usa: predicado, tipo do parâmetro e a consulta que não casa',
     'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
   ],
   en: [
-    'The large column that makes SELECT * slow: TOAST, jsonb and huge text read for no reason',
     'The prepared statement that gets slow on the sixth execution: generic plan, plan_cache_mode and skewed parameters',
     'Partial and expression indexes the database does not use: predicate, parameter type and the query that does not match',
     'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
   ],
   es: [
-    'La columna grande que vuelve lento el SELECT *: TOAST, jsonb y text gigantes leídos sin necesidad',
     'El prepared statement que se vuelve lento en la sexta ejecución: plan genérico, plan_cache_mode y parámetros desiguales',
     'Índice parcial e índice de expresión que la base no usa: predicado, tipo del parámetro y la consulta que no coincide',
     'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
