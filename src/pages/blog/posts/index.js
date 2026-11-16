@@ -152,8 +152,11 @@ import sequenciaSaltosColide from './sequencia-que-da-saltos-e-colide-nextval-ro
 import tabelaTemporariaDisco from './tabela-temporaria-e-consulta-pesada-que-estouram-o-disco-work-mem-spill-e-temp-file-limit.js';
 import dinheiroEmFloat from './dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo.js';
 import estatisticasDesatualizadasCarga from './estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes.js';
+import colunaGrandeSelectLento from './coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade.js';
 
 const postContentBySlug = {
+  'coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade':
+    colunaGrandeSelectLento,
   'estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes':
     estatisticasDesatualizadasCarga,
   'dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo':
