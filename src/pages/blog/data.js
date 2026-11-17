@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais',
+    date: '2026-11-17',
+    readTime: '12 min',
+    keywords: {
+      pt: 'prepared statement, plano genérico, plano custom, plan_cache_mode, force_custom_plan, force_generic_plan, sexta execução, cinco execuções, plancache, custo estimado, parâmetros desiguais, distribuição desigual, multi-tenant, tenant grande, n_distinct, seletividade, intervalo de datas, nested loop, hash join, explain analyze, explain generic_plan, pg_prepared_statements, generic_plans, custom_plans, auto_explain, pg_stat_statements, track_planning, set local, alter role, pl/pgsql, node-postgres, statement nomeado, postgres.js, prisma, statement_cache_size, pgbouncer, max_prepared_statements, pgjdbc, prepareThreshold, statement_timeout, node.js, postgres',
+      en: 'prepared statement, generic plan, custom plan, plan_cache_mode, force_custom_plan, force_generic_plan, sixth execution, five executions, plancache, estimated cost, skewed parameters, skewed distribution, multi-tenant, large tenant, n_distinct, selectivity, date range, nested loop, hash join, explain analyze, explain generic_plan, pg_prepared_statements, generic_plans, custom_plans, auto_explain, pg_stat_statements, track_planning, set local, alter role, pl/pgsql, node-postgres, named statement, postgres.js, prisma, statement_cache_size, pgbouncer, max_prepared_statements, pgjdbc, prepareThreshold, statement_timeout, node.js, postgres',
+      es: 'prepared statement, plan genérico, plan custom, plan_cache_mode, force_custom_plan, force_generic_plan, sexta ejecución, cinco ejecuciones, plancache, costo estimado, parámetros desiguales, distribución desigual, multi-tenant, tenant grande, n_distinct, selectividad, intervalo de fechas, nested loop, hash join, explain analyze, explain generic_plan, pg_prepared_statements, generic_plans, custom_plans, auto_explain, pg_stat_statements, track_planning, set local, alter role, pl/pgsql, node-postgres, statement con nombre, postgres.js, prisma, statement_cache_size, pgbouncer, max_prepared_statements, pgjdbc, prepareThreshold, statement_timeout, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Prepared statement que fica lento na sexta execução: plano genérico, plan_cache_mode e parâmetros desiguais',
+        excerpt:
+          'O relatório do maior cliente de uma plataforma multi-tenant passou de 3,4 s para timeouts de 30 s depois que as consultas ganharam name no node-postgres, e só em algumas conexões do pool. Como o Postgres troca o plano custom pelo genérico depois de cinco execuções, por que a estimativa média erra com tenants de tamanhos desiguais e intervalos de datas, como confirmar com pg_prepared_statements e EXPLAIN e como corrigir com plan_cache_mode na transação certa.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The prepared statement that gets slow on the sixth execution: generic plan, plan_cache_mode and skewed parameters',
+        excerpt:
+          'The report of the largest customer on a multi-tenant platform went from 3.4 s to 30 s timeouts after the queries got a name in node-postgres, and only on some pool connections. How Postgres swaps the custom plan for the generic one after five executions, why the average estimate fails with tenants of very different sizes and with date ranges, how to confirm it with pg_prepared_statements and EXPLAIN and how to fix it with plan_cache_mode in the right transaction.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El prepared statement que se vuelve lento en la sexta ejecución: plan genérico, plan_cache_mode y parámetros desiguales',
+        excerpt:
+          'El reporte del cliente más grande de una plataforma multi-tenant pasó de 3,4 s a timeouts de 30 s después de que las consultas recibieran name en node-postgres, y solo en algunas conexiones del pool. Cómo Postgres cambia el plan custom por el genérico después de cinco ejecuciones, por qué la estimación promedio falla con tenants de tamaños desiguales e intervalos de fechas, cómo confirmarlo con pg_prepared_statements y EXPLAIN y cómo corregirlo con plan_cache_mode en la transacción correcta.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade',
     date: '2026-11-16',
     readTime: '13 min',
@@ -4236,17 +4266,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Prepared statement que fica lento na sexta execução: plano genérico, plan_cache_mode e parâmetros desiguais',
     'Índice parcial e índice de expressão que o banco não usa: predicado, tipo do parâmetro e a consulta que não casa',
     'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
   ],
   en: [
-    'The prepared statement that gets slow on the sixth execution: generic plan, plan_cache_mode and skewed parameters',
     'Partial and expression indexes the database does not use: predicate, parameter type and the query that does not match',
     'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
   ],
   es: [
-    'El prepared statement que se vuelve lento en la sexta ejecución: plan genérico, plan_cache_mode y parámetros desiguales',
     'Índice parcial e índice de expresión que la base no usa: predicado, tipo del parámetro y la consulta que no coincide',
     'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
   ],

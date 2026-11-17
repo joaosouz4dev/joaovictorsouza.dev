@@ -153,8 +153,11 @@ import tabelaTemporariaDisco from './tabela-temporaria-e-consulta-pesada-que-est
 import dinheiroEmFloat from './dinheiro-em-float-que-nao-fecha-o-caixa-numeric-centavos-inteiros-e-arredondamento-no-lugar-certo.js';
 import estatisticasDesatualizadasCarga from './estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes.js';
 import colunaGrandeSelectLento from './coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade.js';
+import preparedStatementSextaExecucao from './prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais.js';
 
 const postContentBySlug = {
+  'prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais':
+    preparedStatementSextaExecucao,
   'coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade':
     colunaGrandeSelectLento,
   'estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes':
