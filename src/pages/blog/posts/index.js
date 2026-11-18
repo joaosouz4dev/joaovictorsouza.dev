@@ -154,8 +154,11 @@ import dinheiroEmFloat from './dinheiro-em-float-que-nao-fecha-o-caixa-numeric-c
 import estatisticasDesatualizadasCarga from './estatisticas-desatualizadas-depois-da-carga-em-massa-analyze-default-statistics-target-e-a-estimativa-que-erra-por-mil-vezes.js';
 import colunaGrandeSelectLento from './coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade.js';
 import preparedStatementSextaExecucao from './prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais.js';
+import indiceParcialExpressao from './indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa.js';
 
 const postContentBySlug = {
+  'indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa':
+    indiceParcialExpressao,
   'prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais':
     preparedStatementSextaExecucao,
   'coluna-grande-que-deixa-o-select-lento-toast-jsonb-e-text-gigantes-lidos-sem-necessidade':

@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa',
+    date: '2026-11-18',
+    readTime: '13 min',
+    keywords: {
+      pt: 'índice parcial, índice de expressão, índice funcional, predicado do índice, implicação de predicado, where, in, status, fila de tarefas, for update skip locked, plano genérico, explain generic_plan, plan_cache_mode, parâmetro, literal, now(), immutable, at time zone, timestamptz, date, jsonb, cast, tipo do parâmetro, bigint, numeric, char, operator family, b-tree, seq scan, index cond, filter, explain analyze, pg_stat_user_indexes, idx_scan, last_idx_scan, pg_get_indexdef, pg_index, create index concurrently, drop index concurrently, auto_explain, enable_seqscan, teste de plano, node-postgres, jdbc, node.js, postgres',
+      en: 'partial index, expression index, functional index, index predicate, predicate implication, where, in, status, task queue, for update skip locked, generic plan, explain generic_plan, plan_cache_mode, parameter, literal, now(), immutable, at time zone, timestamptz, date, jsonb, cast, parameter type, bigint, numeric, char, operator family, b-tree, seq scan, index cond, filter, explain analyze, pg_stat_user_indexes, idx_scan, last_idx_scan, pg_get_indexdef, pg_index, create index concurrently, drop index concurrently, auto_explain, enable_seqscan, plan test, node-postgres, jdbc, node.js, postgres',
+      es: 'índice parcial, índice de expresión, índice funcional, predicado del índice, implicación de predicado, where, in, status, cola de tareas, for update skip locked, plan genérico, explain generic_plan, plan_cache_mode, parámetro, literal, now(), immutable, at time zone, timestamptz, date, jsonb, cast, tipo del parámetro, bigint, numeric, char, operator family, b-tree, seq scan, index cond, filter, explain analyze, pg_stat_user_indexes, idx_scan, last_idx_scan, pg_get_indexdef, pg_index, create index concurrently, drop index concurrently, auto_explain, enable_seqscan, test de plan, node-postgres, jdbc, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Índice parcial e índice de expressão que o banco não usa: predicado, tipo do parâmetro e a consulta que não casa',
+        excerpt:
+          "Um deploy que acrescentou 'reprocessar' ao IN do worker levou a reserva de tarefas de 0,4 ms para 11,2 s numa tabela de 48 milhões de linhas, com o índice parcial intacto. Como o planejador prova que o WHERE implica o predicado do índice, por que parâmetro, now() e lista maior derrubam essa prova, por que a expressão e o tipo precisam ser idênticos aos do índice e como auditar e travar isso com um teste de plano em Node.js.",
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Partial and expression indexes the database does not use: predicate, parameter type and the query that does not match',
+        excerpt:
+          "A deploy that added 'reprocessar' to the worker IN list took the task claim from 0.4 ms to 11.2 s on a 48 million row table, with the partial index intact. How the planner proves that the WHERE implies the index predicate, why a parameter, now() and a wider list break that proof, why the expression and the type must be identical to the index and how to audit it and lock it in with a plan test in Node.js.",
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Índice parcial e índice de expresión que la base no usa: predicado, tipo del parámetro y la consulta que no coincide',
+        excerpt:
+          "Un deploy que agregó 'reprocessar' al IN del worker llevó la reserva de tareas de 0,4 ms a 11,2 s en una tabla de 48 millones de filas, con el índice parcial intacto. Cómo el planificador prueba que el WHERE implica el predicado del índice, por qué un parámetro, now() y una lista más amplia rompen esa prueba, por qué la expresión y el tipo tienen que ser idénticos a los del índice y cómo auditarlo y fijarlo con un test de plan en Node.js.",
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais',
     date: '2026-11-17',
     readTime: '12 min',
@@ -4266,16 +4296,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Índice parcial e índice de expressão que o banco não usa: predicado, tipo do parâmetro e a consulta que não casa',
     'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
+    'Sequence que pula números e ID que acaba: cache de sequence, rollback, integer que estoura e a migração para bigint',
+    'Row Level Security que deixa a consulta lenta: políticas, funções não leakproof e o índice que deixa de ser usado',
+    'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
   ],
   en: [
-    'Partial and expression indexes the database does not use: predicate, parameter type and the query that does not match',
     'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
+    'The sequence that skips numbers and the ID that runs out: sequence cache, rollback, integer overflow and the migration to bigint',
+    'Row Level Security that makes the query slow: policies, non-leakproof functions and the index that stops being used',
+    'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
   ],
   es: [
-    'Índice parcial e índice de expresión que la base no usa: predicado, tipo del parámetro y la consulta que no coincide',
     'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
+    'La sequence que salta números y el ID que se acaba: cache de sequence, rollback, integer que se desborda y la migración a bigint',
+    'Row Level Security que vuelve lenta la consulta: políticas, funciones no leakproof y el índice que deja de usarse',
+    'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
   ],
 };
 
