@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex',
+    date: '2026-11-19',
+    readTime: '13 min',
+    keywords: {
+      pt: 'collation, glibc, glibc 2.28, atualização do sistema operacional, troca de sistema operacional, centos 7, rocky linux 9, ubuntu, debian, strcoll, locale, pt_BR.UTF-8, en_US.UTF-8, índice b-tree, índice corrompido, ordem do índice, unique, chave duplicada, on conflict, réplica física, streaming replication, pg_basebackup, failover, replicação lógica, pg_dump, pg_restore, datcollversion, collversion, pg_database_collation_actual_version, pg_collation_actual_version, collation version mismatch, amcheck, bt_index_check, heapallindexed, reindex concurrently, _ccnew, refresh collation version, collate c, text_pattern_ops, icu, provedor builtin, c.utf-8, particionamento, node-postgres, node.js, postgres',
+      en: 'collation, glibc, glibc 2.28, operating system upgrade, operating system change, centos 7, rocky linux 9, ubuntu, debian, strcoll, locale, pt_BR.UTF-8, en_US.UTF-8, b-tree index, corrupted index, index order, unique, duplicate key, on conflict, physical replica, streaming replication, pg_basebackup, failover, logical replication, pg_dump, pg_restore, datcollversion, collversion, pg_database_collation_actual_version, pg_collation_actual_version, collation version mismatch, amcheck, bt_index_check, heapallindexed, reindex concurrently, _ccnew, refresh collation version, collate c, text_pattern_ops, icu, builtin provider, c.utf-8, partitioning, node-postgres, node.js, postgres',
+      es: 'collation, glibc, glibc 2.28, actualización del sistema operativo, cambio de sistema operativo, centos 7, rocky linux 9, ubuntu, debian, strcoll, locale, pt_BR.UTF-8, en_US.UTF-8, índice b-tree, índice corrupto, orden del índice, unique, clave duplicada, on conflict, réplica física, streaming replication, pg_basebackup, failover, replicación lógica, pg_dump, pg_restore, datcollversion, collversion, pg_database_collation_actual_version, pg_collation_actual_version, collation version mismatch, amcheck, bt_index_check, heapallindexed, reindex concurrently, _ccnew, refresh collation version, collate c, text_pattern_ops, icu, proveedor builtin, c.utf-8, particionamiento, node-postgres, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
+        excerpt:
+          'Depois de trocar o CentOS 7 por Rocky Linux 9 com uma réplica física, produtos com SKU como AB-12 passaram a dar 404 e o índice único deixou entrar 4.137 duplicatas, sem nenhum erro. Por que o índice B-tree de texto guarda a ordem decidida pela glibc, o que é afetado e o que não é, como detectar com datcollversion e amcheck, como corrigir com limpeza de duplicatas, REINDEX CONCURRENTLY e REFRESH COLLATION VERSION e qual estratégia de migração evita o problema.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
+        excerpt:
+          'After moving from CentOS 7 to Rocky Linux 9 through a physical replica, products with SKUs like AB-12 started returning 404 and the unique index let 4,137 duplicates in, with no error at all. Why a B-tree text index stores the order decided by glibc, what is affected and what is not, how to detect it with datcollversion and amcheck, how to fix it with duplicate cleanup, REINDEX CONCURRENTLY and REFRESH COLLATION VERSION and which migration strategy avoids the problem.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
+        excerpt:
+          'Después de cambiar CentOS 7 por Rocky Linux 9 con una réplica física, productos con SKU como AB-12 empezaron a devolver 404 y el índice único dejó entrar 4.137 duplicados, sin ningún error. Por qué el índice B-tree de texto guarda el orden decidido por glibc, qué se ve afectado y qué no, cómo detectarlo con datcollversion y amcheck, cómo corregirlo con limpieza de duplicados, REINDEX CONCURRENTLY y REFRESH COLLATION VERSION y qué estrategia de migración evita el problema.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa',
     date: '2026-11-18',
     readTime: '13 min',
@@ -4296,19 +4326,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Collation que muda depois da atualização do sistema operacional: glibc, índice com ordem errada e REINDEX',
     'Sequence que pula números e ID que acaba: cache de sequence, rollback, integer que estoura e a migração para bigint',
     'Row Level Security que deixa a consulta lenta: políticas, funções não leakproof e o índice que deixa de ser usado',
     'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
   ],
   en: [
-    'The collation that changes after an operating system upgrade: glibc, an index in the wrong order and REINDEX',
     'The sequence that skips numbers and the ID that runs out: sequence cache, rollback, integer overflow and the migration to bigint',
     'Row Level Security that makes the query slow: policies, non-leakproof functions and the index that stops being used',
     'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
   ],
   es: [
-    'La collation que cambia después de actualizar el sistema operativo: glibc, un índice con el orden equivocado y REINDEX',
     'La sequence que salta números y el ID que se acaba: cache de sequence, rollback, integer que se desborda y la migración a bigint',
     'Row Level Security que vuelve lenta la consulta: políticas, funciones no leakproof y el índice que deja de usarse',
     'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
