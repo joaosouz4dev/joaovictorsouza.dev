@@ -156,8 +156,11 @@ import colunaGrandeSelectLento from './coluna-grande-que-deixa-o-select-lento-to
 import preparedStatementSextaExecucao from './prepared-statement-que-fica-lento-na-sexta-execucao-plano-generico-plan-cache-mode-e-parametros-desiguais.js';
 import indiceParcialExpressao from './indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa.js';
 import collationGlibcReindex from './collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex.js';
+import sequenceIdAcabaBigint from './sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint.js';
 
 const postContentBySlug = {
+  'sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint':
+    sequenceIdAcabaBigint,
   'collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex':
     collationGlibcReindex,
   'indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa':

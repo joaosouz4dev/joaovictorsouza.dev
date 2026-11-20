@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint',
+    date: '2026-11-20',
+    readTime: '12 min',
+    keywords: {
+      pt: 'sequence, sequência, serial, identity, generated always as identity, nextval, last_value, pg_sequences, pg_sequence, reached maximum value of sequence, integer out of range, integer, bigint, int4, int8, 2147483647, estouro de id, id que acaba, alter sequence as bigint, alter column type bigint, cache de sequence, rollback, insert on conflict, upsert, on conflict do update, on conflict do nothing, sincronização de catálogo, staging, is distinct from, chave estrangeira, tipo da fk, pg_depend, pg_constraint, ids negativos, minvalue, cycle, uuid, uuidv7, getInt, Bad value for type int, int32, protobuf, node-postgres, setTypeParser, Number.MAX_SAFE_INTEGER, monitoramento de sequências, node.js, postgres',
+      en: 'sequence, serial, identity, generated always as identity, nextval, last_value, pg_sequences, pg_sequence, reached maximum value of sequence, integer out of range, integer, bigint, int4, int8, 2147483647, id overflow, id running out, alter sequence as bigint, alter column type bigint, sequence cache, rollback, insert on conflict, upsert, on conflict do update, on conflict do nothing, catalog sync, staging, is distinct from, foreign key, fk type, pg_depend, pg_constraint, negative ids, minvalue, cycle, uuid, uuidv7, getInt, Bad value for type int, int32, protobuf, node-postgres, setTypeParser, Number.MAX_SAFE_INTEGER, sequence monitoring, node.js, postgres',
+      es: 'sequence, secuencia, serial, identity, generated always as identity, nextval, last_value, pg_sequences, pg_sequence, reached maximum value of sequence, integer out of range, integer, bigint, int4, int8, 2147483647, desbordamiento de id, id que se acaba, alter sequence as bigint, alter column type bigint, cache de sequence, rollback, insert on conflict, upsert, on conflict do update, on conflict do nothing, sincronización de catálogo, staging, is distinct from, clave foránea, tipo de la fk, pg_depend, pg_constraint, ids negativos, minvalue, cycle, uuid, uuidv7, getInt, Bad value for type int, int32, protobuf, node-postgres, setTypeParser, Number.MAX_SAFE_INTEGER, monitoreo de secuencias, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Sequence que pula números e ID que acaba: cache de sequence, rollback, integer que estoura e a migração para bigint',
+        excerpt:
+          'Uma tabela de preços com 4,2 milhões de linhas esgotou o integer da sequência em 17 dias, depois que a sincronização passou a fazer upsert do catálogo inteiro a cada hora. O que consome uma sequência além das linhas inseridas, por que migrar a coluna para bigint não destrava um serial, onde mais o limite de 32 bits se esconde (chaves estrangeiras, Java, node-postgres) e como medir o consumo diário e corrigir sem criar um incidente novo.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The sequence that skips numbers and the ID that runs out: sequence cache, rollback, integer overflow and the migration to bigint',
+        excerpt:
+          'A price table with 4.2 million rows exhausted its integer sequence in 17 days, after the sync started upserting the whole catalog every hour. What consumes a sequence besides inserted rows, why migrating the column to bigint does not unblock a serial, where else the 32 bit limit hides (foreign keys, Java, node-postgres) and how to measure daily consumption and fix it without creating a new incident.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La sequence que salta números y el ID que se acaba: cache de sequence, rollback, integer que se desborda y la migración a bigint',
+        excerpt:
+          'Una tabla de precios con 4,2 millones de filas agotó el integer de la secuencia en 17 días, después de que la sincronización empezó a hacer upsert del catálogo completo cada hora. Qué consume una secuencia además de las filas insertadas, por qué migrar la columna a bigint no destraba un serial, dónde más se esconde el límite de 32 bits (claves foráneas, Java, node-postgres) y cómo medir el consumo diario y corregirlo sin crear un incidente nuevo.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex',
     date: '2026-11-19',
     readTime: '13 min',
@@ -4326,17 +4356,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Sequence que pula números e ID que acaba: cache de sequence, rollback, integer que estoura e a migração para bigint',
     'Row Level Security que deixa a consulta lenta: políticas, funções não leakproof e o índice que deixa de ser usado',
     'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
   ],
   en: [
-    'The sequence that skips numbers and the ID that runs out: sequence cache, rollback, integer overflow and the migration to bigint',
     'Row Level Security that makes the query slow: policies, non-leakproof functions and the index that stops being used',
     'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
   ],
   es: [
-    'La sequence que salta números y el ID que se acaba: cache de sequence, rollback, integer que se desborda y la migración a bigint',
     'Row Level Security que vuelve lenta la consulta: políticas, funciones no leakproof y el índice que deja de usarse',
     'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
   ],
