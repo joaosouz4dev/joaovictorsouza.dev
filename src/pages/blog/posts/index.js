@@ -157,8 +157,11 @@ import preparedStatementSextaExecucao from './prepared-statement-que-fica-lento-
 import indiceParcialExpressao from './indice-parcial-e-indice-de-expressao-que-o-banco-nao-usa-predicado-tipo-do-parametro-e-a-consulta-que-nao-casa.js';
 import collationGlibcReindex from './collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex.js';
 import sequenceIdAcabaBigint from './sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint.js';
+import rlsConsultaLentaLeakproof from './row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado.js';
 
 const postContentBySlug = {
+  'row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado':
+    rlsConsultaLentaLeakproof,
   'sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint':
     sequenceIdAcabaBigint,
   'collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex':

@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado',
+    date: '2026-11-22',
+    readTime: '13 min',
+    keywords: {
+      pt: 'row level security, rls, política de rls, create policy, alter policy, using, with check, multi-tenant, saas multi-tenant, tenant_id, isolamento entre clientes, current_setting, set_config, app.tenant_id, função volatile, função stable, volatilidade, initplan, subplan, security barrier, qualificação de segurança, leakproof, proleakproof, pg_proc, pg_operator, ilike, like, texticlike, textlike, lower, jsonb, pg_trgm, gin_trgm_ops, índice trigram, índice de expressão, seq scan, index scan, explain, set role, bypassrls, force row level security, dono da tabela, security definer, search_path, pgbouncer, modo transação, enable_seqscan, ci, node-postgres, node.js, postgres',
+      en: 'row level security, rls, rls policy, create policy, alter policy, using, with check, multi-tenant, multi-tenant saas, tenant_id, customer isolation, current_setting, set_config, app.tenant_id, volatile function, stable function, volatility, initplan, subplan, security barrier, security qualification, leakproof, proleakproof, pg_proc, pg_operator, ilike, like, texticlike, textlike, lower, jsonb, pg_trgm, gin_trgm_ops, trigram index, expression index, seq scan, index scan, explain, set role, bypassrls, force row level security, table owner, security definer, search_path, pgbouncer, transaction mode, enable_seqscan, ci, node-postgres, node.js, postgres',
+      es: 'row level security, rls, política de rls, create policy, alter policy, using, with check, multi-tenant, saas multi-tenant, tenant_id, aislamiento entre clientes, current_setting, set_config, app.tenant_id, función volatile, función stable, volatilidad, initplan, subplan, security barrier, calificación de seguridad, leakproof, proleakproof, pg_proc, pg_operator, ilike, like, texticlike, textlike, lower, jsonb, pg_trgm, gin_trgm_ops, índice trigram, índice de expresión, seq scan, index scan, explain, set role, bypassrls, force row level security, dueño de la tabla, security definer, search_path, pgbouncer, modo transacción, enable_seqscan, ci, node-postgres, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Row Level Security que deixa a consulta lenta: políticas, funções não leakproof e o índice que deixa de ser usado',
+        excerpt:
+          'Depois de trocar o filtro tenant_id das consultas por uma política de RLS, a listagem de pedidos de um SaaS foi de 40 ms para 14 s, e o EXPLAIN do dono da tabela mostrava 3 ms. Por que a política entra no plano como qualificação de segurança, como uma função VOLATILE vira Seq Scan, como STABLE e (SELECT ...) a transformam em InitPlan, por que ILIKE, lower e jsonb deixam de usar índice sob RLS por não serem leakproof e como conferir os planos com o papel da aplicação no CI.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'Row Level Security that makes the query slow: policies, non-leakproof functions and the index that stops being used',
+        excerpt:
+          'After replacing the tenant_id filter in the queries with an RLS policy, the order listing of a SaaS went from 40 ms to 14 s, while the EXPLAIN run by the table owner showed 3 ms. Why the policy enters the plan as a security qualification, how a VOLATILE function turns into a Seq Scan, how STABLE and (SELECT ...) turn it into an InitPlan, why ILIKE, lower and jsonb stop using indexes under RLS because they are not leakproof, and how to check plans with the application role in CI.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'Row Level Security que vuelve lenta la consulta: políticas, funciones no leakproof y el índice que deja de usarse',
+        excerpt:
+          'Después de cambiar el filtro tenant_id de las consultas por una política de RLS, el listado de pedidos de un SaaS pasó de 40 ms a 14 s, mientras el EXPLAIN del dueño de la tabla mostraba 3 ms. Por qué la política entra en el plan como calificación de seguridad, cómo una función VOLATILE se vuelve Seq Scan, cómo STABLE y (SELECT ...) la convierten en InitPlan, por qué ILIKE, lower y jsonb dejan de usar índices bajo RLS al no ser leakproof y cómo revisar los planes con el rol de la aplicación en el CI.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint',
     date: '2026-11-20',
     readTime: '12 min',
@@ -4356,16 +4386,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Row Level Security que deixa a consulta lenta: políticas, funções não leakproof e o índice que deixa de ser usado',
     'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
+    'LISTEN/NOTIFY que perde evento: notificação dentro da transação, conexão do pool e o worker que não reconecta',
+    'Fila no Postgres com SKIP LOCKED que fica lenta: tuplas mortas, índice inchado e o worker que varre o que já foi processado',
+    'statement_timeout e lock_timeout que não protegem a migração: onde cada limite vale e o comando que espera para sempre',
   ],
   en: [
-    'Row Level Security that makes the query slow: policies, non-leakproof functions and the index that stops being used',
     'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
+    'LISTEN/NOTIFY that loses events: notifications inside the transaction, pooled connections and the worker that never reconnects',
+    'The SKIP LOCKED queue in Postgres that gets slow: dead tuples, a bloated index and the worker that scans what was already processed',
+    'statement_timeout and lock_timeout that do not protect the migration: where each limit applies and the command that waits forever',
   ],
   es: [
-    'Row Level Security que vuelve lenta la consulta: políticas, funciones no leakproof y el índice que deja de usarse',
     'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
+    'LISTEN/NOTIFY que pierde eventos: notificaciones dentro de la transacción, conexiones del pool y el worker que no se reconecta',
+    'La cola en Postgres con SKIP LOCKED que se vuelve lenta: tuplas muertas, un índice inflado y el worker que recorre lo que ya se procesó',
+    'statement_timeout y lock_timeout que no protegen la migración: dónde vale cada límite y el comando que espera para siempre',
   ],
 };
 
