@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda',
+    date: '2026-11-22',
+    readTime: '12 min',
+    keywords: {
+      pt: 'advisory lock, pg_advisory_lock, pg_try_advisory_lock, pg_advisory_xact_lock, pg_try_advisory_xact_lock, pg_advisory_unlock, pg_advisory_unlock_all, trava de sessão, trava de transação, exclusão mútua, job agendado, job que não roda, pgbouncer, modo transação, pool_mode transaction, modo sessão, server_reset_query, server_reset_query_always, discard all, server_lifetime, server_idle_timeout, pool de conexões, node-postgres, pool.query, pool.connect, client.release, idleTimeoutMillis, pg_locks, pg_stat_activity, classid, objid, objsubid, pg_terminate_backend, you don\'t own a lock of type ExclusiveLock, lock reentrante, hashtextextended, lease, trava com prazo, conexão dedicada, keepalive, tcp_keepalives_idle, statement_timeout, transação longa, node.js, postgres',
+      en: 'advisory lock, pg_advisory_lock, pg_try_advisory_lock, pg_advisory_xact_lock, pg_try_advisory_xact_lock, pg_advisory_unlock, pg_advisory_unlock_all, session lock, transaction lock, mutual exclusion, scheduled job, job that does not run, pgbouncer, transaction mode, pool_mode transaction, session mode, server_reset_query, server_reset_query_always, discard all, server_lifetime, server_idle_timeout, connection pool, node-postgres, pool.query, pool.connect, client.release, idleTimeoutMillis, pg_locks, pg_stat_activity, classid, objid, objsubid, pg_terminate_backend, you don\'t own a lock of type ExclusiveLock, reentrant lock, hashtextextended, lease, lock with expiration, dedicated connection, keepalive, tcp_keepalives_idle, statement_timeout, long transaction, node.js, postgres',
+      es: 'advisory lock, pg_advisory_lock, pg_try_advisory_lock, pg_advisory_xact_lock, pg_try_advisory_xact_lock, pg_advisory_unlock, pg_advisory_unlock_all, lock de sesión, lock de transacción, exclusión mutua, job programado, job que no se ejecuta, pgbouncer, modo transacción, pool_mode transaction, modo sesión, server_reset_query, server_reset_query_always, discard all, server_lifetime, server_idle_timeout, pool de conexiones, node-postgres, pool.query, pool.connect, client.release, idleTimeoutMillis, pg_locks, pg_stat_activity, classid, objid, objsubid, pg_terminate_backend, you don\'t own a lock of type ExclusiveLock, lock reentrante, hashtextextended, lease, lock con vencimiento, conexión dedicada, keepalive, tcp_keepalives_idle, statement_timeout, transacción larga, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
+        excerpt:
+          'Depois de colocar o PgBouncer em modo transação, a conciliação de pagamentos passou 19 horas saindo com "outra instância já está rodando" sem nenhuma instância rodando, e dois dias depois duas instâncias processaram o mesmo lote. Por que o advisory lock de sessão sobrevive ao COMMIT, como o pooler entrega a trava para outro cliente, por que o unlock em outra conexão falha em silêncio, como achar o backend que segura a chave em pg_locks e como corrigir com trava de transação, conexão dedicada ou lease em tabela.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
+        excerpt:
+          'After putting PgBouncer in transaction mode, payment reconciliation spent 19 hours exiting with "another instance is already running" while no instance was running, and two days later two instances processed the same batch. Why a session advisory lock survives COMMIT, how the pooler hands the lock to another client, why an unlock on another connection fails silently, how to find the backend holding the key in pg_locks and how to fix it with a transaction lock, a dedicated connection or a lease in a table.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
+        excerpt:
+          'Después de poner PgBouncer en modo transacción, la conciliación de pagos pasó 19 horas saliendo con "otra instancia ya está ejecutando" sin ninguna instancia en ejecución, y dos días después dos instancias procesaron el mismo lote. Por qué el advisory lock de sesión sobrevive al COMMIT, cómo el pooler entrega el lock a otro cliente, por qué el unlock en otra conexión falla en silencio, cómo encontrar el backend que tiene la clave en pg_locks y cómo corregirlo con lock de transacción, conexión dedicada o lease en una tabla.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado',
     date: '2026-11-22',
     readTime: '13 min',
@@ -4386,19 +4416,16 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Advisory lock que fica preso no pool: pg_advisory_lock de sessão, PgBouncer e o job que nunca mais roda',
     'LISTEN/NOTIFY que perde evento: notificação dentro da transação, conexão do pool e o worker que não reconecta',
     'Fila no Postgres com SKIP LOCKED que fica lenta: tuplas mortas, índice inchado e o worker que varre o que já foi processado',
     'statement_timeout e lock_timeout que não protegem a migração: onde cada limite vale e o comando que espera para sempre',
   ],
   en: [
-    'The advisory lock stuck in the pool: session pg_advisory_lock, PgBouncer and the job that never runs again',
     'LISTEN/NOTIFY that loses events: notifications inside the transaction, pooled connections and the worker that never reconnects',
     'The SKIP LOCKED queue in Postgres that gets slow: dead tuples, a bloated index and the worker that scans what was already processed',
     'statement_timeout and lock_timeout that do not protect the migration: where each limit applies and the command that waits forever',
   ],
   es: [
-    'El advisory lock que queda atrapado en el pool: pg_advisory_lock de sesión, PgBouncer y el job que nunca más se ejecuta',
     'LISTEN/NOTIFY que pierde eventos: notificaciones dentro de la transacción, conexiones del pool y el worker que no se reconecta',
     'La cola en Postgres con SKIP LOCKED que se vuelve lenta: tuplas muertas, un índice inflado y el worker que recorre lo que ya se procesó',
     'statement_timeout y lock_timeout que no protegen la migración: dónde vale cada límite y el comando que espera para siempre',
