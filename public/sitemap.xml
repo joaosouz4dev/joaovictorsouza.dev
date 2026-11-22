@@ -1541,6 +1541,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://joaovictorsouza.dev/blog/advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://joaovictorsouza.dev/blog/advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaovictorsouza.dev/blog/advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda" />
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://joaovictorsouza.dev/blog/row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaovictorsouza.dev/blog/row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado" />
     <xhtml:link rel="alternate" hreflang="en" href="https://joaovictorsouza.dev/blog/row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado" />

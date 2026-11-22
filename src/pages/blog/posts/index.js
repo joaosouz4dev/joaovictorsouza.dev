@@ -158,8 +158,11 @@ import indiceParcialExpressao from './indice-parcial-e-indice-de-expressao-que-o
 import collationGlibcReindex from './collation-que-muda-depois-da-atualizacao-do-sistema-operacional-glibc-indice-com-ordem-errada-e-reindex.js';
 import sequenceIdAcabaBigint from './sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint.js';
 import rlsConsultaLentaLeakproof from './row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado.js';
+import advisoryLockPresoPool from './advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda.js';
 
 const postContentBySlug = {
+  'advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda':
+    advisoryLockPresoPool,
   'row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado':
     rlsConsultaLentaLeakproof,
   'sequence-que-pula-numeros-e-id-que-acaba-cache-de-sequence-rollback-integer-que-estoura-e-a-migracao-para-bigint':
