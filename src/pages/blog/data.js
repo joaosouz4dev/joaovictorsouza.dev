@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'listen-notify-que-perde-evento-notificacao-dentro-da-transacao-conexao-do-pool-e-o-worker-que-nao-reconecta',
+    date: '2026-11-23',
+    readTime: '13 min',
+    keywords: {
+      pt: 'listen notify, listen/notify, pg_notify, notify, listen, unlisten, canal, payload, evento perdido, notificação perdida, notificação dentro da transação, commit, rollback, entrega no melhor esforço, fila de notificações, pg_notification_queue_usage, too many notifications in the NOTIFY queue, 8000 bytes, trigger, for each statement, for each row, worker, ouvinte, reconexão, backoff exponencial, keepalive, heartbeat, conexão meio aberta, failover, idle_session_timeout, pgbouncer, modo transação, pool de conexões, node-postgres, pg.Client, pool.query, client.release, idleTimeoutMillis, pg_stat_activity, application_name, skip locked, for update skip locked, índice parcial, varredura periódica, idempotência, outbox, node.js, postgres',
+      en: 'listen notify, listen/notify, pg_notify, notify, listen, unlisten, channel, payload, lost event, lost notification, notification inside the transaction, commit, rollback, best-effort delivery, notification queue, pg_notification_queue_usage, too many notifications in the NOTIFY queue, 8000 bytes, trigger, for each statement, for each row, worker, listener, reconnection, exponential backoff, keepalive, heartbeat, half-open connection, failover, idle_session_timeout, pgbouncer, transaction mode, connection pool, node-postgres, pg.Client, pool.query, client.release, idleTimeoutMillis, pg_stat_activity, application_name, skip locked, for update skip locked, partial index, periodic sweep, idempotency, outbox, node.js, postgres',
+      es: 'listen notify, listen/notify, pg_notify, notify, listen, unlisten, canal, payload, evento perdido, notificación perdida, notificación dentro de la transacción, commit, rollback, entrega con el mejor esfuerzo, cola de notificaciones, pg_notification_queue_usage, too many notifications in the NOTIFY queue, 8000 bytes, trigger, for each statement, for each row, worker, oyente, reconexión, backoff exponencial, keepalive, heartbeat, conexión medio abierta, failover, idle_session_timeout, pgbouncer, modo transacción, pool de conexiones, node-postgres, pg.Client, pool.query, client.release, idleTimeoutMillis, pg_stat_activity, application_name, skip locked, for update skip locked, índice parcial, barrido periódico, idempotencia, outbox, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'LISTEN/NOTIFY que perde evento: notificação dentro da transação, conexão do pool e o worker que não reconecta',
+        excerpt:
+          'Um worker de emissão de notas escutava o canal pedido_criado: 0,4% dos pedidos ficavam sem nota sem nenhum erro, e depois de um failover ele passou seis horas vivo e surdo, deixando 1.900 pedidos parados. Como o NOTIFY é entregue de verdade, por que a notificação fora da transação chega antes do dado, onde o LISTEN some com a conexão do pool e atrás do PgBouncer, e como montar um worker com keepalive, heartbeat, reconexão e drenagem da tabela que não perde nada.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'LISTEN/NOTIFY that loses events: notifications inside the transaction, pooled connections and the worker that never reconnects',
+        excerpt:
+          'An invoicing worker listened on the pedido_criado channel: 0.4% of orders never got an invoice with no error at all, and after a failover it spent six hours alive and deaf, leaving 1,900 orders stuck. How NOTIFY is really delivered, why a notification sent outside the transaction arrives before the data, where LISTEN disappears with a pooled connection and behind PgBouncer, and how to build a worker with keepalive, heartbeat, reconnection and a table drain that loses nothing.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'LISTEN/NOTIFY que pierde eventos: notificaciones dentro de la transacción, conexiones del pool y el worker que no se reconecta',
+        excerpt:
+          'Un worker de facturación escuchaba el canal pedido_criado: el 0,4% de los pedidos quedaba sin factura sin ningún error, y después de un failover pasó seis horas vivo y sordo, dejando 1.900 pedidos detenidos. Cómo se entrega realmente el NOTIFY, por qué la notificación fuera de la transacción llega antes que el dato, dónde desaparece el LISTEN con la conexión del pool y detrás de PgBouncer, y cómo construir un worker con keepalive, heartbeat, reconexión y drenaje de la tabla que no pierde nada.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda',
     date: '2026-11-22',
     readTime: '12 min',
@@ -4416,17 +4446,14 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'LISTEN/NOTIFY que perde evento: notificação dentro da transação, conexão do pool e o worker que não reconecta',
     'Fila no Postgres com SKIP LOCKED que fica lenta: tuplas mortas, índice inchado e o worker que varre o que já foi processado',
     'statement_timeout e lock_timeout que não protegem a migração: onde cada limite vale e o comando que espera para sempre',
   ],
   en: [
-    'LISTEN/NOTIFY that loses events: notifications inside the transaction, pooled connections and the worker that never reconnects',
     'The SKIP LOCKED queue in Postgres that gets slow: dead tuples, a bloated index and the worker that scans what was already processed',
     'statement_timeout and lock_timeout that do not protect the migration: where each limit applies and the command that waits forever',
   ],
   es: [
-    'LISTEN/NOTIFY que pierde eventos: notificaciones dentro de la transacción, conexiones del pool y el worker que no se reconecta',
     'La cola en Postgres con SKIP LOCKED que se vuelve lenta: tuplas muertas, un índice inflado y el worker que recorre lo que ya se procesó',
     'statement_timeout y lock_timeout que no protegen la migración: dónde vale cada límite y el comando que espera para siempre',
   ],
