@@ -26,7 +26,7 @@ const pt = {
         {
           type: 'paragraph',
           value:
-            'Isso vale mesmo quando os dois modelos têm a mesma dimensionalidade, e vale entre versões do mesmo provedor. Dimensão igual só significa que a operação aritmética é possível, não que ela é significativa. Também não existe matriz de tradução confiável entre espaços de propósito geral: até dá para aprender uma projeção aproximada com pares alinhados, mas a perda de qualidade costuma ser maior do que o custo de reindexar direito. A consequência prática é dura e simples: durante toda a migração, a consulta precisa ser embutida com exatamente o mesmo modelo que gerou os vetores que ela vai comparar. Não há meio termo, e é essa regra que dita todo o desenho a seguir.',
+            'Isso vale mesmo quando os dois modelos têm a mesma dimensão ou vêm do mesmo provedor. Para buscar, a consulta e os documentos precisam estar no mesmo espaço vetorial. No fluxo deste artigo, cada índice recebe consultas embutidas com o modelo daquela versão. Um conversor treinado para o par de modelos pode aproximar um vetor no espaço de destino, com qualidade que precisa ser medida no seu acervo.',
         },
         {
           type: 'table',
@@ -352,9 +352,9 @@ export async function measureParity({
   ],
   faq: [
     {
-      question: 'Dá para converter os vetores antigos para o espaço novo em vez de reindexar?',
+      question: 'Dá para aproveitar os vetores antigos ao trocar de modelo?',
       answer:
-        'Na prática, não de forma confiável. É possível aprender uma projeção linear entre dois espaços usando pares de textos embutidos nos dois modelos, e a literatura mostra que isso funciona parcialmente, mas a perda é distribuída de forma desigual: os casos fáceis continuam funcionando e os difíceis, que são justamente os que o retrieval precisa acertar, degradam. Você acaba com um índice que parece bom na média e falha nas consultas específicas, e o pior é que essa falha não se distingue de um problema de chunking ou de prompt no diagnóstico. Some a isso que a projeção precisa ser recalculada a cada novo modelo e que o custo de embutir de novo costuma ser menor do que o de manter e validar essa camada de tradução. A conversão só se justifica quando reindexar é impossível por restrição de licença ou de dado que não existe mais em texto, e mesmo aí exige a mesma medição de paridade.',
+        'Sim, se houver um conversor para o par e a direção de que você precisa. Na conversão do acervo (A → B), você reaproveita os embeddings antigos sem reler o texto e indexa os vetores convertidos no espaço B. A UniVec publica pesos sob Apache 2.0 para alguns pares. O PostVec é uma extensão de código aberto para PostgreSQL que pode converter os vetores das linhas existentes e gerar embeddings com o novo modelo para novas escritas durante a migração. Na ponte de consulta descrita pela UniVec, o caminho é B → A. O vetor da pergunta é convertido a cada busca no índice A. Avalie as duas abordagens em sombra, com consultas anotadas. Compare a conversão do acervo com uma amostra reembutida nativamente em B, se o texto estiver disponível. Para a ponte de consulta, use a busca nativa em A como referência e meça também a latência p95 com a conversão.',
     },
     {
       question: 'Quanto tempo manter as duas versões escrevendo antes de descartar a antiga?',
@@ -374,6 +374,8 @@ export async function measureParity({
     cta: 'Falar sobre migrar os embeddings do meu RAG',
   },
   related: [
+    { label: 'UniVec — modelos de conversão de embeddings', to: 'https://huggingface.co/univec' },
+    { label: 'PostVec — extensão para PostgreSQL', to: 'https://github.com/univec-ai/postvec' },
     { label: 'Chunking de documento para RAG sem perder contexto', to: '/blog/chunking-documento-rag-sem-perder-contexto' },
     { label: 'Reranking em RAG: melhorar o retrieval sem trocar o modelo', to: '/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo' },
     { label: 'Migração de modelo sem quebrar o prompt em produção', to: '/blog/migracao-modelo-sem-quebrar-prompt-producao' },
@@ -396,7 +398,7 @@ const en = {
         {
           type: 'paragraph',
           value:
-            'This holds even when both models share the same dimensionality, and it holds across versions from the same provider. Equal dimensions only mean the arithmetic operation is possible, not that it is meaningful. There is also no reliable translation matrix between general purpose spaces: you can learn an approximate projection from aligned pairs, but the quality loss usually costs more than reindexing properly. The practical consequence is harsh and simple: throughout the migration, the query must be embedded with exactly the same model that produced the vectors it will be compared against. There is no middle ground, and that rule dictates every design decision below.',
+            'This holds even when both models have the same dimensions or come from the same provider. Search requires the query and document vectors to share a vector space. In the workflow below, each index receives queries encoded by the model for that version. A converter trained for the model pair can approximate a vector in the target space, and its retrieval quality needs to be measured on your corpus.',
         },
         {
           type: 'table',
@@ -722,9 +724,9 @@ export async function measureParity({
   ],
   faq: [
     {
-      question: 'Can the old vectors be converted into the new space instead of reindexing?',
+      question: 'Can you reuse existing vectors when switching embedding models?',
       answer:
-        'In practice, not reliably. It is possible to learn a linear projection between two spaces using pairs of texts embedded by both models, and the literature shows it partially works, but the loss is unevenly distributed: the easy cases keep working and the hard ones, which are exactly the ones retrieval needs to get right, degrade. You end up with an index that looks fine on average and fails on specific queries, and the worst part is that this failure is indistinguishable from a chunking or prompt problem during diagnosis. Add to that the fact that the projection must be recomputed for every new model and that re-embedding usually costs less than maintaining and validating that translation layer. Conversion is only justified when reindexing is impossible due to licensing constraints or data that no longer exists as text, and even then it demands the same parity measurement.',
+        'Yes, when a converter exists for the model pair and direction you need. Corpus conversion (A → B) reuses the existing embeddings without reading the source text and indexes the converted vectors in space B. UniVec publishes Apache 2.0 weights for some pairs. PostVec is an open-source PostgreSQL extension that can convert vectors for existing rows and generate embeddings with the new model for new writes during migration. The query bridge described by UniVec goes B → A. It converts the query vector on each search against index A. Evaluate both approaches in shadow mode on labeled queries. For corpus conversion, compare against a sample embedded natively in B if the source text is available. For the query bridge, use native search in A as the baseline and also measure p95 latency with conversion.',
     },
     {
       question: 'How long should both versions keep being written before disposing of the old one?',
@@ -744,6 +746,8 @@ export async function measureParity({
     cta: 'Talk about migrating the embeddings in my RAG',
   },
   related: [
+    { label: 'UniVec embedding conversion models', to: 'https://huggingface.co/univec' },
+    { label: 'PostVec PostgreSQL extension', to: 'https://github.com/univec-ai/postvec' },
     { label: 'Document chunking for RAG without losing context', to: '/blog/chunking-documento-rag-sem-perder-contexto' },
     { label: 'Reranking in RAG: better retrieval without swapping the model', to: '/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo' },
     { label: 'Model migration without breaking the prompt in production', to: '/blog/migracao-modelo-sem-quebrar-prompt-producao' },
@@ -766,7 +770,7 @@ const es = {
         {
           type: 'paragraph',
           value:
-            'Esto vale incluso cuando los dos modelos tienen la misma dimensionalidad, y vale entre versiones del mismo proveedor. Dimensión igual solo significa que la operación aritmética es posible, no que sea significativa. Tampoco existe una matriz de traducción confiable entre espacios de propósito general: se puede aprender una proyección aproximada con pares alineados, pero la pérdida de calidad suele ser mayor que el costo de reindexar bien. La consecuencia práctica es dura y simple: durante toda la migración, la consulta debe embeberse con exactamente el mismo modelo que generó los vectores con los que se va a comparar. No hay término medio, y esa regla dicta todo el diseño que sigue.',
+            'Esto vale incluso cuando los dos modelos tienen la misma dimensión o vienen del mismo proveedor. Para buscar, la consulta y los documentos necesitan compartir un espacio vectorial. En el flujo de este artículo, cada índice recibe consultas embebidas con el modelo de esa versión. Un conversor entrenado para el par de modelos puede aproximar un vector en el espacio de destino, con una calidad que hay que medir en tu acervo.',
         },
         {
           type: 'table',
@@ -1092,9 +1096,9 @@ export async function measureParity({
   ],
   faq: [
     {
-      question: '¿Se pueden convertir los vectores viejos al espacio nuevo en vez de reindexar?',
+      question: '¿Se pueden aprovechar los vectores viejos al cambiar de modelo?',
       answer:
-        'En la práctica, no de forma confiable. Es posible aprender una proyección lineal entre dos espacios usando pares de textos embebidos por los dos modelos, y la literatura muestra que funciona parcialmente, pero la pérdida se distribuye de forma despareja: los casos fáciles siguen funcionando y los difíciles, que son justamente los que el retrieval necesita acertar, se degradan. Terminás con un índice que parece bueno en promedio y falla en las consultas específicas, y lo peor es que esa falla no se distingue de un problema de chunking o de prompt en el diagnóstico. Sumá que la proyección debe recalcularse con cada modelo nuevo y que el costo de volver a embeber suele ser menor que el de mantener y validar esa capa de traducción. La conversión solo se justifica cuando reindexar es imposible por restricción de licencia o por dato que ya no existe en texto, y aun así exige la misma medición de paridad.',
+        'Sí, si hay un conversor para el par y la dirección que necesitás. La conversión del acervo (A → B) reutiliza los embeddings existentes sin volver a leer el texto e indexa los vectores convertidos en el espacio B. UniVec publica pesos bajo Apache 2.0 para algunos pares. PostVec es una extensión de código abierto para PostgreSQL que puede convertir los vectores de las filas existentes y generar embeddings con el modelo nuevo para las nuevas escrituras durante la migración. El puente de consulta que describe UniVec sigue la dirección B → A. Convierte el vector de la pregunta en cada búsqueda contra el índice A. Evaluá ambos enfoques en sombra con consultas anotadas. Para la conversión del acervo, compará con una muestra reembebida de forma nativa en B si tenés el texto. Para el puente de consulta, usá la búsqueda nativa en A como referencia y medí también la latencia p95 con la conversión.',
     },
     {
       question: '¿Cuánto tiempo mantener las dos versiones escribiendo antes de descartar la vieja?',
@@ -1114,6 +1118,8 @@ export async function measureParity({
     cta: 'Hablar sobre migrar los embeddings de mi RAG',
   },
   related: [
+    { label: 'UniVec — modelos de conversión de embeddings', to: 'https://huggingface.co/univec' },
+    { label: 'PostVec — extensión para PostgreSQL', to: 'https://github.com/univec-ai/postvec' },
     { label: 'Chunking de documento para RAG sin perder contexto', to: '/blog/chunking-documento-rag-sem-perder-contexto' },
     { label: 'Reranking en RAG: mejorar el retrieval sin cambiar el modelo', to: '/blog/reranking-rag-melhorar-retrieval-sem-trocar-modelo' },
     { label: 'Migración de modelo sin romper el prompt en producción', to: '/blog/migracao-modelo-sem-quebrar-prompt-producao' },
