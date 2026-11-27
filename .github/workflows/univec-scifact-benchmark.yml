@@ -1,0 +1,30 @@
+name: UniVec SciFact benchmark
+
+on:
+  push:
+    branches: [codex/univec-scifact-benchmark]
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up isolated Python dependencies
+        run: |
+          python3 -m venv "$RUNNER_TEMP/scifact-venv"
+          "$RUNNER_TEMP/scifact-venv/bin/pip" install numpy==2.3.2 onnxruntime==1.30.0 tokenizers==0.23.2
+      - name: Compare corpus conversion and query bridging
+        run: |
+          "$RUNNER_TEMP/scifact-venv/bin/python" scripts/univec_scifact_benchmark.py --cache "$RUNNER_TEMP/scifact-cache" --output "$RUNNER_TEMP/scifact-results.json" --threads 4
+          {
+            echo '### SciFact results'
+            echo '```json'
+            cat "$RUNNER_TEMP/scifact-results.json"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
