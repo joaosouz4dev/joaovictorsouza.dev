@@ -2,6 +2,36 @@ import { toBaseLanguage } from '../../utils/i18n.js';
 
 const publishedPostDefinitions = [
   {
+    slug: 'fila-no-postgres-com-skip-locked-que-fica-lenta-tuplas-mortas-indice-inchado-e-o-worker-que-varre-o-que-ja-foi-processado',
+    date: '2026-11-28',
+    readTime: '13 min',
+    keywords: {
+      pt: 'skip locked, for update skip locked, select for update, fila no postgres, fila em tabela, fila de tarefas, job queue, worker, lote, tupla morta, versão morta, dead tuple, n_dead_tup, mvcc, vacuum, autovacuum, vacuum verbose, dead but not yet removable, removable cutoff, horizonte de xmin, backend_xmin, backend_xid, snapshot antigo, idle in transaction, repeatable read, hot_standby_feedback, slot de replicação, pg_replication_slots, pg_prepared_xacts, pg_stat_activity, pg_stat_user_tables, explain analyze buffers, index scan, lp_dead, hot update, índice inchado, bloat de índice, pgstattuple, pgstatindex, avg_leaf_density, reindex concurrently, índice parcial, particionamento, drop de partição, autovacuum_vacuum_scale_factor, autovacuum_vacuum_threshold, autovacuum_naptime, statement_timeout, idle_in_transaction_session_timeout, reserva com prazo, lease, idempotência, pg_stat_statements, node-postgres, node.js, postgres',
+      en: 'skip locked, for update skip locked, select for update, postgres queue, table-based queue, task queue, job queue, worker, batch, dead tuple, dead version, n_dead_tup, mvcc, vacuum, autovacuum, vacuum verbose, dead but not yet removable, removable cutoff, xmin horizon, backend_xmin, backend_xid, old snapshot, idle in transaction, repeatable read, hot_standby_feedback, replication slot, pg_replication_slots, pg_prepared_xacts, pg_stat_activity, pg_stat_user_tables, explain analyze buffers, index scan, lp_dead, hot update, bloated index, index bloat, pgstattuple, pgstatindex, avg_leaf_density, reindex concurrently, partial index, partitioning, drop partition, autovacuum_vacuum_scale_factor, autovacuum_vacuum_threshold, autovacuum_naptime, statement_timeout, idle_in_transaction_session_timeout, reservation with deadline, lease, idempotency, pg_stat_statements, node-postgres, node.js, postgres',
+      es: 'skip locked, for update skip locked, select for update, cola en postgres, cola en tabla, cola de tareas, job queue, worker, lote, tupla muerta, versión muerta, dead tuple, n_dead_tup, mvcc, vacuum, autovacuum, vacuum verbose, dead but not yet removable, removable cutoff, horizonte de xmin, backend_xmin, backend_xid, snapshot antiguo, idle in transaction, repeatable read, hot_standby_feedback, slot de replicación, pg_replication_slots, pg_prepared_xacts, pg_stat_activity, pg_stat_user_tables, explain analyze buffers, index scan, lp_dead, hot update, índice inflado, bloat de índice, pgstattuple, pgstatindex, avg_leaf_density, reindex concurrently, índice parcial, particionamiento, drop de partición, autovacuum_vacuum_scale_factor, autovacuum_vacuum_threshold, autovacuum_naptime, statement_timeout, idle_in_transaction_session_timeout, reserva con plazo, lease, idempotencia, pg_stat_statements, node-postgres, node.js, postgres',
+    },
+    content: {
+      pt: {
+        title: 'Fila no Postgres com SKIP LOCKED que fica lenta: tuplas mortas, índice inchado e o worker que varre o que já foi processado',
+        excerpt:
+          'Uma fila de notificações em tabela passou de 3 ms para 640 ms por busca de lote sem nenhum deploy: 918 mil versões mortas na frente das linhas vivas, que o VACUUM não podia remover porque uma sessão de relatório estava aberta desde as 09:02, e 310 mil tarefas acumuladas. Por que o worker varre o que já foi processado, como confirmar com EXPLAIN e VACUUM VERBOSE, quem segura o horizonte, onde entra o índice inchado e como redesenhar a fila com tabela pequena, índice parcial e reserva curta.',
+        category: 'Arquitetura',
+      },
+      en: {
+        title: 'The SKIP LOCKED queue in Postgres that gets slow: dead tuples, a bloated index and the worker that scans what was already processed',
+        excerpt:
+          'A table-based notification queue went from 3 ms to 640 ms per batch fetch with no deploy: 918 thousand dead versions in front of the live rows, which VACUUM could not remove because a reporting session had been open since 09:02, and 310 thousand tasks piled up. Why the worker scans what was already processed, how to confirm it with EXPLAIN and VACUUM VERBOSE, who holds the horizon, where the bloated index comes in and how to redesign the queue with a small table, partial indexes and a short reservation.',
+        category: 'Architecture',
+      },
+      es: {
+        title: 'La cola en Postgres con SKIP LOCKED que se vuelve lenta: tuplas muertas, un índice inflado y el worker que recorre lo que ya se procesó',
+        excerpt:
+          'Una cola de notificaciones en tabla pasó de 3 ms a 640 ms por búsqueda de lote sin ningún despliegue: 918 mil versiones muertas delante de las filas vivas, que el VACUUM no podía eliminar porque una sesión de reportes estaba abierta desde las 09:02, y 310 mil tareas acumuladas. Por qué el worker recorre lo que ya se procesó, cómo confirmarlo con EXPLAIN y VACUUM VERBOSE, quién retiene el horizonte, dónde entra el índice inflado y cómo rediseñar la cola con tabla pequeña, índice parcial y reserva corta.',
+        category: 'Arquitectura',
+      },
+    },
+  },
+  {
     slug: 'listen-notify-que-perde-evento-notificacao-dentro-da-transacao-conexao-do-pool-e-o-worker-que-nao-reconecta',
     date: '2026-11-23',
     readTime: '13 min',
@@ -4446,16 +4476,22 @@ const publishedPostDefinitions = [
 
 const upcomingPostsByLanguage = {
   pt: [
-    'Fila no Postgres com SKIP LOCKED que fica lenta: tuplas mortas, índice inchado e o worker que varre o que já foi processado',
     'statement_timeout e lock_timeout que não protegem a migração: onde cada limite vale e o comando que espera para sempre',
+    'Upsert com ON CONFLICT que desperdiça ids e trava em lote: sequence consumida, índice único parcial e a ordem das linhas',
+    'Checkpoint que derruba a latência: pico de escrita, full page writes e o max_wal_size pequeno demais',
+    'Índice criado com CONCURRENTLY que fica inválido: build que falha no meio, duplicata escondida e a constraint que nunca valeu',
   ],
   en: [
-    'The SKIP LOCKED queue in Postgres that gets slow: dead tuples, a bloated index and the worker that scans what was already processed',
     'statement_timeout and lock_timeout that do not protect the migration: where each limit applies and the command that waits forever',
+    'The ON CONFLICT upsert that wastes ids and deadlocks in batches: consumed sequences, partial unique indexes and row order',
+    'The checkpoint that wrecks latency: write spikes, full page writes and a max_wal_size that is too small',
+    'The index created with CONCURRENTLY that ends up invalid: a build that fails halfway, a hidden duplicate and the constraint that never applied',
   ],
   es: [
-    'La cola en Postgres con SKIP LOCKED que se vuelve lenta: tuplas muertas, un índice inflado y el worker que recorre lo que ya se procesó',
     'statement_timeout y lock_timeout que no protegen la migración: dónde vale cada límite y el comando que espera para siempre',
+    'El upsert con ON CONFLICT que desperdicia ids y se bloquea en lote: sequence consumida, índice único parcial y el orden de las filas',
+    'El checkpoint que hunde la latencia: pico de escritura, full page writes y un max_wal_size demasiado pequeño',
+    'El índice creado con CONCURRENTLY que queda inválido: build que falla a la mitad, duplicado escondido y la constraint que nunca valió',
   ],
 };
 

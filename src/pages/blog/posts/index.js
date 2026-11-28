@@ -160,8 +160,11 @@ import sequenceIdAcabaBigint from './sequence-que-pula-numeros-e-id-que-acaba-ca
 import rlsConsultaLentaLeakproof from './row-level-security-que-deixa-a-consulta-lenta-politicas-funcoes-nao-leakproof-e-o-indice-que-deixa-de-ser-usado.js';
 import advisoryLockPresoPool from './advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda.js';
 import listenNotifyPerdeEvento from './listen-notify-que-perde-evento-notificacao-dentro-da-transacao-conexao-do-pool-e-o-worker-que-nao-reconecta.js';
+import filaSkipLockedLenta from './fila-no-postgres-com-skip-locked-que-fica-lenta-tuplas-mortas-indice-inchado-e-o-worker-que-varre-o-que-ja-foi-processado.js';
 
 const postContentBySlug = {
+  'fila-no-postgres-com-skip-locked-que-fica-lenta-tuplas-mortas-indice-inchado-e-o-worker-que-varre-o-que-ja-foi-processado':
+    filaSkipLockedLenta,
   'listen-notify-que-perde-evento-notificacao-dentro-da-transacao-conexao-do-pool-e-o-worker-que-nao-reconecta':
     listenNotifyPerdeEvento,
   'advisory-lock-que-fica-preso-no-pool-pg-advisory-lock-de-sessao-pgbouncer-e-o-job-que-nunca-mais-roda':
